@@ -1,41 +1,26 @@
-# Compiled Lua sources
-luac.out
+# Cache crap that Valve autogenerates
+*.bin
 
-# luarocks build files
-*.src.rock
-*.zip
-*.tar.gz
+# Compiled formats
+*.vpcf_c
+*.vtex_c
+*.vsndevts_c
+*.vmat_c
+*.vjs_c
+*.vxml_c
+*.vcss_c
 
-# Object files
-*.o
-*.os
-*.ko
-*.obj
-*.elf
+# Commit panorama compiled textures
+!game/dota_addons/dotacraft/panorama/images/*.vtex_c
+!game/dota_addons/dotacraft/panorama/images/custom_game/*.vtex_c
 
-# Precompiled Headers
-*.gch
-*.pch
+# Map files
+*.vpk
 
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-*.def
-*.exp
+# Map overviews
+content/dota_addons/dotacraft/materials/overviews/*
+game/dota_addons/dotacraft/materials/overviews/*
+game/dota_addons/dotacraft/resource/overviews/*
 
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
+#Github dump
+*.stackdump
