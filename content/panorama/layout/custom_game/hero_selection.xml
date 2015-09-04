@@ -1,0 +1,31 @@
+<root>
+	<styles>
+		<include src="file://{resources}/styles/custom_game/hero_selection_style.css" />
+	</styles>
+	<scripts>
+		<include src="file://{resources}/scripts/custom_game/util.js" />
+		<include src="file://{resources}/scripts/custom_game/simple_panel_animation.js" />
+		<include src="file://{resources}/scripts/custom_game/hero_selection_script.js" />
+	</scripts>
+	<Panel class="MainPanel" hittest="false">
+		<Panel id="HeroSelectionBackground" hittest="true">
+			<Panel id="NameColumn">
+				<Label class="HeaderLabel NameColumnHeader" text="player"></Label>
+			</Panel>
+			<Panel id="SelectionColumn">
+				<Label class="HeaderLabel SelectionColumnHeader" text="selection"></Label>
+			</Panel>
+			<Panel id="ScoreColumn">
+				<Label class="HeaderLabel HeroListHeader" text="score"></Label>
+			</Panel>
+			<Panel id="HeroList">
+				<Label class="HeaderLabel HeroListHeader" text="heroes"></Label>
+			</Panel>
+			<Panel id="TimerColumn">
+				<Label class="HeaderLabel HeroListHeader" text="game info"></Label>
+				<Label class="TimerColumnLabel" text="Select your hero before time runs out!"></Label>
+				<Label id="TimerText"></Label>
+			</Panel>
+		</Panel>
+	</Panel>
+</root>

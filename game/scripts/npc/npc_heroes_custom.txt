@@ -1,0 +1,91 @@
+"DOTAHeroes"
+{
+	"npc_dota_hero_zeus"
+	{
+		"override_hero"	"npc_dota_hero_zuus"
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
+		"BountyXP"	"0"
+		"MovementSpeed"	"400"
+		"MovementTurnRate"	"10"
+		"StatusHealth"	"5"
+		"StatusHealthRegen"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"AttributeBaseStrength"	"-1"
+		"AttributeBaseIntelligence" "-1"
+		
+		"Ability1" "zeus_q"
+		"Ability2" "zeus_w"
+		"Ability3" "zeus_e"
+		"Ability4" "zeus_r"
+
+		"Ultimate" "zeus_r"
+		"CustomIcons"
+		{
+			"zeus_q" "zeus_q.png"
+			"zeus_w" "zeus_w.png"
+			"zeus_e" "zeus_e.png"
+			"zeus_r" "zeus_r.png"
+		}
+	}
+
+	"npc_dota_hero_storm_spirit"
+	{
+		"override_hero"	"npc_dota_hero_storm_spirit"
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
+		"BountyXP"	"0"
+		"MovementSpeed"	"400"
+		"MovementTurnRate"	"10"
+		"StatusHealth"	"5"
+		"StatusHealthRegen"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"AttributeBaseStrength"	"-1"
+		"AttributeBaseIntelligence" "-1"
+
+		"Ability1" "storm_spirit_q"
+		"Ability2" "storm_spirit_w"
+		"Ability3" "storm_spirit_e"
+		"Ability4" "storm_spirit_r"
+
+		"Ultimate" "storm_spirit_r"
+	}
+
+	"npc_dota_hero_phantom_assassin"
+	{
+		"override_hero"	"npc_dota_hero_phantom_assassin"
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
+		"BountyXP"	"0"
+		"MovementSpeed"	"400"
+		"MovementTurnRate"	"10"
+		"StatusHealth"	"5"
+		"StatusHealthRegen"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"AttributeBaseStrength"	"-1"
+		"AttributeBaseIntelligence" "-1"
+		
+		"Ability1" "zeus_q"
+		"Ability2" "zeus_w"
+		"Ability3" "zeus_e"
+		"Ability4" "zeus_r"
+
+		"Ultimate" "zeus_r"
+		"CustomIcons"
+		{
+			"zeus_q" "zeus_q.png"
+			"zeus_w" "zeus_w.png"
+			"zeus_e" "zeus_e.png"
+			"zeus_r" "zeus_r.png"
+		}
+	}
+}

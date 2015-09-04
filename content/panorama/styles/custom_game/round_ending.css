@@ -1,0 +1,15 @@
+.RoundEndingBackground
+{
+    width: 100%;
+    height: 100%;
+}
+
+#ResultMessage
+{
+    font-family: Goudy Trajan Medium, FZKai-Z03, TH Sarabun New;
+    font-size: 80;
+    horizontal-align: center;
+    vertical-align: middle;
+    text-shadow: -1px 1px 2px 2.0 #000000;
+    color: #CCB966;
+}

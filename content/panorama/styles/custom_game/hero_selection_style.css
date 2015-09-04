@@ -1,0 +1,170 @@
+.MainPanel
+{
+    width: 100%;
+    height: 100%;
+    /*background-color: gradient( linear, 0% 0%, 0% 100%, from( #fbfbfbff ), color-stop( 0.3, #ebebebff ), to( #c0c0c0c0 ) );*/
+}
+
+#HeroSelectionBackground
+{
+	background-color: gradient(linear, 100% 0%, 0% 0%, from(black), color-stop(0.6, black), to(#c0c0c0c0));
+    visibility: collapse;
+    width: 100%;
+    height: 100%;
+    opacity: 0.0;
+}
+
+#HeroList
+{
+	x: 40%;
+	y: 60px;
+	width: 25%;
+	height: 100%;
+	flow-children: right-wrap;
+}
+
+.HeroButton
+{
+	saturation: 0.0;
+	margin: 3px;
+	max-height: 40px;
+}
+
+.HeroButton:hover
+{
+	saturation: 1.0;
+	box-shadow: fill yellow 0px 0px 8px 0px;
+}
+
+#NameColumn
+{
+	y: 60px;
+	width: 10%;
+	height: 100%;
+	flow-children: down;
+}
+
+.NamePanel
+{
+	background-color: gradient(linear, 0% 0%, 100% 0%, from(black), to(#00000000));
+	height: 40px;
+	width: 100%;
+	padding-left: 5px;
+	margin-bottom: 3px;
+	margin-top: 3px;
+	overflow: clip clip; 
+}
+
+.NameLabel
+{
+	font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+	font-size: 16;
+	vertical-align: middle;
+	horizontal-align: left;
+	text-shadow: -1px 1px 2px 2.0 black;
+	white-space: nowrap;
+}
+
+.HeaderLabel
+{
+	font-family: Goudy Trajan Medium, FZKai-Z03, TH Sarabun New;
+	font-size: 19px;
+	text-shadow: -1px 1px 2px 2.0 #000000;
+	text-transform: uppercase;
+	color: #CCB966;
+	margin-bottom: 6px;
+}
+
+.NameColumnHeader
+{
+	margin-left: 5px;
+}
+
+.SelectionColumnHeader
+{
+	horizontal-align: right;
+}
+
+.HeroListHeader
+{
+	width: 100%;
+	horizontal-align: center;
+	text-align: center;
+}
+
+#SelectionColumn
+{
+	y: 60px;
+	x: 11%;
+	width: 15%;
+	height: 100%;
+	flow-children: down;
+}
+
+.SelectionImage
+{
+	saturation: 0.0;
+	max-height: 40px;
+	margin-bottom: 3px;
+	margin-top: 3px;
+	opacity: 0.0;
+}
+
+.SelectionParent
+{
+	overflow:clip clip;
+	height: 30px;
+}
+
+#ScoreColumn
+{
+	y: 60px;
+	x: 27%;
+	width: 13%;
+	height: 100%;
+	flow-children: down;
+}
+
+.ScorePanel
+{
+	height: 40px;
+	width: 100%;
+	margin-bottom: 3px;
+	margin-top: 3px;
+}
+
+.ScoreText
+{
+	font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+	font-size: 28;
+	text-shadow: -1px 1px 2px 2.0 black;
+	color: gray;
+	horizontal-align: center;
+	vertical-align: middle;
+}
+
+#TimerColumn
+{
+	y: 60px;
+	x: 65%;
+	width: 35%;
+	height: 100%;
+	flow-children: down;
+}
+
+.TimerColumnLabel
+{
+	font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+	font-size: 18;
+	horizontal-align: center;
+	text-shadow: -1px 1px 2px 2.0 black;
+	color: gray;
+}
+
+#TimerText
+{
+	font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+	font-size: 48;
+	horizontal-align: center;
+	text-shadow: -1px 1px 2px 2.0 black;
+}

@@ -1,0 +1,84 @@
+"DOTAUnits"
+{
+	"Version"	"1"
+
+	"npc_dummy_unit"
+	{
+		// General
+		//
+		"BaseClass"					"npc_dota_creep_neutral"
+		"Model"						"models/development/invisiblebox.vmdl"
+		"SoundSet"					"Creep_Good_Range"
+		"Level"						"0"
+		"UnitLabel"					"healing_ward"
+
+		// Abilities
+		//----------------------------------------------------------------
+
+		"Ability1"					"dummy_unit_ability"
+		"Ability2"					""
+		"Ability3"					""
+		"Ability4"					""
+		"Ability5"					""
+		"Ability6"					""
+		"Ability7"					""
+		"Ability8"					""
+
+		// Armor
+		//----------------------------------------------------------------
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+
+		// Attack
+		//----------------------------------------------------------------
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"ProjectileModel"			""
+
+		// Attributes
+		//----------------------------------------------------------------
+		"AttributePrimary"			"DOTA_ATTRIBUTE_STRENGTH"
+		"AttributeBaseStrength"		"0"			// Base strength
+		"AttributeStrengthGain"		"0"			// Strength bonus per level.
+		"AttributeBaseIntelligence"	"0"			// Base intelligence
+		"AttributeIntelligenceGain"	"0"			// Intelligence bonus per level.
+		"AttributeBaseAgility"		"0"			// Base agility
+		"AttributeAgilityGain"		"0"			// Agility bonus per level.
+
+		// Bounty
+		//----------------------------------------------------------------
+		"BountyXP"					"0"			// Experience earn.
+		"BountyGoldMin"				"0"			// Gold earned min.
+		"BountyGoldMax"				"0"			// Gold earned max.
+
+		// Bounds
+		//----------------------------------------------------------------
+		//"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"			// Hull type used for navigation/locomotion.
+		// no hull
+
+		// Movement
+		//----------------------------------------------------------------
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_FLY"			// Type of locomotion - ground, air
+		"MovementSpeed"				"450"		// Speed
+		"MovementTurnRate"			"1.0"		// Turning rate.
+		"FollowRange"				"250"		// Distance to keep when following
+
+		// Status
+		//----------------------------------------------------------------
+		"StatusHealth"				"100"		// Base health.
+		"StatusHealthRegen"			"0"			// Health regeneration rate.
+		"StatusMana"				"100"			// Base mana.
+		"StatusManaRegen"			"0"			// Mana regeneration rate.
+
+		// Team
+		//----------------------------------------------------------------
+		"TeamName"					"DOTA_TEAM_GOODGUYS"			// Team name.
+		"CombatClassAttack"			"DOTA_COMBAT_CLASS_ATTACK_PIERCE"
+		"CombatClassDefend"			"DOTA_COMBAT_CLASS_DEFEND_SOFT"
+		"UnitRelationshipClass"		"DOTA_NPC_UNIT_RELATIONSHIP_TYPE_WARD"
+
+		// Vision
+		//----------------------------------------------------------------
+		"VisionDaytimeRange"		"100"		// Range of vision during day light.
+		"VisionNighttimeRange"		"100"		// Range of vision at night time.
+	}
+}
