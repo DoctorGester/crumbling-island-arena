@@ -7,7 +7,6 @@ require('level')
 require('hero_selection')
 require('round')
 
-require('physics')
 require('spells')
 
 STATE_NONE = 0

@@ -199,33 +199,6 @@ function Spells:CreateProjectile(data)
 	table.insert(Projectiles, projectile)
 end
 
-Physics:CreateColliderProfile("defaultCollider", {
-	type = COLLIDER_SPHERE,
-	skipFrames = 0,
-	test = function (table, collider, collided)
-		local isDummy = collided.GetUnitName and collided:GetUnitName() == DUMMY_UNIT
-		local isHero = collided.IsRealHero and collided:IsRealHero()
-
-		return (isDummy or isHero) and collider.data.owner ~= collided
-	end,
-	action = function (table, collider, collided)
-		local isHero = collided.IsRealHero and collided:IsRealHero()
-
-		if isHero then
-			local attacker = collider.data.owner.playerData
-			local victim = collided.playerData
-
-			if collider.data.heroBehaviour(collider, collided, attacker, victim) then
-				DestroyProjectile(collider)
-			end
-		end
-
-		if collided.GetUnitName and collided:GetUnitName() == DUMMY_UNIT then
-			DestroyProjectile(collider)
-			DestroyProjectile(collided)
-		end
-	end
-})
 --[[
 data:
 - Unit unit
