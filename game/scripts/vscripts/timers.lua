@@ -59,22 +59,12 @@ TIMERS_THINK = 0.01
 
 if Timers == nil then
 	print ( '[Timers] creating Timers' )
-	Timers = {}
-	Timers.__index = Timers
+	Timers = class({})
+	Timers.timers = {}
 end
 
-function Timers:new( o )
-	o = o or {}
-	setmetatable( o, Timers )
-	return o
-end
-
-function Timers:start()
-	Timers = self
-	self.timers = {}
-
-	local ent = Entities:CreateByClassname("info_target") -- Entities:FindByClassname(nil, 'CWorld')
-	ent:SetThink("Think", self, "timers", TIMERS_THINK)
+if TimerEntity == nil then
+	TimerEntity = Entities:CreateByClassname("info_target") -- Entities:FindByClassname(nil, 'CWorld')
 end
 
 function Timers:Think()
@@ -209,4 +199,4 @@ function Timers:RemoveTimers(killAll)
 	Timers.timers = timers
 end
 
-Timers:start()
+TimerEntity:SetThink("Think", Timers, "timers", TIMERS_THINK)

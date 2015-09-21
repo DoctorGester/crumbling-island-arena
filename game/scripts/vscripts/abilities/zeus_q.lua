@@ -20,10 +20,10 @@ function zeus_q:OnSpellStart()
 	projectileData.empowered = false
 	projectileData.radius = 48
 	projectileData.heroBehaviour =
-		function(collider, collided, a, v)
-			GameRules.GameMode.Round:DealDamage(a, v, true)
+		function(self, target)
+			Spells:ProjectileDamage(self, target)
 
-			if collider.data.empowered then
+			if self.empowered then
 				ability:EndCooldown()
 			end
 
@@ -31,24 +31,22 @@ function zeus_q:OnSpellStart()
 		end
 
 	projectileData.onMove = 
-		function(unit, pos)
-			if unit.data.previous then
-				local prev = unit.data.previous
+		function(self, prev, pos)
+			if not self.empowered and caster.wall then
+				local s = caster.wall.start
+				local f = caster.wall.finish
+				local intersect = SegmentsIntersect2(prev.x, prev.y, pos.x, pos.y, s.x, s.y, f.x, f.y)
 
-				if not unit.data.empowered and caster.wall then
-					local s = caster.wall.start
-					local f = caster.wall.finish
-					local intersect = SegmentsIntersect2(prev.x, prev.y, pos.x, pos.y, s.x, s.y, f.x, f.y)
-
-					if intersect then
-						unit:SetVelocity(2400)
-						unit.data.distance = 3000
-						unit.data.empowered = true
-					end
+				if intersect then
+					self.velocity = self.velocity * 2
+					self.distance = 3000
+					self.empowered = true
 				end
 			end
 
-			unit.data.previous = pos
+			if (pos - projectileData.from):Length2D() >= self.distance then
+				self:Destroy()
+			end
 		end
 
 	Spells:CreateProjectile(projectileData)

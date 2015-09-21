@@ -12,35 +12,52 @@ Projectiles = {}
 WorldMin = Vector(GetWorldMinX(), GetWorldMinY(), 0)
 WorldMax = Vector(GetWorldMaxX(), GetWorldMaxY(), 0)
 
-Timers:RemoveTimer(TIMER_NAME)
-Timers:CreateTimer(TIMER_NAME, {
-	callback =
-		function()
-			local destroyed = {}
+function Spells:ThinkFunction(dt)
+	if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
+		return
+	end
 
-			for index, projectile in ipairs(Projectiles) do
-				projectile.prev = projectile.position
+	for i = #Projectiles, 1, -1 do
+		local projectile = Projectiles[i]
+		projectile.prev = projectile.position
 
-				local pos = projectile:UpdatePosition()
+		local pos = projectile:UpdatePosition()
 
-				if pos.x > WorldMin.x and pos.y > WorldMin.y and pos.x < WorldMax.x and pos.y < WorldMax.y then
+		if pos.x < WorldMin.x or pos.y < WorldMin.y or pos.x > WorldMax.x or pos.y > WorldMax.y then
+			projectile.destroyed = true
+		end
+
+		if not projectile.destroyed then
+			local status, err = pcall(
+				function(projectile)
 					projectile.position = pos
 					projectile.dummy:SetAbsOrigin(projectile.position)
-				else
-					table.insert(destroyed, index)
+					projectile:MoveEvent(projectile.prev, projectile.position)
+					projectile:DealDamage(projectile.prev, projectile.position)
 				end
+			, projectile)
+
+			if not status then
+				print(err)
 			end
-
-			table.sort(destroyed, function(a, b) return b < a end)
-
-			for _, index in pairs(destroyed) do
-				Projectiles[index]:Destroy()
-				table.remove(Projectiles, index)
-			end
-
-			return THINK_PERIOD
+		else
+			projectile:Remove()
+			table.remove(Projectiles, i)
 		end
-})
+	end
+
+	return THINK_PERIOD
+end
+
+if SpellThinker == nil then
+	SpellThinker = Entities:CreateByClassname("info_target") 
+end
+
+SpellThinker:SetThink("ThinkFunction", Spells, "SpellsThink", THINK_PERIOD)
+
+function Spells:ProjectileDamage(projectile, target)
+	GameRules.GameMode.Round:DealDamage(projectile.owner.playerData, target.playerData, true)
+end
 
 --[[
 data:
@@ -49,10 +66,17 @@ data:
 - Float radius
 - String graphics
 - Entity owner
+
+- OPTIONAL 1
 - Int/Function heroBehaviour
+- Function heroCondition
+- Function positionMethod
+- Functiom damageMethod
+
+- OPTIONAL 2
+- Function onMove
 - Function onTargetReached
 - Function onWallDestroy
-- Function controlMovement
 - Vector endPoint
 - Float distance
 ]]
@@ -61,10 +85,13 @@ function Spells:CreateProjectile(data)
 	projectile = {}
 
 	data.from = data.from or Vector(0, 0, 0)
-	data.lastPoint = data.from
 	data.heroBehaviour = data.heroBehaviour or BEHAVIOUR_DEAL_DAMAGE_AND_DESTROY
 	data.radius = data.radius or 64
-	data.onTargetReached = data.onTargetReached or function() end
+	data.onTargetReached = data.onTargetReached or
+		function(self)
+			self:Destroy()
+		end
+
 	data.onWallDestroy = data.onWallDestroy or function() end
 	data.initProjectile = data.initProjectile or
 		function(self)
@@ -76,42 +103,98 @@ function Spells:CreateProjectile(data)
 			direction = direction:Normalized()
 
 			self.velocity = direction * data.velocity
+
+			if self.distance then
+				self.passed = 0
+			end
 		end
 
-	data.updatePosition = data.updatePosition or 
+	data.positionMethod = data.positionMethod or 
 		function(self)
-			return self.position + self.velocity * THINK_PERIOD
+			return self.position + self.velocity / 30
+		end
+
+	data.onMove = data.onMove or
+		function(self, prev, pos)
+			if self.distance then
+				self.passed = self.passed + (pos - prev):Length2D()
+
+				if self.passed >= self.distance then
+					self:TargetReachedEvent()
+				end
+			end
+
+			if self.endPoint and (self.position - self.endPoint):Length2D() <= self.radius then
+				self:TargetReachedEvent()
+			end
+		end
+
+	data.damageMethod = data.damageMethod or
+		function(self, prevPos, curPos)
+			local attacker = self.owner.playerData
+
+			for _, player in pairs(GameRules.GameMode.Round.Players) do
+				if self:HeroCondition(player, prevPos, curPos) then
+					local result = self:HeroCollision(player)
+
+					if result then
+						self:Destroy()
+						break
+					end
+				end
+			end
+		end
+
+	data.heroCondition = data.heroCondition or
+		function(self, target, prev, pos)
+			return self.owner.playerData ~= target and SegmentCircleIntersection(prev, pos, target.hero:GetAbsOrigin(), self.radius)
 		end
 
 	if data.heroBehaviour == BEHAVIOUR_DEAL_DAMAGE_AND_DESTROY then
-		data.heroBehaviour = function(collider, collided, a, v)
-			GameRules.GameMode.Round:DealDamage(a, v, true)
+		data.heroBehaviour = function(self, target)
+			Spells:ProjectileDamage(self, target)
 			return true
 		end
 	end
 
 	if data.heroBehaviour == BEHAVIOUR_DEAL_DAMAGE_AND_PASS then
-		data.heroBehaviour = function(collider, collided, a, v)
-			if not collider.damagedGroup[collided] then
-				GameRules.GameMode.Round:DealDamage(a, v, true)
-				collider.damagedGroup[collided] = true
+		projectile.damagedGroup = {}
+
+		data.heroBehaviour = function(self, target)
+			if not self.damagedGroup[target] then
+				Spells:ProjectileDamage(self, target)
+				self.damagedGroup[target] = true
 			end
 
 			return false
 		end
 	end
 
-	projectile.data = data
 	projectile.position = data.from
-	projectile.data.initProjectile(projectile)
+	projectile.radius = data.radius
+	projectile.distance = data.distance
+	projectile.endPoint = data.endPoint
 	projectile.dummy = CreateUnitByName(DUMMY_UNIT, data.from, false, nil, nil, DOTA_TEAM_NOTEAM)
+	projectile.owner = data.owner
 	projectile.effectId = ParticleManager:CreateParticle(data.graphics, PATTACH_ABSORIGIN_FOLLOW , projectile.dummy)
-	projectile.UpdatePosition = data.updatePosition
+	projectile.destroyed = false
+	projectile.TargetReachedEvent = data.onTargetReached
+	projectile.MoveEvent = data.onMove or function(self, prevPos, curPos) end
+	projectile.HeroCondition = data.heroCondition
+	projectile.HeroCollision = data.heroBehaviour
+	projectile.UpdatePosition = data.positionMethod
+	projectile.DealDamage = data.damageMethod
 	projectile.Destroy = function(self)
+		self.destroyed = true
+	end
+
+	projectile.Remove = function(self)
 		UTIL_Remove(self.dummy)
 		ParticleManager:DestroyParticle(self.effectId, false)
 		ParticleManager:ReleaseParticleIndex(self.effectId)
 	end
+
+	data.initProjectile(projectile)
 	
 	table.insert(Projectiles, projectile)
 end
@@ -179,7 +262,7 @@ end
 function Spells:MultipleHeroesDamage(unit, condition)
 	local attacker = unit.playerData
 	local round = GameRules.GameMode.Round
-	local someoneWasHurt = false
+	local hurt = false
 
 	if attacker == nil then
 		return false
@@ -188,15 +271,15 @@ function Spells:MultipleHeroesDamage(unit, condition)
 	for _, player in pairs(round.Players) do
 		if condition(attacker, player) then
 			round:DealDamage(attacker, player, false)
-			someoneWasHurt = true
+			table.insert(hurt, player)
 		end
 	end
 
-	if someoneWasHurt then
+	if hurt then
 		round:CheckEndConditions()
 	end
 
-	return someoneWasHurt
+	return hurt
 end
 
 function Spells:AreaDamage(unit, point, area)
