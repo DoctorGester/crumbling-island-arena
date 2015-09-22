@@ -74,7 +74,7 @@
 		"AttributeBaseStrength"	"-1"
 		"AttributeBaseIntelligence" "-1"
 		
-		"Ability1" "zeus_q"
+		"Ability1" "pa_q"
 		"Ability2" "zeus_w"
 		"Ability3" "zeus_e"
 		"Ability4" "zeus_r"

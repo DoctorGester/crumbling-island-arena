@@ -17,8 +17,7 @@ function Spells:ThinkFunction(dt)
 		return
 	end
 
-	for i = #Projectiles, 1, -1 do
-		local projectile = Projectiles[i]
+	for _, projectile in ipairs(Projectiles) do
 		projectile.prev = projectile.position
 
 		local pos = projectile:UpdatePosition()
@@ -32,15 +31,40 @@ function Spells:ThinkFunction(dt)
 				function(projectile)
 					projectile.position = pos
 					projectile.dummy:SetAbsOrigin(projectile.position)
-					projectile:MoveEvent(projectile.prev, projectile.position)
-					projectile:DealDamage(projectile.prev, projectile.position)
+
+					if not projectile.destroyed then
+						projectile:MoveEvent(projectile.prev, projectile.position)
+					end
+
+					if not projectile.destroyed then
+						projectile:DealDamage(projectile.prev, projectile.position)
+					end
+
+					if not projectile.destroyed then
+						for _, second in ipairs(Projectiles) do
+							if projectile ~= second then
+								local radSum = projectile.radius + second.radius
+
+								if (projectile.position - second.position):Length2D() <= radSum then
+									projectile:Destroy()
+									second:Destroy()
+								end
+							end
+						end
+					end
 				end
 			, projectile)
 
 			if not status then
 				print(err)
 			end
-		else
+		end
+	end
+
+	for i = #Projectiles, 1, -1 do
+		local projectile = Projectiles[i]
+
+		if projectile.destroyed then
 			projectile:Remove()
 			table.remove(Projectiles, i)
 		end
@@ -95,14 +119,16 @@ function Spells:CreateProjectile(data)
 	data.onWallDestroy = data.onWallDestroy or function() end
 	data.initProjectile = data.initProjectile or
 		function(self)
-			data.to = data.to or Vector(0, 0, 0)
+			if self.velocity then
+				data.to = data.to or Vector(0, 0, 0)
 
-			local direction = (data.to - data.from)
+				local direction = (data.to - data.from)
 
-			direction.z = 0.0
-			direction = direction:Normalized()
+				direction.z = 0.0
+				direction = direction:Normalized()
 
-			self.velocity = direction * data.velocity
+				self.velocity = direction * data.velocity
+			end
 
 			if self.distance then
 				self.passed = 0
@@ -197,6 +223,8 @@ function Spells:CreateProjectile(data)
 	data.initProjectile(projectile)
 	
 	table.insert(Projectiles, projectile)
+
+	return projectile
 end
 
 --[[

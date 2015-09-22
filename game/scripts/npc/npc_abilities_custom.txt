@@ -279,4 +279,20 @@
 			"particle" "particles/econ/items/zeus/lightning_weapon_fx/zuus_lightning_bolt_groundfx_crack.vpcf"
 		}
 	}
+
+	// Zeus
+
+	"pa_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pa_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "storm_spirit_overload"
+		"AbilityCooldown" "2.0"
+
+		"precache"
+		{
+			"particle" "particles/pa_q/pa_q.vpcf"
+		}
+	}
 }

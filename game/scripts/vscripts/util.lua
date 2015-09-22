@@ -85,15 +85,8 @@ function ClosestPointToSegment(start, finish, point)
 end
 
 function SegmentCircleIntersection(start, finish, point, radius)
-	print(start)
-	print(finish)
-	print(point)
-	print(radius)
 	local closest = ClosestPointToSegment(start, finish, point)
 	local dist = point - closest
-
-	print(closest)
-	print(dist)
 
 	return dist:Length2D() <= radius
 end
