@@ -20,22 +20,21 @@ function pa_q:OnSpellStart()
 	projectileData.radius = 48
 	projectileData.heroCondition =
 		function(self, target, prev, pos)
-			if self.gracePeriodOwner > 0 then
-				return false
-			end
-
 			return SegmentCircleIntersection(prev, pos, target.hero:GetAbsOrigin(), self.radius)
 		end
 
 	projectileData.heroBehaviour =
 		function(self, target)
-			if self.owner == target then
-				
-			else
-				Spells:ProjectileDamage(self, target)
+			if self.gracePeriod[target] == nil or self.gracePeriod[target] <= 0 then
+				if self.owner == target then
+					return true
+				else
+					Spells:ProjectileDamage(self, target)
+					self.gracePeriod[target] = 30
+				end
 			end
 
-			return true
+			return false
 		end
 
 	projectileData.positionMethod = 
@@ -43,19 +42,22 @@ function pa_q:OnSpellStart()
 			local dif = (self.owner:GetAbsOrigin() - self.position)
 			dif = Vector(dif.x, dif.y, 0):Normalized()
 
-			self.velocity = self.velocity + dif * 20
+			self.velocity = self.velocity + dif * 16
 			return self.position + self.velocity / 30
 		end
 
 	projectileData.onMove = 
-		function(self)
-			self.gracePeriodOwner = self.gracePeriodOwner - 1
+		function(self, prev, cur)
+			for target, time in pairs(self.gracePeriod) do
+				self.gracePeriod[target] = time - 1
+			end
 		end
 
 	local projectile = Spells:CreateProjectile(projectileData)
 	projectile.direction = Vector(direction.x, direction.y, 0):Normalized()
 	projectile.velocity = projectile.direction * maxSpeed
-	projectile.gracePeriodOwner = 30
+	projectile.gracePeriod = {}
+	projectile.gracePeriod[projectile.owner] = 30
 end
 
 function pa_q:GetCastAnimation()

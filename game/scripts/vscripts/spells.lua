@@ -161,7 +161,7 @@ function Spells:CreateProjectile(data)
 
 			for _, player in pairs(GameRules.GameMode.Round.Players) do
 				if self:HeroCondition(player, prevPos, curPos) then
-					local result = self:HeroCollision(player)
+					local result = self:HeroCollision(player.hero)
 
 					if result then
 						self:Destroy()
