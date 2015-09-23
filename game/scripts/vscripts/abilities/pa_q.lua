@@ -27,7 +27,7 @@ function pa_q:OnSpellStart()
 		function(self, target)
 			if self.gracePeriod[target] == nil or self.gracePeriod[target] <= 0 then
 				if self.owner == target then
-					caster:SwapAbilities("pa_q", "pa_q_sub", true, false)
+					Misc:RetrievePAWeapon(caster)
 					return true
 				else
 					Spells:ProjectileDamage(self, target)
@@ -54,6 +54,8 @@ function pa_q:OnSpellStart()
 			end
 		end
 
+	-- Add shuriken projectile onDestroy which swaps back Q and starts its cooldown and then swaps back W
+	-- Add shuriken speedup in invis
 	local projectile = Spells:CreateProjectile(projectileData)
 	projectile.direction = Vector(direction.x, direction.y, 0):Normalized()
 	projectile.velocity = projectile.direction * maxSpeed
@@ -62,8 +64,7 @@ function pa_q:OnSpellStart()
 
 	caster.pa_q_projectile = projectile
 
-	caster:SwapAbilities("pa_q", "pa_q_sub", false, true)
-	caster:FindAbilityByName("pa_q_sub"):StartCooldown(1.5)
+	Misc:RemovePAWeapon(caster)
 end
 
 function pa_q:GetCastAnimation()

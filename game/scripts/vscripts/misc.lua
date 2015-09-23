@@ -54,6 +54,17 @@ function Misc:HasRemnants(owner)
 	return owner.remnants and #owner.remnants > 0
 end
 
+function Misc:RetrievePAWeapon(hero)
+	hero:SwapAbilities("pa_q", "pa_q_sub", true, false)
+	hero:SwapAbilities("pa_w", "pa_w_sub", true, false)
+end
+
+function Misc:RemovePAWeapon(hero)
+	hero:SwapAbilities("pa_q", "pa_q_sub", false, true)
+	hero:SwapAbilities("pa_w", "pa_w_sub", false, true)
+	hero:FindAbilityByName("pa_q_sub"):StartCooldown(1.5)
+end
+
 function Misc:CleanUpRound()
 	local round = GameRules.GameMode.Round
 

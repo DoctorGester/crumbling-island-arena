@@ -249,11 +249,13 @@ data:
 - Float velocity
 - Float radius (default 64)
 - Function onArrival
+- Function heightFunction
 ]]
 function Spells:Dash(data)
 	data.radius = data.radius or 64
 	data.velocity = data.velocity / 30
 	data.onArrival = data.onArrival or function() end
+	data.from = data.unit:GetAbsOrigin()
 
 	Timers:CreateTimer(
 		function()
@@ -267,6 +269,11 @@ function Spells:Dash(data)
 				return false
 			else
 				local result = origin + (diff:Normalized() * data.velocity)
+
+				if data.heightFunction then
+					result.z = data.heightFunction(data.from, data.to, result)
+				end
+
 				data.unit:SetAbsOrigin(result)
 			end
 
