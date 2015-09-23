@@ -17,7 +17,7 @@ function pa_q:OnSpellStart()
 	projectileData.from = caster:GetOrigin()
 	projectileData.to = target
 	projectileData.graphics = "particles/pa_q/pa_q.vpcf"
-	projectileData.radius = 48
+	projectileData.radius = 64
 	projectileData.heroCondition =
 		function(self, target, prev, pos)
 			return SegmentCircleIntersection(prev, pos, target.hero:GetAbsOrigin(), self.radius)
@@ -27,6 +27,7 @@ function pa_q:OnSpellStart()
 		function(self, target)
 			if self.gracePeriod[target] == nil or self.gracePeriod[target] <= 0 then
 				if self.owner == target then
+					caster:SwapAbilities("pa_q", "pa_q_sub", true, false)
 					return true
 				else
 					Spells:ProjectileDamage(self, target)
@@ -58,6 +59,11 @@ function pa_q:OnSpellStart()
 	projectile.velocity = projectile.direction * maxSpeed
 	projectile.gracePeriod = {}
 	projectile.gracePeriod[projectile.owner] = 30
+
+	caster.pa_q_projectile = projectile
+
+	caster:SwapAbilities("pa_q", "pa_q_sub", false, true)
+	caster:FindAbilityByName("pa_q_sub"):StartCooldown(1.5)
 end
 
 function pa_q:GetCastAnimation()

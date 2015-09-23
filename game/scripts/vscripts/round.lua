@@ -145,6 +145,10 @@ function Round:SetupHero(hero)
     	if ability ~= nil and not ability:IsAttributeBonus() and not ability:IsHidden()  then
     		local name = ability:GetName()
 
+    		if string.find(name, "sub") then
+    			ability:SetHidden(true)
+    		end
+
     		if name ~= ultimate then
 	    		ability:SetLevel(1)
 	    	end

@@ -311,7 +311,11 @@ function GameMode:OnPlayerPickHero(keys)
     for i = 0, count do
     	local ability = hero:GetAbilityByIndex(i)
 
-    	if ability ~= nil and not ability:IsAttributeBonus() and not ability:IsHidden()  then
+    	if ability ~= nil then
+	    	
+	    end
+
+    	if ability ~= nil and not ability:IsAttributeBonus() and not ability:IsHidden() and not string.find(ability:GetName(), "sub") then
 	    	ability:SetLevel(1)
     	end
     end

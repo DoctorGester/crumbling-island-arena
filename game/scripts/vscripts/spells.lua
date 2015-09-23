@@ -6,15 +6,26 @@ BEHAVIOUR_DEAL_DAMAGE_AND_PASS = 1
 
 THINK_PERIOD = 0.01
 
-Spells = class({})
-Projectiles = {}
+if Spells == nil then
+	Spells = class({})
+end
 
-WorldMin = Vector(GetWorldMinX(), GetWorldMinY(), 0)
-WorldMax = Vector(GetWorldMaxX(), GetWorldMaxY(), 0)
+if Projectiles == nil then
+	Projectiles = {}
+end
 
 function Spells:ThinkFunction(dt)
 	if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
 		return
+	end
+
+	-- Doesn't work on init
+	if WorldMin == nil then
+		WorldMin = Vector(GetWorldMinX(), GetWorldMinY(), 0)
+	end
+
+	if WorldMax == nil then
+		WorldMax = Vector(GetWorldMaxX(), GetWorldMaxY(), 0)
 	end
 
 	for _, projectile in ipairs(Projectiles) do
@@ -23,7 +34,7 @@ function Spells:ThinkFunction(dt)
 		local pos = projectile:UpdatePosition()
 
 		if pos.x < WorldMin.x or pos.y < WorldMin.y or pos.x > WorldMax.x or pos.y > WorldMax.y then
-			projectile.destroyed = true
+			projectile:Destroy()
 		end
 
 		if not projectile.destroyed then
@@ -119,7 +130,7 @@ function Spells:CreateProjectile(data)
 	data.onWallDestroy = data.onWallDestroy or function() end
 	data.initProjectile = data.initProjectile or
 		function(self)
-			if self.velocity then
+			if data.velocity then
 				data.to = data.to or Vector(0, 0, 0)
 
 				local direction = (data.to - data.from)
@@ -210,6 +221,10 @@ function Spells:CreateProjectile(data)
 	projectile.HeroCollision = data.heroBehaviour
 	projectile.UpdatePosition = data.positionMethod
 	projectile.DealDamage = data.damageMethod
+	projectile.SetPositionMethod = function(self, method)
+		self.UpdatePosition = method
+	end
+
 	projectile.Destroy = function(self)
 		self.destroyed = true
 	end

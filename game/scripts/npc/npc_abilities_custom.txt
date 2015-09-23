@@ -280,19 +280,59 @@
 		}
 	}
 
-	// Zeus
+	// PA
 
 	"pa_q"
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/pa_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName" "storm_spirit_overload"
-		"AbilityCooldown" "2.0"
+		"AbilityTextureName" "luna_moon_glaive"
+		"AbilityCooldown" "0"
 
 		"precache"
 		{
 			"particle" "particles/pa_q/pa_q.vpcf"
 		}
+	}
+
+	"pa_q_sub"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pa_q_sub"
+		"AbilityType" "DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOUR_HIDDEN"
+		// "AbilityTextureName" "phantom_assassin_phantom_strike"
+		"AbilityTextureName" "omniknight_degen_aura"
+		"AbilityCooldown" "0"
+	}
+
+	"pa_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pa_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "juggernaut_blade_fury"
+		"AbilityCooldown" "4"
+	}
+
+	"pa_w_sub"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pa_w_sub"
+		"AbilityType" "DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOUR_HIDDEN"
+		"AbilityTextureName" "phantom_assassin_stifling_dagger"
+		"AbilityCooldown" "4"
+	}
+
+	"pa_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pa_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "phantom_assassin_blur"
+		"AbilityCooldown" "12"
 	}
 }

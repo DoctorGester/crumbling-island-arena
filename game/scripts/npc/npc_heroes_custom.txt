@@ -75,11 +75,13 @@
 		"AttributeBaseIntelligence" "-1"
 		
 		"Ability1" "pa_q"
-		"Ability2" "zeus_w"
+		"Ability2" "pa_w"
 		"Ability3" "zeus_e"
-		"Ability4" "zeus_r"
+		"Ability4" "pa_q_sub"
+		"Ability5" "pa_w_sub"
+		"Ability6" "pa_r"
 
-		"Ultimate" "zeus_r"
+		"Ultimate" "pa_r"
 		"CustomIcons"
 		{
 			"zeus_q" "zeus_q.png"
