@@ -66,6 +66,18 @@ function Misc:RemovePAWeapon(hero)
 	hero:FindAbilityByName("pa_q_sub"):StartCooldown(1.5)
 end
 
+function Misc:DestroyPAWeapon(hero)
+	hero:SwapAbilities("pa_q", "pa_q_sub", true, false)
+	hero:FindAbilityByName("pa_q"):StartCooldown(3)
+	hero.pa_q_projectile = nil
+
+	Timers:CreateTimer(3, 
+		function()
+			hero:SwapAbilities("pa_w", "pa_w_sub", true, false)
+		end
+	)
+end
+
 function Misc:GetPASpeedMultiplier(projectile)
 	if projectile.owner:FindModifierByName("modifier_pa_r") then
 		return 2

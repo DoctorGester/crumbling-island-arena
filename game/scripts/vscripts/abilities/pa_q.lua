@@ -27,7 +27,7 @@ function pa_q:OnSpellStart()
 		function(self, target)
 			if self.gracePeriod[target] == nil or self.gracePeriod[target] <= 0 then
 				if self.owner == target then
-					Misc:RetrievePAWeapon(caster)
+					Misc:RetrievePAWeapon(self.owner)
 					return true
 				else
 					Spells:ProjectileDamage(self, target)
@@ -55,7 +55,11 @@ function pa_q:OnSpellStart()
 			end
 		end
 
-	-- Add shuriken projectile onDestroy which swaps back Q and starts its cooldown and then swaps back W
+	projectileData.onProjectileCollision = 
+		function(self, second)
+			Misc:DestroyPAWeapon(self.owner)
+		end
+
 	local projectile = Spells:CreateProjectile(projectileData)
 	projectile.direction = Vector(direction.x, direction.y, 0):Normalized()
 	projectile.velocity = projectile.direction * maxSpeed

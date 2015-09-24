@@ -53,11 +53,13 @@ function Spells:ThinkFunction(dt)
 
 					if not projectile.destroyed then
 						for _, second in ipairs(Projectiles) do
-							if projectile ~= second then
+							if projectile ~= second and not projectile.destroyed then
 								local radSum = projectile.radius + second.radius
 
 								if (projectile.position - second.position):Length2D() <= radSum then
+									projectile:ProjectileCollision(second)
 									projectile:Destroy()
+									second:ProjectileCollision(projectile)
 									second:Destroy()
 								end
 							end
@@ -111,7 +113,7 @@ data:
 - OPTIONAL 2
 - Function onMove
 - Function onTargetReached
-- Function onWallDestroy
+- Function onProjectileCollision
 - Vector endPoint
 - Float distance
 ]]
@@ -128,6 +130,7 @@ function Spells:CreateProjectile(data)
 		end
 
 	data.onWallDestroy = data.onWallDestroy or function() end
+	data.onProjectileCollision = data.onProjectileCollision or function(self, projectile) end
 	data.initProjectile = data.initProjectile or
 		function(self)
 			if data.velocity then
@@ -219,6 +222,7 @@ function Spells:CreateProjectile(data)
 	projectile.MoveEvent = data.onMove or function(self, prevPos, curPos) end
 	projectile.HeroCondition = data.heroCondition
 	projectile.HeroCollision = data.heroBehaviour
+	projectile.ProjectileCollision = data.onProjectileCollision
 	projectile.UpdatePosition = data.positionMethod
 	projectile.DealDamage = data.damageMethod
 	projectile.SetPositionMethod = function(self, method)

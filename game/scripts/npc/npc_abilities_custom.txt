@@ -300,9 +300,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/pa_q_sub"
-		"AbilityType" "DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOUR_HIDDEN"
-		// "AbilityTextureName" "phantom_assassin_phantom_strike"
 		"AbilityTextureName" "omniknight_degen_aura"
 		"AbilityCooldown" "0"
 	}
@@ -334,6 +332,24 @@
 		{
 			"particle" "particles/pa_w_sub/pa_w_sub.vpcf"
 		}
+	}
+
+	"pa_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pa_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "phantom_assassin_phantom_strike"
+		"AbilityCooldown" "8"
+	}
+
+	"pa_e_sub"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pa_e_sub"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "phantom_assassin_phantom_strike"
+		"AbilityCooldown" "0"
 	}
 
 	"pa_r"
