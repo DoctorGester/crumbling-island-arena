@@ -44,7 +44,8 @@ function pa_q:OnSpellStart()
 			dif = Vector(dif.x, dif.y, 0):Normalized()
 
 			self.velocity = self.velocity + dif * 16
-			return self.position + self.velocity / 30
+
+			return self.position + self.velocity * Misc:GetPASpeedMultiplier(self) / 30
 		end
 
 	projectileData.onMove = 
@@ -55,7 +56,6 @@ function pa_q:OnSpellStart()
 		end
 
 	-- Add shuriken projectile onDestroy which swaps back Q and starts its cooldown and then swaps back W
-	-- Add shuriken speedup in invis
 	local projectile = Spells:CreateProjectile(projectileData)
 	projectile.direction = Vector(direction.x, direction.y, 0):Normalized()
 	projectile.velocity = projectile.direction * maxSpeed

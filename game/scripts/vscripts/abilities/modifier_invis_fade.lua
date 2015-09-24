@@ -6,9 +6,11 @@ function modifier_invis_fade:OnCreated(params)
 end
 
 function modifier_invis_fade:OnDestroy()
-	local caster = self:GetCaster()
-	caster:AddNewModifier(caster, self:GetAbility(), self.invis_modifier, { duration = self.invis_duration })
-	caster:AddNewModifier(caster, self:GetAbility(), "modifier_invisible", { duration = self.invis_duration })
+	if IsServer() then
+		local caster = self:GetParent()
+		caster:AddNewModifier(caster, self:GetAbility(), self.invis_modifier, { duration = self.invis_duration })
+		caster:AddNewModifier(caster, self:GetAbility(), "modifier_invisible", { duration = self.invis_duration })
+	end
 end
 
 function modifier_invis_fade:IsHidden()

@@ -57,12 +57,21 @@ end
 function Misc:RetrievePAWeapon(hero)
 	hero:SwapAbilities("pa_q", "pa_q_sub", true, false)
 	hero:SwapAbilities("pa_w", "pa_w_sub", true, false)
+	hero.pa_q_projectile = nil
 end
 
 function Misc:RemovePAWeapon(hero)
 	hero:SwapAbilities("pa_q", "pa_q_sub", false, true)
 	hero:SwapAbilities("pa_w", "pa_w_sub", false, true)
 	hero:FindAbilityByName("pa_q_sub"):StartCooldown(1.5)
+end
+
+function Misc:GetPASpeedMultiplier(projectile)
+	if projectile.owner:FindModifierByName("modifier_pa_r") then
+		return 2
+	end
+
+	return 1
 end
 
 function Misc:CleanUpRound()
@@ -77,5 +86,9 @@ function Misc:CleanUpRound()
 			player.hero.remnants = nil
 			player.hero.lastRemnants = nil
 		end
+	end
+
+	for _, projectile in pairs(Projectiles) do
+		projectile:Destroy()
 	end
 end

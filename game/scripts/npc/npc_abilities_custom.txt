@@ -311,9 +311,14 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/pa_w"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName" "juggernaut_blade_fury"
 		"AbilityCooldown" "4"
+
+		"precache"
+		{
+			"particle" "particles/econ/items/axe/axe_weapon_bloodchaser/axe_attack_blur_counterhelix_bloodchaser_b.vpcf"
+		}
 	}
 
 	"pa_w_sub"
@@ -324,6 +329,11 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOUR_HIDDEN"
 		"AbilityTextureName" "phantom_assassin_stifling_dagger"
 		"AbilityCooldown" "4"
+
+		"precache"
+		{
+			"particle" "particles/pa_w_sub/pa_w_sub.vpcf"
+		}
 	}
 
 	"pa_r"

@@ -8,7 +8,7 @@ function pa_q_sub:OnSpellStart()
 			local dif = (self.owner:GetAbsOrigin() - self.position)
 			dif = Vector(dif.x, dif.y, 0):Normalized() * 1200
 
-			return self.position + dif / 30
+			return self.position + dif * Misc:GetPASpeedMultiplier(self) / 30
 		end
 	)
 end
