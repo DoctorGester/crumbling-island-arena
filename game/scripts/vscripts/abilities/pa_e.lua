@@ -36,7 +36,7 @@ function pa_e:OnSpellStart()
 				secondDashData.unit = caster
 				secondDashData.to = caster:GetAbsOrigin() + facing * 420
 				secondDashData.velocity = 1000
-				secondDashData.heightFunction = heightFunc
+				--secondDashData.heightFunction = heightFunc
 				secondDashData.onArrival = 
 					function (unit)
 						caster.jumpSecondTime = false
@@ -50,7 +50,7 @@ function pa_e:OnSpellStart()
 			end
 		end
 
-	dashData.heightFunction = heightFunc
+	--dashData.heightFunction = heightFunc
 
 	caster.inFirstJump = true
 	Spells:Dash(dashData)

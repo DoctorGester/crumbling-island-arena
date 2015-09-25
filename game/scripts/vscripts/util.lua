@@ -91,6 +91,16 @@ function SegmentCircleIntersection(start, finish, point, radius)
 	return dist:Length2D() <= radius
 end
 
+
+-- max height, full distance, current distance
+function ParabolaZ(h, d, x)
+  return (4 * h / d) * (d - x) * (x / d)
+end
+
+function ParabolaZ2(y0, y1, h, d, x)
+    return ((4 * h / d) * (d - x) + y1 - y0) * (x / d) + y0
+  endfunction
+
 function AddLevelOneAbility(hero, abilityName)
 	hero:AddAbility(abilityName)
 
