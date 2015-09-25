@@ -79,7 +79,7 @@
 		"Ability3" "pa_e"
 		"Ability4" "pa_q_sub"
 		"Ability5" "pa_w_sub"
-		"Ability3" "pa_e_sub"
+		"Ability6" "pa_e_sub"
 		"Ability7" "pa_r"
 
 		"Ultimate" "pa_r"

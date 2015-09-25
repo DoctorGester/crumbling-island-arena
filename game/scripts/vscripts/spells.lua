@@ -260,6 +260,7 @@ function Spells:Dash(data)
 	data.velocity = data.velocity / 30
 	data.onArrival = data.onArrival or function() end
 	data.from = data.unit:GetAbsOrigin()
+	data.zStart = data.from.z
 
 	Timers:CreateTimer(
 		function()
@@ -275,7 +276,7 @@ function Spells:Dash(data)
 				local result = origin + (diff:Normalized() * data.velocity)
 
 				if data.heightFunction then
-					result.z = data.heightFunction(data.from, data.to, result)
+					result.z = data.zStart + data.heightFunction(data.from, data.to, result)
 				end
 
 				data.unit:SetAbsOrigin(result)

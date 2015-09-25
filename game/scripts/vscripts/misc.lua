@@ -57,19 +57,21 @@ end
 function Misc:RetrievePAWeapon(hero)
 	hero:SwapAbilities("pa_q", "pa_q_sub", true, false)
 	hero:SwapAbilities("pa_w", "pa_w_sub", true, false)
-	hero.pa_q_projectile = nil
+	hero.paQProjectile = nil
 end
 
 function Misc:RemovePAWeapon(hero)
 	hero:SwapAbilities("pa_q", "pa_q_sub", false, true)
 	hero:SwapAbilities("pa_w", "pa_w_sub", false, true)
+	hero:SwapAbilities("pa_e", "pa_e_sub", true, false)
 	hero:FindAbilityByName("pa_q_sub"):StartCooldown(1.5)
+	hero:FindAbilityByName("pa_q_sub"):SetActivated(true)
 end
 
 function Misc:DestroyPAWeapon(hero)
 	hero:SwapAbilities("pa_q", "pa_q_sub", true, false)
 	hero:FindAbilityByName("pa_q"):StartCooldown(3)
-	hero.pa_q_projectile = nil
+	hero.paQProjectile = nil
 
 	Timers:CreateTimer(3, 
 		function()

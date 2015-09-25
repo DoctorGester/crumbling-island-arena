@@ -66,7 +66,7 @@ function pa_q:OnSpellStart()
 	projectile.gracePeriod = {}
 	projectile.gracePeriod[projectile.owner] = 30
 
-	caster.pa_q_projectile = projectile
+	caster.paQProjectile = projectile
 
 	Misc:RemovePAWeapon(caster)
 end

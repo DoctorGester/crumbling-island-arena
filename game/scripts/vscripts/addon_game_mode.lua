@@ -1,4 +1,5 @@
-require('timers')
+require('lib/timers')
+require('lib/animations')
 require('misc')
 require('util')
 require('debug_util')
