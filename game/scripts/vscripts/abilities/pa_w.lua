@@ -8,6 +8,7 @@ function pa_w:OnSpellStart()
 			local id = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, caster)
 
 			Spells:AreaDamage(caster, caster:GetAbsOrigin(), 256)
+			GridNav:DestroyTreesAroundPoint(caster:GetAbsOrigin(), 256, true)
 
 			Timers:CreateTimer(3, 
 				function()
@@ -21,5 +22,5 @@ function pa_w:OnSpellStart()
 end
 
 function pa_w:GetCastAnimation()
-	return ACT_DOTA_ATTACK_EVENT
+	return ACT_DOTA_CAST_ABILITY_1
 end

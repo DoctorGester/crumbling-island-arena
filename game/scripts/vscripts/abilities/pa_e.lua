@@ -11,7 +11,6 @@ end
 
 function pa_e:OnSpellStart()
 	local caster = self:GetCaster()
-	local facing = caster:GetForwardVector()
 
 	caster:AddNewModifier(caster, self, "modifier_pa_e", {})
 	StartAnimation(caster, { duration=2.5, activity=ACT_DOTA_CAST_ABILITY_2 })
@@ -25,7 +24,6 @@ function pa_e:OnSpellStart()
 
 	local dashData = {}
 	dashData.unit = caster
-	dashData.to = caster:GetAbsOrigin() + facing * 400
 	dashData.velocity = 1000
 	dashData.onArrival = 
 		function (unit)
@@ -37,7 +35,6 @@ function pa_e:OnSpellStart()
 				local facing = caster:GetForwardVector()
 				local secondDashData = {}
 				secondDashData.unit = caster
-				secondDashData.to = caster:GetAbsOrigin() + facing * 420
 				secondDashData.velocity = 1000
 				secondDashData.heightFunction = heightFunc
 				secondDashData.onArrival = 
@@ -51,7 +48,10 @@ function pa_e:OnSpellStart()
 				local prop = SpawnEntityFromTableSynchronous("prop_dynamic", { model = "models/heroes/phantom_assassin/phantom_assassin_weapon.vmdl" })
 				local facingAngle = math.deg(math.atan2(facing.y, facing.x)) + 90
 				local qangle = QAngle(90, 0, facingAngle)
-				prop:SetAbsOrigin(caster:GetAbsOrigin())
+				local pos = caster:GetAbsOrigin()
+				pos.z = GetGroundHeight(pos, caster)
+
+				prop:SetAbsOrigin(pos)
 				prop:SetAngles(qangle.x, qangle.y, qangle.z)
 
 				Misc:RemovePAWeapon(caster)
@@ -60,6 +60,9 @@ function pa_e:OnSpellStart()
 
 				Timers:CreateTimer(0.2,
 					function()
+						local facing = caster:GetForwardVector()
+						secondDashData.to = caster:GetAbsOrigin() + facing * 420
+
 						Spells:Dash(secondDashData)
 					end
 				)
@@ -74,6 +77,9 @@ function pa_e:OnSpellStart()
 
 	Timers:CreateTimer(0.3,
 		function()
+			local facing = caster:GetForwardVector()
+			dashData.to = caster:GetAbsOrigin() + facing * 400
+
 			Spells:Dash(dashData)
 		end
 	)

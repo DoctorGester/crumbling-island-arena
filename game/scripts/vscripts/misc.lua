@@ -54,6 +54,19 @@ function Misc:HasRemnants(owner)
 	return owner.remnants and #owner.remnants > 0
 end
 
+function Misc:DoActionWithPAWeapon(hero, action)
+	local wearable = hero:FirstMoveChild()
+    while wearable ~= nil do
+        if wearable:GetClassname() == "dota_item_wearable" then
+            if string.find(wearable:GetModelName(), "weapon") then
+            	action(wearable)
+                return
+            end
+        end
+        wearable = wearable:NextMovePeer()
+    end
+end
+
 function Misc:RetrievePAWeapon(hero)
 	hero:SwapAbilities("pa_q", "pa_q_sub", true, false)
 	hero:SwapAbilities("pa_w", "pa_w_sub", true, false)
@@ -63,6 +76,8 @@ function Misc:RetrievePAWeapon(hero)
 	end
 
 	hero.paQProjectile = nil
+
+	Misc:DoActionWithPAWeapon(hero, function(wearable) wearable:RemoveEffects(EF_NODRAW) end)
 end
 
 function Misc:RemovePAWeapon(hero)
@@ -71,6 +86,8 @@ function Misc:RemovePAWeapon(hero)
 	hero:SwapAbilities("pa_e", "pa_e_sub", true, false)
 	hero:FindAbilityByName("pa_q_sub"):StartCooldown(1.5)
 	hero:FindAbilityByName("pa_q_sub"):SetActivated(true)
+
+	Misc:DoActionWithPAWeapon(hero, function(wearable) wearable:AddEffects(EF_NODRAW) end)
 end
 
 function Misc:DestroyPAWeapon(hero)

@@ -43,5 +43,5 @@ function pa_q:OnSpellStart()
 end
 
 function pa_q:GetCastAnimation()
-	return ACT_DOTA_CAST_ABILITY_1
+	return ACT_DOTA_ATTACK
 end
