@@ -57,6 +57,11 @@ end
 function Misc:RetrievePAWeapon(hero)
 	hero:SwapAbilities("pa_q", "pa_q_sub", true, false)
 	hero:SwapAbilities("pa_w", "pa_w_sub", true, false)
+
+	if hero.inFirstJump then
+		hero:SwapAbilities("pa_e", "pa_e_sub", false, true)
+	end
+
 	hero.paQProjectile = nil
 end
 
@@ -86,6 +91,40 @@ function Misc:GetPASpeedMultiplier(projectile)
 	end
 
 	return 1
+end
+
+function Misc:SetUpPAProjectile(projectileData)
+	projectileData.heroCondition =
+		function(self, target, prev, pos)
+			return SegmentCircleIntersection(prev, pos, target.hero:GetAbsOrigin(), self.radius)
+		end
+
+	projectileData.heroBehaviour =
+		function(self, target)
+			if self.gracePeriod[target] == nil or self.gracePeriod[target] <= 0 then
+				if self.owner == target then
+					Misc:RetrievePAWeapon(self.owner)
+					return true
+				else
+					Spells:ProjectileDamage(self, target)
+					self.gracePeriod[target] = 30
+				end
+			end
+
+			return false
+		end
+
+	projectileData.onMove = 
+		function(self, prev, cur)
+			for target, time in pairs(self.gracePeriod) do
+				self.gracePeriod[target] = time - 1
+			end
+		end
+
+	projectileData.onProjectileCollision = 
+		function(self, second)
+			Misc:DestroyPAWeapon(self.owner)
+		end
 end
 
 function Misc:CleanUpRound()

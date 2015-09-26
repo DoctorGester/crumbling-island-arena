@@ -256,7 +256,7 @@ data:
 - Function heightFunction
 ]]
 function Spells:Dash(data)
-	data.radius = data.radius or 64
+	data.radius = data.radius or 128
 	data.velocity = data.velocity / 30
 	data.onArrival = data.onArrival or function() end
 	data.from = data.unit:GetAbsOrigin()
@@ -266,20 +266,19 @@ function Spells:Dash(data)
 		function()
 			local origin = data.unit:GetAbsOrigin()
 			local diff = data.to - origin
+			local result = origin + (diff:Normalized() * data.velocity)
 
-			if diff:Length2D() <= data.radius / 2 then
-				GridNav:DestroyTreesAroundPoint(data.to, data.radius, true)
-				FindClearSpaceForUnit(data.unit, data.to, true)
+			if data.heightFunction then
+				result.z = data.zStart + data.heightFunction(data.from, data.to, result)
+			end
+
+			data.unit:SetAbsOrigin(result)
+
+			if diff:Length2D() <= data.velocity then
 				data.onArrival(data.unit)
+				GridNav:DestroyTreesAroundPoint(result, data.radius, true)
+				FindClearSpaceForUnit(data.unit, result, false)
 				return false
-			else
-				local result = origin + (diff:Normalized() * data.velocity)
-
-				if data.heightFunction then
-					result.z = data.zStart + data.heightFunction(data.from, data.to, result)
-				end
-
-				data.unit:SetAbsOrigin(result)
 			end
 
 			return THINK_PERIOD

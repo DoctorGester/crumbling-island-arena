@@ -300,7 +300,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/pa_q_sub"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOUR_HIDDEN"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOUR_HIDDEN"
 		"AbilityTextureName" "omniknight_degen_aura"
 		"AbilityCooldown" "0"
 	}

@@ -18,25 +18,8 @@ function pa_q:OnSpellStart()
 	projectileData.to = target
 	projectileData.graphics = "particles/pa_q/pa_q.vpcf"
 	projectileData.radius = 64
-	projectileData.heroCondition =
-		function(self, target, prev, pos)
-			return SegmentCircleIntersection(prev, pos, target.hero:GetAbsOrigin(), self.radius)
-		end
 
-	projectileData.heroBehaviour =
-		function(self, target)
-			if self.gracePeriod[target] == nil or self.gracePeriod[target] <= 0 then
-				if self.owner == target then
-					Misc:RetrievePAWeapon(self.owner)
-					return true
-				else
-					Spells:ProjectileDamage(self, target)
-					self.gracePeriod[target] = 30
-				end
-			end
-
-			return false
-		end
+	Misc:SetUpPAProjectile(projectileData)
 
 	projectileData.positionMethod = 
 		function(self)
@@ -46,18 +29,6 @@ function pa_q:OnSpellStart()
 			self.velocity = self.velocity + dif * 16
 
 			return self.position + self.velocity * Misc:GetPASpeedMultiplier(self) / 30
-		end
-
-	projectileData.onMove = 
-		function(self, prev, cur)
-			for target, time in pairs(self.gracePeriod) do
-				self.gracePeriod[target] = time - 1
-			end
-		end
-
-	projectileData.onProjectileCollision = 
-		function(self, second)
-			Misc:DestroyPAWeapon(self.owner)
 		end
 
 	local projectile = Spells:CreateProjectile(projectileData)

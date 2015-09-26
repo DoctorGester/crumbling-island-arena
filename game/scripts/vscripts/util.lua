@@ -99,7 +99,7 @@ end
 
 function ParabolaZ2(y0, y1, h, d, x)
     return ((4 * h / d) * (d - x) + y1 - y0) * (x / d) + y0
-  endfunction
+end
 
 function AddLevelOneAbility(hero, abilityName)
 	hero:AddAbility(abilityName)
