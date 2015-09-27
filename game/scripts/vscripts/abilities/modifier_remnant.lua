@@ -1,6 +1,6 @@
-modifier_pa_r = class({})
+modifier_remnant = class({})
 
-function modifier_pa_r:OnCreated(kv)
+function modifier_remnant:OnCreated(kv)
 	self.keys = kv
 end
 
@@ -21,10 +21,10 @@ function modifier_remnant:IsHidden()
 	return true
 end
 
-function modifier_invis_fade:GetEffectName()
+function modifier_remnant:GetEffectName()
 	return self.keys.effect
 end
 
-function modifier_invis_fade:GetEffectAttachType()
+function modifier_remnant:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
 end
