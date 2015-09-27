@@ -147,43 +147,7 @@
 		{
 			"model_folder" "models/heroes/storm_spirit"
 			"particle" "particles/storm_q/storm_q2.vpcf"
-		}
-	}
-
-	"storm_spirit_q_remnant"
-	{
-		"BaseClass"	"ability_datadriven"
-		"MaxLevel"	"1"
-		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
-
-		"precache"
-		{
 			"particle" "particles/units/heroes/hero_stormspirit/stormspirit_static_remnant.vpcf"
-		}
-
-		"Modifiers"
-		{
-			"remnant_dummy"
-			{
-				"Passive"	"1"
-				"IsHidden"	"1"
-
-				"OverrideAnimation"	"ACT_DOTA_CAST_ABILITY_1"
-			
-				"EffectName"		"particles/units/heroes/hero_stormspirit/stormspirit_static_remnant.vpcf"
-				"EffectAttachType"	"follow_origin"
-			
-				"States"
-				{
-					"MODIFIER_STATE_INVULNERABLE"					"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_HEALTH_BAR"					"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_UNIT_COLLISION"				"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NOT_ON_MINIMAP"					"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_UNSELECTABLE"					"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_COMMAND_RESTRICTED"				"MODIFIER_STATE_VALUE_ENABLED"
-				}
-			}
-			
 		}
 	}
 
@@ -360,5 +324,44 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "phantom_assassin_blur"
 		"AbilityCooldown" "12"
+	}
+
+	// ES
+
+	"earth_spirit_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/earth_spirit_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "storm_spirit_overload"
+		"AbilityCooldown" "5.0"
+		"AbilityCastRange" "1000"
+	}
+
+	"earth_spirit_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/earth_spirit_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "storm_spirit_overload"
+		"AbilityCooldown" "7.0"
+	}
+
+	"earth_spirit_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/earth_spirit_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "storm_spirit_overload"
+		"AbilityCooldown" "6.0"
+	}
+
+	"earth_spirit_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/earth_spirit_r"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "storm_spirit_overload"
+		"AbilityCooldown" "14.0"
 	}
 }

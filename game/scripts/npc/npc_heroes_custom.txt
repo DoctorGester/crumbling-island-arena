@@ -91,4 +91,29 @@
 			"zeus_r" "zeus_r.png"
 		}
 	}
+
+	"npc_dota_hero_earth_spirit"
+	{
+		"override_hero"	"npc_dota_hero_earth_spirit"
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
+		"BountyXP"	"0"
+		"MovementSpeed"	"400"
+		"MovementTurnRate"	"10"
+		"StatusHealth"	"5"
+		"StatusHealthRegen"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"AttributeBaseStrength"	"-1"
+		"AttributeBaseIntelligence" "-1"
+
+		"Ability1" "earth_spirit_q"
+		"Ability2" "earth_spirit_w"
+		"Ability3" "earth_spirit_e"
+		"Ability4" "earth_spirit_r"
+
+		"Ultimate" "earth_spirit_r"
+	}
 }
