@@ -99,6 +99,26 @@ function Misc:DestroyPAWeapon(hero)
 	Timers:CreateTimer(3, 
 		function()
 			hero:SwapAbilities("pa_w", "pa_w_sub", true, false)
+			Misc:DoActionWithPAWeapon(hero, 
+				function(wearable)
+					wearable:RemoveEffects(EF_NODRAW)
+
+					-- Does not work since scaling wearables is not supported
+					local scale = 0.0
+					Timers:CreateTimer(
+						function()
+							scale = math.min(1.0, scale + 0.01)
+							wearable:SetModelScale(scale)
+
+							if scale == 1.0 then
+								return false
+							end
+
+							return 0.01
+						end
+					)
+				end
+			)
 		end
 	)
 end
