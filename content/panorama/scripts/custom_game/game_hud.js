@@ -1,6 +1,7 @@
 "use strict";
 
 var availableHeroes = {};
+var abilityButtons = [];
 
 function SetupUI(){
 	GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_TIMEOFDAY, false);
@@ -92,9 +93,97 @@ function FallEvent(args){
 	}
 }
 
+function AbilityButton(parent, hero, ability) {
+	this.parent = parent;
+	this.image = $.CreatePanel("Image", parent, "");
+	this.image.AddClass("AbilityButton");
+	this.ability = ability;
+
+	var executeCapture = (function(ability, hero) { 
+		return function() {
+			Abilities.ExecuteAbility(ability, hero, false);
+		}
+	} (this.ability, hero));
+
+	var mouseOverCapture = (function(element, name) { 
+		return function() {
+			ShowTooltip(element, name);
+		}
+	} (this.image, Abilities.GetAbilityName(ability)));
+
+	var mouseOutCapture = function() { 
+		HideTooltip();
+	};
+
+	this.image.SetPanelEvent("onactivate", executeCapture);
+	this.image.SetPanelEvent("onmouseover", mouseOverCapture);
+	this.image.SetPanelEvent("onmouseout", mouseOutCapture);
+
+	this.inside = $.CreatePanel("Panel", this.image, "");
+	this.inside.AddClass("AbilityButtonInside");
+
+	this.shortcut = $.CreatePanel("Label", this.image, "");
+	this.shortcut.AddClass("ShortcutText")
+	this.shortcut.text = Abilities.GetKeybind(this.ability);
+	
+	this.cooldown = $.CreatePanel("Label", this.image, "");
+	this.cooldown.AddClass("CooldownText");
+
+	var icon = "file://{images}/spellicons/" + Abilities.GetAbilityTextureName(ability) + ".png";
+	var heroData = availableHeroes[Entities.GetUnitName(hero)]
+	var abilityName = Abilities.GetAbilityName(ability)
+
+	if (heroData && heroData.customIcons && heroData.customIcons[abilityName]){
+		icon = "file://{images}/custom_game/" + heroData.customIcons[abilityName];
+	}
+
+	this.image.SetImage(icon);
+
+	this.UpdateCD = function() {
+		var color = "yellow";
+		var saturation = "1";
+		var remaining = Abilities.GetCooldownTimeRemaining(this.ability);
+		var cd = Abilities.GetCooldownLength(this.ability);
+
+		if (cd == 0){
+			cd = Abilities.GetCooldown(this.ability);
+		}
+
+		if (!Abilities.IsCooldownReady(this.ability)){
+			color = "red";
+			saturation = "0.25";
+		}
+
+		if (!Abilities.IsDisplayedAbility(this.ability)){
+			color = "red";
+			saturation = "0.0";
+		}
+
+		this.image.style.boxShadow = "0px 0px 5px 0px " + color;
+		this.image.style.saturation = saturation;
+
+		var progress = Math.round(remaining / cd * 100.0).toString();
+		var text = cd.toFixed(1);
+
+		if (Abilities.IsCooldownReady(ability)){
+			this.cooldown.text = remaining.toFixed(1);
+		}
+
+		if (cd == 0) {
+			progress = 0;
+			text = "";
+		}
+
+		this.inside.style.height = progress + "%";
+		this.cooldown.text = text;
+	}
+
+}
+
 function LoadAbilities(heroId){
 	var abilityPanel = $("#AbilityPanel");
 	abilityPanel.RemoveAndDeleteChildren();
+	abilityButtons = [];
 
 	var count = Entities.GetAbilityCount(heroId);
 
@@ -102,55 +191,13 @@ function LoadAbilities(heroId){
 		var ability = Entities.GetAbility(heroId, i);
 
 		if (FilterAbility(ability)){
-			var image = $.CreatePanel("Image", abilityPanel, "AbilityButton" + i);
-			image.AddClass("AbilityButton");
+			var button = new AbilityButton(abilityPanel, heroId, ability);
+			abilityButtons.push(button);
 
-			var executeCapture = (function(ability, hero) { 
-				return function() {
-					Abilities.ExecuteAbility(ability, hero, false);
-				}
-			} (ability, heroId));
-
-			var mouseOverCapture = (function(element, name) { 
-				return function() {
-					ShowTooltip(element, name);
-				}
-			} (image, Abilities.GetAbilityName(ability)));
-
-			var mouseOutCapture = function() { 
-				HideTooltip();
-			};
-
-			image.SetPanelEvent("onactivate", executeCapture);
-			image.SetPanelEvent("onmouseover", mouseOverCapture);
-			image.SetPanelEvent("onmouseout", mouseOutCapture);
-
-			var inside = $.CreatePanel("Panel", image, "");
-			inside.AddClass("AbilityButtonInside");
-
-			var shortcut = $.CreatePanel("Label", image, "");
-			shortcut.AddClass("ShortcutText")
-			shortcut.text = Abilities.GetKeybind(ability);
-			
-			var cooldown = $.CreatePanel("Label", image, "");
-			cooldown.AddClass("CooldownText");
-
-			var icon = "file://{images}/spellicons/" + Abilities.GetAbilityTextureName(ability) + ".png";
-			var heroData = availableHeroes[Entities.GetUnitName(heroId)]
-			var abilityName = Abilities.GetAbilityName(ability)
-
-			$.Msg(heroData);
-
-			if (heroData && heroData.customIcons && heroData.customIcons[abilityName]){
-				icon = "file://{images}/custom_game/" + heroData.customIcons[abilityName];
-			}
-
-			image.SetImage(icon);
-
-			if (Abilities.GetLevel(ability) == 0) {
+			/*if (Abilities.GetLevel(ability) == 0) {
 				image.style.opacity = 0.0;
 				AnimatePanel(image, { "transform": "scale3d(0.0, 0.0, 1.0)" }, 1.0);
-			}
+			}*/
 		}
 	}
 }
@@ -172,62 +219,8 @@ function UltimatesEnabledEvent(args){
 function UpdateCooldowns(){
 	$.Schedule(0.025, UpdateCooldowns);
 
-	var abilityPanel = $("#AbilityPanel");
-
-	if (abilityPanel == null) {
-		return;
-	}
-
-	var children = abilityPanel.Children();
-
-	var heroId = Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer());
-	var count = Entities.GetAbilityCount(heroId);
-
-	for (var i = 0; i < children.length; i++) {
-		var button = children[i];
-		var ability = Entities.GetAbility(heroId, i);
-
-		if (button == null) {
-			continue;
-		}
-
-		if (!FilterAbility(ability)){
-			continue;
-		}
-
-		var text = button.FindChildrenWithClassTraverse("CooldownText")[0];
-
-		if (text == null){
-			continue;
-		}
-
-		var color = "yellow";
-		var saturation = "1";
-		var remaining = Abilities.GetCooldownTimeRemaining(ability);
-		var cd = Abilities.GetCooldown(ability);
-
-		if (cd == 0){
-			continue;
-		}
-
-		if (!Abilities.IsCooldownReady(ability)){
-			color = "red";
-			saturation = "0.25";
-		}
-
-		var inside = button.FindChildrenWithClassTraverse("AbilityButtonInside")[0];
-
-		button.style.boxShadow = "0px 0px 5px 0px " + color;
-		button.style.saturation = saturation;
-
-		var progress = Math.round(remaining / cd * 100.0).toString();
-		inside.style.height = progress + "%";
-
-		if (Abilities.IsCooldownReady(ability)){
-			text.text = cd.toFixed(1);
-		} else {
-			text.text = remaining.toFixed(1);
-		}
+	for (var button of abilityButtons) {
+		button.UpdateCD();
 	}
 }
 
@@ -335,5 +328,5 @@ SetupUI();
 
 	UpdateCooldowns();
 
-	//GameEvents.Subscribe("dota_player_update_selected_unit", t);
+	//GameEvents.Subscribe("dota_player_update_selected_unit", LoadHeroUI);
 })();

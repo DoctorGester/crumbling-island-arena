@@ -174,7 +174,7 @@ function Round:CreateHeroes()
 				player.hero:SetAbsOrigin(spawnPoint:GetAbsOrigin())
 				player.hero.playerData = player
 
-				CustomGameEventManager:Send_ServerToPlayer(player.player, "update_heroes", {})
+				Misc:UpdateUnitUI(player.hero)
 			end
 		, i)
 	end

@@ -74,11 +74,13 @@ function Misc:RetrievePAWeapon(hero)
 
 	if hero.inFirstJump then
 		hero:SwapAbilities("pa_e", "pa_e_sub", false, true)
+		hero:FindAbilityByName("pa_e_sub"):SetActivated(true)
 	end
 
 	hero.paQProjectile = nil
 
 	Misc:DoActionWithPAWeapon(hero, function(wearable) wearable:RemoveEffects(EF_NODRAW) end)
+	Misc:UpdateUnitUI(hero)
 end
 
 function Misc:RemovePAWeapon(hero)
@@ -89,16 +91,26 @@ function Misc:RemovePAWeapon(hero)
 	hero:FindAbilityByName("pa_q_sub"):SetActivated(true)
 
 	Misc:DoActionWithPAWeapon(hero, function(wearable) wearable:AddEffects(EF_NODRAW) end)
+	Misc:UpdateUnitUI(hero)
 end
 
 function Misc:DestroyPAWeapon(hero)
 	hero:SwapAbilities("pa_q", "pa_q_sub", true, false)
 	hero:FindAbilityByName("pa_q"):StartCooldown(3)
+
+	if not hero:FindAbilityByName("pa_e_sub"):IsHidden() then
+		hero:SwapAbilities("pa_e", "pa_e_sub", true, false)
+	end
+
 	hero.paQProjectile = nil
+
+	Misc:UpdateUnitUI(hero)
 
 	Timers:CreateTimer(3, 
 		function()
 			hero:SwapAbilities("pa_w", "pa_w_sub", true, false)
+
+			Misc:UpdateUnitUI(hero)
 			Misc:DoActionWithPAWeapon(hero, 
 				function(wearable)
 					wearable:RemoveEffects(EF_NODRAW)
@@ -163,6 +175,10 @@ function Misc:SetUpPAProjectile(projectileData)
 		function(self, second)
 			Misc:DestroyPAWeapon(self.owner)
 		end
+end
+
+function Misc:UpdateUnitUI(unit)
+	CustomGameEventManager:Send_ServerToPlayer(unit.playerData.player, "update_heroes", {})
 end
 
 function Misc:CleanUpRound()
