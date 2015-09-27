@@ -145,7 +145,7 @@ function AbilityButton(parent, hero, ability) {
 		var remaining = Abilities.GetCooldownTimeRemaining(this.ability);
 		var cd = Abilities.GetCooldownLength(this.ability);
 
-		if (cd == 0){
+		if (cd == 0 || Abilities.IsCooldownReady(this.ability)){
 			cd = Abilities.GetCooldown(this.ability);
 		}
 
@@ -165,8 +165,8 @@ function AbilityButton(parent, hero, ability) {
 		var progress = Math.round(remaining / cd * 100.0).toString();
 		var text = cd.toFixed(1);
 
-		if (Abilities.IsCooldownReady(ability)){
-			this.cooldown.text = remaining.toFixed(1);
+		if (!Abilities.IsCooldownReady(ability)){
+			text = remaining.toFixed(1);
 		}
 
 		if (cd == 0) {

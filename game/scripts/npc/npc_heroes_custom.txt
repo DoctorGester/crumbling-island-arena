@@ -85,10 +85,12 @@
 		"Ultimate" "pa_r"
 		"CustomIcons"
 		{
-			"zeus_q" "zeus_q.png"
-			"zeus_w" "zeus_w.png"
-			"zeus_e" "zeus_e.png"
-			"zeus_r" "zeus_r.png"
+			"pa_q" "pa_q.png"
+			"pa_w" "pa_w.png"
+			"pa_e" "pa_e.png"
+			"pa_q_sub" "pa_q_sub.png"
+			"pa_w_sub" "pa_w_sub.png"
+			"pa_e_sub" "pa_e.png"
 		}
 	}
 
