@@ -26,7 +26,7 @@ function HeroSelection:OnHover(args)
 	local player = self.Players[args.PlayerID]
 	local hero = args.hero
 
-	if self.AvailableHeroes[hero] == nil and hero ~= nil then
+	if self.AvailableHeroes[hero] == nil and hero ~= "null" then
 		return
 	end
 
@@ -36,6 +36,7 @@ function HeroSelection:OnHover(args)
 
 	table.player = args.PlayerID
 	table.hero = hero
+
 	CustomGameEventManager:Send_ServerToAllClients("selection_hero_hover_client", table)
 end
 

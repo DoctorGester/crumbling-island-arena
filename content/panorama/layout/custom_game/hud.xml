@@ -1,11 +1,11 @@
 <root>
 	<styles>
-		<include src="file://{resources}/styles/custom_game/general_style.css" />
+		<include src="file://{resources}/styles/custom_game/game_hud.css" />
 	</styles>
 	<scripts>
 		<include src="file://{resources}/scripts/custom_game/util.js" />
 		<include src="file://{resources}/scripts/custom_game/simple_panel_animation.js" />
-		<include src="file://{resources}/scripts/custom_game/general_script.js" />
+		<include src="file://{resources}/scripts/custom_game/game_hud.js" />
 	</scripts>
 	<Panel class="MainPanel" hittest="false">
 		<Image src="file://{images}/custom_game/zeus_q.png" style="opacity:0.0;"/>

@@ -45,3 +45,12 @@ function SubscribeToNetTableKey(table, key, loadNow, callback){
 		callback(CustomNetTables.GetTableValue(table, key));
 	}
 }
+
+function SwitchClass(element, class1, class2) {
+	if (typeof element == "string") {
+		element = $(element);
+	}
+
+	element.RemoveClass(class1);
+	element.AddClass(class2)
+}

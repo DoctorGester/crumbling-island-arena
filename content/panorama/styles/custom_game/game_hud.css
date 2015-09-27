@@ -1,0 +1,155 @@
+.MainPanel
+{
+    width: 100%;
+    height: 100%;
+}
+
+#HeroPanel
+{
+    flow-children: down;
+    horizontal-align: center;
+    vertical-align: bottom;
+    margin-bottom: 100px;
+    transition: transform 1.0s linear 0.0ms;
+}
+
+.AbilityPanel
+{
+    flow-children: right;
+    horizontal-align: center;
+}
+
+.HealthPanel
+{
+    flow-children: right;
+    horizontal-align: center;
+    margin-bottom: 20px;
+}
+
+.HealthBar
+{
+    width: 100px;
+    height: 20px;
+    background-color: #3A9B00;
+    margin: 3px;
+    /*border: 1px solid #333333;*/
+    /*box-shadow: inset #333333 2px 2px 4px 4px;*/
+    box-shadow: black 0px 0px 4px 0px;
+    border-radius: 2px;
+}
+
+.AbilityButton
+{
+    width: 56px;
+    height: 56px;
+    color: white;
+    font-size: 16px;
+    text-shadow: 2px 2px 2px #7b612b;
+    /*background-color: gradient(linear, 0% 0%, 0% 100%, from( #c88423 ), color-stop( 0.25, #c88423 ), color-stop( 0.5, #fffb84 ), color-stop( 0.75, #c88423 ), to( #9a6717 ) );*/
+    margin:5px;
+    border-radius: 2px;
+    background-color: black;
+    box-shadow: 0px 0px 5px 0px yellow;
+}
+
+.AbilityButtonInside
+{
+    background-color: gray;
+    width: 100%;
+    height: 0%;
+    opacity: 0.65;
+    horizontal-align: center;
+    vertical-align: bottom;
+}
+
+.ShortcutText
+{
+    font-size: 10;
+    margin: 8px;
+    vertical-align: bottom;
+    horizontal-align: center;
+    text-shadow: 0px 0px 8px 8.0 #333333b0;
+}
+
+.CooldownText
+{
+    font-size: 14;
+    vertical-align: middle;
+    horizontal-align: center;
+    text-shadow: 0px 0px 8px 8.0 #333333b0;
+}
+
+#TimersPanel
+{
+    horizontal-align: right;
+    y: 60px;
+    width: 20%;
+    height: 30%;
+    flow-children: right-wrap;
+    transition: transform 1.0s linear 0.0ms;
+}
+
+.TimerDescription
+{
+    font-family: Goudy Trajan Medium, FZKai-Z03, TH Sarabun New;
+    text-shadow: -1px 1px 2px 2.0 #000000;
+    color: #CCB966;
+    font-size: 21;
+    width: 80%;
+    margin-bottom: 10px;
+}
+
+.TimerText
+{
+    font-family: Goudy Trajan Medium, FZKai-Z03, TH Sarabun New;
+    text-shadow: -1px 1px 2px 2.0 #000000;
+    color: #CCB966;
+    font-size: 21;
+    text-align: right;
+}
+
+#DebugPanel
+{
+    flow-children: down;
+    horizontal-align: right;
+    vertical-align: bottom;
+    margin-right: 5px;
+    margin-bottom: 25px;
+}
+
+.DebugButton
+{
+    width: 160px;
+    height: 30px;
+    background-color: gray;
+    border: 1px solid black;
+    border-radius: 2px;
+}
+
+.DebugButtonText
+{
+    horizontal-align: center;
+    vertical-align: middle;
+    color: white;
+    text-shadow: 0px 0px 8px 4.0 #333333b0;
+}
+
+#ResultMessage
+{
+    font-family: Goudy Trajan Medium, FZKai-Z03, TH Sarabun New;
+    font-size: 102;
+    horizontal-align: center;
+    vertical-align: middle;
+    text-shadow: -1px 1px 2px 2.0 #000000;
+    color: #CCB966;
+}
+
+.AnimationHeroHudHidden
+{
+    transform: translateY(1000px);
+}
+
+.AnimationTimersHidden
+{
+    transform: translateX(1000px);
+}

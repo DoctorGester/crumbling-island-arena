@@ -11,7 +11,8 @@
     visibility: collapse;
     width: 100%;
     height: 100%;
-    opacity: 0.0;
+    transition-property: opacity;
+	transition-duration: 0.5s;
 }
 
 #HeroList
@@ -108,6 +109,8 @@
 	margin-bottom: 3px;
 	margin-top: 3px;
 	opacity: 0.0;
+	transition-property: transform, opacity, saturation;
+	transition-duration: 0.3s;
 }
 
 .SelectionParent
@@ -167,4 +170,27 @@
 	font-size: 48;
 	horizontal-align: center;
 	text-shadow: -1px 1px 2px 2.0 black;
+}
+
+.AnimationSelectedHero
+{
+	saturation: 1.0;
+	opacity: 1.0;
+	transform: translateX(200px);
+	box-shadow: fill yellow 0px 0px 8px 0px;
+}
+
+.AnimationImageHover
+{
+	opacity: 0.5;
+}
+
+.AnimationBackgroundVisible
+{
+	opacity: 1.0;
+}
+
+.AnimationBackgroundInvisible
+{
+    opacity: 0.0;
 }

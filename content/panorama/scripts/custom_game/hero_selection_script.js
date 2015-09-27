@@ -80,7 +80,7 @@ function CreateHeroList(heroes){
 		} (heroes[i]));
 
 		var mouseOut = function(){
-			GameEvents.SendCustomGameEventToServer("selection_hero_hover", { "hero": null });
+			GameEvents.SendCustomGameEventToServer("selection_hero_hover", { "hero": "null" });
 		}
 
 		button.SetPanelEvent("onactivate", mouseClick);
@@ -91,15 +91,10 @@ function CreateHeroList(heroes){
 
 function SelectionHoverClient(args){
 	var hero = args.hero;
-	var opacity = "0.0";
-
-	if (hero){
-		opacity = "0.5";
-	}
-
 	var selectionImage = $("#SelectionImage" + args["player"]);
+
 	selectionImage.heroname = hero;
-	selectionImage.style.opacity = opacity;
+	selectionImage.SetHasClass("AnimationImageHover", hero != "null")
 }
 
 function OnTimerTick(args){
@@ -111,9 +106,9 @@ function GameInfoUpdated(data){
 
 	if (data.state == GAME_STATE_HERO_SELECTION){
 		bg.style.visibility = "visible";
-		AnimatePanel(bg, { "opacity": "1.0" }, 0.5);
+		SwitchClass(bg, "AnimationBackgroundInvisible", "AnimationBackgroundVisible")
 	} else {
-		AnimatePanel(bg, { "opacity": "0.0" }, 0.5);
+		SwitchClass(bg, "AnimationBackgroundVisible", "AnimationBackgroundInvisible")
 	}
 }
 
@@ -148,21 +143,16 @@ function PlayersUpdated(data){
 }
 
 function HeroSelectionUpdated(data){
-	$.Msg(data);
 	for (var key in data){
 		var hero = data[key];
 		var selectionImage = $("#SelectionImage" + key);
 
 		if (hero == "null"){
-			selectionImage.style.opacity = "0.0";
-			selectionImage.style.saturation = "0.0";
-			selectionImage.style.transform = "translateX(0px)";
-			selectionImage.style.boxShadow = "0px 0px 0px 0px black";
+			selectionImage.RemoveClass("AnimationSelectedHero");
 		} else {
 			selectionImage.heroname = hero;
-			selectionImage.style.opacity = "1.0";
-			var animation = { "saturation": "1.0", "opacity": "1.0;", "transform": "translateX(200px)", "box-shadow": "fill yellow 0px 0px 8px 0px;" };
-			AnimatePanel(selectionImage, animation, 0.3, "ease-out");
+			selectionImage.RemoveClass("AnimationImageHover");
+			selectionImage.AddClass("AnimationSelectedHero");
 		}
 	}
 }

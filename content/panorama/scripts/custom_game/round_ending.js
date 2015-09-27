@@ -15,9 +15,9 @@ function GameInfoUpdated(data){
 		}
 		
 		label.style.visibility = "visible";
-		AnimatePanel(label, { "opacity": "1.0" }, 0.5);
+		SwitchClass(label, "AnimationMessageInvisible", "AnimationMessageVisible");
 	} else {
-		AnimatePanel(label, { "opacity": "0.0" }, 0.5);
+		SwitchClass(label, "AnimationMessageVisible", "AnimationMessageInvisible");
 	}
 }
 

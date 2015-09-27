@@ -22,5 +22,5 @@ function pa_w:OnSpellStart()
 end
 
 function pa_w:GetCastAnimation()
-	return ACT_DOTA_CAST_ABILITY_1
+	return ACT_DOTA_ATTACK_EVENT
 end

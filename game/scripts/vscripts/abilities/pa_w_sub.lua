@@ -44,3 +44,7 @@ function pa_w_sub:OnSpellStart()
 
 	Spells:CreateProjectile(projectileData)
 end
+
+function pa_w_sub:GetCastAnimation()
+	return ACT_DOTA_CAST_ABILITY_1
+end

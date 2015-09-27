@@ -39,6 +39,7 @@ function AnimatePanel(panel, values, duration, ease, delay)
 	panel.style.transition = finalTransition + ";";
 
 	// apply values
-	for (var property in values)
+	for (var property in values) {
 		panel.style[property] = values[property];
+	}
 }

@@ -4,6 +4,16 @@
     height: 100%;
 }
 
+.AnimationMessageVisible
+{
+	opacity: 1.0;
+}
+
+.AnimationMessageInvisible
+{
+	opacity: 0.0;
+}
+
 #ResultMessage
 {
     font-family: Goudy Trajan Medium, FZKai-Z03, TH Sarabun New;
@@ -12,4 +22,6 @@
     vertical-align: middle;
     text-shadow: -1px 1px 2px 2.0 #000000;
     color: #CCB966;
+    transition-property: opacity;
+	transition-duration: 0.5s;
 }
