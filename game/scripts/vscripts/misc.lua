@@ -2,7 +2,9 @@ Misc = class({})
 
 function Misc:CreateStormRemnant(owner, location, facing)
 	local dummy = CreateUnitByName(owner:GetName(), location, false, owner, nil, owner:GetTeamNumber())
+	local effectPath = "particles/units/heroes/hero_stormspirit/stormspirit_static_remnant.vpcf"
 	dummy:SetForwardVector(facing)
+	dummy:AddNewModifier(owner, nil, "modifier_remnant", { effect = effectPath })
 	AddLevelOneAbility(dummy, "storm_spirit_q_remnant")
 
 	if not owner.remnants then
