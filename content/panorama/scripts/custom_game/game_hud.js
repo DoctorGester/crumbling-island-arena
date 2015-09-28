@@ -50,11 +50,7 @@ function LoadHeroUI(){
 }
 
 function AnimateHealthBar(bar, show){
-	if (show){
-		AnimatePanel(bar, { "background-color": "#3A9B00", "opacity": "1.0;" }, 0.5);
-	} else {
-		AnimatePanel(bar, { "background-color": "gray", "opacity": "0.4;" }, 0.5);
-	}
+	bar.SetHasClass("HealthBarDead", !show);
 }
 
 function LoadHealth(heroId){
@@ -176,11 +172,40 @@ function AbilityButton(parent, hero, ability) {
 
 		this.inside.style.height = progress + "%";
 		this.cooldown.text = text;
-	}
+	};
 
+	this.GetName = function() {
+		return Abilities.GetAbilityName(this.ability);
+	};
+
+	this.SetAsUltimate = function() {
+		if (Abilities.GetLevel(this.ability) == 0) {
+			this.image.AddClass("AnimationUltimateHidden");
+		}
+	};
+
+	this.Enable = function () {
+		this.image.RemoveClass("AnimationUltimateHidden");
+	};
+}
+
+function FindUltimateButton(heroId) {
+	var heroName = Entities.GetUnitName(heroId);
+
+	for (var button of abilityButtons) {
+		if (!availableHeroes || !availableHeroes[heroName]) {
+			continue;
+		}
+
+		$.Msg("ulti " + availableHeroes[heroName].ultimate + " " + button.GetName());
+		if (availableHeroes[heroName].ultimate == button.GetName()) {
+			return button;
+		}
+	}
 }
 
 function LoadAbilities(heroId){
+	var heroName = Entities.GetUnitName(heroId);
 	var abilityPanel = $("#AbilityPanel");
 	abilityPanel.RemoveAndDeleteChildren();
 	abilityButtons = [];
@@ -193,27 +218,16 @@ function LoadAbilities(heroId){
 		if (FilterAbility(ability)){
 			var button = new AbilityButton(abilityPanel, heroId, ability);
 			abilityButtons.push(button);
-
-			/*if (Abilities.GetLevel(ability) == 0) {
-				image.style.opacity = 0.0;
-				AnimatePanel(image, { "transform": "scale3d(0.0, 0.0, 1.0)" }, 1.0);
-			}*/
 		}
 	}
+
+	var ult = FindUltimateButton(heroId);
+	if (ult) ult.SetAsUltimate();
 }
 
 function UltimatesEnabledEvent(args){
 	var heroId = GetLocalHero();
-	var count = Entities.GetAbilityCount(heroId);
-
-	for (var i = 0; i < count; i++) {
-		var image = $("#AbilityButton" + i);
-
-		if (image){
-			image.style.opacity = 1.0;
-			AnimatePanel(image, { "transform": "scale3d(1.0, 1.0, 1.0)" }, 0.5);
-		}
-	}
+	FindUltimateButton(heroId).Enable();
 }
 
 function UpdateCooldowns(){
@@ -266,23 +280,7 @@ function FillDebugPanel(){
 
 	AddDebugButton("Reload hero UI", function () {
 		LoadHeroUI();
-	})
-
-	/*AddDebugButton("Reset map", function(){
-		GameEvents.SendCustomGameEventToServer("debug_reset_map", {});
 	});
-
-	AddDebugButton("Stage 1 map", function(){
-
-	});
-
-	AddDebugButton("Stage 2 map", function(){
-
-	});
-
-	AddDebugButton("Stage 3 map", function(){
-
-	});*/
 }
 
 function DebugUpdate(data){
@@ -309,6 +307,7 @@ function GameInfoChanged(data){
 
 function HeroesUpdate(data){
 	$.Msg(data);
+
 	availableHeroes = data;
 }
 

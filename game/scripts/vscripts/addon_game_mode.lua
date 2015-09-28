@@ -103,7 +103,7 @@ end
 function GameMode:InitEvents()
 	ListenToGameEvent('player_connect_full', Dynamic_Wrap(self, 'EventPlayerConnected'), self)
 	ListenToGameEvent('game_rules_state_change', Dynamic_Wrap(self, 'EventStateChanged'), self)
-	ListenToGameEvent('dota_player_pick_hero', Dynamic_Wrap(GameMode, 'OnPlayerPickHero'), self)
+	--ListenToGameEvent('dota_player_pick_hero', Dynamic_Wrap(GameMode, 'OnPlayerPickHero'), self)
 end
 
 function GameMode:SetupMode()
@@ -115,8 +115,6 @@ function GameMode:SetupMode()
 	self:UpdateAvailableHeroesTable()
 
 	self.Round = nil
-
-	--LinkLuaModifier("modifier_hud_thinker_lua", LUA_MODIFIER_MOTION_NONE)
 
 	GameRules:GetGameModeEntity():SetThink("OnThink", self, THINK_PERIOD) 
 
@@ -296,7 +294,7 @@ function GameMode:OnGameInProgress()
 	self:SetState(STATE_HERO_SELECTION)
 	self.HeroSelection:Start(OnHeroSelectionEnd)
 
-	CheckAndEnableDebug()
+	Debug():CheckAndEnableDebug(self)
 end
 
 function GameMode:OnPlayerPickHero(keys)

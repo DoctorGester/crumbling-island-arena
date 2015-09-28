@@ -32,10 +32,18 @@
     height: 20px;
     background-color: #3A9B00;
     margin: 3px;
-    /*border: 1px solid #333333;*/
+    border: 1px solid #333333;
     /*box-shadow: inset #333333 2px 2px 4px 4px;*/
     box-shadow: black 0px 0px 4px 0px;
     border-radius: 2px;
+    transition-property: background-color, opacity;
+    transition-duration: 0.5s;
+}
+
+.HealthBarDead
+{
+    background-color: gray;
+    opacity: 0.4;
 }
 
 .AbilityButton
@@ -50,6 +58,9 @@
     border-radius: 2px;
     background-color: black;
     box-shadow: 0px 0px 5px 0px yellow;
+
+    transition-property: transform;
+    transition-duration: 1.0s;
 }
 
 .AbilityButtonInside
@@ -152,4 +163,9 @@
 .AnimationTimersHidden
 {
     transform: translateX(1000px);
+}
+
+.AnimationUltimateHidden
+{
+    transform: scale3d(0.0, 0.0, 1.0);
 }
