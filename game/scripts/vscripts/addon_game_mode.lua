@@ -103,7 +103,7 @@ end
 function GameMode:InitEvents()
 	ListenToGameEvent('player_connect_full', Dynamic_Wrap(self, 'EventPlayerConnected'), self)
 	ListenToGameEvent('game_rules_state_change', Dynamic_Wrap(self, 'EventStateChanged'), self)
-	--ListenToGameEvent('dota_player_pick_hero', Dynamic_Wrap(GameMode, 'OnPlayerPickHero'), self)
+	ListenToGameEvent('dota_player_pick_hero', Dynamic_Wrap(GameMode, 'OnPlayerPickHero'), self)
 end
 
 function GameMode:SetupMode()
@@ -249,9 +249,24 @@ function GameMode:LoadCustomHeroes()
 	GameMode.AvailableHeroes = {}
 
 	local customHeroes = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
+	local customAbilities = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
 
 	for customName, data in pairs(customHeroes) do
 		GameMode.AvailableHeroes[data.override_hero] = { ultimate = data.Ultimate, customIcons = data.CustomIcons }
+
+		local abilities = {}
+		for i = 0, 10 do
+			local abilityName = data["Ability"..tostring(i)]
+			if abilityName and #abilityName ~= 0 then
+				local ability = {}
+				ability.name = abilityName
+				ability.texture = customAbilities[ability.name].AbilityTextureName
+
+				table.insert(abilities, ability)
+			end
+		end
+
+		GameMode.AvailableHeroes[data.override_hero].abilities = abilities
 	end
 end
 
@@ -291,10 +306,10 @@ function GameMode:OnGameInProgress()
 	self.Round:Setup(self.Level, self.Players, self.GameItems, self.AvailableHeroes)
 	self.Round:Reset()
 
+	Debug():CheckAndEnableDebug(self)
+
 	self:SetState(STATE_HERO_SELECTION)
 	self.HeroSelection:Start(OnHeroSelectionEnd)
-
-	Debug():CheckAndEnableDebug(self)
 end
 
 function GameMode:OnPlayerPickHero(keys)
@@ -317,7 +332,7 @@ function GameMode:OnPlayerPickHero(keys)
 	    	
 	    end
 
-    	if ability ~= nil and not ability:IsAttributeBonus() and not ability:IsHidden() and not string.find(ability:GetName(), "sub") then
+    	if ability ~= nil and not ability:IsAttributeBonus() and not ability:IsHidden() then
 	    	ability:SetLevel(1)
     	end
     end

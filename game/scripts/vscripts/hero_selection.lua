@@ -5,7 +5,7 @@ end
 function HeroSelection:Setup(players, availableHeroes, teamColors)
 	self.SelectionTimer = 0
 	self.SelectionTimerTime = 20
-	self.PreGameTime = 0--3
+	self.PreGameTime = 3
 	self.Players = players
 	self.TeamColors = teamColors
 	self.AvailableHeroes = availableHeroes

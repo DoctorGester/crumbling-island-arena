@@ -197,7 +197,6 @@ function FindUltimateButton(heroId) {
 			continue;
 		}
 
-		$.Msg("ulti " + availableHeroes[heroName].ultimate + " " + button.GetName());
 		if (availableHeroes[heroName].ultimate == button.GetName()) {
 			return button;
 		}
@@ -306,8 +305,6 @@ function GameInfoChanged(data){
 }
 
 function HeroesUpdate(data){
-	$.Msg(data);
-
 	availableHeroes = data;
 }
 

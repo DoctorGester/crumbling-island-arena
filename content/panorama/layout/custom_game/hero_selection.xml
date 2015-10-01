@@ -1,5 +1,6 @@
 <root>
 	<styles>
+		<include src="file://{resources}/styles/custom_game/game_hud.css" />
 		<include src="file://{resources}/styles/custom_game/hero_selection_style.css" />
 	</styles>
 	<scripts>
@@ -20,6 +21,14 @@
 			</Panel>
 			<Panel id="HeroList">
 				<Label class="HeaderLabel HeroListHeader" text="heroes"></Label>
+				<Panel id="HeroButtons"></Panel>
+				<Label id="HeroName" class="HeaderLabel HeroListHeader" text="the world"></Label>
+				<Panel id="HeroAbilities" class="AbilityPanel">
+					<Panel class="AbilityButton"></Panel>
+					<Panel class="AbilityButton"></Panel>
+					<Panel class="AbilityButton"></Panel>
+					<Panel class="AbilityButton"></Panel>
+				</Panel>
 			</Panel>
 			<Panel id="TimerColumn">
 				<Label class="HeaderLabel HeroListHeader" text="game info"></Label>
