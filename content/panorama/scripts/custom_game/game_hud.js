@@ -36,6 +36,16 @@ function LoadHeroUI(){
 
 	if (abilityBar == null) {
 		abilityBar = new AbilityBar("#AbilityPanel", heroId);
+
+		for (key in availableHeroes) {
+			var hero = availableHeroes[key];
+
+			if (hero.customIcons) {
+				for (iconKey in hero.customIcons) {
+					abilityBar.AddCustomIcon(iconKey, hero.customIcons[iconKey]);
+				}
+			}
+		}
 	}
 
 	if (healthBar == null) {
