@@ -25,14 +25,18 @@ function ShowHeroDetails(heroName) {
 		element.AddClass("AbilityButton");
 		element.SetImage(icon);
 	}
+
+	$("#HeroTips").text = $.Localize("#HeroTips_" + heroData.name);
 }
 
 function AddHoverHeroDetails(element, heroName){
-	var mouseOver = (function(element, heroName) { 
+	var mouseOver = (function(heroName) { 
 		return function() {
 			ShowHeroDetails(heroName);
 		}
-	} (element, heroName));
+	} (heroName));
+
+	element.SetPanelEvent("onmouseover", mouseOver);
 }
 
 function CreatePlayerList(players){
@@ -194,6 +198,7 @@ function HeroSelectionUpdated(data){
 			selectionImage.heroname = hero;
 			selectionImage.RemoveClass("AnimationImageHover");
 			selectionImage.AddClass("AnimationSelectedHero");
+			AddHoverHeroDetails(selectionImage, hero);
 		}
 	}
 }

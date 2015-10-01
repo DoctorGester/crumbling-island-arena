@@ -2,9 +2,7 @@
 {
 	"HeroName_npc_dota_hero_phantom_assassin"		"HeroNameTest"
 	"HeroTips_npc_dota_hero_phantom_assassin"		"Tip1<br>
-													Tip2<br>
-													Tip3<br>
-													Tip4<br>"
+													Tip2<br>Tip3<br>Tip4<br>"
 
 
 	"RecentScore"									"+{d:score}"

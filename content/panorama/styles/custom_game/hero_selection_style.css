@@ -31,6 +31,15 @@
 	flow-children: right-wrap;
 }
 
+#HeroTips
+{
+	text-align: center;
+	width: 100%;
+	font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+	font-size: 16;
+	color: gray;
+}
+
 .HeroButton
 {
 	saturation: 0.0;

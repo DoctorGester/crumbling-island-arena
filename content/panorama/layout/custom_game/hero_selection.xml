@@ -23,12 +23,8 @@
 				<Label class="HeaderLabel HeroListHeader" text="heroes"></Label>
 				<Panel id="HeroButtons"></Panel>
 				<Label id="HeroName" class="HeaderLabel HeroListHeader" text="the world"></Label>
-				<Panel id="HeroAbilities" class="AbilityPanel">
-					<Panel class="AbilityButton"></Panel>
-					<Panel class="AbilityButton"></Panel>
-					<Panel class="AbilityButton"></Panel>
-					<Panel class="AbilityButton"></Panel>
-				</Panel>
+				<Panel id="HeroAbilities" class="AbilityPanel"></Panel>
+				<Label id="HeroTips" html="true"></Label>
 			</Panel>
 			<Panel id="TimerColumn">
 				<Label class="HeaderLabel HeroListHeader" text="game info"></Label>
