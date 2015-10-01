@@ -4,7 +4,8 @@
 	</styles>
 	<scripts>
 		<include src="file://{resources}/scripts/custom_game/util.js" />
-		<include src="file://{resources}/scripts/custom_game/simple_panel_animation.js" />
+		<include src="file://{resources}/scripts/custom_game/ability_bar.js" />
+		<include src="file://{resources}/scripts/custom_game/health_bar.js" />
 		<include src="file://{resources}/scripts/custom_game/game_hud.js" />
 	</scripts>
 	<Panel class="MainPanel" hittest="false">

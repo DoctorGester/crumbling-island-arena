@@ -1,7 +1,8 @@
 "use strict";
 
 var availableHeroes = {};
-var abilityButtons = [];
+var abilityBar = null;
+var healthBar = null;
 
 function SetupUI(){
 	GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_TIMEOFDAY, false);
@@ -26,18 +27,6 @@ function SetupUI(){
 	GameUI.SetRenderBottomInsetOverride(0);
 }
 
-function ShowTooltip(element, name){
-	$.DispatchEvent("DOTAShowAbilityTooltip", element, name); 
-}
-
-function HideTooltip(){
-	$.DispatchEvent("DOTAHideAbilityTooltip"); 
-}
-
-function FilterAbility(id){
-	return !Abilities.IsAttributeBonus(id) && Abilities.IsActivated(id) && !Abilities.IsHidden(id);
-}
-
 function GetLocalHero(){
 	return Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer());
 }
@@ -45,148 +34,29 @@ function GetLocalHero(){
 function LoadHeroUI(){
 	var heroId = GetLocalHero();
 
-	LoadAbilities(heroId);
-	LoadHealth(heroId);
-}
-
-function AnimateHealthBar(bar, show){
-	bar.SetHasClass("HealthBarDead", !show);
-}
-
-function LoadHealth(heroId){
-	var panel = $("#HealthPanel");
-	panel.RemoveAndDeleteChildren();
-
-	var health = Entities.GetMaxHealth(heroId);
-
-	for (var i = 0; i < health; i++){
-		var bar = $.CreatePanel("Panel", panel, "HealthBar" + i);
-		bar.AddClass("HealthBar");
-
-		if (i > Entities.GetHealth(heroId) - 1)
-			AnimateHealthBar(bar, false);
+	if (abilityBar == null) {
+		abilityBar = new AbilityBar("#AbilityPanel", heroId);
 	}
+
+	if (healthBar == null) {
+		healthBar = new HealthBar("#HealthPanel", heroId);
+	}
+}
+
+function FilterAbility(id){
+	return !Abilities.IsAttributeBonus(id) && Abilities.IsActivated(id) && !Abilities.IsHidden(id);
 }
 
 function DamageTakenEvent(args){
-	var barNumber = Math.round(Entities.GetHealth(GetLocalHero()));
-
-	AnimateHealthBar($("#HealthBar" + barNumber), false);
+	if (healthBar != null) healthBar.Damage();
 }
 
 function HealEvent(args){
-	var barNumber = Math.round(Entities.GetHealth(GetLocalHero())) - 1;
-
-	AnimateHealthBar($("#HealthBar" + barNumber), true);
+	if (healthBar != null) healthBar.Heal();
 }
 
 function FallEvent(args){
-	var panel = $("#HealthPanel");
-	var bars = panel.FindChildrenWithClassTraverse("HealthBar");
-
-	for (var i = 0; i < bars.length; i++) {
-		AnimateHealthBar(bars[i], false);
-	}
-}
-
-function AbilityButton(parent, hero, ability) {
-	this.parent = parent;
-	this.image = $.CreatePanel("Image", parent, "");
-	this.image.AddClass("AbilityButton");
-	this.ability = ability;
-
-	var executeCapture = (function(ability, hero) { 
-		return function() {
-			Abilities.ExecuteAbility(ability, hero, false);
-		}
-	} (this.ability, hero));
-
-	var mouseOverCapture = (function(element, name) { 
-		return function() {
-			ShowTooltip(element, name);
-		}
-	} (this.image, Abilities.GetAbilityName(ability)));
-
-	var mouseOutCapture = function() { 
-		HideTooltip();
-	};
-
-	this.image.SetPanelEvent("onactivate", executeCapture);
-	this.image.SetPanelEvent("onmouseover", mouseOverCapture);
-	this.image.SetPanelEvent("onmouseout", mouseOutCapture);
-
-	this.inside = $.CreatePanel("Panel", this.image, "");
-	this.inside.AddClass("AbilityButtonInside");
-
-	this.shortcut = $.CreatePanel("Label", this.image, "");
-	this.shortcut.AddClass("ShortcutText")
-	this.shortcut.text = Abilities.GetKeybind(this.ability);
-	
-	this.cooldown = $.CreatePanel("Label", this.image, "");
-	this.cooldown.AddClass("CooldownText");
-
-	var icon = "file://{images}/spellicons/" + Abilities.GetAbilityTextureName(ability) + ".png";
-	var heroData = availableHeroes[Entities.GetUnitName(hero)]
-	var abilityName = Abilities.GetAbilityName(ability)
-
-	if (heroData && heroData.customIcons && heroData.customIcons[abilityName]){
-		icon = "file://{images}/custom_game/" + heroData.customIcons[abilityName];
-	}
-
-	this.image.SetImage(icon);
-
-	this.UpdateCD = function() {
-		var color = "yellow";
-		var saturation = "1";
-		var remaining = Abilities.GetCooldownTimeRemaining(this.ability);
-		var cd = Abilities.GetCooldownLength(this.ability);
-
-		if (cd == 0 || Abilities.IsCooldownReady(this.ability)){
-			cd = Abilities.GetCooldown(this.ability);
-		}
-
-		if (!Abilities.IsCooldownReady(this.ability)){
-			color = "red";
-			saturation = "0.25";
-		}
-
-		if (!Abilities.IsDisplayedAbility(this.ability)){
-			color = "red";
-			saturation = "0.0";
-		}
-
-		this.image.style.boxShadow = "0px 0px 5px 0px " + color;
-		this.image.style.saturation = saturation;
-
-		var progress = Math.round(remaining / cd * 100.0).toString();
-		var text = cd.toFixed(1);
-
-		if (!Abilities.IsCooldownReady(ability)){
-			text = remaining.toFixed(1);
-		}
-
-		if (cd == 0) {
-			progress = 0;
-			text = "";
-		}
-
-		this.inside.style.height = progress + "%";
-		this.cooldown.text = text;
-	};
-
-	this.GetName = function() {
-		return Abilities.GetAbilityName(this.ability);
-	};
-
-	this.SetAsUltimate = function() {
-		if (Abilities.GetLevel(this.ability) == 0) {
-			this.image.AddClass("AnimationUltimateHidden");
-		}
-	};
-
-	this.Enable = function () {
-		this.image.RemoveClass("AnimationUltimateHidden");
-	};
+	if (healthBar != null) healthBar.Kill();
 }
 
 function FindUltimateButton(heroId) {
@@ -203,27 +73,6 @@ function FindUltimateButton(heroId) {
 	}
 }
 
-function LoadAbilities(heroId){
-	var heroName = Entities.GetUnitName(heroId);
-	var abilityPanel = $("#AbilityPanel");
-	abilityPanel.RemoveAndDeleteChildren();
-	abilityButtons = [];
-
-	var count = Entities.GetAbilityCount(heroId);
-
-	for (var i = 0; i < count; i++) {
-		var ability = Entities.GetAbility(heroId, i);
-
-		if (FilterAbility(ability)){
-			var button = new AbilityButton(abilityPanel, heroId, ability);
-			abilityButtons.push(button);
-		}
-	}
-
-	var ult = FindUltimateButton(heroId);
-	if (ult) ult.SetAsUltimate();
-}
-
 function UltimatesEnabledEvent(args){
 	var heroId = GetLocalHero();
 	FindUltimateButton(heroId).Enable();
@@ -232,8 +81,8 @@ function UltimatesEnabledEvent(args){
 function UpdateCooldowns(){
 	$.Schedule(0.025, UpdateCooldowns);
 
-	for (var button of abilityButtons) {
-		button.UpdateCD();
+	if (abilityBar != null) {
+		abilityBar.UpdateCooldowns();
 	}
 }
 
