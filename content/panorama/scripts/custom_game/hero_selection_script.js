@@ -1,32 +1,67 @@
 var allHeroes = {};
+var abilityBar = new AbilityBar("#HeroAbilities");
+
+function TableAbilityDataProvider(heroData) {
+	this.heroData = heroData;
+
+	this.FilterAbility = function(ability) {
+		return ability.name.indexOf("sub") == -1;
+	}
+
+	this.FilterAbilities = function() {
+		var abilities = [];
+
+		for (key in this.heroData.abilities) {
+			var ability = this.heroData.abilities[key];
+
+			if (this.FilterAbility(ability)) {
+				abilities.push(ability);
+			}
+		}
+
+		return abilities;
+	}
+
+	this.GetAbilityData = function(slot) {
+		var data = {};
+		var ability = this.FilterAbilities()[slot];
+
+		data.key = "";
+		data.name = ability.name;
+		data.texture = ability.texture;
+		data.cooldown = 0;
+		data.ready = true;
+		data.remaining = 0;
+		data.activated = true;
+		data.enabled = true;
+
+		return data
+	}
+
+	this.GetAbilityCount = function() {
+		var len = 0;
+
+		for (key in this.heroData.abilities) {
+			len++;
+		}
+
+		return this.FilterAbilities().length;
+	}
+}
 
 function ShowHeroDetails(heroName) {
 	var abilityPanel = $("#HeroAbilities");
 	var heroData = allHeroes[heroName];
 
+	abilityBar.SetProvider(new TableAbilityDataProvider(heroData));
 	$("#HeroName").text = $.Localize("#HeroName_" + heroData.name);
-
-	DeleteChildrenWithClass(abilityPanel, "AbilityButton");
-
-	for (var index in heroData.abilities) {
-		var ability = heroData.abilities[index];
-
-		if (ability.name.indexOf("sub") != -1) {
-			continue;
-		}
-
-		var element = $.CreatePanel("Image", abilityPanel, "");
-		var icon = "file://{images}/spellicons/" + ability.texture + ".png";
-
-		if (heroData.customIcons && heroData.customIcons[ability.name]){
-			icon = "file://{images}/custom_game/" + heroData.customIcons[ability.name];
-		}
-
-		element.AddClass("AbilityButton");
-		element.SetImage(icon);
-	}
-
 	$("#HeroTips").text = $.Localize("#HeroTips_" + heroData.name);
+}
+
+function HideHeroDetails() {
+	abilityBar.SetProvider(new EmptyAbilityDataProvider());
+	$("#HeroName").text = "";
+	$("#HeroTips").text = "";
 }
 
 function AddHoverHeroDetails(element, heroName){
@@ -37,6 +72,7 @@ function AddHoverHeroDetails(element, heroName){
 	} (heroName));
 
 	element.SetPanelEvent("onmouseover", mouseOver);
+	element.SetPanelEvent("onmouseout", HideHeroDetails);
 }
 
 function CreatePlayerList(players){
@@ -124,6 +160,8 @@ function CreateHeroList(heroes){
 
 		var mouseOut = function(){
 			GameEvents.SendCustomGameEventToServer("selection_hero_hover", { "hero": "null" });
+
+			HideHeroDetails();
 		}
 
 		button.SetPanelEvent("onactivate", mouseClick);
@@ -160,6 +198,14 @@ function HeroesUpdated(data){
 
 	for (var key in data){
 		heroes.push(key);
+
+		var hero = data[key];
+
+		if (hero.customIcons) {
+			for (ability in hero.customIcons) {
+				abilityBar.AddCustomIcon(ability, hero.customIcons[ability]);
+			}
+		}
 	}
 
 	CreateHeroList(heroes);

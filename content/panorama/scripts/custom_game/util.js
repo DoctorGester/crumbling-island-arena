@@ -12,6 +12,18 @@ function ToColor(num) {
     return "rgba(" + [a, r, g, b].join(",") + ")";
 }
 
+function Hash(str) {
+	var res = 0;
+	var len = str.length;
+
+	for (var i = 0; i < len; i++) {
+		res = res * 31 + str.charCodeAt(i);
+		res = res & res;
+	}
+
+	return res;
+}
+
 function LuaColor(color){
 	return "rgb(" + [color[1], color[2], color[3]].join(",") + ")";
 }

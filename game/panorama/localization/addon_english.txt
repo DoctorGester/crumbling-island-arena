@@ -1,9 +1,11 @@
 "addon"
 {
-	"HeroName_npc_dota_hero_phantom_assassin"		"HeroNameTest"
-	"HeroTips_npc_dota_hero_phantom_assassin"		"Tip1<br>
-													Tip2<br>Tip3<br>Tip4<br>"
+	"HeroName_npc_dota_hero_phantom_assassin"		"The Moon"
+	"HeroTips_npc_dota_hero_phantom_assassin"		"Throws glaive<br>Can quickly return it<br>Close range AOE strike<br>Can double jump, leaving glaive behind<br>Invisibility"
 
+	"HeroName_npc_dota_hero_storm_spirit"			"The Devil"
+	"HeroName_npc_dota_hero_zuus"					"The Magician"
+	"HeroName_npc_dota_hero_earth_spirit"			"The Tower"	
 
 	"RecentScore"									"+{d:score}"
 

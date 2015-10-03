@@ -19,6 +19,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_DISABLE_HEALING"	"1"
+					"MODIFIER_PROPERTY_HEALTH_BONUS" "-19"
 				}
 
 			}

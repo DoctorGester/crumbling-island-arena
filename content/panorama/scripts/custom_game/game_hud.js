@@ -35,26 +35,28 @@ function LoadHeroUI(){
 	var heroId = GetLocalHero();
 
 	if (abilityBar == null) {
-		abilityBar = new AbilityBar("#AbilityPanel", heroId);
+		abilityBar = new AbilityBar("#AbilityPanel");
 
-		for (key in availableHeroes) {
+		for (var key in availableHeroes) {
 			var hero = availableHeroes[key];
 
 			if (hero.customIcons) {
-				for (iconKey in hero.customIcons) {
+				for (var iconKey in hero.customIcons) {
 					abilityBar.AddCustomIcon(iconKey, hero.customIcons[iconKey]);
 				}
 			}
 		}
 	}
 
+
+	abilityBar.SetProvider(new EntityAbilityDataProvider(heroId));
+	abilityBar.RegisterEvents();
+
 	if (healthBar == null) {
 		healthBar = new HealthBar("#HealthPanel", heroId);
 	}
-}
 
-function FilterAbility(id){
-	return !Abilities.IsAttributeBonus(id) && Abilities.IsActivated(id) && !Abilities.IsHidden(id);
+	healthBar.SetEntity(heroId);
 }
 
 function DamageTakenEvent(args){
@@ -69,30 +71,11 @@ function FallEvent(args){
 	if (healthBar != null) healthBar.Kill();
 }
 
-function FindUltimateButton(heroId) {
-	var heroName = Entities.GetUnitName(heroId);
-
-	for (var button of abilityButtons) {
-		if (!availableHeroes || !availableHeroes[heroName]) {
-			continue;
-		}
-
-		if (availableHeroes[heroName].ultimate == button.GetName()) {
-			return button;
-		}
-	}
-}
-
-function UltimatesEnabledEvent(args){
-	var heroId = GetLocalHero();
-	FindUltimateButton(heroId).Enable();
-}
-
 function UpdateCooldowns(){
 	$.Schedule(0.025, UpdateCooldowns);
 
 	if (abilityBar != null) {
-		abilityBar.UpdateCooldowns();
+		abilityBar.Update();
 	}
 }
 
@@ -171,7 +154,6 @@ SetupUI();
 
 (function () {
 	GameEvents.Subscribe("update_heroes", LoadHeroUI);
-	GameEvents.Subscribe("ultimates_enabled", UltimatesEnabledEvent);
 	GameEvents.Subscribe("hero_takes_damage", DamageTakenEvent);
 	GameEvents.Subscribe("hero_healed", HealEvent);
 	GameEvents.Subscribe("hero_falls", FallEvent);
@@ -183,5 +165,5 @@ SetupUI();
 
 	UpdateCooldowns();
 
-	//GameEvents.Subscribe("dota_player_update_selected_unit", LoadHeroUI);
+	GameEvents.Subscribe("dota_player_update_selected_unit", LoadHeroUI);
 })();

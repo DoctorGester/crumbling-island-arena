@@ -6,43 +6,114 @@ function HideTooltip(){
 	$.DispatchEvent("DOTAHideAbilityTooltip"); 
 }
 
-function Ability(abilityId, button) {
-	this.button = button;
-	this.abilityId = abilityId;
+function GetTexture(data, customIcons) {
+	var icon = "file://{images}/spellicons/" + data.texture + ".png";
+	var name = data.name;
 
-	this.GetName = function() {
-		return Abilities.GetAbilityName(this.abilityId);
+	if (customIcons[name]){
+		icon = "file://{images}/custom_game/" + customIcons[name];
 	}
 
-	this.GetDefaultTexture = function() {
-		return Abilities.GetAbilityTextureName(this.abilityId)
+	return icon;
+}
+
+// AbilityDataProvider ->
+//	GetAbilityData(slot)
+//	GetAbilityCount()
+
+function EmptyAbilityDataProvider() {
+	this.GetAbilityData = function(slot) {
+		return {};
+	}
+
+	this.GetAbilityCount = function() {
+		return 0;
 	}
 }
 
-function AbilityBar(elementId, heroId) {
-	this.element = $.(elementId);
-	this.heroId = heroId;
+function EntityAbilityDataProvider(entityId) {
+	this.entityId = entityId;
+
+	this.FilterAbility = function(id) {
+		return !Abilities.IsAttributeBonus(id) && Abilities.IsDisplayedAbility(id);
+	}
+
+	this.FilterAbilities = function() {
+		var abilities = [];
+		var count = Entities.GetAbilityCount(this.entityId);
+
+		for (var i = 0; i < count; i++) {
+			var ability = Entities.GetAbility(this.entityId, i);
+
+			if (this.FilterAbility(ability)) {
+				abilities.push(ability);
+			}
+		}
+
+		return abilities;
+	}
+
+	this.GetAbilityData = function(slot) {
+		var ability = this.FilterAbilities()[slot];
+		var data = {};
+
+		data.id = ability;
+		data.key = Abilities.GetKeybind(ability);
+		data.name = Abilities.GetAbilityName(ability);
+		data.texture = Abilities.GetAbilityTextureName(ability);
+		data.cooldown = Abilities.GetCooldownLength(ability);
+		data.ready = Abilities.IsCooldownReady(ability);
+		data.remaining = Abilities.GetCooldownTimeRemaining(ability);
+		data.activated = Abilities.IsActivated(ability);
+		data.enabled = Abilities.GetLevel(ability) != 0;
+
+		if (data.cooldown == 0 || data.ready){
+			data.cooldown = Abilities.GetCooldown(ability);
+		}
+
+		return data
+	}
+
+	this.GetAbilityCount = function() {
+		return this.FilterAbilities().length;
+	}
+}
+
+function AbilityBar(elementId) {
+	this.element = $(elementId);
 	this.abilities = {};
 	this.customIcons = {};
 
-	this.UpdateCooldowns = function() {
-		for (var key in this.abilities) {
-			var ability = this.abilities[key];
-			var id = ability.abilityId;
-			var cd = Abilities.GetCooldownLength(id);
-			var ready = Abilities.IsCooldownReady(id);
-			var remaining = Abilities.GetCooldownTimeRemaining(id);
+	this.SetProvider = function(provider) {
+		this.provider = provider;
+		this.Update();
+	}
 
-			if (cd == 0 || ready){
-				cd = Abilities.GetCooldown(this.ability);
+	this.Update = function() {
+		var count = this.provider.GetAbilityCount();
+
+		for (var i = 0; i < count; i++) {
+			this.UpdateSlot(i);
+		}
+
+		for (slot in this.abilities) {
+			if (slot >= count) {
+				this.abilities[slot].Delete();
+				delete this.abilities[slot];
 			}
-
-			ability.button.SetCooldown(remaining, cd, ready);
 		}
 	}
 
+	this.UpdateSlot = function(slot) {
+		var data = this.provider.GetAbilityData(slot);
+		data.texture = GetTexture(data, this.customIcons);
+
+		var ability = this.GetAbility(slot);
+		ability.SetData(data);
+	}
+
 	this.AddCustomIcon = function(abilityName, iconPath) {
-		customIcons[abilityName] = iconPath;
+		this.customIcons[abilityName] = iconPath;
 	}
 
 	this.DisableUltimate = function(abilityName) {
@@ -50,84 +121,103 @@ function AbilityBar(elementId, heroId) {
 	}
 
 	this.GetAbility = function(slot) {
-		if (!this.buttons[slot]) {
-			var abilities = new AbilityButton(this.element);
-			var ability = new Ability(0, button);
+		if (!this.abilities[slot]) {
+			var ability = new AbilityButton(this.element);
 			
-			this.abilities[slot] = button;
-			this.UpdateAbility(slot);
+			this.abilities[slot] = ability;
+
+			for (index in this.abilities) {
+				if (index > slot) {
+					this.element.MoveChildBefore(this.abilities[slot].image, this.abilities[index].image)
+					break;
+				}
+			}
 		}
 
 		return this.abilities[slot];
 	}
 
-	this.UpdateAbility = function(slot) {
-		var ability = GetAbility(slot);
-		var oldId = ability.abilityId;
-
-		ability.abilityId = Entities.GetAbility(this.heroId, slot);
-
-		if (oldId != ability.abilityId) {
-			// Setting icon
-			var icon = "file://{images}/spellicons/" + ability.GetDefaultTexture() + ".png";
-			var name = ability.GetName();
-
-			if (this.customIcons[name]){
-				icon = "file://{images}/custom_game/" + this.customIcons[name];
-			}
-
-			ability.button.SetIcon(icon);
-
-			// Registering events
-			var executeCapture = (function(ability, hero) { 
+	this.RegisterEvents = function() {
+		for (key in this.abilities) {
+			var executeCapture = (function(bar, slot) { 
 				return function() {
-					Abilities.ExecuteAbility(ability, hero, false);
-				}
-			} (ability.abilityId, this.heroId));
+					// A bit of a hack, can't think of a better way for now
+					var ability = bar.GetAbility(slot);
 
-			var mouseOverCapture = (function(element, name) { 
-				return function() {
-					ShowTooltip(element, name);
+					Abilities.ExecuteAbility(ability.data.id, bar.provider.entityId, false);
 				}
-			} (ability.button.image, name));
+			} (this, key));
+
+			var mouseOverCapture = (function(bar, slot) { 
+				return function() {
+					var ability = bar.GetAbility(slot);
+
+					ShowTooltip(ability.image, ability.data.name);
+				}
+			} (this, key));
 
 			var mouseOutCapture = function() { 
 				HideTooltip();
 			};
 
-			ability.button.image.SetPanelEvent("onactivate", executeCapture);
-			ability.button.image.SetPanelEvent("onmouseover", mouseOverCapture);
-			ability.button.image.SetPanelEvent("onmouseout", mouseOutCapture);
+			var ability = this.abilities[key];
+
+			ability.image.SetPanelEvent("onactivate", executeCapture);
+			ability.image.SetPanelEvent("onmouseover", mouseOverCapture);
+			ability.image.SetPanelEvent("onmouseout", mouseOutCapture);
 		}
 	}
 }
 
 function AbilityButton(parent, hero, ability) {
 	this.parent = parent;
-	this.image = $.CreatePanel("Image", parent, undefined);
+	this.image = $.CreatePanel("Image", parent, "");
 	this.image.AddClass("AbilityButton");
 	this.ability = ability;
 
-	this.inside = $.CreatePanel("Panel", this.image, undefined);
+	this.inside = $.CreatePanel("Panel", this.image, "");
 	this.inside.AddClass("AbilityButtonInside");
 
-	this.shortcut = $.CreatePanel("Label", this.image, undefined);
+	this.shortcut = $.CreatePanel("Label", this.image, "");
 	this.shortcut.AddClass("ShortcutText")
-	this.shortcut.text = Abilities.GetKeybind(this.ability);
 	
-	this.cooldown = $.CreatePanel("Label", this.image, undefined);
+	this.cooldown = $.CreatePanel("Label", this.image, "");
 	this.cooldown.AddClass("CooldownText");
 
-	this.SetIcon = function(icon) {
-		this.image.SetImage(icon);
+	this.data = {};
+
+	this.SetData = function(data) {
+		if (this.data.texture != data.texture) {
+			this.image.SetImage(data.texture);
+		}
+
+		if (this.data.key != data.key) {
+			this.shortcut.text = data.key;
+		}
+
+		if (this.data.cooldown != data.cooldown ||
+			this.data.ready != data.ready ||
+			this.data.remaining != data.remaining ||
+			this.data.activated != data.activated) {
+			this.SetCooldown(data.remaining, data.cooldown, data.ready, data.activated);
+		}
+
+		this.image.SetHasClass("AnimationUltimateHidden", !data.enabled);
+
+		this.data = data;
 	}
 
-	this.SetCooldown = function(remaining, cd, ready) {
-		var color = "yellow";
+	this.SetCooldown = function(remaining, cd, ready, activated) {
+		var color = "#0094FF";
 		var saturation = "1";
 
 		if (!ready){
 			color = "red";
+			saturation = "0.25";
+		}
+
+		if (!activated) {
+			color = "black";
 			saturation = "0.25";
 		}
 
@@ -141,7 +231,7 @@ function AbilityButton(parent, hero, ability) {
 			text = remaining.toFixed(1);
 		}
 
-		if (cd == 0) {
+		if (cd == 0 || !activated) {
 			progress = 0;
 			text = "";
 		}
@@ -150,13 +240,7 @@ function AbilityButton(parent, hero, ability) {
 		this.cooldown.text = text;
 	}
 
-	this.SetAsUltimate = function() {
-		if (Abilities.GetLevel(this.ability) == 0) {
-			this.image.AddClass("AnimationUltimateHidden");
-		}
-	}
-
-	this.Enable = function () {
-		this.image.RemoveClass("AnimationUltimateHidden");
+	this.Delete = function() {
+		this.image.DeleteAsync(0);
 	}
 }

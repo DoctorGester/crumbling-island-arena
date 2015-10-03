@@ -31,8 +31,14 @@
 	flow-children: right-wrap;
 }
 
+#HeroAbilities
+{
+	margin-top: 20px;
+}
+
 #HeroTips
 {
+	margin-top: 20px;
 	text-align: center;
 	width: 100%;
 	font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
