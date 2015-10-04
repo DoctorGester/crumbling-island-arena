@@ -5,6 +5,7 @@ function Misc:CreateStormRemnant(owner, location, facing)
 	local effectPath = "particles/units/heroes/hero_stormspirit/stormspirit_static_remnant.vpcf"
 	dummy:SetForwardVector(facing)
 	dummy:AddNewModifier(owner, nil, "modifier_remnant", { effect = effectPath })
+	dummy:EmitSound("Hero_StormSpirit.StaticRemnantPlant")
 	--AddLevelOneAbility(dummy, "storm_spirit_q_remnant")
 
 	if not owner.remnants then
@@ -26,6 +27,7 @@ function Misc:DestroyStormRemnant(owner, remnant)
 		table.remove(owner.lastRemnants, 1)
 	end
 
+	remnant:EmitSound("Hero_StormSpirit.StaticRemnantExplode")
 	remnant:RemoveSelf()
 
 	for key, value in pairs(owner.remnants) do

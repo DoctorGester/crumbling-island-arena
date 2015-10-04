@@ -9,6 +9,8 @@ function storm_spirit_e:OnSpellStart()
 	if remnant then
 		caster:AddNewModifier(caster, self, "modifier_storm_spirit_e", {})
 		caster:SetForwardVector((target - caster:GetAbsOrigin()):Normalized())
+		caster:EmitSound("Hero_StormSpirit.BallLightning")
+		caster:EmitSound("Hero_StormSpirit.BallLightning.Loop")
 
 		local dashData = {}
 		dashData.unit = caster
@@ -16,6 +18,7 @@ function storm_spirit_e:OnSpellStart()
 		dashData.velocity = 1200
 		dashData.onArrival = 
 			function (unit)
+				caster:StopSound("Hero_StormSpirit.BallLightning.Loop")
 				unit:RemoveModifierByName("modifier_storm_spirit_e")
 				Misc:DestroyStormRemnant(unit, remnant)
 			end

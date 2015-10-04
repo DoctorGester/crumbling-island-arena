@@ -25,6 +25,7 @@ function storm_spirit_q:OnSpellStart()
 	projectileData.onWallDestroy = projectileData.onTargetReached
 
 	Spells:CreateProjectile(projectileData)
+	caster:EmitSound("Arena.Storm.CastQ")
 end
 
 function storm_spirit_q:GetCastAnimation()
