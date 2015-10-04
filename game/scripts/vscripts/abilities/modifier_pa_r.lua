@@ -2,7 +2,7 @@ modifier_pa_r = class({})
 
 function modifier_pa_r:OnDestroy()
 	if IsServer() then
-		self:GetParent():RemoveModifierByName("modifier_invisible")
+		self:GetParent():RemoveModifierByName("modifier_persistent_invisibility")
 	end
 end
 
@@ -16,7 +16,8 @@ end
 
 function modifier_pa_r:DeclareFunctions()
 	local funcs = {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
+		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+		MODIFIER_EVENT_ON_ABILITY_FULLY_CAST
 	}
  
 	return funcs

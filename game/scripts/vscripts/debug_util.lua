@@ -13,7 +13,7 @@ function OnHealHealth(eventSourceIndex, args)
 end
 
 function OnShowSelection(eventSourceIndex, args)
-	OnRoundEnd()
+	mode.Round:CheckEndConditions()
 end
 
 function Debug:CheckAndEnableDebug(gameMode)
@@ -37,4 +37,5 @@ function Debug:CheckAndEnableDebug(gameMode)
 	GameRules.GameMode.Round.SuddenDeathTimerTime = 60000
 
 	GameRules.GameMode.HeroSelection.SelectionTimerTime = 2000
+	GameRules.GameMode.HeroSelection.PreGameTime = 0
 end

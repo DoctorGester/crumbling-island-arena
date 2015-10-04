@@ -5,6 +5,7 @@ function Misc:CreateStormRemnant(owner, location, facing)
 	local effectPath = "particles/units/heroes/hero_stormspirit/stormspirit_static_remnant.vpcf"
 	dummy:SetForwardVector(facing)
 	dummy:AddNewModifier(owner, nil, "modifier_remnant", { effect = effectPath })
+	--AddLevelOneAbility(dummy, "storm_spirit_q_remnant")
 
 	if not owner.remnants then
 		owner.remnants = {}
@@ -146,7 +147,7 @@ end
 function Misc:SetUpPAProjectile(projectileData)
 	projectileData.heroCondition =
 		function(self, target, prev, pos)
-			return SegmentCircleIntersection(prev, pos, target.hero:GetAbsOrigin(), self.radius)
+			return SegmentCircleIntersection(prev, pos, target.hero:GetAbsOrigin(), self.radius + target.hero:BoundingRadius2D() * 2)
 		end
 
 	projectileData.heroBehaviour =

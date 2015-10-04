@@ -13,10 +13,10 @@ function Round:Setup(level, players, gameItems, availableHeroes)
 	self.UltsTimer = 0
 	self.SuddenDeathTimer = 0
 
-	self.StageTwoTimerTime = 250
-	self.StageThreeTimerTime = 400
-	self.UltsTimerTime = 350
-	self.SuddenDeathTimerTime = 600
+	self.StageTwoTimerTime = 500
+	self.StageThreeTimerTime = 800
+	self.UltsTimerTime = 700
+	self.SuddenDeathTimerTime = 1200
 
 	self.Stage = 1
 
@@ -44,8 +44,6 @@ function Round:CheckEndConditions()
 			lastAlive = player
 		end
 	end
-
-	print("Alive "..amountAlive)
 
 	if amountAlive == 0 then
 		self.Winner = nil
@@ -233,6 +231,10 @@ function Round:Reset()
 	self.Level:EnableObstructors(Entities:FindAllByClassname("point_simple_obstruction"), false)
 
 	GridNav:RegrowAllTrees()
+
+	for _, player in pairs(self.Players) do
+	    HideHero(player.hero)
+	end
 end
 
 function Round:EnableSuddenDeath()

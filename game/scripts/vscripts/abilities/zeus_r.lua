@@ -25,6 +25,8 @@ function zeus_r:OnSpellStart()
 					return caster ~= target
 				end
 			)
+
+			Spells:AreaDamage(caster, caster:GetAbsOrigin(), 256)
 		end
 	)
 end

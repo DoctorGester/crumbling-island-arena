@@ -22,7 +22,7 @@ function pa_w_sub:OnSpellStart()
 	projectileData.to = target
 	projectileData.velocity = 1200
 	projectileData.graphics = "particles/pa_w_sub/pa_w_sub.vpcf"
-	projectileData.distance = 800
+	projectileData.distance = 1200
 	projectileData.radius = 48
 	projectileData.heroBehaviour =
 		function(self, target)

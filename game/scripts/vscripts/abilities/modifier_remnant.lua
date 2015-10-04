@@ -2,6 +2,10 @@ modifier_remnant = class({})
 
 function modifier_remnant:OnCreated(kv)
 	self.keys = kv
+	if IsServer() then
+		local id = ParticleManager:CreateParticle(kv.effect, PATTACH_ABSORIGIN, self:GetParent())
+		self:AddParticle(id, false, true, 1, false, false)
+	end
 end
 
 function modifier_remnant:CheckState()
@@ -16,11 +20,7 @@ function modifier_remnant:CheckState()
 
 	return state
 end
-
-function modifier_remnant:IsHidden()
-	return true
-end
-
+--[[
 function modifier_remnant:GetEffectName()
 	return self.keys.effect
 end
@@ -28,3 +28,4 @@ end
 function modifier_remnant:GetEffectAttachType()
 	return PATTACH_ABSORIGIN_FOLLOW
 end
+]]

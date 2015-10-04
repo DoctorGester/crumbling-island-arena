@@ -1,5 +1,7 @@
 "use strict";
 
+var dummy = "npc_dota_hero_wisp";
+
 var availableHeroes = {};
 var abilityBar = null;
 var healthBar = null;
@@ -48,15 +50,19 @@ function LoadHeroUI(){
 		}
 	}
 
-
-	abilityBar.SetProvider(new EntityAbilityDataProvider(heroId));
-	abilityBar.RegisterEvents();
-
 	if (healthBar == null) {
 		healthBar = new HealthBar("#HealthPanel", heroId);
 	}
 
-	healthBar.SetEntity(heroId);
+	if (Entities.GetUnitName(heroId) != dummy) {
+		abilityBar.SetProvider(new EntityAbilityDataProvider(heroId));
+		abilityBar.RegisterEvents();
+
+		healthBar.SetEntity(heroId);
+	} else {
+		abilityBar.SetProvider(new EmptyAbilityDataProvider());
+		abilityBar.RegisterEvents();
+	}
 }
 
 function DamageTakenEvent(args){
@@ -165,5 +171,5 @@ SetupUI();
 
 	UpdateCooldowns();
 
-	GameEvents.Subscribe("dota_player_update_selected_unit", LoadHeroUI);
+	//GameEvents.Subscribe("dota_player_update_selected_unit", LoadHeroUI);
 })();

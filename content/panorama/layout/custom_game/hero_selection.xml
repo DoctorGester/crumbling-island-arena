@@ -20,9 +20,9 @@
 				<Label class="HeaderLabel HeroListHeader" text="score"></Label>
 			</Panel>
 			<Panel id="HeroList">
-				<Label class="HeaderLabel HeroListHeader" text="heroes"></Label>
+				<Label class="HeaderLabel HeroListHeader" text="click to select your hero"></Label>
 				<Panel id="HeroButtons"></Panel>
-				<Label id="HeroName" class="HeaderLabel HeroListHeader" text="the world"></Label>
+				<Label id="HeroName" class="HeaderLabel HeroListHeader"></Label>
 				<Panel id="HeroAbilities" class="AbilityPanel"></Panel>
 				<Label id="HeroTips" html="true"></Label>
 			</Panel>

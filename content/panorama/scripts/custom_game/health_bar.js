@@ -43,7 +43,7 @@ function HealthBar(elementId) {
 		this.currentHealth = Math.round(Entities.GetHealth(this.entityId));
 
 		for (var i = 0; i < this.bars.length; i++) {
-			this.bars[i].SetAlive(this.currentHealth >= i);
+			this.bars[i].SetAlive(this.currentHealth > i);
 		}
 	}
 

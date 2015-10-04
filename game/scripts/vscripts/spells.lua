@@ -28,12 +28,20 @@ function Spells:ThinkFunction(dt)
 		WorldMax = Vector(GetWorldMaxX(), GetWorldMaxY(), 0)
 	end
 
+	if GameRules.GameMode.Round then 
+		for _, player in pairs(GameRules.GameMode.Round.Players) do
+			local hero = player.hero
+			DebugDrawCircle(hero:GetAbsOrigin(), Vector(0, 255, 0), 255, hero:BoundingRadius2D() * 2, false, THINK_PERIOD)
+		end
+	end
+
 	for _, projectile in ipairs(Projectiles) do
 		projectile.prev = projectile.position
 
 		local pos = projectile:UpdatePosition()
 
 		if pos.x < WorldMin.x or pos.y < WorldMin.y or pos.x > WorldMax.x or pos.y > WorldMax.y then
+			projectile:ProjectileCollision(nil)
 			projectile:Destroy()
 		end
 
@@ -42,6 +50,8 @@ function Spells:ThinkFunction(dt)
 				function(projectile)
 					projectile.position = pos
 					projectile.dummy:SetAbsOrigin(projectile.position)
+
+					DebugDrawCircle(projectile.position, Vector(0, 255, 0), 255, projectile.radius, false, THINK_PERIOD)
 
 					if not projectile.destroyed then
 						projectile:MoveEvent(projectile.prev, projectile.position)
@@ -187,7 +197,7 @@ function Spells:CreateProjectile(data)
 
 	data.heroCondition = data.heroCondition or
 		function(self, target, prev, pos)
-			return self.owner.playerData ~= target and SegmentCircleIntersection(prev, pos, target.hero:GetAbsOrigin(), self.radius)
+			return self.owner.playerData ~= target and SegmentCircleIntersection(prev, pos, target.hero:GetAbsOrigin(), self.radius + target.hero:BoundingRadius2D() * 2)
 		end
 
 	if data.heroBehaviour == BEHAVIOUR_DEAL_DAMAGE_AND_DESTROY then
@@ -298,7 +308,7 @@ function Spells:MultipleHeroesDamage(unit, condition)
 	for _, player in pairs(round.Players) do
 		if condition(attacker, player) then
 			round:DealDamage(attacker, player, false)
-			table.insert(hurt, player)
+			hurt = true
 		end
 	end
 
@@ -319,11 +329,16 @@ function Spells:AreaDamage(unit, point, area)
 	)
 end
 
-function Spells:LineDamage(unit, lineFrom, lineTo)
+function Spells:LineDamage(unit, lineFrom, lineTo, action)
 	return Spells:MultipleHeroesDamage(unit, 
 		function (attacker, target)
 			if target ~= attacker then
-				return SegmentCircleIntersection(lineFrom, lineTo, target.hero:GetAbsOrigin(), target.hero:GetHullRadius())
+				if SegmentCircleIntersection(lineFrom, lineTo, target.hero:GetAbsOrigin(), target.hero:BoundingRadius2D() * 2) then
+					action(target)
+					return true
+				end 
+
+				return false
 			end
 		end
 	)

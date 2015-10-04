@@ -28,6 +28,7 @@ end
 
 function Precache(context)
 	PrecacheResource("model", "models/development/invisiblebox.vmdl", context)
+	PrecacheResource("particle", "particles/units/heroes/hero_stormspirit/stormspirit_static_remnant.vpcf", context)
 
 	LinkLuaModifier("modifier_invis_fade", "abilities/modifier_invis_fade", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_remnant", "abilities/modifier_remnant", LUA_MODIFIER_MOTION_NONE)
@@ -320,6 +321,7 @@ function GameMode:OnPlayerPickHero(keys)
 	end
 
 	-- for testing
+	--[[
 	local hero = EntIndexToHScript(keys.heroindex)
 	local count = hero:GetAbilityCount() - 1
 
@@ -328,12 +330,9 @@ function GameMode:OnPlayerPickHero(keys)
     for i = 0, count do
     	local ability = hero:GetAbilityByIndex(i)
 
-    	if ability ~= nil then
-	    	
-	    end
-
     	if ability ~= nil and not ability:IsAttributeBonus() and not ability:IsHidden() then
 	    	ability:SetLevel(1)
     	end
     end
+    ]]
 end

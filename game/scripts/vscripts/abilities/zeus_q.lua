@@ -18,9 +18,10 @@ function zeus_q:OnSpellStart()
 	projectileData.graphics = "particles/zeus_q/zeus_q.vpcf"
 	projectileData.distance = 800
 	projectileData.empowered = false
-	projectileData.radius = 48
+	projectileData.radius = 64
 	projectileData.heroBehaviour =
 		function(self, target)
+			--"particles/units/heroes/hero_razor/razor_storm_lightning_strike.vpcf"
 			Spells:ProjectileDamage(self, target)
 
 			if self.empowered then
@@ -38,7 +39,7 @@ function zeus_q:OnSpellStart()
 				local intersect = SegmentsIntersect2(prev.x, prev.y, pos.x, pos.y, s.x, s.y, f.x, f.y)
 
 				if intersect then
-					self.velocity = self.velocity * 2
+					self.velocity = self.velocity * 2.4
 					self.distance = 3000
 					self.empowered = true
 				end

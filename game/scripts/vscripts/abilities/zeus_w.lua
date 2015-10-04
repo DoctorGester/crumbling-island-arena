@@ -34,6 +34,8 @@ function zeus_w:OnSpellStart()
 			ParticleManager:ReleaseParticleIndex(particle)
 		end
 	)
+
+	--"particles/units/heroes/hero_leshrac/leshrac_lightning_slow.vpcf"
 end
 
 function zeus_w:GetCastAnimation()

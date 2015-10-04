@@ -141,7 +141,7 @@
 		"ScriptFile" "abilities/storm_spirit_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "storm_spirit_overload"
-		"AbilityCooldown" "2.0"
+		"AbilityCooldown" "5.0"
 		"AbilityCastRange" "1100"
 
 		"precache"

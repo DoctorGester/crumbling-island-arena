@@ -6,7 +6,7 @@ function pa_q:OnSpellStart()
 	local direction = target - caster:GetOrigin()
 	local ability = self
 
-	local maxSpeed = 800
+	local maxSpeed = 1300
 
 	if direction:Length2D() == 0 then
 		direction = caster:GetForwardVector()
@@ -26,9 +26,9 @@ function pa_q:OnSpellStart()
 			local dif = (self.owner:GetAbsOrigin() - self.position)
 			dif = Vector(dif.x, dif.y, 0):Normalized()
 
-			self.velocity = self.velocity + dif * 16
+			self.velocity = self.velocity + dif * 32
 
-			return self.position + self.velocity * Misc:GetPASpeedMultiplier(self) / 30
+			return self.position + (self.velocity * Misc:GetPASpeedMultiplier(self)) / 30
 		end
 
 	local projectile = Spells:CreateProjectile(projectileData)
