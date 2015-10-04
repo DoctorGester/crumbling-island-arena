@@ -30,6 +30,7 @@ function Precache(context)
 	PrecacheResource("model", "models/development/invisiblebox.vmdl", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_stormspirit/stormspirit_static_remnant.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/custom_sounds.vsndevts", context)
+	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_razor.vsndevts", context)
 
 	LinkLuaModifier("modifier_invis_fade", "abilities/modifier_invis_fade", LUA_MODIFIER_MOTION_NONE)
 	LinkLuaModifier("modifier_remnant", "abilities/modifier_remnant", LUA_MODIFIER_MOTION_NONE)

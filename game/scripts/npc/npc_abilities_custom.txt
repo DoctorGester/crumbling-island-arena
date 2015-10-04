@@ -225,7 +225,7 @@
 
 		"precache"
 		{
-			"particle" "particles/units/heroes/hero_zuus/zuus_arc_lightning.vpcf"
+			"particle" "particles/units/heroes/hero_razor/razor_storm_lightning_strike.vpcf"
 		}
 	}
 
@@ -242,6 +242,7 @@
 		{
 			"particle" "particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf"
 			"particle" "particles/econ/items/zeus/lightning_weapon_fx/zuus_lightning_bolt_groundfx_crack.vpcf"
+			"particle" "particles/units/heroes/hero_zuus/zuus_arc_lightning.vpcf"
 		}
 	}
 

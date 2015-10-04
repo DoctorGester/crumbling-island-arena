@@ -32,8 +32,13 @@ function zeus_w:OnSpellStart()
 			caster.wall = nil
 			ParticleManager:DestroyParticle(particle, false)
 			ParticleManager:ReleaseParticleIndex(particle)
+			--caster:StopSound("Ability.static.loop")
+			caster:EmitSound("Ability.static.end")
 		end
 	)
+
+	caster:EmitSound("Ability.static.start")
+	--caster:EmitSound("Ability.static.loop")
 
 	--"particles/units/heroes/hero_leshrac/leshrac_lightning_slow.vpcf"
 end

@@ -7,6 +7,8 @@ function zeus_r:OnSpellStart()
 	local target = self:GetCursorPosition()
 	local ability = self
 
+	caster:EmitSound("Hero_Zuus.GodsWrath.PreCast")
+
 	Timers:CreateTimer(1.6, 
 		function()
 			GridNav:DestroyTreesAroundPoint(target, 256, true)
@@ -32,6 +34,8 @@ function zeus_r:OnSpellStart()
 					ParticleManager:SetParticleControl(particle, 1, to)
 				end
 			)
+
+			EmitSoundOnLocationWithCaster(target, "Hero_Zuus.GodsWrath.Target", caster)
 		end
 	)
 end

@@ -44,6 +44,7 @@ function zeus_e:OnSpellStart()
 	end
 
 	self:CreateLightning(self, Vector(casterPos.x, casterPos.y, casterPos.z + 64), Vector(target.x, target.y, target.z + 64))
+	caster:EmitSound("Arena.Zeus.CastE")
 end
 
 function zeus_e:GetCastAnimation()

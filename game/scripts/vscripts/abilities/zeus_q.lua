@@ -23,6 +23,7 @@ function zeus_q:OnSpellStart()
 		function(self, target)
 			--"particles/units/heroes/hero_razor/razor_storm_lightning_strike.vpcf"
 			Spells:ProjectileDamage(self, target)
+			target.hero:EmitSound("Arena.Zeus.HitQ")
 
 			if self.empowered then
 				ability:EndCooldown()
@@ -42,6 +43,7 @@ function zeus_q:OnSpellStart()
 					self.velocity = self.velocity * 2.4
 					self.distance = 3000
 					self.empowered = true
+					self.dummy:EmitSound("Arena.Zeus.EmpowerQ")
 				end
 			end
 
@@ -51,6 +53,7 @@ function zeus_q:OnSpellStart()
 		end
 
 	Spells:CreateProjectile(projectileData)
+	caster:EmitSound("Arena.Zeus.CastQ")
 end
 
 function zeus_q:GetCastAnimation()
