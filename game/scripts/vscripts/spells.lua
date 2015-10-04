@@ -28,13 +28,6 @@ function Spells:ThinkFunction(dt)
 		WorldMax = Vector(GetWorldMaxX(), GetWorldMaxY(), 0)
 	end
 
-	if GameRules.GameMode.Round then 
-		for _, player in pairs(GameRules.GameMode.Round.Players) do
-			local hero = player.hero
-			--DebugDrawCircle(hero:GetAbsOrigin(), Vector(0, 255, 0), 255, hero:BoundingRadius2D() * 2, false, THINK_PERIOD)
-		end
-	end
-
 	for _, projectile in ipairs(Projectiles) do
 		projectile.prev = projectile.position
 
@@ -103,7 +96,7 @@ end
 SpellThinker:SetThink("ThinkFunction", Spells, "SpellsThink", THINK_PERIOD)
 
 function Spells:ProjectileDamage(projectile, target)
-	GameRules.GameMode.Round:DealDamage(projectile.owner.playerData, target.playerData, true)
+	GameRules.GameMode.Round:DealDamage(projectile.owner, target, true)
 end
 
 --[[
@@ -181,10 +174,10 @@ function Spells:CreateProjectile(data)
 
 	data.damageMethod = data.damageMethod or
 		function(self, prevPos, curPos)
-			local attacker = self.owner.playerData
+			local attacker = self.owner
 
 			for _, player in pairs(GameRules.GameMode.Round.Players) do
-				if self:HeroCondition(player, prevPos, curPos) then
+				if self:HeroCondition(player.hero, prevPos, curPos) then
 					local result = self:HeroCollision(player.hero)
 
 					if result then
@@ -197,7 +190,7 @@ function Spells:CreateProjectile(data)
 
 	data.heroCondition = data.heroCondition or
 		function(self, target, prev, pos)
-			return self.owner.playerData ~= target and SegmentCircleIntersection(prev, pos, target.hero:GetAbsOrigin(), self.radius + target.hero:BoundingRadius2D() * 2)
+			return self.owner ~= target and SegmentCircleIntersection(prev, pos, target:GetPos(), self.radius + target:GetRad())
 		end
 
 	if data.heroBehaviour == BEHAVIOUR_DEAL_DAMAGE_AND_DESTROY then
@@ -225,7 +218,7 @@ function Spells:CreateProjectile(data)
 	projectile.distance = data.distance
 	projectile.endPoint = data.endPoint
 	projectile.dummy = CreateUnitByName(DUMMY_UNIT, data.from, false, nil, nil, DOTA_TEAM_NOTEAM)
-	projectile.owner = data.owner
+	projectile.owner = data.owner.hero
 	projectile.effectId = ParticleManager:CreateParticle(data.graphics, PATTACH_ABSORIGIN_FOLLOW , projectile.dummy)
 	projectile.destroyed = false
 	projectile.TargetReachedEvent = data.onTargetReached
@@ -297,7 +290,7 @@ function Spells:Dash(data)
 end
 
 function Spells:MultipleHeroesDamage(unit, condition)
-	local attacker = unit.playerData
+	local attacker = unit.hero
 	local round = GameRules.GameMode.Round
 	local hurt = false
 
@@ -306,8 +299,8 @@ function Spells:MultipleHeroesDamage(unit, condition)
 	end
 
 	for _, player in pairs(round.Players) do
-		if condition(attacker, player) then
-			round:DealDamage(attacker, player, false)
+		if condition(attacker, player.hero) then
+			round:DealDamage(attacker, player.hero, false)
 			hurt = true
 		end
 	end
@@ -322,7 +315,7 @@ end
 function Spells:AreaDamage(unit, point, area, action)
 	return Spells:MultipleHeroesDamage(unit, 
 		function (attacker, target)
-			local distance = (target.hero:GetAbsOrigin() - point):Length2D()
+			local distance = (target:GetPos() - point):Length2D()
 
 			if target ~= attacker and distance <= area then
 				if action then
@@ -341,7 +334,7 @@ function Spells:LineDamage(unit, lineFrom, lineTo, action)
 	return Spells:MultipleHeroesDamage(unit, 
 		function (attacker, target)
 			if target ~= attacker then
-				if SegmentCircleIntersection(lineFrom, lineTo, target.hero:GetAbsOrigin(), target.hero:BoundingRadius2D() * 2) then
+				if SegmentCircleIntersection(lineFrom, lineTo, target:GetPos(), target:GetRad()) then
 					if action then
 						action(target)
 					end
@@ -356,12 +349,12 @@ function Spells:LineDamage(unit, lineFrom, lineTo, action)
 end
 
 function Spells:MultipleHeroesModifier(source, ability, modifier, params, condition)
-	local caster = source.playerData
+	local caster = source.hero
 	local round = GameRules.GameMode.Round
 
-	for _, target in pairs(round.Players) do
-		if condition(caster, target) then
-			target.hero:AddNewModifier(source, ability, modifier, params)
+	for _, player in pairs(round.Players) do
+		if condition(caster, player.hero) then
+			player.hero:AddNewModifier(source, ability, modifier, params)
 		end
 	end
 end
@@ -369,7 +362,7 @@ end
 function Spells:AreaModifier(source, ability, modifier, params, point, area, condition)
 	return Spells:MultipleHeroesModifier(source, ability, modifier, params,
 		function (caster, target)
-			local distance = (target.hero:GetAbsOrigin() - point):Length2D()
+			local distance = (target:GetPos() - point):Length2D()
 			return condition(caster, target) and distance <= area
 		end
 	)

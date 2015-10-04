@@ -19,7 +19,7 @@ function storm_spirit_q:OnSpellStart()
 	projectileData.endPoint = target
 	projectileData.onTargetReached = 
 		function (projectile)
-			Misc:CreateStormRemnant(projectile.owner, projectile.position, direction:Normalized())
+			Misc:CreateStormRemnant(caster, projectile.position, direction:Normalized())
 			projectile:Destroy()
 		end
 	projectileData.onWallDestroy = projectileData.onTargetReached

@@ -36,7 +36,7 @@ function zeus_e:OnSpellStart()
 		if intersect then
 			Spells:LineDamage(caster, casterPos, target,
 				function(target)
-					local pos = target.hero:GetAbsOrigin()
+					local pos = target:GetPos()
 					self:CreateLightning(self, Vector(pos.x, pos.y, pos.z + 800), pos)
 				end
 			)

@@ -4,6 +4,7 @@ require('misc')
 require('util')
 require('debug_util')
 
+require('player')
 require('level')
 require('hero_selection')
 require('round')
@@ -180,7 +181,7 @@ function OnRoundEnd()
 	GameMode:SetState(STATE_ROUND_ENDED)
 
 	for _, player in pairs(GameMode.Players) do
-		AddLevelOneAbility(player.hero, "protected_hero")
+		player.hero.protected = true
 	end
 
 	Timers:CreateTimer(ROUND_ENDING_TIME, function ()
@@ -280,18 +281,8 @@ function GameMode:OnGameInProgress()
 
 	for i = 0, DOTA_MAX_PLAYERS do
 		if PlayerResource:IsValidPlayer(i) then
-			local player = PlayerResource:GetPlayer(i)
-			local playerClass = {}
-
-			playerClass.id = i
-			playerClass.hero = player:GetAssignedHero()
-			playerClass.player = player
-			playerClass.score = 0
-			playerClass.fallSpeed = 0.0
-			playerClass.selectionLocked = false
-			playerClass.selectedHero = nil
-
-			self.Players[i] = playerClass
+			self.Players[i] = Player()
+			self.Players[i]:SetPlayerID(i)
 		end
 	end
 
@@ -321,7 +312,9 @@ function GameMode:OnPlayerPickHero(keys)
 	if keys.hero == DUMMY_HERO then
 		local hero = EntIndexToHScript(keys.heroindex)
 
-		HideHero(hero)
+		hero:SetAbsOrigin(Vector(0, 0, 10000))
+		hero:AddNoDraw()
+		AddLevelOneAbility(hero, "hidden_hero")
 	end
 
 	-- for testing

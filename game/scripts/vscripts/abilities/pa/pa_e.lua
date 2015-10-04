@@ -7,7 +7,6 @@ function pa_e:EndJump(self)
 
 	caster:SwapAbilities("pa_e", "pa_e_sub", true, false)
 	caster:RemoveModifierByName("modifier_pa_e")
-	Misc:UpdateUnitUI(caster)
 end
 
 function pa_e:OnSpellStart()
@@ -88,6 +87,5 @@ function pa_e:OnSpellStart()
 	if caster.paQProjectile == nil and caster.paQProp == nil and caster:FindAbilityByName("pa_q"):IsFullyCastable() then
 		caster:SwapAbilities("pa_e", "pa_e_sub", false, true)
 		caster:FindAbilityByName("pa_e_sub"):SetActivated(true)
-		Misc:UpdateUnitUI(caster)
 	end
 end

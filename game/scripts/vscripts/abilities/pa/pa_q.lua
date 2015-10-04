@@ -23,7 +23,7 @@ function pa_q:OnSpellStart()
 
 	projectileData.positionMethod = 
 		function(self)
-			local dif = (self.owner:GetAbsOrigin() - self.position)
+			local dif = (self.owner:GetPos() - self.position)
 			dif = Vector(dif.x, dif.y, 0):Normalized()
 
 			self.velocity = self.velocity + dif * 32

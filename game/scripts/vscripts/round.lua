@@ -1,6 +1,3 @@
-FALL_ABILITY = "falling_hero"
-PROTECT_ABILITY = "protected_hero"
-
 GRACE_TIME = 1
 
 if Round == nil then
@@ -39,7 +36,7 @@ function Round:CheckEndConditions()
 	local lastAlive = nil
 
 	for _, player in pairs(self.Players) do
-		if player.hero:IsAlive() then
+		if player.hero:Alive() then
 			amountAlive = amountAlive + 1
 			lastAlive = player
 		end
@@ -58,7 +55,7 @@ end
 
 function Round:EndRound()
 	for _, player in pairs(self.Players) do
-		AddLevelOneAbility(player.hero, PROTECT_ABILITY)
+		player.hero.protected = true
 	end
 
 	Timers:CreateTimer(function ()
@@ -72,37 +69,6 @@ function Round:EndRound()
 	end)
 end
 
--- return true if player died
-function Round:UpdateFallingPlayer(player)
-	local hero = player.hero
-
-	if not hero:IsAlive() then
-		return false
-	end
-
-	player.fallSpeed = player.fallSpeed + 4
-
-	local origin = hero:GetAbsOrigin()
-	origin.z = origin.z - player.fallSpeed
-	hero:SetAbsOrigin(origin)
-
-	if hero.StopPhysicsSimulation ~= nil then
-		hero:StopPhysicsSimulation()
-	end
-
-	if origin.z < -7000 then
-		hero:ForceKill(false)
-		hero:AddNoDraw()
-		hero:SetAbsOrigin(origin) -- Killing a hero resets Z
-
-		CustomGameEventManager:Send_ServerToPlayer(player.player, "hero_falls", {})
-
-		return true
-	end
-
-	return false
-end
-
 function Round:Update()
 	local someoneDied = false
 
@@ -110,12 +76,12 @@ function Round:Update()
 	    local hero = player.hero
 
 	    if hero ~= nil then
-		    if not hero:HasAbility(FALL_ABILITY) then
+		    if not hero.falling then
 		    	if self.Level:TestOutOfMap(hero, self.Stage) then
-		    		AddLevelOneAbility(hero, FALL_ABILITY)
+		    		hero:StartFalling()
 		    	end
 		   	else
-				local result = self:UpdateFallingPlayer(player)
+				local result = hero:UpdateFalling()
 
 				if result then
 					someoneDied = true
@@ -129,31 +95,6 @@ function Round:Update()
 	end
 end
 
-function Round:SetupHero(hero)
-	AddLevelOneAbility(hero, "arena_hero")
-
-	local count = hero:GetAbilityCount() - 1
-	local ultimate = self.AvailableHeroes[hero:GetName()].ultimate
-
-    hero:SetAbilityPoints(0)
-
-    for i = 0, count do
-    	local ability = hero:GetAbilityByIndex(i)
-
-    	if ability ~= nil and not ability:IsAttributeBonus() and not ability:IsHidden()  then
-    		local name = ability:GetName()
-
-    		if string.find(name, "sub") then
-    			ability:SetHidden(true)
-    		end
-
-    		if name ~= ultimate then
-	    		ability:SetLevel(1)
-	    	end
-    	end
-    end
-end
-
 function Round:CreateHeroes()
 	Shuffle(self.SpawnPoints)
 
@@ -162,17 +103,21 @@ function Round:CreateHeroes()
 
 		PrecacheUnitByNameAsync(player.selectedHero,
 			function ()
-				player.hero = PlayerResource:ReplaceHeroWith(i, player.selectedHero, 0, 0)
-				UTIL_Remove(oldHero)
+				local hero = Hero()
+				hero:SetUnit(PlayerResource:ReplaceHeroWith(i, player.selectedHero, 0, 0))
+				oldHero:Delete()
 
 				--LoadDefaultHeroItems(player.hero, self.GameItems)
-				self:SetupHero(player.hero)
+				local ultimate = self.AvailableHeroes[hero:GetName()].ultimate
+				hero:Setup(ultimate)
+				hero:SetPlayer(player)
 
 				local spawnPoint = Entities:FindAllByName(self.SpawnPoints[i])[1]
-				player.hero:SetAbsOrigin(spawnPoint:GetAbsOrigin())
-				player.hero.playerData = player
+				hero:SetPos(spawnPoint:GetAbsOrigin())
 
-				Misc:UpdateUnitUI(player.hero)
+				player.hero = hero
+
+				CustomGameEventManager:Send_ServerToPlayer(player.player, "update_heroes", {})
 			end
 		, i)
 	end
@@ -191,20 +136,20 @@ function Round:DealDamage(attacker, target, checkForEnd)
 	if target == nil then return end
 	if attacker == nil then attacker = target end
 
-	if not target.hero:IsAlive() or target.hero:HasAbility(PROTECT_ABILITY) then
+	if not target:Alive() or target.protected or target.falling then
 		return
 	end
 
 	local damageTable = {
-		victim = target.hero,
-		attacker = attacker.hero,
+		victim = target.unit,
+		attacker = attacker.unit,
 		damage = 1,
 		damage_type = DAMAGE_TYPE_PURE,
 	}
 	 
 	ApplyDamage(damageTable)
 
-	CustomGameEventManager:Send_ServerToPlayer(target.player, "hero_takes_damage", {})
+	CustomGameEventManager:Send_ServerToPlayer(target.player.player, "hero_takes_damage", {})
 
 	if checkForEnd then
 		self:CheckEndConditions()
@@ -233,7 +178,7 @@ function Round:Reset()
 	GridNav:RegrowAllTrees()
 
 	for _, player in pairs(self.Players) do
-	    HideHero(player.hero)
+	    player.hero:Hide()
 	end
 end
 
@@ -290,7 +235,7 @@ function Round:Start(callback)
 	    			local hero = player.hero
 	    			local ultimate = self.AvailableHeroes[hero:GetName()].ultimate
 
-	    			hero:FindAbilityByName(ultimate):SetLevel(1)
+	    			hero:EnableUltimate(ultimate)
 
 	    			CustomGameEventManager:Send_ServerToAllClients("ultimates_enabled", {})
 				end

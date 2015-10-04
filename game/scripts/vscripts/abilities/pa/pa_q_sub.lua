@@ -4,7 +4,7 @@ function pa_q_sub:OnSpellStart()
 	local caster = self:GetCaster()
 	local positionMethod = 
 		function(self)
-			local dif = (self.owner:GetAbsOrigin() - self.position)
+			local dif = (self.owner:GetPos() - self.position)
 			dif = Vector(dif.x, dif.y, 0):Normalized() * 1200
 
 			return self.position + dif * Misc:GetPASpeedMultiplier(self) / 30

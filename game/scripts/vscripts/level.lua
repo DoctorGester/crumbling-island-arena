@@ -27,7 +27,7 @@ function Level:TestOutOfMap(hero, stage)
 		name = THIRD_STAGE_OBSTRUCTOR
 	end
 
-	local start = hero:GetAbsOrigin()
+	local start = hero:GetPos()
 	local obstructions = Entities:FindAllByName(name)
 	local center = Entities:FindByName(nil, "map_center"):GetAbsOrigin()
 

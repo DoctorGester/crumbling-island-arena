@@ -108,12 +108,6 @@ function AddLevelOneAbility(hero, abilityName)
 	ability:SetLevel(1)
 end
 
-function HideHero(hero)
-	hero:SetAbsOrigin(Vector(0, 0, 10000))
-	hero:AddNoDraw()
-	AddLevelOneAbility(hero, "hidden_hero")
-end
-
 function ImmediateEffect(path, attach, owner)
 	local id = ParticleManager:CreateParticle(path, attach, owner)
 

@@ -83,7 +83,6 @@ function Misc:RetrievePAWeapon(hero)
 	hero.paQProjectile = nil
 
 	Misc:DoActionWithPAWeapon(hero, function(wearable) wearable:RemoveEffects(EF_NODRAW) end)
-	Misc:UpdateUnitUI(hero)
 end
 
 function Misc:RemovePAWeapon(hero)
@@ -94,7 +93,6 @@ function Misc:RemovePAWeapon(hero)
 	hero:FindAbilityByName("pa_q_sub"):SetActivated(true)
 
 	Misc:DoActionWithPAWeapon(hero, function(wearable) wearable:AddEffects(EF_NODRAW) end)
-	Misc:UpdateUnitUI(hero)
 end
 
 function Misc:DestroyPAWeapon(hero)
@@ -107,13 +105,10 @@ function Misc:DestroyPAWeapon(hero)
 
 	hero.paQProjectile = nil
 
-	Misc:UpdateUnitUI(hero)
-
 	Timers:CreateTimer(3, 
 		function()
 			hero:SwapAbilities("pa_w", "pa_w_sub", true, false)
 
-			Misc:UpdateUnitUI(hero)
 			Misc:DoActionWithPAWeapon(hero, 
 				function(wearable)
 					wearable:RemoveEffects(EF_NODRAW)
@@ -139,7 +134,7 @@ function Misc:DestroyPAWeapon(hero)
 end
 
 function Misc:GetPASpeedMultiplier(projectile)
-	if projectile.owner:FindModifierByName("modifier_pa_r") then
+	if projectile.owner:FindModifier("modifier_pa_r") then
 		return 2
 	end
 
@@ -149,14 +144,14 @@ end
 function Misc:SetUpPAProjectile(projectileData)
 	projectileData.heroCondition =
 		function(self, target, prev, pos)
-			return SegmentCircleIntersection(prev, pos, target.hero:GetAbsOrigin(), self.radius + target.hero:BoundingRadius2D() * 2)
+			return SegmentCircleIntersection(prev, pos, target:GetPos(), self.radius + target:GetRad())
 		end
 
 	projectileData.heroBehaviour =
 		function(self, target)
 			if self.gracePeriod[target] == nil or self.gracePeriod[target] <= 0 then
 				if self.owner == target then
-					Misc:RetrievePAWeapon(self.owner)
+					Misc:RetrievePAWeapon(self.owner.unit)
 					self.owner:EmitSound("Arena.PA.Catch")
 					return true
 				else
@@ -180,10 +175,6 @@ function Misc:SetUpPAProjectile(projectileData)
 		function(self, second)
 			Misc:DestroyPAWeapon(self.owner)
 		end
-end
-
-function Misc:UpdateUnitUI(unit)
-	CustomGameEventManager:Send_ServerToPlayer(unit.playerData.player, "update_heroes", {})
 end
 
 function Misc:CleanUpRound()
