@@ -45,6 +45,10 @@ function Hero:EmitSound(sound)
 	self.unit:EmitSound(sound)
 end
 
+function Hero:Heal()
+	self.unit:SetHealth(self.unit:GetHealth() + 1)
+end
+
 function Hero:EnableUltimate(ultimate)
 	self.unit:FindAbilityByName(ultimate):SetLevel(1)
 end
@@ -70,7 +74,7 @@ end
 
 -- return true if hero died
 function Hero:UpdateFalling()
-	if self:Alive() then
+	if not self:Alive() then
 		return false
 	end
 
@@ -78,14 +82,12 @@ function Hero:UpdateFalling()
 
 	local origin = self:GetPos()
 	origin.z = origin.z - self.fallSpeed
-	hero:SetPos(origin)
+	self:SetPos(origin)
 
 	if origin.z < -7000 then
 		self.unit:ForceKill(false)
 		self.unit:AddNoDraw()
 		self:SetPos(origin) -- Killing a hero resets Z
-
-		CustomGameEventManager:Send_ServerToPlayer(player.player, "hero_falls", {})
 
 		return true
 	end

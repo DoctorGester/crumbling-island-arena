@@ -5,11 +5,11 @@ if not mode then
 end
 
 function OnTakeDamage(eventSourceIndex, args)
-	mode.Round:DealDamage(mode.Players[args.PlayerID], mode.Players[args.PlayerID], false)
+	mode.Round:DealDamage(mode.Players[args.PlayerID].hero, mode.Players[args.PlayerID].hero, false)
 end
 
 function OnHealHealth(eventSourceIndex, args)
-	mode.Round:Heal(mode.Players[args.PlayerID])
+	mode.Round:Heal(mode.Players[args.PlayerID].hero)
 end
 
 function OnShowSelection(eventSourceIndex, args)
@@ -31,7 +31,7 @@ function Debug:CheckAndEnableDebug(gameMode)
 	CustomGameEventManager:RegisterListener("debug_heal_health", OnHealHealth)
 	CustomGameEventManager:RegisterListener("debug_show_selection", OnShowSelection)
 
-	--GameRules.GameMode.Round.StageTwoTimerTime = 2500
+	GameRules.GameMode.Round.StageTwoTimerTime = 1500
 	GameRules.GameMode.Round.StageThreeTimerTime = 4000
 	GameRules.GameMode.Round.UltsTimerTime = 150
 	GameRules.GameMode.Round.SuddenDeathTimerTime = 60000

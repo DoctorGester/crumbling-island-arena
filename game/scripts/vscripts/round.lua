@@ -84,6 +84,8 @@ function Round:Update()
 				local result = hero:UpdateFalling()
 
 				if result then
+					CustomGameEventManager:Send_ServerToPlayer(player.player, "hero_falls", {})
+
 					someoneDied = true
 				end
 		   	end
@@ -157,7 +159,7 @@ function Round:DealDamage(attacker, target, checkForEnd)
 end
 
 function Round:Heal(target)
-	target.hero:SetHealth(target.hero:GetHealth() + 1)
+	target:Heal()
 
 	CustomGameEventManager:Send_ServerToPlayer(target.player, "hero_healed", {})
 end
