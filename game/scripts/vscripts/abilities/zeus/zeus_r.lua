@@ -26,11 +26,11 @@ function zeus_r:OnSpellStart()
 				end
 			)
 
-			Spells:AreaDamage(caster, caster:GetAbsOrigin(), 256,
-				function (player)
-					local to = player.hero:GetPos()
+			Spells:AreaDamage(caster, target, 256,
+				function (target)
+					local to = target:GetPos()
 					local particle = ImmediateEffect("particles/units/heroes/hero_zuus/zuus_arc_lightning.vpcf", PATTACH_CUSTOMORIGIN, caster)
-					ParticleManager:SetParticleControl(particle, 0, Vector(target.x, target.y, target.z + 64))
+					ParticleManager:SetParticleControl(particle, 0, Vector(to.x, to.y, to.z + 64))
 					ParticleManager:SetParticleControl(particle, 1, to)
 				end
 			)

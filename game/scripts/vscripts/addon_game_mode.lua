@@ -4,6 +4,7 @@ require('misc')
 require('util')
 require('debug_util')
 
+require('hero')
 require('player')
 require('level')
 require('hero_selection')

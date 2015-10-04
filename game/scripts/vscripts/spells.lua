@@ -176,9 +176,9 @@ function Spells:CreateProjectile(data)
 		function(self, prevPos, curPos)
 			local attacker = self.owner
 
-			for _, player in pairs(GameRules.GameMode.Round.Players) do
-				if self:HeroCondition(player.hero, prevPos, curPos) then
-					local result = self:HeroCollision(player.hero)
+			for _, hero in pairs(GameRules.GameMode.Round:GetAllHeroes()) do
+				if self:HeroCondition(hero, prevPos, curPos) then
+					local result = self:HeroCollision(hero)
 
 					if result then
 						self:Destroy()
@@ -298,9 +298,9 @@ function Spells:MultipleHeroesDamage(unit, condition)
 		return false
 	end
 
-	for _, player in pairs(round.Players) do
-		if condition(attacker, player.hero) then
-			round:DealDamage(attacker, player.hero, false)
+	for _, hero in pairs(round:GetAllHeroes()) do
+		if condition(attacker, hero) then
+			round:DealDamage(attacker, hero, false)
 			hurt = true
 		end
 	end
@@ -316,7 +316,7 @@ function Spells:AreaDamage(unit, point, area, action)
 	return Spells:MultipleHeroesDamage(unit, 
 		function (attacker, target)
 			local distance = (target:GetPos() - point):Length2D()
-
+			
 			if target ~= attacker and distance <= area then
 				if action then
 					action(target)
@@ -352,9 +352,9 @@ function Spells:MultipleHeroesModifier(source, ability, modifier, params, condit
 	local caster = source.hero
 	local round = GameRules.GameMode.Round
 
-	for _, player in pairs(round.Players) do
-		if condition(caster, player.hero) then
-			player.hero:AddNewModifier(source, ability, modifier, params)
+	for _, hero in pairs(round:GetAllHeroes()) do
+		if condition(caster, hero) then
+			hero:AddNewModifier(source, ability, modifier, params)
 		end
 	end
 end

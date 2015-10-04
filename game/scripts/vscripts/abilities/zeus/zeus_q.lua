@@ -23,7 +23,7 @@ function zeus_q:OnSpellStart()
 		function(self, target)
 			--"particles/units/heroes/hero_razor/razor_storm_lightning_strike.vpcf"
 			Spells:ProjectileDamage(self, target)
-			target.hero:EmitSound("Arena.Zeus.HitQ")
+			target:EmitSound("Arena.Zeus.HitQ")
 
 			if self.empowered then
 				ability:EndCooldown()

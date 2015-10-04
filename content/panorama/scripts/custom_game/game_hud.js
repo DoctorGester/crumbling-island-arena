@@ -121,8 +121,16 @@ function FillDebugPanel(){
 		GameEvents.SendCustomGameEventToServer("debug_heal_health", {});
 	});
 
+	AddDebugButton("Heal debug hero", function(){
+		GameEvents.SendCustomGameEventToServer("debug_heal_debug_hero", {});
+	});
+
 	AddDebugButton("Show hero select", function(){
-		GameEvents.SendCustomGameEventToServer("debug_show_selection", {});
+		GameEvents.SendCustomGameEventToServer("debug_check_end", {});
+	});
+
+	AddDebugButton("Switch end check", function(){
+		GameEvents.SendCustomGameEventToServer("debug_switch_end_check", {});
 	});
 
 	AddDebugButton("Reload hero UI", function () {

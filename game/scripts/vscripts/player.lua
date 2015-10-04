@@ -1,5 +1,3 @@
-require('hero')
-
 Player = class({
 	id = 0,
 	hero = nil,

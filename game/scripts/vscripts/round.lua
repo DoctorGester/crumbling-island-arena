@@ -31,6 +31,16 @@ function Round:Setup(level, players, gameItems, availableHeroes)
 	end
 end
 
+function Round:GetAllHeroes()
+	local result = {}
+
+	for _, player in pairs(self.Players) do
+		table.insert(result, player.hero)
+	end
+
+	return result
+end
+
 function Round:CheckEndConditions()
 	local amountAlive = 0
 	local lastAlive = nil
@@ -151,7 +161,9 @@ function Round:DealDamage(attacker, target, checkForEnd)
 	 
 	ApplyDamage(damageTable)
 
-	CustomGameEventManager:Send_ServerToPlayer(target.player.player, "hero_takes_damage", {})
+	if target.player then
+		CustomGameEventManager:Send_ServerToPlayer(target.player.player, "hero_takes_damage", {})
+	end
 
 	if checkForEnd then
 		self:CheckEndConditions()
