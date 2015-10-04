@@ -138,7 +138,7 @@
 	"storm_spirit_q"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/storm_spirit_q"
+		"ScriptFile" "abilities/storm_spirit/storm_spirit_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "storm_spirit_overload"
 		"AbilityCooldown" "5.0"
@@ -155,7 +155,7 @@
 	"storm_spirit_w"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/storm_spirit_w"
+		"ScriptFile" "abilities/storm_spirit/storm_spirit_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "storm_spirit_static_remnant"
 		"AbilityCooldown" "0.1"
@@ -164,7 +164,7 @@
 	"storm_spirit_e"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/storm_spirit_e"
+		"ScriptFile" "abilities/storm_spirit/storm_spirit_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "storm_spirit_ball_lightning"
 
@@ -177,7 +177,7 @@
 	"storm_spirit_r"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/storm_spirit_r"
+		"ScriptFile" "abilities/storm_spirit/storm_spirit_r"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName" "storm_spirit_electric_vortex"
@@ -190,7 +190,7 @@
 	"zeus_q"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/zeus_q"
+		"ScriptFile" "abilities/zeus/zeus_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "storm_spirit_overload"
 		"AbilityCooldown" "2.0"
@@ -204,7 +204,7 @@
 	"zeus_w"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/zeus_w"
+		"ScriptFile" "abilities/zeus/zeus_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "zuus_lightning_bolt"
 		"AbilityCooldown" "9.0"
@@ -218,7 +218,7 @@
 	"zeus_e"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/zeus_e"
+		"ScriptFile" "abilities/zeus/zeus_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "storm_spirit_overload"
 		"AbilityCooldown" "7.0"
@@ -232,7 +232,7 @@
 	"zeus_r"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/zeus_r"
+		"ScriptFile" "abilities/zeus/zeus_r"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "storm_spirit_overload"
@@ -251,7 +251,7 @@
 	"pa_q"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/pa_q"
+		"ScriptFile" "abilities/pa/pa_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "luna_moon_glaive"
 		"AbilityCooldown" "0"
@@ -265,7 +265,7 @@
 	"pa_q_sub"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/pa_q_sub"
+		"ScriptFile" "abilities/pa/pa_q_sub"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOUR_HIDDEN"
 		"AbilityTextureName" "omniknight_degen_aura"
 		"AbilityCooldown" "0"
@@ -274,7 +274,7 @@
 	"pa_w"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/pa_w"
+		"ScriptFile" "abilities/pa/pa_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName" "juggernaut_blade_fury"
 		"AbilityCooldown" "4"
@@ -288,7 +288,7 @@
 	"pa_w_sub"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/pa_w_sub"
+		"ScriptFile" "abilities/pa/pa_w_sub"
 		"AbilityType" "DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOUR_HIDDEN"
 		"AbilityTextureName" "phantom_assassin_stifling_dagger"
@@ -303,7 +303,7 @@
 	"pa_e"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/pa_e"
+		"ScriptFile" "abilities/pa/pa_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "phantom_assassin_phantom_strike"
 		"AbilityCooldown" "6"
@@ -312,7 +312,7 @@
 	"pa_e_sub"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/pa_e_sub"
+		"ScriptFile" "abilities/pa/pa_e_sub"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "phantom_assassin_phantom_strike"
 		"AbilityCooldown" "0"
@@ -321,7 +321,7 @@
 	"pa_r"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/pa_r"
+		"ScriptFile" "abilities/pa/pa_r"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "phantom_assassin_blur"
@@ -333,7 +333,7 @@
 	"earth_spirit_q"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/earth_spirit_q"
+		"ScriptFile" "abilities/earth_spirit/earth_spirit_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "storm_spirit_overload"
 		"AbilityCooldown" "5.0"
@@ -350,7 +350,7 @@
 	"earth_spirit_w"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/earth_spirit_w"
+		"ScriptFile" "abilities/earth_spirit/earth_spirit_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "storm_spirit_overload"
 		"AbilityCooldown" "7.0"
@@ -359,7 +359,7 @@
 	"earth_spirit_e"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/earth_spirit_e"
+		"ScriptFile" "abilities/earth_spirit/earth_spirit_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "storm_spirit_overload"
 		"AbilityCooldown" "6.0"
@@ -368,7 +368,7 @@
 	"earth_spirit_r"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/earth_spirit_r"
+		"ScriptFile" "abilities/earth_spirit/earth_spirit_r"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "storm_spirit_overload"

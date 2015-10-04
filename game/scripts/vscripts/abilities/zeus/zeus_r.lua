@@ -1,5 +1,5 @@
 zeus_r = class({})
-LinkLuaModifier("modifier_zeus_r", "abilities/modifier_zeus_r", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_zeus_r", "abilities/zeus/modifier_zeus_r", LUA_MODIFIER_MOTION_NONE)
 
 function zeus_r:OnSpellStart()
 	local caster = self:GetCaster()

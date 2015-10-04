@@ -1,6 +1,6 @@
 pa_w_sub = class({})
 
-LinkLuaModifier("modifier_pa_w_sub", "abilities/modifier_pa_w_sub", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_pa_w_sub", "abilities/pa/modifier_pa_w_sub", LUA_MODIFIER_MOTION_NONE)
 
 function pa_w_sub:OnSpellStart()
 	local caster = self:GetCaster()

@@ -1,6 +1,6 @@
 pa_e = class({})
 
-LinkLuaModifier("modifier_pa_e", "abilities/modifier_pa_e", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_pa_e", "abilities/pa/modifier_pa_e", LUA_MODIFIER_MOTION_NONE)
 
 function pa_e:EndJump(self)
 	local caster = self:GetCaster()

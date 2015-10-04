@@ -1,6 +1,6 @@
 pa_r = class({})
 
-LinkLuaModifier("modifier_pa_r", "abilities/modifier_pa_r", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_pa_r", "abilities/pa/modifier_pa_r", LUA_MODIFIER_MOTION_NONE)
 
 function pa_r:OnSpellStart()
 	local caster = self:GetCaster()

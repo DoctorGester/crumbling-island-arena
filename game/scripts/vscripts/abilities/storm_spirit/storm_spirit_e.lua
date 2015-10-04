@@ -1,5 +1,5 @@
 storm_spirit_e = class({})
-LinkLuaModifier("modifier_storm_spirit_e", "abilities/modifier_storm_spirit_e", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_storm_spirit_e", "abilities/storm_spirit/modifier_storm_spirit_e", LUA_MODIFIER_MOTION_NONE)
 
 function storm_spirit_e:OnSpellStart()
 	local caster = self:GetCaster()
