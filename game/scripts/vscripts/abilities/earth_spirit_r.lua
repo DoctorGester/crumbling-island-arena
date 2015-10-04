@@ -1,6 +1,6 @@
-earth_spirit_e = class({})
+earth_spirit_r = class({})
 
-function earth_spirit_e:OnSpellStart()
+function earth_spirit_r:OnSpellStart()
 	local caster = self:GetCaster()
 	local target = self:GetCursorPosition()
 end

@@ -255,21 +255,23 @@ function GameMode:LoadCustomHeroes()
 	local customAbilities = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
 
 	for customName, data in pairs(customHeroes) do
-		GameMode.AvailableHeroes[data.override_hero] = { ultimate = data.Ultimate, customIcons = data.CustomIcons }
+		if data.override_hero ~= DUMMY_HERO then
+			GameMode.AvailableHeroes[data.override_hero] = { ultimate = data.Ultimate, customIcons = data.CustomIcons }
 
-		local abilities = {}
-		for i = 0, 10 do
-			local abilityName = data["Ability"..tostring(i)]
-			if abilityName and #abilityName ~= 0 then
-				local ability = {}
-				ability.name = abilityName
-				ability.texture = customAbilities[ability.name].AbilityTextureName
+			local abilities = {}
+			for i = 0, 10 do
+				local abilityName = data["Ability"..tostring(i)]
+				if abilityName and #abilityName ~= 0 then
+					local ability = {}
+					ability.name = abilityName
+					ability.texture = customAbilities[ability.name].AbilityTextureName
 
-				table.insert(abilities, ability)
+					table.insert(abilities, ability)
+				end
 			end
-		end
 
-		GameMode.AvailableHeroes[data.override_hero].abilities = abilities
+			GameMode.AvailableHeroes[data.override_hero].abilities = abilities
+		end
 	end
 end
 

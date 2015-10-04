@@ -338,6 +338,13 @@
 		"AbilityTextureName" "storm_spirit_overload"
 		"AbilityCooldown" "5.0"
 		"AbilityCastRange" "1000"
+
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_earth_spirit/espirit_stoneremnant.vpcf"
+			"particle" "particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp.vpcf"
+			"particle" "particles/units/heroes/hero_earth_spirit/espirit_magnetize_target.vpcf"
+		}
 	}
 
 	"earth_spirit_w"
@@ -362,6 +369,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/earth_spirit_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "storm_spirit_overload"
 		"AbilityCooldown" "14.0"

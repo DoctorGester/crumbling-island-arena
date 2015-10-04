@@ -1,5 +1,24 @@
 "DOTAHeroes"
 {
+	"npc_dota_hero_wisp"
+	{
+		"override_hero" "npc_dota_hero_wisp"
+		"SoundSet" ""
+	    "GameSoundsFile" ""
+	    "IdleSoundLoop" ""
+	    "VoiceFile" ""
+
+	    "Ability1" ""
+		"Ability2" ""
+		"Ability3" ""
+		"Ability4" ""
+		"Ability5" ""
+		"Ability6" ""
+		"AttributeBaseStrength"	"0"
+		"AttributeBaseIntelligence" "0"
+		"StatusHealth"	"5"
+	}
+
 	"npc_dota_hero_zeus"
 	{
 		"override_hero"	"npc_dota_hero_zuus"
@@ -114,7 +133,9 @@
 		"Ability1" "earth_spirit_q"
 		"Ability2" "earth_spirit_w"
 		"Ability3" "earth_spirit_e"
-		"Ability4" "earth_spirit_r"
+		"Ability4" ""
+		"Ability5" ""
+		"Ability6" "earth_spirit_r"
 
 		"Ultimate" "earth_spirit_r"
 	}
