@@ -26,7 +26,6 @@ function pa_w_sub:OnSpellStart()
 	projectileData.radius = 48
 	projectileData.heroBehaviour =
 		function(self, target)
-			Spells:ProjectileDamage(self, target)
 			target:EmitSound("Hero_PhantomAssassin.Dagger.Target")
 			target:AddNewModifier(caster, ability, "modifier_pa_w_sub", { duration = 2 })
 

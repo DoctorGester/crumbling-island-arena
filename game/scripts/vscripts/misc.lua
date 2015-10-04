@@ -96,6 +96,8 @@ function Misc:RemovePAWeapon(hero)
 end
 
 function Misc:DestroyPAWeapon(hero)
+	hero = hero.unit
+	
 	hero:SwapAbilities("pa_q", "pa_q_sub", true, false)
 	hero:FindAbilityByName("pa_q"):StartCooldown(3)
 
@@ -181,13 +183,13 @@ function Misc:CleanUpRound()
 	local round = GameRules.GameMode.Round
 
 	for _, player in pairs(round.Players) do
-		if player.hero.remnants then
-			for _, remnant in pairs(player.hero.remnants) do
+		if player.hero.unit.remnants then
+			for _, remnant in pairs(player.hero.unit.remnants) do
 				remnant:RemoveSelf()
 			end
 
-			player.hero.remnants = nil
-			player.hero.lastRemnants = nil
+			player.hero.unit.remnants = nil
+			player.hero.unit.lastRemnants = nil
 		end
 	end
 

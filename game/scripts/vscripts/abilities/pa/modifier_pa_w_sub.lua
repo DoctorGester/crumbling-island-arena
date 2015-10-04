@@ -18,3 +18,11 @@ end
 function modifier_pa_w_sub:GetModifierMoveSpeedBonus_Percentage(params)
 	return -50
 end
+
+function modifier_pa_w_sub:GetEffectName()
+	return "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger_debuff.vpcf"
+end
+
+function GetEffectAttachType()
+	return PATTACH_ABSORIGIN_FOLLOW
+end

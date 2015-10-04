@@ -297,6 +297,7 @@
 		"precache"
 		{
 			"particle" "particles/pa_w_sub/pa_w_sub.vpcf"
+			"particle" "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger_debuff.vpcf"
 		}
 	}
 
