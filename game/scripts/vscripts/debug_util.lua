@@ -61,6 +61,20 @@ function InjectEndCheck(round)
 	round.CheckEndConditions = new
 end
 
+function InjectProjectileDebug()
+	local original = Spells.ThinkFunction
+	local new = 
+		function(dt)
+			for _, projectile in ipairs(Projectiles) do
+				DebugDrawCircle(projectile.position, Vector(0, 255, 0), 255, projectile.radius, false, THINK_PERIOD)
+			end
+
+			return original(dt)
+		end
+
+	Spells.ThinkFunction = new
+end
+
 function Debug:CheckAndEnableDebug(gameMode)
 	local cheatsEnabled = Convars:GetInt("sv_cheats") == 1
 
@@ -88,4 +102,5 @@ function Debug:CheckAndEnableDebug(gameMode)
 	
 	InjectHero(GameRules.GameMode.Round)
 	InjectEndCheck(GameRules.GameMode.Round)
+	InjectProjectileDebug()
 end

@@ -125,7 +125,7 @@ function FillDebugPanel(){
 		GameEvents.SendCustomGameEventToServer("debug_heal_debug_hero", {});
 	});
 
-	AddDebugButton("Show hero select", function(){
+	AddDebugButton("Check round end", function(){
 		GameEvents.SendCustomGameEventToServer("debug_check_end", {});
 	});
 

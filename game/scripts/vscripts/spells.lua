@@ -44,8 +44,6 @@ function Spells:ThinkFunction(dt)
 					projectile.position = pos
 					projectile.dummy:SetAbsOrigin(projectile.position)
 
-					DebugDrawCircle(projectile.position, Vector(0, 255, 0), 255, projectile.radius, false, THINK_PERIOD)
-
 					if not projectile.destroyed then
 						projectile:MoveEvent(projectile.prev, projectile.position)
 					end
@@ -316,7 +314,7 @@ function Spells:AreaDamage(unit, point, area, action)
 	return Spells:MultipleHeroesDamage(unit, 
 		function (attacker, target)
 			local distance = (target:GetPos() - point):Length2D()
-			
+
 			if target ~= attacker and distance <= area then
 				if action then
 					action(target)
