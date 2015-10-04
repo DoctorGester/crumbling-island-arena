@@ -2,16 +2,9 @@ zeus_e = class({})
 
 function zeus_e:CreateLightning(self, from, to)
 	local particlePath = "particles/units/heroes/hero_razor/razor_storm_lightning_strike.vpcf"
-	local particle = ParticleManager:CreateParticle(particlePath, PATTACH_CUSTOMORIGIN, self:GetCaster())
+	local particle = ImmediateEffect(particlePath, PATTACH_CUSTOMORIGIN, self:GetCaster())
 	ParticleManager:SetParticleControl(particle, 0, from)
 	ParticleManager:SetParticleControl(particle, 1, to)
-
-	Timers:CreateTimer(2, 
-		function()
-			ParticleManager:DestroyParticle(particle, false)
-			ParticleManager:ReleaseParticleIndex(particle)
-		end
-	)
 end
 
 function zeus_e:OnSpellStart()
@@ -26,8 +19,8 @@ function zeus_e:OnSpellStart()
 	
 	direction.z = 0
 
-	if (target - casterPos):Length2D() > 650 then
-		target = casterPos + direction * 650
+	if (target - casterPos):Length2D() > 950 then
+		target = casterPos + direction * 950
 	end
 
 	target.z = GetGroundHeight(target, caster)

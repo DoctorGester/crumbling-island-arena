@@ -7,26 +7,31 @@ function zeus_r:OnSpellStart()
 	local target = self:GetCursorPosition()
 	local ability = self
 
-	Timers:CreateTimer(0.8, 
+	Timers:CreateTimer(1.6, 
 		function()
 			GridNav:DestroyTreesAroundPoint(target, 256, true)
 			
-			local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", PATTACH_POINT, caster)
+			local particle = ImmediateEffect("particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", PATTACH_POINT, caster)
 			ParticleManager:SetParticleControl(particle, 0, target)
 			ParticleManager:SetParticleControl(particle, 1, target + Vector(0, 0, 2000))
-			ParticleManager:ReleaseParticleIndex(particle)
 
-			particle = ParticleManager:CreateParticle("particles/econ/items/zeus/lightning_weapon_fx/zuus_lightning_bolt_groundfx_crack.vpcf", PATTACH_POINT, caster)
+			particle = ImmediateEffect("particles/econ/items/zeus/lightning_weapon_fx/zuus_lightning_bolt_groundfx_crack.vpcf", PATTACH_POINT, caster)
 			ParticleManager:SetParticleControl(particle, 3, target)
-			ParticleManager:ReleaseParticleIndex(particle)
 
-			Spells:AreaModifier(caster, ability, "modifier_zeus_r", { duration = 2.5 }, target, 256,
+			Spells:AreaModifier(caster, ability, "modifier_zeus_r", { duration = 4.5 }, target, 256,
 				function (caster, target)
 					return caster ~= target
 				end
 			)
 
-			Spells:AreaDamage(caster, caster:GetAbsOrigin(), 256)
+			Spells:AreaDamage(caster, caster:GetAbsOrigin(), 256,
+				function (player)
+					local to = player.hero:GetAbsOrigin()
+					local particle = ImmediateEffect("particles/units/heroes/hero_zuus/zuus_arc_lightning.vpcf", PATTACH_CUSTOMORIGIN, caster)
+					ParticleManager:SetParticleControl(particle, 0, Vector(target.x, target.y, target.z + 64))
+					ParticleManager:SetParticleControl(particle, 1, to)
+				end
+			)
 		end
 	)
 end

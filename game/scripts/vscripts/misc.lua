@@ -88,7 +88,7 @@ function Misc:RemovePAWeapon(hero)
 	hero:SwapAbilities("pa_q", "pa_q_sub", false, true)
 	hero:SwapAbilities("pa_w", "pa_w_sub", false, true)
 	hero:SwapAbilities("pa_e", "pa_e_sub", true, false)
-	hero:FindAbilityByName("pa_q_sub"):StartCooldown(1.5)
+	hero:FindAbilityByName("pa_q_sub"):StartCooldown(1.0)
 	hero:FindAbilityByName("pa_q_sub"):SetActivated(true)
 
 	Misc:DoActionWithPAWeapon(hero, function(wearable) wearable:AddEffects(EF_NODRAW) end)
@@ -155,9 +155,11 @@ function Misc:SetUpPAProjectile(projectileData)
 			if self.gracePeriod[target] == nil or self.gracePeriod[target] <= 0 then
 				if self.owner == target then
 					Misc:RetrievePAWeapon(self.owner)
+					self.owner:EmitSound("Arena.PA.Catch")
 					return true
 				else
 					Spells:ProjectileDamage(self, target)
+					self.dummy:EmitSound("DOTA_Item.BattleFury")
 					self.gracePeriod[target] = 30
 				end
 			end

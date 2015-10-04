@@ -19,7 +19,7 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_DISABLE_HEALING"	"1"
-					"MODIFIER_PROPERTY_HEALTH_BONUS" "-19"
+					// "MODIFIER_PROPERTY_HEALTH_BONUS" "-19"
 				}
 
 			}
@@ -305,7 +305,7 @@
 		"ScriptFile" "abilities/pa_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "phantom_assassin_phantom_strike"
-		"AbilityCooldown" "8"
+		"AbilityCooldown" "6"
 	}
 
 	"pa_e_sub"
@@ -324,7 +324,7 @@
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "phantom_assassin_blur"
-		"AbilityCooldown" "12"
+		"AbilityCooldown" "16"
 	}
 
 	// ES

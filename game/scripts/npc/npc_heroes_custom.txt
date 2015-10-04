@@ -14,8 +14,8 @@
 		"StatusHealthRegen"	"0"
 		"StatusManaRegen"	"0"
 		"StatusStartingMana"	"0"
-		"AttributeBaseStrength"	"1"
-		"AttributeBaseIntelligence" "1"
+		"AttributeBaseStrength"	"0"
+		"AttributeBaseIntelligence" "0"
 		
 		"Ability1" "zeus_q"
 		"Ability2" "zeus_w"
@@ -46,8 +46,8 @@
 		"StatusHealthRegen"	"0"
 		"StatusManaRegen"	"0"
 		"StatusStartingMana"	"0"
-		"AttributeBaseStrength"	"1"
-		"AttributeBaseIntelligence" "1"
+		"AttributeBaseStrength"	"0"
+		"AttributeBaseIntelligence" "0"
 
 		"Ability1" "storm_spirit_q"
 		"Ability2" "storm_spirit_w"
@@ -71,8 +71,8 @@
 		"StatusHealthRegen"	"0"
 		"StatusManaRegen"	"0"
 		"StatusStartingMana"	"0"
-		"AttributeBaseStrength"	"1"
-		"AttributeBaseIntelligence" "1"
+		"AttributeBaseStrength"	"0"
+		"AttributeBaseIntelligence" "0"
 		
 		"Ability1" "pa_q"
 		"Ability2" "pa_w"
@@ -108,8 +108,8 @@
 		"StatusHealthRegen"	"0"
 		"StatusManaRegen"	"0"
 		"StatusStartingMana"	"0"
-		"AttributeBaseStrength"	"1"
-		"AttributeBaseIntelligence" "1"
+		"AttributeBaseStrength"	"0"
+		"AttributeBaseIntelligence" "0"
 
 		"Ability1" "earth_spirit_q"
 		"Ability2" "earth_spirit_w"

@@ -30,7 +30,7 @@ function pa_e:OnSpellStart()
 		function (unit)
 			caster.inFirstJump = false
 
-			if caster.jumpSecondTime then
+			if caster.jumpSecondTime and caster.paQProjectile == nil then
 				StartAnimation(caster, { duration=2.5, activity=ACT_DOTA_CAST_ABILITY_2 })
 
 				local facing = caster:GetForwardVector()

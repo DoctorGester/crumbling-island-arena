@@ -31,7 +31,7 @@ function Spells:ThinkFunction(dt)
 	if GameRules.GameMode.Round then 
 		for _, player in pairs(GameRules.GameMode.Round.Players) do
 			local hero = player.hero
-			DebugDrawCircle(hero:GetAbsOrigin(), Vector(0, 255, 0), 255, hero:BoundingRadius2D() * 2, false, THINK_PERIOD)
+			--DebugDrawCircle(hero:GetAbsOrigin(), Vector(0, 255, 0), 255, hero:BoundingRadius2D() * 2, false, THINK_PERIOD)
 		end
 	end
 
@@ -319,12 +319,20 @@ function Spells:MultipleHeroesDamage(unit, condition)
 	return hurt
 end
 
-function Spells:AreaDamage(unit, point, area)
+function Spells:AreaDamage(unit, point, area, action)
 	return Spells:MultipleHeroesDamage(unit, 
 		function (attacker, target)
 			local distance = (target.hero:GetAbsOrigin() - point):Length2D()
 
-			return target ~= attacker and distance <= area
+			if target ~= attacker and distance <= area then
+				if action then
+					action(target)
+				end
+
+				return true
+			end
+
+			return false
 		end
 	)
 end
@@ -334,7 +342,10 @@ function Spells:LineDamage(unit, lineFrom, lineTo, action)
 		function (attacker, target)
 			if target ~= attacker then
 				if SegmentCircleIntersection(lineFrom, lineTo, target.hero:GetAbsOrigin(), target.hero:BoundingRadius2D() * 2) then
-					action(target)
+					if action then
+						action(target)
+					end
+
 					return true
 				end 
 

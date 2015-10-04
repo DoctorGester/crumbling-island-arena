@@ -7,4 +7,5 @@ function pa_r:OnSpellStart()
 
 	local params = { duration = 0.7, invis_duration = 5.0, invis_modifier = "modifier_pa_r" }
 	caster:AddNewModifier(caster, self, "modifier_invis_fade", params)
+	caster:EmitSound("Item.GlimmerCape.Activate")
 end

@@ -114,6 +114,19 @@ function HideHero(hero)
 	AddLevelOneAbility(hero, "hidden_hero")
 end
 
+function ImmediateEffect(path, attach, owner)
+	local id = ParticleManager:CreateParticle(path, attach, owner)
+
+	Timers:CreateTimer(3, 
+		function()
+			ParticleManager:DestroyParticle(id, false)
+			ParticleManager:ReleaseParticleIndex(id)
+		end
+	)
+	
+	return id
+end
+
 function LoadDefaultHeroItems(hero, gameItems)
 	local heroName = hero:GetName()
 	local defaultSlots = {}

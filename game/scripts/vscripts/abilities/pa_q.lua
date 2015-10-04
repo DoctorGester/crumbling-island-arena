@@ -38,6 +38,7 @@ function pa_q:OnSpellStart()
 	projectile.gracePeriod[projectile.owner] = 30
 
 	caster.paQProjectile = projectile
+	caster:EmitSound("Arena.PA.Throw")
 
 	Misc:RemovePAWeapon(caster)
 end
