@@ -5,6 +5,7 @@ function zeus_w:OnSpellStart()
 	local casterPos = caster:GetOrigin()
 	local target = self:GetCursorPosition()
 	local direction = (target - casterPos):Normalized()
+	local hero = caster.hero
 
 	if direction:Length2D() == 0 then
 		direction = caster:GetForwardVector()
@@ -18,7 +19,7 @@ function zeus_w:OnSpellStart()
 	local wallStart = wallCenter + offset * 250
 	local wallEnd = wallCenter - offset * 250
 
-	caster.wall = { start = wallStart, finish = wallEnd }
+	hero:SetWall(wallStart, wallEnd)
 
 	wallStart.z =  GetGroundHeight(wallStart, caster) + 32
 	wallEnd.z = GetGroundHeight(wallEnd, caster) + 32
@@ -29,7 +30,7 @@ function zeus_w:OnSpellStart()
 
 	Timers:CreateTimer(6, 
 		function()
-			caster.wall = nil
+			hero:RemoveWall()
 			ParticleManager:DestroyParticle(particle, false)
 			ParticleManager:ReleaseParticleIndex(particle)
 			--caster:StopSound("Ability.static.loop")

@@ -107,6 +107,18 @@ function Round:Update()
 	end
 end
 
+function Round:LoadHeroClass(name)
+	local classValue = self.AvailableHeroes[name].Class
+
+	if classValue then
+		local path, className = classValue:match("([^:]+):([^:]+)")
+		require(path)
+		return assert(loadstring("return "..className.."()"))()
+	else
+		return Hero()
+	end
+end
+
 function Round:CreateHeroes()
 	Shuffle(self.SpawnPoints)
 
@@ -115,7 +127,7 @@ function Round:CreateHeroes()
 
 		PrecacheUnitByNameAsync(player.selectedHero,
 			function ()
-				local hero = Hero()
+				local hero = self:LoadHeroClass(name)
 				hero:SetUnit(PlayerResource:ReplaceHeroWith(i, player.selectedHero, 0, 0))
 				oldHero:Delete()
 

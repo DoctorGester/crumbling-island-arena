@@ -258,7 +258,7 @@ function GameMode:LoadCustomHeroes()
 
 	for customName, data in pairs(customHeroes) do
 		if data.override_hero ~= DUMMY_HERO then
-			GameMode.AvailableHeroes[data.override_hero] = { ultimate = data.Ultimate, customIcons = data.CustomIcons }
+			GameMode.AvailableHeroes[data.override_hero] = { ultimate = data.Ultimate, class = data.Class, customIcons = data.CustomIcons }
 
 			local abilities = {}
 			for i = 0, 10 do

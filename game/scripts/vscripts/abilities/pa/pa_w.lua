@@ -1,4 +1,5 @@
 pa_w = class({})
+
 function pa_w:OnSpellStart()
 	local caster = self:GetCaster()
 	caster:EmitSound("DOTA_Item.Daedelus.Crit")

@@ -28,19 +28,13 @@ function zeus_e:OnSpellStart()
 	GridNav:DestroyTreesAroundPoint(target, 128, true)
 	FindClearSpaceForUnit(caster, target, true)
 
-	if caster.wall then
-		local s = caster.wall.start
-		local f = caster.wall.finish
-		local intersect = SegmentsIntersect2(casterPos.x, casterPos.y, target.x, target.y, s.x, s.y, f.x, f.y)
-
-		if intersect then
-			Spells:LineDamage(caster, casterPos, target,
-				function(target)
-					local pos = target:GetPos()
-					self:CreateLightning(self, Vector(pos.x, pos.y, pos.z + 800), pos)
-				end
-			)
-		end
+	if caster.hero:WallIntersection(casterPos, target) then
+		Spells:LineDamage(caster, casterPos, target,
+			function(target)
+				local pos = target:GetPos()
+				self:CreateLightning(self, Vector(pos.x, pos.y, pos.z + 800), pos)
+			end
+		)
 	end
 
 	self:CreateLightning(self, Vector(casterPos.x, casterPos.y, casterPos.z + 64), Vector(target.x, target.y, target.z + 64))
