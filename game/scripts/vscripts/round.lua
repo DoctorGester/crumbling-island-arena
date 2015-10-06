@@ -108,7 +108,8 @@ function Round:Update()
 end
 
 function Round:LoadHeroClass(name)
-	local classValue = self.AvailableHeroes[name].Class
+	local classValue = self.AvailableHeroes[name].class
+	print(classValue)
 
 	if classValue then
 		local path, className = classValue:match("([^:]+):([^:]+)")
@@ -127,7 +128,7 @@ function Round:CreateHeroes()
 
 		PrecacheUnitByNameAsync(player.selectedHero,
 			function ()
-				local hero = self:LoadHeroClass(name)
+				local hero = self:LoadHeroClass(player.selectedHero)
 				hero:SetUnit(PlayerResource:ReplaceHeroWith(i, player.selectedHero, 0, 0))
 				oldHero:Delete()
 
