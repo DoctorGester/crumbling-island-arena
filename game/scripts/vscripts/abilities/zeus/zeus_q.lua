@@ -21,7 +21,6 @@ function zeus_q:OnSpellStart()
 	projectileData.radius = 64
 	projectileData.heroBehaviour =
 		function(self, target)
-			--"particles/units/heroes/hero_razor/razor_storm_lightning_strike.vpcf"
 			Spells:ProjectileDamage(self, target)
 			target:EmitSound("Arena.Zeus.HitQ")
 
@@ -34,17 +33,11 @@ function zeus_q:OnSpellStart()
 
 	projectileData.onMove = 
 		function(self, prev, pos)
-			if not self.empowered and caster.wall then
-				local s = caster.wall.start
-				local f = caster.wall.finish
-				local intersect = SegmentsIntersect2(prev.x, prev.y, pos.x, pos.y, s.x, s.y, f.x, f.y)
-
-				if intersect then
-					self.velocity = self.velocity * 2.4
-					self.distance = 3000
-					self.empowered = true
-					self.dummy:EmitSound("Arena.Zeus.EmpowerQ")
-				end
+			if not self.empowered and self.owner:WallIntersection(prev, pos) then
+				self.velocity = self.velocity * 2.4
+				self.distance = 3000
+				self.empowered = true
+				self.dummy:EmitSound("Arena.Zeus.EmpowerQ")
 			end
 
 			if (pos - projectileData.from):Length2D() >= self.distance then

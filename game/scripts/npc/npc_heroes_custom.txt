@@ -22,7 +22,7 @@
 	"npc_dota_hero_zeus"
 	{
 		"override_hero"	"npc_dota_hero_zuus"
-		"Class" "heroes/zuus"
+		"Class" "heroes/zeus:Zeus"
 		"ArmorPhysical"	"0"
 		"MagicalResistance"	"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
