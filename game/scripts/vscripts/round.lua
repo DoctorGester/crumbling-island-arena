@@ -74,7 +74,6 @@ function Round:EndRound()
 	end)
 
 	Timers:CreateTimer(GRACE_TIME, function()
-		Misc:CleanUpRound() -- Removing spell stuff
 		self.Callback()
 	end)
 end
@@ -199,10 +198,10 @@ function Round:Reset()
 	end
 
 	self.Stage = 1
-
 	self.Level:EnableObstructors(Entities:FindAllByClassname("point_simple_obstruction"), false)
 
 	GridNav:RegrowAllTrees()
+	Misc:CleanUpRound()
 
 	for _, player in pairs(self.Players) do
 	    player.hero:Hide()

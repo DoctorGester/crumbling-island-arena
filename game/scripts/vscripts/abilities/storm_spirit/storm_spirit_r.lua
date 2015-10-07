@@ -1,19 +1,17 @@
 storm_spirit_r = class({})
 
 function HasDeadRemnants(unit)
-	return unit.lastRemnants and #unit.lastRemnants > 0
+	return #unit.hero.lastRemnants > 0
 end
 
 function storm_spirit_r:OnSpellStart()
-	local caster = self:GetCaster()
+	local hero = self:GetCaster().hero
 	
-	if caster.lastRemnants then
-		for _, data in pairs(caster.lastRemnants) do
-			Misc:CreateStormRemnant(caster, data.position, data.facing)
-		end
-
-		caster.lastRemnants = {}
+	for _, data in pairs(hero.lastRemnants) do
+		hero:CreateRemnant(data.position, data.facing)
 	end
+
+	hero.lastRemnants = {}
 end
 
 function storm_spirit_r:GetCastAnimation()

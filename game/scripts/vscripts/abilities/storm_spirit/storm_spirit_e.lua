@@ -3,8 +3,9 @@ LinkLuaModifier("modifier_storm_spirit_e", "abilities/storm_spirit/modifier_stor
 
 function storm_spirit_e:OnSpellStart()
 	local caster = self:GetCaster()
+	local hero = caster.hero
 	local target = self:GetCursorPosition()
-	local remnant = Misc:FindClosestStormRemnant(caster, target)
+	local remnant = hero:FindClosestRemnant(target)
 
 	if remnant then
 		caster:AddNewModifier(caster, self, "modifier_storm_spirit_e", {})
@@ -20,7 +21,7 @@ function storm_spirit_e:OnSpellStart()
 			function (unit)
 				caster:StopSound("Hero_StormSpirit.BallLightning.Loop")
 				unit:RemoveModifierByName("modifier_storm_spirit_e")
-				Misc:DestroyStormRemnant(unit, remnant)
+				hero:DestroyRemnant(remnant)
 			end
 
 		Spells:Dash(dashData)
@@ -31,7 +32,7 @@ function storm_spirit_e:CastFilterResultLocation(location)
 	-- Remnant data can't be accessed on the client
 	if not IsServer() then return UF_SUCCESS end
 
-	if not Misc:HasRemnants(self:GetCaster()) then
+	if not self:GetCaster().hero:HasRemnants() then
 		return UF_FAIL_CUSTOM
 	end
 
@@ -41,7 +42,7 @@ end
 function storm_spirit_e:GetCustomCastErrorLocation(location)
 	if not IsServer() then return "" end
 
-	if not Misc:HasRemnants(self:GetCaster()) then
+	if not self:GetCaster().hero:HasRemnants() then
 		return "#dota_hud_error_cant_cast_no_remnants"
 	end
 
