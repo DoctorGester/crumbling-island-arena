@@ -14,6 +14,8 @@
 			<Panel id="DebugPanel" hittest="false">
 			</Panel>
 			<Panel id="HeroPanel" hittest="false">
+				<Panel class="BuffPanel" id="BuffPanel">
+				</Panel>
 
 				<Panel class="HealthPanel" id="HealthPanel">
 				</Panel>

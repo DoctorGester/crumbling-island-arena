@@ -4,6 +4,7 @@ var dummy = "npc_dota_hero_wisp";
 
 var availableHeroes = {};
 var abilityBar = null;
+var buffBar = null;
 var healthBar = null;
 
 function SetupUI(){
@@ -54,11 +55,16 @@ function LoadHeroUI(){
 		healthBar = new HealthBar("#HealthPanel", heroId);
 	}
 
+	if (buffBar == null) {
+		buffBar = new BuffBar("#BuffPanel");
+	}
+
 	if (Entities.GetUnitName(heroId) != dummy) {
 		abilityBar.SetProvider(new EntityAbilityDataProvider(heroId));
 		abilityBar.RegisterEvents();
 
 		healthBar.SetEntity(heroId);
+		buffBar.SetEntity(heroId);
 	} else {
 		abilityBar.SetProvider(new EmptyAbilityDataProvider());
 		abilityBar.RegisterEvents();
@@ -82,6 +88,10 @@ function UpdateCooldowns(){
 
 	if (abilityBar != null) {
 		abilityBar.Update();
+	}
+
+	if (buffBar != null) {
+		buffBar.Update();
 	}
 }
 

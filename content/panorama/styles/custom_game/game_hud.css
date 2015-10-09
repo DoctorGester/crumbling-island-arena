@@ -13,6 +13,13 @@
     transition: transform 1.0s linear 0.0ms;
 }
 
+.BuffPanel
+{
+    flow-children: right;
+    horizontal-align: left;
+    margin-bottom: 20px;
+}
+
 .AbilityPanel
 {
     flow-children: right;
@@ -44,6 +51,17 @@
 {
     background-color: gray;
     opacity: 0.4;
+}
+
+.Buff
+{
+    width: 32px;
+    height: 32px;
+}
+
+.HiddenBuff
+{
+    opacity: 0;
 }
 
 .AbilityButton
