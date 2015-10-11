@@ -213,7 +213,7 @@ function Round:EnableSuddenDeath()
 		endTime = 1,
 		callback = function ()
 			for _, player in pairs(self.Players) do
-				self:DealDamage(nil, player, false)
+				self:DealDamage(nil, player.hero, false)
 			end
 
 			self:CheckEndConditions()

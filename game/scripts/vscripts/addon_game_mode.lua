@@ -10,6 +10,7 @@ require('level')
 require('hero_selection')
 require('round')
 
+require('abilities/dynamic_entity')
 require('spells')
 
 STATE_NONE = 0

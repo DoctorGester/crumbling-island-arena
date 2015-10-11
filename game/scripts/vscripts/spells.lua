@@ -6,13 +6,9 @@ BEHAVIOUR_DEAL_DAMAGE_AND_PASS = 1
 
 THINK_PERIOD = 0.01
 
-if Spells == nil then
-	Spells = class({})
-end
-
-if Projectiles == nil then
-	Projectiles = {}
-end
+Spells = Spells or class({})
+Projectiles = Projectiles or {}
+DynamicEntities = DynamicEntities or {}
 
 function Spells:ThinkFunction(dt)
 	if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
@@ -75,12 +71,25 @@ function Spells:ThinkFunction(dt)
 		end
 	end
 
+	for _, entity in ipairs(DynamicEntities) do
+		entity:Update()
+	end
+
 	for i = #Projectiles, 1, -1 do
 		local projectile = Projectiles[i]
 
 		if projectile.destroyed then
 			projectile:Remove()
 			table.remove(Projectiles, i)
+		end
+	end
+
+	for i = #DynamicEntities, 1, -1 do
+		local entity = DynamicEntities[i]
+
+		if entity.destroyed then
+			entity:Remove()
+			table.remove(DynamicEntities, i)
 		end
 	end
 
@@ -94,7 +103,26 @@ end
 SpellThinker:SetThink("ThinkFunction", Spells, "SpellsThink", THINK_PERIOD)
 
 function Spells:ProjectileDamage(projectile, target)
-	GameRules.GameMode.Round:DealDamage(projectile.owner, target, true)
+	if not target:IsDynamicEntity() then
+		GameRules.GameMode.Round:DealDamage(projectile.owner, target, true)
+	else 
+		target:DealDamage(projectile.owner)
+	end
+end
+
+function Spells:GetValidTargets()
+	local heroes = GameRules.GameMode.Round:GetAllHeroes()
+	local result = {}
+
+	for _, hero in pairs(heroes) do
+		table.insert(result, hero)
+	end
+
+	for _, ent in pairs(DynamicEntities) do
+		table.insert(result, ent)
+	end
+
+	return result
 end
 
 --[[
@@ -174,7 +202,7 @@ function Spells:CreateProjectile(data)
 		function(self, prevPos, curPos)
 			local attacker = self.owner
 
-			for _, hero in pairs(GameRules.GameMode.Round:GetAllHeroes()) do
+			for _, hero in pairs(Spells:GetValidTargets()) do
 				if self:HeroCondition(hero, prevPos, curPos) then
 					local result = self:HeroCollision(hero)
 
@@ -287,6 +315,10 @@ function Spells:Dash(data)
 	)
 end
 
+function Spells:AddDynamicEntity(entity)
+	table.insert(DynamicEntities, entity)
+end
+
 function Spells:MultipleHeroesDamage(sourceHero, condition)
 	local round = GameRules.GameMode.Round
 	local hurt = false
@@ -295,7 +327,7 @@ function Spells:MultipleHeroesDamage(sourceHero, condition)
 		return false
 	end
 
-	for _, hero in pairs(round:GetAllHeroes()) do
+	for _, hero in pairs(Spells:GetValidTargets()) do
 		if condition(sourceHero, hero) then
 			round:DealDamage(sourceHero, hero, false)
 			hurt = true
@@ -349,7 +381,7 @@ function Spells:MultipleHeroesModifier(source, ability, modifier, params, condit
 	local caster = source.hero
 	local round = GameRules.GameMode.Round
 
-	for _, hero in pairs(round:GetAllHeroes()) do
+	for _, hero in pairs(Spells:GetValidTargets()) do
 		if condition(caster, hero) then
 			hero:AddNewModifier(source, ability, modifier, params)
 		end

@@ -20,6 +20,7 @@ function earth_spirit_q:OnSpellStart()
 					particle = ImmediateEffect("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp.vpcf", PATTACH_CUSTOMORIGIN, caster)
 					ParticleManager:SetParticleControl(particle, 0, target)
 
+					Spells:AreaDamage(caster.hero, target, 256)
 					GridNav:DestroyTreesAroundPoint(target, 200, true)
 
 					caster:EmitSound("Arena.Earth.CastQ")
