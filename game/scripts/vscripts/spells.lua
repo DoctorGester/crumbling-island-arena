@@ -216,7 +216,7 @@ function Spells:CreateProjectile(data)
 	projectile.distance = data.distance
 	projectile.endPoint = data.endPoint
 	projectile.dummy = CreateUnitByName(DUMMY_UNIT, data.from, false, nil, nil, DOTA_TEAM_NOTEAM)
-	projectile.owner = data.owner.hero
+	projectile.owner = data.owner.hero or data.owner
 	projectile.effectId = ParticleManager:CreateParticle(data.graphics, PATTACH_ABSORIGIN_FOLLOW , projectile.dummy)
 	projectile.destroyed = false
 	projectile.TargetReachedEvent = data.onTargetReached
@@ -287,18 +287,17 @@ function Spells:Dash(data)
 	)
 end
 
-function Spells:MultipleHeroesDamage(unit, condition)
-	local attacker = unit.hero
+function Spells:MultipleHeroesDamage(sourceHero, condition)
 	local round = GameRules.GameMode.Round
 	local hurt = false
 
-	if attacker == nil then
+	if sourceHero == nil then
 		return false
 	end
 
 	for _, hero in pairs(round:GetAllHeroes()) do
-		if condition(attacker, hero) then
-			round:DealDamage(attacker, hero, false)
+		if condition(sourceHero, hero) then
+			round:DealDamage(sourceHero, hero, false)
 			hurt = true
 		end
 	end
@@ -310,8 +309,8 @@ function Spells:MultipleHeroesDamage(unit, condition)
 	return hurt
 end
 
-function Spells:AreaDamage(unit, point, area, action)
-	return Spells:MultipleHeroesDamage(unit, 
+function Spells:AreaDamage(hero, point, area, action)
+	return Spells:MultipleHeroesDamage(hero, 
 		function (attacker, target)
 			local distance = (target:GetPos() - point):Length2D()
 
@@ -328,8 +327,8 @@ function Spells:AreaDamage(unit, point, area, action)
 	)
 end
 
-function Spells:LineDamage(unit, lineFrom, lineTo, action)
-	return Spells:MultipleHeroesDamage(unit, 
+function Spells:LineDamage(hero, lineFrom, lineTo, action)
+	return Spells:MultipleHeroesDamage(hero, 
 		function (attacker, target)
 			if target ~= attacker then
 				if SegmentCircleIntersection(lineFrom, lineTo, target:GetPos(), target:GetRad()) then

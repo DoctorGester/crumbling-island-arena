@@ -3,6 +3,7 @@ LinkLuaModifier("modifier_zeus_r", "abilities/zeus/modifier_zeus_r", LUA_MODIFIE
 
 function zeus_r:OnSpellStart()
 	local caster = self:GetCaster()
+	local hero = caster.hero
 	local casterPos = caster:GetOrigin()
 	local target = self:GetCursorPosition()
 	local ability = self
@@ -20,13 +21,13 @@ function zeus_r:OnSpellStart()
 			particle = ImmediateEffect("particles/econ/items/zeus/lightning_weapon_fx/zuus_lightning_bolt_groundfx_crack.vpcf", PATTACH_POINT, caster)
 			ParticleManager:SetParticleControl(particle, 3, target)
 
-			Spells:AreaModifier(caster, ability, "modifier_zeus_r", { duration = 4.5 }, target, 256,
-				function (caster, target)
-					return caster ~= target
+			Spells:AreaModifier(hero, ability, "modifier_zeus_r", { duration = 4.5 }, target, 256,
+				function (hero, target)
+					return hero ~= target
 				end
 			)
 
-			Spells:AreaDamage(caster, target, 256,
+			Spells:AreaDamage(hero, target, 256,
 				function (target)
 					local to = target:GetPos()
 					local particle = ImmediateEffect("particles/units/heroes/hero_zuus/zuus_arc_lightning.vpcf", PATTACH_CUSTOMORIGIN, caster)

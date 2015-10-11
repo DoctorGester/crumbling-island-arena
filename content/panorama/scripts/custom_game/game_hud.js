@@ -39,16 +39,6 @@ function LoadHeroUI(){
 
 	if (abilityBar == null) {
 		abilityBar = new AbilityBar("#AbilityPanel");
-
-		for (var key in availableHeroes) {
-			var hero = availableHeroes[key];
-
-			if (hero.customIcons) {
-				for (var iconKey in hero.customIcons) {
-					abilityBar.AddCustomIcon(iconKey, hero.customIcons[iconKey]);
-				}
-			}
-		}
 	}
 
 	if (healthBar == null) {
@@ -59,6 +49,8 @@ function LoadHeroUI(){
 		buffBar = new BuffBar("#BuffPanel");
 	}
 
+	LoadCustomIcons();
+
 	if (Entities.GetUnitName(heroId) != dummy) {
 		abilityBar.SetProvider(new EntityAbilityDataProvider(heroId));
 		abilityBar.RegisterEvents();
@@ -68,6 +60,19 @@ function LoadHeroUI(){
 	} else {
 		abilityBar.SetProvider(new EmptyAbilityDataProvider());
 		abilityBar.RegisterEvents();
+	}
+}
+
+function LoadCustomIcons(){
+	for (var key in availableHeroes) {
+		var hero = availableHeroes[key];
+
+		if (hero.customIcons) {
+			for (var iconKey in hero.customIcons) {
+				abilityBar.AddCustomIcon(iconKey, hero.customIcons[iconKey]);
+				buffBar.AddCustomIcon(iconKey, hero.customIcons[iconKey]);
+			}
+		}
 	}
 }
 

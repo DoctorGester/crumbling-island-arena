@@ -3,6 +3,17 @@ GAME_STATE_HERO_SELECTION = 1
 GAME_STATE_ROUND_IN_PROGRESS = 2
 GAME_STATE_ROUND_ENDED = 3
 
+function GetTexture(data, customIcons) {
+	var icon = "file://{images}/spellicons/" + (data.texture || data) + ".png";
+	var name = data.name;
+
+	if (customIcons[name]){
+		icon = "file://{images}/custom_game/" + customIcons[name];
+	}
+
+	return icon;
+}
+
 function ToColor(num) {
     num >>>= 0;
     var b = num & 0xFF,

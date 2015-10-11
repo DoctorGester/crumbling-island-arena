@@ -1,13 +1,13 @@
 storm_spirit_w = class({})
 
 function storm_spirit_w:OnSpellStart()
-	local caster = self:GetCaster()
+	local hero = self:GetCaster().hero
 	local target = self:GetCursorPosition()
-	local remnant = caster.hero:FindClosestRemnant(target)
+	local remnant = hero:FindClosestRemnant(target)
 
 	if remnant then
-		Spells:AreaDamage(caster, remnant:GetAbsOrigin(), 256)
-		caster.hero:DestroyRemnant(remnant)
+		Spells:AreaDamage(hero, remnant:GetAbsOrigin(), 256)
+		hero:DestroyRemnant(remnant)
 	end
 end
 

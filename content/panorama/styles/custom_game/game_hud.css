@@ -18,6 +18,8 @@
     flow-children: right;
     horizontal-align: left;
     margin-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .AbilityPanel
@@ -55,13 +57,37 @@
 
 .Buff
 {
-    width: 32px;
-    height: 32px;
+    width: 36px;
+    height: 36px;
+    border-radius: 5px;
+    margin-left: 3px;
+}
+
+.PositiveBuff
+{
+    box-shadow: #00FF21 0px 0px 8px 0px;
+    border: 1px solid #00FF21;
+}
+
+.NegativeBuff
+{
+    box-shadow: red 0px 0px 8px 0px;
+    border: 1px solid red;
 }
 
 .HiddenBuff
 {
     opacity: 0;
+}
+
+.BuffTimeText
+{
+    color: white;
+    font-size: 12;
+    vertical-align: bottom;
+    horizontal-align: right;
+    text-shadow: 0px 0px 8px 8.0 #333333b0;
+    margin: 3px;
 }
 
 .AbilityButton

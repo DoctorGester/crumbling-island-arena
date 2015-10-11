@@ -9,7 +9,8 @@ end
 
 function zeus_e:OnSpellStart()
 	local caster = self:GetCaster()
-	local casterPos = caster:GetOrigin()
+	local hero = caster.hero
+	local casterPos = hero:GetPos()
 	local target = self:GetCursorPosition()
 	local direction = (target - casterPos):Normalized()
 
@@ -28,8 +29,8 @@ function zeus_e:OnSpellStart()
 	GridNav:DestroyTreesAroundPoint(target, 128, true)
 	FindClearSpaceForUnit(caster, target, true)
 
-	if caster.hero:WallIntersection(casterPos, target) then
-		Spells:LineDamage(caster, casterPos, target,
+	if hero:WallIntersection(casterPos, target) then
+		Spells:LineDamage(hero, casterPos, target,
 			function(target)
 				local pos = target:GetPos()
 				self:CreateLightning(self, Vector(pos.x, pos.y, pos.z + 800), pos)
@@ -38,7 +39,7 @@ function zeus_e:OnSpellStart()
 	end
 
 	self:CreateLightning(self, Vector(casterPos.x, casterPos.y, casterPos.z + 64), Vector(target.x, target.y, target.z + 64))
-	caster:EmitSound("Arena.Zeus.CastE")
+	hero:EmitSound("Arena.Zeus.CastE")
 end
 
 function zeus_e:GetCastAnimation()

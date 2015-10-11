@@ -6,17 +6,6 @@ function HideTooltip(){
 	$.DispatchEvent("DOTAHideAbilityTooltip"); 
 }
 
-function GetTexture(data, customIcons) {
-	var icon = "file://{images}/spellicons/" + data.texture + ".png";
-	var name = data.name;
-
-	if (customIcons[name]){
-		icon = "file://{images}/custom_game/" + customIcons[name];
-	}
-
-	return icon;
-}
-
 // AbilityDataProvider ->
 //	GetAbilityData(slot)
 //	GetAbilityCount()
