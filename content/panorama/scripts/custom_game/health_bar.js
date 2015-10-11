@@ -15,6 +15,7 @@ function HealthBar(elementId) {
 	this.element = $(elementId);
 	this.bars = [];
 	this.currentHealth = 0;
+	this.entityId = 0;
 
 	this.SetEntity = function(entityId) {
 		this.entityId = entityId;

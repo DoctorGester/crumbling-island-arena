@@ -185,7 +185,7 @@ end
 function Round:Heal(target)
 	target:Heal()
 
-	CustomGameEventManager:Send_ServerToPlayer(target.player, "hero_healed", {})
+	CustomGameEventManager:Send_ServerToPlayer(target.player.player, "hero_healed", {})
 end
 
 function Round:Reset()

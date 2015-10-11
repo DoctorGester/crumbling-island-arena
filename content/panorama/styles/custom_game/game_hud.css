@@ -61,6 +61,8 @@
     height: 36px;
     border-radius: 5px;
     margin-left: 3px;
+    transition-property: opacity;
+    transition-duration: 0.1s;
 }
 
 .PositiveBuff

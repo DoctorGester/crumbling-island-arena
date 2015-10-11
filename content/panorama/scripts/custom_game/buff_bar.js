@@ -23,7 +23,6 @@ function Buff(parent) {
 		var debuff = Buffs.IsDebuff(entityId, buffId);
 		var remaining = Math.max(0, Buffs.GetRemainingTime(entityId, buffId));
 
-
 		if (texture != this.data.texture) {
 			this.data.texture = texture;
 
@@ -80,6 +79,7 @@ function BuffBar(elementId) {
 	this.element = $(elementId);
 	this.buffs = [];
 	this.customIcons = {};
+	this.entityId = 0;
 
 	this.AddCustomIcon = function(abilityName, iconPath) {
 		this.customIcons[abilityName] = iconPath;

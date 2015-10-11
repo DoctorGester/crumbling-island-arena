@@ -54,7 +54,7 @@ function Hero:EnableUltimate(ultimate)
 end
 
 function Hero:AddNewModifier(source, ability, modifier, params)
-	self.unit:AddNewModifier(source, ability, modifier, params)
+	self.unit:AddNewModifier(source.unit, ability, modifier, params)
 end
 
 function Hero:Delete()

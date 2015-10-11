@@ -30,11 +30,14 @@ end
 
 function InjectHero(round)
 	PrecacheUnitByNameAsync("npc_dota_hero_zuus", function()
-		local hero = Hero()
+		require("heroes/zeus")
+		local hero = Zeus()
 		local center = Entities:FindByName(nil, "map_center"):GetAbsOrigin()
+		local owner = round.Players[0]
 
 		hero:SetUnit(CreateUnitByName("npc_dota_hero_zuus", center, true, nil, nil, DOTA_TEAM_BADGUYS))
 		hero:Setup()
+		hero.unit:SetControllableByPlayer(owner.id, true)
 		
 		local original = round.GetAllHeroes
 		local new =
