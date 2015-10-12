@@ -20,6 +20,10 @@ function DynamicEntity:Destroy()
 	self.destroyed = true
 end
 
+function DynamicEntity:EmitSound(sound)
+	EmitSoundOnLocationWithCaster(self.position, sound, nil)
+end
+
 function DynamicEntity:Damage(source) end
 function DynamicEntity:Update() end
 function DynamicEntity:Remove() end

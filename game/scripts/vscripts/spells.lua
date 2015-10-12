@@ -378,7 +378,7 @@ function Spells:MultipleHeroesModifier(source, ability, modifier, params, condit
 	local round = GameRules.GameMode.Round
 
 	for _, hero in pairs(Spells:GetValidTargets()) do
-		if condition(caster, hero) then
+		if hero.AddNewModifier and condition(caster, hero) then
 			hero:AddNewModifier(source, ability, modifier, params)
 		end
 	end

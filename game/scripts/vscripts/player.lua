@@ -12,5 +12,5 @@ function Player:SetPlayerID(id)
 	self.player = PlayerResource:GetPlayer(id)
 	self.hero = Hero()
 	self.hero:SetUnit(self.player:GetAssignedHero())
-	self.hero:SetPlayer(self)
+	self.hero:SetOwner(self)
 end

@@ -134,7 +134,7 @@ function Round:CreateHeroes()
 				--LoadDefaultHeroItems(player.hero, self.GameItems)
 				local ultimate = self.AvailableHeroes[hero:GetName()].ultimate
 				hero:Setup(ultimate)
-				hero:SetPlayer(player)
+				hero:SetOwner(player)
 
 				local spawnPoint = Entities:FindAllByName(self.SpawnPoints[i])[1]
 				hero:SetPos(spawnPoint:GetAbsOrigin())

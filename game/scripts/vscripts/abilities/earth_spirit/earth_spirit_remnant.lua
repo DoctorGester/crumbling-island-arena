@@ -1,7 +1,7 @@
 EarthSpiritRemnant = class({
 	health = 2,
 	effect = nil
-}, nil, DynamicEntity })
+}, {}, DynamicEntity)
 
 function EarthSpiritRemnant:CreateEffect(effect)
 	local sky = Vector(self.position.x, self.position.y, self.position.z + 2000)
