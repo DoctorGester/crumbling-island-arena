@@ -13,11 +13,11 @@ if not debugHero then
 end
 
 function OnTakeDamage(eventSourceIndex, args)
-	mode.Round:DealDamage(mode.Players[args.PlayerID].hero, mode.Players[args.PlayerID].hero, false)
+	mode.Players[args.PlayerID].hero:Damage()
 end
 
 function OnHealHealth(eventSourceIndex, args)
-	mode.Round:Heal(mode.Players[args.PlayerID].hero)
+	mode.Players[args.PlayerID].hero:Heal()
 end
 
 function OnCheckEnd()

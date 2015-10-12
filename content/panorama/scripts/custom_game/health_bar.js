@@ -41,10 +41,14 @@ function HealthBar(elementId) {
 	}
 
 	this.Update = function(){
-		this.currentHealth = Math.round(Entities.GetHealth(this.entityId));
+		var health = Math.round(Entities.GetHealth(this.entityId));
 
-		for (var i = 0; i < this.bars.length; i++) {
-			this.bars[i].SetAlive(this.currentHealth > i);
+		if (health != this.currentHealth) {
+			this.currentHealth = health;
+
+			for (var i = 0; i < this.bars.length; i++) {
+				this.bars[i].SetAlive(this.currentHealth > i);
+			}
 		}
 	}
 

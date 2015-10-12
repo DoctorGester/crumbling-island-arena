@@ -76,20 +76,12 @@ function LoadCustomIcons(){
 	}
 }
 
-function DamageTakenEvent(args){
-	if (healthBar != null) healthBar.Damage();
-}
-
-function HealEvent(args){
-	if (healthBar != null) healthBar.Heal();
-}
-
-function FallEvent(args){
-	if (healthBar != null) healthBar.Kill();
-}
-
 function UpdateCooldowns(){
 	$.Schedule(0.025, UpdateCooldowns);
+
+	if (healthBar != null) {
+		healthBar.Update();
+	}
 
 	if (abilityBar != null) {
 		abilityBar.Update();
@@ -183,9 +175,6 @@ SetupUI();
 
 (function () {
 	GameEvents.Subscribe("update_heroes", LoadHeroUI);
-	GameEvents.Subscribe("hero_takes_damage", DamageTakenEvent);
-	GameEvents.Subscribe("hero_healed", HealEvent);
-	GameEvents.Subscribe("hero_falls", FallEvent);
 
 	SubscribeToNetTableKey("main", "debug", true, DebugUpdate)
 	SubscribeToNetTableKey("main", "heroes", true, HeroesUpdate);

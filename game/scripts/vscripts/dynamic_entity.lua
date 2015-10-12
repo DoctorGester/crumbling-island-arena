@@ -24,6 +24,6 @@ function DynamicEntity:Destroy()
 	self.destroyed = true
 end
 
-function DynamicEntity:DealDamage(source) end
+function DynamicEntity:Damage(source) end
 function DynamicEntity:Update() end
 function DynamicEntity:Remove() end

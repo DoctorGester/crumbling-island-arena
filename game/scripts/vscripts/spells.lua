@@ -103,11 +103,8 @@ end
 SpellThinker:SetThink("ThinkFunction", Spells, "SpellsThink", THINK_PERIOD)
 
 function Spells:ProjectileDamage(projectile, target)
-	if not target.IsDynamicEntity or not target:IsDynamicEntity() then
-		GameRules.GameMode.Round:DealDamage(projectile.owner, target, true)
-	else 
-		target:DealDamage(projectile.owner)
-	end
+	target:Damage(projectile.owner)
+	GameRules.GameMode.Round:CheckEndConditions()
 end
 
 function Spells:GetValidTargets()
@@ -320,7 +317,6 @@ function Spells:AddDynamicEntity(entity)
 end
 
 function Spells:MultipleHeroesDamage(sourceHero, condition)
-	local round = GameRules.GameMode.Round
 	local hurt = false
 
 	if sourceHero == nil then
@@ -329,13 +325,13 @@ function Spells:MultipleHeroesDamage(sourceHero, condition)
 
 	for _, hero in pairs(Spells:GetValidTargets()) do
 		if condition(sourceHero, hero) then
-			round:DealDamage(sourceHero, hero, false)
+			hero:Damage(sourceHero)
 			hurt = true
 		end
 	end
 
 	if hurt then
-		round:CheckEndConditions()
+		GameRules.GameMode.Round:CheckEndConditions()
 	end
 
 	return hurt

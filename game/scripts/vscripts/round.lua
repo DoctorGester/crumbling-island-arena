@@ -156,38 +156,6 @@ function Round:UpdateTimers()
 	});
 end
 
-function Round:DealDamage(attacker, target, checkForEnd)
-	if target == nil then return end
-	if attacker == nil then attacker = target end
-
-	if not target:Alive() or target.protected or target.falling then
-		return
-	end
-
-	local damageTable = {
-		victim = target.unit,
-		attacker = attacker.unit,
-		damage = 1,
-		damage_type = DAMAGE_TYPE_PURE,
-	}
-	 
-	ApplyDamage(damageTable)
-
-	if target.player then
-		CustomGameEventManager:Send_ServerToPlayer(target.player.player, "hero_takes_damage", {})
-	end
-
-	if checkForEnd then
-		self:CheckEndConditions()
-	end
-end
-
-function Round:Heal(target)
-	target:Heal()
-
-	CustomGameEventManager:Send_ServerToPlayer(target.player.player, "hero_healed", {})
-end
-
 function Round:Reset()
 	if self.Stage == 2 then
 		self.Level:SwapLayers("InfoLayer2", "InfoLayer1")
@@ -213,7 +181,7 @@ function Round:EnableSuddenDeath()
 		endTime = 1,
 		callback = function ()
 			for _, player in pairs(self.Players) do
-				self:DealDamage(nil, player.hero, false)
+				player.hero:Damage()
 			end
 
 			self:CheckEndConditions()

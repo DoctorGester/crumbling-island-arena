@@ -13,8 +13,8 @@ function Hero:SetUnit(unit)
 	unit.hero = self
 end
 
-function Hero:SetPlayer(player)
-	self.player = player
+function Hero:SetOwner(owner)
+	self.owner = owner
 end
 
 function Hero:GetName()
@@ -43,6 +43,23 @@ end
 
 function Hero:EmitSound(sound)
 	self.unit:EmitSound(sound)
+end
+
+function Hero:Damage(source)
+	if source == nil then source = self end
+
+	if not self:Alive() or self.protected or self.falling then
+		return
+	end
+
+	local damageTable = {
+		victim = self.unit,
+		attacker = source.unit,
+		damage = 1,
+		damage_type = DAMAGE_TYPE_PURE,
+	}
+
+	ApplyDamage(damageTable)
 end
 
 function Hero:Heal()
