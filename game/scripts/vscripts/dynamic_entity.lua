@@ -1,8 +1,10 @@
-DynamicEntity = class({
-	size = 64,
-	position = Vector(0, 0, 0),
-	destroyed = false
-})
+DynamicEntity = class({})
+
+function DynamicEntity:constructor()
+	self.size = 64
+	self.position = Vector(0, 0, 0)
+	self.destroyed = false
+end
 
 function DynamicEntity:GetPos()
 	return self.position

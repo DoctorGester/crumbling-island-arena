@@ -1,8 +1,11 @@
-StormSpirit = class({
-	remnants = {},
-	lastRemnants = {}
-}, {}, Hero)
+StormSpirit = class({}, nil, Hero)
 
+function StormSpirit:constructor()
+	self.__base__.constructor(self)
+
+	self.remnants = {}
+	self.lastRemnants = {}
+end
 
 function StormSpirit:CreateRemnant(location, facing)
 	local dummy = CreateUnitByName(self:GetName(), location, false, self.unit, nil, self.unit:GetTeamNumber())
@@ -14,7 +17,6 @@ function StormSpirit:CreateRemnant(location, facing)
 
 	table.insert(self.remnants, dummy)
 end
-
 
 function StormSpirit:DestroyRemnant(remnant)
 	table.insert(self.lastRemnants, { position = remnant:GetAbsOrigin(), facing = remnant:GetForwardVector() })
@@ -55,7 +57,7 @@ function StormSpirit:HasRemnants()
 end
 
 function StormSpirit:Delete()
-	__base__.Delete(self)
+	self.__base__.Delete(self)
 
 	for _, remnant in pairs(self.remnants) do
 		remnant:RemoveSelf()

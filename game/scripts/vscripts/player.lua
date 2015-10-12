@@ -5,7 +5,7 @@ Player = class({
 	score = 0,
 	selectionLocked = false,
 	selectedHero = nil
-}, {}, nil)
+})
 
 function Player:SetPlayerID(id)
 	self.id = id

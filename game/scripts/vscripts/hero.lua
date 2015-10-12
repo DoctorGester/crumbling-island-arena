@@ -1,12 +1,14 @@
 FALL_ABILITY = "falling_hero"
 
-Hero = class({
-	unit = nil,
-	fallSpeed = 0.0,
-	protected = false,
-	falling = false,
-	owner = nil
-}, {}, DynamicEntity)
+Hero = class({}, nil, DynamicEntity)
+
+function Hero:constructor()
+	DynamicEntity.constructor(self)
+
+	self.fallSpeed = 64
+	self.falling = false
+	self.protected = false
+end
 
 function Hero:SetUnit(unit)
 	self.unit = unit

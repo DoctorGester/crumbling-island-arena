@@ -318,20 +318,4 @@ function GameMode:OnPlayerPickHero(keys)
 		hero:AddNoDraw()
 		AddLevelOneAbility(hero, "hidden_hero")
 	end
-
-	-- for testing
-	--[[
-	local hero = EntIndexToHScript(keys.heroindex)
-	local count = hero:GetAbilityCount() - 1
-
-    hero:SetAbilityPoints(0)
-
-    for i = 0, count do
-    	local ability = hero:GetAbilityByIndex(i)
-
-    	if ability ~= nil and not ability:IsAttributeBonus() and not ability:IsHidden() then
-	    	ability:SetLevel(1)
-    	end
-    end
-    ]]
 end
