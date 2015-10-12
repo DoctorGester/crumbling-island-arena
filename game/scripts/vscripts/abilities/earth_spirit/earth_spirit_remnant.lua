@@ -1,0 +1,1 @@
+EarthSpiritRemnant = class({ health = 2, nil, DynamicEntity })

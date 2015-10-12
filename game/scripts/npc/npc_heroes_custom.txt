@@ -118,6 +118,7 @@
 	"npc_dota_hero_earth_spirit"
 	{
 		"override_hero"	"npc_dota_hero_earth_spirit"
+		"Class" "heroes/earth_spirit:EarthSpirit"
 		"ArmorPhysical"	"0"
 		"MagicalResistance"	"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"

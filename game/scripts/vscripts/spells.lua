@@ -103,7 +103,7 @@ end
 SpellThinker:SetThink("ThinkFunction", Spells, "SpellsThink", THINK_PERIOD)
 
 function Spells:ProjectileDamage(projectile, target)
-	if not target:IsDynamicEntity() then
+	if not target.IsDynamicEntity or not target:IsDynamicEntity() then
 		GameRules.GameMode.Round:DealDamage(projectile.owner, target, true)
 	else 
 		target:DealDamage(projectile.owner)
