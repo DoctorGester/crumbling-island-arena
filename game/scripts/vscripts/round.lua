@@ -169,7 +169,10 @@ function Round:Reset()
 	self.Level:EnableObstructors(Entities:FindAllByClassname("point_simple_obstruction"), false)
 
 	GridNav:RegrowAllTrees()
-	Misc:CleanUpRound()
+	
+	for _, projectile in pairs(Projectiles) do
+		projectile:Destroy()
+	end
 
 	for _, player in pairs(self.Players) do
 	    player.hero:Hide()

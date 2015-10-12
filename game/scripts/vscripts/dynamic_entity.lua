@@ -16,10 +16,6 @@ function DynamicEntity:GetRad()
 	return self.size
 end
 
-function DynamicEntity:IsDynamicEntity()
-	return true
-end
-
 function DynamicEntity:Destroy()
 	self.destroyed = true
 end

@@ -120,22 +120,3 @@ function Misc:SetUpPAProjectile(projectileData)
 			Misc:DestroyPAWeapon(self.owner)
 		end
 end
-
-function Misc:CleanUpRound()
-	local round = GameRules.GameMode.Round
-
-	for _, player in pairs(round.Players) do
-		if player.hero.unit.remnants then
-			for _, remnant in pairs(player.hero.unit.remnants) do
-				remnant:RemoveSelf()
-			end
-
-			player.hero.unit.remnants = nil
-			player.hero.unit.lastRemnants = nil
-		end
-	end
-
-	for _, projectile in pairs(Projectiles) do
-		projectile:Destroy()
-	end
-end

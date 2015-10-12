@@ -53,3 +53,11 @@ end
 function StormSpirit:HasRemnants()
 	return #self.remnants > 0
 end
+
+function StormSpirit:Delete()
+	__base__.Delete(self)
+
+	for _, remnant in pairs(self.remnants) do
+		remnant:RemoveSelf()
+	end
+end

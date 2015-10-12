@@ -6,7 +6,7 @@ Hero = class({
 	protected = false,
 	falling = false,
 	owner = nil
-}, {}, nil)
+}, {}, DynamicEntity)
 
 function Hero:SetUnit(unit)
 	self.unit = unit

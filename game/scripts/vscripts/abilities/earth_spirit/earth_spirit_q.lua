@@ -1,3 +1,5 @@
+require('abilities/earth_spirit/earth_spirit_remnant')
+
 earth_spirit_q = class({})
 
 function earth_spirit_q:OnSpellStart()
@@ -9,11 +11,14 @@ function earth_spirit_q:OnSpellStart()
 
 	Timers:CreateTimer(1,
 		function()
-			local particle = ImmediateEffect("particles/units/heroes/hero_earth_spirit/espirit_stoneremnant.vpcf", PATTACH_CUSTOMORIGIN, caster)
-			ParticleManager:SetParticleControl(particle, 0, target)
-			ParticleManager:SetParticleControl(particle, 1, Vector(target.x, target.y, target.z + 2000))
+			local remnant = EarthSpiritRemnant()
+			remnant:SetPos(target)
+			remnant:CreateEffect()
 
-			caster:EmitSound("Hero_EarthSpirit.StoneRemnant.Impact")
+			caster.hero:AddRemnant(remnant)
+			Spells:AddDynamicEntity(remnant)
+
+			EmitSoundOnLocationWithCaster(target, "Hero_EarthSpirit.StoneRemnant.Impact", caster)
 
 			Timers:CreateTimer(0.1,
 				function()
@@ -23,7 +28,7 @@ function earth_spirit_q:OnSpellStart()
 					Spells:AreaDamage(caster.hero, target, 256)
 					GridNav:DestroyTreesAroundPoint(target, 200, true)
 
-					caster:EmitSound("Arena.Earth.CastQ")
+					EmitSoundOnLocationWithCaster(target, "Arena.Earth.CastQ", caster)
 				end
 			)
 		end
