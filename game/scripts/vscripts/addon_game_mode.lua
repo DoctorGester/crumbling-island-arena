@@ -2,7 +2,6 @@ require('lib/timers')
 require('lib/animations')
 require('misc')
 require('util')
-require('debug_util')
 
 require('dynamic_entity')
 require('hero')
@@ -12,6 +11,7 @@ require('hero_selection')
 require('round')
 
 require('spells')
+require('debug_util')
 
 STATE_NONE = 0
 STATE_HERO_SELECTION = 1

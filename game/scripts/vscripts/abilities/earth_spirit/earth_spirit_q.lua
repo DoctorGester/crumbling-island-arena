@@ -4,37 +4,44 @@ earth_spirit_q = class({})
 
 function earth_spirit_q:OnSpellStart()
 	local caster = self:GetCaster()
-	local target = self:GetCursorPosition()
+	local cursor = self:GetCursorPosition()
 
 	local particle = ImmediateEffect("particles/units/heroes/hero_earth_spirit/espirit_magnetize_target.vpcf", PATTACH_CUSTOMORIGIN, caster)
-	ParticleManager:SetParticleControl(particle, 0, target)
+	ParticleManager:SetParticleControl(particle, 0, cursor)
 
 	Timers:CreateTimer(1,
 		function()
-			local remnant = EarthSpiritRemnant()
-			remnant:SetPos(target)
+			local remnant = EarthSpiritRemnant(caster.hero)
+			remnant:SetPos(cursor)
 			remnant:CreateEffect()
 
 			caster.hero:AddRemnant(remnant)
 			Spells:AddDynamicEntity(remnant)
 
-			EmitSoundOnLocationWithCaster(target, "Hero_EarthSpirit.StoneRemnant.Impact", caster)
+			EmitSoundOnLocationWithCaster(cursor, "Hero_EarthSpirit.StoneRemnant.Impact", caster)
 
 			Timers:CreateTimer(0.1,
 				function()
 					particle = ImmediateEffect("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp.vpcf", PATTACH_CUSTOMORIGIN, caster)
-					ParticleManager:SetParticleControl(particle, 0, target)
+					ParticleManager:SetParticleControl(particle, 0, cursor)
 
-					GridNav:DestroyTreesAroundPoint(target, 256, true)
+					GridNav:DestroyTreesAroundPoint(cursor, 256, true)
 					Spells:MultipleHeroesDamage(caster.hero, 
-						function (attacker, target)
-							local distance = (target:GetPos() - point):Length2D()
+						function (source, target)
+							local distance = (target:GetPos() - cursor):Length2D()
 
-							return target ~= attacker and target ~= remant and distance <= 256
+							if target ~= source and target ~= remnant and distance <= 256 then
+								if target:__instanceof__(EarthSpiritRemnant) then
+									target:Destroy()
+									return false
+								end
+
+								return true
+							end
 						end
 					)
 
-					EmitSoundOnLocationWithCaster(target, "Arena.Earth.CastQ", caster)
+					EmitSoundOnLocationWithCaster(cursor, "Arena.Earth.CastQ", caster)
 				end
 			)
 		end

@@ -6,6 +6,7 @@ function EarthSpiritRemnant:constructor(owner)
 	self.owner = owner
 	self.health = 2
 	self.effect = nil
+	self.size = 48
 end
 
 function EarthSpiritRemnant:CreateEffect(effect)
@@ -22,6 +23,8 @@ end
 function EarthSpiritRemnant:Remove()
 	ParticleManager:DestroyParticle(self.effect, false)
 	ParticleManager:ReleaseParticleIndex(self.effect)
+
+	self.owner:RemnantDestroyed(self)
 end
 
 function EarthSpiritRemnant:Damage(source)
@@ -30,7 +33,4 @@ function EarthSpiritRemnant:Damage(source)
 	if self.health == 0 then
 		self:Destroy()
 	end
-end
-
-function EarthSpiritRemnant:Remove()
 end

@@ -77,6 +77,18 @@ function InjectProjectileDebug()
 	Spells.ThinkFunction = new
 end
 
+function InjectAreaDebug()
+	local original = Spells.AreaDamage
+	local new = 
+		function(self, hero, point, area, action)
+			DebugDrawCircle(point, Vector(0, 255, 0), 255, area, false, 1)
+
+			return original(nil, hero, point, area, action)
+		end
+
+	Spells.AreaDamage = new
+end
+
 function Debug:CheckAndEnableDebug(gameMode)
 	local cheatsEnabled = Convars:GetInt("sv_cheats") == 1
 
@@ -104,5 +116,9 @@ function Debug:CheckAndEnableDebug(gameMode)
 	
 	InjectHero(GameRules.GameMode.Round)
 	InjectEndCheck(GameRules.GameMode.Round)
+end
+
+if Convars:GetInt("sv_cheats") == 1 then
 	InjectProjectileDebug()
+	InjectAreaDebug()
 end
