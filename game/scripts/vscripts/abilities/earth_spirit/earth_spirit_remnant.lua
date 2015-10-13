@@ -1,7 +1,12 @@
-EarthSpiritRemnant = class({
-	health = 2,
-	effect = nil
-}, {}, DynamicEntity)
+EarthSpiritRemnant = class({}, nil, DynamicEntity)
+
+function EarthSpiritRemnant:constructor(owner)
+	DynamicEntity.constructor(self)
+	
+	self.owner = owner
+	self.health = 2
+	self.effect = nil
+end
 
 function EarthSpiritRemnant:CreateEffect(effect)
 	local sky = Vector(self.position.x, self.position.y, self.position.z + 2000)
@@ -25,4 +30,7 @@ function EarthSpiritRemnant:Damage(source)
 	if self.health == 0 then
 		self:Destroy()
 	end
+end
+
+function EarthSpiritRemnant:Remove()
 end

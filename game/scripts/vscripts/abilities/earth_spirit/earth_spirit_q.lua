@@ -25,8 +25,14 @@ function earth_spirit_q:OnSpellStart()
 					particle = ImmediateEffect("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp.vpcf", PATTACH_CUSTOMORIGIN, caster)
 					ParticleManager:SetParticleControl(particle, 0, target)
 
-					Spells:AreaDamage(caster.hero, target, 256)
-					GridNav:DestroyTreesAroundPoint(target, 200, true)
+					GridNav:DestroyTreesAroundPoint(target, 256, true)
+					Spells:MultipleHeroesDamage(caster.hero, 
+						function (attacker, target)
+							local distance = (target:GetPos() - point):Length2D()
+
+							return target ~= attacker and target ~= remant and distance <= 256
+						end
+					)
 
 					EmitSoundOnLocationWithCaster(target, "Arena.Earth.CastQ", caster)
 				end

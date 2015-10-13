@@ -28,12 +28,7 @@ function StormSpirit:DestroyRemnant(remnant)
 	remnant:EmitSound("Hero_StormSpirit.StaticRemnantExplode")
 	remnant:RemoveSelf()
 
-	for key, value in pairs(self.remnants) do
-		if value == remnant then
-			table.remove(self.remnants, key)
-			break
-		end
-	end
+	table.remove(self.remnants, GetIndex(self.remnants, remnant))
 end
 
 function StormSpirit:FindClosestRemnant(point)

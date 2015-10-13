@@ -10,6 +10,16 @@ function UnwrapString(table)
 	end
 end
 
+function GetIndex(list, element)
+    for k, v in pairs(list) do
+        if v == element then
+            return k
+        end
+    end
+    
+    return nil
+end
+
 function Shuffle(table)
     local iterations = #table
     local j
