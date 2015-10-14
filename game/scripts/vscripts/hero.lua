@@ -43,6 +43,10 @@ function Hero:SetPos(pos)
 	self.unit:SetAbsOrigin(pos)
 end
 
+function Hero:SetFacing(facing)
+	self.unit:SetForwardVector(facing)
+end
+
 function Hero:EmitSound(sound)
 	self.unit:EmitSound(sound)
 end
@@ -74,6 +78,10 @@ end
 
 function Hero:AddNewModifier(source, ability, modifier, params)
 	self.unit:AddNewModifier(source.unit, ability, modifier, params)
+end
+
+function Hero:RemoveModifier(name)
+	self.unit:RemoveModifierByName(name)
 end
 
 function Hero:Delete()

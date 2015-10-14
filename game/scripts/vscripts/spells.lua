@@ -287,12 +287,16 @@ function Spells:Dash(data)
 	data.onArrival = data.onArrival or function() end
 	data.from = data.unit:GetAbsOrigin()
 	data.zStart = data.from.z
+	data.positionFunction = data.positionFunction or 
+		function(position, data)
+			local diff = data.to - ppsition
+			return position + (diff:Normalized() * data.velocity)
+		end
 
 	Timers:CreateTimer(
 		function()
 			local origin = data.unit:GetAbsOrigin()
-			local diff = data.to - origin
-			local result = origin + (diff:Normalized() * data.velocity)
+			local result = data.positionFunction(origin, data)
 
 			if data.heightFunction then
 				result.z = data.zStart + data.heightFunction(data.from, data.to, result)

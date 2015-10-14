@@ -1,6 +1,7 @@
-require('abilities/earth_spirit/earth_spirit_remnant')
-
 earth_spirit_q = class({})
+
+require('abilities/earth_spirit/earth_spirit_remnant')
+LinkLuaModifier("modifier_earth_spirit_stand", "abilities/storm_spirit/modifier_earth_spirit_stand", LUA_MODIFIER_MOTION_NONE)
 
 function earth_spirit_q:OnSpellStart()
 	local caster = self:GetCaster()
