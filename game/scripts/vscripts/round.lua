@@ -108,13 +108,16 @@ end
 
 function Round:LoadHeroClass(name)
 	local classValue = self.AvailableHeroes[name].class
-	print("Loading class "..classValue)
 
 	if classValue then
+		print("Loading class "..classValue)
+
 		local path, className = classValue:match("([^:]+):([^:]+)")
 		require(path)
 		return assert(loadstring("return "..className.."()"))()
 	else
+		print("Falling back to default Hero class")
+
 		return Hero()
 	end
 end

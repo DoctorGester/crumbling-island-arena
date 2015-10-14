@@ -292,7 +292,7 @@
 		"AbilityType" "DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOUR_HIDDEN"
 		"AbilityTextureName" "phantom_assassin_stifling_dagger"
-		"AbilityCooldown" "4"
+		"AbilityCooldown" "2.5"
 
 		"precache"
 		{
