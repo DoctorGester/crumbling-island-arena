@@ -3,22 +3,20 @@ pa_w_sub = class({})
 LinkLuaModifier("modifier_pa_w_sub", "abilities/pa/modifier_pa_w_sub", LUA_MODIFIER_MOTION_NONE)
 
 function pa_w_sub:OnSpellStart()
-	local caster = self:GetCaster()
-
-	local caster = self:GetCaster()
+	local hero = self:GetCaster().hero
 	local target = self:GetCursorPosition()
-	local direction = target - caster:GetOrigin()
+	local direction = target - hero:GetPos()
 	local ability = self
 
 	if direction:Length2D() == 0 then
-		direction = caster:GetForwardVector()
+		direction = hero:GetFacing()
 	end
 
 	direction = direction:Normalized()
 
 	local projectileData = {}
-	projectileData.owner = caster
-	projectileData.from = caster:GetOrigin()
+	projectileData.owner = hero
+	projectileData.from = hero:GetPos()
 	projectileData.to = target
 	projectileData.velocity = 1200
 	projectileData.graphics = "particles/pa_w_sub/pa_w_sub.vpcf"
@@ -27,7 +25,7 @@ function pa_w_sub:OnSpellStart()
 	projectileData.heroBehaviour =
 		function(self, target)
 			target:EmitSound("Hero_PhantomAssassin.Dagger.Target")
-			target:AddNewModifier(caster, ability, "modifier_pa_w_sub", { duration = 2 })
+			target:AddNewModifier(hero, ability, "modifier_pa_w_sub", { duration = 2 })
 
 			return true
 		end
@@ -39,10 +37,10 @@ function pa_w_sub:OnSpellStart()
 
 			ParticleManager:SetParticleControl(self.effectId, 1, target)
 			ParticleManager:SetParticleControl(self.effectId, 2, direction)
-			ParticleManager:SetParticleControl(self.effectId, 3, target - caster:GetOrigin())
+			ParticleManager:SetParticleControl(self.effectId, 3, target - hero:GetPos())
 		end
 
-	caster:EmitSound("Hero_PhantomAssassin.Dagger.Cast")
+	hero:EmitSound("Hero_PhantomAssassin.Dagger.Cast")
 	Spells:CreateProjectile(projectileData)
 end
 

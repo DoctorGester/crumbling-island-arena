@@ -31,6 +31,14 @@ function Hero:GetRad()
 	return self.unit:BoundingRadius2D() * 2
 end
 
+function Hero:GetGroundHeight(position)
+	return GetGroundHeight(position or self:GetPos(), self.unit)
+end
+
+function Hero:FindClearSpace(position, force)
+	FindClearSpaceForUnit(self.unit, position, force)
+end
+
 function Hero:Alive()
 	return self.unit:IsAlive()
 end
@@ -49,6 +57,10 @@ end
 
 function Hero:EmitSound(sound)
 	self.unit:EmitSound(sound)
+end
+
+function Hero:StopSound(sound)
+	self.unit:StopSound(sound)
 end
 
 function Hero:Damage(source)

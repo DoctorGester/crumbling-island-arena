@@ -23,7 +23,7 @@ function DynamicEntity:Destroy()
 end
 
 function DynamicEntity:EmitSound(sound)
-	EmitSoundOnLocationWithCaster(self.position, sound, nil)
+	EmitSoundOnLocationWithCaster(self.position, sound)
 end
 
 function DynamicEntity:Damage(source) end

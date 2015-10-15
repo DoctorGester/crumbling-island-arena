@@ -1,14 +1,14 @@
 zeus_w = class({})
 
 function zeus_w:OnSpellStart()
-	local caster = self:GetCaster()
-	local casterPos = caster:GetOrigin()
-	local target = self:GetCursorPosition()
-	local direction = (target - casterPos):Normalized()
 	local hero = caster.hero
 
+	local casterPos = hero:GetPos()
+	local target = self:GetCursorPosition()
+	local direction = (target - casterPos):Normalized()
+
 	if direction:Length2D() == 0 then
-		direction = caster:GetForwardVector()
+		direction = hero:GetFacing()
 	end
 	
 	casterPos.z = 0
@@ -21,10 +21,10 @@ function zeus_w:OnSpellStart()
 
 	hero:SetWall(wallStart, wallEnd)
 
-	wallStart.z =  GetGroundHeight(wallStart, caster) + 32
-	wallEnd.z = GetGroundHeight(wallEnd, caster) + 32
+	wallStart.z =  GetGroundHeight(wallStart, nil) + 32
+	wallEnd.z = GetGroundHeight(wallEnd, nil) + 32
 
-	local particle = ParticleManager:CreateParticle("particles/zeus_w2/zeus_w2.vpcf", PATTACH_CUSTOMORIGIN, caster)
+	local particle = ParticleManager:CreateParticle("particles/zeus_w2/zeus_w2.vpcf", PATTACH_CUSTOMORIGIN)
 	ParticleManager:SetParticleControl(particle, 0, wallStart)
 	ParticleManager:SetParticleControl(particle, 1, wallEnd)
 
@@ -33,13 +33,13 @@ function zeus_w:OnSpellStart()
 			hero:RemoveWall()
 			ParticleManager:DestroyParticle(particle, false)
 			ParticleManager:ReleaseParticleIndex(particle)
-			--caster:StopSound("Ability.static.loop")
-			caster:EmitSound("Ability.static.end")
+			--hero:StopSound("Ability.static.loop")
+			hero:EmitSound("Ability.static.end")
 		end
 	)
 
-	caster:EmitSound("Ability.static.start")
-	--caster:EmitSound("Ability.static.loop")
+	hero:EmitSound("Ability.static.start")
+	--hero:EmitSound("Ability.static.loop")
 
 	--"particles/units/heroes/hero_leshrac/leshrac_lightning_slow.vpcf"
 end

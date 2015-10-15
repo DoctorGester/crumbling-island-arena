@@ -8,14 +8,13 @@ function zeus_e:CreateLightning(self, from, to)
 end
 
 function zeus_e:OnSpellStart()
-	local caster = self:GetCaster()
-	local hero = caster.hero
+	local hero = self:GetCaster().hero
 	local casterPos = hero:GetPos()
 	local target = self:GetCursorPosition()
 	local direction = (target - casterPos):Normalized()
 
 	if direction:Length2D() == 0 then
-		direction = caster:GetForwardVector()
+		direction = hero:GetFacing()
 	end
 	
 	direction.z = 0
@@ -24,10 +23,10 @@ function zeus_e:OnSpellStart()
 		target = casterPos + direction * 950
 	end
 
-	target.z = GetGroundHeight(target, caster)
+	target.z = hero:GetGroundHeight(target)
 
 	GridNav:DestroyTreesAroundPoint(target, 128, true)
-	FindClearSpaceForUnit(caster, target, true)
+	hero:FindClearSpace(target, true)
 
 	if hero:WallIntersection(casterPos, target) then
 		Spells:LineDamage(hero, casterPos, target,

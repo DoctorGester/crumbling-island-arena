@@ -2,9 +2,8 @@ earth_spirit_e = class({})
 LinkLuaModifier("modifier_earth_spirit_e", "abilities/earth_spirit/modifier_earth_spirit_e", LUA_MODIFIER_MOTION_NONE)
 
 function earth_spirit_e:OnSpellStart()
-	local caster = self:GetCaster()
 	local target = self:GetCursorPosition()
-	local hero = caster.hero
+	local hero = self:GetCaster().hero
 	local targetRemnant = hero:FindRemnantInArea(target, 200)
 	local hadStand = false
 	local facing = target - hero:GetPos()
@@ -23,12 +22,12 @@ function earth_spirit_e:OnSpellStart()
 	end
 
 	local dashData = {}
-	dashData.unit = caster
+	dashData.hero = hero
 	dashData.to = target
 	dashData.velocity = 600
 	dashData.findClearSpace = false
 	dashData.onArrival = 
-		function (unit)
+		function (hero)
 			hero:RemoveModifier("modifier_earth_spirit_e")
 
 			if targetRemnant and not targetRemnant.destroyed then

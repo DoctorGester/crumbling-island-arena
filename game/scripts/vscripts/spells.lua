@@ -274,7 +274,7 @@ end
 
 --[[
 data:
-- Unit unit
+- Hero hero
 - Vector to
 - Float velocity
 - Float radius (default 64)
@@ -285,8 +285,8 @@ function Spells:Dash(data)
 	data.radius = data.radius or 128
 	data.velocity = data.velocity / 30
 	data.onArrival = data.onArrival or function() end
-	data.from = data.unit:GetAbsOrigin()
-	data.zStart = GetGroundHeight(data.from, data.unit)
+	data.from = data.hero:GetPos()
+	data.zStart = data.hero:GetGroundHeight(data.from)
 	data.positionFunction = data.positionFunction or 
 		function(position, data)
 			local diff = data.to - position
@@ -295,22 +295,22 @@ function Spells:Dash(data)
 
 	Timers:CreateTimer(
 		function()
-			local origin = data.unit:GetAbsOrigin()
+			local origin = data.hero:GetPos()
 			local result = data.positionFunction(origin, data)
 
 			if data.heightFunction then
 				result.z = data.zStart + data.heightFunction(data.from, data.to, result)
 			end
 
-			data.unit:SetAbsOrigin(result)
+			data.hero:SetAbsOrigin(result)
 
 			if (data.to - origin):Length2D() <= data.velocity then
 				if data.findClearSpace then
 					GridNav:DestroyTreesAroundPoint(result, data.radius, true)
-					FindClearSpaceForUnit(data.unit, result, false)
+					data.hero:FindClearSpace(result, false)
 				end
 
-				data.onArrival(data.unit)
+				data.onArrival(data.hero)
 				return false
 			end
 
@@ -381,21 +381,20 @@ function Spells:LineDamage(hero, lineFrom, lineTo, action)
 end
 
 function Spells:MultipleHeroesModifier(source, ability, modifier, params, condition)
-	local caster = source.hero
 	local round = GameRules.GameMode.Round
 
-	for _, hero in pairs(Spells:GetValidTargets()) do
-		if hero.AddNewModifier and condition(caster, hero) then
-			hero:AddNewModifier(source, ability, modifier, params)
+	for _, target in pairs(Spells:GetValidTargets()) do
+		if target.AddNewModifier and condition(source, target) then
+			target:AddNewModifier(source, ability, modifier, params)
 		end
 	end
 end
 
 function Spells:AreaModifier(source, ability, modifier, params, point, area, condition)
 	return Spells:MultipleHeroesModifier(source, ability, modifier, params,
-		function (caster, target)
+		function (source, target)
 			local distance = (target:GetPos() - point):Length2D()
-			return condition(caster, target) and distance <= area
+			return condition(source, target) and distance <= area
 		end
 	)
 end

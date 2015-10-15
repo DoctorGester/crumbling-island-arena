@@ -1,18 +1,18 @@
 zeus_q = class({})
 
 function zeus_q:OnSpellStart()
-	local caster = self:GetCaster()
+	local hero = self:GetCaster().hero
 	local target = self:GetCursorPosition()
-	local direction = target - caster:GetOrigin()
+	local direction = target - hero:GetPos()
 	local ability = self
 
 	if direction:Length2D() == 0 then
-		direction = caster:GetForwardVector()
+		direction = hero:GetFacing()
 	end
 
 	local projectileData = {}
-	projectileData.owner = caster
-	projectileData.from = caster:GetOrigin()
+	projectileData.owner = hero
+	projectileData.from = hero:GetPos()
 	projectileData.to = target
 	projectileData.velocity = 1200
 	projectileData.graphics = "particles/zeus_q/zeus_q.vpcf"
@@ -46,7 +46,7 @@ function zeus_q:OnSpellStart()
 		end
 
 	Spells:CreateProjectile(projectileData)
-	caster:EmitSound("Arena.Zeus.CastQ")
+	hero:EmitSound("Arena.Zeus.CastQ")
 end
 
 function zeus_q:GetCastAnimation()

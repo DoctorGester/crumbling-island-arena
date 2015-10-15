@@ -2,25 +2,24 @@ storm_spirit_e = class({})
 LinkLuaModifier("modifier_storm_spirit_e", "abilities/storm_spirit/modifier_storm_spirit_e", LUA_MODIFIER_MOTION_NONE)
 
 function storm_spirit_e:OnSpellStart()
-	local caster = self:GetCaster()
-	local hero = caster.hero
+	local hero = self:GetCaster().hero
 	local target = self:GetCursorPosition()
 	local remnant = hero:FindClosestRemnant(target)
 
 	if remnant then
-		caster:AddNewModifier(caster, self, "modifier_storm_spirit_e", {})
-		caster:SetForwardVector((target - caster:GetAbsOrigin()):Normalized())
-		caster:EmitSound("Hero_StormSpirit.BallLightning")
-		caster:EmitSound("Hero_StormSpirit.BallLightning.Loop")
+		hero:AddNewModifier(hero, self, "modifier_storm_spirit_e", {})
+		hero:SetFacing((target - hero:GetPos()):Normalized())
+		hero:EmitSound("Hero_StormSpirit.BallLightning")
+		hero:EmitSound("Hero_StormSpirit.BallLightning.Loop")
 
 		local dashData = {}
-		dashData.unit = caster
+		dashData.hero = hero
 		dashData.to = remnant:GetAbsOrigin()
 		dashData.velocity = 1200
 		dashData.onArrival = 
-			function (unit)
-				caster:StopSound("Hero_StormSpirit.BallLightning.Loop")
-				unit:RemoveModifierByName("modifier_storm_spirit_e")
+			function (hero)
+				hero:StopSound("Hero_StormSpirit.BallLightning.Loop")
+				hero:RemoveModifier("modifier_storm_spirit_e")
 				hero:DestroyRemnant(remnant)
 			end
 
