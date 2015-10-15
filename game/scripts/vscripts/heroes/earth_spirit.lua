@@ -20,14 +20,14 @@ function EarthSpirit:RemnantDestroyed(remnant)
 	table.remove(self.remnants, GetIndex(self.remnants, remnant)) 
 end
 
-function EarthSpirit:FindRemnantInArea(point, area)
+function EarthSpirit:FindRemnant(point, area)
 	local closest = nil
 	local distance = 64000
 
 	for _, value in pairs(self.remnants) do
 		local toRemnant = (point - value:GetPos()):Length2D()
 
-		if toRemnant <= distance and toRemnant <= area then
+		if toRemnant <= distance and (not area or toRemnant <= area) then
 			closest = value
 			distance = toRemnant
 		end
@@ -41,6 +41,10 @@ function EarthSpirit:SetRemnantStand(remnant)
 	
 	self.remnantStand = remnant
 	self:AddNewModifier(self, source, "modifier_earth_spirit_stand", {})
+end
+
+function EarthSpirit:GetRemnantStand()
+	return self.remnantStand
 end
 
 function EarthSpirit:HasRemnantStand()

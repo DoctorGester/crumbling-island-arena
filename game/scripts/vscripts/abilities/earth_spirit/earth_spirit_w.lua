@@ -1,6 +1,12 @@
 earth_spirit_w = class({})
 
 function earth_spirit_w:OnSpellStart()
-	local caster = self:GetCaster()
-	local target = self:GetCursorPosition()
+	local hero = self:GetCaster().hero
+	local remnant = hero:FindRemnant(self:GetCursorPosition())
+
+	if hero:HasRemnantStand() then
+		hero:GetRemnantStand():SetTarget(remnant)
+	else
+		remnant:SetTarget(hero)
+	end
 end
