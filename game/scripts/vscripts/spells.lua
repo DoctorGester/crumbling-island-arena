@@ -286,10 +286,10 @@ function Spells:Dash(data)
 	data.velocity = data.velocity / 30
 	data.onArrival = data.onArrival or function() end
 	data.from = data.unit:GetAbsOrigin()
-	data.zStart = data.from.z
+	data.zStart = GetGroundHeight(data.from, data.unit)
 	data.positionFunction = data.positionFunction or 
 		function(position, data)
-			local diff = data.to - ppsition
+			local diff = data.to - position
 			return position + (diff:Normalized() * data.velocity)
 		end
 
@@ -304,10 +304,13 @@ function Spells:Dash(data)
 
 			data.unit:SetAbsOrigin(result)
 
-			if diff:Length2D() <= data.velocity then
+			if (data.to - origin):Length2D() <= data.velocity then
+				if data.findClearSpace then
+					GridNav:DestroyTreesAroundPoint(result, data.radius, true)
+					FindClearSpaceForUnit(data.unit, result, false)
+				end
+
 				data.onArrival(data.unit)
-				GridNav:DestroyTreesAroundPoint(result, data.radius, true)
-				FindClearSpaceForUnit(data.unit, result, false)
 				return false
 			end
 
