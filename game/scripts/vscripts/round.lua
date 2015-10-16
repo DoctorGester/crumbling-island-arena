@@ -84,7 +84,9 @@ function Round:Update()
 	for _, player in pairs(self.Players) do
 	    local hero = player.hero
 
-	    if hero ~= nil then
+	    if hero then
+	    	hero:Update()
+
 		    if not hero.falling then
 		    	if self.Level:TestOutOfMap(hero, self.Stage) then
 		    		hero:StartFalling()
@@ -131,8 +133,12 @@ function Round:CreateHeroes()
 		PrecacheUnitByNameAsync(player.selectedHero,
 			function ()
 				local hero = self:LoadHeroClass(player.selectedHero)
-				hero:SetUnit(PlayerResource:ReplaceHeroWith(i, player.selectedHero, 0, 0))
-				oldHero:Delete()
+				local unit = CreateUnitByName(player.selectedHero, Vector(0, 0, 0), true, nil, nil, player.team)
+				hero:SetUnit(unit)
+
+				if oldHero then
+					oldHero:Delete()
+				end
 
 				--LoadDefaultHeroItems(player.hero, self.GameItems)
 				local ultimate = self.AvailableHeroes[hero:GetName()].ultimate
@@ -142,11 +148,13 @@ function Round:CreateHeroes()
 				local spawnPoint = Entities:FindAllByName(self.SpawnPoints[i])[1]
 				hero:SetPos(spawnPoint:GetAbsOrigin())
 
+				MoveCameraToUnit(player.id, unit)
+
 				player.hero = hero
 
 				CustomGameEventManager:Send_ServerToPlayer(player.player, "update_heroes", {})
 			end
-		, i)
+		)
 	end
 end
 
@@ -178,7 +186,9 @@ function Round:Reset()
 	end
 
 	for _, player in pairs(self.Players) do
-	    player.hero:Hide()
+		if player.hero then
+		    player.hero:Hide()
+		end
 	end
 end
 

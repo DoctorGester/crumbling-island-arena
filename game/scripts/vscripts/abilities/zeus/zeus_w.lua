@@ -1,8 +1,7 @@
 zeus_w = class({})
 
 function zeus_w:OnSpellStart()
-	local hero = caster.hero
-
+	local hero = self:GetCaster().hero
 	local casterPos = hero:GetPos()
 	local target = self:GetCursorPosition()
 	local direction = (target - casterPos):Normalized()

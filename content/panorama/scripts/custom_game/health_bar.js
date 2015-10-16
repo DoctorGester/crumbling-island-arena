@@ -19,7 +19,6 @@ function HealthBar(elementId) {
 
 	this.SetEntity = function(entityId) {
 		this.entityId = entityId;
-		this.currentHealth = Math.round(Entities.GetHealth(this.entityId));
 
 		var maxHealth = Entities.GetMaxHealth(entityId)
 
@@ -49,22 +48,6 @@ function HealthBar(elementId) {
 			for (var i = 0; i < this.bars.length; i++) {
 				this.bars[i].SetAlive(this.currentHealth > i);
 			}
-		}
-	}
-
-	this.Damage = function(){
-		this.bars[this.currentHealth - 1].SetAlive(false);
-		this.currentHealth--;
-	}
-
-	this.Heal = function(){
-		this.bars[this.currentHealth].SetAlive(true);
-		this.currentHealth++;
-	}
-
-	this.Kill = function(){
-		for (var bar of this.bars) {
-			bar.SetAlive(false);
 		}
 	}
 }

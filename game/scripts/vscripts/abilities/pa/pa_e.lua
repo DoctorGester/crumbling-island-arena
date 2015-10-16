@@ -23,7 +23,7 @@ function pa_e:OnSpellStart()
 		end
 
 	local dashData = {}
-	dashData.unit = caster
+	dashData.hero = caster.hero
 	dashData.velocity = 1000
 	dashData.onArrival = 
 		function (unit)
@@ -34,7 +34,7 @@ function pa_e:OnSpellStart()
 
 				local facing = caster:GetForwardVector()
 				local secondDashData = {}
-				secondDashData.unit = caster
+				secondDashData.hero = caster.hero
 				secondDashData.velocity = 1000
 				secondDashData.heightFunction = heightFunc
 				secondDashData.onArrival = 

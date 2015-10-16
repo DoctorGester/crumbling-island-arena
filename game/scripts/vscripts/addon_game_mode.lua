@@ -285,6 +285,7 @@ function GameMode:OnGameInProgress()
 		if PlayerResource:IsValidPlayer(i) then
 			self.Players[i] = Player()
 			self.Players[i]:SetPlayerID(i)
+			self.Players[i]:SetTeam(self.Teams[i])
 		end
 	end
 

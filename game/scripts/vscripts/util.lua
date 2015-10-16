@@ -101,7 +101,6 @@ function SegmentCircleIntersection(start, finish, point, radius)
 	return dist:Length2D() <= radius
 end
 
-
 -- max height, full distance, current distance
 function ParabolaZ(h, d, x)
   return (4 * h / d) * (d - x) * (x / d)
@@ -129,6 +128,19 @@ function ImmediateEffect(path, attach, owner)
 	)
 	
 	return id
+end
+
+function MoveCameraToUnit(playerId, unit)
+	Timers:CreateTimer(
+		function()
+			PlayerResource:SetCameraTarget(playerId, unit)
+			Timers:CreateTimer(0.1, 
+				function()
+					PlayerResource:SetCameraTarget(playerId, nil)
+				end
+			)
+		end
+	)
 end
 
 function LoadDefaultHeroItems(hero, gameItems)

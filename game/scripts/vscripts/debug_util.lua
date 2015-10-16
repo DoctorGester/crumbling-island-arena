@@ -28,6 +28,13 @@ function OnHealDebugHero()
 	debugHero.unit:SetHealth(5)
 end
 
+function InjectFreeSelection()
+	Hero.SetOwner = function(self, owner)
+		self.owner = owner
+		self.unit:SetControllableByPlayer(owner.id, true)
+	end
+end
+
 function InjectHero(round)
 	PrecacheUnitByNameAsync("npc_dota_hero_zuus", function()
 		require("heroes/zeus")
@@ -114,6 +121,7 @@ function Debug:CheckAndEnableDebug(gameMode)
 	GameRules.GameMode.HeroSelection.SelectionTimerTime = 2000
 	GameRules.GameMode.HeroSelection.PreGameTime = 0
 	
+	InjectFreeSelection()
 	InjectHero(GameRules.GameMode.Round)
 	InjectEndCheck(GameRules.GameMode.Round)
 end

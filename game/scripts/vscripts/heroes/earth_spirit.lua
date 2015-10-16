@@ -85,3 +85,11 @@ function EarthSpirit:Damage(source)
 		self.remnantStand:Damage(self)
 	end
 end
+
+function EarthSpirit:Delete()
+	self.__base__.Delete(self)
+
+	for _, remnant in pairs(self.remnants) do
+		remnant:Destroy()
+	end
+end

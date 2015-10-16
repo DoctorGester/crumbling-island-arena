@@ -17,6 +17,8 @@ end
 
 function Hero:SetOwner(owner)
 	self.owner = owner
+	self.unit:SetControllableByPlayer(owner.id, true)
+	PlayerResource:SetOverrideSelectionEntity(owner.id, self.unit)
 end
 
 function Hero:GetName()
@@ -98,6 +100,7 @@ end
 
 function Hero:Delete()
 	self.unit:RemoveSelf()
+	self.destroyed = true
 end
 
 function Hero:Hide()
@@ -109,6 +112,14 @@ end
 function Hero:StartFalling()
 	self.falling = true
 	AddLevelOneAbility(self.unit, FALL_ABILITY)
+end
+
+function Hero:Update()
+	if self.owner and self.unit then
+		local pos = self:GetPos()
+		local to = Vector(pos.x, pos.y, 10000)
+		self.owner.player:GetAssignedHero():SetAbsOrigin(to)
+	end
 end
 
 -- return true if hero died

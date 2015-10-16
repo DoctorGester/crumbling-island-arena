@@ -34,7 +34,7 @@ function zeus_r:OnSpellStart()
 				end
 			)
 
-			EmitSoundOnLocationWithCaster(target, "Hero_Zuus.GodsWrath.Target")
+			EmitSoundOnLocationWithCaster(target, "Hero_Zuus.GodsWrath.Target", nil)
 		end
 	)
 end

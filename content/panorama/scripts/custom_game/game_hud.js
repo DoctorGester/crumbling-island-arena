@@ -31,7 +31,7 @@ function SetupUI(){
 }
 
 function GetLocalHero(){
-	return Players.GetPlayerHeroEntityIndex(Players.GetLocalPlayer());
+	return Players.GetLocalPlayerPortraitUnit();
 }
 
 function LoadHeroUI(){

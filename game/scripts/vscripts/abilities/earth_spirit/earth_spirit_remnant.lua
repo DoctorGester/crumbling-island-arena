@@ -28,7 +28,7 @@ end
 
 function EarthSpiritRemnant:FilterTarget(prev, pos, source, target)
 	if target == self or target == self.owner then return false end
-	if self.enemiesHit[target] > 0 then return false end
+	if self.enemiesHit[target] and self.enemiesHit[target] > 0 then return false end
 
 	if SegmentCircleIntersection(prev, pos, target:GetPos(), self:GetRad() + target:GetRad()) then
 		if target:__instanceof__(EarthSpiritRemnant) then
@@ -44,6 +44,7 @@ end
 
 function EarthSpiritRemnant:Update()
 	ParticleManager:SetParticleControl(self.effect, 0, self.position)
+	ParticleManager:SetParticleControl(self.healthCounter, 0, Vector(self.position.x, self.position.y, self.position.z + 200))
 
 	if self.owner.remnantStand == self then
 		self.owner:SetPos(Vector(self.position.x, self.position.y, self.position.z + 150))
@@ -89,7 +90,9 @@ function EarthSpiritRemnant:Remove()
 	ParticleManager:DestroyParticle(self.healthCounter, false)
 	ParticleManager:ReleaseParticleIndex(self.healthCounter)
 
-	self.owner:RemnantDestroyed(self)
+	if not self.owner.destroyed then
+		self.owner:RemnantDestroyed(self)
+	end
 end
 
 function EarthSpiritRemnant:Damage(source)

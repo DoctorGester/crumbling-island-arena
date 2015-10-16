@@ -3,6 +3,7 @@ Player = class({
 	hero = nil,
 	player = nil,
 	score = 0,
+	team = 0,
 	selectionLocked = false,
 	selectedHero = nil
 })
@@ -10,7 +11,8 @@ Player = class({
 function Player:SetPlayerID(id)
 	self.id = id
 	self.player = PlayerResource:GetPlayer(id)
-	self.hero = Hero()
-	self.hero:SetUnit(self.player:GetAssignedHero())
-	self.hero:SetOwner(self)
+end
+
+function Player:SetTeam(i)
+	self.team = i
 end

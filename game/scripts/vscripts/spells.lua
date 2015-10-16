@@ -24,6 +24,24 @@ function Spells:ThinkFunction(dt)
 		WorldMax = Vector(GetWorldMaxX(), GetWorldMaxY(), 0)
 	end
 
+	for i = #Projectiles, 1, -1 do
+		local projectile = Projectiles[i]
+
+		if projectile.destroyed then
+			projectile:Remove()
+			table.remove(Projectiles, i)
+		end
+	end
+
+	for i = #DynamicEntities, 1, -1 do
+		local entity = DynamicEntities[i]
+
+		if entity.destroyed then
+			entity:Remove()
+			table.remove(DynamicEntities, i)
+		end
+	end
+
 	for _, projectile in ipairs(Projectiles) do
 		projectile.prev = projectile.position
 
@@ -73,24 +91,6 @@ function Spells:ThinkFunction(dt)
 
 	for _, entity in ipairs(DynamicEntities) do
 		entity:Update()
-	end
-
-	for i = #Projectiles, 1, -1 do
-		local projectile = Projectiles[i]
-
-		if projectile.destroyed then
-			projectile:Remove()
-			table.remove(Projectiles, i)
-		end
-	end
-
-	for i = #DynamicEntities, 1, -1 do
-		local entity = DynamicEntities[i]
-
-		if entity.destroyed then
-			entity:Remove()
-			table.remove(DynamicEntities, i)
-		end
 	end
 
 	return THINK_PERIOD
@@ -287,6 +287,7 @@ function Spells:Dash(data)
 	data.onArrival = data.onArrival or function() end
 	data.from = data.hero:GetPos()
 	data.zStart = data.hero:GetGroundHeight(data.from)
+	data.findClearSpace = data.findClearSpace or true
 	data.positionFunction = data.positionFunction or 
 		function(position, data)
 			local diff = data.to - position
@@ -302,7 +303,7 @@ function Spells:Dash(data)
 				result.z = data.zStart + data.heightFunction(data.from, data.to, result)
 			end
 
-			data.hero:SetAbsOrigin(result)
+			data.hero:SetPos(result)
 
 			if (data.to - origin):Length2D() <= data.velocity then
 				if data.findClearSpace then
