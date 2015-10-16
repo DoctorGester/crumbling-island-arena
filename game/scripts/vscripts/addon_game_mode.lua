@@ -36,7 +36,6 @@ function Precache(context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_razor.vsndevts", context)
 
 	LinkLuaModifier("modifier_invis_fade", "abilities/modifier_invis_fade", LUA_MODIFIER_MOTION_NONE)
-	LinkLuaModifier("modifier_remnant", "abilities/modifier_remnant", LUA_MODIFIER_MOTION_NONE)
 end
 
 function Activate()

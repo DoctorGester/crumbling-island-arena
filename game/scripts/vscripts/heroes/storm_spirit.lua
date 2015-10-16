@@ -9,10 +9,9 @@ end
 
 function StormSpirit:CreateRemnant(location, facing)
 	local dummy = CreateUnitByName(self:GetName(), location, false, self.unit, nil, self.unit:GetTeamNumber())
-	local effectPath = "particles/units/heroes/hero_stormspirit/stormspirit_static_remnant.vpcf"
 
 	dummy:SetForwardVector(facing)
-	dummy:AddNewModifier(self.unit, nil, "modifier_remnant", { effect = effectPath })
+	dummy:AddNewModifier(self.unit, nil, "modifier_storm_spirit_remnant", {})
 	dummy:EmitSound("Hero_StormSpirit.StaticRemnantPlant")
 
 	table.insert(self.remnants, dummy)

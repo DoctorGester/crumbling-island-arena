@@ -1,4 +1,5 @@
 storm_spirit_q = class({})
+LinkLuaModifier("modifier_storm_spirit_remnant", "abilities/storm_spirit/modifier_storm_spirit_remnant", LUA_MODIFIER_MOTION_NONE)
 
 function storm_spirit_q:OnSpellStart()
 	local hero = self:GetCaster().hero

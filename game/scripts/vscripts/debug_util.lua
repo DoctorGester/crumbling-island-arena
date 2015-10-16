@@ -115,7 +115,7 @@ function Debug:CheckAndEnableDebug(gameMode)
 
 	GameRules.GameMode.Round.StageTwoTimerTime = 1500
 	GameRules.GameMode.Round.StageThreeTimerTime = 4000
-	GameRules.GameMode.Round.UltsTimerTime = 150
+	GameRules.GameMode.Round.UltsTimerTime = 15
 	GameRules.GameMode.Round.SuddenDeathTimerTime = 60000
 
 	GameRules.GameMode.HeroSelection.SelectionTimerTime = 2000

@@ -149,6 +149,7 @@
 			"model_folder" "models/heroes/storm_spirit"
 			"particle" "particles/storm_q/storm_q2.vpcf"
 			"particle" "particles/units/heroes/hero_stormspirit/stormspirit_static_remnant.vpcf"
+			"particle" "particles/status_fx/status_effect_ancestral_spirit.vpcf"
 		}
 	}
 
@@ -376,5 +377,10 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "earth_spirit_petrify"
 		"AbilityCooldown" "14.0"
+
+		"precache"
+		{
+			"particle" "particles/status_fx/status_effect_earth_spirit_petrify.vpcf"
+		}
 	}
 }
