@@ -118,7 +118,7 @@ function AddLevelOneAbility(hero, abilityName)
 end
 
 function ImmediateEffect(path, attach, owner)
-	local id = ParticleManager:CreateParticle(path, attach, owner)
+	local id = ParticleManager:CreateParticle(path, attach, owner.unit or owner)
 
 	Timers:CreateTimer(3, 
 		function()

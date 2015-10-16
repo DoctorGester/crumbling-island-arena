@@ -23,7 +23,7 @@ function zeus_w:OnSpellStart()
 	wallStart.z =  GetGroundHeight(wallStart, nil) + 32
 	wallEnd.z = GetGroundHeight(wallEnd, nil) + 32
 
-	local particle = ParticleManager:CreateParticle("particles/zeus_w2/zeus_w2.vpcf", PATTACH_CUSTOMORIGIN)
+	local particle = ParticleManager:CreateParticle("particles/zeus_w2/zeus_w2.vpcf", PATTACH_CUSTOMORIGIN, hero.unit)
 	ParticleManager:SetParticleControl(particle, 0, wallStart)
 	ParticleManager:SetParticleControl(particle, 1, wallEnd)
 
