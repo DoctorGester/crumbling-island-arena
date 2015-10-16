@@ -4,22 +4,25 @@ function EarthSpiritRemnant:constructor(owner)
 	DynamicEntity.constructor(self)
 	
 	self.owner = owner
+	self.unit = nil
 	self.health = 2
-	self.effect = nil
 	self.size = 48
+	self.falling = false
 	self.target = nil
 	self.enemiesHit = {}
 end
 
-function EarthSpiritRemnant:CreateEffect()
-	local sky = Vector(self.position.x, self.position.y, self.position.z + 2000)
-	self.effect = ParticleManager:CreateParticle("particles/units/heroes/hero_earth_spirit/espirit_stoneremnant.vpcf", PATTACH_CUSTOMORIGIN, nil)
-	ParticleManager:SetParticleControl(self.effect, 0, self.position)
-	ParticleManager:SetParticleControl(self.effect, 1, sky)
-
+function EarthSpiritRemnant:CreateCounter()
 	self.healthCounter = ParticleManager:CreateParticle("particles/earth_spirit_q/earth_spirit_q_counter.vpcf", PATTACH_CUSTOMORIGIN, nil)
 	ParticleManager:SetParticleControl(self.healthCounter, 0, Vector(self.position.x, self.position.y, self.position.z + 200))
 	ParticleManager:SetParticleControl(self.healthCounter, 1, Vector(0, self.health, 0))
+end
+
+function EarthSpiritRemnant:SetUnit(unit)
+	self.unit = unit
+	self.falling = true
+	
+	self.unit:SetAbsOrigin(self:GetPos())
 end
 
 function EarthSpiritRemnant:SetTarget(target)
@@ -43,12 +46,24 @@ function EarthSpiritRemnant:FilterTarget(prev, pos, source, target)
 end
 
 function EarthSpiritRemnant:Update()
-	ParticleManager:SetParticleControl(self.effect, 0, self.position)
 	ParticleManager:SetParticleControl(self.healthCounter, 0, Vector(self.position.x, self.position.y, self.position.z + 200))
+
+	if self.falling then
+		local pos = self:GetPos()
+		local ground = GetGroundHeight(pos, self.unit)
+		local z = math.max(ground, pos.z - 200)
+		self:SetPos(Vector(pos.x, pos.y, z))
+
+		if z == ground then
+			self.falling = false
+		end
+	end
 
 	if self.owner.remnantStand == self then
 		self.owner:SetPos(Vector(self.position.x, self.position.y, self.position.z + 150))
 	end
+
+	self.unit:SetAbsOrigin(self:GetPos())
 
 	for target, time in pairs(self.enemiesHit) do
 		self.enemiesHit[target] = time - 1
@@ -84,8 +99,7 @@ function EarthSpiritRemnant:Update()
 end
 
 function EarthSpiritRemnant:Remove()
-	ParticleManager:DestroyParticle(self.effect, false)
-	ParticleManager:ReleaseParticleIndex(self.effect)
+	self.unit:RemoveSelf()
 
 	ParticleManager:DestroyParticle(self.healthCounter, false)
 	ParticleManager:ReleaseParticleIndex(self.healthCounter)

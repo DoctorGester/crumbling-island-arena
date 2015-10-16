@@ -10,11 +10,24 @@ function earth_spirit_q:OnSpellStart()
 	local particle = ImmediateEffect("particles/units/heroes/hero_earth_spirit/espirit_magnetize_target.vpcf", PATTACH_CUSTOMORIGIN, caster)
 	ParticleManager:SetParticleControl(particle, 0, cursor)
 
+	local facing = cursor - caster:GetAbsOrigin()
+	local down = Vector(0, 0, -10000)
+	local unit = CreateUnitByName(caster:GetName(), down, false, nil, nil, caster:GetTeamNumber())
+	facing.z = 0
+	unit:AddNewModifier(unit, nil, "modifier_earth_spirit_remnant", {})
+	unit:SetForwardVector(facing)
+	unit:SetAbsOrigin(down)
+
+	StartAnimation(unit, {duration=1, activity=ACT_DOTA_VICTORY, rate=10})
+
 	Timers:CreateTimer(1,
 		function()
+			FreezeAnimation(unit)
+
 			local remnant = EarthSpiritRemnant(caster.hero)
-			remnant:SetPos(cursor)
-			remnant:CreateEffect()
+			remnant:SetPos(Vector(cursor.x, cursor.y, cursor.z + 600))
+			remnant:CreateCounter()
+			remnant:SetUnit(unit)
 
 			caster.hero:AddRemnant(remnant)
 			Spells:AddDynamicEntity(remnant)
