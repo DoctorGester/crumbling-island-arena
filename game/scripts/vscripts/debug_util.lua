@@ -113,7 +113,7 @@ function Debug:CheckAndEnableDebug(gameMode)
 	CustomGameEventManager:RegisterListener("debug_switch_end_check", function() enableEndCheck = not enableEndCheck end)
 	CustomGameEventManager:RegisterListener("debug_check_end", OnCheckEnd)
 
-	GameRules.GameMode.Round.StageTwoTimerTime = 1500
+	GameRules.GameMode.Round.StageTwoTimerTime = 150
 	GameRules.GameMode.Round.StageThreeTimerTime = 4000
 	GameRules.GameMode.Round.UltsTimerTime = 15
 	GameRules.GameMode.Round.SuddenDeathTimerTime = 60000

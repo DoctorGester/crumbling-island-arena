@@ -4,13 +4,7 @@ LinkLuaModifier("modifier_earth_spirit_e", "abilities/earth_spirit/modifier_eart
 function earth_spirit_e:OnSpellStart()
 	local target = self:GetCursorPosition()
 	local hero = self:GetCaster().hero
-	local exclude = {}
-
-	if hero:HasRemnantStand() then
-		exclude[hero:GetRemnantStand()] = true
-	end
-
-	local targetRemnant = hero:FindRemnant(target, 200, exclude)
+	local targetRemnant = EarthSpirit:FindNonStandRemnantCursor(self)
 	local hadStand = false
 	local facing = target - hero:GetPos()
 	facing.z = 0

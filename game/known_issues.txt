@@ -1,0 +1,7 @@
+- General: Jumping on cliff causes height bugs
+- General: dynamic entities do not fall down
+- ES: same with cliffs
+- PA: glaive isn't cleaned up
+- PA: code isn't in a class
+- PA: glaive isn't a dynamic entity
+- SS: remnants are not dynamic entities

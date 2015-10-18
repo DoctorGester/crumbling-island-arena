@@ -38,6 +38,17 @@ function EarthSpirit:FindRemnant(point, area, exclude)
 	return closest
 end
 
+function EarthSpirit:FindNonStandRemnantCursor(ability, location)
+	local hero = ability:GetCaster().hero
+	local exclude = {}
+
+	if hero:HasRemnantStand() then
+		exclude[hero:GetRemnantStand()] = true
+	end
+
+	return hero:FindRemnant(location or ability:GetCursorPosition(), 200, exclude)
+end
+
 function EarthSpirit:SetRemnantStand(remnant)
 	local source = self.unit:FindAbilityByName("earth_spirit_q")
 	
