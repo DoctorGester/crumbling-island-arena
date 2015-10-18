@@ -20,7 +20,7 @@ function earth_spirit_q:OnSpellStart()
 
 	StartAnimation(unit, {duration=1, activity=ACT_DOTA_VICTORY, rate=10})
 
-	Timers:CreateTimer(1,
+	Timers:CreateTimer(0.7,
 		function()
 			FreezeAnimation(unit)
 

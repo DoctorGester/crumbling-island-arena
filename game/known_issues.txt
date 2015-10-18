@@ -1,6 +1,10 @@
 - General: Jumping on cliff causes height bugs
 - General: dynamic entities do not fall down
-- ES: same with cliffs
+- General: don't use timers in general gameplay-wise stuff
+- General: projectiles destroy visual feedback
+- ES: remnants hitbox (test with zeus Q)
+- ES: remnants should not be dragged on cliffs
+- ES: visual effect on E start/end
 - PA: glaive isn't cleaned up
 - PA: code isn't in a class
 - PA: glaive isn't a dynamic entity
