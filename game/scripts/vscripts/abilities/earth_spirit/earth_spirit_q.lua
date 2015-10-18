@@ -27,37 +27,12 @@ function earth_spirit_q:OnSpellStart()
 			local remnant = EarthSpiritRemnant(caster.hero)
 			remnant:SetPos(Vector(cursor.x, cursor.y, cursor.z + 600))
 			remnant:CreateCounter()
-			remnant:SetUnit(unit)
+			remnant:SetUnit(unit, true)
 
 			caster.hero:AddRemnant(remnant)
 			Spells:AddDynamicEntity(remnant)
 
 			EmitSoundOnLocationWithCaster(cursor, "Hero_EarthSpirit.StoneRemnant.Impact", caster)
-
-			Timers:CreateTimer(0.1,
-				function()
-					particle = ImmediateEffect("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp.vpcf", PATTACH_CUSTOMORIGIN, caster)
-					ParticleManager:SetParticleControl(particle, 0, cursor)
-
-					GridNav:DestroyTreesAroundPoint(cursor, 256, true)
-					Spells:MultipleHeroesDamage(caster.hero, 
-						function (source, target)
-							local distance = (target:GetPos() - cursor):Length2D()
-
-							if target ~= source and target ~= remnant and distance <= 256 then
-								if target:__instanceof__(EarthSpiritRemnant) then
-									target:Destroy()
-									return false
-								end
-
-								return true
-							end
-						end
-					)
-
-					EmitSoundOnLocationWithCaster(cursor, "Arena.Earth.CastQ", caster)
-				end
-			)
 		end
 	)
 end

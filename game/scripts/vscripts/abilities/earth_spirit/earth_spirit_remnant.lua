@@ -6,9 +6,10 @@ function EarthSpiritRemnant:constructor(owner)
 	self.owner = owner
 	self.unit = nil
 	self.health = 2
-	self.size = 48
+	self.size = 64
 	self.falling = false
 	self.target = nil
+	self.speed = 0
 	self.enemiesHit = {}
 end
 
@@ -18,15 +19,24 @@ function EarthSpiritRemnant:CreateCounter()
 	ParticleManager:SetParticleControl(self.healthCounter, 1, Vector(0, self.health, 0))
 end
 
-function EarthSpiritRemnant:SetUnit(unit)
+function EarthSpiritRemnant:SetUnit(unit, fall)
 	self.unit = unit
-	self.falling = true
-	
+	self.falling = fall
+
 	self.unit:SetAbsOrigin(self:GetPos())
 end
 
 function EarthSpiritRemnant:SetTarget(target)
 	self.target = target
+
+	self.unit:EmitSound("Hero_EarthSpirit.RollingBoulder.Loop")
+end
+
+function EarthSpiritRemnant:RemoveTarget()
+	self.target = nil
+	self.speed = 0
+
+	self.unit:StopSound("Hero_EarthSpirit.RollingBoulder.Loop")
 end
 
 function EarthSpiritRemnant:FilterTarget(prev, pos, source, target)
@@ -45,6 +55,43 @@ function EarthSpiritRemnant:FilterTarget(prev, pos, source, target)
 	end
 end
 
+function EarthSpiritRemnant:EarthCollision()
+	local pos = self:GetPos()
+	ImmediateEffectPoint("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp.vpcf", PATTACH_CUSTOMORIGIN, self.owner, pos)
+	ImmediateEffectPoint("particles/units/heroes/hero_earth_spirit/earth_dust_hit.vpcf", PATTACH_CUSTOMORIGIN, self.owner, pos)
+
+	GridNav:DestroyTreesAroundPoint(pos, 256, true)
+	Spells:MultipleHeroesDamage(self.owner, 
+		function (source, target)
+			local distance = (target:GetPos() - pos):Length2D()
+
+			if target ~= source and target ~= self and distance <= 256 then
+				if target:__instanceof__(EarthSpiritRemnant) then
+					target:Destroy()
+					return false
+				end
+
+				return true
+			end
+		end
+	)
+
+	EmitSoundOnLocationWithCaster(pos, "Arena.Earth.CastQ", nil)
+end
+
+function EarthSpiritRemnant:Cracks()
+	local cracks = ParticleManager:CreateParticle("particles/econ/items/magnataur/shock_of_the_anvil/magnataur_shockanvil_cracks_sprt.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.owner.unit)
+	ParticleManager:SetParticleControl(cracks, 0, self:GetPos())
+	ParticleManager:SetParticleControl(cracks, 3, self:GetPos())
+
+	Timers:CreateTimer(0.1, 
+		function()
+			ParticleManager:DestroyParticle(cracks, false)
+			ParticleManager:ReleaseParticleIndex(cracks)
+		end
+	)
+end
+
 function EarthSpiritRemnant:Update()
 	ParticleManager:SetParticleControl(self.healthCounter, 0, Vector(self.position.x, self.position.y, self.position.z + 200))
 
@@ -56,6 +103,7 @@ function EarthSpiritRemnant:Update()
 
 		if z == ground then
 			self.falling = false
+			self:EarthCollision()
 		end
 	end
 
@@ -71,8 +119,10 @@ function EarthSpiritRemnant:Update()
 
 	if self.target then
 		if self.target.destroyed then
-			self.target = nil
+			self:RemoveTarget()
 		else
+			self:Cracks()
+
 			local pos = self:GetPos()
 			local diff = self.target:GetPos() - pos
 			if diff:Length2D() <= self:GetRad() + self.target:GetRad() then
@@ -81,10 +131,12 @@ function EarthSpiritRemnant:Update()
 					self.target:Destroy()
 				end
 
-				self.target = nil
+				self:RemoveTarget()
 			else
-				local velocity = diff:Normalized() * (800 / 30)
+				local velocity = diff:Normalized() * self.speed
 				local result = pos + velocity
+
+				self.speed = self.speed + 3
 
 				Spells:MultipleHeroesDamage(self, 
 					function (attacker, target)
@@ -98,11 +150,21 @@ function EarthSpiritRemnant:Update()
 	end
 end
 
+function EarthSpiritRemnant:SilentDestroy()
+	self.unit = nil
+	self:Destroy()
+end
+
 function EarthSpiritRemnant:Remove()
-	self.unit:RemoveSelf()
+	if self.unit then
+		self.unit:EmitSound("Arena.Earth.EndQ")
+		self.unit:RemoveSelf()
+	end
 
 	ParticleManager:DestroyParticle(self.healthCounter, false)
 	ParticleManager:ReleaseParticleIndex(self.healthCounter)
+
+	ImmediateEffectPoint("particles/units/heroes/hero_earth_spirit/earthspirit_petrify_shockwave.vpcf", PATTACH_CUSTOMORIGIN, self.owner, self:GetPos())
 
 	if not self.owner.destroyed then
 		self.owner:RemnantDestroyed(self)

@@ -90,7 +90,15 @@ function Spells:ThinkFunction(dt)
 	end
 
 	for _, entity in ipairs(DynamicEntities) do
-		entity:Update()
+		local status, err = pcall(
+			function(entity)
+				entity:Update()
+			end
+		, entity)
+
+		if not status then
+			print(err)
+		end
 	end
 
 	return THINK_PERIOD

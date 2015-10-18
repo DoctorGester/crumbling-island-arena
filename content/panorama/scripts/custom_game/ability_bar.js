@@ -197,21 +197,21 @@ function AbilityButton(parent, hero, ability) {
 	}
 
 	this.SetCooldown = function(remaining, cd, ready, activated) {
-		var color = "#0094FF";
-		var saturation = "1";
+		this.image.SetHasClass("AbilityButtonEnabled", true);
+		this.image.SetHasClass("AbilityButtonDeactivated", false);
+		this.image.SetHasClass("AbilityButtonOnCooldown", false);
 
 		if (!ready){
-			color = "red";
-			saturation = "0.25";
+			this.image.SetHasClass("AbilityButtonEnabled", false);
+			this.image.SetHasClass("AbilityButtonDeactivated", false);
+			this.image.SetHasClass("AbilityButtonOnCooldown", true);
 		}
 
 		if (!activated) {
-			color = "black";
-			saturation = "0.25";
+			this.image.SetHasClass("AbilityButtonEnabled", false);
+			this.image.SetHasClass("AbilityButtonDeactivated", true);
+			this.image.SetHasClass("AbilityButtonOnCooldown", false);
 		}
-
-		this.image.style.boxShadow = "0px 0px 5px 0px " + color;
-		this.image.style.saturation = saturation;
 
 		var progress = Math.round(remaining / cd * 100.0).toString();
 		var text = cd.toFixed(1);

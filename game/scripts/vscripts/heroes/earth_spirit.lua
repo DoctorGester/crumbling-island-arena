@@ -20,16 +20,18 @@ function EarthSpirit:RemnantDestroyed(remnant)
 	table.remove(self.remnants, GetIndex(self.remnants, remnant)) 
 end
 
-function EarthSpirit:FindRemnant(point, area)
+function EarthSpirit:FindRemnant(point, area, exclude)
 	local closest = nil
 	local distance = 64000
 
 	for _, value in pairs(self.remnants) do
-		local toRemnant = (point - value:GetPos()):Length2D()
+		if not exclude or not exclude[value] then
+			local toRemnant = (point - value:GetPos()):Length2D()
 
-		if toRemnant <= distance and (not area or toRemnant <= area) then
-			closest = value
-			distance = toRemnant
+			if toRemnant <= distance and (not area or toRemnant <= area) then
+				closest = value
+				distance = toRemnant
+			end
 		end
 	end
 

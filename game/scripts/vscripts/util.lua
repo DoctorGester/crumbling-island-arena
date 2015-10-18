@@ -130,6 +130,10 @@ function ImmediateEffect(path, attach, owner)
 	return id
 end
 
+function ImmediateEffectPoint(path, attach, owner, point)
+	ParticleManager:SetParticleControl(ImmediateEffect(path, attach, owner), 0, point)
+end
+
 function MoveCameraToUnit(playerId, unit)
 	Timers:CreateTimer(
 		function()

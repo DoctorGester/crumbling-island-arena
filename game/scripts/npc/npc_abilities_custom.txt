@@ -347,6 +347,8 @@
 			"particle" "particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp.vpcf"
 			"particle" "particles/units/heroes/hero_earth_spirit/espirit_magnetize_target.vpcf"
 			"particle" "particles/earth_spirit_q/earth_spirit_q_counter.vpcf"
+			"particle" "particles/units/heroes/hero_earth_spirit/earth_dust_hit.vpcf"
+			"particle" "particles/units/heroes/hero_earth_spirit/earthspirit_petrify_shockwave.vpcf"
 		}
 	}
 
@@ -357,6 +359,12 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "earth_spirit_geomagnetic_grip"
 		"AbilityCooldown" "7.0"
+		"AbilityCastRange" "1800"
+
+		"precache"
+		{
+			"particle" "particles/econ/items/magnataur/shock_of_the_anvil/magnataur_shockanvil_cracks_sprt.vpcf"
+		}
 	}
 
 	"earth_spirit_e"
@@ -377,10 +385,12 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "earth_spirit_petrify"
 		"AbilityCooldown" "14.0"
+		"AbilityCastRange" "2400"
 
 		"precache"
 		{
 			"particle" "particles/status_fx/status_effect_earth_spirit_petrify.vpcf"
+			"particle" "particles/units/heroes/hero_earth_spirit/espirit_magnet_arclightning.vpcf"
 		}
 	}
 }

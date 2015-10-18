@@ -4,7 +4,13 @@ LinkLuaModifier("modifier_earth_spirit_e", "abilities/earth_spirit/modifier_eart
 function earth_spirit_e:OnSpellStart()
 	local target = self:GetCursorPosition()
 	local hero = self:GetCaster().hero
-	local targetRemnant = hero:FindRemnant(target, 200)
+	local exclude = {}
+
+	if hero:HasRemnantStand() then
+		exclude[hero:GetRemnantStand()] = true
+	end
+
+	local targetRemnant = hero:FindRemnant(target, 200, exclude)
 	local hadStand = false
 	local facing = target - hero:GetPos()
 	facing.z = 0
@@ -21,6 +27,8 @@ function earth_spirit_e:OnSpellStart()
 		hero:RemoveRemnantStand()
 	end
 
+	hero:EmitSound("Arena.Earth.CastE.Loop")
+
 	local dashData = {}
 	dashData.hero = hero
 	dashData.to = target
@@ -29,6 +37,7 @@ function earth_spirit_e:OnSpellStart()
 	dashData.onArrival = 
 		function (hero)
 			hero:RemoveModifier("modifier_earth_spirit_e")
+			hero:StopSound("Arena.Earth.CastE.Loop")
 
 			if targetRemnant and not targetRemnant.destroyed then
 				hero:SetRemnantStand(targetRemnant)

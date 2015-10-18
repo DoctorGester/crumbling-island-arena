@@ -1,11 +1,6 @@
 earth_spirit_r = class({})
 LinkLuaModifier("modifier_earth_spirit_remnant", "abilities/earth_spirit/modifier_earth_spirit_remnant", LUA_MODIFIER_MOTION_NONE)
 
-function earth_spirit_r:OnSpellStart()
-	local caster = self:GetCaster()
-	local target = self:GetCursorPosition()
-end
-
 function earth_spirit_r:GetChannelAnimation()
 	return ACT_DOTA_CAST_ABILITY_5
 end
@@ -14,8 +9,42 @@ function earth_spirit_r:GetChannelTime()
 	return 0.5
 end
 
+function earth_spirit_r:OnSpellStart()
+	self:GetCaster().hero:EmitSound("Arena.Earth.CastR")
+end
+
 function earth_spirit_r:OnChannelFinish()
 	local hero = self:GetCaster().hero
+	local remnant = hero:FindRemnant(self:GetCursorPosition())
 
-	hero:AddNewModifier(hero, self, "modifier_earth_spirit_remnant", { duration = 3 })
+	if not remnant then return end
+
+	local particlePath = "particles/units/heroes/hero_earth_spirit/espirit_magnet_arclightning.vpcf"
+	local particle = ImmediateEffect(particlePath, PATTACH_CUSTOMORIGIN, self:GetCaster())
+	ParticleManager:SetParticleControl(particle, 0, hero:GetPos())
+	ParticleManager:SetParticleControl(particle, 1, remnant:GetPos())
+
+	local remnantUnit = remnant.unit
+	remnant:SetPos(hero:GetPos())
+	remnant:SetUnit(hero.unit, hero:HasRemnantStand())
+
+	if hero:HasRemnantStand() then
+		local stand = hero:GetRemnantStand()
+		hero:RemoveRemnantStand()
+		stand:Destroy()
+	end
+
+	hero:EmitSound("Arena.Earth.FinishR")
+	hero:AddNewModifier(hero, self, "modifier_earth_spirit_remnant", {})
+	FreezeAnimation(hero.unit)
+
+	remnantUnit:RemoveModifierByName("modifier_earth_spirit_remnant")
+	remnantUnit:FindAbilityByName(self:GetAbilityName()):StartCooldown(self:GetCooldown(1))
+	hero:SetUnit(remnantUnit)
+	hero:SetOwner(hero.owner) -- Just refreshing control
+	hero:Setup()
+
+	remnantUnit:SetHealth(3 * remnant.health)
+
+	CustomGameEventManager:Send_ServerToPlayer(hero.owner.player, "update_heroes", {})
 end

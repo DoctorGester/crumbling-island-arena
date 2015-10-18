@@ -26,6 +26,12 @@ function modifier_earth_spirit_remnant:DeclareFunctions()
 	return funcs
 end
 
+function modifier_earth_spirit_remnant:OnDestroy()
+	if IsServer() then
+		UnfreezeAnimation(self:GetParent())
+	end
+end
+
 function modifier_earth_spirit_remnant:GetOverrideAnimation(params)
 	return ACT_DOTA_VICTORY
 end
