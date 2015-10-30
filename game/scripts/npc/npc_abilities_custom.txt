@@ -393,4 +393,49 @@
 			"particle" "particles/units/heroes/hero_earth_spirit/espirit_magnet_arclightning.vpcf"
 		}
 	}
+
+	"cm_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/cm/cm_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "crystal_maiden_brilliance_aura"
+		"AbilityCooldown" "4.0"
+		"AbilityCastRange" "1200"
+	}
+
+	"cm_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/cm/cm_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "crystal_maiden_brilliance_aura"
+		"AbilityCooldown" "4.0"
+		"AbilityCastRange" "700"
+		"VectorTarget"
+		{
+			"PointOfCast" "midpoint"
+		}
+	}
+
+	"cm_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/cm/cm_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "crystal_maiden_brilliance_aura"
+		"AbilityCooldown" "4.0"
+		"AbilityCastRange" "800"
+	}
+
+	"cm_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/cm/cm_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "crystal_maiden_brilliance_aura"
+		"AbilityCooldown" "4.0"
+		"AbilityCastRange" "300"
+	}
 }

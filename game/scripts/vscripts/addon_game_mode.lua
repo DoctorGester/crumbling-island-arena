@@ -1,5 +1,6 @@
 require('lib/timers')
 require('lib/animations')
+require("lib/vector_target")
 require('misc')
 require('util')
 
@@ -38,11 +39,14 @@ function Precache(context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_bristleback.vsndevts", context)
 
 	LinkLuaModifier("modifier_invis_fade", "abilities/modifier_invis_fade", LUA_MODIFIER_MOTION_NONE)
+
+	VectorTarget:Precache(context)
 end
 
 function Activate()
 	GameRules.GameMode = GameMode()
 	GameRules.GameMode:SetupMode()
+	VectorTarget:Init()
 end
 
 function GameMode:OnThink()

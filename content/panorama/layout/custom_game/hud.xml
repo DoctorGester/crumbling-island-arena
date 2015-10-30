@@ -8,6 +8,7 @@
 		<include src="file://{resources}/scripts/custom_game/ability_bar.js" />
 		<include src="file://{resources}/scripts/custom_game/health_bar.js" />
 		<include src="file://{resources}/scripts/custom_game/game_hud.js" />
+		<include src="file://{resources}/scripts/custom_game/vector_target.js" />
 	</scripts>
 	<Panel class="MainPanel" hittest="false">
 		<Image src="file://{images}/custom_game/pa_e.png" style="opacity:0.0;"/>

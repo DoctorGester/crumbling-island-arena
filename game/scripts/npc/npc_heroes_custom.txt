@@ -160,18 +160,11 @@
 		"AttributeBaseStrength"	"0"
 		"AttributeBaseIntelligence" "0"
 		
-		"Ability1" "zeus_q"
-		"Ability2" "zeus_w"
-		"Ability3" "zeus_e"
-		"Ability4" "zeus_r"
+		"Ability1" "cm_q"
+		"Ability2" "cm_w"
+		"Ability3" "cm_e"
+		"Ability4" "cm_r"
 
-		"Ultimate" "zeus_r"
-		"CustomIcons"
-		{
-			"zeus_q" "zeus_q.png"
-			"zeus_w" "zeus_w.png"
-			"zeus_e" "zeus_e.png"
-			"zeus_r" "zeus_r.png"
-		}
+		"Ultimate" "cm_r"
 	}
 }

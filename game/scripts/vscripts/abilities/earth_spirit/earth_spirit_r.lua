@@ -45,8 +45,6 @@ function earth_spirit_r:OnChannelFinish()
 	hero:Setup()
 
 	remnantUnit:SetHealth(3 * remnant.health)
-
-	CustomGameEventManager:Send_ServerToPlayer(hero.owner.player, "update_heroes", {})
 end
 
 function earth_spirit_r:CastFilterResultLocation(location)

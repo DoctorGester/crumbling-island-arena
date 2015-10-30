@@ -151,8 +151,6 @@ function Round:CreateHeroes()
 				MoveCameraToUnit(player.id, unit)
 
 				player.hero = hero
-
-				CustomGameEventManager:Send_ServerToPlayer(player.player, "update_heroes", {})
 			end
 		)
 	end

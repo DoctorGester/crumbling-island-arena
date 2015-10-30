@@ -3,6 +3,7 @@
 var dummy = "npc_dota_hero_wisp";
 
 var availableHeroes = {};
+var currentHero = null;
 var abilityBar = null;
 var buffBar = null;
 var healthBar = null;
@@ -34,9 +35,7 @@ function GetLocalHero(){
 	return Players.GetLocalPlayerPortraitUnit();
 }
 
-function LoadHeroUI(){
-	var heroId = GetLocalHero();
-
+function LoadHeroUI(heroId){
 	if (abilityBar == null) {
 		abilityBar = new AbilityBar("#AbilityPanel");
 	}
@@ -76,8 +75,15 @@ function LoadCustomIcons(){
 	}
 }
 
-function UpdateCooldowns(){
-	$.Schedule(0.025, UpdateCooldowns);
+function UpdateUI(){
+	$.Schedule(0.025, UpdateUI);
+
+	var localHero = GetLocalHero();
+
+	if (localHero != currentHero) {
+		currentHero = localHero;
+		LoadHeroUI(localHero);
+	}
 
 	if (healthBar != null) {
 		healthBar.Update();
@@ -139,10 +145,6 @@ function FillDebugPanel(){
 	AddDebugButton("Switch end check", function(){
 		GameEvents.SendCustomGameEventToServer("debug_switch_end_check", {});
 	});
-
-	AddDebugButton("Reload hero UI", function () {
-		LoadHeroUI();
-	});
 }
 
 function DebugUpdate(data){
@@ -159,8 +161,6 @@ function GameInfoChanged(data){
 	if (data.state == GAME_STATE_ROUND_IN_PROGRESS){
 		$("#HeroPanel").RemoveClass("AnimationHeroHudHidden");
 		$("#TimersPanel").RemoveClass("AnimationTimersHidden");
-
-		LoadHeroUI();
 	} else {
 		$("#HeroPanel").AddClass("AnimationHeroHudHidden");
 		$("#TimersPanel").AddClass("AnimationTimersHidden");
@@ -174,14 +174,10 @@ function HeroesUpdate(data){
 SetupUI();
 
 (function () {
-	GameEvents.Subscribe("update_heroes", LoadHeroUI);
-
 	SubscribeToNetTableKey("main", "debug", true, DebugUpdate)
 	SubscribeToNetTableKey("main", "heroes", true, HeroesUpdate);
 	SubscribeToNetTableKey("main", "timers", true, GameTimersUpdate);
 	SubscribeToNetTableKey("main", "gameInfo", true, GameInfoChanged);
 
-	UpdateCooldowns();
-
-	//GameEvents.Subscribe("dota_player_update_selected_unit", LoadHeroUI);
+	UpdateUI();
 })();
