@@ -4,6 +4,7 @@ function cm_e:OnSpellStart()
 	local hero = self:GetCaster().hero
 	local target = self:GetCursorPosition()
 	local direction = target - hero:GetPos()
+	local ability = self
 
 	if direction:Length2D() == 0 then
 		direction = hero:GetFacing()

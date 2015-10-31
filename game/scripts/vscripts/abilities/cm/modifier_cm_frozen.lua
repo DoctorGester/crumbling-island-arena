@@ -34,3 +34,7 @@ end
 function modifier_cm_frozen:IsStunDebuff()
 	return true
 end
+
+function modifier_cm_frozen:GetTexture()
+	return "crystal_maiden_frostbite"
+end
