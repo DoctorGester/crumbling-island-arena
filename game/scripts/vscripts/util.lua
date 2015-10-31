@@ -30,6 +30,10 @@ function Shuffle(table)
     end
 end
 
+function IsLeft(a, b, c)
+     return ((b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x)) > 0
+end
+
 function RelativeCCW(x1, y1, x2, y2, px, py)
 	x2 = x2 - x1
 	y2 = y2 - y1
@@ -131,7 +135,9 @@ function ImmediateEffect(path, attach, owner)
 end
 
 function ImmediateEffectPoint(path, attach, owner, point)
-	ParticleManager:SetParticleControl(ImmediateEffect(path, attach, owner), 0, point)
+	local effect = ImmediateEffect(path, attach, owner)
+	ParticleManager:SetParticleControl(effect, 0, point)
+	return effect
 end
 
 function MoveCameraToUnit(playerId, unit)
@@ -145,6 +151,23 @@ function MoveCameraToUnit(playerId, unit)
 			)
 		end
 	)
+end
+
+function KnockbackUnit(unit, origin, duration, distance, height, should_stun)
+	local modifierKnockback = {
+		center_x = origin.x,
+		center_y = origin.y,
+		center_z = origin.z,
+		knockback_duration = duration,
+		knockback_distance = distance,
+		knockback_height = height,
+		duration = duration,
+	}
+	if should_stun then
+		modifierKnockback.should_stun = 1
+	end
+	unit = unit.unit or unit
+	unit:AddNewModifier(unit, nil, "modifier_knockback", modifierKnockback)
 end
 
 function LoadDefaultHeroItems(hero, gameItems)

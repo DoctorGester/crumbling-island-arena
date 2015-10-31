@@ -477,4 +477,67 @@
 			"particle" "particles/status_fx/status_effect_frost_lich.vpcf"
 		}
 	}
+
+	"sven_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/sven/sven_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "sven_great_cleave"
+		"AbilityCooldown" "1.8"
+		"AbilityCastPoint" "0.4"
+
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_riki/riki_backstab_hit_blood.vpcf"
+		}
+	}
+
+	"sven_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/sven/sven_w"
+		"AbilityTextureName" "sven_warcry"
+		"AbilityCooldown" "6.0"
+		"AbilityCastRange" "500"
+		"AbilityCastPoint" "0.2"
+
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_beastmaster/beastmaster_primal_roar.vpcf"
+		}
+	}
+
+	"sven_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/sven/sven_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "sven_storm_bolt"
+		"AbilityCastRange" "800"
+		"AbilityCooldown" "6.0"
+
+		"precache"
+		{
+			"particle" "particles/econ/items/sven/sven_warcry_ti5/sven_spell_warcry_ti_5.vpcf"
+			"particle" "particles/econ/items/rubick/rubick_force_gold_ambient/rubick_telekinesis_force_dust_gold.vpcf"
+			"particle" "particles/econ/items/earthshaker/earthshaker_gravelmaw/earthshaker_fissure_dust_gravelmaw.vpcf"
+		}
+	}
+
+	"sven_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/sven/sven_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "sven_gods_strength"
+		"AbilityCooldown" "14.0"
+
+		"precache"
+		{
+			"particle" "particles/status_fx/status_effect_gods_strength.vpcf"
+			"particle" "particles/units/heroes/hero_sven/sven_spell_gods_strength.vpcf"
+		}
+	}
 }

@@ -33,6 +33,7 @@ end
 function Precache(context)
 	PrecacheResource("model", "models/development/invisiblebox.vmdl", context)
 	PrecacheResource("particle", "particles/units/heroes/hero_stormspirit/stormspirit_static_remnant.vpcf", context)
+	PrecacheResource("particle", "particles/ui/ui_generic_treasure_impact.vpcf", context)
 	PrecacheResource("soundfile", "soundevents/custom_sounds.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_razor.vsndevts", context)
 	PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts", context)

@@ -69,6 +69,9 @@ function Spells:ThinkFunction(dt)
 									projectile:Destroy()
 									second:ProjectileCollision(projectile)
 									second:Destroy()
+
+									local between = projectile.position + (second.position - projectile.position) / 2
+									Spells:ProjectileDestroyEffect(projectile.owner, between + Vector(0, 0, 64))
 								end
 							end
 						end
@@ -114,6 +117,12 @@ SpellThinker:SetThink("ThinkFunction", Spells, "SpellsThink", THINK_PERIOD)
 function Spells:ProjectileDamage(projectile, target)
 	target:Damage(projectile.owner)
 	GameRules.GameMode.Round:CheckEndConditions()
+end
+
+function Spells:ProjectileDestroyEffect(owner, pos)
+	ImmediateEffectPoint("particles/ui/ui_generic_treasure_impact.vpcf", PATTACH_ABSORIGIN, owner, pos)
+	local deny = ImmediateEffectPoint("particles/msg_fx/msg_deny.vpcf", PATTACH_CUSTOMORIGIN, owner, pos)
+	ParticleManager:SetParticleControl(deny, 3, Vector(200, 0, 0))
 end
 
 function Spells:GetValidTargets()

@@ -169,4 +169,30 @@
 
 		"Ultimate" "cm_r"
 	}
+
+	"npc_dota_hero_sven"
+	{
+		"override_hero"	"npc_dota_hero_sven"
+		"Class" "heroes/sven:Sven"
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
+		"BountyXP"	"0"
+		"MovementSpeed"	"400"
+		"MovementTurnRate"	"10"
+		"StatusHealth"	"5"
+		"StatusHealthRegen"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"AttributeBaseStrength"	"0"
+		"AttributeBaseIntelligence" "0"
+		
+		"Ability1" "sven_q"
+		"Ability2" "sven_w"
+		"Ability3" "sven_e"
+		"Ability4" "sven_r"
+
+		"Ultimate" "sven_r"
+	}
 }
