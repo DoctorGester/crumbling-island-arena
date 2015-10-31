@@ -16,6 +16,7 @@
 	"HeroTips_npc_dota_hero_earth_spirit"			"His main power is his Q stones<br>W acts differently while being on a ground/stone<br>Jump on a stone with E to gain stone protection<br>R heals fully if target stoned is undamaged"
 
 	"HeroName_npc_dota_hero_sven"					"The Devil"
+	"HeroTips_npc_dota_hero_sven"					"Powerful short-range warrior<br>Silences and slows with his W<br>Can't be damaged while in E<br>Resets cooldowns and empowers abilities with R"
 
 	"RecentScore"									"+{d:score}"
 

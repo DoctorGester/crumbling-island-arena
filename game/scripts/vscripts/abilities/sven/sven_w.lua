@@ -61,12 +61,15 @@ function sven_w:OnSpellStart()
 	end
 
 	self:RemoveAnimationTranslation()
-	self:Shout(direction)
+	
 
-	if hero:IsEnraged() then
-		self:Shout(-direction)
-		self:Shout(Vector(-direction.y, direction.x))
-		self:Shout(Vector(direction.y, -direction.x))
+	if not hero:IsEnraged() then
+		self:Shout(direction)
+	else
+		for i = 0, 8 do
+			local an = math.pi / 4 * i
+			self:Shout(Vector(math.cos(an), math.sin(an)))
+		end
 	end
 
 	hero:EmitSound("Arena.Sven.CastW")
