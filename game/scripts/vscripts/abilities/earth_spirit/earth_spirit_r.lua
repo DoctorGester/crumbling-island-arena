@@ -13,7 +13,9 @@ function earth_spirit_r:OnSpellStart()
 	self:GetCaster().hero:EmitSound("Arena.Earth.CastR")
 end
 
-function earth_spirit_r:OnChannelFinish()
+function earth_spirit_r:OnChannelFinish(interrupted)
+	if interrupted then return end
+	
 	local hero = self:GetCaster().hero
 	local remnant = hero:FindRemnant(self:GetCursorPosition(), 200)
 
