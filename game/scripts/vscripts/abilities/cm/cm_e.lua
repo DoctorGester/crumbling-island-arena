@@ -16,7 +16,7 @@ function cm_e:OnSpellStart()
 	projectileData.to = target
 	projectileData.velocity = 700
 	projectileData.graphics = "particles/cm/cm_e.vpcf"
-	projectileData.distance = 1000
+	projectileData.distance = 1100
 	projectileData.empowered = false
 	projectileData.radius = 64
 	projectileData.heroBehaviour =
@@ -40,6 +40,7 @@ function cm_e:OnSpellStart()
 		function (projectile)
 			hero:StopSound("Arena.CM.LoopE")
 			hero:SwapAbilities("cm_e_sub", "cm_e")
+			hero:SetIcePath(nil)
 			projectile:Destroy()
 		end
 
