@@ -41,6 +41,7 @@ function sven_w:Shout(direction)
 	local effect = ImmediateEffect("particles/units/heroes/hero_beastmaster/beastmaster_primal_roar.vpcf", PATTACH_CUSTOMORIGIN, hero)
 	ParticleManager:SetParticleControl(effect, 0, hero:GetPos())
 	ParticleManager:SetParticleControl(effect, 1, target)
+	ParticleManager:SetParticleControlForward(effect, 0, direction:Normalized())
 
 	Spells:MultipleHeroesModifier(hero, self, "modifier_sven_w_slow", { duration = "2" },
 		function (source, heroTarget)
