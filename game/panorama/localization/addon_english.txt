@@ -1,11 +1,19 @@
 "addon"
 {
 	"HeroName_npc_dota_hero_phantom_assassin"		"The Moon"
-	"HeroTips_npc_dota_hero_phantom_assassin"		"Throws glaive<br>Can quickly return it<br>Close range AOE strike<br>Can double jump, leaving glaive behind<br>Invisibility"
+	"HeroTips_npc_dota_hero_phantom_assassin"		"Throws glaive<br>Can quickly return it<br>W is close range AOE strike<br>Reactivate E to perform a double jump, leaving glaive behind<br>R speeds up Q and gives invisibility"
 
-	"HeroName_npc_dota_hero_storm_spirit"			"The Devil"
-	"HeroName_npc_dota_hero_zuus"					"The Magician"
-	"HeroName_npc_dota_hero_earth_spirit"			"The Tower"	
+	"HeroName_npc_dota_hero_crystal_maiden"			"The High Priestess"
+	"HeroTips_npc_dota_hero_crystal_maiden"			"All abilities freeze targets<br>Abilities deal damage only to frozen targets<br>W requires two clicks to cast<br>Reactivate E to teleport to it<br>R slows more, the closer enemy to it's center"
+
+	"HeroName_npc_dota_hero_storm_spirit"			"Temperance"
+	"HeroTips_npc_dota_hero_storm_spirit"			"Q spawns a remnant in a target point<br>Remnants do not expire<br>Both W and E require remnants to function<br>R requires dead remnants"
+
+	"HeroName_npc_dota_hero_zuus"					"Judgement"
+	"HeroTips_npc_dota_hero_zuus"					"Q is a weak skillshot, but can be empowered with W<br>If empowered Q hits a target, its cooldown is reset<br>E deals damage only when it passes through W"
+
+	"HeroName_npc_dota_hero_earth_spirit"			"The Emperor"
+	"HeroTips_npc_dota_hero_earth_spirit"			"His main power is his Q stones<br>W acts differently while being on a ground/stone<br>Jump on a stone with E to gain stone protection<br>R heals fully if target stoned is undamaged"
 
 	"RecentScore"									"+{d:score}"
 
