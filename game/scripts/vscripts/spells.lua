@@ -55,13 +55,6 @@ function Spells:ThinkFunction(dt)
 		if not projectile.destroyed then
 			local status, err = pcall(
 				function(projectile)
-					projectile.position = pos
-					projectile.dummy:SetAbsOrigin(projectile.position)
-
-					if not projectile.destroyed then
-						projectile:MoveEvent(projectile.prev, projectile.position)
-					end
-
 					if not projectile.destroyed then
 						projectile:DealDamage(projectile.prev, projectile.position)
 					end
@@ -80,6 +73,14 @@ function Spells:ThinkFunction(dt)
 							end
 						end
 					end
+
+					projectile.position = pos
+					projectile.dummy:SetAbsOrigin(projectile.position)
+
+					if not projectile.destroyed then
+						projectile:MoveEvent(projectile.prev, projectile.position)
+					end
+
 				end
 			, projectile)
 

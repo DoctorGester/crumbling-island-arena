@@ -49,6 +49,10 @@ function Hero:FindModifier(name)
 	return self.unit:FindModifierByName(name)
 end
 
+function Hero:GetFacing()
+	return self.unit:GetForwardVector()
+end
+
 function Hero:SetPos(pos)
 	self.unit:SetAbsOrigin(pos)
 end
@@ -63,6 +67,10 @@ end
 
 function Hero:StopSound(sound)
 	self.unit:StopSound(sound)
+end
+
+function Hero:SwapAbilities(from, to)
+	self.unit:SwapAbilities(from, to, false, true)
 end
 
 function Hero:Damage(source)

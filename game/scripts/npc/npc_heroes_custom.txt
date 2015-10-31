@@ -146,6 +146,7 @@
 	"npc_dota_hero_crystal_maiden"
 	{
 		"override_hero"	"npc_dota_hero_crystal_maiden"
+		"Class" "heroes/cm:CM"
 		"ArmorPhysical"	"0"
 		"MagicalResistance"	"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
@@ -163,7 +164,8 @@
 		"Ability1" "cm_q"
 		"Ability2" "cm_w"
 		"Ability3" "cm_e"
-		"Ability4" "cm_r"
+		"Ability4" "cm_e_sub"
+		"Ability5" "cm_r"
 
 		"Ultimate" "cm_r"
 	}
