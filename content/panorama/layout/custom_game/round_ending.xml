@@ -1,13 +1,13 @@
 ﻿<root>
-	<styles>
-		<include src="file://{resources}/styles/custom_game/round_ending.css" />
-	</styles>
-	<scripts>
-		<include src="file://{resources}/scripts/custom_game/util.js" />
-		<include src="file://{resources}/scripts/custom_game/simple_panel_animation.js" />
-		<include src="file://{resources}/scripts/custom_game/round_ending.js" />
-	</scripts>
-	<Panel class="RoundEndingBackground" hittest="false">
-		<Label html="true" hittest="false" id="ResultMessage"/>
-	</Panel>
+    <styles>
+        <include src="file://{resources}/styles/custom_game/round_ending.css" />
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/util.js" />
+        <include src="file://{resources}/scripts/custom_game/simple_panel_animation.js" />
+        <include src="file://{resources}/scripts/custom_game/round_ending.js" />
+    </scripts>
+    <Panel class="RoundEndingBackground" hittest="false">
+        <Label html="true" hittest="false" id="ResultMessage"/>
+    </Panel>
 </root>

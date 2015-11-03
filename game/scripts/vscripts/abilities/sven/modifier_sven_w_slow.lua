@@ -1,34 +1,34 @@
 modifier_sven_w_slow = class({})
 
 function modifier_sven_w_slow:IsDebuff()
-	return true
+    return true
 end
 
 function modifier_sven_w_slow:DeclareFunctions()
-	local funcs = {
-		MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
-	}
+    local funcs = {
+        MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
+    }
 
-	return funcs
+    return funcs
 end
 
 
 function modifier_sven_w_slow:CheckState()
-	local state = {
-		[MODIFIER_STATE_SILENCED] = true
-	}
+    local state = {
+        [MODIFIER_STATE_SILENCED] = true
+    }
 
-	return state
+    return state
 end
 
 function modifier_sven_w_slow:GetEffectName()
-	return "particles/generic_gameplay/generic_silence.vpcf"
+    return "particles/generic_gameplay/generic_silence.vpcf"
 end
- 
+
 function modifier_sven_w_slow:GetEffectAttachType()
-	return PATTACH_OVERHEAD_FOLLOW
+    return PATTACH_OVERHEAD_FOLLOW
 end
- 
+
 function modifier_sven_w_slow:GetModifierMoveSpeedBonus_Percentage(params)
-	return -80
+    return -80
 end

@@ -1,48 +1,48 @@
 zeus_w = class({})
 
 function zeus_w:OnSpellStart()
-	local hero = self:GetCaster().hero
-	local casterPos = hero:GetPos()
-	local target = self:GetCursorPosition()
-	local direction = (target - casterPos):Normalized()
+    local hero = self:GetCaster().hero
+    local casterPos = hero:GetPos()
+    local target = self:GetCursorPosition()
+    local direction = (target - casterPos):Normalized()
 
-	if direction:Length2D() == 0 then
-		direction = hero:GetFacing()
-	end
-	
-	casterPos.z = 0
-	direction.z = 0
+    if direction:Length2D() == 0 then
+        direction = hero:GetFacing()
+    end
 
-	local wallCenter = casterPos + direction * 300
-	local offset = Vector(-direction.y, direction.x, 0)
-	local wallStart = wallCenter + offset * 250
-	local wallEnd = wallCenter - offset * 250
+    casterPos.z = 0
+    direction.z = 0
 
-	hero:SetWall(wallStart, wallEnd)
+    local wallCenter = casterPos + direction * 300
+    local offset = Vector(-direction.y, direction.x, 0)
+    local wallStart = wallCenter + offset * 250
+    local wallEnd = wallCenter - offset * 250
 
-	wallStart.z =  GetGroundHeight(wallStart, nil) + 32
-	wallEnd.z = GetGroundHeight(wallEnd, nil) + 32
+    hero:SetWall(wallStart, wallEnd)
 
-	local particle = ParticleManager:CreateParticle("particles/zeus_w2/zeus_w2.vpcf", PATTACH_CUSTOMORIGIN, hero.unit)
-	ParticleManager:SetParticleControl(particle, 0, wallStart)
-	ParticleManager:SetParticleControl(particle, 1, wallEnd)
+    wallStart.z =  GetGroundHeight(wallStart, nil) + 32
+    wallEnd.z = GetGroundHeight(wallEnd, nil) + 32
 
-	Timers:CreateTimer(6, 
-		function()
-			hero:RemoveWall()
-			ParticleManager:DestroyParticle(particle, false)
-			ParticleManager:ReleaseParticleIndex(particle)
-			--hero:StopSound("Ability.static.loop")
-			hero:EmitSound("Ability.static.end")
-		end
-	)
+    local particle = ParticleManager:CreateParticle("particles/zeus_w2/zeus_w2.vpcf", PATTACH_CUSTOMORIGIN, hero.unit)
+    ParticleManager:SetParticleControl(particle, 0, wallStart)
+    ParticleManager:SetParticleControl(particle, 1, wallEnd)
 
-	hero:EmitSound("Ability.static.start")
-	--hero:EmitSound("Ability.static.loop")
+    Timers:CreateTimer(6,
+        function()
+            hero:RemoveWall()
+            ParticleManager:DestroyParticle(particle, false)
+            ParticleManager:ReleaseParticleIndex(particle)
+            --hero:StopSound("Ability.static.loop")
+            hero:EmitSound("Ability.static.end")
+        end
+    )
 
-	--"particles/units/heroes/hero_leshrac/leshrac_lightning_slow.vpcf"
+    hero:EmitSound("Ability.static.start")
+    --hero:EmitSound("Ability.static.loop")
+
+    --"particles/units/heroes/hero_leshrac/leshrac_lightning_slow.vpcf"
 end
 
 function zeus_w:GetCastAnimation()
-	return ACT_DOTA_ATTACK2
+    return ACT_DOTA_ATTACK2
 end

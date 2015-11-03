@@ -374,7 +374,7 @@ local _CODE_TO_ANIMATION_TRANSLATE = {
   [370]="windwalk",
 }
 
-function modifier_animation_translate_permanent:OnCreated(keys) 
+function modifier_animation_translate_permanent:OnCreated(keys)
   if not IsServer() then
     self.translate = _CODE_TO_ANIMATION_TRANSLATE[keys.stack_count]
   else
@@ -390,19 +390,19 @@ function modifier_animation_translate_permanent:IsHidden()
   return true
 end
 
-function modifier_animation_translate_permanent:IsDebuff() 
+function modifier_animation_translate_permanent:IsDebuff()
   return false
 end
 
-function modifier_animation_translate_permanent:IsPurgable() 
+function modifier_animation_translate_permanent:IsPurgable()
   return false
 end
 
-function modifier_animation_translate_permanent:DeclareFunctions() 
+function modifier_animation_translate_permanent:DeclareFunctions()
   local funcs = {
     MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
   }
- 
+
   return funcs
 end
 
@@ -412,7 +412,7 @@ function modifier_animation_translate_permanent:GetActivityTranslationModifiers(
   return self.translate or 0
 end
 
---[[function modifier_animation_translate_permanent:CheckState() 
+--[[function modifier_animation_translate_permanent:CheckState()
   local state = {
     [MODIFIER_STATE_UNSELECTABLE] = true,
     [MODIFIER_STATE_INVULNERABLE] = true,

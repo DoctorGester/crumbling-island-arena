@@ -1,12 +1,12 @@
-/*  
+/*
     AUTHOR: Adam Curtis, Copyright 2015
     CONTACT: kallisti.dev@gmail.com
     WEBSITE: https://github.com/kallisti-dev/vector_target
-    LICENSE: https://github.com/kallisti-dev/vector_target/blob/master/LICENSE 
-    
+    LICENSE: https://github.com/kallisti-dev/vector_target/blob/master/LICENSE
+
     Client-side handlers to accompany the server-side vector_target.lua library. Aside from including this script,
     no other client-side initialization is currently necessary.
-    
+
 */
 'use strict';
 var VECTOR_TARGET_VERSION = [0, 2, 2]; //version data
@@ -32,8 +32,8 @@ VectorTarget.IsFastClickDragMode = function() {
     var rangeFinderParticle;
     var eventKeys = { };
     var prevEventKeys = { };
-    var inactiveTimer = Game.GetGameTime(); // amount of time that no ability has been active 
-    
+    var inactiveTimer = Game.GetGameTime(); // amount of time that no ability has been active
+
     GameEvents.Subscribe("vector_target_order_start", function(keys) {
         //$.Msg("vector_target_order_start event");
         //$.Msg(keys);
@@ -44,7 +44,7 @@ VectorTarget.IsFastClickDragMode = function() {
         Abilities.ExecuteAbility(keys.abilId, keys.unitId, false); //make ability our active ability so that a left-click will complete cast
         showRangeFinder();
     });
-    
+
     function showRangeFinder() {
         if(!rangeFinderParticle && eventKeys.particleName) {
             rangeFinderParticle = Particles.CreateParticle(eventKeys.particleName, ParticleAttachment_t.PATTACH_ABSORIGIN, eventKeys.unitId);
@@ -53,7 +53,7 @@ VectorTarget.IsFastClickDragMode = function() {
             updateRangeFinder();
         };
     }
-    
+
     function hideRangeFinder() {
         if(rangeFinderParticle) {
             Particles.DestroyParticleEffect(rangeFinderParticle, false);
@@ -61,7 +61,7 @@ VectorTarget.IsFastClickDragMode = function() {
             rangeFinderParticle = undefined;
         }
     }
-    
+
     function updateRangeFinder() {
         var activeAbil = Abilities.GetLocalPlayerActiveAbility();
         if(eventKeys.abilId === activeAbil) {
@@ -94,15 +94,15 @@ VectorTarget.IsFastClickDragMode = function() {
         }
         $.Schedule(UPDATE_RANGE_FINDER_RATE, updateRangeFinder);
     }
-    
+
     function cancelVectorTargetOrder() {
         if(eventKeys.abilId === undefined) return;
         //$.Msg("Canceling ", eventKeys)
         GameEvents.SendCustomGameEventToServer("vector_target_order_cancel", eventKeys);
         finalize();
     }
-    
-    
+
+
     function mapToControlPoints(keyMap, ignoreConst) {
         var cpMap = eventKeys.cpMap;
         for(var cp in cpMap) {
@@ -133,7 +133,7 @@ VectorTarget.IsFastClickDragMode = function() {
             }
         }
     }
-    
+
     function finalize() {
         //$.Msg("finalizer called");
         hideRangeFinder();
@@ -146,14 +146,14 @@ VectorTarget.IsFastClickDragMode = function() {
         */
         eventKeys = { };
     }
-    
+
     GameEvents.Subscribe("vector_target_order_cancel", function(keys) {
         //$.Msg("canceling");
         if(keys.seqNum === eventKeys.seqNum && keys.abilId === eventKeys.abilId && keys.unitId === eventKeys.unitId) {
             finalize();
         }
     });
-    
+
     GameEvents.Subscribe("vector_target_order_finish", function(keys) {
         //$.Msg("finished")
         if(keys.seqNum === eventKeys.seqNum && keys.abilId === eventKeys.abilId && keys.unitId === eventKeys.unitId) {
@@ -168,22 +168,22 @@ VectorTarget.IsFastClickDragMode = function() {
             cancelVectorTargetOrder();
         }
     });
-    
+
     GameEvents.Subscribe("dota_hud_error_message", function(keys) {
         if(keys.reason == 105) { // reason code for a full order queue
             GameEvents.SendCustomGameEventToServer("vector_target_queue_full", prevEventKeys);
         }
     });
-    
+
     //fast click-drag handling
     GameUI.SetMouseCallback(function(eventName, button) {
         if (eventKeys.abilId && VectorTarget.IsFastClickDragMode() && eventName == "released" && button == 0) {
             Abilities.ExecuteAbility(eventKeys.abilId, eventKeys.unitId, true);
         }
     });
-    
+
     VectorTarget.SetFastClickDragMode(false);
-    
+
 })();
 
 $.Msg("vector_target.js loaded");

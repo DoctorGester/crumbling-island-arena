@@ -1,8 +1,8 @@
---[[ 
+--[[
     AUTHOR: Adam Curtis, Copyright 2015
     CONTACT: kallisti.dev@gmail.com
     WEBSITE: https://github.com/kallisti-dev/vector_target
-    LICENSE: https://github.com/kallisti-dev/vector_target/blob/master/LICENSE 
+    LICENSE: https://github.com/kallisti-dev/vector_target/blob/master/LICENSE
 --]]
 
 DEFAULT_VECTOR_TARGET_PARTICLE = "particles/vector_target/vector_target_range_finder_line.vpcf"
@@ -17,7 +17,7 @@ VECTOR_TARGET_DEBUG_NONE = 0     -- no logging
 VECTOR_TARGET_DEBUG_DEFAULT = 1  -- default logging of important events
 VECTOR_TARGET_DEBUG_ALL = 2      -- detailed debug info
 ]]
-local reloading = false 
+local reloading = false
 if VectorTarget == nil then
     VectorTarget = {
         inProgressOrders = { }, -- a table of vector orders currently in-progress, indexed by player ID
@@ -137,7 +137,7 @@ end
 
 function VectorTarget:GetInProgressForUnit(unitId)
     --[[ Gets in-progress orders for current unit.
-        
+
         Since multiple players could have in-progress orders on the same unit, this method returns an array of orders indexed by issuer's player ID
     ]]
     local out = { }
@@ -151,7 +151,7 @@ end
 
 function VectorTarget:GetInProgressForAbility(abilId)
     --[[ Gets in-progress orders for current ability.
-        
+
         Since multiple players could have in-progress orders on the same unit, this method returns an array of orders indexed by issuer's player ID.
     ]]
     local out = { }
@@ -227,7 +227,7 @@ function VectorTarget:WrapAbility(abil, reloading)
     if not reloading and abil.isVectorTarget then
         return
     end
-    
+
     --initialize members
     abil.isVectorTarget = true -- use this to test if an ability has vector targeting
     abil._vectorTargetKeys = {
@@ -239,81 +239,81 @@ function VectorTarget:WrapAbility(abil, reloading)
         particleName = keys.ParticleName or DEFAULT_VECTOR_TARGET_PARTICLE,
         cpMap = keys.ControlPoints or DEFAULT_VECTOR_TARGET_CONTROL_POINTS
     }
-    
+
     function abil:GetInitialPosition()
         return self._vectorTargetKeys.initialPosition
     end
-    
+
     function abil:SetInitialPosition(v)
         if type(v) == "table" then
             v = Vector(v.x, v.y, v.z)
         end
         self._vectorTargetKeys.initialPosition = v
     end
-    
+
     function abil:GetTerminalPosition()
         return self._vectorTargetKeys.terminalPosition
     end
-    
+
     function abil:SetTerminalPosition(v)
         if type(v) == "table" then
             v = Vector(v.x, v.y, v.z)
         end
         self._vectorTargetKeys.terminalPosition = v
     end
-    
+
     function abil:GetMidpointPosition()
         return VectorTarget._CalcMidPoint(self:GetInitialPosition(), self:GetTerminalPosition())
     end
-    
+
     function abil:GetTargetVector()
         local i = self:GetInitialPosition()
         local j = self:GetTerminalPosition()
         return Vector(j.x - i.x, j.y - i.y, j.z - i.z)
     end
-    
-    
+
+
     function abil:GetDirectionVector()
         return self:GetTargetVector():Normalized()
     end
-    
+
     if not abil.GetMinDistance then
         function abil:GetMinDistance()
             return self._vectorTargetKeys.minDistance
         end
     end
-    
+
     if not abil.GetMaxDistance then
         function abil:GetMaxDistance()
             return self._vectorTargetKeys.maxDistance
         end
     end
-    
+
     if not abil.GetPointOfCast then
         function abil:GetPointOfCast()
             return VectorTarget._CalcPointOfCast(abil._vectorTargetKeys.pointOfCast, abil:GetInitialPosition(), abil:GetTerminalPosition())
         end
     end
-    
+
     if not abil.GetVectorTargetParticleName then
         function abil:GetVectorTargetParticleName()
             return self._vectorTargetKeys.particleName
         end
     end
-    
+
     if not abil.GetVectorTargetControlPointMap then
         function abil:GetVectorTargetControlPointMap()
             return self._vectorTargetKeys.cpMap
         end
     end
-    
+
     --override GetBehavior
     local _GetBehavior = abil.GetBehavior
     function abil:GetBehavior()
         local b = _GetBehavior(self)
         return bit.bor(b, DOTA_ABILITY_BEHAVIOR_POINT)
     end
-    
+
     --override OnAbilityPhaseStart
     local _OnAbilityPhaseStart = abil.OnAbilityPhaseStart
     function abil:OnAbilityPhaseStart()
@@ -335,7 +335,7 @@ function VectorTarget:WrapAbility(abil, reloading)
 
     --override GetCustomCastErrorLocation
     local _GetCustomCastErrorLocation = abil.GetCustomCastErrorLocation
-    function abil:GetCustomCastErrorLocation(location) 
+    function abil:GetCustomCastErrorLocation(location)
         local msg = _GetCustomCastErrorLocation(self, location)
         if (not msg or msg == "" or msg == "CUSTOM ERROR") and self.GetCustomCastErrorVector then
             msg = self:GetCustomCastErrorVector(self._vectorTargetKeys.castFilterData)
@@ -393,11 +393,11 @@ function VectorTarget:OrderFilter(data)
                     elseif data.queue == 0 then -- if not shift queued, clear cast queue before we add to it
                         self:ClearQueuesForUnits(units)
                     end
-                    
+
                     inProgress.terminalPosition = targetPos
-                    
+
                     --temporarily set initial/terminal on the ability so we can all (a possibly overriden) abil:GetPointOfCast
-                    local p = VectorTarget._WithPoints(abil, inProgress.initialPosition, inProgress.terminalPosition, function() 
+                    local p = VectorTarget._WithPoints(abil, inProgress.initialPosition, inProgress.terminalPosition, function()
                             return abil:GetPointOfCast()
                     end)
                     data.position_x = p.x

@@ -1,9 +1,9 @@
 <root>
-	<Panel>
-		<!-- Use the Valve-authored multi-team-compatible scoreboard, instead of the default Dota 2-team scoreboard. -->
-		<!--CustomUIElement type="HudTopBar" layoutfile="file://{resources}/layout/custom_game/multiteam_top_scoreboard.xml" /-->
-		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/hud.xml" />
-		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/hero_selection.xml" />
-		<CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/round_ending.xml" />
-	</Panel>
+    <Panel>
+        <!-- Use the Valve-authored multi-team-compatible scoreboard, instead of the default Dota 2-team scoreboard. -->
+        <!--CustomUIElement type="HudTopBar" layoutfile="file://{resources}/layout/custom_game/multiteam_top_scoreboard.xml" /-->
+        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/hud.xml" />
+        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/hero_selection.xml" />
+        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/round_ending.xml" />
+    </Panel>
 </root>

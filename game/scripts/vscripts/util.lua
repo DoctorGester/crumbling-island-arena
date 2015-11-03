@@ -1,13 +1,13 @@
 function WrapString(str)
-	local result = {}
-	result[str] = 0
-	return result
+    local result = {}
+    result[str] = 0
+    return result
 end
 
 function UnwrapString(table)
-	for k, _ in pairs(table) do
-		return k
-	end
+    for k, _ in pairs(table) do
+        return k
+    end
 end
 
 function GetIndex(list, element)
@@ -16,14 +16,14 @@ function GetIndex(list, element)
             return k
         end
     end
-    
+
     return nil
 end
 
 function Shuffle(table)
     local iterations = #table
     local j
-    
+
     for i = iterations, 2, -1 do
         j = RandomInt(0, i)
         table[i], table[j] = table[j], table[i]
@@ -35,74 +35,74 @@ function IsLeft(a, b, c)
 end
 
 function RelativeCCW(x1, y1, x2, y2, px, py)
-	x2 = x2 - x1
-	y2 = y2 - y1
-	px = px - x1
-	py = py - y1
+    x2 = x2 - x1
+    y2 = y2 - y1
+    px = px - x1
+    py = py - y1
 
-	local ccw = px * y2 - py * x2
+    local ccw = px * y2 - py * x2
 
-	if ccw == 0.0 then
-	    ccw = px * x2 + py * y2
-	    if (ccw > 0.0) then
-			px = px - x2
-			py = py - y2
-			ccw = px * x2 + py * y2
-			if ccw < 0.0 then
-			    ccw = 0.0
-			end
-	 	end
-	end
+    if ccw == 0.0 then
+        ccw = px * x2 + py * y2
+        if (ccw > 0.0) then
+            px = px - x2
+            py = py - y2
+            ccw = px * x2 + py * y2
+            if ccw < 0.0 then
+                ccw = 0.0
+            end
+        end
+    end
 
-	if ccw < 0.0 then
-		return -1
-	else
-		if ccw > 0.0 then
-			return 1
-		else
-			return 0
-		end
-	end
+    if ccw < 0.0 then
+        return -1
+    else
+        if ccw > 0.0 then
+            return 1
+        else
+            return 0
+        end
+    end
 end
 
 function SegmentsIntersect2(x1, y1, x2, y2, x3, y3, x4, y4)
-	local t1 = RelativeCCW(x1, y1, x2, y2, x3, y3) * RelativeCCW(x1, y1, x2, y2, x4, y4)
-	local t2 = RelativeCCW(x3, y3, x4, y4, x1, y1) * RelativeCCW(x3, y3, x4, y4, x2, y2)
-	return t1 <= 0 and t2 <= 0
+    local t1 = RelativeCCW(x1, y1, x2, y2, x3, y3) * RelativeCCW(x1, y1, x2, y2, x4, y4)
+    local t2 = RelativeCCW(x3, y3, x4, y4, x1, y1) * RelativeCCW(x3, y3, x4, y4, x2, y2)
+    return t1 <= 0 and t2 <= 0
 end
 
 function SegmentsIntersect(x1, y1, x2, y2, x3, y3, x4, y4)
-	local d = (y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1)
-	if d == 0 then return false end --lines are parallel or coincidental
-	local t1 = ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / d
-	local t2 = ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / d
+    local d = (y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1)
+    if d == 0 then return false end --lines are parallel or coincidental
+    local t1 = ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / d
+    local t2 = ((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / d
 
-	return t1 >= 0 and t1 <= 1 and t2 >= 0 and t2 <= 1
+    return t1 >= 0 and t1 <= 1 and t2 >= 0 and t2 <= 1
 end
 
 function ClosestPointToSegment(start, finish, point)
-	local segment = finish - start
-	local pointVector = point - start
+    local segment = finish - start
+    local pointVector = point - start
 
-	local normalized = segment:Normalized()
-	local dot = pointVector:Dot(normalized)
+    local normalized = segment:Normalized()
+    local dot = pointVector:Dot(normalized)
 
-	if dot <= 0 then
-		return start
-	end
+    if dot <= 0 then
+        return start
+    end
 
-	if dot >= segment:Length2D() then
-		return finish
-	end
+    if dot >= segment:Length2D() then
+        return finish
+    end
 
-	return start + (normalized * dot)
+    return start + (normalized * dot)
 end
 
 function SegmentCircleIntersection(start, finish, point, radius)
-	local closest = ClosestPointToSegment(start, finish, point)
-	local dist = point - closest
+    local closest = ClosestPointToSegment(start, finish, point)
+    local dist = point - closest
 
-	return dist:Length2D() <= radius
+    return dist:Length2D() <= radius
 end
 
 -- max height, full distance, current distance
@@ -115,119 +115,119 @@ function ParabolaZ2(y0, y1, h, d, x)
 end
 
 function AddLevelOneAbility(hero, abilityName)
-	hero:AddAbility(abilityName)
+    hero:AddAbility(abilityName)
 
-	local ability = hero:FindAbilityByName(abilityName)
-	ability:SetLevel(1)
+    local ability = hero:FindAbilityByName(abilityName)
+    ability:SetLevel(1)
 end
 
 function ImmediateEffect(path, attach, owner)
-	local id = ParticleManager:CreateParticle(path, attach, owner.unit or owner)
+    local id = ParticleManager:CreateParticle(path, attach, owner.unit or owner)
 
-	Timers:CreateTimer(3, 
-		function()
-			ParticleManager:DestroyParticle(id, false)
-			ParticleManager:ReleaseParticleIndex(id)
-		end
-	)
-	
-	return id
+    Timers:CreateTimer(3,
+        function()
+            ParticleManager:DestroyParticle(id, false)
+            ParticleManager:ReleaseParticleIndex(id)
+        end
+    )
+
+    return id
 end
 
 function ImmediateEffectPoint(path, attach, owner, point)
-	local effect = ImmediateEffect(path, attach, owner)
-	ParticleManager:SetParticleControl(effect, 0, point)
-	return effect
+    local effect = ImmediateEffect(path, attach, owner)
+    ParticleManager:SetParticleControl(effect, 0, point)
+    return effect
 end
 
 function MoveCameraToUnit(playerId, unit)
-	Timers:CreateTimer(
-		function()
-			PlayerResource:SetCameraTarget(playerId, unit)
-			Timers:CreateTimer(0.1, 
-				function()
-					PlayerResource:SetCameraTarget(playerId, nil)
-				end
-			)
-		end
-	)
+    Timers:CreateTimer(
+        function()
+            PlayerResource:SetCameraTarget(playerId, unit)
+            Timers:CreateTimer(0.1,
+                function()
+                    PlayerResource:SetCameraTarget(playerId, nil)
+                end
+            )
+        end
+    )
 end
 
 function KnockbackUnit(unit, origin, duration, distance, height, should_stun)
-	local modifierKnockback = {
-		center_x = origin.x,
-		center_y = origin.y,
-		center_z = origin.z,
-		knockback_duration = duration,
-		knockback_distance = distance,
-		knockback_height = height,
-		duration = duration,
-	}
-	if should_stun then
-		modifierKnockback.should_stun = 1
-	end
-	unit = unit.unit or unit
-	unit:AddNewModifier(unit, nil, "modifier_knockback", modifierKnockback)
+    local modifierKnockback = {
+        center_x = origin.x,
+        center_y = origin.y,
+        center_z = origin.z,
+        knockback_duration = duration,
+        knockback_distance = distance,
+        knockback_height = height,
+        duration = duration,
+    }
+    if should_stun then
+        modifierKnockback.should_stun = 1
+    end
+    unit = unit.unit or unit
+    unit:AddNewModifier(unit, nil, "modifier_knockback", modifierKnockback)
 end
 
 function LoadDefaultHeroItems(hero, gameItems)
-	local heroName = hero:GetName()
-	local defaultSlots = {}
-	local cosmeticItems = {}
+    local heroName = hero:GetName()
+    local defaultSlots = {}
+    local cosmeticItems = {}
 
-	for _, item in pairs(gameItems) do
-		local prefab = item.prefab
-		local wearable = prefab == "wearable"
-		local default = prefab == "default_item"
+    for _, item in pairs(gameItems) do
+        local prefab = item.prefab
+        local wearable = prefab == "wearable"
+        local default = prefab == "default_item"
 
-		if (wearable or default) and item.used_by_heroes[heroName] == 1 then
-			local itemSlot = item.item_slot
+        if (wearable or default) and item.used_by_heroes[heroName] == 1 then
+            local itemSlot = item.item_slot
 
-			-- Valve did not include some item_slot definitions for weapons
-			if itemSlot == nil then
-				itemSlot = "weapon"
-			end
+            -- Valve did not include some item_slot definitions for weapons
+            if itemSlot == nil then
+                itemSlot = "weapon"
+            end
 
-			if item.model_player ~= nil then
-				if default and itemSlot ~= nil then
-					defaultSlots[itemSlot] = item.model_player
-				else
-					local itemModels = {}
-					itemModels[item.model_player] = true
+            if item.model_player ~= nil then
+                if default and itemSlot ~= nil then
+                    defaultSlots[itemSlot] = item.model_player
+                else
+                    local itemModels = {}
+                    itemModels[item.model_player] = true
 
-					if item.visuals ~= nil then
-						local styles = item.visuals.styles
+                    if item.visuals ~= nil then
+                        local styles = item.visuals.styles
 
-						if styles ~= nil then
-							for _, style in pairs(styles) do
-								if style.model_player ~= nil then
-									itemModels[style.model_player] = true
-								end
-							end
-						end
-					end
+                        if styles ~= nil then
+                            for _, style in pairs(styles) do
+                                if style.model_player ~= nil then
+                                    itemModels[style.model_player] = true
+                                end
+                            end
+                        end
+                    end
 
-					cosmeticItems[#cosmeticItems + 1] = { slot = itemSlot, models = itemModels }
-				end
-			end
-		end
-	end
+                    cosmeticItems[#cosmeticItems + 1] = { slot = itemSlot, models = itemModels }
+                end
+            end
+        end
+    end
 
-	DeepPrintTable(defaultSlots)
+    DeepPrintTable(defaultSlots)
 
-	local children = hero:GetChildren()
+    local children = hero:GetChildren()
 
-	for _, child in pairs(children) do
-		if child:GetClassname() == "dota_item_wearable" then
-			for _, item in pairs(cosmeticItems) do
-				if item.models[child:GetModelName()] then
-					child:SetModel(defaultSlots[item.slot])
-				end
-			end
-		end
-	end
+    for _, child in pairs(children) do
+        if child:GetClassname() == "dota_item_wearable" then
+            for _, item in pairs(cosmeticItems) do
+                if item.models[child:GetModelName()] then
+                    child:SetModel(defaultSlots[item.slot])
+                end
+            end
+        end
+    end
 
-	return hero
+    return hero
 end
 
 function PrintTable(t, indent, done)
