@@ -50,16 +50,11 @@ function LoadHeroUI(heroId){
 
     LoadCustomIcons();
 
-    if (Entities.GetUnitName(heroId) != dummy) {
-        abilityBar.SetProvider(new EntityAbilityDataProvider(heroId));
-        abilityBar.RegisterEvents();
+    abilityBar.SetProvider(new EntityAbilityDataProvider(heroId));
+    abilityBar.RegisterEvents();
 
-        healthBar.SetEntity(heroId);
-        buffBar.SetEntity(heroId);
-    } else {
-        abilityBar.SetProvider(new EmptyAbilityDataProvider());
-        abilityBar.RegisterEvents();
-    }
+    healthBar.SetEntity(heroId);
+    buffBar.SetEntity(heroId);
 }
 
 function LoadCustomIcons(){
@@ -80,7 +75,7 @@ function UpdateUI(){
 
     var localHero = GetLocalHero();
 
-    if (localHero != currentHero) {
+    if (localHero != currentHero && Entities.GetUnitName(localHero) != dummy) {
         currentHero = localHero;
         LoadHeroUI(localHero);
     }

@@ -55,6 +55,8 @@ function EntityAbilityDataProvider(entityId) {
         data.remaining = Abilities.GetCooldownTimeRemaining(ability);
         data.activated = Abilities.IsActivated(ability);
         data.enabled = Abilities.GetLevel(ability) != 0;
+        data.beingCast = Abilities.IsInAbilityPhase(ability);
+        data.toggled = Abilities.IsToggle(ability) && Abilities.GetToggleState(ability);
 
         if (data.cooldown == 0 || data.ready){
             data.cooldown = Abilities.GetCooldown(ability);
@@ -192,6 +194,8 @@ function AbilityButton(parent, hero, ability) {
         }
 
         this.image.SetHasClass("AnimationUltimateHidden", !data.enabled);
+        this.image.SetHasClass("AbilityBeingCast", data.beingCast);
+        this.image.SetHasClass("AbilityButtonToggled", data.toggled);
 
         this.data = data;
     }

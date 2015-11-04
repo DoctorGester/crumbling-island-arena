@@ -34,6 +34,8 @@ function TableAbilityDataProvider(heroData) {
         data.remaining = 0;
         data.activated = true;
         data.enabled = true;
+        data.beingCast = false;
+        data.toggled = false;
 
         return data
     }
