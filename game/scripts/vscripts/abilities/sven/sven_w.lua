@@ -63,7 +63,6 @@ function sven_w:OnSpellStart()
 
     self:RemoveAnimationTranslation()
 
-
     if not hero:IsEnraged() then
         self:Shout(direction)
     else

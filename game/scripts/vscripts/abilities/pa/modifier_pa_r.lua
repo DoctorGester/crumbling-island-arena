@@ -6,6 +6,13 @@ function modifier_pa_r:OnDestroy()
     end
 end
 
+function modifier_pa_r:OnAbilityFullyCast()
+    if IsServer() then
+        local hero = self:GetParent().hero
+        hero:AddNewModifier(hero, self:GetAbility(), "modifier_invis_fade", { duration = 0.7 })
+    end
+end
+
 function modifier_pa_r:CheckState()
     local state = {
         [MODIFIER_STATE_INVISIBLE] = true

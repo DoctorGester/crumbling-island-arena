@@ -5,7 +5,6 @@ modifier_invis_fade = class({})
 -- modifier_riki_permanent_invisibility
 
 function modifier_invis_fade:OnCreated(params)
-    self.invis_modifier = params.invis_modifier or "modifier_invis_plain"
     self.invis_duration = params.invis_duration or 10
 
     if IsServer() then
@@ -14,7 +13,7 @@ function modifier_invis_fade:OnCreated(params)
 end
 
 function modifier_invis_fade:OnDestroy()
-    if IsServer() then
+    if IsServer() and self.invis_modifier then
         self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), self.invis_modifier, { duration = self.invis_duration })
     end
 end
@@ -29,4 +28,12 @@ end
 
 function modifier_invis_fade:GetEffectAttachType()
     return PATTACH_ABSORIGIN_FOLLOW
+end
+
+function modifier_invis_fade:CheckState()
+    local state = {
+        [MODIFIER_STATE_INVISIBLE] = false
+    }
+
+    return state
 end
