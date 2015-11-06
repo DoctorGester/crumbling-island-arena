@@ -579,7 +579,7 @@
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/sniper/sniper_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
-		"AbilityTextureName" "sniper_take_aim"
+		"AbilityTextureName" "sniper_headshot"
 		"AbilityCooldown" "7.0"
 	}
 
@@ -589,7 +589,7 @@
 		"ScriptFile" "abilities/sniper/sniper_r"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityTextureName" "ancient_apparition_ice_vortex"
+		"AbilityTextureName" "sniper_take_aim"
 		"AbilityCooldown" "2.0"
 	}
 }

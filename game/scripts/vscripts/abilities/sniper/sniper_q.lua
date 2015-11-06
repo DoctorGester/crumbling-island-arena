@@ -30,6 +30,7 @@ function sniper_q:OnSpellStart()
         function(self, target)
             Spells:ProjectileDamage(self, target)
             target:EmitSound("Arena.Sniper.HitQ")
+            hero:StopSound("Arena.Sniper.FlyQ")
             return true
         end
 
