@@ -3,7 +3,7 @@ LinkLuaModifier("modifier_sniper_e", "abilities/sniper/modifier_sniper_e", LUA_M
 
 function sniper_e:OnSpellStart()
     local hero = self:GetCaster().hero
-    hero:AddNewModifier(hero, self, "modifier_sniper_e", { duration = 4 })
+    hero:AddNewModifier(hero, self, "modifier_sniper_e", { duration = 3 })
 end
 
 function sniper_e:GetCastAnimation()

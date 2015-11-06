@@ -18,6 +18,8 @@
 	"HeroName_npc_dota_hero_sven"					"The Devil"
 	"HeroTips_npc_dota_hero_sven"					"Powerful short-range warrior<br>Silences and slows with his W<br>Can't be damaged while in E<br>Resets cooldowns and empowers abilities with R"
 
+	"HeroName_npc_dota_hero_sniper"					"The Hermit"
+
 	"RecentScore"									"+{d:score}"
 
 	"Unassigned"      								"Unassigned Team"

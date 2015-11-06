@@ -17,5 +17,5 @@ function modifier_sniper_e:CheckState()
 end
 
 function modifier_sniper_e:GetModifierMoveSpeedBonus_Percentage(params)
-    return (1 - self:GetElapsedTime() / self:GetDuration()) * 100
+    return (1 - self:GetElapsedTime() / self:GetDuration()) * 200
 end

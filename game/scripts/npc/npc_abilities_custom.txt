@@ -166,7 +166,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/storm_spirit/storm_spirit_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "storm_spirit_ball_lightning"
 
 		"precache"
@@ -220,7 +220,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/zeus/zeus_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "storm_spirit_overload"
 		"AbilityCooldown" "7.0"
 
@@ -306,7 +306,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/pa/pa_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "phantom_assassin_phantom_strike"
 		"AbilityCooldown" "6"
 	}
@@ -315,7 +315,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/pa/pa_e_sub"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "phantom_assassin_phantom_strike"
 		"AbilityCooldown" "0"
 	}
@@ -371,7 +371,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/earth_spirit/earth_spirit_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "earth_spirit_magnetize"
 		"AbilityCooldown" "4.0"
 		"AbilityCastRange" "600"
@@ -450,7 +450,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/cm/cm_e_sub"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "ancient_apparition_cold_feet"
 		"AbilityCooldown" "0"
 
@@ -512,7 +512,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/sven/sven_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "sven_storm_bolt"
 		"AbilityCastRange" "800"
 		"AbilityCooldown" "6.0"
@@ -539,5 +539,57 @@
 			"particle" "particles/status_fx/status_effect_gods_strength.vpcf"
 			"particle" "particles/units/heroes/hero_sven/sven_spell_gods_strength.vpcf"
 		}
+	}
+
+	"sniper_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/sniper/sniper_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "sniper_assassinate"
+		"AbilityCooldown" "3.0"
+		"AbilityCastPoint" "1.0"
+
+		"precache"
+		{
+			"particle" "particles/sniper_q/sniper_q.vpcf"
+		}
+	}
+
+	"sniper_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/sniper/sniper_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "techies_stasis_trap"
+		"AbilityCooldown" "7.0"
+		"AbilityCastRange" "200"
+		"AbilityCastPoint" "1.0"
+
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_techies/techies_stasis_trap_explode.vpcf"
+			"particle" "particles/status_fx/status_effect_techies_stasis.vpcf"
+			"model" "models/heroes/techies/fx_techiesfx_stasis.vmdl"	
+		}
+	}
+
+	"sniper_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/sniper/sniper_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityTextureName" "sniper_take_aim"
+		"AbilityCooldown" "7.0"
+	}
+
+	"sniper_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/sniper/sniper_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "ancient_apparition_ice_vortex"
+		"AbilityCooldown" "2.0"
 	}
 }

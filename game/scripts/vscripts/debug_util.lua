@@ -1,5 +1,7 @@
 Debug = class({})
 
+DEBUG_HERO = "npc_dota_hero_sniper"
+
 if not mode then
     mode = nil
 end
@@ -36,12 +38,11 @@ function InjectFreeSelection()
 end
 
 function InjectHero(round)
-    PrecacheUnitByNameAsync("npc_dota_hero_zuus", function()
-        require("heroes/zeus")
-        local hero = Zeus()
+    PrecacheUnitByNameAsync(DEBUG_HERO, function()
+        local hero = round:LoadHeroClass(DEBUG_HERO)
         local center = Entities:FindByName(nil, "map_center"):GetAbsOrigin()
 
-        hero:SetUnit(CreateUnitByName("npc_dota_hero_zuus", center, true, nil, nil, DOTA_TEAM_BADGUYS))
+        hero:SetUnit(CreateUnitByName(DEBUG_HERO, center, true, nil, nil, DOTA_TEAM_BADGUYS))
         hero:Setup()
         hero.unit:SetControllableByPlayer(round.Players[0].id, true)
 

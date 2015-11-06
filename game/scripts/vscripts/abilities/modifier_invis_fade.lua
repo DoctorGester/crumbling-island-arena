@@ -5,10 +5,13 @@ modifier_invis_fade = class({})
 -- modifier_riki_permanent_invisibility
 
 function modifier_invis_fade:OnCreated(params)
-    self.invis_duration = params.invis_duration or 10
+    self.invis_duration = params.invis_duration
+    self.invis_modifier = params.invis_modifier
+
+    local buffName = params.invis_kind or "modifier_persistent_invisibility"
 
     if IsServer() then
-        self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_persistent_invisibility", { duration = self.invis_duration, fadetime = params.duration })
+        self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), buffName, { duration = self.invis_duration, fadetime = params.duration })
     end
 end
 

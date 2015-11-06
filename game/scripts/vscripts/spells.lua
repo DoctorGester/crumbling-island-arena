@@ -400,8 +400,6 @@ function Spells:LineDamage(hero, lineFrom, lineTo, action)
 end
 
 function Spells:MultipleHeroesModifier(source, ability, modifier, params, condition)
-    local round = GameRules.GameMode.Round
-
     for _, target in pairs(Spells:GetValidTargets()) do
         if target.AddNewModifier and condition(source, target) then
             target:AddNewModifier(source, ability, modifier, params)

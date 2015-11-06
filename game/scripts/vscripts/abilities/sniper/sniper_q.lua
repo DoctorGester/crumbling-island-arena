@@ -1,5 +1,12 @@
 sniper_q = class({})
 
+function sniper_q:OnAbilityPhaseStart()
+    local hero = self:GetCaster().hero
+    hero:EmitSound("Arena.Sniper.PreQ")
+
+    return true
+end
+
 function sniper_q:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
@@ -14,16 +21,27 @@ function sniper_q:OnSpellStart()
     projectileData.owner = hero
     projectileData.from = hero:GetPos()
     projectileData.to = target
-    projectileData.velocity = 1200
-    projectileData.graphics = "particles/cm/cm_q.vpcf"
-    projectileData.distance = 1500
+    projectileData.velocity = 2000
+    projectileData.graphics = "particles/sniper_q/sniper_q.vpcf"
+    projectileData.distance = 15000
     projectileData.empowered = false
-    projectileData.radius = 64
+    projectileData.radius = 48
+    projectileData.heroBehaviour =
+        function(self, target)
+            Spells:ProjectileDamage(self, target)
+            target:EmitSound("Arena.Sniper.HitQ")
+            return true
+        end
 
     Spells:CreateProjectile(projectileData)
-    hero:EmitSound("Arena.CM.CastQ")
+    hero:EmitSound("Arena.Sniper.CastQ")
+    hero:EmitSound("Arena.Sniper.FlyQ")
 end
 
 function sniper_q:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_4
+end
+
+function sniper_q:GetPlaybackRateOverride()
+    return 2.1
 end

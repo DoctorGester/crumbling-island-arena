@@ -195,4 +195,30 @@
 
 		"Ultimate" "sven_r"
 	}
+
+	"npc_dota_hero_sniper"
+	{
+		"override_hero"	"npc_dota_hero_sniper"
+		"Class" "heroes/sniper:Sniper"
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
+		"BountyXP"	"0"
+		"MovementSpeed"	"300"
+		"MovementTurnRate"	"10"
+		"StatusHealth"	"5"
+		"StatusHealthRegen"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"AttributeBaseStrength"	"0"
+		"AttributeBaseIntelligence" "0"
+		
+		"Ability1" "sniper_q"
+		"Ability2" "sniper_w"
+		"Ability3" "sniper_e"
+		"Ability4" "sniper_r"
+
+		"Ultimate" "sniper_r"
+	}
 }

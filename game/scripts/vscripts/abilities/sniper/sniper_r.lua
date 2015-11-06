@@ -1,8 +1,13 @@
 sniper_r = class({})
+LinkLuaModifier("modifier_sniper_r", "abilities/sniper/modifier_sniper_r", LUA_MODIFIER_MOTION_NONE)
 
-function sniper_r:OnSpellStart()
-end
+function sniper_r:OnToggle()
+    local hero = self:GetCaster().hero
+    local on = self:GetToggleState()
 
-function sniper_r:GetCastAnimation()
-    return ACT_DOTA_CAST_ABILITY_1
+    if on then
+        hero:AddNewModifier(hero, self, "modifier_sniper_r", {})
+    else
+        hero:RemoveModifier("modifier_sniper_r")
+    end
 end
