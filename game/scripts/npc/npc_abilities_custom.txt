@@ -570,7 +570,7 @@
 		{
 			"particle" "particles/units/heroes/hero_techies/techies_stasis_trap_explode.vpcf"
 			"particle" "particles/status_fx/status_effect_techies_stasis.vpcf"
-			"model" "models/heroes/techies/fx_techiesfx_stasis.vmdl"	
+			"model" "models/heroes/techies/fx_techiesfx_stasis.vmdl"
 		}
 	}
 
@@ -591,5 +591,10 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "sniper_take_aim"
 		"AbilityCooldown" "2.0"
+
+		"precache"
+		{
+			"particle" "particles/sniper_r/sniper_r.vpcf"
+		}
 	}
 }

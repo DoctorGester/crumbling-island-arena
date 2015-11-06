@@ -8,6 +8,7 @@ function sniper_w:OnSpellStart()
     local trap = CreateUnitByName("npc_dota_techies_stasis_trap", target, false, nil, nil, hero.unit:GetTeamNumber())
     trap:AddNewModifier(hero.unit, self, "modifier_sniper_w_trap", {})
     table.insert(hero.traps, trap)
+    hero:EmitSound("Arena.Sniper.CastW")
 end
 
 function sniper_w:GetCastAnimation()

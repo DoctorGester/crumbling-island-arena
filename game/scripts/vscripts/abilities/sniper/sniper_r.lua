@@ -7,7 +7,9 @@ function sniper_r:OnToggle()
 
     if on then
         hero:AddNewModifier(hero, self, "modifier_sniper_r", {})
+        hero:EmitSound("Arena.Sniper.ToggleOnR")
     else
         hero:RemoveModifier("modifier_sniper_r")
+        hero:EmitSound("Arena.Sniper.ToggleOffR")
     end
 end

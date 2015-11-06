@@ -42,6 +42,7 @@ function modifier_sniper_w_trap:OnIntervalThink()
                 self:GetParent():ForceKill(false)
                 target:AddNewModifier(hero, self:GetAbility(), "modifier_sniper_w", { duration = 1.7 })
                 ImmediateEffectPoint("particles/units/heroes/hero_techies/techies_stasis_trap_explode.vpcf", PATTACH_ABSORIGIN, trap, trap:GetAbsOrigin())
+                target:EmitSound("Arena.Sniper.HitW")
                 break
             end
         end

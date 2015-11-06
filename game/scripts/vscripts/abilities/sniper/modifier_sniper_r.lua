@@ -56,3 +56,11 @@ end
 function modifier_sniper_r:GetModifierMoveSpeedOverride(params)
     return 210
 end
+
+function modifier_sniper_r:GetEffectName()
+    return "particles/sniper_r/sniper_r.vpcf"
+end
+
+function modifier_sniper_r:GetEffectAttachType()
+    return PATTACH_ABSORIGIN_FOLLOW
+end
