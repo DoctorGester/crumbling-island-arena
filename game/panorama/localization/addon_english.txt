@@ -19,6 +19,7 @@
 	"HeroTips_npc_dota_hero_sven"					"Powerful short-range warrior<br>Silences and slows with his W<br>Can't be damaged while in E<br>Resets cooldowns and empowers abilities with R"
 
 	"HeroName_npc_dota_hero_sniper"					"The Hermit"
+	"HeroTips_npc_dota_hero_sniper"					"Q has a windup time, but is insanely fast and long-ranged<br>Sets up invisible rooting traps<br>Can pass through units while sprinted<br>Becomes really slow while stealthed<br>Stealth is revealed by nearby heroes"
 
 	"RecentScore"									"+{d:score}"
 
