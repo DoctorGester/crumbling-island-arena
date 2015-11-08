@@ -40,6 +40,7 @@ function Precache(context)
     PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_bristleback.vsndevts", context)
 
     LinkLuaModifier("modifier_invis_fade", "abilities/modifier_invis_fade", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_blind", "abilities/modifier_blind", LUA_MODIFIER_MOTION_NONE)
 
     VectorTarget:Precache(context)
 end
@@ -107,7 +108,7 @@ function GameMode:InitSettings()
     mode:SetTopBarTeamValuesOverride (true)
     mode:SetUseCustomHeroLevels(true)
     mode:SetCustomHeroMaxLevel(1)
-    mode:SetFogOfWarDisabled(true)
+    --mode:SetFogOfWarDisabled(true)
 
     SendToServerConsole("dota_combine_models 0")
 end

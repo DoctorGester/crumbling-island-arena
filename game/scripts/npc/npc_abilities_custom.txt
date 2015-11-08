@@ -19,9 +19,12 @@
 				"Properties"
 				{
 					"MODIFIER_PROPERTY_DISABLE_HEALING"	"1"
-					// "MODIFIER_PROPERTY_HEALTH_BONUS" "-19"
 				}
 
+				"States"
+				{
+					"MODIFIER_STATE_BLIND"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
 			}
 
 		}
@@ -95,6 +98,7 @@
 					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_BLIND"		"MODIFIER_STATE_VALUE_ENABLED"
 				}
 
 			}
@@ -596,5 +600,41 @@
 		{
 			"particle" "particles/sniper_r/sniper_r.vpcf"
 		}
+	}
+
+	"sk_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/sk/sk_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityTextureName" "sniper_headshot"
+		"AbilityCooldown" "7.0"
+	}
+
+	"sk_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/sk/sk_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityTextureName" "sniper_headshot"
+		"AbilityCooldown" "7.0"
+	}
+
+	"sk_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/sk/sk_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityTextureName" "sniper_headshot"
+		"AbilityCooldown" "7.0"
+	}
+
+	"sk_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/sk/sk_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityTextureName" "sniper_headshot"
+		"AbilityCooldown" "7.0"
 	}
 }

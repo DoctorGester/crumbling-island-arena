@@ -2,7 +2,7 @@ modifier_sniper_e = class({})
 
 function modifier_sniper_e:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+        MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
     }
 
     return funcs
