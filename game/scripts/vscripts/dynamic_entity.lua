@@ -29,3 +29,7 @@ end
 function DynamicEntity:Damage(source) end
 function DynamicEntity:Update() end
 function DynamicEntity:Remove() end
+
+function DynamicEntity:HasModifier() return false end
+function DynamicEntity:FindModifier() end
+function DynamicEntity:AddNewModifier() end

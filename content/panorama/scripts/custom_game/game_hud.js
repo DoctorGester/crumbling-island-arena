@@ -25,10 +25,12 @@ function SetupUI(){
     GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_TEAMS, false);
     GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_GAME_NAME, false);
     GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_HERO_SELECTION_CLOCK, false);
+    GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_BAR_BACKGROUND, false);
     GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_MENU_BUTTONS, false);
     GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_ENDGAME, false);
 
     GameUI.SetRenderBottomInsetOverride(0);
+    GameUI.SetRenderTopInsetOverride(0);
 }
 
 function GetLocalHero(){
@@ -36,6 +38,9 @@ function GetLocalHero(){
 }
 
 function LoadHeroUI(heroId){
+    $("#HeroPortrait").heroname = Entities.GetUnitName(heroId);
+    $("#HeroNameLabel").text = $.Localize("#HeroName_" + Entities.GetUnitName(heroId));
+
     if (abilityBar == null) {
         abilityBar = new AbilityBar("#AbilityPanel");
     }
@@ -155,9 +160,11 @@ function DebugUpdate(data){
 function GameInfoChanged(data){
     if (data.state == GAME_STATE_ROUND_IN_PROGRESS){
         $("#HeroPanel").RemoveClass("AnimationHeroHudHidden");
+        $("#HeroDetails").RemoveClass("AnimationHeroDetailsHidden");
         $("#TimersPanel").RemoveClass("AnimationTimersHidden");
     } else {
         $("#HeroPanel").AddClass("AnimationHeroHudHidden");
+        $("#HeroDetails").AddClass("AnimationHeroDetailsHidden");
         $("#TimersPanel").AddClass("AnimationTimersHidden");
     }
 }

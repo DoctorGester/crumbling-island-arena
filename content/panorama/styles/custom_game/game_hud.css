@@ -4,6 +4,48 @@
     height: 100%;
 }
 
+#HeroDetails
+{
+    flow-children: right;
+    vertical-align: bottom;
+    horizontal-align: left;
+    margin-bottom: 100px;
+    margin-left: 100px;
+    transition: transform 1.0s linear 0.0ms;
+}
+
+#HeroPortraitContainer
+{
+    opacity: 0.95;
+    width: 160px;
+    height: 160px;
+    overflow:clip;
+    opacity-mask: url('file://{images}/custom_game/portrait_mask.png');
+}
+
+#HeroPortrait
+{
+    margin-top: -20px;
+    width: 180px;
+    height: 240px;
+}
+
+#HeroNameContainer
+{
+    height: 100%;
+}
+
+#HeroNameLabel
+{
+    font-family: Goudy Trajan Medium, FZKai-Z03, TH Sarabun New;
+    font-size: 19px;
+    text-shadow: -1px 1px 2px 2.0 #000000;
+    text-transform: uppercase;
+    color: #CCB966;
+    margin-left: 20px;
+    vertical-align: middle;
+}
+
 #HeroPanel
 {
     flow-children: down;
@@ -202,7 +244,7 @@
     horizontal-align: right;
     vertical-align: bottom;
     margin-right: 5px;
-    margin-bottom: 25px;
+    margin-bottom: 100px;
 }
 
 .DebugButton
@@ -235,6 +277,11 @@
 .AnimationHeroHudHidden
 {
     transform: translateY(1000px);
+}
+
+.AnimationHeroDetailsHidden
+{
+    transform: translateX(-1000px);
 }
 
 .AnimationTimersHidden

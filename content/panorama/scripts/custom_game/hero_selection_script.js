@@ -1,5 +1,6 @@
 var allHeroes = {};
 var abilityBar = new AbilityBar("#HeroAbilities");
+var previewSchedule = 0;
 
 function TableAbilityDataProvider(heroData) {
     this.heroData = heroData;
@@ -51,19 +52,51 @@ function TableAbilityDataProvider(heroData) {
     }
 }
 
+function DeleteHeroPreview() {
+    var preview = $("#HeroPreview");
+
+    if (preview) {
+        preview.visible = false;
+        preview.DeleteAsync(1);
+    }
+}
+
+function ShowHeroPreview(heroName) {
+    var previewStyle = "width: 100%; height: 100%; opacity-mask: url(\"s2r://panorama/images/masks/softedge_box_png.vtex\");"
+    var preview = $("#HeroPreview")
+    preview.LoadLayoutFromStringAsync("<root><Panel><DOTAScenePanel style='" + previewStyle + "' unit='" + heroName + "'/></Panel></root>", false, false);
+}
+
 function ShowHeroDetails(heroName) {
     var abilityPanel = $("#HeroAbilities");
     var heroData = allHeroes[heroName];
 
     abilityBar.SetProvider(new TableAbilityDataProvider(heroData));
+    $("#HeroAbilities").visible = true;
     $("#HeroName").text = $.Localize("#HeroName_" + heroData.name);
     $("#HeroTips").text = $.Localize("#HeroTips_" + heroData.name);
+
+    if (previewSchedule != 0) {
+        $.CancelScheduled(previewSchedule);
+    }
+
+    DeleteHeroPreview();
+    var preview = $.CreatePanel("Panel", $("#HeroList"), "HeroPreview");
+    $("#HeroList").MoveChildAfter(preview, $("#HeroName"));
+
+    previewSchedule = $.Schedule(0.3, function() {
+        previewSchedule = 0;
+        ShowHeroPreview(heroName);
+    });
 }
 
 function HideHeroDetails() {
     abilityBar.SetProvider(new EmptyAbilityDataProvider());
+    $("#HeroAbilities").visible = false;
     $("#HeroName").text = "";
     $("#HeroTips").text = "";
+
+    DeleteHeroPreview();
 }
 
 function AddHoverHeroDetails(element, heroName){

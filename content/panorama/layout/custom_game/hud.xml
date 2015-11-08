@@ -15,6 +15,14 @@
         <Panel id="MainPanel" class="MainPanel" hittest="false">
             <Panel id="DebugPanel" hittest="false">
             </Panel>
+            <Panel id="HeroDetails">
+                <Panel id="HeroPortraitContainer">
+                    <DOTAHeroMovie id="HeroPortrait"/>
+                </Panel>
+                <Panel id="HeroNameContainer">
+                    <Label id="HeroNameLabel"/>
+                </Panel>
+            </Panel>
             <Panel id="HeroPanel" hittest="false">
                 <Panel class="BuffPanel" id="BuffPanel">
                 </Panel>

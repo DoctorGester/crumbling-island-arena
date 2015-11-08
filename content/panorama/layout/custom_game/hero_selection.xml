@@ -9,7 +9,7 @@
         <include src="file://{resources}/scripts/custom_game/hero_selection_script.js" />
     </scripts>
     <Panel class="MainPanel" hittest="false">
-        <Panel id="HeroSelectionBackground" hittest="true">
+        <Panel id="HeroSelectionBackground" hittest="false">
             <Panel id="NameColumn">
                 <Label class="HeaderLabel NameColumnHeader" text="player"></Label>
             </Panel>

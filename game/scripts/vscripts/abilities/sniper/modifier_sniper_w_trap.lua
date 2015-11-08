@@ -38,7 +38,7 @@ function modifier_sniper_w_trap:OnIntervalThink()
         for _, target in pairs(Spells:GetValidTargets()) do
             local distance = (target:GetPos() - trap:GetAbsOrigin()):Length2D()
 
-            if target ~= hero and distance <= 64 then
+            if target ~= hero and distance <= 64 and target:__instanceof__(Hero) then
                 self:GetParent():ForceKill(false)
                 target:AddNewModifier(hero, self:GetAbility(), "modifier_sniper_w", { duration = 1.7 })
                 ImmediateEffectPoint("particles/units/heroes/hero_techies/techies_stasis_trap_explode.vpcf", PATTACH_ABSORIGIN, trap, trap:GetAbsOrigin())

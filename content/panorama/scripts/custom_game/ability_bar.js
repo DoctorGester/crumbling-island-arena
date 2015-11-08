@@ -234,6 +234,7 @@ function AbilityButton(parent, hero, ability) {
     }
 
     this.Delete = function() {
+        this.image.visible = false;
         this.image.DeleteAsync(0);
     }
 }

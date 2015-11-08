@@ -115,6 +115,13 @@
     text-align: center;
 }
 
+#HeroPreview
+{
+    width: 100%;
+    height: 300px;
+    opacity-mask: url('s2r://panorama/images/masks/softedge_box_png.vtex');
+}
+
 #SelectionColumn
 {
     y: 60px;
