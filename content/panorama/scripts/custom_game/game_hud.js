@@ -103,26 +103,42 @@ function TimerString(number){
     return floating.toString();
 }
 
-function GameTimersUpdate(data){
+function GameTimerUpdate(data) {
     if (data == undefined){
         return;
     }
 
-    $("#UltsTimer").text = TimerString(data.ults);
-    $("#Stage2Timer").text = TimerString(data.stageTwo);
-    $("#Stage3Timer").text = TimerString(data.stageThree);
-    $("#SuddenDeathTimer").text = TimerString(data.suddenDeath);
+    var progress = data.duration != -1 ? 1.0 - (data.remaining / data.duration) : 0.0;
+
+    progress = Degrees(Math.PI * 2 * progress).toFixed(2);
+    var right = $("#TimerRight");
+    var left = $("#TimerLeft");
+
+    if (progress <= 180) {
+        right.style.transform = "rotateZ(" + (progress - 180) + "deg)";
+        left.style.transform = "rotateZ(180deg)";
+        left.style.backgroundColor = "#EAEAEA";
+        right.style.backgroundColor = "#0094FF";
+        left.SetHasClass("TimerAnimated", false);
+    } else {
+        right.style.transform = "rotateZ(0deg)";
+        left.style.transform = "rotateZ(" + (progress - 180) + "deg)";
+        left.style.backgroundColor = "#0094FF";
+        right.style.backgroundColor = "#0094FF";
+        left.SetHasClass("TimerAnimated", true);
+    }
+
+    $("#TimerTextLabel").text = $.Localize(data.label);
+    $("#TimerValueLabel").text = data.duration != -1 ? TimerString(data.remaining) : "";
+    $("#TimerValueLabel").SetHasClass("TimerCritical", data.remaining <= 50)
 }
 
 function AddDebugButton(text, callback){
     var panel = $("#DebugPanel");
     var button = $.CreatePanel("Button", panel, "");
-    button.AddClass("DebugButton");
     button.SetPanelEvent("onactivate", callback);
 
-    var label = $.CreatePanel("Label", button, "");
-    label.text = text;
-    label.AddClass("DebugButtonText");
+    $.CreatePanel("Label", button, "").text = text;
 }
 
 function FillDebugPanel(){
@@ -161,11 +177,11 @@ function GameInfoChanged(data){
     if (data.state == GAME_STATE_ROUND_IN_PROGRESS){
         $("#HeroPanel").RemoveClass("AnimationHeroHudHidden");
         $("#HeroDetails").RemoveClass("AnimationHeroDetailsHidden");
-        $("#TimersPanel").RemoveClass("AnimationTimersHidden");
+        $("#TimerPanel").RemoveClass("AnimationTimerHidden");
     } else {
         $("#HeroPanel").AddClass("AnimationHeroHudHidden");
         $("#HeroDetails").AddClass("AnimationHeroDetailsHidden");
-        $("#TimersPanel").AddClass("AnimationTimersHidden");
+        $("#TimerPanel").AddClass("AnimationTimerHidden");
     }
 }
 
@@ -178,7 +194,7 @@ SetupUI();
 (function () {
     SubscribeToNetTableKey("main", "debug", true, DebugUpdate)
     SubscribeToNetTableKey("main", "heroes", true, HeroesUpdate);
-    SubscribeToNetTableKey("main", "timers", true, GameTimersUpdate);
+    SubscribeToNetTableKey("main", "timer", true, GameTimerUpdate);
     SubscribeToNetTableKey("main", "gameInfo", true, GameInfoChanged);
 
     UpdateUI();

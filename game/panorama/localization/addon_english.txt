@@ -23,6 +23,12 @@
 
 	"RecentScore"									"+{d:score}"
 
+	"StageIslandFirst"								"An eathquake"
+	"StageIslandSecond"								"A landslide"
+	"StageSuddenDeath"								"Doom"
+	"StageFinal"									""
+
+
 	"Unassigned"      								"Unassigned Team"
 	"Spectator"       								"Spectator Team"
 	"Neutrals"        								"Neutral Team"

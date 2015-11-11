@@ -77,3 +77,7 @@ function SwitchClass(element, class1, class2) {
     element.RemoveClass(class1);
     element.AddClass(class2)
 }
+
+function Degrees(rad) {
+    return rad * (180 / Math.PI);
+}

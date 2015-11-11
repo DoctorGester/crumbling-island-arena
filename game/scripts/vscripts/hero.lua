@@ -153,7 +153,7 @@ function Hero:UpdateFalling()
     return false
 end
 
-function Hero:Setup(ultimate)
+function Hero:Setup()
     AddLevelOneAbility(self.unit, "arena_hero")
     self.unit:SetAbilityPoints(0)
 
@@ -168,9 +168,7 @@ function Hero:Setup(ultimate)
                 ability:SetHidden(true)
             end
 
-            if name ~= ultimate then
-                ability:SetLevel(1)
-            end
+            ability:SetLevel(1)
         end
     end
 end

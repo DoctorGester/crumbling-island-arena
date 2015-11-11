@@ -1,0 +1,58 @@
+#TimerPanel
+{
+    horizontal-align: right;
+    vertical-align: bottom;
+    flow-children: right;
+    margin-bottom: 100px;
+    margin-right: 100px;
+}
+
+#TimerCircleOuter
+{
+    width: 160px;
+    height: 160px;
+}
+
+#TimerCircle
+{
+    width: 100%;
+    height: 100%;
+    background-color: #EAEAEA;
+    opacity-mask: url('file://{images}/custom_game/timer_mask.png');
+    opacity: 0.9;
+}
+
+#TimerCircle Panel
+{
+    width: 100%;
+    height: 100%;
+    opacity-mask: url('file://{images}/custom_game/timer_half_mask.png');
+    background-color: yellow;
+}
+
+.TimerAnimated
+{
+    transition-property: transform, background-color;
+    transition-duration: 0.1s;
+}
+
+.TimerCritical
+{
+    color: red;
+}
+
+#TimerTextLabel
+{
+    vertical-align: middle;
+    text-align: center;
+    margin-right: 20px;
+}
+
+#TimerValueLabel
+{
+    vertical-align: middle;
+    text-align: center;
+    width: 100%;
+    font-size: 28px;
+    font-weight: bold;
+}

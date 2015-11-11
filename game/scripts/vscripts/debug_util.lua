@@ -114,13 +114,13 @@ function Debug:CheckAndEnableDebug(gameMode)
     CustomGameEventManager:RegisterListener("debug_switch_end_check", function() enableEndCheck = not enableEndCheck end)
     CustomGameEventManager:RegisterListener("debug_check_end", OnCheckEnd)
 
-    GameRules.GameMode.Round.StageTwoTimerTime = 1500
-    GameRules.GameMode.Round.StageThreeTimerTime = 4000
-    GameRules.GameMode.Round.UltsTimerTime = 15
-    GameRules.GameMode.Round.SuddenDeathTimerTime = 60000
+    FIRST_CRUMBLE_TIME = 7
+    SECOND_CRUMBLE_TIME = 7
+    SUDDEN_DEATH_TIME = 7
+    ULTS_TIME = 5
 
-    GameRules.GameMode.HeroSelection.SelectionTimerTime = 2000
-    GameRules.GameMode.HeroSelection.PreGameTime = 0
+    --GameRules.GameMode.HeroSelection.SelectionTimerTime = 20000
+    --GameRules.GameMode.HeroSelection.PreGameTime = 0
 
     InjectFreeSelection()
     InjectHero(GameRules.GameMode.Round)

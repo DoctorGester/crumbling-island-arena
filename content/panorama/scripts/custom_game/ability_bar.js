@@ -107,10 +107,6 @@ function AbilityBar(elementId) {
         this.customIcons[abilityName] = iconPath;
     }
 
-    this.DisableUltimate = function(abilityName) {
-        this.ultimate = abilityName;
-    }
-
     this.GetAbility = function(slot) {
         if (!this.abilities[slot]) {
             var ability = new AbilityButton(this.element);
@@ -193,7 +189,6 @@ function AbilityButton(parent, hero, ability) {
             this.SetCooldown(data.remaining, data.cooldown, data.ready, data.activated);
         }
 
-        this.image.SetHasClass("AnimationUltimateHidden", !data.enabled);
         this.image.SetHasClass("AbilityBeingCast", data.beingCast);
         this.image.SetHasClass("AbilityButtonToggled", data.toggled);
 
@@ -201,9 +196,11 @@ function AbilityButton(parent, hero, ability) {
     }
 
     this.SetCooldown = function(remaining, cd, ready, activated) {
-        this.image.SetHasClass("AbilityButtonEnabled", true);
-        this.image.SetHasClass("AbilityButtonDeactivated", false);
-        this.image.SetHasClass("AbilityButtonOnCooldown", false);
+        if (ready && activated) {
+            this.image.SetHasClass("AbilityButtonEnabled", true);
+            this.image.SetHasClass("AbilityButtonDeactivated", false);
+            this.image.SetHasClass("AbilityButtonOnCooldown", false);
+        }
 
         if (!ready){
             this.image.SetHasClass("AbilityButtonEnabled", false);
@@ -215,6 +212,7 @@ function AbilityButton(parent, hero, ability) {
             this.image.SetHasClass("AbilityButtonEnabled", false);
             this.image.SetHasClass("AbilityButtonDeactivated", true);
             this.image.SetHasClass("AbilityButtonOnCooldown", false);
+            $.Msg("activated changed");
         }
 
         var progress = Math.round(remaining / cd * 100.0).toString();

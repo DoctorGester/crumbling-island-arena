@@ -22,7 +22,7 @@ STATE_ROUND_ENDED = 3
 ROUND_ENDING_TIME = 5
 FIXED_DAY_TIME = 0.27
 
-THINK_PERIOD = 0.05
+THINK_PERIOD = 0.1
 
 DUMMY_HERO = "npc_dota_hero_wisp"
 
@@ -58,8 +58,14 @@ function GameMode:OnThink()
 
     GameRules:SetTimeOfDay(FIXED_DAY_TIME)
 
-    if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS and self.State == STATE_ROUND_IN_PROGRESS then
-        self.Round:Update()
+    if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+        if self.State == STATE_HERO_SELECTION and self.HeroSelection then
+            self.HeroSelection:Update()
+        end
+
+        if self.State == STATE_ROUND_IN_PROGRESS then
+            self.Round:Update()
+        end
     end
 
     return THINK_PERIOD
@@ -79,7 +85,7 @@ function GameMode:EventStateChanged(args)
     local newState = GameRules:State_Get()
 
     if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-        Timers:CreateTimer(1, function () self:OnGameInProgress() end)
+        self:OnGameInProgress()
     end
 end
 
@@ -207,9 +213,9 @@ function OnRoundEnd()
 end
 
 function OnHeroSelectionEnd()
-    GameMode:SetState(STATE_ROUND_IN_PROGRESS)
     GameMode.Round:CreateHeroes()
     GameMode.Round:Start(OnRoundEnd)
+    GameMode:SetState(STATE_ROUND_IN_PROGRESS)
 end
 
 function GameMode:UpdatePlayerTable()

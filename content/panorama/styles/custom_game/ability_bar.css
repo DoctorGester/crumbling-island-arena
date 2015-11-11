@@ -1,0 +1,117 @@
+.AbilityPanel
+{
+    flow-children: right;
+    horizontal-align: center;
+}
+
+.Buff
+{
+    width: 36px;
+    height: 36px;
+    border-radius: 5px;
+    margin-left: 3px;
+    transition-property: opacity;
+    transition-duration: 0.1s;
+}
+
+.PositiveBuff
+{
+    box-shadow: #00FF21 0px 0px 8px 0px;
+    border: 1px solid #00FF21;
+}
+
+.NegativeBuff
+{
+    box-shadow: red 0px 0px 8px 0px;
+    border: 1px solid red;
+}
+
+.HiddenBuff
+{
+    opacity: 0;
+}
+
+.BuffTimeText
+{
+    color: white;
+    font-size: 12;
+    vertical-align: bottom;
+    horizontal-align: right;
+    text-shadow: 0px 0px 8px 8.0 #333333b0;
+    margin: 3px;
+}
+
+.AbilityButton
+{
+    width: 56px;
+    height: 56px;
+    color: white;
+    font-size: 16px;
+    text-shadow: 2px 2px 2px #7b612b;
+    /*background-color: gradient(linear, 0% 0%, 0% 100%, from( #c88423 ), color-stop( 0.25, #c88423 ), color-stop( 0.5, #fffb84 ), color-stop( 0.75, #c88423 ), to( #9a6717 ) );*/
+    margin:5px;
+    border-radius: 5px;
+    background-color: black;
+
+    transition-property: transform, saturation, wash-color, box-shadow;
+    transition-duration: 0.1s;
+}
+
+.AbilityButtonEnabled
+{
+    box-shadow: 0px 0px 5px 0px #0094FF;
+}
+
+.AbilityButtonDeactivated
+{
+    box-shadow: 0px 0px 5px 0px black;
+    saturation: 0.1;
+}
+
+.AbilityButtonEnabled
+{
+    box-shadow: 0px 0px 5px 0px #0094FF;
+}
+
+.AbilityButtonToggled
+{
+    box-shadow: 0px 0px 5px 0px #93FF3E;
+}
+
+.AbilityButtonOnCooldown
+{
+    box-shadow: 0px 0px 5px 0px red;
+    saturation: 0.1;
+}
+
+.AbilityButtonInside
+{
+    background-color: gray;
+    width: 100%;
+    height: 0%;
+    opacity: 0.65;
+    horizontal-align: center;
+    vertical-align: bottom;
+}
+
+.AbilityBeingCast
+{
+    wash-color: #93FF3E;
+}
+
+.ShortcutText
+{
+    font-size: 10;
+    margin: 8px;
+    vertical-align: bottom;
+    horizontal-align: center;
+    text-shadow: 0px 0px 8px 8.0 #333333b0;
+}
+
+.CooldownText
+{
+    font-size: 14;
+    vertical-align: middle;
+    horizontal-align: center;
+    text-shadow: 0px 0px 8px 8.0 #333333b0;
+}

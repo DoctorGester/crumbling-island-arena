@@ -1,22 +1,27 @@
 GRACE_TIME = 1
+FIRST_CRUMBLE_TIME = 50
+SECOND_CRUMBLE_TIME = 30
+SUDDEN_DEATH_TIME = 40
+ULTS_TIME = 70
 
 if Round == nil then
     Round = class({})
 end
 
+function Stage(label, duration, callback, update)
+    local self = {}
+
+    self.label = label
+    self.duration = duration
+    self.remaining = duration
+    self.callback = callback
+    self.update = update
+    
+    return self
+end
+
 function Round:Setup(level, players, gameItems, availableHeroes)
-    self.StageTwoTimer = 0
-    self.StageThreeTimer = 0
-    self.UltsTimer = 0
-    self.SuddenDeathTimer = 0
-
-    self.StageTwoTimerTime = 500
-    self.StageThreeTimerTime = 800
-    self.UltsTimerTime = 700
-    self.SuddenDeathTimerTime = 1200
-
     self.Stage = 1
-
     self.Winner = nil
 
     self.Level = level
@@ -29,6 +34,39 @@ function Round:Setup(level, players, gameItems, availableHeroes)
     for i = 0, 7 do
         self.SpawnPoints[i] = "spawn"..i
     end
+end
+
+function Round:CreateStages()
+    self.Stages = {}
+
+    -- TODO remove corpses if out of the map when layer changes
+    table.insert(self.Stages, Stage("StageIslandFirst", FIRST_CRUMBLE_TIME * 10,
+        function()
+            self.Level:SwapLayers("InfoLayer1", "InfoLayer2")
+            self.Level:EnableObstructors(Entities:FindAllByName(SECOND_STAGE_OBSTRUCTOR), true)
+        end
+    ))
+
+    table.insert(self.Stages, Stage("StageIslandSecond", SECOND_CRUMBLE_TIME * 10,
+        function()
+            self.Level:SwapLayers("InfoLayer2", "InfoLayer3")
+            self.Level:EnableObstructors(Entities:FindAllByName(THIRD_STAGE_OBSTRUCTOR), true)
+        end
+    ))
+
+    table.insert(self.Stages, Stage("StageSuddenDeath", SUDDEN_DEATH_TIME * 10))
+
+    table.insert(self.Stages, Stage("StageFinal", -1, nil,
+        function(stage)
+            if stage.remaining % 10 == 0 then
+                for _, player in pairs(self.Players) do
+                    player.hero:Damage()
+                end
+
+                self:CheckEndConditions()
+            end
+        end
+    ))
 end
 
 function Round:GetAllHeroes()
@@ -68,11 +106,6 @@ function Round:EndRound()
         player.hero.protected = true
     end
 
-    Timers:CreateTimer(function ()
-        Timers:RemoveTimer("GameTimers")
-        Timers:RemoveTimer("SuddenDeathPeriodic")
-    end)
-
     Timers:CreateTimer(GRACE_TIME, function()
         self.Callback()
     end)
@@ -80,6 +113,23 @@ end
 
 function Round:Update()
     local someoneDied = false
+    local stage = self.Stages[self.Stage]
+
+    stage.remaining = stage.remaining - 1
+
+    if stage.update then
+        stage.update(stage)
+    end
+
+    self:UpdateTimer()
+
+    if stage.remaining == 0 and stage.duration ~= -1 then
+        if stage.callback then
+            stage.callback()
+        end
+
+        self.Stage = self.Stage + 1
+    end
 
     for _, player in pairs(self.Players) do
         local hero = player.hero
@@ -142,11 +192,13 @@ function Round:CreateHeroes()
 
                 --LoadDefaultHeroItems(player.hero, self.GameItems)
                 local ultimate = self.AvailableHeroes[hero:GetName()].ultimate
-                hero:Setup(ultimate)
+                hero:Setup()
                 hero:SetOwner(player)
 
                 local spawnPoint = Entities:FindAllByName(self.SpawnPoints[i])[1]
                 hero:SetPos(spawnPoint:GetAbsOrigin())
+
+                unit:FindAbilityByName(ultimate):StartCooldown(ULTS_TIME)
 
                 MoveCameraToUnit(player.id, unit)
 
@@ -156,13 +208,8 @@ function Round:CreateHeroes()
     end
 end
 
-function Round:UpdateTimers()
-    CustomNetTables:SetTableValue("main", "timers", {
-        stageTwo = self.StageTwoTimer,
-        stageThree = self.StageThreeTimer,
-        ults = self.UltsTimer,
-        suddenDeath = self.SuddenDeathTimer
-    });
+function Round:UpdateTimer()
+    CustomNetTables:SetTableValue("main", "timer", self.Stages[self.Stage]);
 end
 
 function Round:Reset()
@@ -170,7 +217,7 @@ function Round:Reset()
         self.Level:SwapLayers("InfoLayer2", "InfoLayer1")
     end
 
-    if self.Stage == 3 then
+    if self.Stage >= 3 then
         self.Level:SwapLayers("InfoLayer3", "InfoLayer1")
     end
 
@@ -190,72 +237,10 @@ function Round:Reset()
     end
 end
 
-function Round:EnableSuddenDeath()
-    Timers:CreateTimer("SuddenDeathPeriodic", {
-        endTime = 1,
-        callback = function ()
-            for _, player in pairs(self.Players) do
-                player.hero:Damage()
-            end
-
-            self:CheckEndConditions()
-
-            return 1
-        end
-    })
-end
-
 function Round:Start(callback)
     self.Stage = 1
     self.Callback = callback
 
-    self.StageTwoTimer = self.StageTwoTimerTime
-    self.StageThreeTimer = self.StageThreeTimerTime
-    self.UltsTimer = self.UltsTimerTime
-    self.SuddenDeathTimer = self.SuddenDeathTimerTime
-
-    self:UpdateTimers()
-
-    Timers:CreateTimer("GameTimers", {
-        callback = function ()
-            self.StageTwoTimer = math.max(-1, self.StageTwoTimer - 1)
-            self.StageThreeTimer = math.max(-1, self.StageThreeTimer - 1)
-            self.UltsTimer = math.max(-1, self.UltsTimer - 1)
-            self.SuddenDeathTimer = math.max(-1, self.SuddenDeathTimer - 1)
-
-            -- TODO remove corpses if out of the map when layer changes
-            if self.StageTwoTimer == 0 then
-                self.Level:SwapLayers("InfoLayer1", "InfoLayer2")
-                self.Level:EnableObstructors(Entities:FindAllByName(SECOND_STAGE_OBSTRUCTOR), true)
-
-                self.Stage = 2
-            end
-
-            if self.StageThreeTimer == 0 then
-                self.Level:SwapLayers("InfoLayer2", "InfoLayer3")
-                self.Level:EnableObstructors(Entities:FindAllByName(THIRD_STAGE_OBSTRUCTOR), true)
-
-                self.Stage = 3
-            end
-
-            if self.UltsTimer == 0 then
-                for _, player in pairs(self.Players) do
-                    local hero = player.hero
-                    local ultimate = self.AvailableHeroes[hero:GetName()].ultimate
-
-                    hero:EnableUltimate(ultimate)
-
-                    CustomGameEventManager:Send_ServerToAllClients("ultimates_enabled", {})
-                end
-            end
-
-            if self.SuddenDeathTimer == 0 then
-                self:EnableSuddenDeath()
-            end
-
-            self:UpdateTimers()
-
-            return 0.1
-        end
-    })
+    self:CreateStages()
+    self:UpdateTimer()
 end

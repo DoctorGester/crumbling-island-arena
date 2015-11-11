@@ -1,6 +1,8 @@
 <root>
     <styles>
         <include src="file://{resources}/styles/custom_game/game_hud.css" />
+        <include src="file://{resources}/styles/custom_game/ability_bar.css" />
+        <include src="file://{resources}/styles/custom_game/timer.css" />
     </styles>
     <scripts>
         <include src="file://{resources}/scripts/custom_game/util.js" />
@@ -20,7 +22,7 @@
                     <DOTAHeroMovie id="HeroPortrait"/>
                 </Panel>
                 <Panel id="HeroNameContainer">
-                    <Label id="HeroNameLabel"/>
+                    <Label id="HeroNameLabel" class="UILabel"/>
                 </Panel>
             </Panel>
             <Panel id="HeroPanel" hittest="false">
@@ -33,18 +35,15 @@
                 <Panel class="AbilityPanel" hittest="false" id="AbilityPanel">
                 </Panel>
             </Panel>
-            <Panel id="TimersPanel" hittest="false">
-                <Label class="TimerDescription" text="Island collapses!"/>
-                <Label id="Stage2Timer" class="TimerText" text=""/>
-
-                <Label class="TimerDescription" text="Ultimates unlocked"/>
-                <Label id="UltsTimer" class="TimerText" text=""/>
-
-                <Label class="TimerDescription" text="Island collapses!!!"/>
-                <Label id="Stage3Timer" class="TimerText" text=""/>
-
-                <Label class="TimerDescription" text="You are doomed"/>
-                <Label id="SuddenDeathTimer" class="TimerText" text=""/>
+            <Panel id="TimerPanel">
+                <Label id="TimerTextLabel" class="UILabel"/>
+                <Panel id="TimerCircleOuter">
+                    <Panel id="TimerCircle">
+                        <Panel id="TimerRight" class="TimerAnimated"/>
+                        <Panel id="TimerLeft"/>
+                    </Panel>
+                    <Label id="TimerValueLabel" class="UILabel"/>
+                </Panel>
             </Panel>
         </Panel>
     </Panel>

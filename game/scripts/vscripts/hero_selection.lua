@@ -4,8 +4,9 @@ end
 
 function HeroSelection:Setup(players, availableHeroes, teamColors)
     self.SelectionTimer = 0
-    self.SelectionTimerTime = 20
-    self.PreGameTime = 3
+    self.SelectionTimerTime = 200
+    self.PreGameTimer = 0
+    self.PreGameTimerTime = 30
     self.Players = players
     self.TeamColors = teamColors
     self.AvailableHeroes = availableHeroes
@@ -63,8 +64,8 @@ function HeroSelection:OnClick(args)
         end
     end
 
-    if allLocked and self.SelectionTimer > 3 then
-        self.SelectionTimer = 3
+    if allLocked and self.SelectionTimer > 30 then
+        self.SelectionTimer = 30
         self:SendTimeToPlayers()
     end
 
@@ -91,13 +92,15 @@ function HeroSelection:AssignRandomHeroes()
 end
 
 function HeroSelection:SendTimeToPlayers()
-    CustomGameEventManager:Send_ServerToAllClients("timer_tick", { time = self.SelectionTimer })
+    CustomGameEventManager:Send_ServerToAllClients("timer_tick", { time = self.SelectionTimer / 10 })
 end
 
 function HeroSelection:Start(callback)
     print("Starting hero selection")
 
+    self.Callback = callback
     self.SelectionTimer = self.SelectionTimerTime
+    self.PreGameTimer = self.PreGameTimerTime
     self:SendTimeToPlayers()
 
     for _, player in pairs(self.Players) do
@@ -107,23 +110,24 @@ function HeroSelection:Start(callback)
     end
 
     self:UpdateSelectedHeroes()
+end
 
-    Timers:CreateTimer(1, function()
-            self.SelectionTimer = self.SelectionTimer - 1
-            self:SendTimeToPlayers()
+function HeroSelection:Update()
+    self.SelectionTimer = math.max(self.SelectionTimer - 1, -1)
 
-            if self.SelectionTimer == 0 then
-                self:AssignRandomHeroes()
+    if self.SelectionTimer % 10 == 0 then
+        self:SendTimeToPlayers()
+    end
 
-                Timers:CreateTimer(self.PreGameTime, function ()
-                    callback()
-                    end
-                )
+    if self.SelectionTimer == 0 then
+        self:AssignRandomHeroes()
+    end
 
-                return false
-            end
+    if self.SelectionTimer == -1 then
+        self.PreGameTimer = self.PreGameTimer - 1
 
-            return 1.0
+        if self.PreGameTimer == 0 then
+            self:Callback()
         end
-    )
+    end
 end

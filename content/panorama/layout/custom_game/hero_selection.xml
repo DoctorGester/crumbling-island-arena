@@ -1,6 +1,6 @@
 <root>
     <styles>
-        <include src="file://{resources}/styles/custom_game/game_hud.css" />
+        <include src="file://{resources}/styles/custom_game/ability_bar.css" />
         <include src="file://{resources}/styles/custom_game/hero_selection_style.css" />
     </styles>
     <scripts>

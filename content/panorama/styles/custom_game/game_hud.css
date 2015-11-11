@@ -4,6 +4,15 @@
     height: 100%;
 }
 
+.UILabel
+{
+    font-family: Goudy Trajan Medium, FZKai-Z03, TH Sarabun New;
+    font-size: 19px;
+    text-shadow: -1px 1px 2px 2.0 #000000;
+    text-transform: uppercase;
+    color: #CCB966;
+}
+
 #HeroDetails
 {
     flow-children: right;
@@ -37,11 +46,6 @@
 
 #HeroNameLabel
 {
-    font-family: Goudy Trajan Medium, FZKai-Z03, TH Sarabun New;
-    font-size: 19px;
-    text-shadow: -1px 1px 2px 2.0 #000000;
-    text-transform: uppercase;
-    color: #CCB966;
     margin-left: 20px;
     vertical-align: middle;
 }
@@ -62,12 +66,6 @@
     margin-bottom: 20px;
     padding-left: 20px;
     padding-right: 20px;
-}
-
-.AbilityPanel
-{
-    flow-children: right;
-    horizontal-align: center;
 }
 
 .HealthPanel
@@ -97,157 +95,16 @@
     opacity: 0.4;
 }
 
-.Buff
-{
-    width: 36px;
-    height: 36px;
-    border-radius: 5px;
-    margin-left: 3px;
-    transition-property: opacity;
-    transition-duration: 0.1s;
-}
-
-.PositiveBuff
-{
-    box-shadow: #00FF21 0px 0px 8px 0px;
-    border: 1px solid #00FF21;
-}
-
-.NegativeBuff
-{
-    box-shadow: red 0px 0px 8px 0px;
-    border: 1px solid red;
-}
-
-.HiddenBuff
-{
-    opacity: 0;
-}
-
-.BuffTimeText
-{
-    color: white;
-    font-size: 12;
-    vertical-align: bottom;
-    horizontal-align: right;
-    text-shadow: 0px 0px 8px 8.0 #333333b0;
-    margin: 3px;
-}
-
-.AbilityButton
-{
-    width: 56px;
-    height: 56px;
-    color: white;
-    font-size: 16px;
-    text-shadow: 2px 2px 2px #7b612b;
-    /*background-color: gradient(linear, 0% 0%, 0% 100%, from( #c88423 ), color-stop( 0.25, #c88423 ), color-stop( 0.5, #fffb84 ), color-stop( 0.75, #c88423 ), to( #9a6717 ) );*/
-    margin:5px;
-    border-radius: 5px;
-    background-color: black;
-
-    transition-property: transform, saturation, wash-color, box-shadow;
-    transition-duration: 0.1s;
-}
-
-.AbilityButtonEnabled
-{
-    box-shadow: 0px 0px 5px 0px #0094FF;
-}
-
-.AbilityButtonDeactivated
-{
-    box-shadow: 0px 0px 5px 0px black;
-    saturation: 0.1;
-}
-
-.AbilityButtonEnabled
-{
-    box-shadow: 0px 0px 5px 0px #0094FF;
-}
-
-.AbilityButtonToggled
-{
-    box-shadow: 0px 0px 5px 0px #93FF3E;
-}
-
-.AbilityButtonOnCooldown
-{
-    box-shadow: 0px 0px 5px 0px red;
-    saturation: 0.1;
-}
-
-.AbilityButtonInside
-{
-    background-color: gray;
-    width: 100%;
-    height: 0%;
-    opacity: 0.65;
-    horizontal-align: center;
-    vertical-align: bottom;
-}
-
-.AbilityBeingCast
-{
-    wash-color: #93FF3E;
-}
-
-.ShortcutText
-{
-    font-size: 10;
-    margin: 8px;
-    vertical-align: bottom;
-    horizontal-align: center;
-    text-shadow: 0px 0px 8px 8.0 #333333b0;
-}
-
-.CooldownText
-{
-    font-size: 14;
-    vertical-align: middle;
-    horizontal-align: center;
-    text-shadow: 0px 0px 8px 8.0 #333333b0;
-}
-
-#TimersPanel
-{
-    horizontal-align: right;
-    y: 60px;
-    width: 20%;
-    height: 30%;
-    flow-children: right-wrap;
-    transition: transform 1.0s linear 0.0ms;
-}
-
-.TimerDescription
-{
-    font-family: Goudy Trajan Medium, FZKai-Z03, TH Sarabun New;
-    text-shadow: -1px 1px 2px 2.0 #000000;
-    color: #CCB966;
-    font-size: 21;
-    width: 80%;
-    margin-bottom: 10px;
-}
-
-.TimerText
-{
-    font-family: Goudy Trajan Medium, FZKai-Z03, TH Sarabun New;
-    text-shadow: -1px 1px 2px 2.0 #000000;
-    color: #CCB966;
-    font-size: 21;
-    text-align: right;
-}
-
 #DebugPanel
 {
     flow-children: down;
     horizontal-align: right;
-    vertical-align: bottom;
+    vertical-align: top;
     margin-right: 5px;
-    margin-bottom: 100px;
+    margin-top: 100px;
 }
 
-.DebugButton
+#DebugPanel Button
 {
     width: 160px;
     height: 30px;
@@ -256,7 +113,7 @@
     border-radius: 2px;
 }
 
-.DebugButtonText
+#DebugPanel Button Label
 {
     horizontal-align: center;
     vertical-align: middle;
@@ -284,12 +141,7 @@
     transform: translateX(-1000px);
 }
 
-.AnimationTimersHidden
+.AnimationTimerHidden
 {
     transform: translateX(1000px);
-}
-
-.AnimationUltimateHidden
-{
-    transform: scale3d(0.0, 0.0, 1.0);
 }
