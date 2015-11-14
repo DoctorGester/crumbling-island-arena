@@ -40,7 +40,7 @@
                 <Panel id="TimerCircleOuter">
                     <Panel id="TimerCircle">
                         <Panel id="TimerRight" class="TimerAnimated"/>
-                        <Panel id="TimerLeft"/>
+                        <Panel id="TimerLeft" class="TimerAnimated"/>
                     </Panel>
                     <Label id="TimerValueLabel" class="UILabel"/>
                 </Panel>

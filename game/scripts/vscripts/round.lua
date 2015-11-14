@@ -20,7 +20,7 @@ function Stage(label, duration, callback, update)
     return self
 end
 
-function Round:Setup(level, players, gameItems, availableHeroes)
+function Round:constructor(level, players, gameItems, availableHeroes)
     self.Stage = 1
     self.Winner = nil
 

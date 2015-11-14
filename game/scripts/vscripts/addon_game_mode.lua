@@ -22,7 +22,7 @@ STATE_ROUND_ENDED = 3
 ROUND_ENDING_TIME = 5
 FIXED_DAY_TIME = 0.27
 
-THINK_PERIOD = 0.1
+THINK_PERIOD = 0.01
 
 DUMMY_HERO = "npc_dota_hero_wisp"
 
@@ -32,7 +32,6 @@ end
 
 function Precache(context)
     PrecacheResource("model", "models/development/invisiblebox.vmdl", context)
-    PrecacheResource("particle", "particles/units/heroes/hero_stormspirit/stormspirit_static_remnant.vpcf", context)
     PrecacheResource("particle", "particles/ui/ui_generic_treasure_impact.vpcf", context)
     PrecacheResource("soundfile", "soundevents/custom_sounds.vsndevts", context)
     PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_razor.vsndevts", context)
@@ -58,13 +57,14 @@ function GameMode:OnThink()
 
     GameRules:SetTimeOfDay(FIXED_DAY_TIME)
 
+    local now = Time()
     if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-        if self.State == STATE_HERO_SELECTION and self.HeroSelection then
-            self.HeroSelection:Update()
-        end
-
-        if self.State == STATE_ROUND_IN_PROGRESS then
-            self.Round:Update()
+        for _, thinker in ipairs(self.Thinkers) do
+            
+            if now >= thinker.next then
+                thinker.next = thinker.next + thinker.period
+                thinker.callback()
+            end
         end
     end
 
@@ -91,7 +91,7 @@ end
 
 function GameMode:InitSettings()
     GameRules:SetHeroRespawnEnabled(false)
-    GameRules:SetUseUniversalShopMode(true)
+    GameRules:SetUseUniversalShopMode(false)
     GameRules:SetSameHeroSelectionEnabled(true)
     GameRules:SetHeroSelectionTime(1.0)
     GameRules:SetPreGameTime(0)
@@ -119,15 +119,24 @@ function GameMode:InitSettings()
     SendToServerConsole("dota_combine_models 0")
 end
 
+function GameMode:RegisterThinker(period, callback)
+    local timer = {}
+    timer.period = period
+    timer.callback = callback
+    timer.next = Time() + period
+
+    self.Thinkers = self.Thinkers or {}
+
+    table.insert(self.Thinkers, timer)
+end
+
 function GameMode:InitEvents()
     ListenToGameEvent('player_connect_full', Dynamic_Wrap(self, 'EventPlayerConnected'), self)
     ListenToGameEvent('game_rules_state_change', Dynamic_Wrap(self, 'EventStateChanged'), self)
-    ListenToGameEvent('dota_player_pick_hero', Dynamic_Wrap(GameMode, 'OnPlayerPickHero'), self)
+    ListenToGameEvent('dota_player_pick_hero', Dynamic_Wrap(self, 'OnPlayerPickHero'), self)
 end
 
 function GameMode:SetupMode()
-    GameMode = self
-
     self.Players = {}
     self:SetState(STATE_HERO_SELECTION)
     self:LoadCustomHeroes()
@@ -180,42 +189,30 @@ function GameMode:SetupMode()
     end
 end
 
-function OnSelectionHeroHover(eventSourceIndex, args)
-    if GameMode.State == STATE_HERO_SELECTION then
-        GameMode.HeroSelection:OnHover(args)
-    end
-end
+function GameMode:OnRoundEnd()
+    self:SetState(STATE_ROUND_ENDED)
 
-function OnSelectionHeroClick(eventSourceIndex, args)
-    if GameMode.State == STATE_HERO_SELECTION then
-        GameMode.HeroSelection:OnClick(args)
-    end
-end
-
-function OnRoundEnd()
-    GameMode:SetState(STATE_ROUND_ENDED)
-
-    for _, player in pairs(GameMode.Players) do
+    for _, player in pairs(self.Players) do
         player.hero.protected = true
     end
 
     Timers:CreateTimer(ROUND_ENDING_TIME, function ()
-        if GameMode.Round.Winner then
-            GameMode.Round.Winner.score = GameMode.Round.Winner.score + 1
-            GameMode:UpdatePlayerTable()
+        if self.Round.Winner then
+            self.Round.Winner.score = self.Round.Winner.score + 1
+            self:UpdatePlayerTable()
         end
 
-        GameMode.Round:Reset()
-        GameMode:SetState(STATE_HERO_SELECTION)
-        GameMode.HeroSelection:Start(OnHeroSelectionEnd)
+        self.Round:Reset()
+        self:SetState(STATE_HERO_SELECTION)
+        self.HeroSelection:Start(function() self:OnHeroSelectionEnd() end)
         end
     )
 end
 
-function OnHeroSelectionEnd()
-    GameMode.Round:CreateHeroes()
-    GameMode.Round:Start(OnRoundEnd)
-    GameMode:SetState(STATE_ROUND_IN_PROGRESS)
+function GameMode:OnHeroSelectionEnd()
+    self.Round:CreateHeroes()
+    self.Round:Start(function() self:OnRoundEnd() end)
+    self:SetState(STATE_ROUND_IN_PROGRESS)
 end
 
 function GameMode:UpdatePlayerTable()
@@ -236,12 +233,12 @@ end
 function GameMode:UpdateAvailableHeroesTable()
     local heroes = {}
 
-    for name, data in pairs(GameMode.AvailableHeroes) do
+    for name, data in pairs(self.AvailableHeroes) do
         data.name = name
         table.insert(heroes, data)
     end
 
-    CustomNetTables:SetTableValue("main", "heroes", GameMode.AvailableHeroes)
+    CustomNetTables:SetTableValue("main", "heroes", self.AvailableHeroes)
 end
 
 function GameMode:SetState(state)
@@ -265,14 +262,14 @@ function GameMode:SetState(state)
 end
 
 function GameMode:LoadCustomHeroes()
-    GameMode.AvailableHeroes = {}
+    self.AvailableHeroes = {}
 
     local customHeroes = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
     local customAbilities = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
 
     for customName, data in pairs(customHeroes) do
         if data.override_hero ~= DUMMY_HERO then
-            GameMode.AvailableHeroes[data.override_hero] = { ultimate = data.Ultimate, class = data.Class, customIcons = data.CustomIcons }
+            self.AvailableHeroes[data.override_hero] = { ultimate = data.Ultimate, class = data.Class, customIcons = data.CustomIcons }
 
             local abilities = {}
             for i = 0, 10 do
@@ -286,7 +283,7 @@ function GameMode:LoadCustomHeroes()
                 end
             end
 
-            GameMode.AvailableHeroes[data.override_hero].abilities = abilities
+            self.AvailableHeroes[data.override_hero].abilities = abilities
         end
     end
 end
@@ -303,25 +300,35 @@ function GameMode:OnGameInProgress()
     end
 
     self:UpdatePlayerTable()
-
-    CustomGameEventManager:RegisterListener("selection_hero_hover", OnSelectionHeroHover)
-    CustomGameEventManager:RegisterListener("selection_hero_click", OnSelectionHeroClick)
-
     self.GameItems = nil--LoadKeyValues("scripts/items/items_game.txt").items
 
     self.Level = Level()
 
-    self.HeroSelection = HeroSelection()
-    self.HeroSelection:Setup(self.Players, self.AvailableHeroes, self.TeamColors)
+    self.HeroSelection = HeroSelection(self.Players, self.AvailableHeroes, self.TeamColors)
 
-    self.Round = Round()
-    self.Round:Setup(self.Level, self.Players, self.GameItems, self.AvailableHeroes)
+    self.Round = Round(self.Level, self.Players, self.GameItems, self.AvailableHeroes)
     self.Round:Reset()
+
+    self:RegisterThinker(1,
+        function()
+            if self.State == STATE_HERO_SELECTION and self.HeroSelection then
+                self.HeroSelection:Update()
+            end
+        end
+    )
+
+    self:RegisterThinker(0.1,
+        function()
+            if self.State == STATE_ROUND_IN_PROGRESS then
+                self.Round:Update()
+            end
+        end
+    )
 
     Debug():CheckAndEnableDebug(self)
 
     self:SetState(STATE_HERO_SELECTION)
-    self.HeroSelection:Start(OnHeroSelectionEnd)
+    self.HeroSelection:Start(function() self:OnHeroSelectionEnd() end)
 end
 
 function GameMode:OnPlayerPickHero(keys)

@@ -214,7 +214,11 @@ function SelectionHoverClient(args){
 }
 
 function OnTimerTick(args){
-    $("#TimerText").text = args["time"].toString();
+    if (args["time"] != -1) {
+        $("#TimerText").text = args["time"].toString();
+    } else {
+        $("#TimerText").text = "Time's up!";
+    }
 }
 
 function GameInfoUpdated(data){

@@ -119,8 +119,8 @@ function Debug:CheckAndEnableDebug(gameMode)
     SUDDEN_DEATH_TIME = 7
     ULTS_TIME = 5
 
-    --GameRules.GameMode.HeroSelection.SelectionTimerTime = 20000
-    --GameRules.GameMode.HeroSelection.PreGameTime = 0
+    GameRules.GameMode.HeroSelection.SelectionTimerTime = 20000
+    GameRules.GameMode.HeroSelection.PreGameTime = 0
 
     InjectFreeSelection()
     InjectHero(GameRules.GameMode.Round)

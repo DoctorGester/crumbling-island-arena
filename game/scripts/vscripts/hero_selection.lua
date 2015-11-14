@@ -2,14 +2,17 @@ if HeroSelection == nil then
     HeroSelection = class({})
 end
 
-function HeroSelection:Setup(players, availableHeroes, teamColors)
+function HeroSelection:constructor(players, availableHeroes, teamColors)
     self.SelectionTimer = 0
-    self.SelectionTimerTime = 200
+    self.SelectionTimerTime = 20
     self.PreGameTimer = 0
-    self.PreGameTimerTime = 30
+    self.PreGameTimerTime = 3
     self.Players = players
     self.TeamColors = teamColors
     self.AvailableHeroes = availableHeroes
+
+    CustomGameEventManager:RegisterListener("selection_hero_hover", function(id, ...) Dynamic_Wrap(self, "OnHover")(self, ...) end)
+    CustomGameEventManager:RegisterListener("selection_hero_click", function(id, ...) Dynamic_Wrap(self, "OnClick")(self, ...) end)
 end
 
 function HeroSelection:UpdateSelectedHeroes()
@@ -64,8 +67,8 @@ function HeroSelection:OnClick(args)
         end
     end
 
-    if allLocked and self.SelectionTimer > 30 then
-        self.SelectionTimer = 30
+    if allLocked and self.SelectionTimer > 3 then
+        self.SelectionTimer = 3
         self:SendTimeToPlayers()
     end
 
@@ -92,7 +95,7 @@ function HeroSelection:AssignRandomHeroes()
 end
 
 function HeroSelection:SendTimeToPlayers()
-    CustomGameEventManager:Send_ServerToAllClients("timer_tick", { time = self.SelectionTimer / 10 })
+    CustomGameEventManager:Send_ServerToAllClients("timer_tick", { time = self.SelectionTimer })
 end
 
 function HeroSelection:Start(callback)
@@ -114,10 +117,7 @@ end
 
 function HeroSelection:Update()
     self.SelectionTimer = math.max(self.SelectionTimer - 1, -1)
-
-    if self.SelectionTimer % 10 == 0 then
-        self:SendTimeToPlayers()
-    end
+    self:SendTimeToPlayers()
 
     if self.SelectionTimer == 0 then
         self:AssignRandomHeroes()

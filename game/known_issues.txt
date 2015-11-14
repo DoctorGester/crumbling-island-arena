@@ -2,6 +2,8 @@
 - General: dynamic entities do not fall down
 - General: don't use timers in general gameplay-wise stuff
 - General: projectiles destroy visual feedback
+- General: no checks for game state in hover/click events
+- General: remove sound preloading
 - ES: remnants hitbox (test with zeus Q)
 - ES: remnants should not be dragged on cliffs
 - ES: visual effect on E start/end

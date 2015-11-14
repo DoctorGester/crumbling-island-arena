@@ -81,3 +81,30 @@ function SwitchClass(element, class1, class2) {
 function Degrees(rad) {
     return rad * (180 / Math.PI);
 }
+
+function PrintPanelKeys(panel) {
+    var keys = Object.keys(panel);
+    var def = [
+        "paneltype","rememberchildfocus","style","scrolloffset_x","scrolloffset_y","actualyoffset","actualxoffset","actuallayoutheight",
+        "actuallayoutwidth","desiredlayoutheight","desiredlayoutwidth","contentheight","contentwidth","layoutfile","id","selectionpos_y","selectionpos_x",
+        "tabindex","hittest","inputnamespace","defaultfocus","checked","enabled","visible","IsValid","AddClass","RemoveClass","BHasClass","SetHasClass",
+        "ToggleClass","ClearPanelEvent","SetDraggable","IsDraggable","GetChildCount","GetChild","GetChildIndex","Children","FindChildrenWithClassTraverse",
+        "GetParent","SetParent","FindChild","FindChildTraverse","FindChildInLayoutFile","RemoveAndDeleteChildren","MoveChildBefore","MoveChildAfter",
+        "GetPositionWithinWindow","ApplyStyles","DeleteAsync","BIsTransparent","BAcceptsInput","BAcceptsFocus","SetFocus","BHasHoverStyle","SetAcceptsFocus",
+        "SetDisableFocusOnMouseDown","BHasKeyFocus","SetScrollParentToFitWhenFocused","BScrollParentToFitWhenFocused","IsSelected","BHasDescendantKeyFocus",
+        "BLoadLayout","BLoadLayoutFromString","LoadLayoutFromStringAsync","LoadLayoutAsync","BCreateChildren","SetTopOfInputContext","SetDialogVariable",
+        "SetDialogVariableInt","ScrollToTop","ScrollToBottom","ScrollToLeftEdge","ScrollToRightEdge","ScrollParentToMakePanelFit","BCanSeeInParentScroll",
+        "GetAttributeInt","GetAttributeString","GetAttributeUInt32","SetAttributeInt","SetAttributeString","SetAttributeUInt32","SetInputNamespace","data",
+        "SetPanelEvent"
+    ];
+
+    for (key of def) {
+        var index = keys.indexOf(key);
+
+        if (index > -1) {
+            keys.splice(index, 1);
+        }
+    }
+
+    $.Msg(keys);
+}
