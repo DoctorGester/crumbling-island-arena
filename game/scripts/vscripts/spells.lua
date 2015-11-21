@@ -130,7 +130,9 @@ function Spells:GetValidTargets()
     local result = {}
 
     for _, hero in pairs(heroes) do
-        table.insert(result, hero)
+        if not hero.invulnerable then
+            table.insert(result, hero)
+        end
     end
 
     for _, ent in pairs(DynamicEntities) do
@@ -260,7 +262,11 @@ function Spells:CreateProjectile(data)
     projectile.endPoint = data.endPoint
     projectile.dummy = CreateUnitByName(DUMMY_UNIT, data.from, false, nil, nil, DOTA_TEAM_NOTEAM)
     projectile.owner = data.owner.hero or data.owner
-    projectile.effectId = ParticleManager:CreateParticle(data.graphics, PATTACH_ABSORIGIN_FOLLOW , projectile.dummy)
+
+    if data.graphics then
+        projectile.effectId = ParticleManager:CreateParticle(data.graphics, PATTACH_ABSORIGIN_FOLLOW , projectile.dummy)
+    end
+
     projectile.destroyed = false
     projectile.TargetReachedEvent = data.onTargetReached
     projectile.MoveEvent = data.onMove or function(self, prevPos, curPos) end
@@ -279,8 +285,11 @@ function Spells:CreateProjectile(data)
 
     projectile.Remove = function(self)
         UTIL_Remove(self.dummy)
-        ParticleManager:DestroyParticle(self.effectId, false)
-        ParticleManager:ReleaseParticleIndex(self.effectId)
+
+        if self.effectId then
+            ParticleManager:DestroyParticle(self.effectId, false)
+            ParticleManager:ReleaseParticleIndex(self.effectId)
+        end
     end
 
     data.initProjectile(projectile)

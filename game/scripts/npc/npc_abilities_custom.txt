@@ -606,35 +606,58 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/sk/sk_q"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
-		"AbilityTextureName" "sniper_headshot"
-		"AbilityCooldown" "7.0"
+		"AbilityTextureName" "sandking_burrowstrike"
+		"AbilityCooldown" "3.0"
+
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_sandking/sandking_burrowstrike_eruption.vpcf"
+		}
 	}
 
 	"sk_w"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/sk/sk_q"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
-		"AbilityTextureName" "sniper_headshot"
-		"AbilityCooldown" "7.0"
+		"ScriptFile" "abilities/sk/sk_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "sandking_sand_storm"
+		"AbilityCooldown" "8.0"
+		"AbilityCastRange" "500"
+
+		"precache"
+		{
+			"particle" "particles/sk_w/sk_w.vpcf"
+			"particle" "particles/status_fx/status_effect_earth_spirit_boulderslow.vpcf"
+		}
 	}
 
 	"sk_e"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/sk/sk_q"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
-		"AbilityTextureName" "sniper_headshot"
-		"AbilityCooldown" "7.0"
+		"ScriptFile" "abilities/sk/sk_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityTextureName" "earthshaker_aftershock_egset"
+		"AbilityCooldown" "10.0"
+		"AbilityCastPoint" "0.4"
+
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_nyx_assassin/nyx_assassin_burrow.vpcf"
+		}
 	}
 
 	"sk_r"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/sk/sk_q"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
-		"AbilityTextureName" "sniper_headshot"
-		"AbilityCooldown" "7.0"
+		"ScriptFile" "abilities/sk/sk_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "sandking_epicenter"
+		"AbilityCooldown" "14.0"
+
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_sandking/sandking_epicenter.vpcf"
+		}
 	}
 }

@@ -113,6 +113,7 @@ function GameMode:InitSettings()
     mode:SetBuybackEnabled(false)
     mode:SetTopBarTeamValuesOverride (true)
     mode:SetUseCustomHeroLevels(true)
+    mode:SetAnnouncerDisabled(true)
     mode:SetCustomHeroMaxLevel(1)
     --mode:SetFogOfWarDisabled(true)
 
@@ -338,5 +339,8 @@ function GameMode:OnPlayerPickHero(keys)
         hero:SetAbsOrigin(Vector(0, 0, 10000))
         hero:AddNoDraw()
         AddLevelOneAbility(hero, "hidden_hero")
+    else
+        local hero = EntIndexToHScript(keys.heroindex)
+        hero:FindAbilityByName("kunkka_ghostship"):SetLevel(1)
     end
 end

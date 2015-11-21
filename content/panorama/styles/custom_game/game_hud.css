@@ -89,6 +89,16 @@
     transition-duration: 0.5s;
 }
 
+.AspectRatio5x4 .HealthBar
+{
+    width: 80px;
+}
+
+.AspectRatio4x3 .HealthBar
+{
+    width: 80px;
+}
+
 .HealthBarDead
 {
     background-color: gray;

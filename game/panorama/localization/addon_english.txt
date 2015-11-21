@@ -3,7 +3,7 @@
 	"HeroName_npc_dota_hero_phantom_assassin"		"The Moon"
 	"HeroTips_npc_dota_hero_phantom_assassin"		"Throws glaive<br>Can quickly return it<br>W is close range AOE strike<br>Reactivate E to perform a double jump, leaving glaive behind<br>R speeds up Q and gives invisibility"
 
-	"HeroName_npc_dota_hero_crystal_maiden"			"The High Priestess"
+	"HeroName_npc_dota_hero_crystal_maiden"			"The Magician"
 	"HeroTips_npc_dota_hero_crystal_maiden"			"All abilities freeze targets<br>Abilities deal damage only to frozen targets<br>W requires two clicks to cast<br>Reactivate E to teleport to it<br>R slows more, the closer enemy to it's center"
 
 	"HeroName_npc_dota_hero_storm_spirit"			"Temperance"
@@ -20,6 +20,8 @@
 
 	"HeroName_npc_dota_hero_sniper"					"The Hermit"
 	"HeroTips_npc_dota_hero_sniper"					"Q has a windup time, but is insanely fast and long-ranged<br>Sets up invisible rooting traps<br>Can pass through units while sprinted<br>Becomes really slow while stealthed<br>Stealth is revealed by nearby heroes"
+
+	"HeroName_npc_dota_hero_sand_king"				"The High Priestess"
 
 	"RecentScore"									"+{d:score}"
 

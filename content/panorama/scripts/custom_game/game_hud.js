@@ -161,6 +161,10 @@ function FillDebugPanel(){
     AddDebugButton("Switch end check", function(){
         GameEvents.SendCustomGameEventToServer("debug_switch_end_check", {});
     });
+
+    AddDebugButton("Switch debug display", function(){
+        GameEvents.SendCustomGameEventToServer("debug_switch_debug_display", {});
+    });
 }
 
 function DebugUpdate(data){

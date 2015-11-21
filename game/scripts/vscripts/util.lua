@@ -121,10 +121,10 @@ function AddLevelOneAbility(hero, abilityName)
     ability:SetLevel(1)
 end
 
-function ImmediateEffect(path, attach, owner)
+function ImmediateEffect(path, attach, owner, time)
     local id = ParticleManager:CreateParticle(path, attach, owner.unit or owner)
 
-    Timers:CreateTimer(3,
+    Timers:CreateTimer(time or 3,
         function()
             ParticleManager:DestroyParticle(id, false)
             ParticleManager:ReleaseParticleIndex(id)
@@ -134,8 +134,8 @@ function ImmediateEffect(path, attach, owner)
     return id
 end
 
-function ImmediateEffectPoint(path, attach, owner, point)
-    local effect = ImmediateEffect(path, attach, owner)
+function ImmediateEffectPoint(path, attach, owner, point, time)
+    local effect = ImmediateEffect(path, attach, owner, time)
     ParticleManager:SetParticleControl(effect, 0, point)
     return effect
 end

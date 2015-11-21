@@ -296,8 +296,4 @@ function HeroSelectionUpdated(data){
     SubscribeToNetTableKey("main", "players", true, PlayersUpdated);
     SubscribeToNetTableKey("main", "gameInfo", true, GameInfoUpdated);
     SubscribeToNetTableKey("main", "selectedHeroes", true, HeroSelectionUpdated)
-
-    //CustomNetTables.SubscribeNetTableListener("main", TableUpdated);
-
-    //GameEvents.Subscribe("dota_player_update_selected_unit", Reload); // Testing
 })();

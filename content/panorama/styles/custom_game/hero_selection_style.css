@@ -209,6 +209,26 @@
     box-shadow: fill yellow 0px 0px 8px 0px;
 }
 
+.AspectRatio16x10 .AnimationSelectedHero
+{
+    transform: translateX(170px);
+}
+
+.AspectRatio5x3 .AnimationSelectedHero
+{
+    transform: translateX(180px);
+}
+
+.AspectRatio5x4 .AnimationSelectedHero
+{
+    transform: translateX(115px);
+}
+
+.AspectRatio4x3 .AnimationSelectedHero
+{
+    transform: translateX(125px);
+}
+
 .AnimationImageHover
 {
     opacity: 0.5;
