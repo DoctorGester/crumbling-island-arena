@@ -9,6 +9,7 @@ end
 function modifier_sniper_r:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE,
+        MODIFIER_PROPERTY_INVISIBILITY_LEVEL
     }
 
     return funcs
@@ -31,16 +32,6 @@ function modifier_sniper_r:CheckState()
             end
         end
 
-        if not self.wasInvisible and invisible then
-            self.wasInvisible = invisible
-            hero:AddNewModifier(hero, self:GetAbility(), "modifier_invis_fade", { duration = 0, invis_kind = "modifier_persistent_invisibility" })
-        end
-
-        if self.wasInvisible and not invisible then
-            self.wasInvisible = invisible
-            hero:RemoveModifier("modifier_persistent_invisibility")
-        end
-
         state[MODIFIER_STATE_INVISIBLE] = invisible
     end
 
@@ -55,6 +46,24 @@ end
 
 function modifier_sniper_r:GetModifierMoveSpeedOverride(params)
     return 210
+end
+
+function modifier_sniper_r:GetModifierInvisibilityLevel(params)
+    if IsClient() then
+        return self:GetStackCount()
+    end
+
+    local level = 0
+
+    if self:CheckState()[MODIFIER_STATE_INVISIBLE] then
+        level = 1
+    end
+
+    if IsServer() then
+        self:SetStackCount(level)
+    end
+
+    return level
 end
 
 function modifier_sniper_r:GetEffectName()

@@ -212,7 +212,6 @@ function AbilityButton(parent, hero, ability) {
             this.image.SetHasClass("AbilityButtonEnabled", false);
             this.image.SetHasClass("AbilityButtonDeactivated", true);
             this.image.SetHasClass("AbilityButtonOnCooldown", false);
-            $.Msg("activated changed");
         }
 
         var progress = Math.round(remaining / cd * 100.0).toString();
