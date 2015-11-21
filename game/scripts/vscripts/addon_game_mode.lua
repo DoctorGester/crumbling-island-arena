@@ -347,8 +347,5 @@ function GameMode:OnPlayerPickHero(keys)
         hero:SetAbsOrigin(Vector(0, 0, 10000))
         hero:AddNoDraw()
         AddLevelOneAbility(hero, "hidden_hero")
-    else
-        local hero = EntIndexToHScript(keys.heroindex)
-        hero:FindAbilityByName("kunkka_ghostship"):SetLevel(1)
     end
 end
