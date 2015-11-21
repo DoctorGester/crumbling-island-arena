@@ -218,7 +218,7 @@ function OnTimerTick(args){
     if (args["time"] != -1) {
         $("#TimerText").text = args["time"].toString();
     } else {
-        $("#TimerText").text = "Time's up!";
+        $("#TimerText").text = $.Localize("#GameInfoTimesUp");
     }
 }
 

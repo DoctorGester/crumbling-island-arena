@@ -22,10 +22,24 @@
 	"HeroTips_npc_dota_hero_sniper"					"Q has a windup time, but is insanely fast and long-ranged<br>Sets up invisible rooting traps<br>Can pass through units while sprinted<br>Becomes really slow while stealthed<br>Stealth is revealed by nearby heroes"
 
 	"HeroName_npc_dota_hero_sand_king"				"The High Priestess"
+	"HeroTips_npc_dota_hero_sand_king"				"W not only slows, but blinds enemies<br>Can burrow and become invulnerable, changing his Q to a projectile<br>R is a channeling ability with huge potential damage"
+
+	"PlayerHeader" "player"
+	"SelectionHeader" "selection"
+	"ScoreHeader" "score"
+	"HeroListHeader" "click to select your hero"
+
+	"GameInfoHeader" "game info"
+	"GameInfoTimer"	"Select your hero before time runs out!"
+	"GameInfoText" "Every player has <font color='#3A9B00'>5</font> health points<br>Autoattacks are <font color='red'>disabled</font><br><font color='red'>No</font> standard dota abilities<br>Ultimates are unlocked over time<br>Last man standing wins<br>The arena <font color='gold'>shrinks</font> and <font color='gold'>crumbles</font>"
+	"GameInfoTimesUp" "Time's up!"
+
+	"RoundEnding" "<font color='{s:color}'>{s:name}</font> wins!"
+	"RoundEndingWasted" "round wasted!"
 
 	"RecentScore"									"+{d:score}"
 
-	"StageIslandFirst"								"An eathquake"
+	"StageIslandFirst"								"An earthquake"
 	"StageIslandSecond"								"A landslide"
 	"StageSuddenDeath"								"Doom"
 	"StageFinal"									""

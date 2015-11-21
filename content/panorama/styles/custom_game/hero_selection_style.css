@@ -193,8 +193,15 @@
     color: gray;
 }
 
+.TimerColumnText
+{
+    margin-top: 20px;
+    text-align: center;
+}
+
 #TimerText
 {
+    margin-top: 20px;
     font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
     font-size: 48;
     horizontal-align: center;

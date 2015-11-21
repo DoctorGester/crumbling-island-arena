@@ -11,25 +11,26 @@
     <Panel class="MainPanel" hittest="false">
         <Panel id="HeroSelectionBackground" hittest="false">
             <Panel id="NameColumn">
-                <Label class="HeaderLabel NameColumnHeader" text="player"></Label>
+                <Label class="HeaderLabel NameColumnHeader" text="#PlayerHeader"></Label>
             </Panel>
             <Panel id="SelectionColumn">
-                <Label class="HeaderLabel SelectionColumnHeader" text="selection"></Label>
+                <Label class="HeaderLabel SelectionColumnHeader" text="#SelectionHeader"></Label>
             </Panel>
             <Panel id="ScoreColumn">
-                <Label class="HeaderLabel HeroListHeader" text="score"></Label>
+                <Label class="HeaderLabel HeroListHeader" text="#ScoreHeader"></Label>
             </Panel>
             <Panel id="HeroList">
-                <Label class="HeaderLabel HeroListHeader" text="click to select your hero"></Label>
+                <Label class="HeaderLabel HeroListHeader" text="#HeroListHeader"></Label>
                 <Panel id="HeroButtons"></Panel>
                 <Label id="HeroName" class="HeaderLabel HeroListHeader"></Label>
                 <Panel id="HeroAbilities" class="AbilityPanel"></Panel>
                 <Label id="HeroTips" html="true"></Label>
             </Panel>
             <Panel id="TimerColumn">
-                <Label class="HeaderLabel HeroListHeader" text="game info"></Label>
-                <Label class="TimerColumnLabel" text="Select your hero before time runs out!"></Label>
+                <Label class="HeaderLabel HeroListHeader" text="#GameInfoHeader"></Label>
+                <Label class="TimerColumnLabel" text="#GameInfoTimer"></Label>
                 <Label id="TimerText"></Label>
+                <Label class="TimerColumnLabel TimerColumnText" html="true" text="#GameInfoText"></Label>
             </Panel>
         </Panel>
     </Panel>

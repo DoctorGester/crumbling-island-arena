@@ -8,10 +8,12 @@ function GameInfoUpdated(data){
         var winner = data.roundWinner;
 
         if (winner.id == -1){
-            label.text = "round wasted!";
+            label.text = $.Localize("#RoundEndingWasted");
         } else {
             var color = LuaColor(winner.color);
-            label.text = "<font color='" + color + "'>" + Players.GetPlayerName(winner.id) + "</font> wins!";
+            label.SetDialogVariable("name", Players.GetPlayerName(winner.id));
+            label.SetDialogVariable("color", color);
+            label.text = $.Localize("#RoundEnding", label);
         }
 
         label.style.visibility = "visible";
