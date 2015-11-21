@@ -23,6 +23,7 @@ end
 function Round:constructor(level, players, gameItems, availableHeroes)
     self.Stage = 1
     self.Winner = nil
+    self.Ended = false
 
     self.Level = level
     self.Players = players
@@ -44,6 +45,16 @@ function Round:CreateStages()
         function()
             self.Level:SwapLayers("InfoLayer1", "InfoLayer2")
             self.Level:EnableObstructors(Entities:FindAllByName(SECOND_STAGE_OBSTRUCTOR), true)
+        end,
+
+        function(stage)
+            if stage.remaining == 50 then
+                EmitAnnouncerSound("announcer_ann_custom_timer_sec_05")
+            end
+
+            if stage.remaining == 100 then
+                EmitAnnouncerSound("announcer_ann_custom_weather_alert_19") -- Earthquake
+            end
         end
     ))
 
@@ -51,12 +62,26 @@ function Round:CreateStages()
         function()
             self.Level:SwapLayers("InfoLayer2", "InfoLayer3")
             self.Level:EnableObstructors(Entities:FindAllByName(THIRD_STAGE_OBSTRUCTOR), true)
+        end,
+
+        function(stage)
+            if stage.remaining == 50 then
+                EmitAnnouncerSound("announcer_ann_custom_timer_sec_05")
+            end
+
+            if stage.remaining == 100 then
+                EmitAnnouncerSound("announcer_ann_custom_weather_alert_23") -- Landslide
+            end
         end
     ))
 
     table.insert(self.Stages, Stage("StageSuddenDeath", SUDDEN_DEATH_TIME * 10))
 
-    table.insert(self.Stages, Stage("StageFinal", -1, nil,
+    table.insert(self.Stages, Stage("StageFinal", -1, 
+        function()
+            EmitAnnouncerSound("announcer_ann_custom_sudden_death")
+        end,
+
         function(stage)
             if stage.remaining % 10 == 0 then
                 for _, player in pairs(self.Players) do
@@ -83,6 +108,10 @@ function Round:CheckEndConditions()
     local amountAlive = 0
     local lastAlive = nil
 
+    if self.Ended then
+        return
+    end
+
     for _, player in pairs(self.Players) do
         if player.hero:Alive() then
             amountAlive = amountAlive + 1
@@ -106,6 +135,10 @@ function Round:EndRound()
         player.hero.protected = true
     end
 
+    self.Ended = true
+
+    EmitAnnouncerSound("announcer_ann_custom_round_complete")
+
     Timers:CreateTimer(GRACE_TIME, function()
         self.Callback()
     end)
@@ -115,6 +148,10 @@ function Round:Update()
     local someoneDied = false
     local stage = self.Stages[self.Stage]
 
+    if stage.duration == -1 and stage.remaining == -1 and stage.callback then
+        stage.callback()
+    end
+
     stage.remaining = stage.remaining - 1
 
     if stage.update then
@@ -123,12 +160,14 @@ function Round:Update()
 
     self:UpdateTimer()
 
-    if stage.remaining == 0 and stage.duration ~= -1 then
+    if stage.remaining == 0 then
         if stage.callback then
             stage.callback()
         end
 
-        self.Stage = self.Stage + 1
+        if stage.duration ~= -1 then
+            self.Stage = self.Stage + 1
+        end
     end
 
     for _, player in pairs(self.Players) do
@@ -240,6 +279,7 @@ end
 function Round:Start(callback)
     self.Stage = 1
     self.Callback = callback
+    self.Ended = false
 
     self:CreateStages()
     self:UpdateTimer()

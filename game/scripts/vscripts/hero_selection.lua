@@ -113,6 +113,8 @@ function HeroSelection:Start(callback)
     end
 
     self:UpdateSelectedHeroes()
+
+    EmitAnnouncerSound("announcer_announcer_choose_hero")
 end
 
 function HeroSelection:Update()
@@ -124,6 +126,11 @@ function HeroSelection:Update()
     end
 
     if self.SelectionTimer == -1 then
+        if self.PreGameTimer == self.PreGameTimerTime then
+            EmitAnnouncerSound("announcer_announcer_battle_prepare_01")
+            --EmitAnnouncerSound("announcer_ann_custom_round_begin_01")
+        end
+
         self.PreGameTimer = self.PreGameTimer - 1
 
         if self.PreGameTimer == 0 then

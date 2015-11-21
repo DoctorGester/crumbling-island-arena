@@ -34,6 +34,7 @@ function Precache(context)
     PrecacheResource("model", "models/development/invisiblebox.vmdl", context)
     PrecacheResource("particle", "particles/ui/ui_generic_treasure_impact.vpcf", context)
     PrecacheResource("soundfile", "soundevents/custom_sounds.vsndevts", context)
+    PrecacheResource("soundfile", "soundevents/game_sounds_vo_announcer.vsndevts", context)
     PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_razor.vsndevts", context)
     PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_earth_spirit.vsndevts", context)
     PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_bristleback.vsndevts", context)
@@ -214,6 +215,13 @@ function GameMode:OnHeroSelectionEnd()
     self.Round:CreateHeroes()
     self.Round:Start(function() self:OnRoundEnd() end)
     self:SetState(STATE_ROUND_IN_PROGRESS)
+
+    Timers:CreateTimer(1.5,
+        function()
+            --EmitAnnouncerSound("announcer_ann_custom_adventure_alerts_42")
+            EmitAnnouncerSound("announcer_announcer_battle_begin_01")
+        end
+    )
 end
 
 function GameMode:UpdatePlayerTable()
