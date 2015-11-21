@@ -38,12 +38,6 @@ function modifier_sniper_r:CheckState()
     return state
 end
 
-function modifier_sniper_r:OnDestroy()
-    if IsServer() then
-        self:GetParent().hero:RemoveModifier("modifier_persistent_invisibility")
-    end
-end
-
 function modifier_sniper_r:GetModifierMoveSpeedOverride(params)
     return 210
 end

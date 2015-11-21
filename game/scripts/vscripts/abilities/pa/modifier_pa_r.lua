@@ -6,12 +6,6 @@ function modifier_pa_r:OnCreated(params)
     self.invisBrokenAt = 0
 end
 
-function modifier_pa_r:OnDestroy()
-    if IsServer() then
-        self:GetParent():RemoveModifierByName("modifier_persistent_invisibility")
-    end
-end
-
 function modifier_pa_r:OnAbilityExecuted()
     self.invisBrokenAt = self:GetElapsedTime()
     self:GetModifierInvisibilityLevel()
