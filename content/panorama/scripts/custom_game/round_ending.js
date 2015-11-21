@@ -16,6 +16,7 @@ function GameInfoUpdated(data){
 
         label.style.visibility = "visible";
         SwitchClass(label, "AnimationMessageInvisible", "AnimationMessageVisible");
+        Game.EmitSound("UI.RoundOver")
     } else {
         SwitchClass(label, "AnimationMessageVisible", "AnimationMessageInvisible");
     }

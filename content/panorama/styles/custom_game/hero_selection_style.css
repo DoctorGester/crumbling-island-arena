@@ -207,6 +207,7 @@
     opacity: 1.0;
     transform: translateX(200px);
     box-shadow: fill yellow 0px 0px 8px 0px;
+    sound: "UI.SelectHero";
 }
 
 .AspectRatio16x10 .AnimationSelectedHero

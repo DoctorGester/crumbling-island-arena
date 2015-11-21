@@ -182,6 +182,8 @@ function GameInfoChanged(data){
         $("#HeroPanel").RemoveClass("AnimationHeroHudHidden");
         $("#HeroDetails").RemoveClass("AnimationHeroDetailsHidden");
         $("#TimerPanel").RemoveClass("AnimationTimerHidden");
+
+        Game.EmitSound("UI.RoundStart")
     } else {
         $("#HeroPanel").AddClass("AnimationHeroHudHidden");
         $("#HeroDetails").AddClass("AnimationHeroDetailsHidden");

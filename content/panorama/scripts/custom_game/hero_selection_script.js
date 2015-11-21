@@ -190,6 +190,7 @@ function CreateHeroList(heroes){
         var mouseClick = (function(name) {
             return function() {
                 GameEvents.SendCustomGameEventToServer("selection_hero_click", { "hero": name });
+                Game.EmitSound("UI.SelectHeroLocal")
             }
         } (heroes[i]));
 
@@ -227,6 +228,7 @@ function GameInfoUpdated(data){
     if (data.state == GAME_STATE_HERO_SELECTION){
         bg.style.visibility = "visible";
         SwitchClass(bg, "AnimationBackgroundInvisible", "AnimationBackgroundVisible")
+        Game.EmitSound("UI.SelectionStart")
     } else {
         SwitchClass(bg, "AnimationBackgroundVisible", "AnimationBackgroundInvisible")
     }
