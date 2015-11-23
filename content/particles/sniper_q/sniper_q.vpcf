@@ -99,6 +99,7 @@
 		},
 		{
 			m_ChildRef = resource:"particles/sniper_q/sniper_q_startpoint.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/sniper_q/sniper_q_light.vpcf"
@@ -120,6 +121,7 @@
 		},
 		{
 			m_ChildRef = resource:"particles/sniper_q/sniper_q_startpoint_light.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/sniper_q/sniper_q_line_c.vpcf"

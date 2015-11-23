@@ -1,11 +1,5 @@
 modifier_cm_r_slow = class({})
 
-function modifier_cm_r_slow:OnCreated()
-    if IsServer() then
-        self:SetDuration(0.1, false)
-    end
-end
-
 function modifier_cm_r_slow:IsDebuff()
     return true
 end

@@ -1,7 +1,3 @@
-function ShowTooltip(element, name){
-    $.DispatchEvent("DOTAShowAbilityTooltip", element, name);
-}
-
 function HideTooltip(){
     $.DispatchEvent("DOTAHideAbilityTooltip");
 }
@@ -67,6 +63,10 @@ function EntityAbilityDataProvider(entityId) {
 
     this.GetAbilityCount = function() {
         return this.FilterAbilities().length;
+    }
+
+    this.ShowTooltip = function(element, data) {
+        $.DispatchEvent("DOTAShowAbilityTooltipForEntityIndex", element, data.name, Abilities.GetCaster(data.id));
     }
 }
 
@@ -139,7 +139,7 @@ function AbilityBar(elementId) {
                 return function() {
                     var ability = bar.GetAbility(slot);
 
-                    ShowTooltip(ability.image, ability.data.name);
+                    bar.provider.ShowTooltip(ability.image, ability.data);
                 }
             } (this, key));
 

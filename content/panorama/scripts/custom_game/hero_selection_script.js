@@ -50,6 +50,10 @@ function TableAbilityDataProvider(heroData) {
 
         return this.FilterAbilities().length;
     }
+
+    this.ShowTooltip = function(element, data) {
+        $.DispatchEvent("DOTAShowAbilityTooltip", element, data.name);
+    }
 }
 
 function DeleteHeroPreview() {

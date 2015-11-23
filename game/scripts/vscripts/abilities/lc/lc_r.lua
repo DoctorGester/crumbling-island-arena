@@ -1,0 +1,19 @@
+lc_r = class({})
+
+LinkLuaModifier("modifier_lc_r", "abilities/lc/modifier_lc_r", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_lc_r_aura", "abilities/lc/modifier_lc_r_aura", LUA_MODIFIER_MOTION_NONE)
+
+function lc_r:OnSpellStart()
+    local hero = self:GetCaster().hero
+    local target = self:GetCursorPosition()
+    local holder = CreateUnitByName(DUMMY_UNIT, target, false, hero.unit, hero.unit, hero.unit:GetTeam())
+    holder:AddNewModifier(holder, self, "modifier_lc_r_aura", { duration = 5 })
+end
+
+function lc_r:GetAOERadius()
+    return 400
+end
+
+function lc_r:GetCastAnimation()
+    return ACT_DOTA_CAST_ABILITY_4
+end

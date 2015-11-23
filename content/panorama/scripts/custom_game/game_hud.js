@@ -165,6 +165,10 @@ function FillDebugPanel(){
     AddDebugButton("Switch debug display", function(){
         GameEvents.SendCustomGameEventToServer("debug_switch_debug_display", {});
     });
+
+    AddDebugButton("Play destruction effect", function(){
+        GameEvents.SendCustomGameEventToServer("debug_destruction_effect", {});
+    });
 }
 
 function DebugUpdate(data){

@@ -33,6 +33,7 @@ end
 function Precache(context)
     PrecacheResource("model", "models/development/invisiblebox.vmdl", context)
     PrecacheResource("particle", "particles/ui/ui_generic_treasure_impact.vpcf", context)
+    PrecacheResource("particle", "particles/units/heroes/hero_tiny/tiny_avalanche.vpcf", context)
     PrecacheResource("soundfile", "soundevents/custom_sounds.vsndevts", context)
     PrecacheResource("soundfile", "soundevents/game_sounds_vo_announcer.vsndevts", context)
     PrecacheResource("soundfile", "soundevents/game_sounds_heroes/game_sounds_razor.vsndevts", context)
@@ -312,9 +313,7 @@ function GameMode:OnGameInProgress()
     self.GameItems = nil--LoadKeyValues("scripts/items/items_game.txt").items
 
     self.Level = Level()
-
     self.HeroSelection = HeroSelection(self.Players, self.AvailableHeroes, self.TeamColors)
-
     self.Round = Round(self.Level, self.Players, self.GameItems, self.AvailableHeroes)
     self.Round:Reset()
 

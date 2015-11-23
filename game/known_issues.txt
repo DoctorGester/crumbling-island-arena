@@ -4,6 +4,7 @@
 - General: projectiles destroy visual feedback
 - General: no checks for game state in hover/click events
 - General: remove sound preloading
+- General: dota_health_per_vertical_marker 1 is probably useful
 - ES: remnants hitbox (test with zeus Q)
 - ES: remnants should not be dragged on cliffs
 - ES: visual effect on E start/end

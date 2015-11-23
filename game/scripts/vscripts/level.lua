@@ -51,3 +51,31 @@ function Level:TestOutOfMap(entity, stage)
 
     return false
 end
+
+function Level:PlayDestructionEffect(stage)
+    local name = SECOND_STAGE_OBSTRUCTOR
+
+    if stage == 3 then
+        name = THIRD_STAGE_OBSTRUCTOR
+    end
+
+    local obstructions = Entities:FindAllByName(name)
+    local center = Entities:FindByName(nil, "map_center"):GetAbsOrigin()
+
+    for i, obstruction in ipairs(obstructions) do
+        if i % 2 == 0 then
+            local pos = obstruction:GetCenter()
+
+            local effect = ParticleManager:CreateParticle("particles/units/heroes/hero_tiny/tiny_avalanche.vpcf", PATTACH_ABSORIGIN, GameRules.GameMode.Players[0].fow)
+            ParticleManager:SetParticleControl(effect, 0, pos)
+            ParticleManager:SetParticleControl(effect, 1, Vector(100, 100, 100))
+
+            Timers:CreateTimer(3,
+                function()
+                    ParticleManager:DestroyParticle(effect, false)
+                    ParticleManager:ReleaseParticleIndex(effect)
+                end
+            )
+        end
+    end
+end

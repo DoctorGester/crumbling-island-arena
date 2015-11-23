@@ -2,13 +2,14 @@ modifier_sk_w_aura = class({})
 
 function modifier_sk_w_aura:OnCreated(kv)
     if IsServer() then
-        local index = ParticleManager:CreateParticle("particles/sk_w/sk_w.vpcf", PATTACH_ABSORIGIN, self:GetParent())
-        ParticleManager:SetParticleControl(index, 0, self:GetParent():GetAbsOrigin())
+        local parent = self:GetParent()
+        local index = ParticleManager:CreateParticle("particles/sk_w/sk_w.vpcf", PATTACH_ABSORIGIN, parent)
+        ParticleManager:SetParticleControl(index, 0, parent:GetAbsOrigin())
         ParticleManager:SetParticleControl(index, 1, Vector(400, 400, 400))
         self:AddParticle(index, false, false, 1, false, false)
 
-        self:GetCaster():EmitSound("Arena.SK.CastW")
-        self:GetCaster():EmitSound("Arena.SK.LoopW")
+        parent:EmitSound("Arena.SK.CastW")
+        parent:EmitSound("Arena.SK.LoopW")
     end
 end
 
@@ -18,6 +19,10 @@ end
 
 function modifier_sk_w_aura:GetAuraRadius()
     return 400
+end
+
+function modifier_sk_w_aura:GetAuraDuration()
+    return 0.1
 end
 
 function modifier_sk_w_aura:GetModifierAura()
@@ -41,8 +46,9 @@ function modifier_sk_w_aura:GetAuraSearchType()
 end
 
 function modifier_sk_w_aura:OnDestroy()
-    if IsServer() and self:GetCaster() == self:GetParent() then
-        self:GetCaster():StopSound("Arena.SK.LoopW")
-        self:GetCaster():RemoveSelf()
+    if IsServer() then
+        local parent = self:GetParent()
+        parent:StopSound("Arena.SK.LoopW")
+        parent:RemoveSelf()
     end
 end

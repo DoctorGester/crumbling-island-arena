@@ -660,4 +660,68 @@
 			"particle" "particles/units/heroes/hero_sandking/sandking_epicenter.vpcf"
 		}
 	}
+
+	"lc_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/lc/lc_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "legion_commander_moment_of_courage"
+		"AbilityCooldown" "1.8"
+		"AbilityCastPoint" "0.4"
+
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_centaur/centaur_warstomp.vpcf"
+			"particle" "particles/units/heroes/hero_bounty_hunter/status_effect_bounty_hunter_jinda_slow.vpcf"
+		}
+	}
+
+	"lc_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/lc/lc_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "legion_commander_press_the_attack"
+		"AbilityCooldown" "6.0"
+		"AbilityCastRange" "500"
+
+		"precache"
+		{
+			"particle" "particles/lc_w/lc_w.vpcf"
+			"particle" "particles/units/heroes/hero_legion_commander/legion_commander_press.vpcf"
+			"particle" "particles/units/heroes/hero_bounty_hunter/bounty_hunter_jinda_slow.vpcf"
+		}
+	}
+
+	"lc_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/lc/lc_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityTextureName" "legion_commander_press_the_attack"
+		"AbilityCooldown" "6.0"
+
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_earthshaker/earthshaker_fissure_dust.vpcf"
+		}
+	}
+
+	"lc_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/lc/lc_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "legion_commander_duel"
+		"AbilityCooldown" "14.0"
+		"AbilityCastPoint" "0.4"
+
+		"precache"
+		{
+			"particle" "particles/lc_r/lc_r.vpcf"
+			"particle" "particles/status_fx/status_effect_legion_commander_duel.vpcf"
+		}
+	}
 }

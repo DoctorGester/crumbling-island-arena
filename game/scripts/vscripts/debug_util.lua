@@ -1,6 +1,6 @@
 Debug = class({})
 
-DEBUG_HERO = "npc_dota_hero_sniper"
+DEBUG_HERO = "npc_dota_hero_sand_king"
 
 if not mode then
     mode = nil
@@ -32,6 +32,10 @@ end
 
 function OnHealDebugHero()
     debugHero.unit:SetHealth(5)
+end
+
+function OnDestructionEffect(eventSourceIndex, args)
+    mode.Level:PlayDestructionEffect(3)
 end
 
 function InjectFreeSelection()
@@ -116,13 +120,6 @@ function Debug:CheckAndEnableDebug(gameMode)
 
     mode = gameMode
 
-    CustomGameEventManager:RegisterListener("debug_take_damage", OnTakeDamage)
-    CustomGameEventManager:RegisterListener("debug_heal_health", OnHealHealth)
-    CustomGameEventManager:RegisterListener("debug_heal_debug_hero", OnHealDebugHero)
-    CustomGameEventManager:RegisterListener("debug_switch_end_check", function() enableEndCheck = not enableEndCheck end)
-    CustomGameEventManager:RegisterListener("debug_switch_debug_display", function() displayDebug = not displayDebug end)
-    CustomGameEventManager:RegisterListener("debug_check_end", OnCheckEnd)
-
     GameRules.GameMode.HeroSelection.SelectionTimerTime = 20000
     GameRules.GameMode.HeroSelection.PreGameTime = 0
 
@@ -131,12 +128,20 @@ function Debug:CheckAndEnableDebug(gameMode)
 end
 
 if Convars:GetInt("sv_cheats") == 1 then
+    CustomGameEventManager:RegisterListener("debug_take_damage", OnTakeDamage)
+    CustomGameEventManager:RegisterListener("debug_heal_health", OnHealHealth)
+    CustomGameEventManager:RegisterListener("debug_heal_debug_hero", OnHealDebugHero)
+    CustomGameEventManager:RegisterListener("debug_switch_end_check", function() enableEndCheck = not enableEndCheck end)
+    CustomGameEventManager:RegisterListener("debug_switch_debug_display", function() displayDebug = not displayDebug end)
+    CustomGameEventManager:RegisterListener("debug_check_end", OnCheckEnd)
+    CustomGameEventManager:RegisterListener("debug_destruction_effect", OnDestructionEffect)
+
     InjectProjectileDebug()
     InjectAreaDebug()
     InjectFreeSelection()
 
-    FIRST_CRUMBLE_TIME = 700
-    SECOND_CRUMBLE_TIME = 700
-    SUDDEN_DEATH_TIME = 700
+    FIRST_CRUMBLE_TIME = 70000
+    SECOND_CRUMBLE_TIME = 7
+    SUDDEN_DEATH_TIME = 70000
     ULTS_TIME = 1
 end

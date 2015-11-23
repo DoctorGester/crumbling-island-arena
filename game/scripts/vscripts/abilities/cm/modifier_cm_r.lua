@@ -8,6 +8,10 @@ function modifier_cm_r:GetAuraRadius()
     return 600
 end
 
+function modifier_cm_r:GetAuraDuration()
+    return 0.1
+end
+
 function modifier_cm_r:GetModifierAura()
     return "modifier_cm_r_slow"
 end
@@ -25,8 +29,8 @@ function modifier_cm_r:GetEffectName()
 end
 
 function modifier_cm_r:OnDestroy()
-    if IsServer() and self:GetCaster() == self:GetParent() then
-        self:GetCaster():StopSound("Arena.CM.LoopR")
-        self:GetCaster():RemoveSelf()
+    if IsServer() then
+        self:GetParent():StopSound("Arena.CM.LoopR")
+        self:GetParent():RemoveSelf()
     end
 end
