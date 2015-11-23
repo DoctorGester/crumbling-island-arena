@@ -11,7 +11,6 @@ Player = class({
 
 function Player:SetPlayerID(id)
     self.id = id
-    self.player = PlayerResource:GetPlayer(id)
 
     self.fow = CreateUnitByName("npc_dummy_unit", Vector(0, 0), false, nil, nil, PlayerResource:GetTeam(id))
     self.fow:SetDayTimeVisionRange(8000)
@@ -28,4 +27,8 @@ end
 
 function Player:ReturnVision()
     self.fow:RemoveModifierByName("modifier_blind")
+end
+
+function Player:IsConnected()
+    return PlayerResource:GetConnectionState(self.id) == DOTA_CONNECTION_STATE_CONNECTED
 end

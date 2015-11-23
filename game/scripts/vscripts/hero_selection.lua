@@ -19,7 +19,9 @@ function HeroSelection:UpdateSelectedHeroes()
     local selected = {}
 
     for _, player in pairs(self.Players) do
-        selected[player.id] = player.selectedHero or "null"
+        if player:IsConnected() then
+            selected[player.id] = player.selectedHero or "null"
+        end
     end
 
     CustomNetTables:SetTableValue("main", "selectedHeroes", selected)
@@ -29,6 +31,10 @@ function HeroSelection:OnHover(args)
     local table = {}
     local player = self.Players[args.PlayerID]
     local hero = args.hero
+
+    if not player:IsConnected() then
+        return
+    end
 
     if self.AvailableHeroes[hero] == nil and hero ~= "null" then
         return
@@ -49,6 +55,10 @@ function HeroSelection:OnClick(args)
     local player = self.Players[args.PlayerID]
     local hero = args.hero
 
+    if not player:IsConnected() then
+        return
+    end
+
     if self.AvailableHeroes[hero] == nil then
         return
     end
@@ -62,7 +72,7 @@ function HeroSelection:OnClick(args)
 
     local allLocked = true
     for _, playerClass in pairs(self.Players) do
-        if not playerClass.selectionLocked then
+        if playerClass:IsConnected() and not playerClass.selectionLocked then
             allLocked = false
         end
     end
@@ -77,17 +87,19 @@ end
 
 function HeroSelection:AssignRandomHeroes()
     for i, player in pairs(self.Players) do
-        if not player.selectionLocked then
-            local table = {}
-            local index = 0
+        if player:IsConnected() then
+            if not player.selectionLocked then
+                local table = {}
+                local index = 0
 
-            for i, _ in pairs(self.AvailableHeroes) do
-                table[index] = i
-                index = index + 1
+                for i, _ in pairs(self.AvailableHeroes) do
+                    table[index] = i
+                    index = index + 1
+                end
+
+                player.selectionLocked = true
+                player.selectedHero = table[RandomInt(0, index - 1)]
             end
-
-            player.selectionLocked = true
-            player.selectedHero = table[RandomInt(0, index - 1)]
         end
     end
 
@@ -109,7 +121,6 @@ function HeroSelection:Start(callback)
     for _, player in pairs(self.Players) do
         player.selectedHero = nil
         player.selectionLocked = false
-        player.fallSpeed = 0
     end
 
     self:UpdateSelectedHeroes()

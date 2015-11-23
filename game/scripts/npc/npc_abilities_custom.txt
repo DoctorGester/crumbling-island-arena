@@ -107,6 +107,34 @@
 
 	}
 
+	"hidden_arena_hero"
+	{
+		"BaseClass"	"ability_datadriven"
+		"MaxLevel"	"1"
+		"AbilityBehavior"	"DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"Modifiers"
+		{
+			"hidden_hero_passive"
+			{
+				"Passive"	"1"
+				"IsHidden"	"1"
+				"States"
+				{
+					"MODIFIER_STATE_NO_HEALTH_BAR"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ROOTED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_STUNNED"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_INVULNERABLE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_BLIND"		"MODIFIER_STATE_VALUE_ENABLED"
+				}
+
+			}
+
+		}
+
+	}
+
 	"dummy_unit_ability"
 	{
 		"AbilityBehavior" 		"DOTA_ABILITY_BEHAVIOR_PASSIVE"
@@ -552,7 +580,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "sniper_assassinate"
 		"AbilityCooldown" "3.0"
-		"AbilityCastPoint" "1.0"
+		"AbilityCastPoint" "0.5"
 
 		"precache"
 		{

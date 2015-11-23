@@ -80,7 +80,27 @@ function GameMode:EventPlayerConnected(args)
         return
     end
 
+    print("Player connected")
+    PrintTable(args)
+
+    local userID = args.userid
+
+    self.Users = self.Users or {}
+    self.Users[userID] = playerEntity
+
     PlayerResource:SetCustomTeamAssignment(args.index, self.Teams[args.index])
+end
+
+function GameMode:EventPlayerReconnected(args)
+    if self.HeroSelection then
+        self.HeroSelection:UpdateSelectedHeroes()
+    end
+end
+
+function GameMode:EventPlayerDisconnected(args)
+    if self.HeroSelection then
+        self.HeroSelection:UpdateSelectedHeroes()
+    end
 end
 
 function GameMode:EventStateChanged(args)
@@ -135,6 +155,8 @@ end
 
 function GameMode:InitEvents()
     ListenToGameEvent('player_connect_full', Dynamic_Wrap(self, 'EventPlayerConnected'), self)
+    ListenToGameEvent("player_reconnected", Dynamic_Wrap(self, 'EventPlayerReconnected'), self)
+    ListenToGameEvent('player_disconnect', Dynamic_Wrap(self, 'EventPlayerDisconnected'), self)
     ListenToGameEvent('game_rules_state_change', Dynamic_Wrap(self, 'EventStateChanged'), self)
     ListenToGameEvent('dota_player_pick_hero', Dynamic_Wrap(self, 'OnPlayerPickHero'), self)
 end
@@ -301,13 +323,18 @@ end
 function GameMode:OnGameInProgress()
     print("Setting players up")
 
-    for i = 0, DOTA_MAX_PLAYERS do
-        if PlayerResource:IsValidPlayer(i) then
-            self.Players[i] = Player()
-            self.Players[i]:SetPlayerID(i)
-            self.Players[i]:SetTeam(self.Teams[i])
-        end
+    local i = 0
+    for _, user in pairs(self.Users) do
+        local player = Player()
+        player:SetPlayerID(user:GetPlayerID())
+        player:SetTeam(self.Teams[i])
+
+        self.Players[player.id] = player
+
+        i = i + 1
     end
+
+    PrintTable(self.Players)
 
     self:UpdatePlayerTable()
     self.GameItems = nil--LoadKeyValues("scripts/items/items_game.txt").items
@@ -329,6 +356,14 @@ function GameMode:OnGameInProgress()
         function()
             if self.State == STATE_ROUND_IN_PROGRESS then
                 self.Round:Update()
+            end
+        end
+    )
+
+    self:RegisterThinker(0.01,
+        function()
+            if self.State == STATE_ROUND_IN_PROGRESS then
+                self.Round:UpdateFalling()
             end
         end
     )

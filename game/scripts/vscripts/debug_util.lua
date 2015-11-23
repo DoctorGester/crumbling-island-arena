@@ -140,7 +140,7 @@ if Convars:GetInt("sv_cheats") == 1 then
     InjectAreaDebug()
     InjectFreeSelection()
 
-    FIRST_CRUMBLE_TIME = 70000
+    FIRST_CRUMBLE_TIME = 7
     SECOND_CRUMBLE_TIME = 7
     SUDDEN_DEATH_TIME = 70000
     ULTS_TIME = 1

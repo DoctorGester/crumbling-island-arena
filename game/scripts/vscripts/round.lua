@@ -98,7 +98,9 @@ function Round:GetAllHeroes()
     local result = {}
 
     for _, player in pairs(self.Players) do
-        table.insert(result, player.hero)
+        if player.hero then
+            table.insert(result, player.hero)
+        end
     end
 
     return result
@@ -145,7 +147,6 @@ function Round:EndRound()
 end
 
 function Round:Update()
-    local someoneDied = false
     local stage = self.Stages[self.Stage]
 
     if stage.duration == -1 and stage.remaining == -1 and stage.callback then
@@ -169,6 +170,10 @@ function Round:Update()
             self.Stage = self.Stage + 1
         end
     end
+end
+
+function Round:UpdateFalling()
+    local someoneDied = false
 
     for _, player in pairs(self.Players) do
         local hero = player.hero
@@ -184,8 +189,6 @@ function Round:Update()
                 local result = hero:UpdateFalling()
 
                 if result then
-                    CustomGameEventManager:Send_ServerToPlayer(player.player, "hero_falls", {})
-
                     someoneDied = true
                 end
             end
@@ -219,31 +222,39 @@ function Round:CreateHeroes()
     for i, player in pairs(self.Players) do
         local oldHero = player.hero
 
-        PrecacheUnitByNameAsync(player.selectedHero,
-            function ()
-                local hero = self:LoadHeroClass(player.selectedHero)
-                local unit = CreateUnitByName(player.selectedHero, Vector(0, 0, 0), true, nil, nil, player.team)
-                hero:SetUnit(unit)
+        if player:IsConnected() then
+            PrecacheUnitByNameAsync(player.selectedHero,
+                function ()
+                    local hero = self:LoadHeroClass(player.selectedHero)
+                    local unit = CreateUnitByName(player.selectedHero, Vector(0, 0, 0), true, nil, nil, player.team)
+                    hero:SetUnit(unit)
 
-                if oldHero then
-                    oldHero:Delete()
+                    if oldHero then
+                        oldHero:Delete()
+                    end
+
+                    --LoadDefaultHeroItems(player.hero, self.GameItems)
+                    local ultimate = self.AvailableHeroes[hero:GetName()].ultimate
+                    hero:Setup()
+                    hero:SetOwner(player)
+
+                    local spawnPoint = Entities:FindAllByName(self.SpawnPoints[i])[1]
+                    hero:SetPos(spawnPoint:GetAbsOrigin())
+
+                    unit:FindAbilityByName(ultimate):StartCooldown(ULTS_TIME)
+
+                    MoveCameraToUnit(player.id, unit)
+
+                    player.hero = hero
                 end
-
-                --LoadDefaultHeroItems(player.hero, self.GameItems)
-                local ultimate = self.AvailableHeroes[hero:GetName()].ultimate
-                hero:Setup()
-                hero:SetOwner(player)
-
-                local spawnPoint = Entities:FindAllByName(self.SpawnPoints[i])[1]
-                hero:SetPos(spawnPoint:GetAbsOrigin())
-
-                unit:FindAbilityByName(ultimate):StartCooldown(ULTS_TIME)
-
-                MoveCameraToUnit(player.id, unit)
-
-                player.hero = hero
+            )
+        else
+            player.hero = nil
+            
+            if oldHero then
+                oldHero:Delete()
             end
-        )
+        end
     end
 end
 

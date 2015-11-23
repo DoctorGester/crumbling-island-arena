@@ -5,7 +5,7 @@ Hero = class({}, nil, DynamicEntity)
 function Hero:constructor()
     DynamicEntity.constructor(self)
 
-    self.fallSpeed = 64
+    self.fallSpeed = 0
     self.falling = false
     self.protected = false
     self.invulnerable = false
@@ -123,7 +123,7 @@ end
 function Hero:Hide()
     self.unit:SetAbsOrigin(Vector(0, 0, 10000))
     self.unit:AddNoDraw()
-    AddLevelOneAbility(self.unit, "hidden_hero")
+    AddLevelOneAbility(self.unit, "hidden_arena_hero")
 end
 
 function Hero:StartFalling()
@@ -132,10 +132,10 @@ function Hero:StartFalling()
 end
 
 function Hero:Update()
-    if self.owner and self.unit then
+    if self.owner and self.unit and self.owner:IsConnected() then
         local pos = self:GetPos()
         local to = Vector(pos.x, pos.y, 10000)
-        self.owner.player:GetAssignedHero():SetAbsOrigin(to)
+        PlayerResource:GetPlayer(self.owner.id):GetAssignedHero():SetAbsOrigin(to)
     end
 end
 
@@ -145,7 +145,7 @@ function Hero:UpdateFalling()
         return false
     end
 
-    self.fallSpeed = self.fallSpeed + 4
+    self.fallSpeed = self.fallSpeed + 2
 
     local origin = self:GetPos()
     origin.z = origin.z - self.fallSpeed

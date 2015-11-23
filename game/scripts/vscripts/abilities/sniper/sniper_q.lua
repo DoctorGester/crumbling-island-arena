@@ -44,5 +44,5 @@ function sniper_q:GetCastAnimation()
 end
 
 function sniper_q:GetPlaybackRateOverride()
-    return 2.1
+    return 3.5
 end
