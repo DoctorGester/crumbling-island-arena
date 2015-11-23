@@ -141,6 +141,11 @@
     color: #CCB966;
 }
 
+.HeroMarkerTransition
+{
+    transition: position 0.3s linear 0.0ms;
+}
+
 .AnimationHeroHudHidden
 {
     transform: translateY(1000px);

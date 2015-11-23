@@ -5,11 +5,14 @@
         <include src="file://{resources}/styles/custom_game/timer.css" />
     </styles>
     <scripts>
+        <include src="file://{resources}/scripts/custom_game/underscore-min.js" />
+        <include src="file://{resources}/scripts/custom_game/vector.js" />
         <include src="file://{resources}/scripts/custom_game/util.js" />
         <include src="file://{resources}/scripts/custom_game/buff_bar.js" />
         <include src="file://{resources}/scripts/custom_game/ability_bar.js" />
         <include src="file://{resources}/scripts/custom_game/health_bar.js" />
         <include src="file://{resources}/scripts/custom_game/game_hud.js" />
+        <include src="file://{resources}/scripts/custom_game/hero_detector.js" />
         <include src="file://{resources}/scripts/custom_game/vector_target.js" />
     </scripts>
     <Panel class="MainPanel" hittest="false">

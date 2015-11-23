@@ -82,6 +82,10 @@ function Degrees(rad) {
     return rad * (180 / Math.PI);
 }
 
+function Clamp(num, min, max) {
+  return num < min ? min : num > max ? max : num;
+}
+
 function PrintPanelKeys(panel) {
     var keys = Object.keys(panel);
     var def = [

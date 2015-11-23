@@ -1,6 +1,6 @@
 Debug = class({})
 
-DEBUG_HERO = "npc_dota_hero_sand_king"
+DEBUG_HERO = "npc_dota_hero_sniper"
 
 if not mode then
     mode = nil
@@ -140,7 +140,7 @@ if Convars:GetInt("sv_cheats") == 1 then
     InjectAreaDebug()
     InjectFreeSelection()
 
-    FIRST_CRUMBLE_TIME = 7
+    FIRST_CRUMBLE_TIME = 70000
     SECOND_CRUMBLE_TIME = 7
     SUDDEN_DEATH_TIME = 70000
     ULTS_TIME = 1
