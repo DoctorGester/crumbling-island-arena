@@ -16,7 +16,7 @@ function UpdateHeroDetector(){
             var x = Game.WorldToScreenX(abs[0], abs[1], abs[2]);
             var y = Game.WorldToScreenY(abs[0], abs[1], abs[2]);
 
-            return { id: entity, abs: abs, x: x, y: y };
+            return { id: entity, x: x, y: y };
         })
         .reject(function(mapped) {
             return mapped.x == -1 || mapped.y == -1;
@@ -27,9 +27,6 @@ function UpdateHeroDetector(){
         .each(function(entity) {
             if (_.has(heroPanels, entity.id)) {
                 var panel = heroPanels[entity.id]
-                var realX = Clamp(entity.x, 0, mainPanel.actuallayoutwidth - panel.actuallayoutwidth);
-                var realY = Clamp(entity.y, 0, mainPanel.actuallayoutheight - panel.actuallayoutheight);
-
                 var realW = Clamp(entity.x, 0, mainPanel.actuallayoutwidth - panel.actuallayoutwidth) / mainPanel.actuallayoutwidth;
                 var realH = Clamp(entity.y, 0, mainPanel.actuallayoutheight - panel.actuallayoutwidth) / mainPanel.actuallayoutheight;
 

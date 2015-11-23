@@ -26,6 +26,10 @@ function DynamicEntity:EmitSound(sound)
     EmitSoundOnLocationWithCaster(self.position, sound, nil)
 end
 
+function DynamicEntity:Alive()
+    return true
+end
+
 function DynamicEntity:Damage(source) end
 function DynamicEntity:Update() end
 function DynamicEntity:Remove() end

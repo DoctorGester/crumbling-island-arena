@@ -233,7 +233,7 @@ function Spells:CreateProjectile(data)
 
     data.heroCondition = data.heroCondition or
         function(self, target, prev, pos)
-            return self.owner ~= target and SegmentCircleIntersection(prev, pos, target:GetPos(), self.radius + target:GetRad())
+            return self.owner ~= target and target:Alive() and SegmentCircleIntersection(prev, pos, target:GetPos(), self.radius + target:GetRad())
         end
 
     if data.heroBehaviour == BEHAVIOUR_DEAL_DAMAGE_AND_DESTROY then
