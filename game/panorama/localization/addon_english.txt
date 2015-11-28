@@ -28,6 +28,7 @@
 	"HeroTips_npc_dota_hero_legion_commander"		"Q is her only damage source<br>Relies on her movespeed a lot<br>W allows to ignore one instance of damage<br>Taking damage while in W gives an enormous speed boost<br>Briefly stuns when passing an enemy with E<br>Effectively immune to hero damage while in R<br>Cooldowns are halved while being in R area"
 
 	"HeroName_npc_dota_hero_lycan"					"Death"
+	"HeroTips_npc_dota_hero_lycan"					"Q wolves can be killed<br>W has melee range<br>Q and W make victims bleed, giving speed bonus when moving towards them<br>R gives tremendous amount of movement speed for a short time and improves all abilities"
 
 	"PlayerHeader" "player"
 	"SelectionHeader" "selection"
@@ -41,6 +42,10 @@
 
 	"RoundEnding" "<font color='{s:color}'>{s:name}</font> wins!"
 	"RoundEndingWasted" "round wasted!"
+
+	"dota_hud_error_cant_cast_no_remnants"	"Ability requires a remnant"
+	"dota_hud_error_cant_cast_no_dead_remnants"	"Ability requires dead remnants"
+	"dota_hud_error_earth_spirit_cant_cast_no_remnant"	"Ability requires a remnant target"
 
 	"RecentScore"									"+{d:score}"
 
