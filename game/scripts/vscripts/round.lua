@@ -32,8 +32,8 @@ function Round:constructor(level, players, gameItems, availableHeroes)
 
     self.SpawnPoints = {}
 
-    for i = 0, 7 do
-        self.SpawnPoints[i] = "spawn"..i
+    for i = 0, 3 do
+        table.insert(self.SpawnPoints, "spawn"..i)
     end
 end
 
@@ -219,6 +219,8 @@ end
 function Round:CreateHeroes()
     Shuffle(self.SpawnPoints)
 
+    local index = 1
+
     for i, player in pairs(self.Players) do
         local oldHero = player.hero
 
@@ -238,7 +240,7 @@ function Round:CreateHeroes()
                     hero:Setup()
                     hero:SetOwner(player)
 
-                    local spawnPoint = Entities:FindAllByName(self.SpawnPoints[i])[1]
+                    local spawnPoint = Entities:FindAllByName(self.SpawnPoints[index])[1]
                     hero:SetPos(spawnPoint:GetAbsOrigin())
 
                     unit:FindAbilityByName(ultimate):StartCooldown(ULTS_TIME)
@@ -255,6 +257,8 @@ function Round:CreateHeroes()
                 oldHero:Delete()
             end
         end
+
+        index = index + 1
     end
 end
 
