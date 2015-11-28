@@ -4,6 +4,6 @@
 	"IsPlayable"	"1"
 	"arena"
 	{
-					"MaxPlayers"                    "8"
+					"MaxPlayers"                    "4"
 	}
 }

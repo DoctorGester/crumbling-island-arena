@@ -27,6 +27,8 @@
 	"HeroName_npc_dota_hero_legion_commander"		"Strength"
 	"HeroTips_npc_dota_hero_legion_commander"		"Q is her only damage source<br>Relies on her movespeed a lot<br>W allows to ignore one instance of damage<br>Taking damage while in W gives an enormous speed boost<br>Briefly stuns when passing an enemy with E<br>Effectively immune to hero damage while in R<br>Cooldowns are halved while being in R area"
 
+	"HeroName_npc_dota_hero_lycan"					"Death"
+
 	"PlayerHeader" "player"
 	"SelectionHeader" "selection"
 	"ScoreHeader" "score"

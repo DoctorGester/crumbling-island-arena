@@ -8,6 +8,10 @@ function modifier_sniper_w:CheckState()
     return state
 end
 
+function modifier_sniper_w:IsDebuff()
+    return true
+end
+
 function modifier_sniper_w:GetStatusEffectName()
     return "particles/status_fx/status_effect_techies_stasis.vpcf"
 end

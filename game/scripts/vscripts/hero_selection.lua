@@ -10,9 +10,6 @@ function HeroSelection:constructor(players, availableHeroes, teamColors)
     self.Players = players
     self.TeamColors = teamColors
     self.AvailableHeroes = availableHeroes
-
-    CustomGameEventManager:RegisterListener("selection_hero_hover", function(id, ...) Dynamic_Wrap(self, "OnHover")(self, ...) end)
-    CustomGameEventManager:RegisterListener("selection_hero_click", function(id, ...) Dynamic_Wrap(self, "OnClick")(self, ...) end)
 end
 
 function HeroSelection:UpdateSelectedHeroes()
@@ -126,6 +123,16 @@ function HeroSelection:Start(callback)
     self:UpdateSelectedHeroes()
 
     EmitAnnouncerSound("announcer_announcer_choose_hero")
+
+    self.HoverListener = CustomGameEventManager:RegisterListener("selection_hero_hover", function(id, ...) Dynamic_Wrap(self, "OnHover")(self, ...) end)
+    self.ClickListener = CustomGameEventManager:RegisterListener("selection_hero_click", function(id, ...) Dynamic_Wrap(self, "OnClick")(self, ...) end)
+end
+
+function HeroSelection:End()
+    CustomGameEventManager:UnregisterListener(self.HoverListener)
+    CustomGameEventManager:UnregisterListener(self.ClickListener)
+    
+    self:Callback()
 end
 
 function HeroSelection:Update()
@@ -145,7 +152,7 @@ function HeroSelection:Update()
         self.PreGameTimer = self.PreGameTimer - 1
 
         if self.PreGameTimer == 0 then
-            self:Callback()
+            self:End()
         end
     end
 end

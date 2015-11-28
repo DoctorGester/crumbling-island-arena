@@ -596,7 +596,7 @@
 		"AbilityTextureName" "techies_stasis_trap"
 		"AbilityCooldown" "7.0"
 		"AbilityCastRange" "200"
-		"AbilityCastPoint" "1.0"
+		"AbilityCastPoint" "0.6"
 
 		"precache"
 		{
@@ -745,11 +745,71 @@
 		"AbilityTextureName" "legion_commander_duel"
 		"AbilityCooldown" "14.0"
 		"AbilityCastPoint" "0.4"
+		"AbilityCastRange" "500"
 
 		"precache"
 		{
 			"particle" "particles/lc_r/lc_r.vpcf"
 			"particle" "particles/status_fx/status_effect_legion_commander_duel.vpcf"
+		}
+	}
+
+	"lycan_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/lycan/lycan_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "lycan_summon_wolves"
+		"AbilityCooldown" "5.5"
+		"AbilityCastRange" "1600"
+
+		"precache"
+		{
+			"particle" "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodrage_ground_eztzhok.vpcf"
+			"particle" "particles/units/heroes/hero_lycan/lycan_howl_buff.vpcf"
+		}
+	}
+
+	"lycan_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/lycan/lycan_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "lycan/hunter_of_kings_ability_icons/lycan_feral_impulse"
+		"AbilityCooldown" "3.0"
+		"AbilityCastPoint" "0.4"
+	}
+
+	"lycan_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/lycan/lycan_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "lycan_howl"
+		"AbilityCooldown" "8.0"
+		"AbilityCastPoint" "0.3"
+
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_lycan/lycan_howl_cast.vpcf"
+			"particle" "particles/econ/items/nightstalker/nightstalker_black_nihility/nightstalker_black_nihility_void.vpcf"
+		}
+	}
+
+	"lycan_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/lycan/lycan_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "lycan_shapeshift"
+		"AbilityCooldown" "14.0"
+
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_lycan/lycan_shapeshift_revert.vpcf"
+			"particle" "particles/units/heroes/hero_lycan/lycan_shapeshift_buff.vpcf"
+			"model" "models/heroes/lycan/lycan_wolf.vmdl"
 		}
 	}
 }

@@ -12,6 +12,10 @@ function modifier_lc_q:GetModifierMoveSpeedBonus_Percentage(params)
     return -30
 end
 
+function modifier_lc_q:IsDebuff()
+    return true
+end
+
 function modifier_lc_q:GetStatusEffectName()
     return "particles/units/heroes/hero_bounty_hunter/status_effect_bounty_hunter_jinda_slow.vpcf"
 end

@@ -1,8 +1,5 @@
 modifier_sven_e = class({})
 
-function modifier_sven_e:OnCreated()
-end
-
 function modifier_sven_e:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
