@@ -1,11 +1,5 @@
 modifier_sniper_r = class({})
 
-function modifier_sniper_r:OnCreated()
-    if IsServer() then
-        self.wasInvisible = false
-    end
-end
-
 function modifier_sniper_r:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE,
@@ -33,6 +27,12 @@ function modifier_sniper_r:CheckState()
         end
 
         state[MODIFIER_STATE_INVISIBLE] = invisible
+
+        if invisible then
+            self:SetStackCount(1)
+        else
+            self:SetStackCount(0)
+        end
     end
 
     return state
@@ -43,21 +43,7 @@ function modifier_sniper_r:GetModifierMoveSpeedOverride(params)
 end
 
 function modifier_sniper_r:GetModifierInvisibilityLevel(params)
-    if IsClient() then
-        return self:GetStackCount()
-    end
-
-    local level = 0
-
-    if self:CheckState()[MODIFIER_STATE_INVISIBLE] then
-        level = 1
-    end
-
-    if IsServer() then
-        self:SetStackCount(level)
-    end
-
-    return level
+    return self:GetStackCount()
 end
 
 function modifier_sniper_r:GetEffectName()
