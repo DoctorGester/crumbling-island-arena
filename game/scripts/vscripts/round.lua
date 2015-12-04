@@ -225,6 +225,8 @@ function Round:CreateHeroes()
         local oldHero = player.hero
 
         if player:IsConnected() then
+            local spawnIndex = index
+            
             PrecacheUnitByNameAsync(player.selectedHero,
                 function ()
                     local hero = self:LoadHeroClass(player.selectedHero)
@@ -240,7 +242,7 @@ function Round:CreateHeroes()
                     hero:Setup()
                     hero:SetOwner(player)
 
-                    local spawnPoint = Entities:FindAllByName(self.SpawnPoints[index])[1]
+                    local spawnPoint = Entities:FindAllByName(self.SpawnPoints[spawnIndex])[1]
                     hero:SetPos(spawnPoint:GetAbsOrigin())
 
                     unit:FindAbilityByName(ultimate):StartCooldown(ULTS_TIME)
@@ -250,6 +252,8 @@ function Round:CreateHeroes()
                     player.hero = hero
                 end
             )
+
+            index = index + 1
         else
             player.hero = nil
             
@@ -257,8 +261,6 @@ function Round:CreateHeroes()
                 oldHero:Delete()
             end
         end
-
-        index = index + 1
     end
 end
 

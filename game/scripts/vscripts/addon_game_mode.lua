@@ -31,6 +31,7 @@ if GameMode == nil then
 end
 
 function Precache(context)
+    PrecacheResource("model", "fbx1.vmdl", context)
     PrecacheResource("model", "models/development/invisiblebox.vmdl", context)
     PrecacheResource("particle", "particles/ui/ui_generic_treasure_impact.vpcf", context)
     PrecacheResource("particle", "particles/units/heroes/hero_tiny/tiny_avalanche.vpcf", context)
@@ -50,6 +51,16 @@ function Activate()
     GameRules.GameMode = GameMode()
     GameRules.GameMode:SetupMode()
     VectorTarget:Init()
+
+    coroutine.create(
+        function()
+            local a = 10
+            for i = 0, 1000000 do
+                a = a + i
+            end
+            print("GORILLA"..tostring(a))
+        end
+    )
 end
 
 function GameMode:OnThink()
@@ -253,7 +264,7 @@ function GameMode:UpdatePlayerTable()
     for i, player in pairs(self.Players) do
         local playerData = {}
         playerData.id = i
-        playerData.color = self.TeamColors[PlayerResource:GetTeam(i)]
+        playerData.color = self.TeamColors[player.team]
         playerData.score = player.score
 
         table.insert(players, playerData)
@@ -324,14 +335,16 @@ function GameMode:OnGameInProgress()
     print("Setting players up")
 
     local i = 0
-    for _, user in pairs(self.Users) do
-        local player = Player()
-        player:SetPlayerID(user:GetPlayerID())
-        player:SetTeam(self.Teams[i])
 
-        self.Players[player.id] = player
+    for id = 0, DOTA_MAX_PLAYERS do
+        if PlayerResource:IsValidPlayer(id) then
+            local player = Player()
+            player:SetPlayerID(id)
+            player:SetTeam(self.Teams[i])
 
-        i = i + 1
+            self.Players[player.id] = player
+            i = i + 1
+        end
     end
 
     PrintTable(self.Players)

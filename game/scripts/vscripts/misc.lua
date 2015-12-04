@@ -88,7 +88,7 @@ end
 function Misc:SetUpPAProjectile(projectileData)
     projectileData.heroCondition =
         function(self, target, prev, pos)
-            return target:Alive() and SegmentCircleIntersection(prev, pos, target:GetPos(), self.radius + target:GetRad())
+            return SegmentCircleIntersection(prev, pos, target:GetPos(), self.radius + target:GetRad())
         end
 
     projectileData.heroBehaviour =

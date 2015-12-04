@@ -9,7 +9,10 @@ function UpdateHeroDetector(){
     var notOnScreen = _
         .chain(all)
         .reject(function(entity) {
-            return Entities.GetUnitName(entity) == dummy || Entities.IsUnselectable(entity);
+            return Entities.IsUnselectable(entity);
+        })
+        .filter(function(entity) {
+            return Entities.IsAlive(entity);
         })
         .map(function(entity) {
             var abs = Entities.GetAbsOrigin(entity);

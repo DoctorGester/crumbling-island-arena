@@ -13,15 +13,11 @@ function modifier_sniper_w_trap:CheckState()
         [MODIFIER_STATE_UNSELECTABLE] = true,
         [MODIFIER_STATE_INVISIBLE] = self:GetElapsedTime() >= 0.3
     }
-    
+
     return state
 end
 
 function modifier_sniper_w_trap:OnIntervalThink()
-    if self.timePassed ~= -1 then
-        self.timePassed = self.timePassed + 0.1
-    end
-
     local hero = self:GetCaster().hero
     local trap = self:GetParent()
 
@@ -39,6 +35,6 @@ function modifier_sniper_w_trap:OnIntervalThink()
 end
 
 
-function modifier_sniper_r:GetModifierInvisibilityLevel(params)
+function modifier_sniper_w_trap:GetModifierInvisibilityLevel(params)
     return math.min(self:GetElapsedTime() / 0.3, 1.0)
 end

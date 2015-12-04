@@ -5,6 +5,15 @@ if Level == nil then
     Level = class({})
 end
 
+function Level:constructor()
+    --[[SpawnEntityFromTableSynchronous("prop_dynamic", {
+        origin = Vector(-450, -770, 128),
+        angles = Vector(0, 270, 0),
+        scales = Vector(14, 14, 14),
+        model = "fbx1.vmdl"
+    })]]
+end
+
 function Level:EnableObstructors(obstructors, enable)
     for _, obstructor in pairs(obstructors) do
         obstructor:SetEnabled(enable, true)

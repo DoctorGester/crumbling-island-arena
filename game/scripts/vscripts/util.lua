@@ -25,7 +25,7 @@ function Shuffle(table)
     local j
 
     for i = iterations, 2, -1 do
-        j = RandomInt(0, i)
+        j = RandomInt(1, i)
         table[i], table[j] = table[j], table[i]
     end
 end

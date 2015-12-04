@@ -36,6 +36,8 @@ function Hash(str) {
 }
 
 function LuaColor(color){
+    color = color || [0, 128, 128, 128];
+
     return "rgb(" + [color[1], color[2], color[3]].join(",") + ")";
 }
 

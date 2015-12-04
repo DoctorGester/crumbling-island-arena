@@ -11,14 +11,18 @@ Player = class({
 
 function Player:SetPlayerID(id)
     self.id = id
-
-    self.fow = CreateUnitByName("npc_dummy_unit", Vector(0, 0), false, nil, nil, PlayerResource:GetTeam(id))
-    self.fow:SetDayTimeVisionRange(8000)
-    self.fow:SetNightTimeVisionRange(8000)
 end
 
 function Player:SetTeam(i)
     self.team = i
+
+    if PlayerResource:GetCustomTeamAssignment(self.id) == 0 and i then
+        PlayerResource:SetCustomTeamAssignment(self.id, i)
+    end
+
+    self.fow = CreateUnitByName("npc_dummy_unit", Vector(0, 0), false, nil, nil, i)
+    self.fow:SetDayTimeVisionRange(8000)
+    self.fow:SetNightTimeVisionRange(8000)
 end
 
 function Player:Blind(duration)

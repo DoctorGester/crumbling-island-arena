@@ -4,12 +4,16 @@
         <include src="file://{resources}/styles/custom_game/hero_selection_style.css" />
     </styles>
     <scripts>
+        <include src="file://{resources}/scripts/custom_game/underscore-min.js" />
         <include src="file://{resources}/scripts/custom_game/util.js" />
         <include src="file://{resources}/scripts/custom_game/ability_bar.js" />
         <include src="file://{resources}/scripts/custom_game/hero_selection_script.js" />
     </scripts>
     <Panel class="MainPanel" hittest="false">
         <Panel id="HeroSelectionBackground" hittest="false">
+            <DOTAScenePanel hittest="false" id="HeroSelectionBackgroundScene" map="backgrounds/dashboard_parallax_test" camera="shot_cameraA"/>
+            <Panel id="HeroSelectionTopGradient" hittest="false"/>
+
             <Panel id="NameColumn">
                 <Label class="HeaderLabel NameColumnHeader" text="#PlayerHeader"></Label>
             </Panel>

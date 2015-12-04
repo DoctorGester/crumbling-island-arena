@@ -1,4 +1,7 @@
 var allHeroes = {};
+var heroButtons = {};
+var playerColors = {};
+var selectedHeroes = {};
 var abilityBar = new AbilityBar("#HeroAbilities");
 var previewSchedule = 0;
 
@@ -128,7 +131,7 @@ function CreatePlayerList(players){
             return function() {
                 $.DispatchEvent("DOTAShowProfileCardTooltip", element, id, false);
             }
-        } (panel, player.steamId));
+        } (panel, player.steamId || 0));
 
         var mouseOut = function(){
             $.DispatchEvent("DOTAHideProfileCardTooltip");
@@ -177,11 +180,14 @@ function CreateHeroList(heroes){
     DeleteChildrenWithClass(heroList, "HeroButton");
 
     for (var i = 0; i < heroes.length; i++) {
-        var button = $.CreatePanel("DOTAHeroImage", heroList, "");
+        var container = $.CreatePanel("Panel", heroList, "");
+        container.AddClass("HeroButtonContainer");
+
+        var button = $.CreatePanel("DOTAHeroMovie", container, "");
         button.AddClass("HeroButton");
-        button.SetScaling("stretch-to-fit-y-preserve-aspect");
+        //button.SetScaling("stretch-to-fit-y-preserve-aspect");
         button.heroname = heroes[i];
-        button.heroimagestyle = "landscape";
+        button.heroimagestyle = "portrait";
 
         var mouseOver = (function(element, name) {
             return function() {
@@ -193,8 +199,12 @@ function CreateHeroList(heroes){
 
         var mouseClick = (function(name) {
             return function() {
-                GameEvents.SendCustomGameEventToServer("selection_hero_click", { "hero": name });
-                Game.EmitSound("UI.SelectHeroLocal")
+                var heroSelected = _.contains(_.values(selectedHeroes), name);
+
+                if (selectedHeroes[Game.GetLocalPlayerID()] == "null" && !heroSelected) {
+                    GameEvents.SendCustomGameEventToServer("selection_hero_click", { "hero": name });
+                    Game.EmitSound("UI.SelectHeroLocal");
+                }
             }
         } (heroes[i]));
 
@@ -207,6 +217,8 @@ function CreateHeroList(heroes){
         button.SetPanelEvent("onactivate", mouseClick);
         button.SetPanelEvent("onmouseover", mouseOver);
         button.SetPanelEvent("onmouseout", mouseOut);
+
+        heroButtons[heroes[i]] = container;
     }
 }
 
@@ -233,6 +245,11 @@ function GameInfoUpdated(data){
         bg.style.visibility = "visible";
         SwitchClass(bg, "AnimationBackgroundInvisible", "AnimationBackgroundVisible")
         Game.EmitSound("UI.SelectionStart")
+
+        for (var key in heroButtons) {
+            heroButtons[key].style.boxShadow = null;
+            heroButtons[key].style.saturation = null;
+        }
     } else {
         SwitchClass(bg, "AnimationBackgroundVisible", "AnimationBackgroundInvisible")
     }
@@ -263,15 +280,19 @@ function PlayersUpdated(data){
 
     for (var key in data){
         var player = data[key];
+        var info = Game.GetPlayerInfo(player.id) || {};
+
         var result = {
             id: player.id,
             score: player.score,
-            steamId: Game.GetPlayerInfo(player.id).player_steamid,
+            steamId: info.player_steamid,
             name: Players.GetPlayerName(player.id),
             color: LuaColor(player.color)
         };
 
         players.push(result);
+
+        playerColors[player.id] = player.color;
     }
 
     CreatePlayerList(players);
@@ -279,17 +300,24 @@ function PlayersUpdated(data){
 }
 
 function HeroSelectionUpdated(data){
+    selectedHeroes = data || {};
+
     for (var key in data){
         var hero = data[key];
         var selectionImage = $("#SelectionImage" + key);
-
+        var id = parseInt(key);
+        
         if (hero == "null"){
             selectionImage.RemoveClass("AnimationSelectedHero");
         } else {
             selectionImage.heroname = hero;
             selectionImage.RemoveClass("AnimationImageHover");
             selectionImage.AddClass("AnimationSelectedHero");
+            selectionImage.style.boxShadow = LuaColor(playerColors[id]) + " -2px -2px 4px 4px";
             AddHoverHeroDetails(selectionImage, hero);
+
+            heroButtons[hero].style.boxShadow = LuaColor(playerColors[id]) + " -2px -2px 4px 4px";
+            heroButtons[hero].style.saturation = "1.0";
         }
     }
 }

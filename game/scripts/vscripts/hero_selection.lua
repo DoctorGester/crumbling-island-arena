@@ -24,6 +24,16 @@ function HeroSelection:UpdateSelectedHeroes()
     CustomNetTables:SetTableValue("main", "selectedHeroes", selected)
 end
 
+function HeroSelection:IsSelected(hero)
+    for _, player in pairs(self.Players) do
+        if player.selectedHero == hero then
+            return true
+        end
+    end
+
+    return false
+end
+
 function HeroSelection:OnHover(args)
     local table = {}
     local player = self.Players[args.PlayerID]
@@ -38,6 +48,10 @@ function HeroSelection:OnHover(args)
     end
 
     if player.selectionLocked then
+        return
+    end
+
+    if self:IsSelected(hero) then
         return
     end
 
@@ -61,6 +75,10 @@ function HeroSelection:OnClick(args)
     end
 
     if player.selectionLocked then
+        return
+    end
+
+    if self:IsSelected(hero) then
         return
     end
 
@@ -90,8 +108,10 @@ function HeroSelection:AssignRandomHeroes()
                 local index = 0
 
                 for i, _ in pairs(self.AvailableHeroes) do
-                    table[index] = i
-                    index = index + 1
+                    if not self:IsSelected(i) then
+                        table[index] = i
+                        index = index + 1
+                    end
                 end
 
                 player.selectionLocked = true
