@@ -140,6 +140,7 @@ function GameMode:InitSettings()
     mode:SetCustomHeroMaxLevel(1)
     --mode:SetFogOfWarDisabled(true)
 
+    SendToServerConsole("dota_surrender_on_disconnect 0")
     SendToServerConsole("dota_combine_models 0")
 end
 
