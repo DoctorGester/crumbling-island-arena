@@ -51,16 +51,6 @@ function Activate()
     GameRules.GameMode = GameMode()
     GameRules.GameMode:SetupMode()
     VectorTarget:Init()
-
-    coroutine.create(
-        function()
-            local a = 10
-            for i = 0, 1000000 do
-                a = a + i
-            end
-            print("GORILLA"..tostring(a))
-        end
-    )
 end
 
 function GameMode:OnThink()
