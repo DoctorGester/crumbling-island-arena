@@ -43,10 +43,6 @@
 	"RoundEnding" "<font color='{s:color}'>{s:name}</font> wins!"
 	"RoundEndingWasted" "round wasted!"
 
-	"dota_hud_error_cant_cast_no_remnants"	"Ability requires a remnant"
-	"dota_hud_error_cant_cast_no_dead_remnants"	"Ability requires dead remnants"
-	"dota_hud_error_earth_spirit_cant_cast_no_remnant"	"Ability requires a remnant target"
-
 	"RecentScore"									"+{d:score}"
 
 	"StageIslandFirst"								"An earthquake"

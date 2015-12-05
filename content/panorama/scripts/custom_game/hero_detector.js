@@ -33,6 +33,10 @@ function UpdateHeroDetector(){
                 var realW = Clamp(entity.x, 0, mainPanel.actuallayoutwidth - panel.actuallayoutwidth) / mainPanel.actuallayoutwidth;
                 var realH = Clamp(entity.y, 0, mainPanel.actuallayoutheight - panel.actuallayoutwidth) / mainPanel.actuallayoutheight;
 
+                if (isNaN(realW) || isNaN(realH)) {
+                    return;
+                }
+
                 panel.style.position = parseInt(realW * 100) + "% " + parseInt(realH * 100) + "% 0px";
 
                 if (!panel.BHasClass("HeroMarkerTransition")) {

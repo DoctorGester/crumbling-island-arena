@@ -121,8 +121,8 @@ function Debug:CheckAndEnableDebug(gameMode)
 
     mode = gameMode
 
-    --GameRules.GameMode.HeroSelection.SelectionTimerTime = 20000
-    --GameRules.GameMode.HeroSelection.PreGameTime = 0
+    GameRules.GameMode.HeroSelection.SelectionTimerTime = 20000
+    GameRules.GameMode.HeroSelection.PreGameTime = 0
 
     InjectHero(GameRules.GameMode.Round)
     InjectEndCheck(GameRules.GameMode.Round)
@@ -141,7 +141,7 @@ if Convars:GetInt("sv_cheats") == 1 then
     InjectAreaDebug()
     InjectFreeSelection()
 
-    FIRST_CRUMBLE_TIME = 10
+    FIRST_CRUMBLE_TIME = 70000
     SECOND_CRUMBLE_TIME = 70000
     SUDDEN_DEATH_TIME = 70000
     ULTS_TIME = 1

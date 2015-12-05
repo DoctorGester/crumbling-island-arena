@@ -11,7 +11,7 @@
     </scripts>
     <Panel class="MainPanel" hittest="false">
         <Panel id="HeroSelectionBackground" hittest="false">
-            <DOTAScenePanel hittest="false" id="HeroSelectionBackgroundScene" map="backgrounds/dashboard_parallax_test" camera="shot_cameraA"/>
+            <DOTAScenePanel hittest="false" id="HeroSelectionBackgroundScene" map="backgrounds/dashboard_parallax_test" camera="shot_cameraC"/>
             <Panel id="HeroSelectionTopGradient" hittest="false"/>
 
             <Panel id="NameColumn">

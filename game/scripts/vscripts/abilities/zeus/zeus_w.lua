@@ -1,4 +1,5 @@
 zeus_w = class({})
+LinkLuaModifier("modifier_zeus_w", "abilities/zeus/modifier_zeus_w", LUA_MODIFIER_MOTION_NONE)
 
 function zeus_w:OnSpellStart()
     local hero = self:GetCaster().hero
@@ -27,17 +28,33 @@ function zeus_w:OnSpellStart()
     ParticleManager:SetParticleControl(particle, 0, wallStart)
     ParticleManager:SetParticleControl(particle, 1, wallEnd)
 
-    Timers:CreateTimer(6,
+    local timePassed = 0
+
+    Timers:CreateTimer(0.1,
         function()
-            hero:RemoveWall()
-            ParticleManager:DestroyParticle(particle, false)
-            ParticleManager:ReleaseParticleIndex(particle)
-            --hero:StopSound("Ability.static.loop")
-            hero:EmitSound("Ability.static.end")
+            if hero:Alive() then
+                if SegmentCircleIntersection(wallStart, wallEnd, hero:GetPos(), hero:GetRad()) then
+                    hero:AddNewModifier(hero, self, "modifier_zeus_w", { duration = 1.5 })
+                end
+            end
+
+            timePassed = timePassed + 0.1
+
+            if timePassed >= 6 then
+                hero:RemoveWall()
+                ParticleManager:DestroyParticle(particle, false)
+                ParticleManager:ReleaseParticleIndex(particle)
+                --hero:StopSound("Ability.static.loop")
+                hero:EmitSound("Arena.Zeus.EndW")
+
+                return
+            end
+
+            return 0.1
         end
     )
 
-    hero:EmitSound("Ability.static.start")
+    hero:EmitSound("Arena.Zeus.CastW")
     --hero:EmitSound("Ability.static.loop")
 
     --"particles/units/heroes/hero_leshrac/leshrac_lightning_slow.vpcf"
