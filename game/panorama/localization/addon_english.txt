@@ -68,5 +68,19 @@
 	"DOTA_Custom8"    								"Purple Horse"
 
 	"DOTA_Tooltip_Ability_pa_q"						"SHURIKEN"
+
+	"AbilityTooltip"								"{s:description}<br><br><font color=\"gold\">Range</font>: {s:range}<br><font color=\"gold\">CD</font>: {s:cooldown}"
+
+	"AbilityTooltip_earth_spirit_q"					"After a short delay, drop a <font color=\"#3A9B00\"><b>Remnant</b></font> at the target location."
+	"AbilityTooltip_earth_spirit_w"					"Target a <font color=\"#3A9B00\"><b>Remnant</b></font>, if you are standing on a <font color=\"#3A9B00\"><b>Remnant</b></font>, drag target to you. Otherwise, move your <font color=\"#3A9B00\"><b>Remnant</b></font> to it."
+	"AbilityTooltip_earth_spirit_e"					"Perform a short jump. When targeting a <font color=\"#3A9B00\"><b>Remnant</b></font>, land on top of it, becoming invulnerable until leaving it."
+	"AbilityTooltip_earth_spirit_r"					"Target a <font color=\"#3A9B00\"><b>Remnant</b></font>. After a short delay, emerge from it, leaving your old body behind. Resulting health depends on target <font color=\"#3A9B00\"><b>Remnant</b></font>\\\\'s health."
+
+	"AbilityTooltip_cm_q"							"Launch a projectile into a chosen direction<br>Enemies hit are <font color=\"skyblue\"><b>Frozen</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies take damage"
+	"AbilityTooltip_cm_w"							"Choose two point targets<br>Enemies along the chosen line are <font color=\"skyblue\"><b>Frozen</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies take damage"
+	"AbilityTooltip_cm_e"							"Launch a wave into a chosen direction<br>Reactivate to relocate to the wave\\\\'s position<br>Enemies hit are <font color=\"skyblue\"><b>Frozen</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies take damage"
+	"AbilityTooltip_cm_e_sub"						"Relocate to the wave\\\\'s position"
+	"AbilityTooltip_cm_r"							"Choose an area<br>All enemies in the target area are slowed and considered <font color=\"skyblue\"><b>Frozen</b></font>"
+
 }
 

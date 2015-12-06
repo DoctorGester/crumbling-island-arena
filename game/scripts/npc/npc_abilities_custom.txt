@@ -497,7 +497,7 @@
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/cm/cm_r"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "ancient_apparition_ice_vortex"
 		"AbilityCooldown" "16.0"
 		"AbilityCastRange" "800"
