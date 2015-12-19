@@ -252,6 +252,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "zuus_lightning_bolt"
 		"AbilityCooldown" "9.0"
+		// TODO wall indicator
 
 		"precache"
 		{
@@ -316,6 +317,8 @@
 		"AbilityTextureName" "luna_moon_glaive"
 		"AbilityCooldown" "0"
 
+		// TODO custom indicator
+
 		"precache"
 		{
 			"particle" "particles/pa_q/pa_q.vpcf"
@@ -339,6 +342,12 @@
 		"AbilityTextureName" "juggernaut_blade_fury"
 		"AbilityCooldown" "4"
 
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "256"
+		}
+
 		"precache"
 		{
 			"particle" "particles/econ/items/axe/axe_weapon_bloodchaser/axe_attack_blur_counterhelix_bloodchaser_b.vpcf"
@@ -354,6 +363,19 @@
 		"AbilityTextureName" "phantom_assassin_stifling_dagger"
 		"AbilityCooldown" "2.5"
 
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "1200"
+			"MaxLength" "1200"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1200"
+		}
+
 		"precache"
 		{
 			"particle" "particles/pa_w_sub/pa_w_sub.vpcf"
@@ -368,6 +390,13 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "phantom_assassin_phantom_strike"
 		"AbilityCooldown" "6"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "400"
+			"MaxLength" "400"
+		}
 	}
 
 	"pa_e_sub"
@@ -377,6 +406,13 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "phantom_assassin_phantom_strike"
 		"AbilityCooldown" "0"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "400"
+			"MaxLength" "400"
+		}
 	}
 
 	"pa_r"
