@@ -35,7 +35,7 @@ function sven_e:OnChannelFinish(interrupted)
     ParticleManager:SetParticleControl(effect, 2, hero:GetPos())
 
     hero:AddNewModifier(hero, self, "modifier_sven_e", {})
-    hero:SetFacing(direction)
+    hero:SetFacing(direction * Vector(1, 1, 0))
 
     local index = 0
     local damaged = {}

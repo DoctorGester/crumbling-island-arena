@@ -272,6 +272,12 @@
 			"MaxLength" "950"
 		}
 
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "950"
+		}
+
 		"precache"
 		{
 			"particle" "particles/units/heroes/hero_razor/razor_storm_lightning_strike.vpcf"
@@ -394,6 +400,19 @@
 		"AbilityCooldown" "5.0"
 		"AbilityCastRange" "1000"
 
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "256"
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1000"
+		}
+
 		"precache"
 		{
 			"particle" "particles/units/heroes/hero_earth_spirit/espirit_stoneremnant.vpcf"
@@ -428,6 +447,17 @@
 		"AbilityTextureName" "earth_spirit_magnetize"
 		"AbilityCooldown" "4.0"
 		"AbilityCastRange" "600"
+
+		"TargetingIndicator"
+		{
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "600"
+		}
 	}
 
 	"earth_spirit_r"
@@ -462,6 +492,12 @@
 			"MaxLength" "1500"
 		}
 
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1500"
+		}
+
 		"precache"
 		{
 			"particle" "particles/cm/cm_q.vpcf"
@@ -481,9 +517,16 @@
 		{
 			"PointOfCast" "midpoint"
 		}
+
 		"TargetingIndicator"
 		{
 			"DisplayRange" "1"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1100"
 		}
 
 		"precache"
@@ -501,12 +544,19 @@
 		"AbilityTextureName" "ancient_apparition_chilling_touch"
 		"AbilityCooldown" "6.0"
 		"AbilityCastRange" "1100"
+
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_LINE"
 			"MinLength" "1100"
 			"MaxLength" "1100"
 			"DisplayRange" "1"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1100"
 		}
 
 		"precache"
@@ -539,11 +589,18 @@
 		"AbilityTextureName" "ancient_apparition_ice_vortex"
 		"AbilityCooldown" "16.0"
 		"AbilityCastRange" "800"
+
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_AOE"
 			"Radius" "600"
 			"DisplayRange" "1"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "800"
 		}
 
 		"precache"
@@ -563,6 +620,12 @@
 		"AbilityCooldown" "1.8"
 		"AbilityCastPoint" "0.4"
 
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "(function(){ if (HasModifier(unit, 'modifier_sven_r')) return 500; return 300; })()"
+		}
+
 		"precache"
 		{
 			"particle" "particles/units/heroes/hero_riki/riki_backstab_hit_blood.vpcf"
@@ -578,6 +641,21 @@
 		"AbilityCastRange" "500"
 		"AbilityCastPoint" "0.2"
 
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_CONE"
+			"MaxLength" "550"
+			"MinLength" "550"
+			"Width" "400"
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "500"
+		}
+
 		"precache"
 		{
 			"particle" "particles/units/heroes/hero_beastmaster/beastmaster_primal_roar.vpcf"
@@ -592,6 +670,20 @@
 		"AbilityTextureName" "sven_storm_bolt"
 		"AbilityCastRange" "800"
 		"AbilityCooldown" "6.0"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_THICK_LINE"
+			"MaxLength" "800"
+			"Width" "100"
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "800"
+		}
 
 		"precache"
 		{
@@ -706,14 +798,17 @@
 		// Rework using a custom indicator which reads a buff
 		"TargetingIndicator"
 		{
-			"Type" "TARGETING_INDICATOR_DIRECTION_GLOBAL"
+			"Type" "TARGETING_INDICATOR_THICK_LINE"
+			"MinLength" "2000"
+			"MaxLength" "2000"
+			"Width" "120"
 		}
 
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "200"
-			"Offset" "350"
+			"Radius" "(function(){ if (HasModifier(unit, 'modifier_sk_e')) return 2000; return 200; })()"
+			"Offset" "(function(){ if (HasModifier(unit, 'modifier_sk_e')) return 0; return 350; })()"
 		}
 
 		"precache"
@@ -886,6 +981,8 @@
 		"AbilityTextureName" "lycan_summon_wolves"
 		"AbilityCooldown" "5.5"
 		"AbilityCastRange" "1600"
+
+		// TODO special indicator class
 
 		"precache"
 		{

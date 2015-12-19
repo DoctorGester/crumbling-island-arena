@@ -118,3 +118,13 @@ function PrintPanelKeys(panel) {
 
     $.Msg(keys);
 }
+
+function HasModifier(unit, modifier) {
+    for (var i = 0; i < Entities.GetNumBuffs(unit); i++) {
+        if (Buffs.GetName(unit, Entities.GetBuff(unit, i)) == modifier){
+            return true;
+        }
+    }
+
+    return false;
+}

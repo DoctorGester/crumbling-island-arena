@@ -8,7 +8,7 @@ function storm_spirit_e:OnSpellStart()
 
     if remnant then
         hero:AddNewModifier(hero, self, "modifier_storm_spirit_e", {})
-        hero:SetFacing((target - hero:GetPos()):Normalized())
+        hero:SetFacing((target - hero:GetPos()):Normalized() * Vector(1, 1, 0))
         hero:EmitSound("Hero_StormSpirit.BallLightning")
         hero:EmitSound("Hero_StormSpirit.BallLightning.Loop")
 

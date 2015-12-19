@@ -45,18 +45,7 @@ indicatorTypes["TARGETING_INDICATOR_LINE"] = function(data, unit) {
     this.particle = Particles.CreateParticle("particles/targeting/line.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN_FOLLOW, unit);
 
     this.Update = function(cursor){
-        var pos = Vector.FromArray(Entities.GetAbsOrigin(this.unit));
-        var to = Vector.FromArray(cursor);
-
-        var length = to.minus(pos).length();
-        var newLength = Clamp(length, GetNumber(this.data.MinLength, 0, this.unit), GetNumber(this.data.MaxLength, Number.MAX_VALUE, this.unit));
-
-        if (length != newLength) {
-            length = newLength;
-            to = to.minus(pos).normalize().scale(length).add(pos);
-        }
-
-        Particles.SetParticleControl(this.particle, 1, to);
+        UpdateLine(this.particle, this.unit, this.data, cursor);
     }
 
     this.Delete = function(){
@@ -109,6 +98,72 @@ indicatorTypes["TARGETING_INDICATOR_RANGE"] = function(data, unit) {
     }
 };
 
+indicatorTypes["TARGETING_INDICATOR_THICK_LINE"] = function(data, unit) {
+    this.data = data;
+    this.unit = unit;
+    this.particle = Particles.CreateParticle("particles/targeting/thick_line.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN_FOLLOW, unit);
+
+    this.Update = function(cursor){
+        UpdateLine(this.particle, this.unit, this.data, cursor);
+
+        Particles.SetParticleControl(this.particle, 2, [ GetNumber(data.Width, 0, this.unit), 0, 0 ]);
+    }
+
+    this.Delete = function(){
+        Particles.DestroyParticleEffect(this.particle, false);
+        Particles.ReleaseParticleIndex(this.particle);
+    }
+};
+
+indicatorTypes["TARGETING_INDICATOR_CONE"] = function(data, unit) {
+    this.data = data;
+    this.unit = unit;
+    this.particle = Particles.CreateParticle("particles/targeting/cone.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN_FOLLOW, unit);
+
+    this.Update = function(cursor){
+        UpdateLine(this.particle, this.unit, this.data, cursor);
+
+        Particles.SetParticleControl(this.particle, 2, [ GetNumber(data.Width, 0, this.unit), 0, 0 ]);
+    }
+
+    this.Delete = function(){
+        Particles.DestroyParticleEffect(this.particle, false);
+        Particles.ReleaseParticleIndex(this.particle);
+    }
+};
+
+
+indicatorTypes["TARGETING_INDICATOR_HALF_CIRCLE"] = function(data, unit) {
+    this.unit = unit;
+    this.particle = Particles.CreateParticle("particles/targeting/half_circle.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN_FOLLOW, unit);
+
+    this.Update = function(position){
+        Particles.SetParticleControl(this.particle, 1, position);
+        Particles.SetParticleControl(this.particle, 2, [ GetNumber(data.Radius, 0, this.unit), 0, 0 ]);
+    }
+
+    this.Delete = function(){
+        Particles.DestroyParticleEffect(this.particle, false);
+        Particles.ReleaseParticleIndex(this.particle);
+    }
+};
+
+
+function UpdateLine(particle, unit, data, cursor) {
+    var pos = Vector.FromArray(Entities.GetAbsOrigin(unit));
+    var to = Vector.FromArray(cursor);
+
+    var length = to.minus(pos).length();
+    var newLength = Clamp(length, GetNumber(data.MinLength, 0, unit), GetNumber(data.MaxLength, Number.MAX_VALUE, unit));
+
+    if (length != newLength) {
+        length = newLength;
+        to = to.minus(pos).normalize().scale(length).add(pos);
+    }
+
+    Particles.SetParticleControl(particle, 1, to);
+}
+
 function UpdatePosition() {
     var cursor = GameUI.GetCursorPosition();
     var position = GameUI.GetScreenWorldPosition(cursor);
@@ -126,7 +181,7 @@ function UpdateHoverPosition() {
         pos = Vector.FromArray(pos);
 
         var facing = new Vector(0.4, 0.4, 0).normalize().scale(1, 1, 0); // I'm crying
-        var result = pos.add(facing.scale(this.offset));
+        var result = pos.add(facing.scale(this.offset || 100));
 
         hoverIndicator.Update(result);
     }
@@ -148,10 +203,8 @@ function UpdateTargetIndicator(){
             indicator = null;
         }
 
-        if (data) {
-            var type = data.Type;
-
-            indicator = new indicatorTypes[type](data, unit);
+        if (data && data.Type) {
+            indicator = new indicatorTypes[data.Type](data, unit);
             UpdatePosition(); // It's a bug, blame valve
         }
     } else {
@@ -173,7 +226,7 @@ function UpdateTargetIndicator(){
         if (newHover != -1) {
             var hoverData = hoverIndicators[Abilities.GetAbilityName(newHover)];
 
-            if (hoverData) {
+            if (hoverData && hoverData.Type) {
                 hoverIndicator = new indicatorTypes[hoverData.Type](hoverData, unit);
                 UpdateHoverPosition();
             }

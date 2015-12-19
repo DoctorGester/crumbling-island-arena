@@ -40,7 +40,7 @@ function sk_q:OnSpellStart()
         projectileData.to = target
         projectileData.velocity = 900
         projectileData.distance = 2000
-        projectileData.radius = 64
+        projectileData.radius = 90
         projectileData.heroBehaviour = BEHAVIOUR_DEAL_DAMAGE_AND_PASS
         projectileData.onMove =
             function(self, prev, pos)
