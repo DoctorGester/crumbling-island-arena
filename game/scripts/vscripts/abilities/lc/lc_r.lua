@@ -10,10 +10,6 @@ function lc_r:OnSpellStart()
     holder:AddNewModifier(holder, self, "modifier_lc_r_aura", { duration = 5 })
 end
 
-function lc_r:GetAOERadius()
-    return 400
-end
-
 function lc_r:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_4
 end

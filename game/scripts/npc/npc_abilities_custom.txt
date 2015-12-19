@@ -175,6 +175,11 @@
 		"AbilityTextureName" "storm_spirit_overload"
 		"AbilityCooldown" "5.0"
 		"AbilityCastRange" "1100"
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "1100"
+		}
 
 		"precache"
 		{
@@ -227,6 +232,12 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "storm_spirit_overload"
 		"AbilityCooldown" "2.0"
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "800"
+			"MinLength" "800"
+		}
 
 		"precache"
 		{
@@ -255,6 +266,11 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "storm_spirit_overload"
 		"AbilityCooldown" "7.0"
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "950"
+		}
 
 		"precache"
 		{
@@ -270,6 +286,11 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "storm_spirit_overload"
 		"AbilityCooldown" "12.0"
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "256"
+		}
 
 		"precache"
 		{
@@ -434,6 +455,12 @@
 		"AbilityTextureName" "tusk_snowball"
 		"AbilityCooldown" "4.0"
 		"AbilityCastRange" "1500"
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "1500"
+			"MaxLength" "1500"
+		}
 
 		"precache"
 		{
@@ -454,6 +481,10 @@
 		{
 			"PointOfCast" "midpoint"
 		}
+		"TargetingIndicator"
+		{
+			"DisplayRange" "1"
+		}
 
 		"precache"
 		{
@@ -470,6 +501,13 @@
 		"AbilityTextureName" "ancient_apparition_chilling_touch"
 		"AbilityCooldown" "6.0"
 		"AbilityCastRange" "1100"
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "1100"
+			"MaxLength" "1100"
+			"DisplayRange" "1"
+		}
 
 		"precache"
 		{
@@ -501,6 +539,12 @@
 		"AbilityTextureName" "ancient_apparition_ice_vortex"
 		"AbilityCooldown" "16.0"
 		"AbilityCastRange" "800"
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "600"
+			"DisplayRange" "1"
+		}
 
 		"precache"
 		{
@@ -582,6 +626,11 @@
 		"AbilityCooldown" "3.0"
 		"AbilityCastPoint" "0.5"
 
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_DIRECTION_GLOBAL"
+		}
+
 		"precache"
 		{
 			"particle" "particles/sniper_q/sniper_q.vpcf"
@@ -595,8 +644,19 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "techies_stasis_trap"
 		"AbilityCooldown" "7.0"
-		"AbilityCastRange" "200"
+		"AbilityCastRange" "300"
 		"AbilityCastPoint" "0.6"
+
+		"TargetingIndicator"
+		{
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
 
 		"precache"
 		{
@@ -624,6 +684,12 @@
 		"AbilityTextureName" "sniper_take_aim"
 		"AbilityCooldown" "2.0"
 
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "400"
+		}
+
 		"precache"
 		{
 			"particle" "particles/sniper_r/sniper_r.vpcf"
@@ -636,6 +702,19 @@
 		"ScriptFile" "abilities/sk/sk_q"
 		"AbilityTextureName" "sandking_burrowstrike"
 		"AbilityCooldown" "3.0"
+
+		// Rework using a custom indicator which reads a buff
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_DIRECTION_GLOBAL"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "200"
+			"Offset" "350"
+		}
 
 		"precache"
 		{
@@ -651,6 +730,19 @@
 		"AbilityTextureName" "sandking_sand_storm"
 		"AbilityCooldown" "8.0"
 		"AbilityCastRange" "500"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "400"
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "500"
+		}
 
 		"precache"
 		{
@@ -683,6 +775,12 @@
 		"AbilityTextureName" "sandking_epicenter"
 		"AbilityCooldown" "14.0"
 
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "500"
+		}
+
 		"precache"
 		{
 			"particle" "particles/units/heroes/hero_sandking/sandking_epicenter.vpcf"
@@ -697,6 +795,13 @@
 		"AbilityTextureName" "legion_commander_moment_of_courage"
 		"AbilityCooldown" "1.8"
 		"AbilityCastPoint" "0.4"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "200"
+			"Offset" "200"
+		}
 
 		"precache"
 		{
@@ -730,6 +835,12 @@
 		"AbilityTextureName" "legion_commander_press_the_attack"
 		"AbilityCooldown" "6.0"
 
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "Entities.GetIdealSpeed(unit)"
+		}
+
 		"precache"
 		{
 			"particle" "particles/units/heroes/hero_earthshaker/earthshaker_fissure_dust.vpcf"
@@ -746,6 +857,19 @@
 		"AbilityCooldown" "14.0"
 		"AbilityCastPoint" "0.4"
 		"AbilityCastRange" "500"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "400"
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "500"
+		}
 
 		"precache"
 		{
@@ -778,6 +902,13 @@
 		"AbilityTextureName" "lycan/hunter_of_kings_ability_icons/lycan_feral_impulse"
 		"AbilityCooldown" "3.0"
 		"AbilityCastPoint" "0.4"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "128"
+			"Offset" "128"
+		}
 	}
 
 	"lycan_e"
@@ -788,6 +919,12 @@
 		"AbilityTextureName" "lycan_howl"
 		"AbilityCooldown" "8.0"
 		"AbilityCastPoint" "0.3"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "350"
+		}
 
 		"precache"
 		{

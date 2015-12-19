@@ -40,6 +40,8 @@
 		"AttributeBaseIntelligence" "0"
 		"VisionDaytimeRange" "0"
 		"VisionNighttimeRange" "0"
+		"ModelScale" "1.2"
+		"HealthBarOffset" "160"
 		
 		"Ability1" "zeus_q"
 		"Ability2" "zeus_w"

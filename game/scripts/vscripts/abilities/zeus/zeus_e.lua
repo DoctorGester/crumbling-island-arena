@@ -42,5 +42,5 @@ function zeus_e:OnSpellStart()
 end
 
 function zeus_e:GetCastAnimation()
-    return ACT_DOTA_ATTACK
+    return ACT_DOTA_TELEPORT_END
 end

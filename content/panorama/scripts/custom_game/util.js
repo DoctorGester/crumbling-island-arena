@@ -14,6 +14,10 @@ function GetTexture(data, customIcons) {
     return icon;
 }
 
+function IsNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
+
 function ToColor(num) {
     num >>>= 0;
     var b = num & 0xFF,

@@ -1,10 +1,10 @@
 function ShowBuffTooltip(element, entityId, buffId) {
     var isEnemy = Entities.IsEnemy(entityId);
-    $.DispatchEvent("DOTAShowBuffTooltip", element, entityId, buffId, isEnemy);
+    $.DispatchEvent("DOTAShowTextTooltip", element, $.Localize("ModifierTooltip_" + Buffs.GetName(entityId, buffId)))
 }
 
 function HideBuffTooltip() {
-    $.DispatchEvent("DOTAHideBuffTooltip");
+    $.DispatchEvent("DOTAHideTextTooltip");
 }
 
 function Buff(parent) {

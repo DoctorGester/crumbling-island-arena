@@ -2,6 +2,20 @@ Zeus = class({
     wall = nil
 }, {}, Hero)
 
+function Zeus:SetUnit(unit)
+    self.__base__.SetUnit(self, unit)
+
+    local children = unit:GetChildren()
+
+    for _, child in pairs(children) do
+        if child:GetClassname() == "dota_item_wearable" then
+            if not string.find(child:GetModelName(), "hair") then
+                child:AddEffects(EF_NODRAW)
+            end
+        end
+    end
+end
+
 function Zeus:GetWall()
     return wall.startPoint, wall.endPoint
 end

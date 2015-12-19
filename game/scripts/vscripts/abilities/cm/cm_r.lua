@@ -29,10 +29,6 @@ function cm_r:OnSpellStart()
     ImmediateEffectPoint("particles/econ/items/crystal_maiden/crystal_maiden_cowl_of_ice/maiden_crystal_nova_cowlofice.vpcf", PATTACH_CUSTOMORIGIN, hero, target)
 end
 
-function cm_r:GetAOERadius()
-    return 600
-end
-
 function cm_r:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_1
 end

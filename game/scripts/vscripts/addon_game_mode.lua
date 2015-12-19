@@ -1,6 +1,7 @@
 require('lib/timers')
 require('lib/animations')
 require("lib/vector_target")
+require('targeting_indicator')
 require('misc')
 require('util')
 
@@ -31,6 +32,10 @@ if GameMode == nil then
 end
 
 function Precache(context)
+    PrecacheResource("particle", "particles/targeting/line.vpcf", context)
+    PrecacheResource("particle", "particles/targeting/range.vpcf", context)
+    PrecacheResource("particle", "particles/targeting/global_target.vpcf", context)
+
     PrecacheResource("model", "models/development/invisiblebox.vmdl", context)
     PrecacheResource("particle", "particles/ui/ui_generic_treasure_impact.vpcf", context)
     PrecacheResource("particle", "particles/units/heroes/hero_tiny/tiny_avalanche.vpcf", context)

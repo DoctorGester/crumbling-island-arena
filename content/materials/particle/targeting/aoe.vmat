@@ -1,0 +1,15 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "projected_dota.vfx"
+
+	//---- Additive blending ----
+	F_ADDITIVE_BLENDING 1
+
+	//---- Color ----
+	TextureColor "materials/particle/targeting/aoe.png"
+
+	//---- Translucency ----
+	TextureTranslucency "materials/default/default_trans.tga"
+}

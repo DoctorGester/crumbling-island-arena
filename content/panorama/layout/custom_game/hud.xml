@@ -13,6 +13,7 @@
         <include src="file://{resources}/scripts/custom_game/health_bar.js" />
         <include src="file://{resources}/scripts/custom_game/game_hud.js" />
         <include src="file://{resources}/scripts/custom_game/hero_detector.js" />
+        <include src="file://{resources}/scripts/custom_game/target_indicator.js" />
         <include src="file://{resources}/scripts/custom_game/vector_target.js" />
     </scripts>
     <Panel class="MainPanel" hittest="false">

@@ -1,5 +1,7 @@
 function HideTooltip(){
     $.DispatchEvent("DOTAHideTextTooltip");
+
+    SetCurrentHoverSpell(null);
 }
 
 // AbilityDataProvider ->
@@ -67,7 +69,8 @@ function EntityAbilityDataProvider(entityId) {
     }
 
     this.ShowTooltip = function(element, data) {
-        //$.DispatchEvent("DOTAShowAbilityTooltipForEntityIndex", element, data.name, Abilities.GetCaster(data.id));
+        SetCurrentHoverSpell(data);
+
         var range = data.range.toString();
 
         if (data.range == 0) {
@@ -75,7 +78,7 @@ function EntityAbilityDataProvider(entityId) {
         }
 
         element.SetDialogVariable("description", $.Localize("AbilityTooltip_" + data.name));
-        element.SetDialogVariable("cooldown", data.cooldown.toString());
+        element.SetDialogVariable("cooldown", data.cooldown.toFixed(1).toString());
         element.SetDialogVariable("range", range);
         $.DispatchEvent("DOTAShowTextTooltip", element, $.Localize("AbilityTooltip", element))
     }

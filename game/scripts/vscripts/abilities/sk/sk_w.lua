@@ -13,7 +13,3 @@ end
 function sk_w:GetCastAnimation()
     return ACT_DOTA_OVERRIDE_ABILITY_2
 end
-
-function sk_w:GetAOERadius()
-    return 400
-end

@@ -67,8 +67,6 @@
 	"DOTA_Custom7"    								"Olive Snake"
 	"DOTA_Custom8"    								"Purple Horse"
 
-	"DOTA_Tooltip_Ability_pa_q"						"SHURIKEN"
-
 	"AbilityTooltip"								"{s:description}<br><br><font color=\"gold\">Range</font>: {s:range}<br><font color=\"gold\">CD</font>: {s:cooldown}"
 
 	"AbilityTooltip_earth_spirit_q"					"After a short delay, drop a <font color=\"#3A9B00\"><b>Remnant</b></font> at the target location."
@@ -80,7 +78,87 @@
 	"AbilityTooltip_cm_w"							"Choose two point targets<br>Enemies along the chosen line are <font color=\"skyblue\"><b>Frozen</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies take damage"
 	"AbilityTooltip_cm_e"							"Launch a wave into a chosen direction<br>Reactivate to relocate to the wave\\\\'s position<br>Enemies hit are <font color=\"skyblue\"><b>Frozen</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies take damage"
 	"AbilityTooltip_cm_e_sub"						"Relocate to the wave\\\\'s position"
-	"AbilityTooltip_cm_r"							"Choose an area<br>All enemies in the target area are slowed and considered <font color=\"skyblue\"><b>Frozen</b></font>"
+	"AbilityTooltip_cm_r"							"Target an area<br>All enemies in the area are slowed and considered <font color=\"skyblue\"><b>Frozen</b></font>"
 
+	"AbilityTooltip_zeus_q"							"Launch a short ranged projectile<br><br><font color=\"#7FC9FF\"><b>Empowered</b></font> projectiles reset this ability cooldown on hit"
+	"AbilityTooltip_zeus_w"							"Create a lightning wall, you get bonus speed when passing through it<br><br><font color=\"#7FC9FF\"><b>Empowers</b></font> friendly passing projectiles"
+	"AbilityTooltip_zeus_e"							"Teleport to a target point<br><br>Teleporting through the lightning wall damages all enemies between teleport locations"
+	"AbilityTooltip_zeus_r"							"Target an area<br>After a 1.6 second delay all enemies in the area receive damage and slow"
+
+	"AbilityTooltip_sniper_q"						"Fire a global ranged projectile"
+	"AbilityTooltip_sniper_w"						"Plant an invisible trap that stuns enemies when triggered"
+	"AbilityTooltip_sniper_e"						"Gain a decaying speed boost"
+	"AbilityTooltip_sniper_r"						"<font color=\"#DAFF7F\"><b>Toggle</b></font><br>When active renders hero invisible while no enemies are near for the cost of speed"
+
+	"AbilityTooltip_sven_q"							"Strike to damage enemies in front of you<br><br><font color=\"#AE0000\"><b>Enrage</b></font> pushes damaged targets back"
+	"AbilityTooltip_sven_w"							"Silence and slow enemies in a cone<br><br><font color=\"#AE0000\"><b>Enrage</b></font> applies the effect in a circular area"
+	"AbilityTooltip_sven_e"							"Rush to the target point, pushing back and damaging all enemies on the way<br><br><font color=\"#AE0000\"><b>Enrage</b></font> removes channeling time"
+	"AbilityTooltip_sven_r"							"Become <font color=\"#AE0000\"><b>Enraged</b></font> and reset your other cooldowns"
+
+	"AbilityTooltip_lc_q"							"Strike an area in front of you, briefly slowing enemies hit"
+	"AbilityTooltip_lc_w"							"Gain a temporary shield that protects you from the next incoming damage instance<br><br>When the shield pops, gain a speed bonus"
+	"AbilityTooltip_lc_e"							"Dash forward, briefly disabling enemies on the way<br><br>Dash distance depends on your current speed"
+	"AbilityTooltip_lc_r"							"Target an area<br>While in that area, you are immortal and your cooldowns are halved"
+
+	"AbilityTooltip_pa_q"							"Throw a boomerang glaive in the target direction<br><br>Reactivate to bring it back"
+	"AbilityTooltip_pa_q_sub"						"Bring the glaive back"
+	"AbilityTooltip_pa_w"							"Strike an area around you"
+	"AbilityTooltip_pa_w_sub"						"Throw a dagger which slows the first enemy hit<br><br>Doesn\\\\'t deal damage"
+	"AbilityTooltip_pa_e"							"Perform a short jump<br><br>Reactivate to double-jump"
+	"AbilityTooltip_pa_e_sub"						"Perform a short jump, leaving your glaive behind"
+	"AbilityTooltip_pa_r"							"Become invisible for 5 seconds gaining bonus speed<br>Your glaive is also sped up<br><br>Casting spells briefly reveals you"
+
+	"AbilityTooltip_sk_q"							"Tunnel forward, damaging all enemies around the destination point<br><br>When <font color=\"#E2BD00\"><b>Burrowed</b></font> becomes a point target spell, that damages all enemies in the line when cast"
+	"AbilityTooltip_sk_w"							"Target an area<br>Enemies in that area are slowed and unable to see anything"
+	"AbilityTooltip_sk_e"							"<font color=\"#E2BD00\"><b>Burrow</b></font> and became immobile and invulnerable for a few seconds"
+	"AbilityTooltip_sk_r"							"Damage an area around you two times over the course of channeling"
+
+	"AbilityTooltip_storm_spirit_q"					"Launch a wave that creates a <font color=\"#00EFEF\"><b>Remnant</b></font> at the target point"
+	"AbilityTooltip_storm_spirit_w"					"Target a <font color=\"#00EFEF\"><b>Remnant</b></font> making it explode, damaging enemies around it"
+	"AbilityTooltip_storm_spirit_e"					"Target a <font color=\"#00EFEF\"><b>Remnant</b></font> and quickly dash to it"
+	"AbilityTooltip_storm_spirit_r"					"Ressurect up to 3 last dead <font color=\"#00EFEF\"><b>Remnants</b></font>"
+
+	"AbilityTooltip_lycan_q"						"Summon two wolves running to the target point<br><br>Enemies bitten start <font color=\"#D10000\"><b>Bleeding</b></font>"
+	"AbilityTooltip_lycan_w"						"Strike an area in front of you, making enemies hit <font color=\"#D10000\"><b>Bleed</b></font>"
+	"AbilityTooltip_lycan_e"						"Causes enemies around you to flee"
+	"AbilityTooltip_lycan_r"						"Transform, gaining huge base movement speed<br><br><font color=\"gold\"><b>Q</b></font> Your Wolves move faster<br><font color=\"gold\"><b>W</b></font> <font color=\"#D10000\"><b>Bleeding</b></font> enemies take double damage<br><font color=\"gold\"><b>E</b></font> Fleeing and <font color=\"#D10000\"><b>Bleeding</b></font> enemies are silenced"
+
+	"ModifierTooltip_modifier_zeus_w"						"Sped up"
+	"ModifierTooltip_modifier_zeus_r"						"Slowed down"
+
+	"ModifierTooltip_modifier_sven_w_slow"					"Silenced and slowed down"
+	"ModifierTooltip_modifier_sven_e"						"Angry and rushin"
+	"ModifierTooltip_modifier_sven_r"						"<font color=\"#AE0000\"><b>Enraged</b></font>"
+
+	"ModifierTooltip_modifier_storm_spirit_e"				"Riding on the storm"
+
+	"ModifierTooltip_modifier_sniper_w"						"Movement disabled by trap"
+	"ModifierTooltip_modifier_sniper_e"						"Sprinting"
+	"ModifierTooltip_modifier_sniper_r"						"Stealthed movement"
+
+	"ModifierTooltip_modifier_sk_w"							"Blinded by sandstorm"
+	"ModifierTooltip_modifier_sk_e"							"<font color=\"#E2BD00\"><b>Burrowed</b></font>"
+
+	"ModifierTooltip_modifier_pa_w_sub"						"Slowed down"
+	"ModifierTooltip_modifier_pa_e"							"Jumping"
+	"ModifierTooltip_modifier_pa_r"							"Invisible"
+
+	"ModifierTooltip_modifier_lycan_bleed"					"<font color=\"#D10000\"><b>Bleeding</b></font>"
+	"ModifierTooltip_modifier_lycan_instinct"				"Moving faster towards <font color=\"#D10000\"><b>Bleeding</b></font> enemies"
+	"ModifierTooltip_modifier_lycan_e"						"Fleeing"
+	"ModifierTooltip_modifier_lycan_e_silence"				"Silenced"
+	"ModifierTooltip_modifier_lycan_r"						"Transformed"
+
+	"ModifierTooltip_modifier_lc_q"							"Slowed down"
+	"ModifierTooltip_modifier_lc_w_shield"					"Shielded from the next damage instance"
+	"ModifierTooltip_modifier_lc_w_speed"					"Sped up"
+	"ModifierTooltip_modifier_lc_e"							"Slidin"
+	"ModifierTooltip_modifier_lc_r"							"Immortal and has cooldowns halved"
+
+	"ModifierTooltip_modifier_earth_spirit_e"				"Flying Donatello style"
+	"ModifierTooltip_modifier_earth_spirit_stand"			"Invulnerable while on the <font color=\"#3A9B00\"><b>Remnant</b></font>"
+
+	"ModifierTooltip_modifier_cm_frozen"					"<font color=\"skyblue\"><b>Frozen</b></font>"
+	"ModifierTooltip_modifier_cm_r_slow"					"Slowed and considered <font color=\"skyblue\"><b>Frozen</b></font>"
 }
 

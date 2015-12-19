@@ -5,11 +5,10 @@
     LICENSE: https://github.com/kallisti-dev/vector_target/blob/master/LICENSE
 --]]
 
-DEFAULT_VECTOR_TARGET_PARTICLE = "particles/vector_target/vector_target_range_finder_line.vpcf"
+DEFAULT_VECTOR_TARGET_PARTICLE = "particles/targeting/line.vpcf"
 DEFAULT_VECTOR_TARGET_CONTROL_POINTS = {
     [0] = "initial",
-    [1] = "initial",
-    [2] = "terminal"
+    [1] = "terminal"
 }
 
 --[[
