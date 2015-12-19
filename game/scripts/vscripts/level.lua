@@ -40,7 +40,7 @@ function Level:TestOutOfMap(entity, stage)
     local obstructions = Entities:FindAllByName(name)
     local center = Entities:FindByName(nil, "map_center"):GetAbsOrigin()
 
-    for _, obstruction in pairs(obstructions) do
+    for _, obstruction in ipairs(obstructions) do
         local o = obstruction:GetCenter()
         local size = 64
         local top = {x1 = o.x - size, y1 = o.y + size, x2 = o.x + size, y2 = o.y + size}
@@ -50,7 +50,7 @@ function Level:TestOutOfMap(entity, stage)
 
         local sides = { top, left, right, bottom }
 
-        for _, side in pairs(sides) do
+        for _, side in ipairs(sides) do
             local result = SegmentsIntersect2(start.x, start.y, center.x, center.y, side.x1, side.y1, side.x2, side.y2)
             if result then
                 return true
