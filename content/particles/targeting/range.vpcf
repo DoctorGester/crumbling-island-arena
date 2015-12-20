@@ -45,4 +45,11 @@
 			m_nParticlesToEmit = 1
 		},
 	]
+	m_Constraints =
+	[
+		{
+			_class = "C_OP_ConstrainDistance"
+			m_fMaxDistance = 1.000000
+		},
+	]
 }

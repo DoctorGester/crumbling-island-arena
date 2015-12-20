@@ -45,7 +45,9 @@ indicatorTypes["TARGETING_INDICATOR_LINE"] = function(data, unit) {
     this.particle = Particles.CreateParticle("particles/targeting/line.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN_FOLLOW, unit);
 
     this.Update = function(cursor){
-        UpdateLine(this.particle, this.unit, this.data, cursor);
+        var to = UpdateLine(this.particle, this.unit, this.data, cursor);
+        var result = to.minus(Vector.FromArray(Entities.GetAbsOrigin(unit))).normalize().scale(150).add(to);
+        Particles.SetParticleControl(this.particle, 2, result);
     }
 
     this.Delete = function(){
@@ -162,6 +164,8 @@ function UpdateLine(particle, unit, data, cursor) {
     }
 
     Particles.SetParticleControl(particle, 1, to);
+
+    return to;
 }
 
 function UpdatePosition() {
@@ -181,14 +185,14 @@ function UpdateHoverPosition() {
         pos = Vector.FromArray(pos);
 
         var facing = new Vector(0.4, 0.4, 0).normalize().scale(1, 1, 0); // I'm crying
-        var result = pos.add(facing.scale(this.offset || 100));
+        var result = pos.add(facing.scale(this.offset || 1000));
 
         hoverIndicator.Update(result);
     }
 }
 
 function UpdateTargetIndicator(){
-    $.Schedule(0.025, UpdateTargetIndicator);
+    $.Schedule(0.01, UpdateTargetIndicator);
 
     var unit = Players.GetLocalPlayerPortraitUnit();
     var active = Abilities.GetLocalPlayerActiveAbility();
