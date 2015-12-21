@@ -87,8 +87,7 @@ indicatorTypes["TARGETING_INDICATOR_RANGE"] = function(data, unit) {
 
         if (this.offset) {
             var pos = Vector.FromArray(Entities.GetAbsOrigin(this.unit));
-            var to = Vector.FromArray(cursor);
-            var result = to.minus(pos).normalize().scale(1, 1, 0).scale(this.offset).add(pos);
+            var result = cursor.minus(pos).normalize().scale(this.offset).add(pos);
 
             Particles.SetParticleControl(this.particle, 0, result);
         }
@@ -184,8 +183,8 @@ function UpdateHoverPosition() {
     if (pos && hoverIndicator) {
         pos = Vector.FromArray(pos);
 
-        var facing = new Vector(0.4, 0.4, 0).normalize().scale(1, 1, 0); // I'm crying
-        var result = pos.add(facing.scale(this.offset || 1000));
+        var facing = Vector.FromArray(Entities.GetForward(unit)).scale(1, 1, 0).normalize(); // Yay!
+        var result = pos.add(facing.scale(1000));
 
         hoverIndicator.Update(result);
     }
