@@ -8,7 +8,8 @@
 DEFAULT_VECTOR_TARGET_PARTICLE = "particles/targeting/line.vpcf"
 DEFAULT_VECTOR_TARGET_CONTROL_POINTS = {
     [0] = "initial",
-    [1] = "terminal"
+    [1] = "terminal",
+    [2] = "terminalArrow"
 }
 
 --[[

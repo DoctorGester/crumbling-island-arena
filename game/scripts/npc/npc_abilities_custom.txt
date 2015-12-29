@@ -552,6 +552,8 @@
 		"VectorTarget"
 		{
 			"PointOfCast" "midpoint"
+			"MaxDistance"   "800" 
+            "MinDistance"   "800"
 		}
 
 		"TargetingIndicator"
@@ -751,7 +753,7 @@
 		"ScriptFile" "abilities/sniper/sniper_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "sniper_assassinate"
-		"AbilityCooldown" "3.0"
+		"AbilityCooldown" "2.0"
 		"AbilityCastPoint" "0.5"
 
 		"TargetingIndicator"
