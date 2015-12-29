@@ -26,6 +26,7 @@ function LycanWolf:Update()
                 self.attacking:Damage(self.owner)
                 self.unit:EmitSound("Arena.Lycan.HitQ2")
                 self.owner:MakeBleed(self.attacking)
+                GameRules.GameMode.Round:CheckEndConditions()
             end
         end
 
