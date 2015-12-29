@@ -151,12 +151,17 @@ function EarthSpiritRemnant:Update()
 end
 
 function EarthSpiritRemnant:SilentDestroy()
+    if self.unit then
+        self.unit:StopSound("Hero_EarthSpirit.RollingBoulder.Loop")
+    end
+
     self.unit = nil
     self:Destroy()
 end
 
 function EarthSpiritRemnant:Remove()
     if self.unit then
+        self.unit:StopSound("Hero_EarthSpirit.RollingBoulder.Loop")
         self.unit:EmitSound("Arena.Earth.EndQ")
         self.unit:RemoveSelf()
     end

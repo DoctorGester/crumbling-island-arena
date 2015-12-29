@@ -1082,4 +1082,103 @@
 			"model" "models/heroes/lycan/lycan_wolf.vmdl"
 		}
 	}
+
+	"phoenix_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/phoenix/phoenix_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "phoenix_icarus_dive"
+		"AbilityCooldown" "5.5"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "900"
+		}
+
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_phoenix/phoenix_icarus_dive.vpcf"
+		}
+	}
+
+	"phoenix_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/phoenix/phoenix_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "phoenix_launch_fire_spirit"
+		"AbilityCooldown" "0.5"
+		"AbilityCastRange" "1200"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "200"
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1200"
+		}
+
+		"precache"
+		{
+			"particle" "particles/phoenix_w/phoenix_w.vpcf"
+			"particle" "particles/status_fx/status_effect_phoenix_burning.vpcf"
+			"particle" "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_burn.vpcf"
+			"particle" "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf"
+			"particle" "particles/units/heroes/hero_phoenix/phoenix_fire_spirits_bird_fire.vpcf"
+		}
+	}
+
+	"phoenix_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/phoenix/phoenix_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "phoenix_fire_spirits"
+		"AbilityCooldown" "8"
+
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_phoenix/phoenix_supernova_scepter.vpcf"
+		}
+	}
+
+	// Omae wa ore ga taos!
+	"phoenix_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/phoenix/phoenix_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "phoenix_sun_ray"
+		"AbilityCooldown" "20"
+		"AbilityCastRange" "800"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "350"
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "800"
+		}
+
+		"precache"
+		{
+			"particle" "particles/phoenix_r/phoenix_r.vpcf"
+			"particle" "particles/phoenix_r/phoenix_r_marker.vpcf"
+			"particle" "particles/units/heroes/hero_phoenix/phoenix_supernova_egg.vpcf"
+			"particle" "particles/units/heroes/hero_phoenix/phoenix_supernova_reborn.vpcf"
+		}
+	}
 }

@@ -38,6 +38,10 @@ function Hero:GetRad()
     return self.unit:BoundingRadius2D() * 2
 end
 
+function Hero:GetHealth()
+    return math.floor(self.unit:GetHealth())
+end
+
 function Hero:GetGroundHeight(position)
     return GetGroundHeight(position or self:GetPos(), self.unit)
 end
@@ -66,8 +70,16 @@ function Hero:SetFacing(facing)
     self.unit:SetForwardVector(facing)
 end
 
-function Hero:EmitSound(sound)
-    self.unit:EmitSound(sound)
+function Hero:SetHealth(health)
+    self.unit:SetHealth(math.floor(health))
+end
+
+function Hero:EmitSound(sound, location)
+    if location then
+        EmitSoundOnLocationWithCaster(location, sound, self.unit)
+    else
+        self.unit:EmitSound(sound)
+    end
 end
 
 function Hero:StopSound(sound)

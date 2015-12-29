@@ -19,3 +19,10 @@ end
 function CM:GetIcePath()
     return self.icePath
 end
+
+function CM:Delete()
+    self:StopSound("Arena.CM.LoopE")
+    self:StopSound("Arena.CM.LoopR")
+
+    self.__base__.Delete(self)
+end

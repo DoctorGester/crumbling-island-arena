@@ -30,6 +30,8 @@
 	"HeroName_npc_dota_hero_lycan"					"Death"
 	"HeroTips_npc_dota_hero_lycan"					"Q wolves can be killed<br>W has melee range<br>Q and W make victims bleed, giving speed bonus when moving towards them<br>R gives tremendous amount of movement speed for a short time and improves all abilities"
 
+	"HeroName_npc_dota_hero_phoenix"				"The Sun"
+	
 	"PlayerHeader" "player"
 	"SelectionHeader" "selection"
 	"ScoreHeader" "score"
@@ -90,7 +92,7 @@
 	"AbilityTooltip_sniper_e"						"Gain a decaying speed boost"
 	"AbilityTooltip_sniper_r"						"<font color=\"#DAFF7F\"><b>Toggle</b></font><br>When active renders hero invisible while no enemies are near for the cost of speed"
 
-	"AbilityTooltip_sven_q"							"Strike to damage enemies in front of you<br><br><font color=\"#AE0000\"><b>Enrage</b></font> pushes damaged targets back"
+	"AbilityTooltip_sven_q"							"Strike to damage enemies in front of you<br><br><font color=\"#AE0000\"><b>Enrage</b></font> increased radius and pushes damaged targets back"
 	"AbilityTooltip_sven_w"							"Silence and slow enemies in a cone<br><br><font color=\"#AE0000\"><b>Enrage</b></font> applies the effect in a circular area"
 	"AbilityTooltip_sven_e"							"Rush to the target point, pushing back and damaging all enemies on the way<br><br><font color=\"#AE0000\"><b>Enrage</b></font> removes channeling time"
 	"AbilityTooltip_sven_r"							"Become <font color=\"#AE0000\"><b>Enraged</b></font> and reset your other cooldowns"

@@ -46,6 +46,8 @@ Vector.prototype.toString = function() {
 
 //Create a vector from an array
 Vector.FromArray = function( array ) {
+    if (array instanceof Vector) { return array; }
+    
     if ( array.length == 2 ) {
         return new Vector( array[0], array[1], 0 );
     } else if ( array.length == 3 ) {

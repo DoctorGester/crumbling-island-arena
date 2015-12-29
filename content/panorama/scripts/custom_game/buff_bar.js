@@ -12,6 +12,8 @@ function Buff(parent) {
     this.element.AddClass("Buff");
     this.timeText = $.CreatePanel("Label", this.element, "");
     this.timeText.AddClass("BuffTimeText");
+    this.stacksText = $.CreatePanel("Label", this.element, "");
+    this.stacksText.AddClass("BuffStacksText");
     this.data = {};
 
     this.SetVisible = function(visible) {
@@ -22,6 +24,7 @@ function Buff(parent) {
         var texture = Buffs.GetTexture(entityId, buffId);
         var debuff = Buffs.IsDebuff(entityId, buffId);
         var remaining = Math.max(0, Buffs.GetRemainingTime(entityId, buffId));
+        var stacks = Buffs.GetStackCount(entityId, buffId);
 
         if (texture != this.data.texture) {
             this.data.texture = texture;
@@ -44,6 +47,14 @@ function Buff(parent) {
                 this.timeText.text = remaining.toFixed(1);
             } else {
                 this.timeText.text = "";
+            }
+        }
+
+        if (stacks != this.data.stacks) {
+            if (stacks != 0) {
+                this.stacksText.text = stacks.toString();
+            } else {
+                this.stacksText.text = "";
             }
         }
 

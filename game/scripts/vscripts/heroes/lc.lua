@@ -24,7 +24,7 @@ function LC:Damage(source)
         return
     end
 
-    if self:FindModifier("modifier_lc_r") and math.floor(self.unit:GetHealth()) == 1 then
+    if self:FindModifier("modifier_lc_r") and self:GetHealth() == 1 then
         return
     end
 

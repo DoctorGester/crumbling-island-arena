@@ -41,6 +41,16 @@
     margin: 3px;
 }
 
+.BuffStacksText
+{
+    color: white;
+    font-size: 12;
+    vertical-align: top;
+    horizontal-align: right;
+    text-shadow: 0px 0px 8px 8.0 #333333b0;
+    margin: 3px;
+}
+
 .AbilityButton
 {
     width: 56px;

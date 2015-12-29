@@ -100,6 +100,8 @@ function EarthSpirit:Damage(source)
 end
 
 function EarthSpirit:Delete()
+    self:StopSound("Arena.Earth.CastE.Loop")
+    
     self.__base__.Delete(self)
 
     for _, remnant in pairs(self.remnants) do

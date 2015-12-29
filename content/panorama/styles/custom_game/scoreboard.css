@@ -1,0 +1,10 @@
+#Scoreboard
+{
+    flow-children: right;
+    horizontal-align: center;
+}
+
+.ScoreboardPlayer
+{
+    flow-children: down;
+}
