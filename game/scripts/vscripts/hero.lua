@@ -115,6 +115,10 @@ function Hero:Heal()
     self.unit:SetHealth(self.unit:GetHealth() + 1)
 end
 
+function Hero:FindAbility(name)
+    return self.unit:FindAbilityByName(name)
+end
+
 function Hero:EnableUltimate(ultimate)
     self.unit:FindAbilityByName(ultimate):SetLevel(1)
 end

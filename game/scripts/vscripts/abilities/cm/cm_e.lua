@@ -51,6 +51,7 @@ function cm_e:OnSpellStart()
     hero:EmitSound("Arena.CM.CastE")
     hero:EmitSound("Arena.CM.LoopE")
     hero:SwapAbilities("cm_e", "cm_e_sub")
+    hero:FindAbilityByName("cm_e_sub"):StartCooldown(0.3)
 end
 
 function cm_e:GetCastAnimation()
