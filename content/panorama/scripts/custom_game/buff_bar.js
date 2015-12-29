@@ -1,3 +1,7 @@
+var modifiersWithStacks = [
+    "modifier_charges"
+];
+
 function ShowBuffTooltip(element, entityId, buffId) {
     var isEnemy = Entities.IsEnemy(entityId);
     $.DispatchEvent("DOTAShowTextTooltip", element, $.Localize("ModifierTooltip_" + Buffs.GetName(entityId, buffId)))
@@ -24,7 +28,11 @@ function Buff(parent) {
         var texture = Buffs.GetTexture(entityId, buffId);
         var debuff = Buffs.IsDebuff(entityId, buffId);
         var remaining = Math.max(0, Buffs.GetRemainingTime(entityId, buffId));
-        var stacks = Buffs.GetStackCount(entityId, buffId);
+        var stacks = 0;
+
+        if (_.contains(modifiersWithStacks, Buffs.GetName(entityId, buffId))) {
+            stacks = Buffs.GetStackCount(entityId, buffId);
+        }
 
         if (texture != this.data.texture) {
             this.data.texture = texture;

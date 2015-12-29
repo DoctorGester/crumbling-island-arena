@@ -2,7 +2,7 @@ GRACE_TIME = 1
 FIRST_CRUMBLE_TIME = 50
 SECOND_CRUMBLE_TIME = 30
 SUDDEN_DEATH_TIME = 40
-ULTS_TIME = 70
+ULTS_TIME = 55
 
 if Round == nil then
     Round = class({})
