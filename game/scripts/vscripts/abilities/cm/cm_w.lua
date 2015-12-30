@@ -10,6 +10,10 @@ function cm_w:OnSpellStart()
     local damaged = {}
     local ability = self
 
+    if self:GetDirectionVector():Length2D() == 0 then
+        endPos = startPos + (startPos - hero:GetPos()):Normalized() * maxDistance
+    end
+
     Timers:CreateTimer(
         function()
             timePassed = timePassed + 0.1

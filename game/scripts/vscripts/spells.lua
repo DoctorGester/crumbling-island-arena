@@ -61,7 +61,7 @@ function Spells:ThinkFunction(dt)
 
                     if not projectile.destroyed then
                         for _, second in ipairs(Projectiles) do
-                            if projectile ~= second and not projectile.destroyed then
+                            if projectile ~= second and projectile.owner ~= second.owner and not projectile.destroyed then
                                 local radSum = projectile.radius + second.radius
 
                                 if (projectile.position - second.position):Length2D() <= radSum then
