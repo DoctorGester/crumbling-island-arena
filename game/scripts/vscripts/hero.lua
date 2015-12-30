@@ -109,6 +109,12 @@ function Hero:Damage(source)
     }
 
     ApplyDamage(damageTable)
+
+    if not self:Alive() then
+        GameRules.GameMode:OnHeroDeath(self, source)
+    else
+        GameRules.GameMode:OnDamageDealt(self, source)
+    end
 end
 
 function Hero:Heal()

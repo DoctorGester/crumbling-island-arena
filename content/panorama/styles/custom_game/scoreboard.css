@@ -7,4 +7,43 @@
 .ScoreboardPlayer
 {
     flow-children: down;
+    horizontal-align: center;
+    vertical-align: top;
+    opacity: 0.6;
+    width: 150px;
+    height: 80px;
+    border-radius: 3px;
+    transition-property: opacity;
+    transition-duration: 0.1s;
+}
+
+.ScoreboardPlayer:hover
+{
+    opacity: 0.8;
+}
+
+.ScoreboardPlayerName
+{
+    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+    font-size: 16;
+    margin-top: 6px;
+    vertical-align: top;
+    horizontal-align: left;
+    text-shadow: 0px 0px 3px 3.0 black;
+    color: #CCB966;
+    white-space: nowrap;
+    horizontal-align: center;
+}
+
+.ScoreboardPlayerScore
+{
+    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+    font-size: 36;
+    margin-bottom: 6px;
+    vertical-align: top;
+    horizontal-align: left;
+    text-shadow: 0px 0px 3px 3.0 black;
+    color: #CCB966;
+    white-space: nowrap;
+    horizontal-align: center;
 }

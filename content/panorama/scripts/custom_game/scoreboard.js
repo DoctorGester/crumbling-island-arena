@@ -16,6 +16,7 @@ function PlayersUpdated(players) {
 
         var panel = $.CreatePanel("Panel", scoreboard, "");
         panel.AddClass("ScoreboardPlayer");
+        panel.style.backgroundColor = LuaColor(player.color);
 
         var mouseOver = (function(element, id) {
             return function() {
@@ -31,9 +32,12 @@ function PlayersUpdated(players) {
         panel.SetPanelEvent("onmouseout", mouseOut);
 
         var name = $.CreatePanel("Label", panel, "");
-        name.AddClass("NameLabel");
+        name.AddClass("ScoreboardPlayerName");
         name.text = Players.GetPlayerName(player.id);
-        name.style.color = LuaColor(player.color);
+
+        var score = $.CreatePanel("Label", panel, "");
+        score.AddClass("ScoreboardPlayerScore");
+        score.text = player.score.toString();
     }
 }
 
