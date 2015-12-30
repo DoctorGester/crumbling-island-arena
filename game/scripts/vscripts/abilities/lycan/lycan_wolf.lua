@@ -37,7 +37,11 @@ function LycanWolf:Update()
     self:SetPos(self.unit:GetAbsOrigin())
 
     if self.attacking then
-        return
+        if self.unit:IsStunned() or self.unit:IsRooted() then
+            self.attacking = false
+        else
+            return
+        end
     end
 
     local direction = self.target - self.start
@@ -56,19 +60,21 @@ function LycanWolf:Update()
         ExecuteOrderFromTable({ UnitIndex = self.unit:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_MOVE_TO_DIRECTION, Position = result })
     end
 
-    for _, target in pairs(Spells:GetValidTargets()) do
-        local direction = (target:GetPos() - self:GetPos())
-        local distance = direction:Length2D()
+    if not self.unit:IsStunned() and not self.unit:IsRooted() then
+        for _, target in pairs(Spells:GetValidTargets()) do
+            local direction = (target:GetPos() - self:GetPos())
+            local distance = direction:Length2D()
 
-        if target ~= self.owner and distance <= 160 and target:__instanceof__(Hero) then
-            ExecuteOrderFromTable({ UnitIndex = self.unit:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_STOP })
+            if target ~= self.owner and distance <= 160 and target:__instanceof__(Hero) then
+                ExecuteOrderFromTable({ UnitIndex = self.unit:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_STOP })
 
-            self.unit:FindModifierByName("modifier_lycan_q"):SetDuration(0.5, false)
-            self.unit:SetForwardVector(direction:Normalized())
-            self.attacking = target
-            self.unit:EmitSound("Arena.Lycan.HitQ")
-            StartAnimation(self.unit, { duration = 0.5, activity = ACT_DOTA_ATTACK })
-            break
+                self.unit:FindModifierByName("modifier_lycan_q"):SetDuration(0.5, false)
+                self.unit:SetForwardVector(direction:Normalized())
+                self.attacking = target
+                self.unit:EmitSound("Arena.Lycan.HitQ")
+                StartAnimation(self.unit, { duration = 0.5, activity = ACT_DOTA_ATTACK })
+                break
+            end
         end
     end
 end
@@ -79,4 +85,20 @@ end
 
 function LycanWolf:Damage(source)
     self:Destroy()
+end
+
+function LycanWolf:HasModifier(modifier)
+    return self.unit:HasModifier(modifier)
+end
+
+function LycanWolf:AddNewModifier(source, ability, modifier, params)
+    self.unit:AddNewModifier(source.unit, ability, modifier, params)
+end
+
+function LycanWolf:RemoveModifier(name)
+    self.unit:RemoveModifierByName(name)
+end
+
+function LycanWolf:FindModifier(name)
+    return self.unit:FindModifierByName(name)
 end

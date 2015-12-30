@@ -121,6 +121,10 @@ function Hero:Heal()
     self.unit:SetHealth(self.unit:GetHealth() + 1)
 end
 
+function Hero:HasModifier(modifier)
+    return self.unit:HasModifier(modifier)
+end
+
 function Hero:FindAbility(name)
     return self.unit:FindAbilityByName(name)
 end

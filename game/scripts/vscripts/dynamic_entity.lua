@@ -37,3 +37,4 @@ function DynamicEntity:Remove() end
 function DynamicEntity:HasModifier() return false end
 function DynamicEntity:FindModifier() end
 function DynamicEntity:AddNewModifier() end
+function DynamicEntity:RemoveModifier() end
