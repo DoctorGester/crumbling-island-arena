@@ -74,8 +74,8 @@
     overflow: clip;
     saturation: 0.2;
     margin: 4px;
-    width: 50px;
-    height: 90px;
+    width: 72px;
+    height: 40px;
     box-shadow: #000000aa -2px -2px 4px 4px;
     transition-property: saturation, box-shadow;
     transition-duration: 0.15s;
@@ -83,9 +83,8 @@
 
 .HeroButton
 {
-    width: 70px;
-    height: 90px;
-    margin-left: -10px;
+    width: 100%;
+    height: 100%;
 }
 
 .HeroButtonContainer:hover

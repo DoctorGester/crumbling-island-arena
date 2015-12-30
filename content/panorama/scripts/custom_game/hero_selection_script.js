@@ -183,11 +183,11 @@ function CreateHeroList(heroes){
         var container = $.CreatePanel("Panel", heroList, "");
         container.AddClass("HeroButtonContainer");
 
-        var button = $.CreatePanel("DOTAHeroMovie", container, "");
+        var button = $.CreatePanel("DOTAHeroImage", container, "");
         button.AddClass("HeroButton");
-        //button.SetScaling("stretch-to-fit-y-preserve-aspect");
+        button.SetScaling("stretch-to-fit-y-preserve-aspect");
         button.heroname = heroes[i];
-        button.heroimagestyle = "portrait";
+        button.heroimagestyle = "landscape";
 
         var mouseOver = (function(element, name) {
             return function() {
