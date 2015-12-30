@@ -25,9 +25,22 @@
             </Panel>
             <Panel id="HeroList">
                 <Label class="HeaderLabel HeroListHeader" text="#HeroListHeader"></Label>
-                <Panel id="HeroButtons"></Panel>
+                <Panel id="DifficultyList">
+                    <Panel class="DifficultyRow">
+                        <Label class="DifficultyLabel" text="Easy"/>
+                        <Panel id="EasyHeroes" class="HeroButtons"/>
+                    </Panel>
+                    <Panel class="DifficultyRow">
+                        <Label class="DifficultyLabel" text="Medium"/>
+                        <Panel id="MediumHeroes" class="HeroButtons"/>
+                    </Panel>
+                    <Panel class="DifficultyRow">
+                        <Label class="DifficultyLabel" text="Hard"/>
+                        <Panel id="HardHeroes" class="HeroButtons"/>
+                    </Panel>
+                </Panel>
                 <Button id="RandomHero" onactivate="PickRandomHero()">
-                    <Label text="Random hero"/>
+                    <Label text="#RandomHero"/>
                 </Button>
                 <Panel style="height:10%;"/>
                 <Label id="HeroName" class="HeaderLabel HeroListHeader"></Label>

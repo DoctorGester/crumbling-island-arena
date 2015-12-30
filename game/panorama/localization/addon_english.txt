@@ -36,6 +36,7 @@
 	"SelectionHeader" "selection"
 	"ScoreHeader" "score"
 	"HeroListHeader" "click to select your hero"
+	"RandomHero" "random hero"
 
 	"GameInfoHeader" "game info"
 	"GameInfoTimer"	"Select your hero before time runs out!"

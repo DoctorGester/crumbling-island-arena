@@ -2,6 +2,7 @@
 {
     flow-children: right;
     horizontal-align: center;
+    transition: transform 1.0s linear 0.0ms;
 }
 
 .ScoreboardPlayer

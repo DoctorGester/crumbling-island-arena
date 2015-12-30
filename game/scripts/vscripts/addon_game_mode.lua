@@ -311,7 +311,12 @@ function GameMode:LoadCustomHeroes()
 
     for customName, data in pairs(customHeroes) do
         if data.override_hero ~= DUMMY_HERO then
-            self.AvailableHeroes[data.override_hero] = { ultimate = data.Ultimate, class = data.Class, customIcons = data.CustomIcons }
+            self.AvailableHeroes[data.override_hero] = {
+                ultimate = data.Ultimate,
+                class = data.Class,
+                customIcons = data.CustomIcons,
+                difficulty = data.Difficulty or "easy"
+            }
 
             local abilities = {}
             for i = 0, 10 do

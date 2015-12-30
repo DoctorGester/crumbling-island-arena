@@ -42,6 +42,7 @@
 		"VisionNighttimeRange" "0"
 		"ModelScale" "1.2"
 		"HealthBarOffset" "160"
+		"Difficulty" "easy"
 		
 		"Ability1" "zeus_q"
 		"Ability2" "zeus_w"
@@ -77,6 +78,7 @@
 		"AttributeBaseIntelligence" "0"
 		"VisionDaytimeRange" "0"
 		"VisionNighttimeRange" "0"
+		"Difficulty" "medium"
 
 		"Ability1" "storm_spirit_q"
 		"Ability2" "storm_spirit_w"
@@ -104,6 +106,7 @@
 		"AttributeBaseIntelligence" "0"
 		"VisionDaytimeRange" "0"
 		"VisionNighttimeRange" "0"
+		"Difficulty" "hard"
 		
 		"Ability1" "pa_q"
 		"Ability2" "pa_w"
@@ -144,6 +147,7 @@
 		"AttributeBaseIntelligence" "0"
 		"VisionDaytimeRange" "0"
 		"VisionNighttimeRange" "0"
+		"Difficulty" "hard"
 
 		"Ability1" "earth_spirit_q"
 		"Ability2" "earth_spirit_w"
@@ -174,6 +178,7 @@
 		"AttributeBaseIntelligence" "0"
 		"VisionDaytimeRange" "0"
 		"VisionNighttimeRange" "0"
+		"Difficulty" "hard"
 		
 		"Ability1" "cm_q"
 		"Ability2" "cm_w"
@@ -203,6 +208,7 @@
 		"AttributeBaseIntelligence" "0"
 		"VisionDaytimeRange" "0"
 		"VisionNighttimeRange" "0"
+		"Difficulty" "easy"
 		
 		"Ability1" "sven_q"
 		"Ability2" "sven_w"
@@ -231,6 +237,7 @@
 		"AttributeBaseIntelligence" "0"
 		"VisionDaytimeRange" "0"
 		"VisionNighttimeRange" "0"
+		"Difficulty" "easy"
 		
 		"Ability1" "sniper_q"
 		"Ability2" "sniper_w"
@@ -263,6 +270,7 @@
 		"AttributeBaseIntelligence" "0"
 		"VisionDaytimeRange" "0"
 		"VisionNighttimeRange" "0"
+		"Difficulty" "medium"
 		
 		"Ability1" "sk_q"
 		"Ability2" "sk_w"
@@ -291,6 +299,7 @@
 		"AttributeBaseIntelligence" "0"
 		"VisionDaytimeRange" "0"
 		"VisionNighttimeRange" "0"
+		"Difficulty" "easy"
 		
 		"Ability1" "lc_q"
 		"Ability2" "lc_w"
@@ -324,6 +333,7 @@
 		"AttributeBaseIntelligence" "0"
 		"VisionDaytimeRange" "0"
 		"VisionNighttimeRange" "0"
+		"Difficulty" "hard"
 		
 		"Ability1" "lycan_q"
 		"Ability2" "lycan_w"
@@ -352,6 +362,7 @@
 		"AttributeBaseIntelligence" "0"
 		"VisionDaytimeRange" "0"
 		"VisionNighttimeRange" "0"
+		"Difficulty" "hard"
 		
 		"Ability1" "lycan_q"
 		"Ability2" "lycan_w"
@@ -380,6 +391,7 @@
 		"AttributeBaseIntelligence" "0"
 		"VisionDaytimeRange" "0"
 		"VisionNighttimeRange" "0"
+		"Difficulty" "medium"
 		
 		"Ability1" "phoenix_q"
 		"Ability2" "phoenix_w"

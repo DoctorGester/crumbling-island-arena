@@ -181,6 +181,12 @@
 			"MaxLength" "1100"
 		}
 
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1100"
+		}
+
 		"precache"
 		{
 			"model_folder" "models/heroes/storm_spirit"

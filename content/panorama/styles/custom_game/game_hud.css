@@ -156,6 +156,11 @@
     transform: translateX(-1000px);
 }
 
+.AnimationScoreboardHidden
+{
+    transform: translateY(-1000px);
+}
+
 .AnimationTimerHidden
 {
     transform: translateX(1000px);

@@ -182,8 +182,7 @@ function CreateScoreColumn(players){
     }
 }
 
-function CreateHeroList(heroes){
-    var heroList = $("#HeroButtons");
+function CreateHeroList(heroList, heroes){
     DeleteChildrenWithClass(heroList, "HeroButtonContainer");
 
     for (var i = 0; i < heroes.length; i++) {
@@ -262,6 +261,12 @@ function GameInfoUpdated(data){
     }
 }
 
+function FilterDifficulty(heroes, data, difficulty) {
+    return _.filter(heroes, function(hero) {
+        return data[hero].difficulty == difficulty;
+    });
+}
+
 function HeroesUpdated(data){
     var heroes = [];
 
@@ -277,7 +282,13 @@ function HeroesUpdated(data){
         }
     }
 
-    CreateHeroList(heroes);
+    var easy = FilterDifficulty(heroes, data, "easy");
+    var medium = FilterDifficulty(heroes, data, "medium");
+    var hard = FilterDifficulty(heroes, data, "hard");
+
+    CreateHeroList($("#EasyHeroes"), easy);
+    CreateHeroList($("#MediumHeroes"), medium);
+    CreateHeroList($("#HardHeroes"), hard);
 
     allHeroes = data;
 }

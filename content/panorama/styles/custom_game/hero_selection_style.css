@@ -47,11 +47,36 @@
     flow-children: down;
 }
 
-#HeroButtons
+#DifficultyList
 {
     width: 100%;
     height: 25%;
+    flow-children: down;
+}
+
+.DifficultyRow
+{
+    flow-children: right;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.DifficultyLabel
+{
+    color: gold;
+    font-size: 19px;
+    text-shadow: -1px 1px 2px 2.0 #000000;
+    text-transform: uppercase;
+    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+    vertical-align: top;
+    margin-top: 12px;
+    width: 20%;
+}
+
+.HeroButtons
+{
     flow-children: right-wrap;
+    width: 75%;
 }
 
 #HeroAbilities

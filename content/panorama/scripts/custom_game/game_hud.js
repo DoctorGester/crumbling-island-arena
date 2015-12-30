@@ -186,12 +186,14 @@ function GameInfoChanged(data){
         $("#HeroPanel").RemoveClass("AnimationHeroHudHidden");
         $("#HeroDetails").RemoveClass("AnimationHeroDetailsHidden");
         $("#TimerPanel").RemoveClass("AnimationTimerHidden");
+        $("#Scoreboard").RemoveClass("AnimationScoreboardHidden");
 
         Game.EmitSound("UI.RoundStart")
     } else {
         $("#HeroPanel").AddClass("AnimationHeroHudHidden");
         $("#HeroDetails").AddClass("AnimationHeroDetailsHidden");
         $("#TimerPanel").AddClass("AnimationTimerHidden");
+        $("#Scoreboard").AddClass("AnimationScoreboardHidden");
     }
 }
 
