@@ -1,36 +1,37 @@
 "addon"
 {
 	"HeroName_npc_dota_hero_phantom_assassin"		"The Moon"
-	"HeroTips_npc_dota_hero_phantom_assassin"		"Throws glaive<br>Can quickly return it<br>W is close range AOE strike<br>Reactivate E to perform a double jump, leaving glaive behind<br>R speeds up Q and gives invisibility"
+	"HeroTips_npc_dota_hero_phantom_assassin"		"<font color='gold'>Q</font>: Short ranged boomerang<br/><font color='gold'>W</font>: Melee AOE attack<br/><font color='gold'>E</font>: Short jump, reactivate to double-jump<br/><font color='gold'>R</font>: Invisibility"
 
 	"HeroName_npc_dota_hero_crystal_maiden"			"The Magician"
-	"HeroTips_npc_dota_hero_crystal_maiden"			"All abilities freeze targets<br>Abilities deal damage only to frozen targets<br>W requires two clicks to cast<br>Reactivate E to teleport to it<br>R slows more, the closer enemy to it's center"
+	"HeroTips_npc_dota_hero_crystal_maiden"			"If <font color=\"skyblue\"><b>Frozen</b></font> enemy gets <font color=\"skyblue\"><b>Frozen</b></font>, receive damage<br/><font color='gold'>Q</font>: Freezing projectile<br/><font color='gold'>W</font>: Freeze in a line<br/><font color='gold'>E</font>: Freezing wave, reactivate to relocate<br/><font color='gold'>R</font>: AOE slow + freeze"
 
 	"HeroName_npc_dota_hero_storm_spirit"			"Temperance"
-	"HeroTips_npc_dota_hero_storm_spirit"			"Q spawns a remnant in a target point<br>Remnants do not expire<br>Both W and E require remnants to function<br>R requires dead remnants"
+	"HeroTips_npc_dota_hero_storm_spirit"			"<font color='gold'>Q</font>: Wave, creates remnant<br/><font color='gold'>W</font>: Explode a remnant<br/><font color='gold'>E</font>: Dash to a remnant<br/><font color='gold'>R</font>: Revive 3 dead remnants"
 
 	"HeroName_npc_dota_hero_zuus"					"Judgement"
-	"HeroTips_npc_dota_hero_zuus"					"Q is a weak skillshot, but can be empowered with W<br>If empowered Q hits a target, its cooldown is reset<br>E deals damage only when it passes through W"
+	"HeroTips_npc_dota_hero_zuus"					"<font color='gold'>Q</font>: Short ranged projectile<br/><font color='gold'>W</font>: Wall. Speeds up projectiles and hero<br/><font color='gold'>E</font>: Blink<br/><font color='gold'>R</font>: Global. Delayed AOE damage"
 
 	"HeroName_npc_dota_hero_earth_spirit"			"The Emperor"
-	"HeroTips_npc_dota_hero_earth_spirit"			"His main power is his Q stones<br>W acts differently while being on a ground/stone<br>Jump on a stone with E to gain stone protection<br>R heals fully if target stoned is undamaged"
+	"HeroTips_npc_dota_hero_earth_spirit"			"<font color='gold'>Q</font>: Delayed remnant drop. AOE damage<br/><font color='gold'>W</font>: Drag a remnant. Line damage<br/><font color='gold'>E</font>: Short jump. Can jump on remnants<br/><font color='gold'>R</font>: Swap health and position with remnant"
 
 	"HeroName_npc_dota_hero_sven"					"The Devil"
-	"HeroTips_npc_dota_hero_sven"					"Powerful short-range warrior<br>Silences and slows with his W<br>Can't be damaged while in E<br>Resets cooldowns and empowers abilities with R"
+	"HeroTips_npc_dota_hero_sven"					"<font color='gold'>Q</font>: Melee attack<br/><font color='gold'>W</font>: Slow and silence in a cone<br/><font color='gold'>E</font>: Dash + knockback + damage<br/><font color='gold'>R</font>: Reset cooldowns. Power up"
 
 	"HeroName_npc_dota_hero_sniper"					"The Hermit"
-	"HeroTips_npc_dota_hero_sniper"					"Q has a windup time, but is insanely fast and long-ranged<br>Sets up invisible rooting traps<br>Can pass through units while sprinted<br>Becomes really slow while stealthed<br>Stealth is revealed by nearby heroes"
+	"HeroTips_npc_dota_hero_sniper"					"<font color='gold'>Q</font>: Global projectile<br/><font color='gold'>W</font>: Rooting trap<br/><font color='gold'>E</font>: Speed boost<br/><font color='gold'>R</font>: Invisibility when no enemies nearby"
 
 	"HeroName_npc_dota_hero_sand_king"				"The High Priestess"
-	"HeroTips_npc_dota_hero_sand_king"				"W not only slows, but blinds enemies<br>Can burrow and become invulnerable, changing his Q to a projectile<br>R is a channeling ability with huge potential damage"
+	"HeroTips_npc_dota_hero_sand_king"				"<font color='gold'>Q</font>: Short ranged dash + AOE damage<br/><font color='gold'>W</font>: AOE slow + blind<br/><font color='gold'>E</font>: Invincibility + change Q to projectile<br/><font color='gold'>R</font>: Channeling. AOE damage"
 
 	"HeroName_npc_dota_hero_legion_commander"		"Strength"
-	"HeroTips_npc_dota_hero_legion_commander"		"Q is her only damage source<br>Relies on her movespeed a lot<br>W allows to ignore one instance of damage<br>Taking damage while in W gives an enormous speed boost<br>Briefly stuns when passing an enemy with E<br>Effectively immune to hero damage while in R<br>Cooldowns are halved while being in R area"
+	"HeroTips_npc_dota_hero_legion_commander"		"<font color='gold'>Q</font>: Melee slowing attack<br/><font color='gold'>W</font>: 1 damage shield, speed boost<br/><font color='gold'>E</font>: Dash + short stun<br/><font color='gold'>R</font>: AOE buff, immortality + reduced cooldowns"
 
 	"HeroName_npc_dota_hero_lycan"					"Death"
-	"HeroTips_npc_dota_hero_lycan"					"Q wolves can be killed<br>W has melee range<br>Q and W make victims bleed, giving speed bonus when moving towards them<br>R gives tremendous amount of movement speed for a short time and improves all abilities"
+	"HeroTips_npc_dota_hero_lycan"					"<font color='gold'>Q</font>: 2 wolves run to the target point<br/><font color='gold'>W</font>: Melee attack<br/><font color='gold'>E</font>: AOE fear<br/><font color='gold'>R</font>: Transform. Speed bonus. Power up"
 
 	"HeroName_npc_dota_hero_phoenix"				"The Sun"
+	"HeroTips_npc_dota_hero_phoenix"				"Turns into an egg on death<br/><font color='gold'>Q</font>: Dash + damage + slow<br/><font color='gold'>W</font>: AOE slow + damage<br/><font color='gold'>E</font>: Channeling. Heal<br/><font color='gold'>R</font>: Channeling. AOE damage"
 	
 	"PlayerHeader" "player"
 	"SelectionHeader" "selection"
@@ -75,7 +76,7 @@
 	"AbilityTooltip_earth_spirit_q"					"After a short delay, drop a <font color=\"#3A9B00\"><b>Remnant</b></font> at the target location."
 	"AbilityTooltip_earth_spirit_w"					"Target a <font color=\"#3A9B00\"><b>Remnant</b></font>, if you are standing on a <font color=\"#3A9B00\"><b>Remnant</b></font>, drag target to you. Otherwise, move your <font color=\"#3A9B00\"><b>Remnant</b></font> to it."
 	"AbilityTooltip_earth_spirit_e"					"Perform a short jump. When targeting a <font color=\"#3A9B00\"><b>Remnant</b></font>, land on top of it, becoming invulnerable until leaving it."
-	"AbilityTooltip_earth_spirit_r"					"Target a <font color=\"#3A9B00\"><b>Remnant</b></font>. After a short delay, emerge from it, leaving your old body behind. Resulting health depends on target <font color=\"#3A9B00\"><b>Remnant</b></font>\\\\'s health."
+	"AbilityTooltip_earth_spirit_r"					"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Target a <font color=\"#3A9B00\"><b>Remnant</b></font>. After a short delay, emerge from it, leaving your old body behind. Resulting health depends on target <font color=\"#3A9B00\"><b>Remnant</b></font>\\\\'s health."
 
 	"AbilityTooltip_cm_q"							"Launch a projectile into a chosen direction<br>Enemies hit are <font color=\"skyblue\"><b>Frozen</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies take damage"
 	"AbilityTooltip_cm_w"							"Choose two point targets<br>Enemies along the chosen line are <font color=\"skyblue\"><b>Frozen</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies take damage"
@@ -95,7 +96,7 @@
 
 	"AbilityTooltip_sven_q"							"Strike to damage enemies in front of you<br><br><font color=\"#AE0000\"><b>Enrage</b></font> increased radius and pushes damaged targets back"
 	"AbilityTooltip_sven_w"							"Silence and slow enemies in a cone<br><br><font color=\"#AE0000\"><b>Enrage</b></font> applies the effect in a circular area"
-	"AbilityTooltip_sven_e"							"Rush to the target point, pushing back and damaging all enemies on the way<br><br><font color=\"#AE0000\"><b>Enrage</b></font> removes channeling time"
+	"AbilityTooltip_sven_e"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Rush to the target point, pushing back and damaging all enemies on the way<br><br><font color=\"#AE0000\"><b>Enrage</b></font> removes channeling time"
 	"AbilityTooltip_sven_r"							"Become <font color=\"#AE0000\"><b>Enraged</b></font> and reset your other cooldowns"
 
 	"AbilityTooltip_lc_q"							"Strike an area in front of you, briefly slowing enemies hit"
@@ -114,7 +115,7 @@
 	"AbilityTooltip_sk_q"							"Tunnel forward, damaging all enemies around the destination point<br><br>When <font color=\"#E2BD00\"><b>Burrowed</b></font> becomes a point target spell, that damages all enemies in the line when cast"
 	"AbilityTooltip_sk_w"							"Target an area<br>Enemies in that area are slowed and unable to see anything"
 	"AbilityTooltip_sk_e"							"<font color=\"#E2BD00\"><b>Burrow</b></font> and became immobile and invulnerable for a few seconds"
-	"AbilityTooltip_sk_r"							"Damage an area around you two times over the course of channeling"
+	"AbilityTooltip_sk_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Damage an area around you two times over the course of channeling"
 
 	"AbilityTooltip_storm_spirit_q"					"Launch a wave that creates a <font color=\"#00EFEF\"><b>Remnant</b></font> at the target point"
 	"AbilityTooltip_storm_spirit_w"					"Target a <font color=\"#00EFEF\"><b>Remnant</b></font> making it explode, damaging enemies around it"
@@ -124,7 +125,14 @@
 	"AbilityTooltip_lycan_q"						"Summon two wolves running to the target point<br><br>Enemies bitten start <font color=\"#D10000\"><b>Bleeding</b></font>"
 	"AbilityTooltip_lycan_w"						"Strike an area in front of you, making enemies hit <font color=\"#D10000\"><b>Bleed</b></font>"
 	"AbilityTooltip_lycan_e"						"Causes enemies around you to flee"
-	"AbilityTooltip_lycan_r"						"Transform, gaining huge base movement speed<br><br><font color=\"gold\"><b>Q</b></font> Your Wolves move faster<br><font color=\"gold\"><b>W</b></font> <font color=\"#D10000\"><b>Bleeding</b></font> enemies take double damage<br><font color=\"gold\"><b>E</b></font> Fleeing and <font color=\"#D10000\"><b>Bleeding</b></font> enemies are silenced"
+	"AbilityTooltip_lycan_r"						"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Transform, gaining huge base movement speed<br><br><font color=\"gold\"><b>Q</b></font> Your Wolves move faster<br><font color=\"gold\"><b>W</b></font> <font color=\"#D10000\"><b>Bleeding</b></font> enemies take double damage<br><font color=\"gold\"><b>E</b></font> Fleeing and <font color=\"#D10000\"><b>Bleeding</b></font> enemies are silenced"
+
+	"AbilityTooltip_phoenix_q"						"Dash forward, damaging and slowing enemies on your path"
+	"AbilityTooltip_phoenix_w"						"<font color=\"#DAFF7F\"><b>Charged</b></font><br/>Launch a slowing and damaging projectile to the target area"
+	"AbilityTooltip_phoenix_e"						"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Heal for 1 health<br>If cast in the egg form, revive"
+	"AbilityTooltip_phoenix_r"						"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Target an area, after a 1 second delay periodically deal damage in that area<br>Caster always dies at the end of that ability"
+
+	"ModifierTooltip_modifier_charges"						"Ability charges"
 
 	"ModifierTooltip_modifier_zeus_w"						"Sped up"
 	"ModifierTooltip_modifier_zeus_r"						"Slowed down"
@@ -163,5 +171,11 @@
 
 	"ModifierTooltip_modifier_cm_frozen"					"<font color=\"skyblue\"><b>Frozen</b></font>"
 	"ModifierTooltip_modifier_cm_r_slow"					"Slowed and considered <font color=\"skyblue\"><b>Frozen</b></font>"
+
+	"ModifierTooltip_modifier_phoenix_q"					"Birdy"
+	"ModifierTooltip_modifier_phoenix_q_slow"				"Slowed down"
+	"ModifierTooltip_modifier_phoenix_w"					"Slowed down"
+	"ModifierTooltip_modifier_phoenix_egg_tooltip"			"Turns into a 1 health egg after death<br>If the egg survives, revives with 1 health"
+	"ModifierTooltip_modifier_phoenix_egg"					"Reviving"
 }
 
