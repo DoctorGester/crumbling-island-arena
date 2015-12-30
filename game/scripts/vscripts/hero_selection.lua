@@ -34,6 +34,16 @@ function HeroSelection:IsSelected(hero)
     return false
 end
 
+function HeroSelection:OnRandom(args)
+    local player = self.Players[args.PlayerID]
+
+    if player:IsConnected() and not player.selectionLocked then
+        self:AssignRandomHero(player)
+        self:UpdateSelectionState()
+        self:UpdateSelectedHeroes()
+    end
+end
+
 function HeroSelection:OnHover(args)
     local table = {}
     local player = self.Players[args.PlayerID]
@@ -85,6 +95,11 @@ function HeroSelection:OnClick(args)
     player.selectionLocked = true
     player.selectedHero = hero
 
+    self:UpdateSelectionState()
+    self:UpdateSelectedHeroes()
+end
+
+function HeroSelection:UpdateSelectionState()
     local allLocked = true
     for _, playerClass in pairs(self.Players) do
         if playerClass:IsConnected() and not playerClass.selectionLocked then
@@ -96,26 +111,28 @@ function HeroSelection:OnClick(args)
         self.SelectionTimer = 3
         self:SendTimeToPlayers()
     end
+end
 
-    self:UpdateSelectedHeroes()
+function HeroSelection:AssignRandomHero(player)
+    local table = {}
+    local index = 0
+
+    for i, _ in pairs(self.AvailableHeroes) do
+        if not self:IsSelected(i) then
+            table[index] = i
+            index = index + 1
+        end
+    end
+
+    player.selectionLocked = true
+    player.selectedHero = table[RandomInt(0, index - 1)]
 end
 
 function HeroSelection:AssignRandomHeroes()
     for i, player in pairs(self.Players) do
         if player:IsConnected() then
             if not player.selectionLocked then
-                local table = {}
-                local index = 0
-
-                for i, _ in pairs(self.AvailableHeroes) do
-                    if not self:IsSelected(i) then
-                        table[index] = i
-                        index = index + 1
-                    end
-                end
-
-                player.selectionLocked = true
-                player.selectedHero = table[RandomInt(0, index - 1)]
+                self:AssignRandomHero(player)
             end
         end
     end
@@ -146,6 +163,7 @@ function HeroSelection:Start(callback)
 
     self.HoverListener = CustomGameEventManager:RegisterListener("selection_hero_hover", function(id, ...) Dynamic_Wrap(self, "OnHover")(self, ...) end)
     self.ClickListener = CustomGameEventManager:RegisterListener("selection_hero_click", function(id, ...) Dynamic_Wrap(self, "OnClick")(self, ...) end)
+    self.RandomListener = CustomGameEventManager:RegisterListener("selection_random", function(id, ...) Dynamic_Wrap(self, "OnRandom")(self, ...) end)
 end
 
 function HeroSelection:End()

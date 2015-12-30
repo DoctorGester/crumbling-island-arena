@@ -44,4 +44,3 @@ function PlayersUpdated(players) {
 (function () {
     SubscribeToNetTableKey("main", "players", true, PlayersUpdated);
 })();
-$.Msg($("#Scoreboard").GetParent().GetParent().GetParent().GetParent().GetParent().GetParent().GetParent())

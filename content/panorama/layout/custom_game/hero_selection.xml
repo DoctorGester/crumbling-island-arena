@@ -26,6 +26,10 @@
             <Panel id="HeroList">
                 <Label class="HeaderLabel HeroListHeader" text="#HeroListHeader"></Label>
                 <Panel id="HeroButtons"></Panel>
+                <Button id="RandomHero" onactivate="PickRandomHero()">
+                    <Label text="Random hero"/>
+                </Button>
+                <Panel style="height:10%;"/>
                 <Label id="HeroName" class="HeaderLabel HeroListHeader"></Label>
                 <Panel id="HeroAbilities" class="AbilityPanel"></Panel>
                 <Label id="HeroTips" html="true"></Label>

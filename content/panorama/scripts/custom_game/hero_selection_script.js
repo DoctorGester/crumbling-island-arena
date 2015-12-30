@@ -117,6 +117,13 @@ function AddHoverHeroDetails(element, heroName){
     element.SetPanelEvent("onmouseout", HideHeroDetails);
 }
 
+function PickRandomHero(){
+    if (selectedHeroes[Game.GetLocalPlayerID()] == "null") {
+        GameEvents.SendCustomGameEventToServer("selection_random", {});
+        Game.EmitSound("UI.SelectHeroLocal");
+    }
+}
+
 function CreatePlayerList(players){
     var playerList = $("#NameColumn");
     DeleteChildrenWithClass(playerList, "NamePanel");
@@ -177,7 +184,7 @@ function CreateScoreColumn(players){
 
 function CreateHeroList(heroes){
     var heroList = $("#HeroButtons");
-    DeleteChildrenWithClass(heroList, "HeroButton");
+    DeleteChildrenWithClass(heroList, "HeroButtonContainer");
 
     for (var i = 0; i < heroes.length; i++) {
         var container = $.CreatePanel("Panel", heroList, "");
@@ -301,6 +308,8 @@ function PlayersUpdated(data){
 
 function HeroSelectionUpdated(data){
     selectedHeroes = data || {};
+
+    $("#RandomHero").enabled = selectedHeroes[Game.GetLocalPlayerID()] == "null";
 
     for (var key in data){
         var hero = data[key];

@@ -224,13 +224,6 @@ function GameMode:OnDamageDealt(hero, source)
     end
 end
 
-function GameMode:OnHeroDeath(hero, source)
-    if hero ~= source and source and source.owner then
-        source.owner.score = source.owner.score + 3
-        self:UpdatePlayerTable()
-    end
-end
-
 function GameMode:OnRoundEnd()
     self:SetState(STATE_ROUND_ENDED)
 
@@ -240,7 +233,7 @@ function GameMode:OnRoundEnd()
 
     Timers:CreateTimer(ROUND_ENDING_TIME, function ()
         if self.Round.Winner then
-            self.Round.Winner.score = self.Round.Winner.score + 5
+            self.Round.Winner.score = self.Round.Winner.score + 3
             self:UpdatePlayerTable()
         end
 
