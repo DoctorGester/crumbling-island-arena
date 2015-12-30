@@ -25,7 +25,10 @@ function zeus_q:OnSpellStart()
             target:EmitSound("Arena.Zeus.HitQ")
 
             if self.empowered then
-                ability:EndCooldown()
+                if ability:GetCooldownTimeRemaining() > 0.35 then
+                    ability:EndCooldown()
+                    ability:StartCooldown(0.5)
+                end
             end
 
             return true

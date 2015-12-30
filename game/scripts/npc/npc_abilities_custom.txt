@@ -231,7 +231,7 @@
 		"ScriptFile" "abilities/zeus/zeus_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "storm_spirit_overload"
-		"AbilityCooldown" "2.0"
+		"AbilityCooldown" "3.0"
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_LINE"
