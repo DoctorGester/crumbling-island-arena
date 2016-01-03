@@ -6,9 +6,11 @@ function modifier_pa_r:OnCreated(params)
     self.invisBrokenAt = 0
 end
 
-function modifier_pa_r:OnAbilityExecuted()
-    self.invisBrokenAt = self:GetElapsedTime()
-    self:GetModifierInvisibilityLevel()
+function modifier_pa_r:OnAbilityExecuted(event)
+    if event.unit == self:GetParent() then
+        self.invisBrokenAt = self:GetElapsedTime()
+        self:GetModifierInvisibilityLevel()
+    end
 end
 
 function modifier_pa_r:CheckState()
