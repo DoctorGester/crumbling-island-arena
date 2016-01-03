@@ -44,6 +44,9 @@ function Precache(context)
 
     LinkLuaModifier("modifier_charges", "abilities/modifier_charges", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_blind", "abilities/modifier_blind", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_hidden", "abilities/modifier_hidden", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_falling", "abilities/modifier_falling", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_hero", "abilities/modifier_hero", LUA_MODIFIER_MOTION_NONE)
 
     VectorTarget:Precache(context)
 end
@@ -397,6 +400,6 @@ function GameMode:OnPlayerPickHero(keys)
 
         hero:SetAbsOrigin(Vector(0, 0, 10000))
         hero:AddNoDraw()
-        AddLevelOneAbility(hero, "hidden_hero")
+        hero:AddNewModifier(hero, nil, "modifier_hidden", {})
     end
 end

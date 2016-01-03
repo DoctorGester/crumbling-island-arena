@@ -1,5 +1,3 @@
-FALL_ABILITY = "falling_hero"
-
 Hero = class({}, nil, DynamicEntity)
 
 function Hero:constructor()
@@ -145,12 +143,12 @@ end
 function Hero:Hide()
     self.unit:SetAbsOrigin(Vector(0, 0, 10000))
     self.unit:AddNoDraw()
-    AddLevelOneAbility(self.unit, "hidden_arena_hero")
+    self:AddNewModifier(self, nil, "modifier_hidden", {})
 end
 
 function Hero:StartFalling()
     self.falling = true
-    AddLevelOneAbility(self.unit, FALL_ABILITY)
+    self:AddNewModifier(self, nil, "modifier_falling", {})
 end
 
 function Hero:Update()
@@ -190,7 +188,7 @@ function Hero:UpdateFalling()
 end
 
 function Hero:Setup()
-    AddLevelOneAbility(self.unit, "arena_hero")
+    self:AddNewModifier(self, nil, "modifier_hero", {})
     self.unit:SetAbilityPoints(0)
 
     local count = self.unit:GetAbilityCount() - 1
