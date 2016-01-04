@@ -29,7 +29,7 @@ function zeus_e:OnSpellStart()
     hero:FindClearSpace(target, true)
 
     if hero:WallIntersection(casterPos, target) then
-        Spells:LineDamage(hero, casterPos, target,
+        Spells:LineDamage(hero, casterPos, target, 32,
             function(target)
                 local pos = target:GetPos()
                 self:CreateLightning(self, Vector(pos.x, pos.y, pos.z + 800), pos)

@@ -5,7 +5,7 @@ function modifier_sk_w:OnCreated()
         local owner = self:GetParent().hero.owner
 
         if owner then
-            owner:Blind()
+            owner:Blind(self:GetCaster())
         end
     end
 end
@@ -15,7 +15,7 @@ function modifier_sk_w:OnDestroy()
         local owner = self:GetParent().hero.owner
 
         if owner then
-            owner:ReturnVision()
+            owner:ReturnVision(self:GetCaster())
         end
     end
 end

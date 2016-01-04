@@ -32,6 +32,9 @@
 
 	"HeroName_npc_dota_hero_phoenix"				"The Sun"
 	"HeroTips_npc_dota_hero_phoenix"				"Turns into an egg on death<br/><font color='gold'>Q</font>: Dash + damage + slow<br/><font color='gold'>W</font>: AOE slow + damage<br/><font color='gold'>E</font>: Channeling. Heal<br/><font color='gold'>R</font>: Channeling. AOE damage"
+
+	"HeroName_npc_dota_hero_templar_assassin"		"The Empress"
+	"HeroTips_npc_dota_hero_templar_assassin"		"<font color='gold'>Q</font>: Damage in a line<br/><font color='gold'>W</font>: Cone blind + slow<br/><font color='gold'>E</font>: Blink. Resets on damage<br/><font color='gold'>R</font>: Delayed heal after taking damage"
 	
 	"PlayerHeader" "player"
 	"SelectionHeader" "selection"
@@ -132,6 +135,11 @@
 	"AbilityTooltip_phoenix_e"						"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Heal for 1 health<br>If cast in the egg form, revive"
 	"AbilityTooltip_phoenix_r"						"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Target an area, after a 1 second delay periodically deal damage in that area<br>Caster always dies at the end of that ability"
 
+	"AbilityTooltip_ta_q"							"Deal damage in a line"
+	"AbilityTooltip_ta_w"							"Blind and slow enemies in a cone"
+	"AbilityTooltip_ta_e"							"Blink<br/><br/>Dealing or taking damage resets the cooldown"
+	"AbilityTooltip_ta_r"							"Receive a shield, which heals you in 3 seconds after taking damage"
+
 	"ModifierTooltip_modifier_charges"						"Ability charges"
 
 	"ModifierTooltip_modifier_zeus_w"						"Sped up"
@@ -177,5 +185,9 @@
 	"ModifierTooltip_modifier_phoenix_w"					"Slowed down"
 	"ModifierTooltip_modifier_phoenix_egg_tooltip"			"Turns into a 1 health egg after death<br>If the egg survives, revives with 1 health"
 	"ModifierTooltip_modifier_phoenix_egg"					"Reviving"
+
+	"ModifierTooltip_modifier_ta_w"							"Blinded and slowed"
+	"ModifierTooltip_modifier_ta_r_shield"					"Receives a heal after taking damage"
+	"ModifierTooltip_modifier_ta_r_heal"					"Will be healed"
 }
 

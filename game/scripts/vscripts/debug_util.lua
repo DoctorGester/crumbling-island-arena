@@ -1,6 +1,6 @@
 Debug = class({})
 
-DEBUG_HERO = "npc_dota_hero_lycan"
+DEBUG_HERO = "npc_dota_hero_templar_assassin"
 
 if not mode then
     mode = nil

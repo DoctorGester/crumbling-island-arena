@@ -7,3 +7,7 @@ function modifier_blind:CheckState()
 
     return state
 end
+
+function modifier_blind:GetAttributes()
+    return MODIFIER_ATTRIBUTE_MULTIPLE
+end

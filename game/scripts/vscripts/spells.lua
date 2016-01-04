@@ -390,11 +390,11 @@ function Spells:AreaDamage(hero, point, area, action)
     )
 end
 
-function Spells:LineDamage(hero, lineFrom, lineTo, action)
+function Spells:LineDamage(hero, lineFrom, lineTo, lineWidth, action)
     return Spells:MultipleHeroesDamage(hero,
         function (attacker, target)
             if target ~= attacker then
-                if SegmentCircleIntersection(lineFrom, lineTo, target:GetPos(), target:GetRad()) then
+                if SegmentCircleIntersection(lineFrom, lineTo, target:GetPos(), target:GetRad() + (lineWidth or 0)) then
                     if action then
                         action(target)
                     end

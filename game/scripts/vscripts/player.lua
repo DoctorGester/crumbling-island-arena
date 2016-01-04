@@ -25,12 +25,13 @@ function Player:SetTeam(i)
     self.fow:SetNightTimeVisionRange(8000)
 end
 
-function Player:Blind(duration)
-    self.fow:AddNewModifier(self.fow, nil, "modifier_blind", { duration = duration })
+function Player:Blind(caster, duration)
+    print(caster:GetUnitName())
+    self.fow:AddNewModifier(caster, nil, "modifier_blind", { duration = duration })
 end
 
-function Player:ReturnVision()
-    self.fow:RemoveModifierByName("modifier_blind")
+function Player:ReturnVision(caster)
+    self.fow:RemoveModifierByNameAndCaster("modifier_blind", caster)
 end
 
 function Player:IsConnected()

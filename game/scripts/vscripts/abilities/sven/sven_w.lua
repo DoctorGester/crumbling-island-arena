@@ -43,7 +43,7 @@ function sven_w:Shout(direction)
     ParticleManager:SetParticleControl(effect, 1, target)
     ParticleManager:SetParticleControlForward(effect, 0, direction:Normalized())
 
-    Spells:MultipleHeroesModifier(hero, self, "modifier_sven_w_slow", { duration = "2" },
+    Spells:MultipleHeroesModifier(hero, self, "modifier_sven_w_slow", { duration = 2 },
         function (source, heroTarget)
             local distance = (heroTarget:GetPos() - pos):Length2D()
             return distance <= 500 and hero:FilterCone(heroTarget:GetPos(), pos, target, 500)
