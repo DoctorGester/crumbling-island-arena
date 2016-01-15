@@ -79,7 +79,6 @@ function EntityAbilityDataProvider(entityId) {
 
         element.SetDialogVariable("description", $.Localize("AbilityTooltip_" + data.name));
         element.SetDialogVariable("cooldown", data.cooldown.toFixed(1).toString());
-        element.SetDialogVariable("range", range);
         $.DispatchEvent("DOTAShowTextTooltip", element, $.Localize("AbilityTooltip", element))
     }
 }

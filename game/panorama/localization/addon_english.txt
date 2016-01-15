@@ -74,7 +74,7 @@
 	"DOTA_Custom7"    								"Olive Snake"
 	"DOTA_Custom8"    								"Purple Horse"
 
-	"AbilityTooltip"								"{s:description}<br><br><font color=\"gold\">Range</font>: {s:range}<br><font color=\"gold\">CD</font>: {s:cooldown}"
+	"AbilityTooltip"								"{s:description}<br><br><font color=\"gold\">CD</font>: {s:cooldown}"
 
 	"AbilityTooltip_earth_spirit_q"					"After a short delay, drop a <font color=\"#3A9B00\"><b>Remnant</b></font> at the target location."
 	"AbilityTooltip_earth_spirit_w"					"Target a <font color=\"#3A9B00\"><b>Remnant</b></font>, if you are standing on a <font color=\"#3A9B00\"><b>Remnant</b></font>, drag target to you. Otherwise, move your <font color=\"#3A9B00\"><b>Remnant</b></font> to it."
