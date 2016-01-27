@@ -46,8 +46,7 @@
                 <Label id="TimerTextLabel" class="UILabel"/>
                 <Panel id="TimerCircleOuter">
                     <Panel id="TimerCircle">
-                        <Panel id="TimerRight" class="TimerAnimated"/>
-                        <Panel id="TimerLeft" class="TimerAnimated"/>
+                        <Panel id="TimerInside"/>
                     </Panel>
                     <Label id="TimerValueLabel" class="UILabel"/>
                 </Panel>

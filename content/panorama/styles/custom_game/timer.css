@@ -22,17 +22,13 @@
     opacity: 0.9;
 }
 
-#TimerCircle Panel
+#TimerInside
 {
     width: 100%;
     height: 100%;
-    opacity-mask: url('file://{images}/custom_game/timer_half_mask.png');
-    background-color: yellow;
-}
-
-.TimerAnimated
-{
-    transition-property: transform, background-color;
+    opacity-mask: url('file://{images}/custom_game/timer_mask.png');
+    background-color: #0094FF;
+    transition-property: clip;
     transition-duration: 0.1s;
 }
 

@@ -108,25 +108,10 @@ function GameTimerUpdate(data) {
         return;
     }
 
-    var progress = data.duration != -1 ? 1.0 - (data.remaining / data.duration) : 0.0;
-
-    progress = Degrees(Math.PI * 2 * progress).toFixed(2);
-    var right = $("#TimerRight");
-    var left = $("#TimerLeft");
-
-    if (progress <= 180) {
-        right.style.transform = "rotateZ(" + (progress - 180) + "deg)";
-        left.style.transform = "rotateZ(180deg)";
-        left.style.backgroundColor = "#EAEAEA";
-        right.style.backgroundColor = "#0094FF";
-        left.SetHasClass("TimerAnimated", false);
-    } else {
-        right.style.transform = "rotateZ(0deg)";
-        left.style.transform = "rotateZ(" + (progress - 180) + "deg)";
-        left.style.backgroundColor = "#0094FF";
-        right.style.backgroundColor = "#0094FF";
-        left.SetHasClass("TimerAnimated", true);
-    }
+    var progress = data.duration != -1 ? (1.0 - (data.remaining / data.duration)) * 360 : 0.0;
+    
+    var inside = $("#TimerInside");
+    inside.style.clip = "radial(50% 50%, 0deg, " + progress + "deg)";
 
     $("#TimerTextLabel").text = $.Localize(data.label);
     $("#TimerValueLabel").text = data.duration != -1 ? TimerString(data.remaining) : "";

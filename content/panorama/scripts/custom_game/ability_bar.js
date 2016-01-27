@@ -227,7 +227,7 @@ function AbilityButton(parent, hero, ability) {
             this.image.SetHasClass("AbilityButtonOnCooldown", false);
         }
 
-        var progress = Math.round(remaining / cd * 100.0).toString();
+        var progress = (-360 * (remaining / cd)).toString();
         var text = cd.toFixed(1);
 
         if (!ready){
@@ -239,7 +239,7 @@ function AbilityButton(parent, hero, ability) {
             text = "";
         }
 
-        this.inside.style.height = progress + "%";
+        this.inside.style.clip = "radial(50% 50%, 0deg, " + progress + "deg)";
         this.cooldown.text = text;
     }
 
