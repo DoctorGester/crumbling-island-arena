@@ -31,6 +31,10 @@ function sven_e:OnChannelFinish(interrupted)
         direction = hero:GetFacing()
     end
 
+    if direction:Length2D() > 800 then
+        target = hero:GetPos() + direction:Normalized() * 800
+    end
+
     local effect = ImmediateEffectPoint("particles/econ/items/sven/sven_warcry_ti5/sven_spell_warcry_ti_5.vpcf", PATTACH_ABSORIGIN, hero, hero:GetPos())
     ParticleManager:SetParticleControl(effect, 2, hero:GetPos())
 

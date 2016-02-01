@@ -35,6 +35,7 @@ function Precache(context)
     PrecacheResource("particle", "particles/targeting/line.vpcf", context)
     PrecacheResource("particle", "particles/targeting/range.vpcf", context)
     PrecacheResource("particle", "particles/targeting/global_target.vpcf", context)
+    PrecacheResource("particle", "particles/aoe_marker.vpcf", context)
 
     PrecacheResource("model", "models/development/invisiblebox.vmdl", context)
     PrecacheResource("particle", "particles/ui/ui_generic_treasure_impact.vpcf", context)
@@ -42,11 +43,18 @@ function Precache(context)
     PrecacheResource("soundfile", "soundevents/custom_sounds.vsndevts", context)
     PrecacheResource("soundfile", "soundevents/game_sounds_vo_announcer.vsndevts", context)
 
+    LinkLuaModifier("modifier_charges", "abilities/modifier_stunned", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_charges", "abilities/modifier_charges", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_blind", "abilities/modifier_blind", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_hidden", "abilities/modifier_hidden", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_falling", "abilities/modifier_falling", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_hero", "abilities/modifier_hero", LUA_MODIFIER_MOTION_NONE)
+
+    local heroes = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
+
+    for _, data in pairs(heroes) do
+        PrecacheUnitByNameSync(data.override_hero, context)
+    end
 
     VectorTarget:Precache(context)
 end
@@ -54,15 +62,13 @@ end
 function Activate()
     GameRules.GameMode = GameMode()
     GameRules.GameMode:SetupMode()
-    VectorTarget:Init()
+    VectorTarget:Init({ noOrderFilter = true })
 end
 
 function GameMode:OnThink()
     if GameRules:IsGamePaused() == true then
         return
     end
-
-    GameRules:SetTimeOfDay(FIXED_DAY_TIME)
 
     local now = Time()
     if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
@@ -130,9 +136,11 @@ function GameMode:InitSettings()
     GameRules:SetFirstBloodActive(false)
     GameRules:SetCustomGameSetupTimeout(0)
     GameRules:SetCustomGameSetupAutoLaunchDelay(0)
+    GameRules:SetTimeOfDay(FIXED_DAY_TIME)
 
     local mode = GameRules:GetGameModeEntity()
 
+    mode:SetDaynightCycleDisabled(true)
     mode:SetCustomGameForceHero(DUMMY_HERO)
     mode:SetCameraDistanceOverride(1600)
     mode:SetCustomBuybackCostEnabled(true)
@@ -144,8 +152,28 @@ function GameMode:InitSettings()
     mode:SetCustomHeroMaxLevel(1)
     --mode:SetFogOfWarDisabled(true)
 
+    mode:SetExecuteOrderFilter(Dynamic_Wrap(GameMode, "FilterExecuteOrder"), self)
+
     SendToServerConsole("dota_surrender_on_disconnect 0")
     SendToServerConsole("dota_combine_models 0")
+end
+
+function GameMode:FilterExecuteOrder(filterTable)
+    local orderType = filterTable.order_type
+    local index = 0
+    local filteredUnits = {}
+    for _, unitIndex in pairs(filterTable.units) do
+        local unit = EntIndexToHScript(unitIndex)
+
+        if not unit:IsChanneling() or orderType == DOTA_UNIT_ORDER_STOP or orderType == DOTA_UNIT_ORDER_HOLD_POSITION then
+            filteredUnits[index] = unitIndex
+
+            index = index + 1
+        end
+    end
+
+    filterTable.units = filteredUnits
+    return VectorTarget:OrderFilter(filterTable)
 end
 
 function GameMode:RegisterThinker(period, callback)

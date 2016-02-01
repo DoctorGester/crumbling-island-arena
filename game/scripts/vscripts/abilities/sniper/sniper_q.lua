@@ -19,8 +19,8 @@ function sniper_q:OnSpellStart()
 
     local projectileData = {}
     projectileData.owner = hero
-    projectileData.from = hero:GetPos()
-    projectileData.to = target
+    projectileData.from = hero:GetPos() + Vector(0, 0, 64)
+    projectileData.to = target + Vector(0, 0, 64)
     projectileData.velocity = 2000
     projectileData.graphics = "particles/sniper_q/sniper_q.vpcf"
     projectileData.distance = 15000

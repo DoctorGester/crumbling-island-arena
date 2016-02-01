@@ -3,7 +3,8 @@ EarthSpiritRemnant = class({}, nil, DynamicEntity)
 function EarthSpiritRemnant:constructor(owner)
     DynamicEntity.constructor(self)
 
-    self.owner = owner
+    self.owner = owner.owner
+    self.hero = owner
     self.unit = nil
     self.health = 2
     self.size = 64
@@ -40,7 +41,7 @@ function EarthSpiritRemnant:RemoveTarget()
 end
 
 function EarthSpiritRemnant:FilterTarget(prev, pos, source, target)
-    if target == self or target == self.owner then return false end
+    if target == self or target == self.hero then return false end
     if self.enemiesHit[target] and self.enemiesHit[target] > 0 then return false end
 
     if SegmentCircleIntersection(prev, pos, target:GetPos(), self:GetRad() + target:GetRad()) then
@@ -57,11 +58,11 @@ end
 
 function EarthSpiritRemnant:EarthCollision()
     local pos = self:GetPos()
-    ImmediateEffectPoint("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp.vpcf", PATTACH_CUSTOMORIGIN, self.owner, pos)
-    ImmediateEffectPoint("particles/units/heroes/hero_earth_spirit/earth_dust_hit.vpcf", PATTACH_CUSTOMORIGIN, self.owner, pos)
+    ImmediateEffectPoint("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp.vpcf", PATTACH_CUSTOMORIGIN, self.hero, pos)
+    ImmediateEffectPoint("particles/units/heroes/hero_earth_spirit/earth_dust_hit.vpcf", PATTACH_CUSTOMORIGIN, self.hero, pos)
 
     GridNav:DestroyTreesAroundPoint(pos, 256, true)
-    Spells:MultipleHeroesDamage(self.owner,
+    Spells:MultipleHeroesDamage(self.hero,
         function (source, target)
             local distance = (target:GetPos() - pos):Length2D()
 
@@ -80,7 +81,7 @@ function EarthSpiritRemnant:EarthCollision()
 end
 
 function EarthSpiritRemnant:Cracks()
-    local cracks = ParticleManager:CreateParticle("particles/econ/items/magnataur/shock_of_the_anvil/magnataur_shockanvil_cracks_sprt.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.owner.unit)
+    local cracks = ParticleManager:CreateParticle("particles/econ/items/magnataur/shock_of_the_anvil/magnataur_shockanvil_cracks_sprt.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.hero.unit)
     ParticleManager:SetParticleControl(cracks, 0, self:GetPos())
     ParticleManager:SetParticleControl(cracks, 3, self:GetPos())
 
@@ -107,8 +108,8 @@ function EarthSpiritRemnant:Update()
         end
     end
 
-    if self.owner.remnantStand == self then
-        self.owner:SetPos(Vector(self.position.x, self.position.y, self.position.z + 150))
+    if self.hero.remnantStand == self then
+        self.hero:SetPos(Vector(self.position.x, self.position.y, self.position.z + 150))
     end
 
     self.unit:SetAbsOrigin(self:GetPos())
@@ -169,15 +170,15 @@ function EarthSpiritRemnant:Remove()
     ParticleManager:DestroyParticle(self.healthCounter, false)
     ParticleManager:ReleaseParticleIndex(self.healthCounter)
 
-    ImmediateEffectPoint("particles/units/heroes/hero_earth_spirit/earthspirit_petrify_shockwave.vpcf", PATTACH_CUSTOMORIGIN, self.owner, self:GetPos())
+    ImmediateEffectPoint("particles/units/heroes/hero_earth_spirit/earthspirit_petrify_shockwave.vpcf", PATTACH_CUSTOMORIGIN, self.hero, self:GetPos())
 
-    if not self.owner.destroyed then
-        self.owner:RemnantDestroyed(self)
+    if not self.hero.destroyed then
+        self.hero:RemnantDestroyed(self)
     end
 end
 
 function EarthSpiritRemnant:Damage(source)
-    if source ~= self.owner and self.owner.remnantStand == self then return end
+    if source ~= self.hero and self.hero.remnantStand == self then return end
 
     self.health = self.health - 1
     ParticleManager:SetParticleControl(self.healthCounter, 1, Vector(0, self.health, 0))

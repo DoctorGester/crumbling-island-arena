@@ -1,22 +1,22 @@
-modifier_lc_e = class({})
+modifier_stunned = class({})
  
-function modifier_lc_e:IsDebuff()
+function modifier_stunned:IsDebuff()
     return true
 end
  
-function modifier_lc_e:IsStunDebuff()
+function modifier_stunned:IsStunDebuff()
     return true
 end
  
-function modifier_lc_e:GetEffectName()
+function modifier_stunned:GetEffectName()
     return "particles/generic_gameplay/generic_stunned.vpcf"
 end
  
-function modifier_lc_e:GetEffectAttachType()
+function modifier_stunned:GetEffectAttachType()
     return PATTACH_OVERHEAD_FOLLOW
 end
  
-function modifier_lc_e:DeclareFunctions()
+function modifier_stunned:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
     }
@@ -24,11 +24,11 @@ function modifier_lc_e:DeclareFunctions()
     return funcs
 end
  
-function modifier_lc_e:GetOverrideAnimation(params)
+function modifier_stunned:GetOverrideAnimation(params)
     return ACT_DOTA_DISABLED
 end
  
-function modifier_lc_e:CheckState()
+function modifier_stunned:CheckState()
     local state = {
         [MODIFIER_STATE_STUNNED] = true,
     }

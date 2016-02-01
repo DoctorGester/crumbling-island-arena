@@ -6,7 +6,6 @@ function Hero:constructor()
     self.fallSpeed = 0
     self.falling = false
     self.protected = false
-    self.invulnerable = false
 end
 
 function Hero:SetUnit(unit)
@@ -18,10 +17,6 @@ function Hero:SetOwner(owner)
     self.owner = owner
     self.unit:SetControllableByPlayer(owner.id, true)
     PlayerResource:SetOverrideSelectionEntity(owner.id, self.unit)
-end
-
-function Hero:SetInvulnerable(value)
-    self.invulnerable = value
 end
 
 function Hero:GetName()

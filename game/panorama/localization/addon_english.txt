@@ -35,6 +35,9 @@
 
 	"HeroName_npc_dota_hero_templar_assassin"		"The Empress"
 	"HeroTips_npc_dota_hero_templar_assassin"		"<font color='gold'>Q</font>: Damage in a line<br/><font color='gold'>W</font>: Cone blind + slow<br/><font color='gold'>E</font>: Blink. Resets on damage<br/><font color='gold'>R</font>: Delayed heal after taking damage"
+
+	"HeroName_npc_dota_hero_tiny"					"The Tower"
+	"HeroTips_npc_dota_hero_tiny"					"<font color='gold'>Q</font>: Throw a stone. Pick up to reset CD<br/><font color='gold'>W</font>: AOE stun and damage with delay<br/><font color='gold'>E</font>: Restrict movement in a circle<br/><font color='gold'>R</font>: Empower next ability cast"
 	
 	"PlayerHeader" "player"
 	"SelectionHeader" "selection"
@@ -140,7 +143,13 @@
 	"AbilityTooltip_ta_e"							"Blink<br/><br/>Dealing or taking damage resets the cooldown"
 	"AbilityTooltip_ta_r"							"Receive a shield, which heals you in 3 seconds after taking damage"
 
+	"AbilityTooltip_tiny_q"							"Throw a stone<br/>Pick it up to reset cooldown"
+	"AbilityTooltip_tiny_w"							"Throw a stone stunning and damaging all enemies in the target area"
+	"AbilityTooltip_tiny_e"							"After a short delay, create an impassable ring of stones"
+	"AbilityTooltip_tiny_r"							"Empower next your next used ability<br><br><font color=\"gold\"><b>Q</b></font> Applies a stun<br><font color=\"gold\"><b>W</b></font> Bounces 2 times<br><font color=\"gold\"><b>E</b></font> Has no delay on cast"
+
 	"ModifierTooltip_modifier_charges"						"Ability charges"
+	"ModifierTooltip_modifier_stunned"						"Stunned"
 
 	"ModifierTooltip_modifier_zeus_w"						"Sped up"
 	"ModifierTooltip_modifier_zeus_r"						"Slowed down"
@@ -189,5 +198,8 @@
 	"ModifierTooltip_modifier_ta_w"							"Blinded and slowed"
 	"ModifierTooltip_modifier_ta_r_shield"					"Receives a heal after taking damage"
 	"ModifierTooltip_modifier_ta_r_heal"					"Will be healed"
+
+	"ModifierTooltip_modifier_tiny_q"						"Slowed"
+	"ModifierTooltip_modifier_tiny_r"						"Next ability you use will be empowered"
 }
 

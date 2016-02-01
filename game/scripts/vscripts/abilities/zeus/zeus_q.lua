@@ -12,8 +12,8 @@ function zeus_q:OnSpellStart()
 
     local projectileData = {}
     projectileData.owner = hero
-    projectileData.from = hero:GetPos()
-    projectileData.to = target
+    projectileData.from = hero:GetPos() + Vector(0, 0, 128)
+    projectileData.to = target + Vector(0, 0, 128)
     projectileData.velocity = 1200
     projectileData.graphics = "particles/zeus_q/zeus_q.vpcf"
     projectileData.distance = 800

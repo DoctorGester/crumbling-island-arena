@@ -136,7 +136,9 @@ function Spells:GetValidTargets()
     end
 
     for _, ent in pairs(DynamicEntities) do
-        table.insert(result, ent)
+        if not ent.invulnerable then
+            table.insert(result, ent)
+        end
     end
 
     return result

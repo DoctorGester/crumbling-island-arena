@@ -15,14 +15,15 @@
 				"IsHidden"		"1"
 				"States"
 				{
-					"MODIFIER_STATE_NO_UNIT_COLLISION"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_TEAM_MOVE_TO"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_UNIT_COLLISION" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_TEAM_MOVE_TO" "MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_NO_TEAM_SELECT"	"MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_COMMAND_RESTRICTED"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_ATTACK_IMMUNE"	"MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_ATTACK_IMMUNE" "MODIFIER_STATE_VALUE_ENABLED"
 					"MODIFIER_STATE_NOT_ON_MINIMAP"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_UNSELECTABLE"	"MODIFIER_STATE_VALUE_ENABLED"
-					"MODIFIER_STATE_NO_HEALTH_BAR"		   "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_UNSELECTABLE" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_NO_HEALTH_BAR" "MODIFIER_STATE_VALUE_ENABLED"
+					"MODIFIER_STATE_STUNNED" "MODIFIER_STATE_VALUE_ENABLED"
 				}
 			}
 		}
@@ -575,7 +576,6 @@
 		"ScriptFile" "abilities/sven/sven_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "sven_storm_bolt"
-		"AbilityCastRange" "800"
 		"AbilityCooldown" "6.0"
 
 		"TargetingIndicator"
@@ -1053,26 +1053,6 @@
 		}
 	}
 
-	"zeus_q"
-	{
-		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/zeus/zeus_q"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName" "storm_spirit_overload"
-		"AbilityCooldown" "3.0"
-		"TargetingIndicator"
-		{
-			"Type" "TARGETING_INDICATOR_LINE"
-			"MaxLength" "800"
-			"MinLength" "800"
-		}
-
-		"precache"
-		{
-			"particle" "particles/zeus_q/zeus_q.vpcf"
-		}
-	}
-
 	"ta_q"
 	{
 		"BaseClass" "ability_lua"
@@ -1167,6 +1147,111 @@
 		{
 			"particle" "particles/units/heroes/hero_templar_assassin/templar_assassin_refraction.vpcf"
 			"particle" "particles/items3_fx/fish_bones_active.vpcf"
+		}
+	}
+
+	"tiny_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tiny/tiny_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "tiny_toss"
+		"AbilityCooldown" "7.0"
+		"AbilityCastPoint" "0.3"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "1000"
+			"MinLength" "1000"
+		}
+
+		"precache"
+		{
+			"particle" "particles/tiny_q/tiny_q.vpcf"
+			"particle" "particles/tiny_q/tiny_q_slow.vpcf"
+			"particle" "particles/tiny_q/tiny_q_ground.vpcf"
+			"particle" "particles/tiny_q/tiny_q_fly_smoke.vpcf"
+		}
+	}
+
+	"tiny_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tiny/tiny_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "rubick_telekinesis_land"
+		"AbilityCooldown" "5.0"
+		"AbilityCastRange" "1500"
+		"AbilityCastPoint" "0.15"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "200"
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1500"
+		}
+
+		"precache"
+		{
+			"particle" "particles/tiny_w/tiny_w.vpcf"
+		}
+	}
+
+	"tiny_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tiny/tiny_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "tiny_avalanche"
+		"AbilityCooldown" "9.0"
+		"AbilityCastRange" "800"
+		"AbilityCastPoint" "0.5"
+		
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "250"
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "800"
+		}
+
+		"precache"
+		{
+			"particle" "particles/tiny_e/tiny_e.vpcf"
+		}
+	}
+
+	"tiny_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tiny/tiny_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "tiny_grow"
+		"AbilityCooldown" "12.0"
+		
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "300"
+			"DisplayRange" "1"
+		}
+
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_tiny/tiny_transform.vpcf"
 		}
 	}
 }

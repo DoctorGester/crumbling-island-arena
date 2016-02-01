@@ -3,7 +3,7 @@ LinkLuaModifier("modifier_sven_r", "abilities/sven/modifier_sven_r", LUA_MODIFIE
 
 function sven_r:OnSpellStart()
     local hero = self:GetCaster().hero
-    hero:AddNewModifier(hero, self, "modifier_sven_r", { duration = 7 })
+    hero:AddNewModifier(hero, self, "modifier_sven_r", { duration = 777 })
     hero:EmitSound("Arena.Sven.CastR")
     hero:EmitSound("Arena.Sven.CastRVoice")
     hero:ResetCooldowns()

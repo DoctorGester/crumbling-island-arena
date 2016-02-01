@@ -4,6 +4,7 @@ function DynamicEntity:constructor()
     self.size = 64
     self.position = Vector(0, 0, 0)
     self.destroyed = false
+    self.invulnerable = false
 end
 
 function DynamicEntity:GetPos()
@@ -28,6 +29,10 @@ end
 
 function DynamicEntity:Alive()
     return true
+end
+
+function DynamicEntity:SetInvulnerable(value)
+    self.invulnerable = value
 end
 
 function DynamicEntity:Damage(source) end

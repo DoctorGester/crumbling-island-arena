@@ -140,6 +140,17 @@ function ImmediateEffectPoint(path, attach, owner, point, time)
     return effect
 end
 
+function CreateAOEMarker(owner, point, radius, duration, color)
+    color = color or Vector(255, 255, 255)
+    local particle = ParticleManager:CreateParticle("particles/aoe_marker.vpcf", PATTACH_ABSORIGIN, owner.unit or owner)
+
+    ParticleManager:SetParticleControl(particle, 0, point)
+    ParticleManager:SetParticleControl(particle, 1, Vector(radius, 1, 1))
+    ParticleManager:SetParticleControl(particle, 2, color)
+    ParticleManager:SetParticleControl(particle, 3, Vector(duration, 0, 0))
+    ParticleManager:ReleaseParticleIndex(particle)
+end
+
 function MoveCameraToUnit(playerId, unit)
     Timers:CreateTimer(
         function()

@@ -20,13 +20,12 @@ function Player:SetTeam(i)
         PlayerResource:SetCustomTeamAssignment(self.id, i)
     end
 
-    self.fow = CreateUnitByName("npc_dummy_unit", Vector(0, 0), false, nil, nil, i)
+    self.fow = CreateUnitByName("npc_fow", Vector(0, 0), false, nil, nil, i)
     self.fow:SetDayTimeVisionRange(8000)
     self.fow:SetNightTimeVisionRange(8000)
 end
 
 function Player:Blind(caster, duration)
-    print(caster:GetUnitName())
     self.fow:AddNewModifier(caster, nil, "modifier_blind", { duration = duration })
 end
 

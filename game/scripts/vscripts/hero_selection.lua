@@ -169,6 +169,7 @@ end
 function HeroSelection:End()
     CustomGameEventManager:UnregisterListener(self.HoverListener)
     CustomGameEventManager:UnregisterListener(self.ClickListener)
+    CustomGameEventManager:UnregisterListener(self.RandomListener)
     
     self:Callback()
 end

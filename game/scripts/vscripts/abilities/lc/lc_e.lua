@@ -1,6 +1,5 @@
 lc_e = class({})
 
-LinkLuaModifier("modifier_lc_e", "abilities/lc/modifier_lc_e", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_lc_e_animation", "abilities/lc/modifier_lc_e_animation", LUA_MODIFIER_MOTION_NONE)
 
 function lc_e:OnSpellStart()
@@ -22,7 +21,7 @@ function lc_e:OnSpellStart()
         function(position, data)
             local diff = data.to - position
 
-            Spells:AreaModifier(hero, self, "modifier_lc_e", { duration = 0.7 }, hero:GetPos(), 128,
+            Spells:AreaModifier(hero, self, "modifier_stunned", { duration = 0.7 }, hero:GetPos(), 128,
                 function (hero, target)
                     return hero ~= target
                 end

@@ -217,6 +217,7 @@ function Round:LoadHeroClass(name)
 end
 
 function Round:CreateHeroes()
+    print("Creating heroes")
     Shuffle(self.SpawnPoints)
 
     local index = 1
@@ -227,31 +228,27 @@ function Round:CreateHeroes()
         if player:IsConnected() then
             local spawnIndex = index
             
-            PrecacheUnitByNameAsync(player.selectedHero,
-                function ()
-                    local hero = self:LoadHeroClass(player.selectedHero)
-                    local unit = CreateUnitByName(player.selectedHero, Vector(0, 0, 0), true, nil, nil, player.team)
-                    hero:SetUnit(unit)
+            local hero = self:LoadHeroClass(player.selectedHero)
+            local unit = CreateUnitByName(player.selectedHero, Vector(0, 0, 0), true, nil, nil, player.team)
+            hero:SetUnit(unit)
 
-                    if oldHero then
-                        oldHero:Delete()
-                    end
+            if oldHero then
+                oldHero:Delete()
+            end
 
-                    --LoadDefaultHeroItems(player.hero, self.GameItems)
-                    local ultimate = self.AvailableHeroes[hero:GetName()].ultimate
-                    hero:Setup()
-                    hero:SetOwner(player)
+            --LoadDefaultHeroItems(player.hero, self.GameItems)
+            local ultimate = self.AvailableHeroes[hero:GetName()].ultimate
+            hero:Setup()
+            hero:SetOwner(player)
 
-                    local spawnPoint = Entities:FindAllByName(self.SpawnPoints[spawnIndex])[1]
-                    hero:SetPos(spawnPoint:GetAbsOrigin())
+            local spawnPoint = Entities:FindAllByName(self.SpawnPoints[spawnIndex])[1]
+            hero:SetPos(spawnPoint:GetAbsOrigin())
 
-                    unit:FindAbilityByName(ultimate):StartCooldown(ULTS_TIME)
+            unit:FindAbilityByName(ultimate):StartCooldown(ULTS_TIME)
 
-                    MoveCameraToUnit(player.id, unit)
+            MoveCameraToUnit(player.id, unit)
 
-                    player.hero = hero
-                end
-            )
+            player.hero = hero
 
             index = index + 1
         else

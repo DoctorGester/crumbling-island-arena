@@ -25,7 +25,7 @@ function phoenix_w:OnSpellStart()
 
     local projectileData = {}
     projectileData.owner = hero
-    projectileData.from = hero:GetPos()
+    projectileData.from = hero:GetPos() + Vector(0, 0, 128)
     projectileData.to = target
     projectileData.velocity = 700
     projectileData.graphics = "particles/phoenix_w/phoenix_w.vpcf"

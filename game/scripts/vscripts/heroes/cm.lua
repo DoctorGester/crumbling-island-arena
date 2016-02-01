@@ -9,7 +9,7 @@ function CM:IsFrozen(target)
 end
 
 function CM:Freeze(target, ability)
-    target:AddNewModifier(self, ability, "modifier_cm_frozen", { duration = 1.8 })
+    target:AddNewModifier(self, ability, "modifier_cm_frozen", { duration = 1.55 })
 end
 
 function CM:SetIcePath(icePath)

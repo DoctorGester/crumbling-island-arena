@@ -16,8 +16,8 @@ function pa_w_sub:OnSpellStart()
 
     local projectileData = {}
     projectileData.owner = hero
-    projectileData.from = hero:GetPos()
-    projectileData.to = target
+    projectileData.from = hero:GetPos() + Vector(0, 0, 64)
+    projectileData.to = target + Vector(0, 0, 64)
     projectileData.velocity = 1200
     projectileData.graphics = "particles/pa_w_sub/pa_w_sub.vpcf"
     projectileData.distance = 1200

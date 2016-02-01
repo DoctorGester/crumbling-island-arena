@@ -14,8 +14,8 @@ function pa_q:OnSpellStart()
 
     local projectileData = {}
     projectileData.owner = caster
-    projectileData.from = caster:GetOrigin()
-    projectileData.to = target
+    projectileData.from = caster:GetOrigin() + Vector(0, 0, 64)
+    projectileData.to = target + Vector(0, 0, 64)
     projectileData.graphics = "particles/pa_q/pa_q.vpcf"
     projectileData.radius = 64
 
