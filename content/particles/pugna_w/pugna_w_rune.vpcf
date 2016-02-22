@@ -1,0 +1,125 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 12
+	m_BoundingBoxMin =
+	[
+		-512.000000,
+		-512.000000,
+		-32.000000,
+	]
+	m_BoundingBoxMax =
+	[
+		512.000000,
+		512.000000,
+		32.000000,
+	]
+	m_flConstantRadius = 0.900000
+	m_ConstantColor =
+	[
+		0,
+		0,
+		0,
+		255,
+	]
+	m_bShouldSort = false
+	m_Operators =
+	[
+		{
+			_class = "C_OP_SetControlPointPositions"
+			m_flOpStartFadeOutTime = 0.100000
+			m_flOpEndFadeOutTime = 0.100000
+			m_vecCP1Pos =
+			[
+				225.000000,
+				50.000000,
+				20.000000,
+			]
+			m_nCP3 = 2
+			m_nCP4 = 2
+			m_bUseWorldLocation = true
+		},
+		{
+			_class = "C_OP_EndCapTimedDecay"
+			m_flDecayTime = 1.000000
+			m_nOpEndCapState = 1
+		},
+		{
+			_class = "C_OP_LerpEndCapScalar"
+			m_flOutput = 0.000000
+			m_flLerpTime = 0.300000
+			m_nOpEndCapState = 1
+		},
+		{
+			_class = "C_OP_LerpScalar"
+			m_flOutput = 0.900000
+			m_flEndTime = 0.300000
+		},
+		{
+			_class = "C_OP_RemapCPtoVector"
+			m_nCPInput = 2
+			m_nFieldOutput = 6
+			m_vInputMax =
+			[
+				255.000000,
+				255.000000,
+				255.000000,
+			]
+			m_vOutputMax =
+			[
+				1.000000,
+				1.000000,
+				1.000000,
+			]
+		},
+	]
+	m_Children =
+	[
+		{
+			m_ChildRef = resource:"particles/pugna_w/pugna_w_rune_rings.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/pugna_w/pugna_w_rune_sparks.vpcf"
+		},
+	]
+	m_ConstantNormal =
+	[
+		0.000000,
+		-1.000000,
+		0.000000,
+	]
+	m_nConstantSequenceNumber = 1
+	m_nConstantSequenceNumber1 = 1
+	m_Renderers =
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_ModelList =
+			[
+				{
+					m_model = resource:"models/props_gameplay/rune_goldxp.vmdl"
+				},
+			]
+			m_bAnimated = true
+		},
+	]
+	m_Initializers =
+	[
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMin = 0.000000
+			m_flRadiusMax = 0.000000
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
+	]
+	m_Emitters =
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 1
+		},
+	]
+}

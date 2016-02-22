@@ -346,7 +346,7 @@
 	"npc_dota_hero_pugna"
 	{
 		"override_hero"	"npc_dota_hero_pugna"
-		"Class" "heroes/lycan:Lycan"
+		"Class" "heroes/pugna:Pugna"
 		"ArmorPhysical"	"0"
 		"MagicalResistance"	"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
@@ -364,12 +364,12 @@
 		"VisionNighttimeRange" "0"
 		"Difficulty" "hard"
 		
-		"Ability1" "lycan_q"
-		"Ability2" "lycan_w"
-		"Ability3" "lycan_e"
-		"Ability4" "lycan_r"
+		"Ability1" "pugna_q"
+		"Ability2" "pugna_w"
+		"Ability3" "pugna_e"
+		"Ability4" "sven_r"
 
-		"Ultimate" "lycan_r"
+		"Ultimate" "sven_r"
 	}
 
 	"npc_dota_hero_phoenix"

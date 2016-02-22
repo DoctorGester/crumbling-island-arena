@@ -1254,4 +1254,68 @@
 			"particle" "particles/units/heroes/hero_tiny/tiny_transform.vpcf"
 		}
 	}
+
+	"pugna_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pugna/pugna_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "storm_spirit_overload"
+		"AbilityCooldown" "2.5"
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "1400"
+			"MinLength" "1400"
+		}
+
+		"precache"
+		{
+			"particle" "particles/pugna_q/pugna_q.vpcf"
+		}
+	}
+
+	"pugna_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pugna/pugna_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "techies_stasis_trap"
+		"AbilityCooldown" "6.0"
+		"AbilityCastRange" "300"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "96"
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
+
+		"precache"
+		{
+			"particle" "particles/pugna_w.vpcf"
+			"particle" "particles/pugna_w_rune.vpcf"
+			"particle" "particles/pugna_w_explode.vpcf"
+		}
+	}
+
+	"pugna_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pugna/pugna_e"
+		"AbilityTextureName" "lycan_howl"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityCooldown" "3"
+
+		"precache"
+		{
+			"particle" "particles/pugna_e/status_effect_pugna_e.vpcf"
+		}
+	}
 }
