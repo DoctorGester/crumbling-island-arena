@@ -1,6 +1,6 @@
 Debug = class({})
 
-DEBUG_HERO = "npc_dota_hero_sniper"
+DEBUG_HERO = "npc_dota_hero_sven"
 
 if not mode then
     mode = nil
@@ -48,7 +48,7 @@ end
 function InjectHero(round)
     PrecacheUnitByNameAsync(DEBUG_HERO, function()
         local hero = round:LoadHeroClass(DEBUG_HERO)
-        local center = Entities:FindByName(nil, "map_center"):GetAbsOrigin()
+        local center = Vector(0, 0, 0) --Entities:FindByName(nil, "map_center"):GetAbsOrigin()
 
         hero:SetUnit(CreateUnitByName(DEBUG_HERO, center, true, nil, nil, DOTA_TEAM_BADGUYS))
         hero:Setup()

@@ -1,6 +1,11 @@
 zeus_q = class({})
 
 function zeus_q:OnSpellStart()
+    for _, entity in pairs(Entities:FindAllByName("map_part")) do
+        if RandomInt(0, 1) == 1 then
+            entity:SetAbsOrigin(entity:GetAbsOrigin() - Vector(0, 0, 128))
+        end
+    end
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
     local direction = target - hero:GetPos()

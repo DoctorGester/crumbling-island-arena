@@ -7,7 +7,7 @@ function pugna_w:OnSpellStart()
     local trap = CreateUnitByName(DUMMY_UNIT, target, false, nil, nil, hero.unit:GetTeamNumber())
     trap:AddNewModifier(hero.unit, self, "modifier_pugna_w", {})
     table.insert(hero.traps, trap)
-    --hero:EmitSound("Arena.Sniper.CastW")
+    hero:EmitSound("Arena.Pugna.CastW")
 end
 
 function pugna_w:GetCastAnimation()

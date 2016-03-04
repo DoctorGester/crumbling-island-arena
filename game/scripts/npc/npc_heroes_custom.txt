@@ -367,9 +367,17 @@
 		"Ability1" "pugna_q"
 		"Ability2" "pugna_w"
 		"Ability3" "pugna_e"
-		"Ability4" "sven_r"
+		"Ability4" "pugna_r"
 
-		"Ultimate" "sven_r"
+		"Ultimate" "pugna_r"
+
+		"CustomIcons"
+		{
+			"pugna_q" "pugna_q.png"
+			"pugna_w" "pugna_w.png"
+			"pugna_e" "pugna_e.png"
+			"pugna_r" "pugna_r.png"
+		}
 	}
 
 	"npc_dota_hero_phoenix"

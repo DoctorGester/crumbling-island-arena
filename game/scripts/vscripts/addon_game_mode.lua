@@ -37,6 +37,9 @@ function Precache(context)
     PrecacheResource("particle", "particles/targeting/global_target.vpcf", context)
     PrecacheResource("particle", "particles/aoe_marker.vpcf", context)
 
+    PrecacheResource("particle", "particles/pugna/weapon_glow.vpcf", context)
+    PrecacheResource("particle", "particles/pugna/ambient.vpcf", context)
+
     PrecacheResource("model", "models/development/invisiblebox.vmdl", context)
     PrecacheResource("particle", "particles/ui/ui_generic_treasure_impact.vpcf", context)
     PrecacheResource("particle", "particles/units/heroes/hero_tiny/tiny_avalanche.vpcf", context)
@@ -165,7 +168,17 @@ function GameMode:FilterExecuteOrder(filterTable)
     for _, unitIndex in pairs(filterTable.units) do
         local unit = EntIndexToHScript(unitIndex)
 
-        if not unit:IsChanneling() or orderType == DOTA_UNIT_ORDER_STOP or orderType == DOTA_UNIT_ORDER_HOLD_POSITION then
+        if orderType == DOTA_UNIT_ORDER_CAST_TOGGLE then
+            local ability = EntIndexToHScript(filterTable.entindex_ability)
+
+            if ability:IsCooldownReady() then
+                filteredUnits[index] = unitIndex
+
+                index = index + 1
+            else
+                CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(filterTable.issuer_player_id_const), "cooldown_error", {})
+            end
+        elseif not unit:IsChanneling() or orderType == DOTA_UNIT_ORDER_STOP or orderType == DOTA_UNIT_ORDER_HOLD_POSITION then
             filteredUnits[index] = unitIndex
 
             index = index + 1

@@ -195,4 +195,9 @@ SetupUI();
     SubscribeToNetTableKey("main", "gameInfo", true, GameInfoChanged);
 
     UpdateUI();
+
+    GameEvents.Subscribe("cooldown_error", function(data) {
+        var eventData = { reason: 15, message: "dota_hud_error_ability_in_cooldown" };
+        GameEvents.SendEventClientSide("dota_hud_error_message", eventData);
+    });
 })();

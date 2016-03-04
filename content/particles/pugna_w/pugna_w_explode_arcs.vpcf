@@ -89,20 +89,20 @@
 			]
 		},
 		{
-			_class = "C_INIT_RandomColor"
-			m_ColorMax =
+			_class = "C_INIT_RemapCPtoVector"
+			m_nCPInput = 2
+			m_nFieldOutput = 6
+			m_vInputMax =
 			[
-				142,
-				182,
-				255,
-				255,
+				255.000000,
+				255.000000,
+				255.000000,
 			]
-			m_ColorMin =
+			m_vOutputMax =
 			[
-				246,
-				193,
-				255,
-				255,
+				1.000000,
+				1.000000,
+				1.000000,
 			]
 		},
 	]

@@ -223,13 +223,7 @@
 			m_ChildRef = resource:"particles/pugna_w/pugna_w_explode_arcs.vpcf"
 		},
 		{
-			m_ChildRef = resource:"particles/pugna_w/pugna_w_explode_shards.vpcf"
-		},
-		{
 			m_ChildRef = resource:"particles/pugna_w/pugna_w_explode_proj.vpcf"
-		},
-		{
-			m_ChildRef = resource:"particles/pugna_w/pugna_w_explode_shards_bright.vpcf"
 		},
 	]
 }

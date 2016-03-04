@@ -50,17 +50,6 @@
 			_class = "C_OP_FadeInSimple"
 		},
 		{
-			_class = "C_OP_ColorInterpolate"
-			m_ColorFade =
-			[
-				159,
-				57,
-				134,
-				50,
-			]
-			m_flFadeEndTime = 0.750000
-		},
-		{
 			_class = "C_OP_FadeOutSimple"
 			m_flFadeOutTime = 0.750000
 		},
@@ -88,23 +77,6 @@
 			_class = "C_INIT_RandomYawFlip"
 			m_flOpStrengthMinScale = 0.000000
 			m_flOpTimeOffsetMax = 1.000000
-		},
-		{
-			_class = "C_INIT_RandomColor"
-			m_ColorMin =
-			[
-				254,
-				94,
-				180,
-				255,
-			]
-			m_ColorMax =
-			[
-				252,
-				164,
-				255,
-				255,
-			]
 		},
 		{
 			_class = "C_INIT_RandomSequence"
@@ -152,6 +124,23 @@
 			m_flOutputMin = 1.000000
 			m_flOutputMax = 0.000000
 			m_bScaleInitialRange = true
+		},
+		{
+			_class = "C_INIT_RemapCPtoVector"
+			m_nCPInput = 2
+			m_nFieldOutput = 6
+			m_vInputMax =
+			[
+				255.000000,
+				255.000000,
+				255.000000,
+			]
+			m_vOutputMax =
+			[
+				1.000000,
+				1.000000,
+				1.000000,
+			]
 		},
 	]
 	m_Emitters =

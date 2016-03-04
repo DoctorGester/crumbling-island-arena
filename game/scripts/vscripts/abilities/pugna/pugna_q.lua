@@ -22,6 +22,8 @@ function pugna_q:CreateSecondProjectile(owner, originalOwner)
                 target:Heal()
             end
 
+            target:EmitSound(originalOwner:GetTrapSound())
+
             return true
         end
 
@@ -74,7 +76,7 @@ function pugna_q:OnSpellStart()
                 end
             )
 
-            target:EmitSound("Arena.Zeus.HitQ")
+            target:EmitSound(self.owner:GetProjectileSound())
 
             return true
         end
@@ -91,7 +93,7 @@ function pugna_q:OnSpellStart()
     local p = Spells:CreateProjectile(projectileData)
     ParticleManager:SetParticleControl(p.effectId, 5, hero:GetProjectileColor())
 
-    hero:EmitSound("Arena.Zeus.CastQ")
+    hero:EmitSound("Arena.Pugna.CastQ")
 end
 
 function pugna_q:GetCastAnimation()

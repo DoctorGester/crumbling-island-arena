@@ -134,29 +134,29 @@
 			]
 		},
 		{
-			_class = "C_INIT_RandomColor"
-			m_ColorMin =
-			[
-				255,
-				142,
-				243,
-				255,
-			]
-			m_ColorMax =
-			[
-				245,
-				180,
-				255,
-				255,
-			]
-		},
-		{
 			_class = "C_INIT_RandomAlpha"
 		},
 		{
 			_class = "C_INIT_RandomRadius"
 			m_flRadiusMin = 50.000000
 			m_flRadiusMax = 100.000000
+		},
+		{
+			_class = "C_INIT_RemapCPtoVector"
+			m_nCPInput = 2
+			m_nFieldOutput = 6
+			m_vInputMax =
+			[
+				255.000000,
+				255.000000,
+				255.000000,
+			]
+			m_vOutputMax =
+			[
+				1.000000,
+				1.000000,
+				1.000000,
+			]
 		},
 	]
 	m_Emitters =

@@ -38,7 +38,7 @@ function Level:TestOutOfMap(entity, stage)
 
     local start = entity:GetPos()
     local obstructions = Entities:FindAllByName(name)
-    local center = Entities:FindByName(nil, "map_center"):GetAbsOrigin()
+    local center = Vector(0, 0, 0)--Entities:FindByName(nil, "map_center"):GetAbsOrigin()
 
     for _, obstruction in ipairs(obstructions) do
         local o = obstruction:GetCenter()

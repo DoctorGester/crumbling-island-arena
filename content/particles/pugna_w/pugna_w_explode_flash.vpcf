@@ -39,16 +39,6 @@
 			_class = "C_OP_Decay"
 		},
 		{
-			_class = "C_OP_ColorInterpolate"
-			m_ColorFade =
-			[
-				160,
-				81,
-				159,
-				255,
-			]
-		},
-		{
 			_class = "C_OP_InterpolateRadius"
 			m_flBias = 0.900000
 			m_flEndScale = 0.100000
@@ -92,6 +82,23 @@
 			_class = "C_INIT_RandomRadius"
 			m_flRadiusMax = 200.000000
 			m_flRadiusMin = 100.000000
+		},
+		{
+			_class = "C_INIT_RemapCPtoVector"
+			m_nCPInput = 2
+			m_nFieldOutput = 6
+			m_vInputMax =
+			[
+				255.000000,
+				255.000000,
+				255.000000,
+			]
+			m_vOutputMax =
+			[
+				1.000000,
+				1.000000,
+				1.000000,
+			]
 		},
 	]
 	m_Emitters =

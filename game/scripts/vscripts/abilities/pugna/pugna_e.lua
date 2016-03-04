@@ -5,8 +5,14 @@ function pugna_e:OnToggle()
     local hero = self:GetCaster().hero
     local on = self:GetToggleState()
 
-    hero:FindModifier("modifier_pugna_e"):Destroy() -- Force refresh doesn't work there (probably because refresh doesn't occur on client)
-    hero:AddNewModifier(hero, self, "modifier_pugna_e", {})
+    if on then
+        hero:AddNewModifier(hero, self, "modifier_pugna_e", {})
+    else
+        hero:FindModifier("modifier_pugna_e"):Destroy()
+    end
+    
+    hero:UpdateColor()
+    hero:EmitSound("Arena.Pugna.CastE")
     self:StartCooldown(self:GetCooldown(1))
 end
 

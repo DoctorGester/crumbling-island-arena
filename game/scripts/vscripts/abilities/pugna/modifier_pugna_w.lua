@@ -47,8 +47,11 @@ function modifier_pugna_w:OnIntervalThink()
                     target:Heal()
                 end
 
-                ImmediateEffectPoint("particles/pugna_w/pugna_w_explode.vpcf", PATTACH_ABSORIGIN, trap, trap:GetAbsOrigin())
-                target:EmitSound("Arena.Sniper.HitW")
+                local effect = ImmediateEffectPoint("particles/pugna_w/pugna_w_explode.vpcf", PATTACH_ABSORIGIN, trap, trap:GetAbsOrigin())
+                ParticleManager:SetParticleControl(effect, 2, hero:GetTrapColor())
+
+                trap:EmitSound("Arena.Pugna.HitW")
+                target:EmitSound(hero:GetTrapSound())
                 break
             end
         end

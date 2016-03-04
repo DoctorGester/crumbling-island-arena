@@ -38,16 +38,6 @@
 			_class = "C_OP_Decay"
 		},
 		{
-			_class = "C_OP_ColorInterpolate"
-			m_ColorFade =
-			[
-				255,
-				97,
-				190,
-				255,
-			]
-		},
-		{
 			_class = "C_OP_SetSingleControlPointPosition"
 			m_vecCP1Pos =
 			[
@@ -86,6 +76,23 @@
 			m_flOutputMin = 1.000000
 			m_flOutputMax = 0.000000
 			m_bScaleInitialRange = true
+		},
+		{
+			_class = "C_INIT_RemapCPtoVector"
+			m_nCPInput = 2
+			m_nFieldOutput = 6
+			m_vInputMax =
+			[
+				255.000000,
+				255.000000,
+				255.000000,
+			]
+			m_vOutputMax =
+			[
+				1.000000,
+				1.000000,
+				1.000000,
+			]
 		},
 	]
 	m_Emitters =

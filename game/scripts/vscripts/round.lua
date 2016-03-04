@@ -241,8 +241,8 @@ function Round:CreateHeroes()
             hero:Setup()
             hero:SetOwner(player)
 
-            local spawnPoint = Entities:FindAllByName(self.SpawnPoints[spawnIndex])[1]
-            hero:SetPos(spawnPoint:GetAbsOrigin())
+            --local spawnPoint = Entities:FindAllByName(self.SpawnPoints[spawnIndex])[1]
+            --hero:SetPos(spawnPoint:GetAbsOrigin())
 
             unit:FindAbilityByName(ultimate):StartCooldown(ULTS_TIME)
 
