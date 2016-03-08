@@ -17,7 +17,6 @@ function cm_e:OnSpellStart()
     projectileData.velocity = 700
     projectileData.graphics = "particles/cm/cm_e.vpcf"
     projectileData.distance = 1100
-    projectileData.empowered = false
     projectileData.radius = 64
     projectileData.heroBehaviour =
         function(self, target)

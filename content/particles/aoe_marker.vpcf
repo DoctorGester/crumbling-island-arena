@@ -25,6 +25,9 @@
 			_class = "C_OP_StopAfterCPDuration"
 			m_nCP = 3
 		},
+		{
+			_class = "C_OP_PositionLock"
+		},
 	]
 	m_Renderers =
 	[

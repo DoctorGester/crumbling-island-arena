@@ -75,7 +75,7 @@
     width: 100%;
     height: 100%;
     background-color: #00000099;
-    opacity: 0.7;
+    opacity: 0.0;
     transition-property: opacity;
     transition-duration: 0.25s;
 }
@@ -88,7 +88,7 @@
     width: 100%;
     height: 100%;
     background-color: #00000099;
-    opacity: 0.7;
+    opacity: 0.0;
     transition-property: opacity;
     transition-duration: 0.25s;
 }

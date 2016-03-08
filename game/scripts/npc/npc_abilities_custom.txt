@@ -1326,4 +1326,105 @@
 			"particle" "particles/units/heroes/hero_oracle/oracle_false_promise.vpcf"
 		}
 	}
+
+	"venge_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/venge/venge_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "vengefulspirit_magic_missile"
+		"AbilityCooldown" "2.2"
+		"AbilityCastPoint" "0.15"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "950"
+			"MinLength" "950"
+		}
+
+		"precache"
+		{
+			"particle" "particles/venge_q/venge_q.vpcf"
+		}
+	}
+
+	"venge_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/venge/venge_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "vengefulspirit_wave_of_terror"
+		"AbilityCooldown" "8.0"
+		"AbilityCastPoint" "0.15"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "1400"
+			"MinLength" "1400"
+		}
+
+		"precache"
+		{
+			"particle" "particles/venge_w/venge_w.vpcf"
+			"particle" "particles/units/heroes/hero_vengeful/vengeful_wave_of_terror_recipient_reduction.vpcf"
+			"particle" "particles/units/heroes/hero_vengeful/vengeful_wave_of_terror_recipient.vpcf"
+		}
+	}
+
+	"venge_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/venge/venge_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "vengefulspirit_nether_swap"
+		"AbilityCooldown" "6.0"
+		"AbilityCastPoint" "0.15"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "950"
+			"MinLength" "950"
+		}
+
+		"precache"
+		{
+			"particle" "particles/venge_e/venge_e.vpcf"
+			"particle" "particles/units/heroes/hero_vengeful/vengeful_nether_swap.vpcf"
+			"particle" "particles/units/heroes/hero_vengeful/vengeful_nether_swap_target.vpcf"
+		}
+	}
+
+	"venge_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/venge/venge_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "vengefulspirit_command_aura"
+		"AbilityCooldown" "20"
+		"AbilityCastRange" "1000"
+		"AbilityCastPoint" "0.15"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "650"
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1000"
+		}
+
+		"precache"
+		{
+			"particle" "particles/items_fx/blink_dagger_start.vpcf"
+			"particle" "particles/venge_r/venge_r_counter.vpcf"
+		}
+	}
 }

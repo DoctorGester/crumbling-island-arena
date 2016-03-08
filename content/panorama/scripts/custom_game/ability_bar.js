@@ -270,4 +270,6 @@ function AbilityButton(parent, hero, ability) {
         this.image.visible = false;
         this.image.DeleteAsync(0);
     }
+
+    this.SetDisabled(false, false);
 }

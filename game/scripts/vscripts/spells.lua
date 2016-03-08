@@ -263,7 +263,7 @@ function Spells:CreateProjectile(data)
     projectile.distance = data.distance
     projectile.endPoint = data.endPoint
     projectile.dummy = CreateUnitByName(DUMMY_UNIT, data.from, false, nil, nil, DOTA_TEAM_NOTEAM)
-    projectile.owner = data.owner.hero or data.owner
+    projectile.owner = data.owner or data.owner.hero
 
     if data.graphics then
         projectile.effectId = ParticleManager:CreateParticle(data.graphics, PATTACH_ABSORIGIN_FOLLOW , projectile.dummy)
