@@ -68,6 +68,14 @@ function EntityAbilityDataProvider(entityId) {
         return this.FilterAbilities().length;
     }
 
+    this.IsSilenced = function() {
+        return Entities.IsSilenced(this.entityId);
+    }
+
+    this.IsStunned = function() {
+        return Entities.IsStunned(this.entityId);
+    }
+
     this.ShowTooltip = function(element, data) {
         SetCurrentHoverSpell(data);
 
@@ -114,6 +122,10 @@ function AbilityBar(elementId) {
 
         var ability = this.GetAbility(slot);
         ability.SetData(data);
+
+        if (this.provider.IsSilenced && this.provider.IsStunned) {
+            ability.SetDisabled(this.provider.IsSilenced(), this.provider.IsStunned());
+        }
     }
 
     this.AddCustomIcon = function(abilityName, iconPath) {
@@ -184,6 +196,12 @@ function AbilityButton(parent, hero, ability) {
     this.cooldown = $.CreatePanel("Label", this.image, "");
     this.cooldown.AddClass("CooldownText");
 
+    this.silence = $.CreatePanel("Panel", this.image, "");
+    this.silence.AddClass("AbilitySilenced");
+
+    this.stun = $.CreatePanel("Panel", this.image, "");
+    this.stun.AddClass("AbilityStunned");
+
     this.data = {};
 
     this.SetData = function(data) {
@@ -241,6 +259,11 @@ function AbilityButton(parent, hero, ability) {
 
         this.inside.style.clip = "radial(50% 50%, 0deg, " + progress + "deg)";
         this.cooldown.text = text;
+    }
+
+    this.SetDisabled = function(silenced, stunned) {
+        this.silence.style.opacity = (silenced && !stunned) ? "1.0" : "0.0";
+        this.stun.style.opacity = stunned ? "1.0" : "0.0";
     }
 
     this.Delete = function() {

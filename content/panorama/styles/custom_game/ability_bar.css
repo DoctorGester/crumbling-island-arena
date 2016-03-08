@@ -53,8 +53,8 @@
 
 .AbilityButton
 {
-    width: 56px;
-    height: 56px;
+    width: 64px;
+    height: 64px;
     color: white;
     font-size: 16px;
     text-shadow: 2px 2px 2px #7b612b;
@@ -65,6 +65,32 @@
 
     transition-property: transform, saturation, wash-color, box-shadow;
     transition-duration: 0.1s;
+}
+
+.AbilitySilenced
+{
+    background-image: url("file://{images}/custom_game/silence.png");
+    background-size: 90% 90%;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    background-color: #00000099;
+    opacity: 0.7;
+    transition-property: opacity;
+    transition-duration: 0.25s;
+}
+
+.AbilityStunned
+{
+    background-image: url("file://{images}/custom_game/stun.png");
+    background-size: 90% 90%;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+    background-color: #00000099;
+    opacity: 0.7;
+    transition-property: opacity;
+    transition-duration: 0.25s;
 }
 
 .AbilityButtonEnabled

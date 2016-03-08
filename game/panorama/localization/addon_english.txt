@@ -39,6 +39,9 @@
 	"HeroName_npc_dota_hero_tiny"					"The Tower"
 	"HeroTips_npc_dota_hero_tiny"					"<font color='gold'>Q</font>: Throw a stone. Pick up to reset CD<br/><font color='gold'>W</font>: AOE stun and damage with delay<br/><font color='gold'>E</font>: Restrict movement in a circle<br/><font color='gold'>R</font>: Empower next ability cast"
 	
+	"HeroName_npc_dota_hero_pugna"					"The Moon"
+	"HeroTips_npc_dota_hero_pugna"					"<font color='gold'>Q</font>: Take damage. Fire projectile. Heal if it hits<br/><font color='gold'>W</font>: Healing trap<br/><font color='gold'>E</font>: Swap healing and damage<br/><font color='gold'>R</font>: Lock HP for the duration"
+
 	"PlayerHeader" "player"
 	"SelectionHeader" "selection"
 	"ScoreHeader" "score"
@@ -148,6 +151,11 @@
 	"AbilityTooltip_tiny_e"							"After a short delay, create an impassable ring of stones"
 	"AbilityTooltip_tiny_r"							"Empower next your next used ability<br><br><font color=\"gold\"><b>Q</b></font> Applies a stun<br><font color=\"gold\"><b>W</b></font> Bounces 2 times<br><font color=\"gold\"><b>E</b></font> Has no delay on cast"
 
+	"AbilityTooltip_pugna_q"						"Take damage<br/>Fire a projectile<br/>If it hits, fire back healing projectile"
+	"AbilityTooltip_pugna_w"						"Place a healing trap which activates in 1.5 seconds"
+	"AbilityTooltip_pugna_e"						"<font color=\"#DAFF7F\"><b>Toggle</b></font><br>Your healing and damage is swapped"
+	"AbilityTooltip_pugna_r"						"You can't be silenced or slowed<br/>Your health can't change<br/>Duration: 4.5s"
+
 	"ModifierTooltip_modifier_charges"						"Ability charges"
 	"ModifierTooltip_modifier_stunned"						"Stunned"
 
@@ -201,5 +209,7 @@
 
 	"ModifierTooltip_modifier_tiny_q"						"Slowed"
 	"ModifierTooltip_modifier_tiny_r"						"Next ability you use will be empowered"
+
+	"ModifierTooltip_modifier_pugna_e"						"Healing and damage is swapped"
 }
 
