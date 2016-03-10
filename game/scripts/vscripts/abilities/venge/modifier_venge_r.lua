@@ -1,18 +1,5 @@
 modifier_venge_r = class({})
 
-function modifier_venge_r:CheckState()
-    local state = {
-        [MODIFIER_STATE_INVULNERABLE] = true,
-        [MODIFIER_STATE_NO_HEALTH_BAR] = true,
-        [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-        [MODIFIER_STATE_NOT_ON_MINIMAP] = true,
-        [MODIFIER_STATE_UNSELECTABLE] = true,
-        [MODIFIER_STATE_COMMAND_RESTRICTED] = true
-    }
-
-    return state
-end
-
 if IsServer() then
     function modifier_venge_r:OnCreated()
         local unit = self:GetParent()
@@ -40,6 +27,7 @@ if IsServer() then
     end
 
     function modifier_venge_r:OnDestroy()
+        self:GetParent():EmitSound("Arena.Venge.EndR")
         self:GetParent().hero:Destroy()
     end
 end
@@ -58,14 +46,6 @@ end
 
 function modifier_venge_r:GetModifierAura()
     return "modifier_venge_r_target"
-end
-
-function modifier_venge_r:GetStatusEffectName()
-    return "particles/status_fx/status_effect_illusion.vpcf"
-end
-
-function modifier_venge_r:GetStatusEffectPriority()
-    return 10
 end
 
 function modifier_venge_r:GetAuraSearchTeam()

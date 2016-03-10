@@ -11,6 +11,7 @@ function Vengeance:constructor(owner, target, facing, ability)
     self.unit = CreateUnitByName("npc_dota_hero_vengefulspirit", target, false, nil, nil, owner.unit:GetTeamNumber())
     self.unit:SetControllableByPlayer(owner.owner.id, true)
     self.unit:AddNewModifier(owner.unit, ability, "modifier_venge_r", { duration = 10 })
+    self.unit:AddNewModifier(owner.unit, ability, "modifier_venge_r_visual", {})
     self.unit:SetForwardVector(facing)
     self.unit.hero = self
     self.unit:FindAbilityByName("venge_q"):SetLevel(1)
@@ -37,13 +38,9 @@ function Vengeance:Update()
     self.unit:SetAbsOrigin(self:GetPos())
 end
 
-function Vengeance:Destroy()
+function Vengeance:Remove()
     self.unit:RemoveSelf()
 
-    DynamicEntity.Destroy(self)
-end
-
-function Vengeance:Remove()
     ParticleManager:DestroyParticle(self.healthCounter, false)
     ParticleManager:ReleaseParticleIndex(self.healthCounter)
 

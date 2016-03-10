@@ -27,7 +27,6 @@ function venge_w:OnSpellStart()
             if not self.damagedGroup[target] then
                 Spells:ProjectileDamage(self, target)
 
-                target:EmitSound("Arena.CM.HitE")
                 target:AddNewModifier(hero, ability, "modifier_venge_w", { duration = 3.0 })
                 self.damagedGroup[target] = true
             end
@@ -36,6 +35,5 @@ function venge_w:OnSpellStart()
         end
 
     Spells:CreateProjectile(projectileData)
-    hero:EmitSound("Arena.CM.CastE")
-    hero:EmitSound("Arena.CM.LoopE")
+    hero:EmitSound("Arena.Venge.CastW")
 end

@@ -32,13 +32,18 @@ function venge_e:OnSpellStart()
 
             hero:SetPos(target:GetPos())
             target:SetPos(pos)
-            target:EmitSound("Arena.CM.HitQ")
+            target:EmitSound("Arena.Venge.HitE")
 
             return true
         end
 
+    projectileData.heroCondition =
+        function(self, target, prev, pos)
+            return self.owner ~= target and SegmentCircleIntersection(prev, pos, target:GetPos(), self.radius + target:GetRad())
+        end
+
     Spells:CreateProjectile(projectileData)
-    hero:EmitSound("Arena.CM.CastQ")
+    hero:EmitSound("Arena.Venge.CastE")
 end
 
 function venge_e:GetCastAnimation()

@@ -21,11 +21,11 @@ function venge_q:OnSpellStart()
     projectileData.heroBehaviour =
         function(self, target)
             Spells:ProjectileDamage(self, target)
-            target:EmitSound("Arena.CM.HitQ")
+            target:EmitSound("Arena.Venge.HitQ")
             target:AddNewModifier(hero, ability, "modifier_stunned", { duration = 1.0 })
             return true
         end
 
     Spells:CreateProjectile(projectileData)
-    hero:EmitSound("Arena.CM.CastQ")
+    hero:EmitSound("Arena.Venge.CastQ")
 end
