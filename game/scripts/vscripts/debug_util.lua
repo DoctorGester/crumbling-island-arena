@@ -1,6 +1,6 @@
 Debug = class({})
 
-DEBUG_HERO = "npc_dota_hero_sven"
+DEBUG_HERO = "npc_dota_hero_templar_assassin"
 
 if not mode then
     mode = nil
@@ -34,8 +34,8 @@ function OnHealDebugHero()
     debugHero.unit:SetHealth(5)
 end
 
-function OnDestructionEffect(eventSourceIndex, args)
-    mode.Level:PlayDestructionEffect(3)
+function OnResetLevel(eventSourceIndex, args)
+    mode.Level:Reset()
 end
 
 function InjectFreeSelection()
@@ -135,7 +135,7 @@ if Convars:GetInt("sv_cheats") == 1 then
     CustomGameEventManager:RegisterListener("debug_switch_end_check", function() enableEndCheck = not enableEndCheck end)
     CustomGameEventManager:RegisterListener("debug_switch_debug_display", function() displayDebug = not displayDebug end)
     CustomGameEventManager:RegisterListener("debug_check_end", OnCheckEnd)
-    CustomGameEventManager:RegisterListener("debug_destruction_effect", OnDestructionEffect)
+    CustomGameEventManager:RegisterListener("debug_reset_level", OnResetLevel)
 
     InjectProjectileDebug()
     InjectAreaDebug()

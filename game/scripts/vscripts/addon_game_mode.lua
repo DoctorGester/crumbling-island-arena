@@ -413,18 +413,11 @@ function GameMode:OnGameInProgress()
         end
     )
 
-    self:RegisterThinker(0.1,
-        function()
-            if self.State == STATE_ROUND_IN_PROGRESS then
-                self.Round:Update()
-            end
-        end
-    )
-
     self:RegisterThinker(0.01,
         function()
             if self.State == STATE_ROUND_IN_PROGRESS then
                 self.Round:UpdateFalling()
+                self.Level:Update()
             end
         end
     )

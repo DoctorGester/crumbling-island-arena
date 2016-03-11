@@ -1,4 +1,6 @@
-Hero = class({}, nil, DynamicEntity)
+if not Hero then
+    Hero = class({}, nil, DynamicEntity)
+end
 
 function Hero:constructor()
     DynamicEntity.constructor(self)
@@ -156,6 +158,20 @@ function Hero:Update()
         if assigned then
             assigned:SetAbsOrigin(to)
         end
+    end
+
+    local trace = {
+        startpos = self:GetPos(),
+        endpos = self:GetPos() - Vector(0, 0, 128),
+        min = self.unit:GetBoundingMins(),
+        max = self.unit:GetBoundingMaxs(),
+        ignore = self.unit
+    }
+
+    TraceHull(trace)
+
+    if not trace.hit then
+        self:StartFalling()
     end
 end
 

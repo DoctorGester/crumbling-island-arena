@@ -98,26 +98,6 @@ function UpdateUI(){
     }
 }
 
-function TimerString(number){
-    var floating = parseFloat(Math.max(number, 0) / 10).toFixed(1);
-    return floating.toString();
-}
-
-function GameTimerUpdate(data) {
-    if (data == undefined){
-        return;
-    }
-
-    var progress = data.duration != -1 ? (1.0 - (data.remaining / data.duration)) * 360 : 0.0;
-    
-    var inside = $("#TimerInside");
-    inside.style.clip = "radial(50% 50%, 0deg, " + progress + "deg)";
-
-    $("#TimerTextLabel").text = $.Localize(data.label);
-    $("#TimerValueLabel").text = data.duration != -1 ? TimerString(data.remaining) : "";
-    $("#TimerValueLabel").SetHasClass("TimerCritical", data.remaining <= 50)
-}
-
 function AddDebugButton(text, callback){
     var panel = $("#DebugPanel");
     var button = $.CreatePanel("Button", panel, "");
@@ -151,8 +131,8 @@ function FillDebugPanel(){
         GameEvents.SendCustomGameEventToServer("debug_switch_debug_display", {});
     });
 
-    AddDebugButton("Play destruction effect", function(){
-        GameEvents.SendCustomGameEventToServer("debug_destruction_effect", {});
+    AddDebugButton("Reset level", function(){
+        GameEvents.SendCustomGameEventToServer("debug_reset_level", {});
     });
 }
 
@@ -170,14 +150,12 @@ function GameInfoChanged(data){
     if (data.state == GAME_STATE_ROUND_IN_PROGRESS){
         $("#HeroPanel").RemoveClass("AnimationHeroHudHidden");
         $("#HeroDetails").RemoveClass("AnimationHeroDetailsHidden");
-        $("#TimerPanel").RemoveClass("AnimationTimerHidden");
         $("#Scoreboard").RemoveClass("AnimationScoreboardHidden");
 
         Game.EmitSound("UI.RoundStart")
     } else {
         $("#HeroPanel").AddClass("AnimationHeroHudHidden");
         $("#HeroDetails").AddClass("AnimationHeroDetailsHidden");
-        $("#TimerPanel").AddClass("AnimationTimerHidden");
         $("#Scoreboard").AddClass("AnimationScoreboardHidden");
     }
 }
@@ -191,7 +169,6 @@ SetupUI();
 (function () {
     SubscribeToNetTableKey("main", "debug", true, DebugUpdate)
     SubscribeToNetTableKey("main", "heroes", true, HeroesUpdate);
-    SubscribeToNetTableKey("main", "timer", true, GameTimerUpdate);
     SubscribeToNetTableKey("main", "gameInfo", true, GameInfoChanged);
 
     UpdateUI();

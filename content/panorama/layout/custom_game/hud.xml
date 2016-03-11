@@ -42,15 +42,6 @@
                 <Panel class="AbilityPanel" hittest="false" id="AbilityPanel">
                 </Panel>
             </Panel>
-            <Panel id="TimerPanel">
-                <Label id="TimerTextLabel" class="UILabel"/>
-                <Panel id="TimerCircleOuter">
-                    <Panel id="TimerCircle">
-                        <Panel id="TimerInside"/>
-                    </Panel>
-                    <Label id="TimerValueLabel" class="UILabel"/>
-                </Panel>
-            </Panel>
         </Panel>
     </Panel>
 </root>

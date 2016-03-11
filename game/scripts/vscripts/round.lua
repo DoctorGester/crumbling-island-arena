@@ -29,69 +29,6 @@ function Round:constructor(level, players, gameItems, availableHeroes)
     self.Players = players
     self.GameItems = gameItems
     self.AvailableHeroes = availableHeroes
-
-    self.SpawnPoints = {}
-
-    for i = 0, 3 do
-        table.insert(self.SpawnPoints, "spawn"..i)
-    end
-end
-
-function Round:CreateStages()
-    self.Stages = {}
-
-    -- TODO remove corpses if out of the map when layer changes
-    table.insert(self.Stages, Stage("StageIslandFirst", FIRST_CRUMBLE_TIME * 10,
-        function()
-            self.Level:SwapLayers("InfoLayer1", "InfoLayer2")
-            self.Level:EnableObstructors(Entities:FindAllByName(SECOND_STAGE_OBSTRUCTOR), true)
-        end,
-
-        function(stage)
-            if stage.remaining == 50 then
-                EmitAnnouncerSound("announcer_ann_custom_timer_sec_05")
-            end
-
-            if stage.remaining == 100 then
-                EmitAnnouncerSound("announcer_ann_custom_weather_alert_19") -- Earthquake
-            end
-        end
-    ))
-
-    table.insert(self.Stages, Stage("StageIslandSecond", SECOND_CRUMBLE_TIME * 10,
-        function()
-            self.Level:SwapLayers("InfoLayer2", "InfoLayer3")
-            self.Level:EnableObstructors(Entities:FindAllByName(THIRD_STAGE_OBSTRUCTOR), true)
-        end,
-
-        function(stage)
-            if stage.remaining == 50 then
-                EmitAnnouncerSound("announcer_ann_custom_timer_sec_05")
-            end
-
-            if stage.remaining == 100 then
-                EmitAnnouncerSound("announcer_ann_custom_weather_alert_23") -- Landslide
-            end
-        end
-    ))
-
-    table.insert(self.Stages, Stage("StageSuddenDeath", SUDDEN_DEATH_TIME * 10))
-
-    table.insert(self.Stages, Stage("StageFinal", -1, 
-        function()
-            EmitAnnouncerSound("announcer_ann_custom_sudden_death")
-        end,
-
-        function(stage)
-            if stage.remaining % 10 == 0 then
-                for _, player in pairs(self.Players) do
-                    player.hero:Damage()
-                end
-
-                self:CheckEndConditions()
-            end
-        end
-    ))
 end
 
 function Round:GetAllHeroes()
@@ -146,32 +83,6 @@ function Round:EndRound()
     end)
 end
 
-function Round:Update()
-    local stage = self.Stages[self.Stage]
-
-    if stage.duration == -1 and stage.remaining == -1 and stage.callback then
-        stage.callback()
-    end
-
-    stage.remaining = stage.remaining - 1
-
-    if stage.update then
-        stage.update(stage)
-    end
-
-    self:UpdateTimer()
-
-    if stage.remaining == 0 then
-        if stage.callback then
-            stage.callback()
-        end
-
-        if stage.duration ~= -1 then
-            self.Stage = self.Stage + 1
-        end
-    end
-end
-
 function Round:UpdateFalling()
     local someoneDied = false
 
@@ -182,9 +93,9 @@ function Round:UpdateFalling()
             hero:Update()
 
             if not hero.falling then
-                if self.Level:TestOutOfMap(hero, self.Stage) then
-                    hero:StartFalling()
-                end
+                --if self.Level:TestOutOfMap(hero, self.Stage) then
+                    --hero:StartFalling()
+                --end
             else
                 local result = hero:UpdateFalling()
 
@@ -218,7 +129,14 @@ end
 
 function Round:CreateHeroes()
     print("Creating heroes")
-    Shuffle(self.SpawnPoints)
+    local spawnPoints = {}
+
+    for i = 0, 9 do
+        local a = i * math.pi / 10
+        table.insert(spawnPoints, Vector(math.cos(a), math.sin(a), 0) * 1200)
+    end
+
+    Shuffle(spawnPoints)
 
     local index = 1
 
@@ -226,8 +144,6 @@ function Round:CreateHeroes()
         local oldHero = player.hero
 
         if player:IsConnected() then
-            local spawnIndex = index
-            
             local hero = self:LoadHeroClass(player.selectedHero)
             local unit = CreateUnitByName(player.selectedHero, Vector(0, 0, 0), true, nil, nil, player.team)
             hero:SetUnit(unit)
@@ -240,9 +156,7 @@ function Round:CreateHeroes()
             local ultimate = self.AvailableHeroes[hero:GetName()].ultimate
             hero:Setup()
             hero:SetOwner(player)
-
-            --local spawnPoint = Entities:FindAllByName(self.SpawnPoints[spawnIndex])[1]
-            --hero:SetPos(spawnPoint:GetAbsOrigin())
+            hero:SetPos(spawnPoints[index])
 
             unit:FindAbilityByName(ultimate):StartCooldown(ULTS_TIME)
 
@@ -259,10 +173,6 @@ function Round:CreateHeroes()
             end
         end
     end
-end
-
-function Round:UpdateTimer()
-    CustomNetTables:SetTableValue("main", "timer", self.Stages[self.Stage]);
 end
 
 function Round:Reset()
@@ -294,7 +204,4 @@ function Round:Start(callback)
     self.Stage = 1
     self.Callback = callback
     self.Ended = false
-
-    self:CreateStages()
-    self:UpdateTimer()
 end
