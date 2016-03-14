@@ -119,6 +119,10 @@ function Spells:ProjectileDamage(projectile, target)
     GameRules.GameMode.Round:CheckEndConditions()
 end
 
+function Spells:GroundDamage(point, radius)
+    GameRules.GameMode.Level:DamageGroundInRadius(point, radius)
+end
+
 function Spells:ProjectileDestroyEffect(owner, pos)
     ImmediateEffectPoint("particles/ui/ui_generic_treasure_impact.vpcf", PATTACH_ABSORIGIN, owner, pos)
     local deny = ImmediateEffectPoint("particles/msg_fx/msg_deny.vpcf", PATTACH_CUSTOMORIGIN, owner, pos)

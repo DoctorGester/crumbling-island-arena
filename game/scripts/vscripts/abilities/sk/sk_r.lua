@@ -12,6 +12,7 @@ function sk_r:Pulse()
     local hero = self:GetCaster().hero
     local index = ImmediateEffect("particles/units/heroes/hero_sandking/sandking_epicenter.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero)
     Spells:AreaDamage(hero, hero:GetPos(), 500)
+    Spells:GroundDamage(hero:GetPos(), 500)
     GridNav:DestroyTreesAroundPoint(hero:GetPos(), 500, true)
     hero:EmitSound("Arena.SK.TickR")
 

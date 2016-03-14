@@ -76,7 +76,8 @@ function EarthSpiritRemnant:EarthCollision()
             end
         end
     )
-
+    Spells:GroundDamage(pos, 256)
+    
     EmitSoundOnLocationWithCaster(pos, "Arena.Earth.CastQ", nil)
 end
 

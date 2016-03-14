@@ -165,12 +165,13 @@ function Hero:Update()
         endpos = self:GetPos() - Vector(0, 0, 128),
         min = self.unit:GetBoundingMins(),
         max = self.unit:GetBoundingMaxs(),
-        ignore = self.unit
+        ignore = self.unit,
+        mask = 67108864 -- CONTENTS_DEBRIS
     }
 
     TraceHull(trace)
 
-    if not trace.hit then
+    if trace.hit and trace.enthit:GetClassname() == "worldspawn" then
         self:StartFalling()
     end
 end

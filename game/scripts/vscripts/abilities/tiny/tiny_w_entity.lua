@@ -50,6 +50,7 @@ function TinyW:Update()
         )
 
         Spells:AreaDamage(self.owner, effectPosition, self.effectRadius)
+        Spells:GroundDamage(effectPosition, self.effectRadius)
 
         self.owner:EmitSound("Arena.Tiny.HitW")
 

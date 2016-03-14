@@ -1,7 +1,7 @@
 SECOND_STAGE_OBSTRUCTOR = "Layer2Obstructor"
 THIRD_STAGE_OBSTRUCTOR = "Layer3Obstructor"
 
-STARTING_DISTANCE = 2200
+STARTING_DISTANCE = 2300
 FINISHING_DISTANCE = 900
 
 if Level == nil then
@@ -11,18 +11,25 @@ end
 function Level:constructor()
     self.parts = Entities:FindAllByName("map_part")
     self.distance = STARTING_DISTANCE
+    self.shakingParts = {}
     self.fallingParts = {}
     self.indexedParts = {}
-    self.navIndex = {}
-    self.psoIndex = {}
+    self.particles = {}
     self.running = true
 
+    self:BuildIndex()
+end
+
+function Level:BuildIndex()
     for _, part in ipairs(self.parts) do
         local position = part:GetAbsOrigin()
         part.x = position.x
         part.y = position.y
         part.z = position.z
         part.velocity = 0
+        part.angles = part:GetAnglesAsVector()
+        part.angleVel = Vector(0, 0, 0)
+        part.health = 100
 
         local id = math.floor(position:Length2D())
         local index = self.indexedParts[id]
@@ -34,143 +41,104 @@ function Level:constructor()
 
         table.insert(index, part)
     end
-
-    self:BuildPolygonIndex()
 end
 
-function Level:BuildPolygonIndex()
-    local worldMin = Vector(GetWorldMinX(), GetWorldMinY(), 0)
-    local worldMax = Vector(GetWorldMaxX(), GetWorldMaxY(), 0)
-    local x1 = GridNav:WorldToGridPosX(worldMin.x)
-    local x2 = GridNav:WorldToGridPosX(worldMax.x)
-    local y1 = GridNav:WorldToGridPosX(worldMin.y)
-    local y2 = GridNav:WorldToGridPosX(worldMax.y)
+function Level:DamageGroundInRadius(point, radius)
+    -- TODO index points with cluster grid
+    for _, part in ipairs(self.parts) do
+        if part.velocity == 0 and part.health > 0 then
+            local distance = (part:GetAbsOrigin() - point):Length2D()
 
-    local gridIndex = {}
+            if distance <= radius then
+                local proportion = 1 - distance / radius
 
-    for x = x1 + 1, x2 - 1 do
-        for y = y1 + 1, y2 - 1 do
-            local worldX = GridNav:GridPosToWorldCenterX(x)
-            local worldY = GridNav:GridPosToWorldCenterY(y)
-
-            local trace = {
-                startpos = Vector(worldX, worldY, 127),
-                endpos = Vector(worldX, worldY, 0)
-            }
-
-            TraceLine(trace)
-
-            if trace.hit then
-                local index = gridIndex[trace.enthit]
-                
-                if not index then
-                    index = {}
-                    gridIndex[trace.enthit] = index
-                end
-
-                table.insert(index, { x = x, y = y })
+                self:DamageGround(part, 60 * proportion)
             end
         end
     end
 
-    for ent, index in pairs(gridIndex) do
-        local minX = x2
-        local maxX = x1
-        local minY = y2
-        local maxY = y1
+    local particle = ParticleManager:CreateParticle("particles/cracks.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity())
+    ParticleManager:SetParticleControl(particle, 0, point)
+    ParticleManager:SetParticleControl(particle, 1, Vector(radius, 0, 0))
 
-        local result = {}
+    table.insert(self.particles, particle)
+end
 
-        for _, position in ipairs(index) do
-            minX = math.min(minX, position.x)
-            maxX = math.max(maxX, position.x)
-            minY = math.min(minY, position.y)
-            maxY = math.max(maxY, position.y)
-        end
+function Level:DamageGround(part, damage)
+    part.health = part.health - damage
 
-        for x = minX, maxX, 2 do
-            for y = minY, maxY, 2 do
-                local worldX = GridNav:GridPosToWorldCenterX(x)
-                local worldY = GridNav:GridPosToWorldCenterY(y)
-                local params = { origin = Vector(worldX, worldY, 0) }
+    if part.health <= 50 then
+        table.insert(self.shakingParts, part)
+    end
 
-                table.insert(result, params)
-            end
-        end
-
-        self.navIndex[ent] = result
+    if part.health <= 0 then
+        self:LaunchPart(part)
     end
 end
 
 function Level:Reset()
     self.fallingParts = {}
+    self.shakingParts = {}
     self.distance = STARTING_DISTANCE
 
     for _, part in ipairs(self.parts) do
         part:SetAbsOrigin(Vector(part.x, part.y, 0))
+        part:SetAngles(Vector(0, 0, 0))
+        part.velocity = 0
+        part.health = 100
         part.z = 0
+        part.angles = Vector(0, 0, 0)
+        part.angleVel = Vector(0, 0, 0)
+    end
 
-        if self.psoIndex[part] then
-            for _, pso in ipairs(self.psoIndex[part]) do
-                pso:RemoveSelf()
-            end
-        end
+    for _, particle in ipairs(self.particles) do
+        ParticleManager:DestroyParticle(particle, false)
+        ParticleManager:ReleaseParticleIndex(0)
     end
 end
 
-function Level:EnableObstructors(obstructors, enable)
-    for _, obstructor in pairs(obstructors) do
-        obstructor:SetEnabled(enable, true)
-    end
-end
-
-function Level:BlockPart(part)
-    local nav = self.navIndex[part]
-
-    if nav then
-        local result = {}
-
-        for _, data in ipairs(nav) do
-            --local pso = SpawnEntityFromTableSynchronous("point_simple_obstruction", data)
-            
-            --table.insert(result, pso)
-        end
-
-        self.psoIndex[part] = result
-    end
-end
-
-function Level:Unblock(distance)
-    local index = self.indexedParts[distance]
-
-    if index then
-        for _, part in ipairs(index) do
-            if self.psoIndex[part] then
-                for _, pso in ipairs(self.psoIndex[part]) do
-                    pso:RemoveSelf()
-                end
-            end
-        end
-    end
+function Level:LaunchPart(part)
+    table.insert(self.fallingParts, part)
+    part.angleVel = Vector(RandomFloat(0, 2), RandomFloat(0, 2), 0)
 end
 
 function Level:Update()
     local currentIndex = self.indexedParts[self.distance]
 
     if currentIndex and self.running then
-        self:Unblock(self.distance + 64)
-
         for _, part in ipairs(currentIndex) do
-            table.insert(self.fallingParts, part)
+            self:LaunchPart(part)
+        end
+    end
 
-            self:BlockPart(part)
+    if self.distance - 64 > FINISHING_DISTANCE then
+        local shakingIndex = self.indexedParts[self.distance - 64]
+
+        if shakingIndex then
+            for _, part in ipairs(shakingIndex) do
+                table.insert(self.shakingParts, part)
+            end
+        end
+    end
+
+    for _, part in ipairs(self.shakingParts) do
+        if part.velocity == 0 then
+            local amplitude = 0.5
+
+            if part.health ~= 100 then
+                amplitude = 1 - part.health / 50
+            end
+
+            part:SetAngles(RandomFloat(-amplitude, amplitude), RandomFloat(-amplitude, amplitude), RandomFloat(-amplitude, amplitude))
         end
     end
 
     for i = #self.fallingParts, 1, -1 do
         local part = self.fallingParts[i]
-        part.velocity = part.velocity + 8
+        part.velocity = part.velocity + 6
         part.z = part.z - part.velocity
+        part.angles = part.angles + part.angleVel
+        part:SetAngles(part.angles.x, part.angles.y, part.angles.z)
         part:SetAbsOrigin(Vector(part.x, part.y, part.z))
 
         if part.z <= -4096 then

@@ -75,6 +75,7 @@ function sk_q:OnSpellStart()
         Timers:CreateTimer(0.3,
             function()
                 local target = casterPos + hero:GetFacing() * 350
+                Spells:GroundDamage(casterPos, 256)
                 self:GroundEffect(target)
                 StartAnimation(self:GetCaster(), { duration = 0.5, activity = ACT_DOTA_SAND_KING_BURROW_OUT, translate = "sandking_rubyspire_burrowstrike"})
                 GridNav:DestroyTreesAroundPoint(target, 128, true)

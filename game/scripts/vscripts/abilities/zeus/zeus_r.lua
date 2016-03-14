@@ -34,6 +34,8 @@ function zeus_r:OnSpellStart()
                 end
             )
 
+            Spells:GroundDamage(target, 256)
+
             EmitSoundOnLocationWithCaster(target, "Hero_Zuus.GodsWrath.Target", nil)
         end
     )

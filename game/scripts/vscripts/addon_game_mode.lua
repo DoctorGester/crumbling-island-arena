@@ -32,6 +32,7 @@ if GameMode == nil then
 end
 
 function Precache(context)
+    PrecacheResource("particle", "particles/cracks.vpcf", context)
     PrecacheResource("particle", "particles/targeting/line.vpcf", context)
     PrecacheResource("particle", "particles/targeting/range.vpcf", context)
     PrecacheResource("particle", "particles/targeting/global_target.vpcf", context)

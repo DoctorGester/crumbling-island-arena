@@ -91,6 +91,8 @@ function TinyQ:Update()
                     self.secondParticle = ParticleManager:CreateParticle("particles/tiny_q/tiny_q_ground.vpcf", PATTACH_ABSORIGIN_FOLLOW , self.unit)
                     self.hero:EmitSound("Arena.Tiny.LandQ", pos)
                     self:RemoveSmoke()
+
+                    Spells:GroundDamage(pos, 128)
                 end
             end
 
@@ -119,7 +121,7 @@ function TinyQ:Update()
         end
     end
 
-    if self.ability:IsCooldownReady() or self.owner.destroyed then
+    if self.ability:IsCooldownReady() or self.hero.destroyed then
         self:Destroy()
     end
 end

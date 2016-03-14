@@ -24,6 +24,7 @@ function lc_q:OnSpellStart()
     )
 
     Spells:AreaDamage(hero, target, 200)
+    Spells:GroundDamage(target, 200)
     hero:EmitSound("Arena.LC.HitQ")
 end
 

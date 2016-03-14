@@ -176,17 +176,6 @@ function Round:CreateHeroes()
 end
 
 function Round:Reset()
-    if self.Stage == 2 then
-        self.Level:SwapLayers("InfoLayer2", "InfoLayer1")
-    end
-
-    if self.Stage >= 3 then
-        self.Level:SwapLayers("InfoLayer3", "InfoLayer1")
-    end
-
-    self.Stage = 1
-    self.Level:EnableObstructors(Entities:FindAllByClassname("point_simple_obstruction"), false)
-
     GridNav:RegrowAllTrees()
 
     for _, projectile in pairs(Projectiles) do
