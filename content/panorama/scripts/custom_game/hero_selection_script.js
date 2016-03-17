@@ -244,7 +244,7 @@ function OnTimerTick(args){
     }
 }
 
-function GameInfoUpdated(data){
+function GameStateChanged(data){
     var bg = $("#HeroSelectionBackground");
 
     if (data.state == GAME_STATE_HERO_SELECTION){
@@ -348,6 +348,6 @@ function HeroSelectionUpdated(data){
 
     SubscribeToNetTableKey("main", "heroes", true, HeroesUpdated);
     SubscribeToNetTableKey("main", "players", true, PlayersUpdated);
-    SubscribeToNetTableKey("main", "gameInfo", true, GameInfoUpdated);
+    SubscribeToNetTableKey("main", "gameState", true, GameStateChanged);
     SubscribeToNetTableKey("main", "selectedHeroes", true, HeroSelectionUpdated)
 })();

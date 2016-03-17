@@ -27,7 +27,7 @@ function OnHealHealth(eventSourceIndex, args)
 end
 
 function OnCheckEnd()
-    mode.Round:CheckEndConditions()
+    mode.round:CheckEndConditions()
 end
 
 function OnHealDebugHero()
@@ -121,28 +121,25 @@ function Debug:CheckAndEnableDebug(gameMode)
 
     mode = gameMode
 
-    GameRules.GameMode.HeroSelection.SelectionTimerTime = 20000
-    GameRules.GameMode.HeroSelection.PreGameTime = 0
+    GameRules.GameMode.heroSelection.SelectionTimerTime = 20000
+    GameRules.GameMode.heroSelection.PreGameTime = 0
 
-    InjectHero(GameRules.GameMode.Round)
-    InjectEndCheck(GameRules.GameMode.Round)
-end
+    --InjectHero(GameRules.GameMode.round)
+    --InjectEndCheck(GameRules.GameMode.round)
 
-if Convars:GetInt("sv_cheats") == 1 then
-    CustomGameEventManager:RegisterListener("debug_take_damage", OnTakeDamage)
-    CustomGameEventManager:RegisterListener("debug_heal_health", OnHealHealth)
-    CustomGameEventManager:RegisterListener("debug_heal_debug_hero", OnHealDebugHero)
-    CustomGameEventManager:RegisterListener("debug_switch_end_check", function() enableEndCheck = not enableEndCheck end)
-    CustomGameEventManager:RegisterListener("debug_switch_debug_display", function() displayDebug = not displayDebug end)
-    CustomGameEventManager:RegisterListener("debug_check_end", OnCheckEnd)
-    CustomGameEventManager:RegisterListener("debug_reset_level", OnResetLevel)
+    if Convars:GetInt("sv_cheats") == 1 then
+        CustomGameEventManager:RegisterListener("debug_take_damage", OnTakeDamage)
+        CustomGameEventManager:RegisterListener("debug_heal_health", OnHealHealth)
+        CustomGameEventManager:RegisterListener("debug_heal_debug_hero", OnHealDebugHero)
+        CustomGameEventManager:RegisterListener("debug_switch_end_check", function() enableEndCheck = not enableEndCheck end)
+        CustomGameEventManager:RegisterListener("debug_switch_debug_display", function() displayDebug = not displayDebug end)
+        CustomGameEventManager:RegisterListener("debug_check_end", OnCheckEnd)
+        CustomGameEventManager:RegisterListener("debug_reset_level", OnResetLevel)
 
-    InjectProjectileDebug()
-    InjectAreaDebug()
-    InjectFreeSelection()
+        --InjectProjectileDebug()
+        --InjectAreaDebug()
+        --InjectFreeSelection()
 
-    FIRST_CRUMBLE_TIME = 70000
-    SECOND_CRUMBLE_TIME = 70000
-    SUDDEN_DEATH_TIME = 70000
-    ULTS_TIME = 1
+        ULTS_TIME = 1
+    end
 end

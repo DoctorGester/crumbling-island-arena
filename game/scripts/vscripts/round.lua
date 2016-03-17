@@ -1,40 +1,26 @@
 GRACE_TIME = 1
-FIRST_CRUMBLE_TIME = 50
-SECOND_CRUMBLE_TIME = 30
-SUDDEN_DEATH_TIME = 40
 ULTS_TIME = 55
 
 if Round == nil then
     Round = class({})
 end
 
-function Stage(label, duration, callback, update)
-    local self = {}
-
-    self.label = label
-    self.duration = duration
-    self.remaining = duration
+function Round:constructor(players, availableHeroes, callback)
+    self.winner = nil
+    self.ended = false
     self.callback = callback
-    self.update = update
-    
-    return self
-end
 
-function Round:constructor(level, players, gameItems, availableHeroes)
-    self.Stage = 1
-    self.Winner = nil
-    self.Ended = false
+    self.players = players
+    self.availableHeroes = availableHeroes
 
-    self.Level = level
-    self.Players = players
-    self.GameItems = gameItems
-    self.AvailableHeroes = availableHeroes
+    self.entities = {}
+    self.projectiles = {}
 end
 
 function Round:GetAllHeroes()
     local result = {}
 
-    for _, player in pairs(self.Players) do
+    for _, player in pairs(self.players) do
         if player.hero then
             table.insert(result, player.hero)
         end
@@ -47,11 +33,11 @@ function Round:CheckEndConditions()
     local amountAlive = 0
     local lastAlive = nil
 
-    if self.Ended then
+    if self.ended then
         return
     end
 
-    for _, player in pairs(self.Players) do
+    for _, player in pairs(self.players) do
         if player.hero:Alive() then
             amountAlive = amountAlive + 1
             lastAlive = player
@@ -59,41 +45,44 @@ function Round:CheckEndConditions()
     end
 
     if amountAlive == 0 then
-        self.Winner = nil
+        self.winner = nil
         self:EndRound()
     end
 
     if amountAlive == 1 then
-        self.Winner = lastAlive
+        self.winner = lastAlive
         self:EndRound()
     end
 end
 
 function Round:EndRound()
-    for _, player in pairs(self.Players) do
+    for _, player in pairs(self.players) do
         player.hero.protected = true
     end
 
-    self.Ended = true
+    self.ended = true
 
     EmitAnnouncerSound("announcer_ann_custom_round_complete")
 
     Timers:CreateTimer(GRACE_TIME, function()
-        self.Callback()
+        self:callback()
     end)
+end
+
+function Round:Update()
 end
 
 function Round:UpdateFalling()
     local someoneDied = false
 
-    for _, player in pairs(self.Players) do
+    for _, player in pairs(self.players) do
         local hero = player.hero
 
         if hero then
             hero:Update()
 
             if not hero.falling then
-                --if self.Level:TestOutOfMap(hero, self.Stage) then
+                --if self.level:TestOutOfMap(hero, self.Stage) then
                     --hero:StartFalling()
                 --end
             else
@@ -112,7 +101,7 @@ function Round:UpdateFalling()
 end
 
 function Round:LoadHeroClass(name)
-    local classValue = self.AvailableHeroes[name].class
+    local classValue = self.availableHeroes[name].class
 
     if classValue then
         print("Loading class "..classValue)
@@ -140,7 +129,7 @@ function Round:CreateHeroes()
 
     local index = 1
 
-    for i, player in pairs(self.Players) do
+    for i, player in pairs(self.players) do
         local oldHero = player.hero
 
         if player:IsConnected() then
@@ -152,13 +141,14 @@ function Round:CreateHeroes()
                 oldHero:Delete()
             end
 
-            --LoadDefaultHeroItems(player.hero, self.GameItems)
-            local ultimate = self.AvailableHeroes[hero:GetName()].ultimate
+            local ultimate = self.availableHeroes[hero:GetName()].ultimate
             hero:Setup()
             hero:SetOwner(player)
             hero:SetPos(spawnPoints[index])
 
             unit:FindAbilityByName(ultimate):StartCooldown(ULTS_TIME)
+
+            Spells:AddDynamicEntity(hero)
 
             MoveCameraToUnit(player.id, unit)
 
@@ -175,22 +165,18 @@ function Round:CreateHeroes()
     end
 end
 
-function Round:Reset()
-    GridNav:RegrowAllTrees()
-
+function Round:Destroy()
     for _, projectile in pairs(Projectiles) do
         projectile:Destroy()
     end
 
-    for _, player in pairs(self.Players) do
+    for _, player in pairs(self.players) do
         if player.hero then
             player.hero:Hide()
         end
     end
-end
 
-function Round:Start(callback)
-    self.Stage = 1
-    self.Callback = callback
-    self.Ended = false
+    for _, entity in pairs(DynamicEntities) do
+        entity:Destroy()
+    end
 end

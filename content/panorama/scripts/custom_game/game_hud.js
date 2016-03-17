@@ -146,7 +146,7 @@ function DebugUpdate(data){
     }
 }
 
-function GameInfoChanged(data){
+function GameStateChanged(data){
     if (data.state == GAME_STATE_ROUND_IN_PROGRESS){
         $("#HeroPanel").RemoveClass("AnimationHeroHudHidden");
         $("#HeroDetails").RemoveClass("AnimationHeroDetailsHidden");
@@ -169,7 +169,7 @@ SetupUI();
 (function () {
     SubscribeToNetTableKey("main", "debug", true, DebugUpdate)
     SubscribeToNetTableKey("main", "heroes", true, HeroesUpdate);
-    SubscribeToNetTableKey("main", "gameInfo", true, GameInfoChanged);
+    SubscribeToNetTableKey("main", "gameState", true, GameStateChanged);
 
     UpdateUI();
 

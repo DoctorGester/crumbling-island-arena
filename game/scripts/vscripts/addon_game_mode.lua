@@ -269,7 +269,20 @@ function GameMode:OnDamageDealt(hero, source)
     end
 end
 
-function GameMode:OnRoundEnd()
+function GameMode:OnRoundEnd(round)
+    local winner = round.Winner
+
+    playerData = {}
+
+    if winner ~= nil then
+        playerData.id = winner.id
+        playerData.color = self.TeamColors[PlayerResource:GetTeam(winner.id)]
+    else
+        playerData.id = -1
+    end
+
+    CustomNetTables:SetTableValue("main", "roundState", { roundWinner = playerData })
+
     self:SetState(STATE_ROUND_ENDED)
 
     for _, player in pairs(self.Players) do
@@ -277,21 +290,24 @@ function GameMode:OnRoundEnd()
     end
 
     Timers:CreateTimer(ROUND_ENDING_TIME, function ()
-        if self.Round.Winner then
-            self.Round.Winner.score = self.Round.Winner.score + 3
+        if winner then
+            winner.score = winner.score + 3
             self:UpdatePlayerTable()
         end
 
-        self.Round:Reset()
+        round:Destroy()
+        self.round = nil
+
         self:SetState(STATE_HERO_SELECTION)
-        self.HeroSelection:Start(function() self:OnHeroSelectionEnd() end)
+        self.heroSelection:Start(function() self:OnHeroSelectionEnd() end)
+        self.level:Reset()
         end
     )
 end
 
 function GameMode:OnHeroSelectionEnd()
-    self.Round:CreateHeroes()
-    self.Round:Start(function() self:OnRoundEnd() end)
+    self.round = Round(self.Players, self.AvailableHeroes, function(round) self:OnRoundEnd(round) end)
+    self.round:CreateHeroes()
     self:SetState(STATE_ROUND_IN_PROGRESS)
 
     Timers:CreateTimer(1.5,
@@ -329,23 +345,9 @@ function GameMode:UpdateAvailableHeroesTable()
 end
 
 function GameMode:SetState(state)
-    local winner = nil
-
-    if self.Round ~= nil then
-        winner = self.Round.Winner
-    end
-
-    playerData = {}
-
-    if winner ~= nil then
-        playerData.id = winner.id
-        playerData.color = self.TeamColors[PlayerResource:GetTeam(winner.id)]
-    else
-        playerData.id = -1
-    end
-
     self.State = state
-    CustomNetTables:SetTableValue("main", "gameInfo", { state = state, roundWinner = playerData })
+
+    CustomNetTables:SetTableValue("main", "gameState", { state = state })
 end
 
 function GameMode:LoadCustomHeroes()
@@ -401,24 +403,22 @@ function GameMode:OnGameInProgress()
     self:UpdatePlayerTable()
     self.GameItems = nil--LoadKeyValues("scripts/items/items_game.txt").items
 
-    self.Level = Level()
-    self.HeroSelection = HeroSelection(self.Players, self.AvailableHeroes, self.TeamColors)
-    self.Round = Round(self.Level, self.Players, self.GameItems, self.AvailableHeroes)
-    self.Round:Reset()
+    self.level = Level()
+    self.heroSelection = HeroSelection(self.Players, self.AvailableHeroes, self.TeamColors)
 
     self:RegisterThinker(1,
         function()
-            if self.State == STATE_HERO_SELECTION and self.HeroSelection then
-                self.HeroSelection:Update()
+            if self.State == STATE_HERO_SELECTION and self.heroSelection then
+                self.heroSelection:Update()
             end
         end
     )
 
     self:RegisterThinker(0.01,
         function()
-            if self.State == STATE_ROUND_IN_PROGRESS then
-                self.Round:UpdateFalling()
-                self.Level:Update()
+            if self.State == STATE_ROUND_IN_PROGRESS and self.round then
+                self.round:Update()
+                self.level:Update()
             end
         end
     )
@@ -426,7 +426,7 @@ function GameMode:OnGameInProgress()
     Debug():CheckAndEnableDebug(self)
 
     self:SetState(STATE_HERO_SELECTION)
-    self.HeroSelection:Start(function() self:OnHeroSelectionEnd() end)
+    self.heroSelection:Start(function() self:OnHeroSelectionEnd() end)
 end
 
 function GameMode:OnPlayerPickHero(keys)

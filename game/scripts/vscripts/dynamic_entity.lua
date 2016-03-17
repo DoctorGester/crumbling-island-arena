@@ -5,6 +5,7 @@ function DynamicEntity:constructor()
     self.position = Vector(0, 0, 0)
     self.destroyed = false
     self.invulnerable = false
+    self.inAir = false
 end
 
 function DynamicEntity:GetPos()
@@ -28,7 +29,7 @@ function DynamicEntity:EmitSound(sound)
 end
 
 function DynamicEntity:Alive()
-    return true
+    return not self.destroyed
 end
 
 function DynamicEntity:SetInvulnerable(value)

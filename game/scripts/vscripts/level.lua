@@ -95,6 +95,8 @@ function Level:Reset()
         ParticleManager:DestroyParticle(particle, false)
         ParticleManager:ReleaseParticleIndex(0)
     end
+
+    GridNav:RegrowAllTrees()
 end
 
 function Level:LaunchPart(part)
@@ -129,7 +131,11 @@ function Level:Update()
                 amplitude = 1 - part.health / 50
             end
 
-            part:SetAngles(RandomFloat(-amplitude, amplitude), RandomFloat(-amplitude, amplitude), RandomFloat(-amplitude, amplitude))
+            local yaw = RandomFloat(-amplitude, amplitude)
+            local pitch = RandomFloat(-amplitude, amplitude)
+            local roll = RandomFloat(-amplitude, amplitude)
+
+            part:SetAngles(yaw, pitch, roll)
         end
     end
 
