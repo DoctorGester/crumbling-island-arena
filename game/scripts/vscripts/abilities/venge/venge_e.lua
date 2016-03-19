@@ -10,7 +10,7 @@ function venge_e:OnSpellStart()
         direction = hero:GetFacing()
     end
 
-    local projectile = Projectile(hero.round, {
+    Projectile(hero.round, {
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 128),
         to = target + Vector(0, 0, 128),
@@ -29,16 +29,20 @@ function venge_e:OnSpellStart()
             ParticleManager:SetParticleControl(effect, 1, hero:GetPos())
             ParticleManager:SetParticleControl(effect, 0, target:GetPos())
 
-            hero:SetPos(target:GetPos())
-            target:SetPos(pos)
+            hero:FindClearSpace(target:GetPos(), false)
+
+            if target.FindClearSpace then
+                target:FindClearSpace(pos, false)
+            else
+                target:SetPos(pos)
+            end
+            
             target:EmitSound("Arena.Venge.HitE")
         end,
         hitCondition = function(projectile, target)
             return target ~= hero
         end
-    })
-
-    hero.round.spells:AddDynamicEntity(projectile)
+    }):Activate()
 
     hero:EmitSound("Arena.Venge.CastE")
 end

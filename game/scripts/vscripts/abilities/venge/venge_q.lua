@@ -9,7 +9,7 @@ function venge_q:OnSpellStart()
         direction = hero:GetFacing()
     end
 
-    local projectile = Projectile(hero.round, {
+    Projectile(hero.round, {
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 128),
         to = target + Vector(0, 0, 128),
@@ -18,8 +18,7 @@ function venge_q:OnSpellStart()
         distance = 950,
         hitModifier = { name = "modifier_stunned", duration = 1.0, ability = self },
         hitSound = "Arena.Venge.HitQ"
-    })
+    }):Activate()
 
-    hero.round.spells:AddDynamicEntity(projectile)
     hero:EmitSound("Arena.Venge.CastQ")
 end

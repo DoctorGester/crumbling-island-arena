@@ -5,9 +5,6 @@ Spells = Spells or class({})
 function Spells:constructor()
     self.entities = {}
     self.dashes = {}
-
-    self.worldMin = Vector(GetWorldMinX(), GetWorldMinY(), 0)
-    self.worldMax = Vector(GetWorldMaxX(), GetWorldMaxY(), 0)
 end
 
 function Spells:Update()
@@ -45,7 +42,7 @@ function Spells:Update()
     for _, first in ipairs(self.entities) do
         if first:Alive() and first.collisionType == COLLISION_TYPE_INFLICTOR then
             for _, second in ipairs(self:GetValidTargets()) do
-                if first ~= second and second.collisionType ~= COLLISION_TYPE_NONE and first:CollidesWith(second) then
+                if first ~= second and second.collisionType ~= COLLISION_TYPE_NONE and first:CollidesWith(second) and second:CollidesWith(first) then
                     local radSum = first:GetRad() + second:GetRad()
 
                     if (first:GetPos() - second:GetPos()):Length2D() <= radSum then
@@ -73,6 +70,18 @@ function Spells:GetValidTargets()
 
     for _, ent in pairs(self.entities) do
         if not ent.invulnerable and ent:Alive() then
+            table.insert(result, ent)
+        end
+    end
+
+    return result
+end
+
+function Spells:GetHeroTargets()
+    local result = {}
+
+    for _, ent in pairs(self:GetValidTargets()) do
+        if ent:__instanceof__(Hero) then
             table.insert(result, ent)
         end
     end

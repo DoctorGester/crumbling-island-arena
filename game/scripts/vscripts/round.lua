@@ -126,16 +126,10 @@ function Round:CreateHeroes()
     local index = 1
 
     for i, player in pairs(self.players) do
-        local oldHero = player.hero
-
         if player:IsConnected() then
             local hero = self:LoadHeroClass(player.selectedHero)
             local unit = CreateUnitByName(player.selectedHero, Vector(0, 0, 0), true, nil, nil, player.team)
             hero:SetUnit(unit)
-
-            if oldHero then
-                oldHero:Delete()
-            end
 
             local ultimate = self.availableHeroes[hero:GetName()].ultimate
             hero:Setup()
@@ -144,7 +138,7 @@ function Round:CreateHeroes()
 
             unit:FindAbilityByName(ultimate):StartCooldown(ULTS_TIME)
 
-            self.spells:AddDynamicEntity(hero)
+            hero:Activate()
 
             MoveCameraToUnit(player.id, unit)
 
@@ -153,26 +147,20 @@ function Round:CreateHeroes()
             index = index + 1
         else
             player.hero = nil
-            
-            if oldHero then
-                oldHero:Delete()
-            end
         end
     end
 end
 
 function Round:Destroy()
-    for _, projectile in pairs(Projectiles) do
-        projectile:Destroy()
-    end
-
     for _, player in pairs(self.players) do
         if player.hero then
             player.hero:Hide()
         end
     end
 
-    for _, entity in pairs(DynamicEntities) do
+    for _, entity in pairs(self.spells.entities) do
         entity:Destroy()
     end
+
+    self:Update()
 end

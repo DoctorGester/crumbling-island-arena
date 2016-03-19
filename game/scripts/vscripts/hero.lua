@@ -133,7 +133,7 @@ function Hero:RemoveModifier(name)
     self.unit:RemoveModifierByName(name)
 end
 
-function Hero:Delete()
+function Hero:Remove()
     self.unit:RemoveSelf()
     self.destroyed = true
 end

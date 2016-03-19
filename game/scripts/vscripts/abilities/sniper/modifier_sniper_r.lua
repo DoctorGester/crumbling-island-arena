@@ -17,7 +17,7 @@ function modifier_sniper_r:CheckState()
         local hero = self:GetParent().hero
         local invisible = true
 
-        for _, target in pairs(Spells:GetValidTargets()) do
+        for _, target in pairs(hero.round.spells:GetHeroTargets()) do
             local distance = (target:GetPos() - hero:GetPos()):Length2D()
 
             if target ~= hero and distance <= 400 then

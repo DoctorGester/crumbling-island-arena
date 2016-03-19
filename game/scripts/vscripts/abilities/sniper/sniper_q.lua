@@ -17,24 +17,22 @@ function sniper_q:OnSpellStart()
         direction = hero:GetFacing()
     end
 
-    local projectileData = {}
-    projectileData.owner = hero
-    projectileData.from = hero:GetPos() + Vector(0, 0, 64)
-    projectileData.to = target + Vector(0, 0, 64)
-    projectileData.velocity = 2000
-    projectileData.graphics = "particles/sniper_q/sniper_q.vpcf"
-    projectileData.distance = 15000
-    projectileData.empowered = false
-    projectileData.radius = 48
-    projectileData.heroBehaviour =
-        function(self, target)
-            Spells:ProjectileDamage(self, target)
-            target:EmitSound("Arena.Sniper.HitQ")
+    Projectile(hero.round, {
+        owner = hero,
+        from = hero:GetPos() + Vector(0, 0, 64),
+        to = target + Vector(0, 0, 64),
+        speed = 2000,
+        graphics = "particles/sniper_q/sniper_q.vpcf",
+        distance = 15000,
+        radius = 48,
+        hitSound = "Arena.Sniper.HitQ",
+        hitFunction = function(projectile, target)
             hero:StopSound("Arena.Sniper.FlyQ")
-            return true
+            target:Damage(projectile)
+            target.round:CheckEndConditions()
         end
+    }):Activate()
 
-    Spells:CreateProjectile(projectileData)
     hero:EmitSound("Arena.Sniper.CastQ")
     hero:EmitSound("Arena.Sniper.FlyQ")
 end

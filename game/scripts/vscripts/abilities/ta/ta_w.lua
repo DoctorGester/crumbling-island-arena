@@ -16,7 +16,7 @@ function ta_w:OnSpellStart()
     ParticleManager:SetParticleControl(effect, 0, hero:GetPos() + Vector(0, 0, 32))
     ParticleManager:SetParticleControl(effect, 1, pos + castDirection * 500 + Vector(0, 0, 32))
 
-    Spells:MultipleHeroesModifier(hero, self, "modifier_ta_w", { duration = 1.5 },
+    hero:MultipleHeroesModifier(self, "modifier_ta_w", { duration = 1.5 },
         function (source, heroTarget)
             local targetDirection = heroTarget:GetPos() - pos
             local distance = targetDirection:Length2D()

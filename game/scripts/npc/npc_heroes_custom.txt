@@ -221,7 +221,6 @@
 	"npc_dota_hero_sniper"
 	{
 		"override_hero"	"npc_dota_hero_sniper"
-		"Class" "heroes/sniper:Sniper"
 		"ArmorPhysical"	"0"
 		"MagicalResistance"	"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"

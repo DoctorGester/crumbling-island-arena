@@ -57,6 +57,10 @@ function DynamicEntity:FindModifier() end
 function DynamicEntity:AddNewModifier() end
 function DynamicEntity:RemoveModifier() end
 
+function DynamicEntity:Activate()
+    self.round.spells:AddDynamicEntity(self)
+end
+
 function DynamicEntity:MultipleTargetsDamage(condition)
     local hurt = false
 

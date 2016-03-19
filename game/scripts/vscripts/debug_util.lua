@@ -1,7 +1,7 @@
 Debug = Debug or {
     enableEndCheck = false,
     displayDebug = true,
-    debugHeroName = "npc_dota_hero_tiny",
+    debugHeroName = "npc_dota_hero_vengefulspirit",
     debugHero = nil
 }
 
@@ -9,15 +9,15 @@ function Debug:OnTestEverything()
 end
 
 function Debug:OnTakeDamage(eventSourceIndex, args)
-    mode.Players[args.PlayerID].hero:Damage()
+    GameRules.GameMode.Players[args.PlayerID].hero:Damage()
 end
 
 function Debug:OnHealHealth(eventSourceIndex, args)
-    mode.Players[args.PlayerID].hero:Heal()
+    GameRules.GameMode.Players[args.PlayerID].hero:Heal()
 end
 
 function Debug:OnCheckEnd()
-    mode.round:CheckEndConditions()
+    GameRules.GameMode.round:CheckEndConditions()
 end
 
 function Debug:OnHealDebugHero()
@@ -25,7 +25,7 @@ function Debug:OnHealDebugHero()
 end
 
 function Debug:OnResetLevel(eventSourceIndex, args)
-    mode.Level:Reset()
+    GameRules.GameMode.level:Reset()
 end
 
 function Debug:OnCreateTestHero()
