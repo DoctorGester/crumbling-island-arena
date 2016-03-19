@@ -1,41 +1,46 @@
-Debug = class({})
-
-DEBUG_HERO = "npc_dota_hero_tiny"
-
-if not mode then
-    mode = nil
-end
-
-if enableEndCheck == nil then
-    enableEndCheck = false
-end
-
-if displayDebug == nil then
-    displayDebug = true
-end
-
-if not debugHero then
+Debug = Debug or {
+    enableEndCheck = false,
+    displayDebug = true,
+    debugHeroName = "npc_dota_hero_tiny",
     debugHero = nil
+}
+
+function Debug:OnTestEverything()
 end
 
-function OnTakeDamage(eventSourceIndex, args)
+function Debug:OnTakeDamage(eventSourceIndex, args)
     mode.Players[args.PlayerID].hero:Damage()
 end
 
-function OnHealHealth(eventSourceIndex, args)
+function Debug:OnHealHealth(eventSourceIndex, args)
     mode.Players[args.PlayerID].hero:Heal()
 end
 
-function OnCheckEnd()
+function Debug:OnCheckEnd()
     mode.round:CheckEndConditions()
 end
 
-function OnHealDebugHero()
-    debugHero.unit:SetHealth(5)
+function Debug:OnHealDebugHero()
+    Debug.debugHero.unit:SetHealth(5)
 end
 
-function OnResetLevel(eventSourceIndex, args)
+function Debug:OnResetLevel(eventSourceIndex, args)
     mode.Level:Reset()
+end
+
+function Debug:OnCreateTestHero()
+    local round = GameRules.GameMode.round
+    local hero = round:LoadHeroClass(Debug.debugHeroName)
+
+    hero:SetUnit(CreateUnitByName(Debug.debugHeroName, Vector(0, 0, 0), true, nil, nil, DOTA_TEAM_BADGUYS))
+    hero:Setup()
+
+    local _, first = next(round.players)
+    hero.unit:SetControllableByPlayer(first.id, true)
+
+    Debug.debugHero = hero
+
+    round.spells:AddDynamicEntity(hero)
 end
 
 function InjectFreeSelection()
@@ -43,29 +48,6 @@ function InjectFreeSelection()
         self.owner = owner
         self.unit:SetControllableByPlayer(owner.id, true)
     end
-end
-
-function InjectHero(round)
-    PrecacheUnitByNameAsync(DEBUG_HERO, function()
-        local hero = round:LoadHeroClass(DEBUG_HERO)
-        local center = Vector(0, 0, 0) --Entities:FindByName(nil, "map_center"):GetAbsOrigin()
-
-        hero:SetUnit(CreateUnitByName(DEBUG_HERO, center, true, nil, nil, DOTA_TEAM_BADGUYS))
-        hero:Setup()
-        local _, first = next(round.Players)
-        hero.unit:SetControllableByPlayer(first.id, true)
-
-        local original = round.GetAllHeroes
-        local new =
-            function()
-                local result = original(round)
-                table.insert(result, hero)
-                return result
-            end
-
-        round.GetAllHeroes = new
-        debugHero = hero
-    end)
 end
 
 function InjectEndCheck(round)
@@ -110,7 +92,7 @@ function InjectAreaDebug()
     Spells.AreaDamage = new
 end
 
-function Debug:CheckAndEnableDebug(gameMode)
+function CheckAndEnableDebug()
     local cheatsEnabled = Convars:GetInt("sv_cheats") == 1
 
     CustomNetTables:SetTableValue("main", "debug", { enabled = cheatsEnabled })
@@ -119,27 +101,25 @@ function Debug:CheckAndEnableDebug(gameMode)
         return
     end
 
-    mode = gameMode
-
     GameRules.GameMode.heroSelection.SelectionTimerTime = 20000
     GameRules.GameMode.heroSelection.PreGameTime = 0
 
     --InjectHero(GameRules.GameMode.round)
     --InjectEndCheck(GameRules.GameMode.round)
 
-    if Convars:GetInt("sv_cheats") == 1 then
-        CustomGameEventManager:RegisterListener("debug_take_damage", OnTakeDamage)
-        CustomGameEventManager:RegisterListener("debug_heal_health", OnHealHealth)
-        CustomGameEventManager:RegisterListener("debug_heal_debug_hero", OnHealDebugHero)
-        CustomGameEventManager:RegisterListener("debug_switch_end_check", function() enableEndCheck = not enableEndCheck end)
-        CustomGameEventManager:RegisterListener("debug_switch_debug_display", function() displayDebug = not displayDebug end)
-        CustomGameEventManager:RegisterListener("debug_check_end", OnCheckEnd)
-        CustomGameEventManager:RegisterListener("debug_reset_level", OnResetLevel)
+    CustomGameEventManager:RegisterListener("debug_take_damage", Debug.OnTakeDamage)
+    CustomGameEventManager:RegisterListener("debug_heal_health", Debug.OnHealHealth)
+    CustomGameEventManager:RegisterListener("debug_heal_debug_hero", Debug.OnHealDebugHero)
+    CustomGameEventManager:RegisterListener("debug_switch_end_check", function() Debug.enableEndCheck = not Debug.enableEndCheck end)
+    CustomGameEventManager:RegisterListener("debug_switch_debug_display", function() Debug.displayDebug = not Debug.displayDebug end)
+    CustomGameEventManager:RegisterListener("debug_check_end", Debug.OnCheckEnd)
+    CustomGameEventManager:RegisterListener("debug_reset_level", Debug.OnResetLevel)
+    CustomGameEventManager:RegisterListener("debug_create_test_hero", Debug.OnCreateTestHero)
+    CustomGameEventManager:RegisterListener("debug_test_everything", Debug.OnTestEverything)
 
-        --InjectProjectileDebug()
-        --InjectAreaDebug()
-        --InjectFreeSelection()
+    --InjectProjectileDebug()
+    --InjectAreaDebug()
+    InjectFreeSelection()
 
-        ULTS_TIME = 1
-    end
+    ULTS_TIME = 1
 end

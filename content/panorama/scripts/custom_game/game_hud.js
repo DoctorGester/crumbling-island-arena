@@ -98,42 +98,25 @@ function UpdateUI(){
     }
 }
 
-function AddDebugButton(text, callback){
+function AddDebugButton(text, eventName){
     var panel = $("#DebugPanel");
     var button = $.CreatePanel("Button", panel, "");
-    button.SetPanelEvent("onactivate", callback);
+    button.SetPanelEvent("onactivate", function(){
+        GameEvents.SendCustomGameEventToServer(eventName, {});
+    });
 
     $.CreatePanel("Label", button, "").text = text;
 }
 
 function FillDebugPanel(){
-    AddDebugButton("Take 1 damage", function(){
-        GameEvents.SendCustomGameEventToServer("debug_take_damage", {});
-    });
-
-    AddDebugButton("Heal 1 health", function(){
-        GameEvents.SendCustomGameEventToServer("debug_heal_health", {});
-    });
-
-    AddDebugButton("Heal debug hero", function(){
-        GameEvents.SendCustomGameEventToServer("debug_heal_debug_hero", {});
-    });
-
-    AddDebugButton("Check round end", function(){
-        GameEvents.SendCustomGameEventToServer("debug_check_end", {});
-    });
-
-    AddDebugButton("Switch end check", function(){
-        GameEvents.SendCustomGameEventToServer("debug_switch_end_check", {});
-    });
-
-    AddDebugButton("Switch debug display", function(){
-        GameEvents.SendCustomGameEventToServer("debug_switch_debug_display", {});
-    });
-
-    AddDebugButton("Reset level", function(){
-        GameEvents.SendCustomGameEventToServer("debug_reset_level", {});
-    });
+    AddDebugButton("Add Test Hero", "debug_create_test_hero");
+    AddDebugButton("Take 1 damage", "debug_take_damage");
+    AddDebugButton("Heal 1 health", "debug_heal_health");
+    AddDebugButton("Heal debug hero", "debug_heal_debug_hero");
+    AddDebugButton("Check round end", "debug_check_end");
+    AddDebugButton("Switch end check", "debug_switch_end_check");
+    AddDebugButton("Switch debug display", "debug_switch_debug_display");
+    AddDebugButton("Reset level", "debug_reset_level");
 }
 
 function DebugUpdate(data){

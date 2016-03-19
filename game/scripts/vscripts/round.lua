@@ -13,20 +13,7 @@ function Round:constructor(players, availableHeroes, callback)
     self.players = players
     self.availableHeroes = availableHeroes
 
-    self.entities = {}
-    self.projectiles = {}
-end
-
-function Round:GetAllHeroes()
-    local result = {}
-
-    for _, player in pairs(self.players) do
-        if player.hero then
-            table.insert(result, player.hero)
-        end
-    end
-
-    return result
+    self.spells = Spells()
 end
 
 function Round:CheckEndConditions()
@@ -70,6 +57,15 @@ function Round:EndRound()
 end
 
 function Round:Update()
+    local status, err = pcall(
+        function(self)
+            self.spells:Update()
+        end
+    , self)
+
+    if not status then
+        print(err)
+    end
 end
 
 function Round:UpdateFalling()
@@ -148,7 +144,7 @@ function Round:CreateHeroes()
 
             unit:FindAbilityByName(ultimate):StartCooldown(ULTS_TIME)
 
-            Spells:AddDynamicEntity(hero)
+            self.spells:AddDynamicEntity(hero)
 
             MoveCameraToUnit(player.id, unit)
 

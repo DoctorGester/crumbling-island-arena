@@ -8,6 +8,7 @@ function Vengeance:constructor(owner, target, facing, ability)
     self.unit = nil
     self.health = 3
     self.size = 64
+    self.collisionType = COLLISION_TYPE_RECEIVER
     self.unit = CreateUnitByName("npc_dota_hero_vengefulspirit", target, false, nil, nil, owner.unit:GetTeamNumber())
     self.unit:SetControllableByPlayer(owner.owner.id, true)
     self.unit:AddNewModifier(owner.unit, ability, "modifier_venge_r", { duration = 10 })

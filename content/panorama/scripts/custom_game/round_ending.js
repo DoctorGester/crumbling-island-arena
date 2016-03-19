@@ -3,16 +3,18 @@ function dec2hex(i) {
 }
 
 function RoundStateChanged(data){
-    var label = $("#ResultMessage");
-    var winner = data.roundWinner;
+    if (data) {
+        var label = $("#ResultMessage");
+        var winner = data.roundWinner;
 
-    if (winner.id == -1){
-        label.text = $.Localize("#RoundEndingWasted");
-    } else {
-        var color = LuaColor(winner.color);
-        label.SetDialogVariable("name", Players.GetPlayerName(winner.id));
-        label.SetDialogVariable("color", color);
-        label.text = $.Localize("#RoundEnding", label);
+        if (winner.id == -1){
+            label.text = $.Localize("#RoundEndingWasted");
+        } else {
+            var color = LuaColor(winner.color);
+            label.SetDialogVariable("name", Players.GetPlayerName(winner.id));
+            label.SetDialogVariable("color", color);
+            label.text = $.Localize("#RoundEnding", label);
+        }
     }
 }
 

@@ -13,6 +13,8 @@ require('hero_selection')
 require('round')
 
 require('spells')
+require('projectile')
+require('dash')
 require('debug_util')
 
 STATE_NONE = 0
@@ -423,7 +425,7 @@ function GameMode:OnGameInProgress()
         end
     )
 
-    Debug():CheckAndEnableDebug(self)
+    CheckAndEnableDebug()
 
     self:SetState(STATE_HERO_SELECTION)
     self.heroSelection:Start(function() self:OnHeroSelectionEnd() end)

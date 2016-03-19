@@ -77,13 +77,14 @@ function Level:DamageGround(part, damage)
 end
 
 function Level:Reset()
+    self.running = true
     self.fallingParts = {}
     self.shakingParts = {}
     self.distance = STARTING_DISTANCE
 
     for _, part in ipairs(self.parts) do
         part:SetAbsOrigin(Vector(part.x, part.y, 0))
-        part:SetAngles(Vector(0, 0, 0))
+        part:SetAngles(0, 0, 0)
         part.velocity = 0
         part.health = 100
         part.z = 0

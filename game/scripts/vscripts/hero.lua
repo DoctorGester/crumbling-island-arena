@@ -2,12 +2,13 @@ if not Hero then
     Hero = class({}, nil, DynamicEntity)
 end
 
-function Hero:constructor()
-    DynamicEntity.constructor(self)
+function Hero:constructor(round)
+    DynamicEntity.constructor(self, round)
 
     self.fallSpeed = 0
     self.falling = false
     self.protected = false
+    self.collisionType = COLLISION_TYPE_RECEIVER
 end
 
 function Hero:SetUnit(unit)
