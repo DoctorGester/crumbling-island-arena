@@ -23,35 +23,33 @@ function phoenix_w:OnSpellStart()
         direction = hero:GetFacing()
     end
 
-    local projectileData = {}
-    projectileData.owner = hero
-    projectileData.from = hero:GetPos() + Vector(0, 0, 128)
-    projectileData.to = target
-    projectileData.velocity = 700
-    projectileData.graphics = "particles/phoenix_w/phoenix_w.vpcf"
-    projectileData.endPoint = target
-    projectileData.radius = 64
+    PointTargetProjectile(hero.round, {
+        owner = hero,
+        from = hero:GetPos() + Vector(0, 0, 128),
+        to = target,
+        speed = 700,
+        graphics = "particles/phoenix_w/phoenix_w.vpcf",
+        hitCondition = 
+            function(self, target)
+                return instanceof(target, Projectile)
+            end,
+        targetReachedFunction =
+            function(self)
+                hero:AreaEffect({
+                    filter = Filters.Area(target, 200),
+                    filterProjectiles = true,
+                    damage = true,
+                    modifier = { name = "modifier_phoenix_w", duration = 2.0, ability = self },
+                    action = function()
+                        local particle = ImmediateEffect("particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf", PATTACH_ABSORIGIN, hero)
+                        ParticleManager:SetParticleControl(particle, 0, target)
+                        ParticleManager:SetParticleControl(particle, 1, Vector(200, 1, 1))
 
-    projectileData.onTargetReached =
-        function(projectile)
-            local particle = ImmediateEffect("particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf", PATTACH_ABSORIGIN, hero)
-            ParticleManager:SetParticleControl(particle, 0, target)
-            ParticleManager:SetParticleControl(particle, 1, Vector(200, 1, 1))
+                        hero:EmitSound("Arena.Phoenix.HitW", target)
+                    end
+                })
+            end
+    }):Activate()
 
-            Spells:AreaModifier(hero, ability, "modifier_phoenix_w", { duration = 2.0 }, target, 200,
-                function (hero, target)
-                    return hero ~= target
-                end
-            )
-
-            Spells:AreaDamage(hero, target, 200)
-            hero:EmitSound("Arena.Phoenix.HitW", target)
-
-            projectile:Destroy()
-        end
-
-    projectileData.heroCondition = function() return false end
-
-    Spells:CreateProjectile(projectileData)
     hero:EmitSound("Arena.Phoenix.CastW")
 end

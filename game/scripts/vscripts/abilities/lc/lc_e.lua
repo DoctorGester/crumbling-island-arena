@@ -6,8 +6,6 @@ function lc_e:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = hero:GetPos() + hero:GetFacing() * hero.unit:GetIdealSpeed()
 
-    hero:AddNewModifier(hero, self, "modifier_lc_e_animation", {})
-
     Dash(hero, target, 1200, {
         modifier = { name = "modifier_lc_e_animation", ability = self },
         hitParams = {

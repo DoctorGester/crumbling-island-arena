@@ -79,22 +79,19 @@ if IsServer() then
                 damaged[entity] = time - interval
             end
 
-            Spells:MultipleHeroesDamage(hero,
-                function (attacker, attacked)
-                    local distance = (attacked:GetPos() - target):Length2D()
+            local function groupFilter(target)
+                local time = damaged[target] or 0
 
-                    if attacked ~= attacker and distance <= radius then
-                        local time = damaged[attacked] or 0
+                return time <= 0
+            end
 
-                        if time <= 0 then
-                            damaged[attacked] = 0.7
-                            return true
-                        end
-                    end
-
-                    return false
+            hero:AreaEffect({
+                filter = Filters.And(Filters.Area(target, radius), groupFilter),
+                damage = true,
+                action = function(target)
+                    damaged[target] = 0.7
                 end
-            )
+            })
         end
 
         self.timePassed = self.timePassed + interval
