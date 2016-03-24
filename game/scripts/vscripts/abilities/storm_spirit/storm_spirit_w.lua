@@ -6,7 +6,11 @@ function storm_spirit_w:OnSpellStart()
     local remnant = hero:FindClosestRemnant(target)
 
     if remnant then
-        hero:AreaDamage(remnant:GetPos(), 256)
+        hero:AreaEffect({
+            filter = Filters.Area(remnant:GetPos(), 256),
+            damage = true
+        })
+
         hero:DestroyRemnant(remnant)
     end
 end

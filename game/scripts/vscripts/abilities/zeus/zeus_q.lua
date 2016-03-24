@@ -10,48 +10,58 @@ function zeus_q:OnSpellStart()
         direction = hero:GetFacing()
     end
 
-    local projectileData = {}
-    projectileData.owner = hero
-    projectileData.from = hero:GetPos() + Vector(0, 0, 128)
-    projectileData.to = target + Vector(0, 0, 128)
-    projectileData.velocity = 1200
-    projectileData.graphics = "particles/zeus_q/zeus_q.vpcf"
-    projectileData.distance = 800
-    projectileData.empowered = false
-    projectileData.radius = 64
-    projectileData.heroBehaviour =
-        function(self, target)
-            Spells:ProjectileDamage(self, target)
-            target:EmitSound("Arena.Zeus.HitQ")
+    ZeusQProjectile(hero.round, {
+        owner = hero,
+        from = hero:GetPos() + Vector(0, 0, 128),
+        to = target + Vector(0, 0, 128),
+        speed = 1200,
+        graphics = "particles/zeus_q/zeus_q.vpcf",
+        distance = 800,
+        hitSound = "Arena.Zeus.HitQ",
+        hitFunction = function(projectile, target)
+            target:Damage(hero)
 
-            if self.empowered then
-                if ability:GetCooldownTimeRemaining() > 0.35 then
-                    ability:EndCooldown()
-                    ability:StartCooldown(0.5)
+            if projectile.empowered then
+                if self:GetCooldownTimeRemaining() > 0.4 then
+                    self:EndCooldown()
+                    self:StartCooldown(0.4)
                 end
             end
-
-            return true
         end
+    }):Activate()
 
-    projectileData.onMove =
-        function(self, prev, pos)
-            if not self.empowered and self.owner:WallIntersection(prev, pos) then
-                self.velocity = self.velocity * 2.4
-                self.distance = 3000
-                self.empowered = true
-                self.dummy:EmitSound("Arena.Zeus.EmpowerQ")
-            end
-
-            if (pos - projectileData.from):Length2D() >= self.distance then
-                self:Destroy()
-            end
-        end
-
-    Spells:CreateProjectile(projectileData)
     hero:EmitSound("Arena.Zeus.CastQ")
 end
 
 function zeus_q:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_1
+end
+
+ZeusQProjectile = ZeusQProjectile or class({}, nil, DistanceCappedProjectile)
+
+function ZeusQProjectile:constructor(...)
+    getbase(ZeusQProjectile).constructor(self, ...)
+
+    self.empowered = false
+end
+
+function ZeusQProjectile:Update()
+    local prev = self:GetPos()
+    getbase(ZeusQProjectile).Update(self)
+    local pos = self:GetPos()
+
+    if not self.empowered and self.hero:WallIntersection(prev, pos) then
+        self.distance = 3000
+        self.empowered = true
+
+        self:EmitSound("Arena.Zeus.EmpowerQ")
+    end
+end
+
+function ZeusQProjectile:GetSpeed()
+    if self.empowered then
+        return 3000
+    end
+
+    return 1200
 end

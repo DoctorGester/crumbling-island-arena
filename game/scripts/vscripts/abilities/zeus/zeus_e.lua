@@ -29,12 +29,15 @@ function zeus_e:OnSpellStart()
     hero:FindClearSpace(target, true)
 
     if hero:WallIntersection(casterPos, target) then
-        Spells:LineDamage(hero, casterPos, target, 32,
-            function(target)
+        hero:AreaEffect({
+            filter = Filters.Line(casterPos, target, 64),
+            sound = "Arena.TA.HitQ",
+            damage = true,
+            action = function(target)
                 local pos = target:GetPos()
-                self:CreateLightning(self, Vector(pos.x, pos.y, pos.z + 800), pos)
+                self:CreateLightning(self, pos + Vector(0, 0, 800), pos)
             end
-        )
+        })
     end
 
     self:CreateLightning(self, Vector(casterPos.x, casterPos.y, casterPos.z + 64), Vector(target.x, target.y, target.z + 64))
