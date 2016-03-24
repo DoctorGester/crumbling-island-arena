@@ -16,15 +16,10 @@ function ta_w:OnSpellStart()
     ParticleManager:SetParticleControl(effect, 0, hero:GetPos() + Vector(0, 0, 32))
     ParticleManager:SetParticleControl(effect, 1, pos + castDirection * 500 + Vector(0, 0, 32))
 
-    hero:MultipleHeroesModifier(self, "modifier_ta_w", { duration = 1.5 },
-        function (source, heroTarget)
-            local targetDirection = heroTarget:GetPos() - pos
-            local distance = targetDirection:Length2D()
-            local angle = math.acos(castDirection:Dot(targetDirection:Normalized()))
-
-            return source ~= heroTarget and distance <= 500 and angle <= math.pi / 4
-        end
-    )
+    hero:AreaEffect({
+        filter = Filters.Cone(pos, 500, castDirection, math.pi / 2),
+        modifier = { name = "modifier_ta_w", duration = 1.5, ability = self }
+    })
 
     hero:EmitSound("Arena.TA.CastW")
 end

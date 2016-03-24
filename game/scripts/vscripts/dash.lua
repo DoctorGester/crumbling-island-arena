@@ -10,12 +10,37 @@ function Dash:constructor(hero, to, speed, params)
 
     self.findClearSpace = params.findClearSpace or true
     self.radius = params.radius or 128
+    self.modifier = params.modifier
+    self.arrivalSound = params.arrivalSound
+    self.loopingSound = params.loopingSound
 
     self.PositionFunction = params.positionFunction or self.PositionFunction
     self.HeightFunction = params.heightFunction or self.HeightFunction
-    self.OnArrival = params.onArrival or self.OnArrival
+    self.arrivalFunction = params.arrivalFunction
+    self.hitParams = params.hitParams
+    self.hitGroup = {}
 
     self.destroyed = false
+
+    if self.loopingSound then
+        self.hero:EmitSound(self.loopingSound)
+    end
+
+    if params.forceFacing then
+        local facing = self.to - self.from
+
+        if facing:Length2D() == 0 then
+            facing = self.hero:GetFacing()
+        end
+        
+        self.hero:SetFacing(facing:Normalized())
+    end
+
+    if self.modifier then
+        self.hero:AddNewModifier(self.modifier.source or self.hero, self.modifier.ability, self.modifier.name, {})
+    end
+
+    hero.round.spells:AddDash(self)
 end
 
 function Dash:Update()
@@ -26,6 +51,22 @@ function Dash:Update()
 
     self.hero:SetPos(result)
 
+    if self.hitParams then
+        local params = vlua.clone(self.hitParams)
+
+        local function groupFilter(target)
+            return not self.hitGroup[target]
+        end
+
+        params.filter = Filters.And(Filters.Line(origin, result, self.hero:GetRad() * 2), groupFilter)
+
+        local hurt = self.hero:AreaEffect(params)
+
+        for _, target in ipairs(hurt or {}) do
+            self.hitGroup[target] = true
+        end
+    end
+
     if (self.to - origin):Length2D() <= self.velocity then
         if self.findClearSpace then
             GridNav:DestroyTreesAroundPoint(result, self.radius, true)
@@ -35,6 +76,8 @@ function Dash:Update()
         self:OnArrival()
         self.destroyed = true
     end
+
+    return result
 end
 
 function Dash:PositionFunction(current)
@@ -46,4 +89,20 @@ function Dash:HeightFunction(current)
     return 0
 end
 
-function Dash:OnArrival() end
+function Dash:OnArrival()
+    if self.modifier then
+        self.hero:RemoveModifier(self.modifier.name)
+    end
+
+    if self.arrivalSound then
+        self.hero:EmitSound(self.arrivalSound)
+    end
+
+    if self.loopingSound then
+        self.hero:StopSound(self.loopingSound)
+    end
+
+    if self.arrivalFunction then
+        self:arrivalFunction()
+    end
+end

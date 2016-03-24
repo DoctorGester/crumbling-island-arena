@@ -17,11 +17,11 @@ function ta_q:OnSpellStart()
     ParticleManager:SetParticleControl(effect, 1, target + height)
     ParticleManager:SetParticleControl(effect, 3, target + height)
 
-    local hurt = hero:LineDamage(hero:GetPos(), target, 64,
-        function(target)
-            hero:EmitSound("Arena.TA.HitQ", target:GetPos())
-        end
-    )
+    local hurt = hero:AreaEffect({
+        filter = Filters.Line(hero:GetPos(), target, 64),
+        sound = "Arena.TA.HitQ",
+        damage = true
+    })
 
     hero:EmitSound("Arena.TA.CastQ")
 

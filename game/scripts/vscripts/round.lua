@@ -1,13 +1,12 @@
 GRACE_TIME = 1
 ULTS_TIME = 55
 
-if Round == nil then
-    Round = class({})
-end
+Round = Round or class({})
 
 function Round:constructor(players, availableHeroes, callback)
     self.winner = nil
     self.ended = false
+    self.entityDied = false
     self.callback = callback
 
     self.players = players
@@ -31,12 +30,7 @@ function Round:CheckEndConditions()
         end
     end
 
-    if amountAlive == 0 then
-        self.winner = nil
-        self:EndRound()
-    end
-
-    if amountAlive == 1 then
+    if amountAlive <= 1 then
         self.winner = lastAlive
         self:EndRound()
     end
@@ -66,32 +60,9 @@ function Round:Update()
     if not status then
         print(err)
     end
-end
 
-function Round:UpdateFalling()
-    local someoneDied = false
-
-    for _, player in pairs(self.players) do
-        local hero = player.hero
-
-        if hero then
-            hero:Update()
-
-            if not hero.falling then
-                --if self.level:TestOutOfMap(hero, self.Stage) then
-                    --hero:StartFalling()
-                --end
-            else
-                local result = hero:UpdateFalling()
-
-                if result then
-                    someoneDied = true
-                end
-            end
-        end
-    end
-
-    if someoneDied then
+    if self.entityDied then
+        self.entityDied = false
         self:CheckEndConditions()
     end
 end

@@ -54,6 +54,26 @@ function pugna_q:OnSpellStart()
         hero:Heal()
     end
 
+    Projectile(hero.round, {
+        owner = hero,
+        from = hero:GetPos() + Vector(0, 0, 64),
+        to = target + Vector(0, 0, 64),
+        speed = 900,
+        graphics = "particles/pugna_q/pugna_q.vpcf",
+        distance = 1400,
+        hitFunction = function(projectile, target)
+            if not projectile.owner:IsReversed() then
+                target:Damage(projectile)
+            else
+                target:Heal()
+            end
+
+            self:CreateSecondProjectile(target, projectile.owner)
+
+            target:EmitSound(projectile.owner:GetProjectileSound())
+        end
+    }):Activate()
+
     local projectileData = {}
     projectileData.owner = hero
     projectileData.from = hero:GetPos() + Vector(0, 0, 64)

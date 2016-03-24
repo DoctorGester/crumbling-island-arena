@@ -42,7 +42,7 @@ function Spells:Update()
     for _, first in ipairs(self.entities) do
         if first:Alive() and first.collisionType == COLLISION_TYPE_INFLICTOR then
             for _, second in ipairs(self:GetValidTargets()) do
-                if first ~= second and second.collisionType ~= COLLISION_TYPE_NONE and first:CollidesWith(second) and second:CollidesWith(first) then
+                if first ~= second and second:Alive() and second.collisionType ~= COLLISION_TYPE_NONE and first:CollidesWith(second) and second:CollidesWith(first) then
                     local radSum = first:GetRad() + second:GetRad()
 
                     if (first:GetPos() - second:GetPos()):Length2D() <= radSum then
@@ -57,12 +57,6 @@ end
 
 function Spells:GroundDamage(point, radius)
     GameRules.GameMode.level:DamageGroundInRadius(point, radius)
-end
-
-function Spells:ProjectileDestroyEffect(owner, pos)
-    ImmediateEffectPoint("particles/ui/ui_generic_treasure_impact.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity(), pos)
-    local deny = ImmediateEffectPoint("particles/msg_fx/msg_deny.vpcf", PATTACH_CUSTOMORIGIN, GameRules:GetGameModeEntity(), pos)
-    ParticleManager:SetParticleControl(deny, 3, Vector(200, 0, 0))
 end
 
 function Spells:GetValidTargets()
@@ -95,4 +89,34 @@ end
 
 function Spells:AddDynamicEntity(entity)
     table.insert(self.entities, entity)
+end
+
+Filters = {}
+
+function Filters.Area(from, radius)
+    return function(target)
+        return (target:GetPos() - from):Length2D() <= radius
+    end
+end
+
+function Filters.Cone(from, radius, direction, coneAngle)
+    local rfilter = Filters.Area(from, radius)
+
+    return function(target)
+        local angle = math.acos(direction:Dot((target:GetPos() - from):Normalized()))
+
+        return angle <= coneAngle / 2 and rfilter(target)
+    end
+end
+
+function Filters.Line(from, to, width)
+    return function(target)
+        return SegmentCircleIntersection(from, to, target:GetPos(), target:GetRad() + (lineWidth or 0))
+    end
+end
+
+function Filters.And(filter1, filter2)
+    return function(target)
+        return filter1(target) and filter2(target)
+    end
 end

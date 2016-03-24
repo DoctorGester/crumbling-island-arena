@@ -6,6 +6,7 @@ require('misc')
 require('util')
 
 require('dynamic_entity')
+require('unit_entity')
 require('hero')
 require('player')
 require('level')
@@ -205,10 +206,11 @@ end
 
 function GameMode:InitEvents()
     ListenToGameEvent('player_connect_full', Dynamic_Wrap(self, 'EventPlayerConnected'), self)
-    ListenToGameEvent("player_reconnected", Dynamic_Wrap(self, 'EventPlayerReconnected'), self)
+    ListenToGameEvent('player_reconnected', Dynamic_Wrap(self, 'EventPlayerReconnected'), self)
     ListenToGameEvent('player_disconnect', Dynamic_Wrap(self, 'EventPlayerDisconnected'), self)
     ListenToGameEvent('game_rules_state_change', Dynamic_Wrap(self, 'EventStateChanged'), self)
     ListenToGameEvent('dota_player_pick_hero', Dynamic_Wrap(self, 'OnPlayerPickHero'), self)
+    ListenToGameEvent('entity_killed', Dynamic_Wrap(self, 'OnEntityKilled'), self)
 end
 
 function GameMode:SetupMode()
@@ -272,7 +274,7 @@ function GameMode:OnDamageDealt(hero, source)
 end
 
 function GameMode:OnRoundEnd(round)
-    local winner = round.Winner
+    local winner = round.winner
 
     playerData = {}
 
@@ -318,6 +320,14 @@ function GameMode:OnHeroSelectionEnd()
             EmitAnnouncerSound("announcer_announcer_battle_begin_01")
         end
     )
+end
+
+function GameMode:OnEntityKilled(event)
+    local entity = EntIndexToHScript(event.entindex_killed)
+
+    if entity:IsHero() and entity.hero then
+        entity.hero.round.entityDied = true
+    end
 end
 
 function GameMode:UpdatePlayerTable()

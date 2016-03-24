@@ -42,7 +42,6 @@ function modifier_pugna_w:OnIntervalThink()
 
                 if hero:IsReversed() then
                     target:Damage(hero)
-                    GameRules.GameMode.Round:CheckEndConditions()
                 else
                     target:Heal()
                 end

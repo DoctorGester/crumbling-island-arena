@@ -35,20 +35,17 @@ end
 function sven_w:Shout(direction)
     local hero = self:GetCaster().hero
     local pos = hero:GetPos()
-    local forward = pos + direction:Normalized() * Vector(500, 500, 0)
-    local target = hero:GetPos() + direction:Normalized() * 500
+    local target = hero:GetPos() + direction * 500
 
     local effect = ImmediateEffect("particles/units/heroes/hero_beastmaster/beastmaster_primal_roar.vpcf", PATTACH_CUSTOMORIGIN, hero)
     ParticleManager:SetParticleControl(effect, 0, hero:GetPos())
     ParticleManager:SetParticleControl(effect, 1, target)
-    ParticleManager:SetParticleControlForward(effect, 0, direction:Normalized())
+    ParticleManager:SetParticleControlForward(effect, 0, direction)
 
-    Spells:MultipleHeroesModifier(hero, self, "modifier_sven_w_slow", { duration = 2 },
-        function (source, heroTarget)
-            local distance = (heroTarget:GetPos() - pos):Length2D()
-            return distance <= 500 and hero:FilterCone(heroTarget:GetPos(), pos, target, 500)
-        end
-    )
+    hero:AreaEffect({
+        filter = Filters.Cone(pos, 500, direction, math.pi / 2),
+        modifier = { name = "modifier_sven_w_slow", duration = 2, ability = self }
+    })
 end
 
 function sven_w:OnSpellStart()
@@ -64,7 +61,7 @@ function sven_w:OnSpellStart()
     self:RemoveAnimationTranslation()
 
     if not hero:IsEnraged() then
-        self:Shout(direction)
+        self:Shout(direction:Normalized())
     else
         for i = 0, 8 do
             local an = math.pi / 4 * i

@@ -5,13 +5,8 @@ LinkLuaModifier("modifier_venge_w", "abilities/venge/modifier_venge_w", LUA_MODI
 function venge_w:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
-    local direction = target - hero:GetPos()
 
-    if direction:Length2D() == 0 then
-        direction = hero:GetFacing()
-    end
-
-    Projectile(hero.round, {
+    DistanceCappedProjectile(hero.round, {
         owner = hero,
         from = hero:GetPos(),
         to = target,
@@ -22,6 +17,5 @@ function venge_w:OnSpellStart()
         continueOnHit = true
     }):Activate()
 
-    hero.round.spells:AddDynamicEntity(projectile)
     hero:EmitSound("Arena.Venge.CastW")
 end

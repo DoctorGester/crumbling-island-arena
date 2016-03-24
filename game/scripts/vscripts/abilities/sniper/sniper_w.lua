@@ -8,8 +8,6 @@ function sniper_w:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
     
-    hero:EmitSound("Arena.Sniper.CastW")
-    
     EntitySniperW(hero.round, hero, target, self):Activate()
 end
 

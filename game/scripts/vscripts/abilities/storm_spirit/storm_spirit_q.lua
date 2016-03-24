@@ -1,6 +1,8 @@
 storm_spirit_q = class({})
 LinkLuaModifier("modifier_storm_spirit_remnant", "abilities/storm_spirit/modifier_storm_spirit_remnant", LUA_MODIFIER_MOTION_NONE)
 
+require("abilities/storm_spirit/entity_storm_q")
+
 function storm_spirit_q:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
@@ -8,24 +10,23 @@ function storm_spirit_q:OnSpellStart()
 
     if direction:Length2D() == 0 then
         direction = hero:GetFacing()
+    else
+        direction = direction:Normalized()
     end
 
-    local projectileData = {}
-    projectileData.owner = hero
-    projectileData.from = hero:GetPos()
-    projectileData.to = target
-    projectileData.velocity = 800
-    projectileData.graphics = "particles/storm_q/storm_q2.vpcf"
-    projectileData.heroBehaviour = BEHAVIOUR_DEAL_DAMAGE_AND_PASS
-    projectileData.endPoint = target
-    projectileData.onTargetReached =
-        function (projectile)
-            hero:CreateRemnant(projectile.position, direction:Normalized())
-            projectile:Destroy()
-        end
-    projectileData.onWallDestroy = projectileData.onTargetReached
+    PointTargetProjectile(hero.round, {
+        owner = hero,
+        from = hero:GetPos(),
+        to = target,
+        speed = 800,
+        graphics = "particles/storm_q/storm_q2.vpcf",
+        continueOnHit = true,
+        targetReachedFunction =
+            function(self)
+                hero:AddRemnant(EntityStormQ(self.round, hero, self:GetPos(), direction):Activate())
+            end
+    }):Activate()
 
-    Spells:CreateProjectile(projectileData)
     hero:EmitSound("Arena.Storm.CastQ")
 end
 

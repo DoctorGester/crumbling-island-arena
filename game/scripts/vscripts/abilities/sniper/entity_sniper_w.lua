@@ -1,22 +1,21 @@
-EntitySniperW = EntitySniperW or class({}, nil, DynamicEntity)
+EntitySniperW = EntitySniperW or class({}, nil, UnitEntity)
 
 function EntitySniperW:constructor(round, owner, position, ability)
-    DynamicEntity.constructor(self, round)
+    getbase(EntitySniperW).constructor(self, round, "npc_dota_techies_stasis_trap", position)
 
     self.hero = owner
     self.owner = owner.owner
     self.ability = ability
     self.collisionType = COLLISION_TYPE_INFLICTOR
     self.invulnerable = true
+    self.removeOnDeath = false
 
-    self.unit = CreateUnitByName("npc_dota_techies_stasis_trap", position, false, nil, nil, owner.unit:GetTeamNumber())
-    self.unit:AddNewModifier(owner.unit, self, "modifier_sniper_w_trap", {})
-
-    self:SetPos(position)
+    self:AddNewModifier(owner.unit, self, "modifier_sniper_w_trap", {})
+    self:EmitSound("Arena.Sniper.CastW")
 end
 
 function EntitySniperW:CollidesWith(target)
-    return DynamicEntity.CollidesWith(self, target) and target:__instanceof__(Hero)
+    return getbase(EntitySniperW).CollidesWith(self, target) and target:__instanceof__(Hero)
 end
 
 function EntitySniperW:CollideWith(target)
@@ -25,8 +24,4 @@ function EntitySniperW:CollideWith(target)
     ImmediateEffectPoint("particles/units/heroes/hero_techies/techies_stasis_trap_explode.vpcf", PATTACH_ABSORIGIN, self.unit, self.unit:GetAbsOrigin())
 
     self:Destroy()
-end
-
-function EntitySniperW:Remove()
-    self.unit:ForceKill(false)
 end

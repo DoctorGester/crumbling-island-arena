@@ -30,7 +30,8 @@ function venge_r:OnSpellStart()
 
     hero:RemoveModifier("modifier_venge_r_animation")
     hero:EmitSound("Arena.Venge.CastR")
-    hero.round.spells:AddDynamicEntity(Vengeance(hero, target, direction, self))
+    
+    Vengeance(hero.round, hero, target, direction, self):Activate()
 end
 
 function venge_r:GetCastAnimation()

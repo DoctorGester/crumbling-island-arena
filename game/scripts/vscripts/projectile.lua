@@ -1,54 +1,48 @@
-Projectile = Projectile or class({}, nil, DynamicEntity)
+Projectile = Projectile or class({}, nil, UnitEntity)
 
--- TODO target + targetReached
 function Projectile:constructor(round, params)
-    DynamicEntity.constructor(self, round)
+    getbase(Projectile).constructor(self, round, DUMMY_UNIT, params.from)
 
     self.collisionType = COLLISION_TYPE_INFLICTOR
+    self.modifierImmune = true
     self.hero = params.owner
     self.owner = self.hero.owner
     self.from = params.from
     self.to = params.to
+    self.vel = (self.to - self.from):Normalized()
     self.radius = params.radius or 64
-    self.distance = params.distance
-    self.distancePassed = 0
 
-    self.unit = CreateUnitByName(DUMMY_UNIT, self.from, false, nil, nil, DOTA_TEAM_NOTEAM)
-    self.unit:SetForwardVector(self.to - self.from)
-    self.unit:SetNeverMoveToClearSpace(true)
+    if self.vel:Length2D() == 0 then
+        self.vel = self.hero:GetFacing()
+    end
 
-    self.particle = ParticleManager:CreateParticle(params.graphics, PATTACH_ABSORIGIN_FOLLOW , self.unit)
+    self:SetFacing(self.to - self.from)
+    self:GetUnit():SetNeverMoveToClearSpace(true)
+
+    self.particle = ParticleManager:CreateParticle(params.graphics, PATTACH_ABSORIGIN_FOLLOW , self:GetUnit())
 
     self.hitModifier = params.hitModifier -- { name, duration, ability }
     self.hitSound = params.hitSound
     self.hitFunction = params.hitFunction
     self.hitCondition = params.hitCondition
+    self.destroyFunction = params.destroyFunction
     self.continueOnHit = params.continueOnHit or false
     self.gracePeriod = params.gracePeriod or 30
     self.hitGroup = {}
 
-    self.previousPosition = self.from
     self:SetPos(self.from)
     self:SetSpeed(params.speed or 600)
 end
 
 function Projectile:Update()
-    if IsOutOfTheMap(self:GetPos()) then
+    local pos = self:GetPos()
+
+    if IsOutOfTheMap(pos) then
         self:Destroy()
         return
     end
-
-    if self.distance and self.distance <= self.distancePassed then
-        self:Destroy()
-    end
-
-    self.previousPosition = self:GetPos()
-
-    local pos = self:GetNextPosition()
-
-    self.distancePassed = self.distancePassed + (self.previousPosition - pos):Length2D()
     
-    self:SetPos(pos)
+    self:SetPos(self:GetNextPosition(pos))
 end
 
 function Projectile:CollidesWith(target)
@@ -56,7 +50,7 @@ function Projectile:CollidesWith(target)
         return self:hitCondition(target)
     end
 
-    return DynamicEntity.CollidesWith(self, target)
+    return getbase(Projectile).CollidesWith(self, target)
 end
 
 function Projectile:CollideWith(target)
@@ -68,7 +62,6 @@ function Projectile:CollideWith(target)
         self:hitFunction(target)
     else
         target:Damage(self)
-        target.round:CheckEndConditions()
     end
     
     if self.hitSound then
@@ -86,17 +79,20 @@ function Projectile:CollideWith(target)
     end
 end
 
-function Projectile:SetPos(pos)
-    DynamicEntity.SetPos(self, pos)
-
-    self.unit:SetAbsOrigin(pos)
-end
-
-function Projectile:GetNextPosition()
-    return self:GetPos() + ((self.to - self.from):Normalized() * (self:GetSpeed() / 30))
+function Projectile:GetNextPosition(pos)
+    return pos + (self.vel * (self:GetSpeed() / 30))
 end
 
 function Projectile:Damage(source)
+    local mode = GameRules:GetGameModeEntity()
+    local dust = ParticleManager:CreateParticle("particles/ui/ui_generic_treasure_impact.vpcf", PATTACH_ABSORIGIN, mode)
+    ParticleManager:SetParticleControl(dust, 0, self:GetPos())
+    ParticleManager:ReleaseParticleIndex(dust)
+
+    local sign = ParticleManager:CreateParticle("particles/msg_fx/msg_deny.vpcf", PATTACH_CUSTOMORIGIN, mode)
+    ParticleManager:SetParticleControl(sign, 0, self:GetPos())
+    ParticleManager:SetParticleControl(sign, 3, Vector(200, 0, 0))
+
     self:Destroy()
 end
 
@@ -109,8 +105,64 @@ function Projectile:SetSpeed(speed)
 end
 
 function Projectile:Remove()
+    if self.destroyFunction then
+        self:destroyFunction()
+    end
+
     ParticleManager:DestroyParticle(self.particle, false)
     ParticleManager:ReleaseParticleIndex(self.particle)
 
-    self.unit:RemoveSelf()
+    getbase(Projectile).Remove(self)
+end
+
+-- Projectile with distance cap
+
+DistanceCappedProjectile = DistanceCappedProjectile or class({}, nil, Projectile)
+
+function DistanceCappedProjectile:constructor(round, params)
+    getbase(DistanceCappedProjectile).constructor(self, round, params)
+
+    self.distance = params.distance or 1000
+    self.distancePassed = 0
+end
+
+function DistanceCappedProjectile:Update()
+    local prev = self:GetPos()
+    getbase(DistanceCappedProjectile).Update(self)
+    local pos = self:GetPos()
+
+    if self.distance and self.distance <= self.distancePassed then
+        self:Destroy()
+    end
+
+    self.distancePassed = self.distancePassed + (prev - pos):Length2D()
+end
+
+-- Projectile with point target
+
+PointTargetProjectile = PointTargetProjectile or class({}, nil, Projectile)
+
+function PointTargetProjectile:constructor(round, params)
+    getbase(DistanceCappedProjectile).constructor(self, round, params)
+
+    self.target = params.target or params.to
+    self.targetReachedFunction = params.targetReachedFunction
+end
+
+function PointTargetProjectile:Update()
+    getbase(PointTargetProjectile).Update(self)
+
+    local pos = self:GetPos()
+
+    if (self.target - self:GetPos()):Length2D() <= self:GetRad() then
+        if self.targetReachedFunction then
+            self:targetReachedFunction()
+        end
+
+        self:Destroy()
+    end
+end
+
+function PointTargetProjectile:GetNextPosition(pos)
+    return pos + ((self.target - pos):Normalized() * (self:GetSpeed() / 30))
 end

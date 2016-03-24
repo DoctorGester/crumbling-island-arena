@@ -1,34 +1,34 @@
 Debug = Debug or {
     enableEndCheck = false,
     displayDebug = true,
-    debugHeroName = "npc_dota_hero_vengefulspirit",
+    debugHeroName = "npc_dota_hero_sven",
     debugHero = nil
 }
 
-function Debug:OnTestEverything()
+function Debug.OnTestEverything()
 end
 
-function Debug:OnTakeDamage(eventSourceIndex, args)
+function Debug.OnTakeDamage(eventSourceIndex, args)
     GameRules.GameMode.Players[args.PlayerID].hero:Damage()
 end
 
-function Debug:OnHealHealth(eventSourceIndex, args)
+function Debug.OnHealHealth(eventSourceIndex, args)
     GameRules.GameMode.Players[args.PlayerID].hero:Heal()
 end
 
-function Debug:OnCheckEnd()
+function Debug.OnCheckEnd()
     GameRules.GameMode.round:CheckEndConditions()
 end
 
-function Debug:OnHealDebugHero()
+function Debug.OnHealDebugHero()
     Debug.debugHero.unit:SetHealth(5)
 end
 
-function Debug:OnResetLevel(eventSourceIndex, args)
+function Debug.OnResetLevel(eventSourceIndex, args)
     GameRules.GameMode.level:Reset()
 end
 
-function Debug:OnCreateTestHero()
+function Debug.OnCreateTestHero()
     local round = GameRules.GameMode.round
     local hero = round:LoadHeroClass(Debug.debugHeroName)
 

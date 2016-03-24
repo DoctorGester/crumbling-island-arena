@@ -3,14 +3,8 @@ venge_e = class({})
 function venge_e:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
-    local direction = target - hero:GetPos()
-    local ability = self
 
-    if direction:Length2D() == 0 then
-        direction = hero:GetFacing()
-    end
-
-    Projectile(hero.round, {
+    DistanceCappedProjectile(hero.round, {
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 128),
         to = target + Vector(0, 0, 128),

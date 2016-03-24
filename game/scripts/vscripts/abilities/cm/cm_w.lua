@@ -29,22 +29,24 @@ function cm_w:OnSpellStart()
 
             if timePassed >= 0.4 then
                 local damagePos = GetPositionForTime(timePassed - 0.4)
+                local function groupFilter(target)
+                    return not damaged[target]
+                end
 
-                local hit = Spells:MultipleHeroesDamage(hero,
-                    function (attacker, target)
-                        local distance = (target:GetPos() - damagePos):Length2D()
+                local hit = hero:AreaEffect({
+                    filter = Filters.And(Filters.Area(damagePos, 128), groupFilter),
+                    sound = "Arena.CM.HitW",
+                    action = function(target)
+                        local frozen = hero:IsFrozen(target)
 
-                        if not damaged[target] and target ~= attacker and distance <= 128 then
-                            local frozen = hero:IsFrozen(target)
-                            hero:Freeze(target, ability)
-                            damaged[target] = true
-
-                            return frozen
+                        if frozen then
+                            target:Damage(hero)
                         end
 
-                        return false
+                        hero:Freeze(target, ability)
+                        damaged[target] = true
                     end
-                )
+                })
 
                 local sound = "Arena.CM.CastW"
                 if hit then sound = "Arena.CM.HitW" end

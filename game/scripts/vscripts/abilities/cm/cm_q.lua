@@ -3,33 +3,24 @@ cm_q = class({})
 function cm_q:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
-    local direction = target - hero:GetPos()
-    local ability = self
 
-    if direction:Length2D() == 0 then
-        direction = hero:GetFacing()
-    end
-
-    local projectileData = {}
-    projectileData.owner = hero
-    projectileData.from = hero:GetPos() + Vector(0, 0, 128)
-    projectileData.to = target + Vector(0, 0, 128)
-    projectileData.velocity = 1200
-    projectileData.graphics = "particles/cm/cm_q.vpcf"
-    projectileData.distance = 1500
-    projectileData.radius = 64
-    projectileData.heroBehaviour =
-        function(self, target)
+    DistanceCappedProjectile(hero.round, {
+        owner = hero,
+        from = hero:GetPos() + Vector(0, 0, 128),
+        to = target + Vector(0, 0, 128),
+        speed = 1200,
+        graphics = "particles/cm/cm_q.vpcf",
+        distance = 1500,
+        hitSound = "Arena.CM.HitQ",
+        hitFunction = function(projectile, target)
             if hero:IsFrozen(target) then
-                Spells:ProjectileDamage(self, target)
+                target:Damage(hero)
             end
 
-            target:EmitSound("Arena.CM.HitQ")
-            hero:Freeze(target, ability)
-            return true
+            hero:Freeze(target, self)
         end
+    }):Activate()
 
-    Spells:CreateProjectile(projectileData)
     hero:EmitSound("Arena.CM.CastQ")
 end
 

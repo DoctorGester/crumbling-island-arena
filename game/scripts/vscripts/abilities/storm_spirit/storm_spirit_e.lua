@@ -7,23 +7,14 @@ function storm_spirit_e:OnSpellStart()
     local remnant = hero:FindClosestRemnant(target)
 
     if remnant then
-        hero:AddNewModifier(hero, self, "modifier_storm_spirit_e", {})
-        hero:SetFacing((target - hero:GetPos()):Normalized() * Vector(1, 1, 0))
         hero:EmitSound("Hero_StormSpirit.BallLightning")
-        hero:EmitSound("Hero_StormSpirit.BallLightning.Loop")
 
-        local dashData = {}
-        dashData.hero = hero
-        dashData.to = remnant:GetAbsOrigin()
-        dashData.velocity = 1200
-        dashData.onArrival =
-            function (hero)
-                hero:StopSound("Hero_StormSpirit.BallLightning.Loop")
-                hero:RemoveModifier("modifier_storm_spirit_e")
-                hero:DestroyRemnant(remnant)
-            end
-
-        Spells:Dash(dashData)
+        Dash(hero, remnant:GetPos(), 1200, {
+            modifier = { name = "modifier_storm_spirit_e", ability = self },
+            forceFacing = true,
+            loopingSound = "Hero_StormSpirit.BallLightning.Loop",
+            arrivalFunction = function(dash) hero:DestroyRemnant(remnant) end
+        })
     end
 end
 

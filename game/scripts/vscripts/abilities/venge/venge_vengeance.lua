@@ -1,23 +1,24 @@
-Vengeance = class({}, nil, DynamicEntity)
+Vengeance = class({}, nil, UnitEntity)
 
-function Vengeance:constructor(owner, target, facing, ability)
-    DynamicEntity.constructor(self)
+function Vengeance:constructor(round, owner, target, facing, ability)
+    getbase(Vengeance).constructor(self, round, "npc_dota_hero_vengefulspirit", target, owner.unit:GetTeamNumber())
 
     self.owner = owner.owner
     self.hero = owner
-    self.unit = nil
     self.health = 3
     self.size = 64
     self.collisionType = COLLISION_TYPE_RECEIVER
-    self.unit = CreateUnitByName("npc_dota_hero_vengefulspirit", target, false, nil, nil, owner.unit:GetTeamNumber())
-    self.unit:SetControllableByPlayer(owner.owner.id, true)
-    self.unit:AddNewModifier(owner.unit, ability, "modifier_venge_r", { duration = 10 })
-    self.unit:AddNewModifier(owner.unit, ability, "modifier_venge_r_visual", {})
-    self.unit:SetForwardVector(facing)
-    self.unit.hero = self
-    self.unit:FindAbilityByName("venge_q"):SetLevel(1)
-    self:SetPos(target)
+
+    local unit = self:GetUnit()
+    unit:SetControllableByPlayer(owner.owner.id, true)
+    unit:FindAbilityByName("venge_q"):SetLevel(1)
+    unit.hero = self
+
     self:CreateParticles()
+    self:AddNewModifier(self.hero, ability, "modifier_venge_r", { duration = 10 })
+    self:AddNewModifier(self.hero, ability, "modifier_venge_r_visual", {})
+    self:SetFacing(facing)
+    self:SetPos(target)
 end
 
 function Vengeance:CreateParticles()
@@ -32,15 +33,15 @@ function Vengeance:CreateParticles()
     ParticleManager:SetParticleControl(self.rangeIndicator, 3, Vector(10, 0, 0))
 end
 
-function Vengeance:Update()
+function Vengeance:SetPos(pos)
+    getbase(Vengeance).SetPos(self, pos)
+
     ParticleManager:SetParticleControl(self.healthCounter, 0, Vector(self.position.x, self.position.y, self.position.z + 200))
     ParticleManager:SetParticleControl(self.rangeIndicator, 0, self:GetPos())
-
-    self.unit:SetAbsOrigin(self:GetPos())
 end
 
 function Vengeance:Remove()
-    self.unit:RemoveSelf()
+    getbase(Vengeance).Remove(self)
 
     ParticleManager:DestroyParticle(self.healthCounter, false)
     ParticleManager:ReleaseParticleIndex(self.healthCounter)
@@ -49,8 +50,6 @@ function Vengeance:Remove()
     ParticleManager:ReleaseParticleIndex(self.rangeIndicator)
 
     ImmediateEffectPoint("particles/items_fx/blink_dagger_start.vpcf", PATTACH_ABSORIGIN, self.hero, self:GetPos())
-
-    --ImmediateEffectPoint("particles/units/heroes/hero_earth_spirit/earthspirit_petrify_shockwave.vpcf", PATTACH_CUSTOMORIGIN, self.hero, self:GetPos())
 end
 
 function Vengeance:Damage(source)
@@ -63,4 +62,8 @@ function Vengeance:Damage(source)
     if self.health == 0 then
         self:Destroy()
     end
+end
+
+function Vengeance:CollidesWith(source)
+    return true
 end

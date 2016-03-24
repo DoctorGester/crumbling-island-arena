@@ -23,13 +23,11 @@ function sniper_q:OnSpellStart()
         to = target + Vector(0, 0, 64),
         speed = 2000,
         graphics = "particles/sniper_q/sniper_q.vpcf",
-        distance = 15000,
         radius = 48,
         hitSound = "Arena.Sniper.HitQ",
         hitFunction = function(projectile, target)
             hero:StopSound("Arena.Sniper.FlyQ")
             target:Damage(projectile)
-            target.round:CheckEndConditions()
         end
     }):Activate()
 

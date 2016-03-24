@@ -8,7 +8,7 @@ function storm_spirit_r:OnSpellStart()
     local hero = self:GetCaster().hero
 
     for _, data in pairs(hero.lastRemnants) do
-        hero:CreateRemnant(data.position, data.facing)
+        hero:AddRemnant(EntityStormQ(hero.round, hero, data.position, data.facing):Activate())
     end
 
     hero.lastRemnants = {}

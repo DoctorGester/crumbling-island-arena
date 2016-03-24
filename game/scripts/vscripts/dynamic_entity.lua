@@ -59,74 +59,42 @@ function DynamicEntity:RemoveModifier() end
 
 function DynamicEntity:Activate()
     self.round.spells:AddDynamicEntity(self)
+
+    return self
 end
 
-function DynamicEntity:MultipleTargetsDamage(condition)
-    local hurt = false
+function DynamicEntity:AreaEffect(params)
+    local hurt = nil
 
     for _, target in pairs(self.round.spells:GetValidTargets()) do
-        if condition(self, target) then
-            target:Damage(self)
-            hurt = true
-        end
-    end
+        local passes = not params.filterProjectiles or not instanceof(target, Projectile)
 
-    if hurt then
-        self.round:CheckEndConditions()
+        if (target ~= self or params.affectsCaster) and passes and params.filter(target) then
+            if params.modifier then
+                local m = params.modifier
+
+                target:AddNewModifier(self, m.ability, m.name, { duration = m.duration })
+            end
+
+            if params.damage then
+                target:Damage(self)
+            end
+
+            if params.action then
+                params.action(target)
+            end
+
+            if params.sound then
+                target:EmitSound(params.sound)
+            end
+
+            if not hurt then
+                hurt = {}
+            end
+
+            table.insert(hurt, target)
+        end
     end
 
     return hurt
-end
-
-function DynamicEntity:AreaDamage(point, area, action)
-    return self:MultipleTargetsDamage(
-        function (attacker, target)
-            local distance = (target:GetPos() - point):Length2D()
-
-            if target ~= attacker and distance <= area then
-                if action then
-                    action(target)
-                end
-
-                return true
-            end
-
-            return false
-        end
-    )
-end
-
-function DynamicEntity:LineDamage(lineFrom, lineTo, lineWidth, action)
-    return self:MultipleTargetsDamage(
-        function (attacker, target)
-            if target ~= attacker then
-                if SegmentCircleIntersection(lineFrom, lineTo, target:GetPos(), target:GetRad() + (lineWidth or 0)) then
-                    if action then
-                        action(target)
-                    end
-
-                    return true
-                end
-
-                return false
-            end
-        end
-    )
-end
-
-function DynamicEntity:MultipleHeroesModifier(ability, modifier, params, condition)
-    for _, target in pairs(self.round.spells:GetValidTargets()) do
-        if target.AddNewModifier and condition(self, target) then
-            target:AddNewModifier(self, ability, modifier, params)
-        end
-    end
-end
-
-function DynamicEntity:AreaModifier(ability, modifier, params, point, area, condition)
-    return self:MultipleHeroesModifier(ability, modifier, params,
-        function (source, target)
-            local distance = (target:GetPos() - point):Length2D()
-            return condition(source, target) and distance <= area
-        end
-    )
 end
