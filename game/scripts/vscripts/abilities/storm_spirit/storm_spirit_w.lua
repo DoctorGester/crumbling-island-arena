@@ -8,6 +8,7 @@ function storm_spirit_w:OnSpellStart()
     if remnant then
         hero:AreaEffect({
             filter = Filters.Area(remnant:GetPos(), 256),
+            filterProjectiles = true,
             damage = true
         })
 

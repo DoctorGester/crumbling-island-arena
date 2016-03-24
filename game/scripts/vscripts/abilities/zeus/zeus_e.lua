@@ -31,6 +31,7 @@ function zeus_e:OnSpellStart()
     if hero:WallIntersection(casterPos, target) then
         hero:AreaEffect({
             filter = Filters.Line(casterPos, target, 64),
+            filterProjectiles = true,
             sound = "Arena.TA.HitQ",
             damage = true,
             action = function(target)

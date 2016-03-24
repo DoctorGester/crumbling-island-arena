@@ -21,6 +21,7 @@ function zeus_r:OnSpellStart()
 
             hero:AreaEffect({
                 filter = Filters.Area(target, 256),
+                filterProjectiles = true,
                 damage = true,
                 modifier = { name = "modifier_zeus_r", duration = 4.5, ability = self },
                 action = function(target)

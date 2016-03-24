@@ -35,7 +35,6 @@ function cm_w:OnSpellStart()
 
                 local hit = hero:AreaEffect({
                     filter = Filters.And(Filters.Area(damagePos, 128), groupFilter),
-                    sound = "Arena.CM.HitW",
                     action = function(target)
                         local frozen = hero:IsFrozen(target)
 
@@ -47,6 +46,8 @@ function cm_w:OnSpellStart()
                         damaged[target] = true
                     end
                 })
+
+                Spells:GroundDamage(damagePos, 128)
 
                 local sound = "Arena.CM.CastW"
                 if hit then sound = "Arena.CM.HitW" end

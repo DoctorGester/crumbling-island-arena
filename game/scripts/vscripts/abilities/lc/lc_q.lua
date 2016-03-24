@@ -17,13 +17,12 @@ function lc_q:OnSpellStart()
     ParticleManager:SetParticleControl(effect, 0, target)
     ParticleManager:SetParticleControl(effect, 1, Vector(600, 1, 1))
 
-    Spells:AreaModifier(hero, self, "modifier_lc_q", { duration = 1.5 }, target, 200,
-        function (hero, target)
-            return hero ~= target
-        end
-    )
-
-    Spells:AreaDamage(hero, target, 200)
+    hero:AreaEffect({
+        filter = Filters.Area(target, 200),
+        damage = true,
+        modifier = { name = "modifier_lc_q", duration = 1.5, ability = self },
+    })
+    
     Spells:GroundDamage(target, 200)
     hero:EmitSound("Arena.LC.HitQ")
 end

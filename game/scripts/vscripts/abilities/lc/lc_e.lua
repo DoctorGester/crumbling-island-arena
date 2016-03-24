@@ -8,28 +8,12 @@ function lc_e:OnSpellStart()
 
     hero:AddNewModifier(hero, self, "modifier_lc_e_animation", {})
 
-    local dashData = {}
-    dashData.hero = hero
-    dashData.to = target
-    dashData.velocity = 1200
-    dashData.onArrival =
-        function (hero)
-            hero:RemoveModifier("modifier_lc_e_animation")
-        end
+    Dash(hero, target, 1200, {
+        modifier = { name = "modifier_lc_e_animation", ability = self },
+        hitParams = {
+            modifier = { name = "modifier_stunned", ability = self, duration = 0.7 }
+        }
+    })
 
-    dashData.positionFunction =
-        function(position, data)
-            local diff = data.to - position
-
-            Spells:AreaModifier(hero, self, "modifier_stunned", { duration = 0.7 }, hero:GetPos(), 128,
-                function (hero, target)
-                    return hero ~= target
-                end
-            )
-
-            return position + (diff:Normalized() * data.velocity)
-        end
-
-    Spells:Dash(dashData)
     hero:EmitSound("Arena.LC.CastE")
 end
