@@ -50,7 +50,7 @@ function Projectile:CollidesWith(target)
         return self:hitCondition(target)
     end
 
-    return getbase(Projectile).CollidesWith(self, target)
+    return self.owner ~= target.owner
 end
 
 function Projectile:CollideWith(target)
@@ -87,6 +87,7 @@ function Projectile:Damage(source)
     local mode = GameRules:GetGameModeEntity()
     local dust = ParticleManager:CreateParticle("particles/ui/ui_generic_treasure_impact.vpcf", PATTACH_ABSORIGIN, mode)
     ParticleManager:SetParticleControl(dust, 0, self:GetPos())
+    ParticleManager:SetParticleControl(dust, 1, self:GetPos())
     ParticleManager:ReleaseParticleIndex(dust)
 
     local sign = ParticleManager:CreateParticle("particles/msg_fx/msg_deny.vpcf", PATTACH_CUSTOMORIGIN, mode)
@@ -165,4 +166,20 @@ end
 
 function PointTargetProjectile:GetNextPosition(pos)
     return pos + ((self.target - pos):Normalized() * (self:GetSpeed() / 30))
+end
+
+-- Projectile with unit target
+
+HomingProjectile = HomingProjectile or class({}, nil, Projectile)
+
+function HomingProjectile:constructor(round, params)
+    self.heightOffset = params.heightOffset or 0
+    params.to = params.target:GetPos() + Vector(0, 0, self.heightOffset)
+    getbase(DistanceCappedProjectile).constructor(self, round, params)
+
+    self.target = params.target
+end
+
+function HomingProjectile:GetNextPosition(pos)
+    return pos + ((self.target:GetPos() + Vector(0, 0, self.heightOffset) - pos):Normalized() * (self:GetSpeed() / 30))
 end

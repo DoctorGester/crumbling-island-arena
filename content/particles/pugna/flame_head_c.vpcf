@@ -57,7 +57,7 @@
 			m_flStartTime_max = 0.000000
 			m_flEndTime_min = 2.000000
 			m_flEndTime_max = 2.000000
-			m_nControlPointNumber = 1
+			m_nControlPointNumber = 9
 		},
 		{
 			_class = "C_OP_RemapCPtoVector"
@@ -105,7 +105,6 @@
 			_class = "C_INIT_CreateWithinSphere"
 			m_bRunForParentApplyKillList = false
 			m_fRadiusMax = 2.000000
-			m_nControlPointNumber = 1
 		},
 		{
 			_class = "C_INIT_InitialVelocityNoise"

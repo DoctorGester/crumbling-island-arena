@@ -30,29 +30,9 @@ function modifier_pugna_w:OnIntervalThink()
         if not self.rune then
             self.rune = ParticleManager:CreateParticle("particles/pugna_w/pugna_w_rune.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
             self:AddParticle(self.rune, false, false, 1, false, false)
+            self:GetParent().entity.collisionType = COLLISION_TYPE_INFLICTOR
         end
 
         ParticleManager:SetParticleControl(self.rune, 2, hero:GetTrapColor())
-
-        for _, target in pairs(Spells:GetValidTargets()) do
-            local distance = (target:GetPos() - trap:GetAbsOrigin()):Length2D()
-
-            if distance <= 96 and target:__instanceof__(Hero) then
-                self:GetParent():ForceKill(false)
-
-                if hero:IsReversed() then
-                    target:Damage(hero)
-                else
-                    target:Heal()
-                end
-
-                local effect = ImmediateEffectPoint("particles/pugna_w/pugna_w_explode.vpcf", PATTACH_ABSORIGIN, trap, trap:GetAbsOrigin())
-                ParticleManager:SetParticleControl(effect, 2, hero:GetTrapColor())
-
-                trap:EmitSound("Arena.Pugna.HitW")
-                target:EmitSound(hero:GetTrapSound())
-                break
-            end
-        end
     end
 end

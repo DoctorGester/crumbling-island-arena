@@ -95,11 +95,9 @@
 			m_flStartTime_max = 0.250000
 			m_flEndTime_min = 2.000000
 			m_flEndTime_max = 2.000000
-			m_nControlPointNumber = 1
 		},
 		{
 			_class = "C_OP_DistanceCull"
-			m_nControlPoint = 1
 			m_flDistance = 128.000000
 		},
 		{
@@ -176,7 +174,6 @@
 			_class = "C_INIT_CreateWithinSphere"
 			m_fRadiusMax = 8.000000
 			m_fRadiusMin = 5.000000
-			m_nControlPointNumber = 1
 		},
 		{
 			_class = "C_INIT_InitialVelocityNoise"
@@ -193,7 +190,6 @@
 				14.000000,
 			]
 			m_bLocalSpace = true
-			m_nControlPointNumber = 1
 		},
 		{
 			_class = "C_INIT_CreationNoise"

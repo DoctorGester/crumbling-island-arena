@@ -1,7 +1,7 @@
-ProjectilePugnaQ = ProjectilePugnaQ or class({}, nil, Projectile)
+ProjectilePugnaQPrimary = ProjectilePugnaQPrimary or class({}, nil, DistanceCappedProjectile)
 
-function ProjectilePugnaQ:constructor(round, hero, target, secondary)
-	Projectile.constructor(self, round, {
+function ProjectilePugnaQPrimary:constructor(round, hero, target)
+	getbase(ProjectilePugnaQPrimary).constructor(self, round, {
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 64),
         to = target + Vector(0, 0, 64),
@@ -9,21 +9,53 @@ function ProjectilePugnaQ:constructor(round, hero, target, secondary)
         graphics = "particles/pugna_q/pugna_q.vpcf",
         distance = 1400,
         hitFunction = function(projectile, target)
-            if not projectile.owner:IsReversed() then
-                target:Damage(projectile)
+            if not hero:IsReversed() then
+                target:Damage(hero)
             else
                 target:Heal()
             end
 
-            self:CreateSecondProjectile(target, projectile.owner)
+            if instanceof(target, Hero) then
+                ProjectilePugnaQSecondary(round, target, hero):Activate()
+            end
 
-            target:EmitSound(projectile.owner:GetProjectileSound())
+            target:EmitSound(hero:GetProjectileSound())
         end
     })
 end
 
-function ProjectilePugnaQ:Update()
-	Projectile.Update(self)
+function ProjectilePugnaQPrimary:Update()
+	getbase(ProjectilePugnaQPrimary).Update(self)
 
-	ParticleManager:SetParticleControl(self.graphics, 5, self.hero:GetProjectileColor())
+	ParticleManager:SetParticleControl(self.particle, 5, self.hero:GetProjectileColor())
+end
+
+-- Secondary projectile class
+
+ProjectilePugnaQSecondary = ProjectilePugnaQSecondary or class({}, nil, HomingProjectile)
+
+function ProjectilePugnaQSecondary:constructor(round, hero, originalOwner)
+    getbase(ProjectilePugnaQSecondary).constructor(self, round, {
+        owner = hero,
+        from = hero:GetPos() + Vector(0, 0, 64),
+        heightOffset = 64,
+        target = originalOwner,
+        speed = 900,
+        graphics = "particles/pugna_q/pugna_q.vpcf",
+        hitFunction = function(projectile, target)
+            if originalOwner:IsReversed() then
+                target:Damage(hero)
+            else
+                target:Heal()
+            end
+
+            target:EmitSound(originalOwner:GetTrapSound())
+        end
+    })
+end
+
+function ProjectilePugnaQSecondary:Update()
+    getbase(ProjectilePugnaQSecondary).Update(self)
+
+    ParticleManager:SetParticleControl(self.particle, 5, self.target:GetTrapColor())
 end

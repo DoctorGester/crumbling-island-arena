@@ -40,7 +40,7 @@ function DynamicEntity:Alive()
 end
 
 function DynamicEntity:CollidesWith(target)
-    return self.owner ~= target.owner
+    return true
 end
 
 function DynamicEntity:SetInvulnerable(value)
@@ -48,6 +48,7 @@ function DynamicEntity:SetInvulnerable(value)
 end
 
 function DynamicEntity:Damage(source) end
+function DynamicEntity:Heal() end
 function DynamicEntity:Update() end
 function DynamicEntity:Remove() end
 function DynamicEntity:CollideWith(target) end

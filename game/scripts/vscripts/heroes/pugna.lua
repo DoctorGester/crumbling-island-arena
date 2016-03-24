@@ -1,11 +1,5 @@
 Pugna = class({}, {}, Hero)
 
-function Pugna:constructor()
-    self.__base__.constructor(self)
-
-    self.traps = {}
-end
-
 function Pugna:SetUnit(unit)
     self.__base__.SetUnit(self, unit)
 
@@ -44,16 +38,6 @@ function Pugna:UpdateColor()
         end
 
         model = model:NextMovePeer()
-    end
-end
-
-function Pugna:Delete()
-    self.__base__.Delete(self)
-
-    for _, trap in pairs(self.traps) do
-        if IsValidEntity(trap) then
-            trap:RemoveSelf()
-        end
     end
 end
 
