@@ -17,11 +17,8 @@ function lycan_q:OnSpellStart()
         target = hero:GetPos() + direction:Normalized() * 500
     end
 
-    local firstWolf = LycanWolf(hero, target, 1)
-    local secondWolf = LycanWolf(hero, target, -1)
-
-    Spells:AddDynamicEntity(firstWolf)
-    Spells:AddDynamicEntity(secondWolf)
+    LycanWolf(hero.round, hero, target, 1):Activate()
+    LycanWolf(hero.round, hero, target, -1):Activate()
 
     hero:EmitSound("Arena.Lycan.CastQ")
 end

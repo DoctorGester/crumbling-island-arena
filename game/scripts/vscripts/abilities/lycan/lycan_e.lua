@@ -6,11 +6,10 @@ LinkLuaModifier("modifier_lycan_e_silence", "abilities/lycan/modifier_lycan_e_si
 function lycan_e:OnSpellStart()
     local hero = self:GetCaster().hero
 
-    Spells:AreaModifier(hero, self, "modifier_lycan_e", { duration = 2.0 }, hero:GetPos(), 350,
-        function (hero, target)
-            return hero ~= target
-        end
-    )
+    hero:AreaEffect({
+        filter = Filters.Area(hero:GetPos(), 350),
+        modifier = { name = "modifier_lycan_e", ability = self, duration = 2.0 }
+    })
 
     ImmediateEffect("particles/units/heroes/hero_lycan/lycan_howl_cast.vpcf", PATTACH_ABSORIGIN, hero)
     hero:EmitSound("Arena.Lycan.CastE")

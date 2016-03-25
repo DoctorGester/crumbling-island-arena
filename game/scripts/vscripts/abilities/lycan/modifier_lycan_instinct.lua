@@ -12,7 +12,7 @@ function modifier_lycan_instinct:OnIntervalThink()
     local heroFacing = hero:GetFacing()
     local facing = VectorToAngles(heroFacing)
 
-    for _, target in pairs(Spells:GetValidTargets()) do
+    for _, target in pairs(hero.round.spells:GetHeroTargets()) do
 
         if target ~= hero then
             local direction = (target:GetPos() - hero:GetPos()):Normalized()

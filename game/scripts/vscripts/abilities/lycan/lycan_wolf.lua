@@ -1,31 +1,60 @@
-LycanWolf = class({}, nil, DynamicEntity)
+LycanWolf = class({}, nil, UnitEntity)
 
-function LycanWolf:constructor(owner, target, offsetModifier)
-    DynamicEntity.constructor(self)
+function LycanWolf:constructor(round, owner, target, offsetModifier)
+    getbase(LycanWolf).constructor(self, round, "npc_dota_lycan_wolf1", owner:GetPos(), owner.unit:GetTeamNumber())
 
-    self.owner = owner
-    self.size = 64
+    self.owner = owner.owner
+    self.hero = owner
+    self.size = 128
     self.start = owner:GetPos()
     self.target = target
     self.offsetModifier = offsetModifier
+    self.removeOnDeath = false
     self.attacking = nil
+    self.collisionType = COLLISION_TYPE_INFLICTOR
 
-    self.unit = CreateUnitByName("npc_dota_lycan_wolf1", self.start, false, nil, nil, owner.unit:GetTeamNumber())
-    self.unit:SetForwardVector(target - self.start)
-    self.unit:AddNewModifier(owner.unit, nil, "modifier_lycan_q", { duration = 3 })
+    self:SetFacing(target - self.start)
+    self:AddNewModifier(self.hero, nil, "modifier_lycan_q", { duration = 3 })
 
     ImmediateEffect("particles/units/heroes/hero_lycan/lycan_summon_wolves_spawn.vpcf", PATTACH_ABSORIGIN, self.unit)
 end
 
+function LycanWolf:GetPos()
+    return self:GetUnit():GetAbsOrigin()
+end
+
+function LycanWolf:CollidesWith(target)
+    return self.owner ~= target.owner
+end
+
+function LycanWolf:CollideWith(target)
+    local unit = self:GetUnit()
+
+    if instanceof(target, Hero) and not unit:IsStunned() and not unit:IsRooted() then
+        local direction = (target:GetPos() - self:GetPos())
+        local distance = direction:Length2D()
+
+        ExecuteOrderFromTable({ UnitIndex = unit:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_STOP })
+
+        self:FindModifier("modifier_lycan_q"):SetDuration(0.5, false)
+        self:SetFacing(direction:Normalized())
+        self.attacking = target
+        self.collisionType = COLLISION_TYPE_RECEIVER
+        self:EmitSound("Arena.Lycan.HitQ")
+
+        StartAnimation(unit, { duration = 0.5, activity = ACT_DOTA_ATTACK })
+    end
+end
+
 function LycanWolf:Update()
-    if not self.unit:IsAlive() then
+    if not self:GetUnit():IsAlive() then
         if self.attacking then
             local distance = (self.attacking:GetPos() - self:GetPos()):Length2D()
 
             if distance <= 250 then
-                self.attacking:Damage(self.owner)
-                self.unit:EmitSound("Arena.Lycan.HitQ2")
-                self.owner:MakeBleed(self.attacking)
+                self.attacking:Damage(self)
+                self:EmitSound("Arena.Lycan.HitQ2")
+                self.hero:MakeBleed(self.attacking)
             end
         end
 
@@ -33,10 +62,9 @@ function LycanWolf:Update()
         return
     end
 
-    self:SetPos(self.unit:GetAbsOrigin())
-
     if self.attacking then
-        if self.unit:IsStunned() or self.unit:IsRooted() then
+        if self:GetUnit():IsStunned() or self:GetUnit():IsRooted() then
+            self.collisionType = COLLISION_TYPE_INFLICTOR
             self.attacking = false
         else
             return
@@ -56,48 +84,14 @@ function LycanWolf:Update()
     self.i = (self.i or 0) + 1
 
     if self.i % 5 == 0 then
-        ExecuteOrderFromTable({ UnitIndex = self.unit:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_MOVE_TO_DIRECTION, Position = result })
-    end
-
-    if not self.unit:IsStunned() and not self.unit:IsRooted() then
-        for _, target in pairs(Spells:GetValidTargets()) do
-            local direction = (target:GetPos() - self:GetPos())
-            local distance = direction:Length2D()
-
-            if target ~= self.owner and distance <= 160 and target:__instanceof__(Hero) then
-                ExecuteOrderFromTable({ UnitIndex = self.unit:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_STOP })
-
-                self.unit:FindModifierByName("modifier_lycan_q"):SetDuration(0.5, false)
-                self.unit:SetForwardVector(direction:Normalized())
-                self.attacking = target
-                self.unit:EmitSound("Arena.Lycan.HitQ")
-                StartAnimation(self.unit, { duration = 0.5, activity = ACT_DOTA_ATTACK })
-                break
-            end
-        end
+        ExecuteOrderFromTable({ UnitIndex = self:GetUnit():GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_MOVE_TO_DIRECTION, Position = result })
     end
 end
 
 function LycanWolf:Remove()
-    self.unit:RemoveModifierByName("modifier_lycan_q")
+    self:RemoveModifier("modifier_lycan_q")
 end
 
 function LycanWolf:Damage(source)
     self:Destroy()
-end
-
-function LycanWolf:HasModifier(modifier)
-    return self.unit:HasModifier(modifier)
-end
-
-function LycanWolf:AddNewModifier(source, ability, modifier, params)
-    self.unit:AddNewModifier(source.unit, ability, modifier, params)
-end
-
-function LycanWolf:RemoveModifier(name)
-    self.unit:RemoveModifierByName(name)
-end
-
-function LycanWolf:FindModifier(name)
-    return self.unit:FindModifierByName(name)
 end

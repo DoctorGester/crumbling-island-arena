@@ -1,7 +1,5 @@
 sven_w = class({})
 
-LinkLuaModifier("modifier_sven_w_animation_one", "abilities/sven/modifier_sven_w_animation", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_sven_w_animation_two", "abilities/sven/modifier_sven_w_animation", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_sven_w_slow", "abilities/sven/modifier_sven_w_slow", LUA_MODIFIER_MOTION_NONE)
 
 function sven_w:GetBehavior()
@@ -12,24 +10,6 @@ function sven_w:GetBehavior()
     end
 
     return DOTA_ABILITY_BEHAVIOR_POINT
-end
-
-function sven_w:RemoveAnimationTranslation()
-    local hero = self:GetCaster().hero
-    hero:RemoveModifier("modifier_sven_w_animation_one")
-    hero:RemoveModifier("modifier_sven_w_animation_two")
-end
-
-function sven_w:OnAbilityPhaseStart()
-    local hero = self:GetCaster().hero
-    hero:AddNewModifier(hero, self, "modifier_sven_w_animation_one", {})
-    hero:AddNewModifier(hero, self, "modifier_sven_w_animation_two", {})
-
-    return true
-end
-
-function sven_w:OnAbilityPhaseInterrupted()
-    self:RemoveAnimationTranslation()
 end
 
 function sven_w:Shout(direction)
@@ -58,8 +38,6 @@ function sven_w:OnSpellStart()
         direction = hero:GetFacing()
     end
 
-    self:RemoveAnimationTranslation()
-
     if not hero:IsEnraged() then
         self:Shout(direction:Normalized())
     else
@@ -73,5 +51,5 @@ function sven_w:OnSpellStart()
 end
 
 function sven_w:GetCastAnimation()
-    return ACT_DOTA_ATTACK
+    return ACT_DOTA_OVERRIDE_ABILITY_2
 end

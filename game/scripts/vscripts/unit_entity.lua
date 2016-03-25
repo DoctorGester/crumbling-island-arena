@@ -42,8 +42,16 @@ function UnitEntity:AddNewModifier(source, ability, modifier, params)
 	end
 end
 
+function UnitEntity:HasModifier(modifier)
+    return self.unit:HasModifier(modifier)
+end
+
 function UnitEntity:RemoveModifier(name)
     self.unit:RemoveModifierByName(name)
+end
+
+function UnitEntity:FindModifier(name)
+    return self.unit:FindModifierByName(name)
 end
 
 function UnitEntity:Remove()

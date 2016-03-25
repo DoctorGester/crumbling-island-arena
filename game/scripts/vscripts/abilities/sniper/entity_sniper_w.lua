@@ -15,7 +15,7 @@ function EntitySniperW:constructor(round, owner, position, ability)
 end
 
 function EntitySniperW:CollidesWith(target)
-    return getbase(EntitySniperW).CollidesWith(self, target) and target:__instanceof__(Hero)
+    return self.owner ~= target.owner and instanceof(target, Hero)
 end
 
 function EntitySniperW:CollideWith(target)

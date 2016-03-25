@@ -7,30 +7,34 @@ end
 
 function lycan_w:OnSpellStart()
     local hero = self:GetCaster().hero
-    local point = hero:GetPos() + hero:GetFacing() * 128
+    local target = self:GetCursorPosition()
+    local direction = target - hero:GetPos()
 
-    local hit = Spells:MultipleHeroesDamage(hero,
-        function (hero, target)
-            local distance = (target:GetPos() - point):Length2D()
+    if direction:Length2D() == 0 then
+        direction = hero:GetFacing()
+    end
 
-            if target ~= hero and distance <= 128 then
-                if hero:IsTransformed() and hero:IsBleeding(target) then
-                    target:Damage(hero)
-                end
+    direction = direction:Normalized()
 
-                hero:MakeBleed(target)
-                return true
+    hero:AreaEffect({
+        filter = Filters.Cone(hero:GetPos(), 300, direction, math.pi),
+        sound = "Arena.Lycan.HitW",
+        damage = true,
+        action = function(target)
+            if hero:IsTransformed() and hero:IsBleeding(target) then
+                target:Damage(hero)
             end
 
-            return false
+            hero:MakeBleed(target)
         end
-    )
+    })
 
-    if hit then
-        hero:EmitSound("Arena.Lycan.HitW")
-    end
+    local effect = ParticleManager:CreateParticle("particles/lycan_w/lycan_w.vpcf", PATTACH_ABSORIGIN, self:GetCaster())
+    ParticleManager:SetParticleControl(effect, 0, hero:GetPos())
+    ParticleManager:SetParticleControlForward(effect, 0, direction)
+    ParticleManager:ReleaseParticleIndex(effect)
 end
 
 function lycan_w:GetCastAnimation()
-    return ACT_DOTA_ATTACK
+    return ACT_DOTA_ATTACK2
 end

@@ -902,16 +902,27 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/lycan/lycan_w"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "lycan/hunter_of_kings_ability_icons/lycan_feral_impulse"
 		"AbilityCooldown" "3.0"
-		"AbilityCastPoint" "0.4"
+		"AbilityCastPoint" "0.35"
+		"AbilityCastRange" "300"
 
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "128"
-			"Offset" "128"
+			"Radius" "300"
+		}
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "300"
+		}
+
+		"precache"
+		{
+			"particle" "particles/lycan_w/lycan_w.vpcf"
 		}
 	}
 
@@ -924,7 +935,7 @@
 		"AbilityCooldown" "8.0"
 		"AbilityCastPoint" "0.3"
 
-		"HoverIndicator"
+		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
 			"Radius" "350"
