@@ -12,7 +12,7 @@ function storm_spirit_w:OnSpellStart()
             damage = true
         })
 
-        hero:DestroyRemnant(remnant)
+        remnant:Destroy()
     end
 end
 

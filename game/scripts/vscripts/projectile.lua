@@ -34,7 +34,13 @@ function Projectile:constructor(round, params)
     self:SetSpeed(params.speed or 600)
 end
 
+function Projectile:CanFall()
+    return false
+end
+
 function Projectile:Update()
+    getbase(Projectile).Update(self)
+
     local pos = self:GetPos()
 
     if IsOutOfTheMap(pos) then

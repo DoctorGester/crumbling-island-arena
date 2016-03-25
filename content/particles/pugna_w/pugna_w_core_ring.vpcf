@@ -70,6 +70,9 @@
 				1.000000,
 			]
 		},
+		{
+			_class = "C_OP_PositionLock"
+		},
 	]
 	m_Initializers =
 	[

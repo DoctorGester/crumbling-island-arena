@@ -2,10 +2,10 @@ Dash = Dash or class({})
 
 function Dash:constructor(hero, to, speed, params)
     self.hero = hero
-    self.to = to
+    self.to = to * Vector(1, 1, 0)
     self.velocity = speed / 30
 
-    self.from = hero:GetPos()
+    self.from = hero:GetPos() * Vector(1, 1, 0)
     self.zStart = hero:GetGroundHeight(self.from)
 
     self.findClearSpace = params.findClearSpace or true

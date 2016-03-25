@@ -7,3 +7,7 @@ function modifier_pa_e:CheckState()
 
     return state
 end
+
+function modifier_pa_e:Airborne()
+    return true
+end

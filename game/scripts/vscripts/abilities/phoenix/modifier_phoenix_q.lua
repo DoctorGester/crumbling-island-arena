@@ -20,8 +20,7 @@ end
 
 function modifier_phoenix_q:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
-        MODIFIER_PROPERTY_OVERRIDE_ANIMATION_WEIGHT
+        MODIFIER_PROPERTY_OVERRIDE_ANIMATION
     }
 
     return funcs
@@ -29,4 +28,8 @@ end
 
 function modifier_phoenix_q:GetOverrideAnimation(params)
     return ACT_DOTA_OVERRIDE_ABILITY_3
+end
+
+function modifier_phoenix_q:Airborne()
+    return true
 end

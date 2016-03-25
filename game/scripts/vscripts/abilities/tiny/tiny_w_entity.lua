@@ -18,6 +18,7 @@ function TinyW:constructor(owner, ability, target, bounces, height)
 
     self.particle = ParticleManager:CreateParticle("particles/tiny_w/tiny_w.vpcf", PATTACH_ABSORIGIN_FOLLOW , self.unit)
 
+    self.removeOnDeath = true
     self:SetInvulnerable(true)
     self:SetPos(self.start)
 
@@ -75,5 +76,5 @@ function TinyW:Remove()
     ParticleManager:DestroyParticle(self.particle, false)
     ParticleManager:ReleaseParticleIndex(self.particle)
 
-    self.unit:RemoveSelf()
+    getbase(TinyW).Remove(self)
 end

@@ -33,10 +33,6 @@
 			_class = "C_OP_Decay"
 		},
 		{
-			_class = "C_OP_MovementPlaceOnGround"
-			m_flOffset = 5.000000
-		},
-		{
 			_class = "C_OP_OscillateScalarSimple"
 			m_Frequency = 0.750000
 			m_Rate = 20.000000
@@ -71,6 +67,9 @@
 				1.000000,
 				1.000000,
 			]
+		},
+		{
+			_class = "C_OP_PositionLock"
 		},
 	]
 	m_Initializers =

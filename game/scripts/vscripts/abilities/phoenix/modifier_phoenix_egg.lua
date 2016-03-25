@@ -70,3 +70,7 @@ end
 function modifier_phoenix_egg:GetOverrideAnimation()
     return ACT_DOTA_IDLE
 end
+
+function modifier_phoenix_egg:Airborne()
+    return true
+end

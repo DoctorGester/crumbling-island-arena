@@ -7,3 +7,7 @@ function modifier_earth_spirit_stand:CheckState()
 
     return state
 end
+
+function modifier_earth_spirit_stand:Airborne()
+	return true
+end

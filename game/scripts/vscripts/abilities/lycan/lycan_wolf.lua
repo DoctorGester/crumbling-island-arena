@@ -1,4 +1,4 @@
-LycanWolf = class({}, nil, UnitEntity)
+LycanWolf = LycanWolf or class({}, nil, UnitEntity)
 
 function LycanWolf:constructor(round, owner, target, offsetModifier)
     getbase(LycanWolf).constructor(self, round, "npc_dota_lycan_wolf1", owner:GetPos(), owner.unit:GetTeamNumber())
@@ -12,9 +12,10 @@ function LycanWolf:constructor(round, owner, target, offsetModifier)
     self.removeOnDeath = false
     self.attacking = nil
     self.collisionType = COLLISION_TYPE_INFLICTOR
+    self.startTime = GameRules:GetGameTime()
 
     self:SetFacing(target - self.start)
-    self:AddNewModifier(self.hero, nil, "modifier_lycan_q", { duration = 3 })
+    self:AddNewModifier(self.hero, nil, "modifier_lycan_q", {})
 
     ImmediateEffect("particles/units/heroes/hero_lycan/lycan_summon_wolves_spawn.vpcf", PATTACH_ABSORIGIN, self.unit)
 end
@@ -47,6 +48,13 @@ function LycanWolf:CollideWith(target)
 end
 
 function LycanWolf:Update()
+    getbase(LycanWolf).Update(self)
+
+    if GameRules:GetGameTime() - self.startTime >= 3 and not self.falling then
+        self:Destroy()
+        return
+    end
+
     if not self:GetUnit():IsAlive() then
         if self.attacking then
             local distance = (self.attacking:GetPos() - self:GetPos()):Length2D()
@@ -66,9 +74,9 @@ function LycanWolf:Update()
         if self:GetUnit():IsStunned() or self:GetUnit():IsRooted() then
             self.collisionType = COLLISION_TYPE_INFLICTOR
             self.attacking = false
-        else
-            return
         end
+
+        return
     end
 
     local direction = self.target - self.start
@@ -86,10 +94,6 @@ function LycanWolf:Update()
     if self.i % 5 == 0 then
         ExecuteOrderFromTable({ UnitIndex = self:GetUnit():GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_MOVE_TO_DIRECTION, Position = result })
     end
-end
-
-function LycanWolf:Remove()
-    self:RemoveModifier("modifier_lycan_q")
 end
 
 function LycanWolf:Damage(source)

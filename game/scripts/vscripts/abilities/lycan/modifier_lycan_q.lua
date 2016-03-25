@@ -1,11 +1,5 @@
 modifier_lycan_q = class({})
 
-function modifier_lycan_q:OnDestroy(keys)
-    if IsServer() then
-        self:GetParent():ForceKill(false)
-    end
-end
-
 function modifier_lycan_q:CheckState()
     local state = {
         [MODIFIER_STATE_NO_UNIT_COLLISION] = true,

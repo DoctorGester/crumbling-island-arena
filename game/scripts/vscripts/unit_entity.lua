@@ -10,6 +10,12 @@ function UnitEntity:constructor(round, unitName, pos, team)
 	getbase(UnitEntity).SetPos(self, pos)
 end
 
+function UnitEntity:MakeFall()
+    getbase(UnitEntity).MakeFall(self)
+
+    self:AddNewModifier(self, nil, "modifier_falling", {})
+end
+
 function UnitEntity:GetUnit()
 	return self.unit
 end
@@ -30,6 +36,10 @@ function UnitEntity:EmitSound(sound, location)
     else
         self.unit:EmitSound(sound)
     end
+end
+
+function UnitEntity:StopSound(sound)
+	self.unit:StopSound(sound)
 end
 
 function UnitEntity:SetFacing(facing)
@@ -58,6 +68,9 @@ function UnitEntity:Remove()
 	if self.removeOnDeath then
 		self:GetUnit():RemoveSelf()
 	else
+		local pos = self:GetPos()
+
 	    self:GetUnit():ForceKill(false)
+		self:GetUnit():SetAbsOrigin(pos)
 	end
 end

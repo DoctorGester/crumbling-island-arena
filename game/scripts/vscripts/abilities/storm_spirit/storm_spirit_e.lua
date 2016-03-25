@@ -13,7 +13,7 @@ function storm_spirit_e:OnSpellStart()
             modifier = { name = "modifier_storm_spirit_e", ability = self },
             forceFacing = true,
             loopingSound = "Hero_StormSpirit.BallLightning.Loop",
-            arrivalFunction = function(dash) hero:DestroyRemnant(remnant) end
+            arrivalFunction = function(dash) remnant:Destroy() end
         })
     end
 end

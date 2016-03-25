@@ -10,9 +10,18 @@ function DynamicEntity:constructor(round)
     self.position = Vector(0, 0, 0)
     self.destroyed = false
     self.invulnerable = false
-    self.inAir = false
     self.collisionType = COLLISION_TYPE_NONE
     self.collisionConsiderOwner = true
+    self.falling = false
+    self.fallingSpeed = 0
+end
+
+function DynamicEntity:MakeFall()
+    self.falling = true
+end
+
+function DynamicEntity:CanFall()
+    return true
 end
 
 function DynamicEntity:GetPos()
@@ -47,9 +56,20 @@ function DynamicEntity:SetInvulnerable(value)
     self.invulnerable = value
 end
 
+function DynamicEntity:Update()
+    if self.falling then
+        self.fallingSpeed = self.fallingSpeed + 10
+
+        self:SetPos(self:GetPos() - Vector(0, 0, self.fallingSpeed / 3))
+
+        if self:GetPos().z <= -7000 then
+            self:Destroy()
+        end
+    end
+end
+
 function DynamicEntity:Damage(source) end
 function DynamicEntity:Heal() end
-function DynamicEntity:Update() end
 function DynamicEntity:Remove() end
 function DynamicEntity:CollideWith(target) end
 

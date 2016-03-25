@@ -11,14 +11,12 @@ function StormSpirit:AddRemnant(remnant)
     table.insert(self.remnants, remnant)
 end
 
-function StormSpirit:DestroyRemnant(remnant)
+function StormSpirit:RemoveRemnant(remnant)
     table.insert(self.lastRemnants, { position = remnant:GetPos(), facing = remnant:GetFacing() })
 
     if #self.lastRemnants > 3 then
         table.remove(self.lastRemnants, 1)
     end
-
-    remnant:Destroy()
 
     table.remove(self.remnants, GetIndex(self.remnants, remnant))
 end

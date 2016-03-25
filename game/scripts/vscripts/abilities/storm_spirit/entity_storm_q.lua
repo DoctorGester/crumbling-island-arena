@@ -14,5 +14,6 @@ end
 
 function EntityStormQ:Remove()
     self:EmitSound("Hero_StormSpirit.StaticRemnantExplode")
+    self.hero:RemoveRemnant(self)
     getbase(EntityStormQ).Remove(self)
 end

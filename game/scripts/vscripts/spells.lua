@@ -7,6 +7,20 @@ function Spells:constructor()
     self.dashes = {}
 end
 
+function Spells.TestEntityPoint(entity, point)
+    local ground = point * Vector(1, 1, 0)
+    
+    local trace = {
+        startpos = ground,
+        endpos = ground - Vector(0, 0, 5),
+        ignore = entity.unit
+    }
+
+    TraceLine(trace)
+
+    return trace.hit
+end
+
 function Spells:Update()
     for i = #self.entities, 1, -1 do
         local entity = self.entities[i]
@@ -33,16 +47,11 @@ function Spells:Update()
 
     -- resolving collisions
     -- TODO add segment/circle and segment/segment resolvers
-    -- TODO add projectile destroy effect
-    --[[
-        local between = projectile.position + (second.position - projectile.position) / 2
-        Spells:ProjectileDestroyEffect(between + Vector(0, 0, 64))
-    ]]--
 
     for _, first in ipairs(self.entities) do
-        if first:Alive() and first.collisionType == COLLISION_TYPE_INFLICTOR then
+        if first:Alive() and first.collisionType == COLLISION_TYPE_INFLICTOR and not first.falling then
             for _, second in ipairs(self:GetValidTargets()) do
-                if first ~= second and second:Alive() and second.collisionType ~= COLLISION_TYPE_NONE and first:CollidesWith(second) and second:CollidesWith(first) then
+                if first ~= second and not first.falling and second:Alive() and second.collisionType ~= COLLISION_TYPE_NONE and first:CollidesWith(second) and second:CollidesWith(first) then
                     local radSum = first:GetRad() + second:GetRad()
 
                     if (first:GetPos() - second:GetPos()):Length2D() <= radSum then
@@ -50,6 +59,28 @@ function Spells:Update()
                         second:CollideWith(first)
                     end
                 end
+            end
+        end
+    end
+
+    -- Resolving falling entities
+    for _, entity in ipairs(self.entities) do
+        if entity:CanFall() and not entity.falling then
+            local hit = false
+            local pos = entity:GetPos()
+
+            for i = 0, 8 do
+                local an = math.pi / 4 * i
+                local point = pos + Vector(math.cos(an), math.sin(an)) * entity:GetRad()
+
+                if Spells.TestEntityPoint(entity, point) then
+                    hit = true
+                    break
+                end
+            end
+
+            if not hit then
+                entity:MakeFall()
             end
         end
     end
