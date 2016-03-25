@@ -7,13 +7,13 @@ function Spells:constructor()
     self.dashes = {}
 end
 
-function Spells.TestEntityPoint(entity, point)
+function Spells.TestPoint(point, unit)
     local ground = point * Vector(1, 1, 0)
     
     local trace = {
         startpos = ground,
         endpos = ground - Vector(0, 0, 5),
-        ignore = entity.unit
+        ignore = unit
     }
 
     TraceLine(trace)
@@ -73,7 +73,7 @@ function Spells:Update()
                 local an = math.pi / 4 * i
                 local point = pos + Vector(math.cos(an), math.sin(an)) * entity:GetRad()
 
-                if Spells.TestEntityPoint(entity, point) then
+                if Spells.TestPoint(point, entity.unit) then
                     hit = true
                     break
                 end

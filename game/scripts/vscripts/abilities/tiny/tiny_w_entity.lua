@@ -1,9 +1,10 @@
-TinyW = class({}, nil, DynamicEntity)
+TinyW = TinyW or class({}, nil, UnitEntity)
 
-function TinyW:constructor(owner, ability, target, bounces, height)
-    DynamicEntity.constructor(self)
+function TinyW:constructor(round, owner, ability, target, bounces, height)
+    getbase(TinyW).constructor(self, round, DUMMY_UNIT, owner:GetPos())
 
-    self.owner = owner
+    self.owner = owner.owner
+    self.hero = owner
     self.ability = ability
     self.target = target
     self.start = owner:GetPos()
@@ -12,9 +13,9 @@ function TinyW:constructor(owner, ability, target, bounces, height)
     self.height = height
     self.travelTime = 1.2
     self.effectRadius = 200
+    self.fallingDirection = nil
 
-    self.unit = CreateUnitByName(DUMMY_UNIT, self.start, false, nil, nil, DOTA_TEAM_NOTEAM)
-    self.unit:SetForwardVector(target - self.start)
+    self:SetFacing(target - self.start)
 
     self.particle = ParticleManager:CreateParticle("particles/tiny_w/tiny_w.vpcf", PATTACH_ABSORIGIN_FOLLOW , self.unit)
 
@@ -22,38 +23,54 @@ function TinyW:constructor(owner, ability, target, bounces, height)
     self:SetInvulnerable(true)
     self:SetPos(self.start)
 
-    CreateAOEMarker(owner, target, self.effectRadius, self.travelTime)
+    CreateAOEMarker(self, target, self.effectRadius, self.travelTime)
+end
+
+function TinyW:CanFall()
+    return false
 end
 
 function TinyW:Update()
+    getbase(TinyW).Update(self)
+
+    if self.falling then
+        self:SetPos(self:GetPos() + self.fallingDirection)
+        return
+    end
+
     local time = GameRules:GetGameTime() - self.startTime
-    local progress = math.min(time / self.travelTime, 1.0)
+    local progress = time / self.travelTime
     local delta = self.target - self.start
     local dir = delta:Normalized() * (progress * delta:Length())
     local height = ParabolaZ(self.height, delta:Length(), dir:Length())
     local result = self.start + dir
+    local prevPos = self:GetPos()
 
     self:SetPos(result + Vector(0, 0, height))
 
-    self.unit:SetAbsOrigin(self:GetPos())
-
-    if progress == 1.0 then
+    if progress >= 1.0 then
         local effectPosition = self:GetPos()
+
+        if not Spells.TestPoint(effectPosition, self:GetUnit()) then
+            self.falling = true
+            self.fallingDirection = self:GetPos() - prevPos
+            return
+        end
+
         effectPosition.z = GetGroundHeight(effectPosition, self.unit)
-        ImmediateEffectPoint("particles/tiny_w/tiny_w_explode.vpcf", PATTACH_ABSORIGIN, self.owner, effectPosition)
+        ImmediateEffectPoint("particles/tiny_w/tiny_w_explode.vpcf", PATTACH_ABSORIGIN, self, effectPosition)
 
         GridNav:DestroyTreesAroundPoint(result, self.effectRadius, false)
 
-        Spells:AreaModifier(self.owner, self.ability, "modifier_stunned", { duration = 1.2 }, effectPosition, self.effectRadius,
-            function (hero, target)
-                return hero ~= target
-            end
-        )
+        self.hero:AreaEffect({
+            filter = Filters.Area(effectPosition, self.effectRadius),
+            damage = true,
+            modifier = { name = "modifier_stunned", duration = 1.2, ability = self.ability },
+        })
 
-        Spells:AreaDamage(self.owner, effectPosition, self.effectRadius)
         Spells:GroundDamage(effectPosition, self.effectRadius)
 
-        self.owner:EmitSound("Arena.Tiny.HitW")
+        self:EmitSound("Arena.Tiny.HitW")
 
         if self.bounces > 0 then
             self.start = self.position
@@ -65,7 +82,7 @@ function TinyW:Update()
 
             self.target.z = GetGroundHeight(self.target, self.unit)
 
-            CreateAOEMarker(self.owner, self.target, self.effectRadius, self.travelTime)
+            CreateAOEMarker(self, self.target, self.effectRadius, self.travelTime)
         else
             self:Destroy()
         end

@@ -27,7 +27,7 @@ function tiny_w:OnSpellStart()
         mod:Use()
     end
 
-    Spells:AddDynamicEntity(TinyW(hero, self, target, bounces, height))
+    TinyW(hero.round, hero, self, target, bounces, height):Activate()
 end
 
 function tiny_w:GetCastAnimation()

@@ -41,6 +41,10 @@ end
 function Projectile:Update()
     getbase(Projectile).Update(self)
 
+    if self.falling then
+        return
+    end
+
     local pos = self:GetPos()
 
     if IsOutOfTheMap(pos) then

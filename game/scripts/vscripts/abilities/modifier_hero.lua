@@ -11,15 +11,7 @@ end
 function modifier_hero:IsForwardEmpty()
     local parent = self:GetParent()
     local forward = parent:GetForwardVector() * parent:GetBaseMoveSpeed() / 30 + parent:GetAbsOrigin()
-    local trace = {
-        startpos = forward,
-        endpos = forward - Vector(0, 0, 128),
-        ignore = parent
-    }
-
-    TraceLine(trace)
-
-    return not trace.hit
+    return not Spells.TestPoint(forward, parent)
 end
 
 function modifier_hero:CheckState()

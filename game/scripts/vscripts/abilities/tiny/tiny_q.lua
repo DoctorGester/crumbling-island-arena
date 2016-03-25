@@ -17,7 +17,7 @@ function tiny_q:OnSpellStart()
         mod:Use()
     end
 
-    hero.round.spells:AddDynamicEntity(TinyQ(hero, self, target, stun))
+    TinyQ(hero.round, hero, self, target, stun):Activate()
     hero:EmitSound("Arena.Tiny.CastQ")
 end
 
