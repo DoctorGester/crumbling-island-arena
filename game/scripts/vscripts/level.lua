@@ -153,6 +153,14 @@ function Level:Update()
         end
     end
 
+    for i = #self.shakingParts, 1, -1 do
+        local part = self.shakingParts[i]
+        
+        if part.z <= -4096 then
+            table.remove(self.shakingParts, i)
+        end
+    end
+
     if self.distance > FINISHING_DISTANCE then
         self.distance = self.distance - 1
     else
