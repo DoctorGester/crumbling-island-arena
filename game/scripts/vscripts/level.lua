@@ -18,6 +18,7 @@ function Level:constructor()
     self.running = true
 
     self:BuildIndex()
+    self:SetupBackground()
 end
 
 function Level:BuildIndex()
@@ -148,7 +149,7 @@ function Level:Update()
         part:SetAngles(part.angles.x, part.angles.y, part.angles.z)
         part:SetAbsOrigin(Vector(part.x, part.y, part.z))
 
-        if part.z <= -4096 then
+        if part.z <= -3700 then
             table.remove(self.fallingParts, i)
         end
     end
@@ -156,7 +157,9 @@ function Level:Update()
     for i = #self.shakingParts, 1, -1 do
         local part = self.shakingParts[i]
         
-        if part.z <= -4096 then
+        if part.z <= -3500 then
+            SplashEffect(part:GetAbsOrigin())
+
             table.remove(self.shakingParts, i)
         end
     end
@@ -166,4 +169,35 @@ function Level:Update()
     else
         self.running = false
     end
+end
+
+function Level.CreateCreep(name, spawn, team, goal)
+    CreateUnitByNameAsync(name, spawn, true, nil, nil, team, function(unit)
+        unit:AddNewModifier(u, nil, "modifier_creep", {})
+        unit:SetInitialGoalEntity(goal)
+    end)
+end
+
+function Level:SetupBackground()
+    for _, ent in pairs(Entities:FindAllByClassname("npc_dota_tower")) do
+        ent:AddNewModifier(ent, nil, "modifier_tower", {})
+    end
+
+    Timers:CreateTimer(function()
+        local goodSpawn = Entities:FindByName(nil, "good_creeps_start"):GetAbsOrigin()
+        local badSpawn = Entities:FindByName(nil, "bad_creeps_start"):GetAbsOrigin()
+
+        local goodGoal = Entities:FindByName(nil, "p_good_1")
+        local badGoal = Entities:FindByName(nil, "p_bad_1")
+
+        for i = 1, 3 do
+            Level.CreateCreep("npc_dota_creep_badguys_melee", badSpawn, DOTA_TEAM_CUSTOM_7, badGoal)
+            Level.CreateCreep("npc_dota_creep_goodguys_melee", goodSpawn, DOTA_TEAM_CUSTOM_8, goodGoal)
+        end
+
+        Level.CreateCreep("npc_dota_creep_badguys_ranged", badSpawn, DOTA_TEAM_CUSTOM_7, badGoal)
+        Level.CreateCreep("npc_dota_creep_goodguys_ranged", goodSpawn, DOTA_TEAM_CUSTOM_8, goodGoal)
+
+        return 30
+    end)
 end

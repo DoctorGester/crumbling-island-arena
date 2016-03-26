@@ -15,6 +15,7 @@ function TinyQ:constructor(round, owner, ability, target, stun)
     })
 
     self.fell = false
+    self.fallingDirection = nil
     self.picked = false
     self.heightVel = 4
     self.removeOnDeath = true
@@ -46,6 +47,8 @@ end
 
 function TinyQ:MakeFall()
     getbase(TinyQ).MakeFall(self)
+
+    self.fallingDirection = self:GetNextPosition(self:GetPos()) - self:GetPos()
     
     self:RemoveGroundEffect()
 end
@@ -64,6 +67,7 @@ function TinyQ:Update()
     getbase(TinyQ).Update(self)
 
     if self.falling then
+        self:SetPos(self:GetPos() + self.fallingDirection)
         return
     end
 

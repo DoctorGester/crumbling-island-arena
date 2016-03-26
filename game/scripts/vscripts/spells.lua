@@ -51,7 +51,7 @@ function Spells:Update()
     for _, first in ipairs(self.entities) do
         if first:Alive() and first.collisionType == COLLISION_TYPE_INFLICTOR and not first.falling then
             for _, second in ipairs(self:GetValidTargets()) do
-                if first ~= second and not first.falling and second:Alive() and second.collisionType ~= COLLISION_TYPE_NONE and first:CollidesWith(second) and second:CollidesWith(first) then
+                if first ~= second and not second.falling and second:Alive() and second.collisionType ~= COLLISION_TYPE_NONE and first:CollidesWith(second) and second:CollidesWith(first) then
                     local radSum = first:GetRad() + second:GetRad()
 
                     if (first:GetPos() - second:GetPos()):Length2D() <= radSum then

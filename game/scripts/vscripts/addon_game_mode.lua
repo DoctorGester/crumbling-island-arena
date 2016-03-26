@@ -40,13 +40,13 @@ function Precache(context)
     PrecacheResource("particle", "particles/targeting/range.vpcf", context)
     PrecacheResource("particle", "particles/targeting/global_target.vpcf", context)
     PrecacheResource("particle", "particles/aoe_marker.vpcf", context)
+    PrecacheResource("particle", "particles/econ/courier/courier_kunkka_parrot/courier_kunkka_parrot_splash.vpcf", context)
 
     PrecacheResource("particle", "particles/pugna/weapon_glow.vpcf", context)
     PrecacheResource("particle", "particles/pugna/ambient.vpcf", context)
 
     PrecacheResource("model", "models/development/invisiblebox.vmdl", context)
     PrecacheResource("particle", "particles/ui/ui_generic_treasure_impact.vpcf", context)
-    PrecacheResource("particle", "particles/units/heroes/hero_tiny/tiny_avalanche.vpcf", context)
     PrecacheResource("soundfile", "soundevents/custom_sounds.vsndevts", context)
     PrecacheResource("soundfile", "soundevents/game_sounds_vo_announcer.vsndevts", context)
 
@@ -56,6 +56,8 @@ function Precache(context)
     LinkLuaModifier("modifier_hidden", "abilities/modifier_hidden", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_falling", "abilities/modifier_falling", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_hero", "abilities/modifier_hero", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_tower", "abilities/modifier_tower", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_creep", "abilities/modifier_creep", LUA_MODIFIER_MOTION_NONE)
 
     local heroes = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
 

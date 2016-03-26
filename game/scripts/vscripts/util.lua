@@ -20,6 +20,13 @@ function GetIndex(list, element)
     return nil
 end
 
+function SplashEffect(point)
+    local id = ParticleManager:CreateParticle("particles/econ/courier/courier_kunkka_parrot/courier_kunkka_parrot_splash.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity())
+    ParticleManager:SetParticleControl(id, 0, Vector(point.x, point.y, -3500))
+
+    ParticleManager:ReleaseParticleIndex(id)
+end
+
 function Shuffle(table)
     local iterations = #table
     local j
