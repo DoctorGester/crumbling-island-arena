@@ -2,7 +2,6 @@ modifier_phoenix_q = class({})
 
 function modifier_phoenix_q:CheckState()
     local state = {
-        [MODIFIER_STATE_FLYING] = true,
         [MODIFIER_STATE_STUNNED] = true,
         [MODIFIER_STATE_NO_UNIT_COLLISION] = true
     }

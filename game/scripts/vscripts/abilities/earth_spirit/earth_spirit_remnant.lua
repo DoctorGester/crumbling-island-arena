@@ -1,34 +1,57 @@
-EarthSpiritRemnant = class({}, nil, DynamicEntity)
+EarthSpiritRemnant = EarthSpiritRemnant or class({}, nil, DynamicEntity)
 
-function EarthSpiritRemnant:constructor(owner)
-    DynamicEntity.constructor(self)
+function EarthSpiritRemnant:constructor(round, owner)
+    getbase(EarthSpiritRemnant).constructor(self, round)
 
     self.owner = owner.owner
     self.hero = owner
     self.unit = nil
     self.health = 2
     self.size = 64
-    self.falling = false
+    self.fell = false
     self.target = nil
     self.speed = 0
+    self.collisionType = COLLISION_TYPE_RECEIVER
     self.enemiesHit = {}
 end
 
 function EarthSpiritRemnant:CreateCounter()
     self.healthCounter = ParticleManager:CreateParticle("particles/earth_spirit_q/earth_spirit_q_counter.vpcf", PATTACH_CUSTOMORIGIN, nil)
-    ParticleManager:SetParticleControl(self.healthCounter, 0, Vector(self.position.x, self.position.y, self.position.z + 200))
     ParticleManager:SetParticleControl(self.healthCounter, 1, Vector(0, self.health, 0))
+end
+
+function EarthSpiritRemnant:CanFall()
+    return self.fell
+end
+
+function EarthSpiritRemnant:MakeFall()
+    getbase(EarthSpiritRemnant).MakeFall(self)
+
+    if not self.hero.destroyed then
+        self.hero:RemnantDestroyed(self)
+    end
+end
+
+function EarthSpiritRemnant:SetPos(pos)
+    getbase(EarthSpiritRemnant).SetPos(self, pos)
+
+    if self.unit then
+        self.unit:SetAbsOrigin(pos)
+    end
+
+    if self.healthCounter then
+        ParticleManager:SetParticleControl(self.healthCounter, 0, self:GetPos() + Vector(0, 0, 200))
+    end
 end
 
 function EarthSpiritRemnant:SetUnit(unit, fall)
     self.unit = unit
-    self.falling = fall
-
-    self.unit:SetAbsOrigin(self:GetPos())
+    self.fell = not fall
 end
 
 function EarthSpiritRemnant:SetTarget(target)
     self.target = target
+    self.collisionType = COLLISION_TYPE_INFLICTOR
 
     self.unit:EmitSound("Hero_EarthSpirit.RollingBoulder.Loop")
 end
@@ -36,49 +59,41 @@ end
 function EarthSpiritRemnant:RemoveTarget()
     self.target = nil
     self.speed = 0
+    self.collisionType = COLLISION_TYPE_RECEIVER
 
     self.unit:StopSound("Hero_EarthSpirit.RollingBoulder.Loop")
 end
 
-function EarthSpiritRemnant:FilterTarget(prev, pos, source, target)
-    if target == self or target == self.hero then return false end
-    if self.enemiesHit[target] and self.enemiesHit[target] > 0 then return false end
+function EarthSpiritRemnant:CollideWith(target)
+    self.enemiesHit[target] = 30
 
-    if SegmentCircleIntersection(prev, pos, target:GetPos(), self:GetRad() + target:GetRad()) then
-        if target:__instanceof__(EarthSpiritRemnant) then
-            target:Destroy()
-            return false
-        end
+    target:Damage(self)
+end
 
-        self.enemiesHit[target] = 30
-
-        return true
-    end
+function EarthSpiritRemnant:CollidesWith(target)
+    local hit = self.enemiesHit[target] and self.enemiesHit[target] > 0
+    return target ~= self.hero and not hit
 end
 
 function EarthSpiritRemnant:EarthCollision()
     local pos = self:GetPos()
-    ImmediateEffectPoint("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp.vpcf", PATTACH_CUSTOMORIGIN, self.hero, pos)
-    ImmediateEffectPoint("particles/units/heroes/hero_earth_spirit/earth_dust_hit.vpcf", PATTACH_CUSTOMORIGIN, self.hero, pos)
 
-    GridNav:DestroyTreesAroundPoint(pos, 256, true)
-    Spells:MultipleHeroesDamage(self.hero,
-        function (source, target)
-            local distance = (target:GetPos() - pos):Length2D()
+    if Spells.TestPoint(pos, self.unit) then
+        ImmediateEffectPoint("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp.vpcf", PATTACH_CUSTOMORIGIN, self.hero, pos)
+        ImmediateEffectPoint("particles/units/heroes/hero_earth_spirit/earth_dust_hit.vpcf", PATTACH_CUSTOMORIGIN, self.hero, pos)
 
-            if target ~= source and target ~= self and distance <= 256 then
-                if target:__instanceof__(EarthSpiritRemnant) then
-                    target:Destroy()
-                    return false
-                end
+        self:AreaEffect({
+            filter = Filters.And(Filters.Area(pos, 256), Filters.NotEquals(self.hero)),
+            damage = true
+        })
 
-                return true
-            end
-        end
-    )
-    Spells:GroundDamage(pos, 256)
-    
-    EmitSoundOnLocationWithCaster(pos, "Arena.Earth.CastQ", nil)
+        GridNav:DestroyTreesAroundPoint(pos, 256, true)
+        Spells:GroundDamage(pos, 256)
+        
+        EmitSoundOnLocationWithCaster(pos, "Arena.Earth.CastQ", nil)
+    else
+        self.fallingSpeed = 200
+    end
 end
 
 function EarthSpiritRemnant:Cracks()
@@ -95,25 +110,27 @@ function EarthSpiritRemnant:Cracks()
 end
 
 function EarthSpiritRemnant:Update()
-    ParticleManager:SetParticleControl(self.healthCounter, 0, Vector(self.position.x, self.position.y, self.position.z + 200))
+    getbase(EarthSpiritRemnant).Update(self)
 
     if self.falling then
+        return
+    end
+
+    if not self.fell then
         local pos = self:GetPos()
         local ground = GetGroundHeight(pos, self.unit)
         local z = math.max(ground, pos.z - 200)
         self:SetPos(Vector(pos.x, pos.y, z))
 
         if z == ground then
-            self.falling = false
+            self.fell = true
             self:EarthCollision()
         end
     end
 
     if self.hero.remnantStand == self then
-        self.hero:SetPos(Vector(self.position.x, self.position.y, self.position.z + 150))
+        self.hero:SetPos(self:GetPos() + Vector(0, 0, 150))
     end
-
-    self.unit:SetAbsOrigin(self:GetPos())
 
     for target, time in pairs(self.enemiesHit) do
         self.enemiesHit[target] = time - 1
@@ -129,7 +146,7 @@ function EarthSpiritRemnant:Update()
             local diff = self.target:GetPos() - pos
             if diff:Length2D() <= self:GetRad() + self.target:GetRad() then
 
-                if self.target:__instanceof__(EarthSpiritRemnant) then
+                if instanceof(self.target, EarthSpiritRemnant) then
                     self.target:Destroy()
                 end
 
@@ -139,32 +156,15 @@ function EarthSpiritRemnant:Update()
                 local result = pos + velocity
 
                 self.speed = self.speed + 3
-
-                Spells:MultipleHeroesDamage(self,
-                    function (attacker, target)
-                        return self:FilterTarget(pos, result, attacker, target)
-                    end
-                )
-
                 self:SetPos(result)
             end
         end
     end
 end
 
-function EarthSpiritRemnant:SilentDestroy()
-    if self.unit then
-        self.unit:StopSound("Hero_EarthSpirit.RollingBoulder.Loop")
-    end
-
-    self.unit = nil
-    self:Destroy()
-end
-
 function EarthSpiritRemnant:Remove()
     if self.unit then
         self.unit:StopSound("Hero_EarthSpirit.RollingBoulder.Loop")
-        self.unit:EmitSound("Arena.Earth.EndQ")
         self.unit:RemoveSelf()
     end
 
@@ -179,12 +179,19 @@ function EarthSpiritRemnant:Remove()
 end
 
 function EarthSpiritRemnant:Damage(source)
+    if instanceof(source, EarthSpiritRemnant) and self.collisionType == COLLISION_TYPE_RECEIVER then
+        self.unit:EmitSound("Arena.Earth.EndQ")
+        self:Destroy()
+        return
+    end
+
     if source ~= self.hero and self.hero.remnantStand == self then return end
 
     self.health = self.health - 1
     ParticleManager:SetParticleControl(self.healthCounter, 1, Vector(0, self.health, 0))
 
     if self.health == 0 then
+        self.unit:EmitSound("Arena.Earth.EndQ")
         self:Destroy()
     end
 end

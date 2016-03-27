@@ -2,10 +2,10 @@ Dash = Dash or class({})
 
 function Dash:constructor(hero, to, speed, params)
     self.hero = hero
-    self.to = to * Vector(1, 1, 0)
+    self.to = to
     self.velocity = speed / 30
 
-    self.from = hero:GetPos() * Vector(1, 1, 0)
+    self.from = hero:GetPos()
     self.zStart = hero:GetGroundHeight(self.from)
 
     self.findClearSpace = params.findClearSpace or true
@@ -15,7 +15,7 @@ function Dash:constructor(hero, to, speed, params)
     self.loopingSound = params.loopingSound
 
     self.PositionFunction = params.positionFunction or self.PositionFunction
-    self.HeightFunction = params.heightFunction or self.HeightFunction
+    self.heightFunction = params.heightFunction
     self.arrivalFunction = params.arrivalFunction
     self.hitParams = params.hitParams
     self.hitGroup = {}
@@ -33,7 +33,7 @@ function Dash:constructor(hero, to, speed, params)
             facing = self.hero:GetFacing()
         end
         
-        self.hero:SetFacing(facing:Normalized())
+        self.hero:SetFacing(facing:Normalized() * Vector(1, 1, 0))
     end
 
     if self.modifier then
@@ -48,7 +48,6 @@ function Dash:Update()
     local result = self:PositionFunction(origin)
 
     result.z = self.zStart + self:HeightFunction(origin)
-
     self.hero:SetPos(result)
 
     if self.hitParams then
@@ -58,7 +57,7 @@ function Dash:Update()
             return not self.hitGroup[target]
         end
 
-        params.filter = Filters.And(Filters.Line(origin, result, self.hero:GetRad() * 2), groupFilter)
+        params.filter = Filters.And(Filters.Line(origin, result, self.hero:GetRad()), groupFilter)
 
         local hurt = self.hero:AreaEffect(params)
 
@@ -86,6 +85,10 @@ function Dash:PositionFunction(current)
 end
 
 function Dash:HeightFunction(current)
+    if self.heightFunction then
+        return self:heightFunction(current)
+    end
+
     return 0
 end
 

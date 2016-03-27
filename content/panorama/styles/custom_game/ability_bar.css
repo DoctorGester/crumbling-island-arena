@@ -128,8 +128,8 @@
     opacity: 0.75;
     horizontal-align: center;
     vertical-align: bottom;
-    transition-property: clip;
-    transition-duration: 0.01s;
+    /*transition-property: clip;
+    transition-duration: 0.01s;*/
 }
 
 .AbilityBeingCast

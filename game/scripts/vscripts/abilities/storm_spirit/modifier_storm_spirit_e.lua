@@ -10,7 +10,6 @@ end
 
 function modifier_storm_spirit_e:CheckState()
     local state = {
-        [MODIFIER_STATE_FLYING] = true,
         [MODIFIER_STATE_STUNNED] = true,
         [MODIFIER_STATE_NO_UNIT_COLLISION] = true
     }

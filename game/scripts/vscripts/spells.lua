@@ -152,12 +152,18 @@ end
 
 function Filters.Line(from, to, width)
     return function(target)
-        return SegmentCircleIntersection(from, to, target:GetPos(), target:GetRad() + (lineWidth or 0))
+        return SegmentCircleIntersection(from, to, target:GetPos(), target:GetRad() + (width or 0))
     end
 end
 
 function Filters.And(filter1, filter2)
     return function(target)
         return filter1(target) and filter2(target)
+    end
+end
+
+function Filters.NotEquals(who)
+    return function(target)
+        return target ~= who
     end
 end

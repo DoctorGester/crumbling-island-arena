@@ -3,19 +3,33 @@ earth_spirit_q = class({})
 require('abilities/earth_spirit/earth_spirit_remnant')
 LinkLuaModifier("modifier_earth_spirit_stand", "abilities/earth_spirit/modifier_earth_spirit_stand", LUA_MODIFIER_MOTION_NONE)
 
-function earth_spirit_q:OnSpellStart()
-    local caster = self:GetCaster()
-    local cursor = self:GetCursorPosition()
+-- Bugged with script_reload
+function earth_spirit_q:GetCastRange(location, target)
+    if self:GetCaster():HasModifier("modifier_earth_spirit_stand") then
+        return 0
+    end
 
-    local particle = ImmediateEffect("particles/units/heroes/hero_earth_spirit/espirit_magnetize_target.vpcf", PATTACH_CUSTOMORIGIN, caster)
+    return 1000
+end
+
+function earth_spirit_q:OnSpellStart()
+    local hero = self:GetCaster().hero
+    local cursor = self:GetCursorPosition()
+    local dir = cursor - hero:GetPos()
+    local castRange = 1000
+
+    if dir:Length2D() > castRange then
+        cursor = hero:GetPos() + dir:Normalized() * castRange
+    end
+
+    local particle = ImmediateEffect("particles/units/heroes/hero_earth_spirit/espirit_magnetize_target.vpcf", PATTACH_CUSTOMORIGIN, hero)
     ParticleManager:SetParticleControl(particle, 0, cursor)
 
-    local facing = cursor - caster:GetAbsOrigin()
-    local down = Vector(0, 0, -10000)
-    local unit = CreateUnitByName(caster:GetName(), down, false, nil, nil, caster:GetTeamNumber())
-    facing.z = 0
+    local down = Vector(0, 0, 10000)
+    local unit = CreateUnitByName(hero:GetName(), down, false, nil, nil, hero:GetUnit():GetTeamNumber())
+
     unit:AddNewModifier(unit, nil, "modifier_earth_spirit_remnant", {})
-    unit:SetForwardVector(facing)
+    unit:SetForwardVector(dir * Vector(1, 1, 0))
     unit:SetAbsOrigin(down)
 
     StartAnimation(unit, {duration=1, activity=ACT_DOTA_VICTORY, rate=10})
@@ -24,15 +38,13 @@ function earth_spirit_q:OnSpellStart()
         function()
             FreezeAnimation(unit)
 
-            local remnant = EarthSpiritRemnant(caster.hero)
-            remnant:SetPos(Vector(cursor.x, cursor.y, cursor.z + 600))
+            local remnant = EarthSpiritRemnant(hero.round, hero)
             remnant:CreateCounter()
             remnant:SetUnit(unit, true)
+            remnant:SetPos(cursor + Vector(0, 0, 600))
+            remnant:Activate()
 
-            caster.hero:AddRemnant(remnant)
-            Spells:AddDynamicEntity(remnant)
-
-            EmitSoundOnLocationWithCaster(cursor, "Hero_EarthSpirit.StoneRemnant.Impact", caster)
+            hero:AddRemnant(remnant)
         end
     )
 end

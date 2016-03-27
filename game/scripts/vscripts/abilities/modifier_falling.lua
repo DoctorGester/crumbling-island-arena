@@ -1,5 +1,16 @@
 modifier_falling = class({})
 
+if IsServer() then
+    function modifier_falling:OnCreated()
+        self:StartIntervalThink(.066)
+    end
+
+    function modifier_falling:OnIntervalThink()
+        self:GetParent():AddNewModifier(self:GetCaster(), self:GetAbility(), "modifier_falling_animation", {})
+        self:StartIntervalThink(-1)
+    end
+end
+
 function modifier_falling:IsHidden()
     return true
 end
@@ -15,7 +26,14 @@ function modifier_falling:CheckState()
     return state
 end
 
-function modifier_falling:DeclareFunctions()
+-- Animation modifiers need to have a slight delay between them
+modifier_falling_animation = class({})
+
+function modifier_falling_animation:IsHidden()
+    return true
+end
+
+function modifier_falling_animation:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_OVERRIDE_ANIMATION
     }
@@ -23,6 +41,6 @@ function modifier_falling:DeclareFunctions()
     return funcs
 end
 
-function modifier_falling:GetOverrideAnimation()
+function modifier_falling_animation:GetOverrideAnimation()
     return ACT_DOTA_FLAIL
 end

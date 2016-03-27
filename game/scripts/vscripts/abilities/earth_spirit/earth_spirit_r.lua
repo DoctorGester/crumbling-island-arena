@@ -27,8 +27,8 @@ function earth_spirit_r:OnChannelFinish(interrupted)
     ParticleManager:SetParticleControl(particle, 1, remnant:GetPos())
 
     local remnantUnit = remnant.unit
-    remnant:SetPos(hero:GetPos())
     remnant:SetUnit(hero.unit, hero:HasRemnantStand())
+    remnant:SetPos(hero:GetPos())
 
     if hero:HasRemnantStand() then
         local stand = hero:GetRemnantStand()

@@ -17,7 +17,10 @@ function EarthSpirit:RemnantDestroyed(remnant)
         self:FallFromStand()
     end
 
-    table.remove(self.remnants, GetIndex(self.remnants, remnant))
+    local index = GetIndex(self.remnants, remnant)
+    if index then
+        table.remove(self.remnants, GetIndex(self.remnants, remnant))
+    end
 end
 
 function EarthSpirit:FindRemnant(point, area, exclude)
@@ -86,7 +89,7 @@ function EarthSpirit:FallFromStand()
                 return false
             end
 
-            return THINK_PERIOD
+            return 0.01
         end
     )
 end
@@ -99,12 +102,7 @@ function EarthSpirit:Damage(source)
     end
 end
 
-function EarthSpirit:Delete()
+function EarthSpirit:Remove()
     self:StopSound("Arena.Earth.CastE.Loop")
-    
-    self.__base__.Delete(self)
-
-    for _, remnant in pairs(self.remnants) do
-        remnant:Destroy()
-    end
+    getbase(EarthSpirit).Remove(self)
 end
