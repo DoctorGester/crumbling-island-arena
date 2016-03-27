@@ -18,7 +18,7 @@ function Spells.TestPoint(point, unit)
 
     TraceLine(trace)
 
-    return trace.hit
+    return trace.enthit
 end
 
 function Spells:Update()
@@ -68,24 +68,29 @@ function Spells:Update()
         if entity:CanFall() and not entity.falling then
             local hit = false
             local pos = entity:GetPos()
+            local level = GameRules.GameMode.level
+            local hitSet = {}
 
             for i = 0, 8 do
                 local an = math.pi / 4 * i
                 local point = pos + Vector(math.cos(an), math.sin(an)) * entity:GetRad()
+                local enthit = Spells.TestPoint(point, entity.unit)
 
-                if Spells.TestPoint(point, entity.unit) then
+                if enthit and enthit:GetName() == "map_part" then
                     hit = true
-                    break
+                    hitSet[enthit] = true
                 end
             end
 
-            -- Doing ground damage if entity is standing
-            local level = GameRules.GameMode.level
-
             if not hit then
                 entity:MakeFall()
-            elseif not level.running and instanceof(entity, Hero) then
-                level:DamageGroundUnderEntity(entity)
+            end
+
+            -- Doing damage to the pieces entity is standing on
+            if not level.running and instanceof(entity, Hero) then
+                for enthit, _ in pairs(hitSet) do
+                    level:DamageGround(enthit, 0.35)
+                end
             end
         end
     end
