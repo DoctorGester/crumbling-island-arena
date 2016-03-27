@@ -26,3 +26,7 @@ end
 function modifier_earth_spirit_e:GetOverrideAnimationRate(params)
     return 4
 end
+
+function modifier_earth_spirit_stand:Airborne()
+    return true
+end

@@ -25,8 +25,8 @@ function cm_w:OnSpellStart()
             if timePassed < castTime then
                 local effectPos = GetPositionForTime(timePassed)
                 local startingHeight = 1600
-                local offset = Vector(-320, 490, 0)
-                local skies = effectPos + offset + Vector(0, 0, startingHeight)
+                local offset = Vector(-320, 490, startingHeight)
+                local skies = effectPos + offset
                 local time = 0.4
                 local speed = startingHeight / time
 
@@ -34,7 +34,6 @@ function cm_w:OnSpellStart()
 
                 if not Spells.TestPoint(effectPos) then
                     effectPos = effectPos - (offset / time) * (MAP_HEIGHT / speed)
-                    effectPos.z = -MAP_HEIGHT
                     time = time + MAP_HEIGHT / speed
                 end
 

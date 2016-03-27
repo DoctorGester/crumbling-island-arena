@@ -79,8 +79,13 @@ function Spells:Update()
                 end
             end
 
+            -- Doing ground damage if entity is standing
+            local level = GameRules.GameMode.level
+
             if not hit then
                 entity:MakeFall()
+            elseif not level.running and instanceof(entity, Hero) then
+                level:DamageGroundUnderEntity(entity)
             end
         end
     end

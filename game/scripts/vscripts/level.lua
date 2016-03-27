@@ -78,6 +78,22 @@ function Level:DamageGround(part, damage)
     end
 end
 
+function Level:DamageGroundUnderEntity(entity)
+    local ground = entity:GetPos() * Vector(1, 1, 0)
+    
+    local trace = {
+        startpos = ground,
+        endpos = ground - Vector(0, 0, 5),
+        ignore = entity.unit
+    }
+
+    TraceLine(trace)
+
+    if trace.hit and trace.enthit:GetName() == "map_part" then
+        self:DamageGround(trace.enthit, 0.35)
+    end
+end
+
 function Level:Reset()
     self.running = true
     self.fallingParts = {}
@@ -128,10 +144,10 @@ function Level:Update()
 
     for _, part in ipairs(self.shakingParts) do
         if part.velocity == 0 then
-            local amplitude = 0.5
+            local amplitude = 0.8
 
             if part.health ~= 100 then
-                amplitude = 1 - part.health / 50
+                amplitude = 1 - part.health / 80
             end
 
             local yaw = RandomFloat(-amplitude, amplitude)
