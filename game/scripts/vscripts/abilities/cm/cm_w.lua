@@ -24,36 +24,57 @@ function cm_w:OnSpellStart()
 
             if timePassed < castTime then
                 local effectPos = GetPositionForTime(timePassed)
-                ImmediateEffectPoint("particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_explosion.vpcf", PATTACH_CUSTOMORIGIN, hero, effectPos)
+                local startingHeight = 1600
+                local offset = Vector(-320, 490, 0)
+                local skies = effectPos + offset + Vector(0, 0, startingHeight)
+                local time = 0.4
+                local speed = startingHeight / time
+
+                EmitSoundOnLocationWithCaster(effectPos, "Arena.CM.PreW", hero.unit)
+
+                if not Spells.TestPoint(effectPos) then
+                    effectPos = effectPos - (offset / time) * (MAP_HEIGHT / speed)
+                    effectPos.z = -MAP_HEIGHT
+                    time = time + MAP_HEIGHT / speed
+                end
+
+                local effect = ParticleManager:CreateParticle("particles/cm_w/cm_w_ice.vpcf", PATTACH_CUSTOMORIGIN, hero:GetUnit())
+                ParticleManager:SetParticleControl(effect, 0, effectPos)
+                ParticleManager:SetParticleControl(effect, 1, skies)
+                ParticleManager:SetParticleControl(effect, 2, Vector(time, 0, 0))
+                ParticleManager:ReleaseParticleIndex(effect)
             end
 
             if timePassed >= 0.4 then
                 local damagePos = GetPositionForTime(timePassed - 0.4)
-                local function groupFilter(target)
-                    return not damaged[target]
-                end
 
-                local hit = hero:AreaEffect({
-                    filter = Filters.And(Filters.Area(damagePos, 128), groupFilter),
-                    action = function(target)
-                        local frozen = hero:IsFrozen(target)
-
-                        if frozen then
-                            target:Damage(hero)
-                        end
-
-                        hero:Freeze(target, ability)
-                        damaged[target] = true
+                if Spells.TestPoint(damagePos) then
+                    local function groupFilter(target)
+                        return not damaged[target]
                     end
-                })
 
-                Spells:GroundDamage(damagePos, 128)
+                    local hit = hero:AreaEffect({
+                        filter = Filters.And(Filters.Area(damagePos, 128), groupFilter),
+                        action = function(target)
+                            local frozen = hero:IsFrozen(target)
 
-                local sound = "Arena.CM.CastW"
-                if hit then sound = "Arena.CM.HitW" end
+                            if frozen then
+                                target:Damage(hero)
+                            end
 
-                EmitSoundOnLocationWithCaster(damagePos, sound, hero.unit)
-                ImmediateEffectPoint("particles/econ/items/crystal_maiden/crystal_maiden_maiden_of_icewrack/maiden_arcana_ground_ambient.vpcf", PATTACH_CUSTOMORIGIN, hero, damagePos)
+                            hero:Freeze(target, ability)
+                            damaged[target] = true
+                        end
+                    })
+
+                    Spells:GroundDamage(damagePos, 128)
+
+                    local sound = "Arena.CM.CastW"
+                    if hit then sound = "Arena.CM.HitW" end
+
+                    EmitSoundOnLocationWithCaster(damagePos, sound, hero.unit)
+                    ImmediateEffectPoint("particles/econ/items/crystal_maiden/crystal_maiden_maiden_of_icewrack/maiden_arcana_ground_ambient.vpcf", PATTACH_CUSTOMORIGIN, hero, damagePos)
+                end
             end
 
             if timePassed >= castTime + 0.4 then return end

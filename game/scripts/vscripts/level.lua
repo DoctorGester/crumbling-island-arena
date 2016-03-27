@@ -1,6 +1,7 @@
 SECOND_STAGE_OBSTRUCTOR = "Layer2Obstructor"
 THIRD_STAGE_OBSTRUCTOR = "Layer3Obstructor"
 
+MAP_HEIGHT = 3500
 STARTING_DISTANCE = 2300
 FINISHING_DISTANCE = 900
 
@@ -149,7 +150,7 @@ function Level:Update()
         part:SetAngles(part.angles.x, part.angles.y, part.angles.z)
         part:SetAbsOrigin(Vector(part.x, part.y, part.z))
 
-        if part.z <= -3700 then
+        if part.z <= -MAP_HEIGHT - 200 then
             table.remove(self.fallingParts, i)
         end
     end
@@ -157,7 +158,7 @@ function Level:Update()
     for i = #self.shakingParts, 1, -1 do
         local part = self.shakingParts[i]
         
-        if part.z <= -3500 then
+        if part.z <= -MAP_HEIGHT then
             SplashEffect(part:GetAbsOrigin())
 
             table.remove(self.shakingParts, i)

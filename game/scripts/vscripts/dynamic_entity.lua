@@ -62,7 +62,7 @@ function DynamicEntity:Update()
 
         self:SetPos(self:GetPos() - Vector(0, 0, self.fallingSpeed / 3))
 
-        if self:GetPos().z <= -3500 then
+        if self:GetPos().z <= -MAP_HEIGHT then
             self:Destroy()
 
             SplashEffect(self:GetPos())

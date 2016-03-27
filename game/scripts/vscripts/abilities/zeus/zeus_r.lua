@@ -12,27 +12,35 @@ function zeus_r:OnSpellStart()
         function()
             GridNav:DestroyTreesAroundPoint(target, 256, true)
 
+            local skies = target + Vector(0, 0, 2000)
+            local blank = not Spells.TestPoint(target)
+            if blank then
+                target = target - Vector(0, 0, MAP_HEIGHT)
+            end
+
             local particle = ImmediateEffect("particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", PATTACH_POINT, hero)
             ParticleManager:SetParticleControl(particle, 0, target)
-            ParticleManager:SetParticleControl(particle, 1, target + Vector(0, 0, 2000))
+            ParticleManager:SetParticleControl(particle, 1, skies)
 
             particle = ImmediateEffect("particles/econ/items/zeus/lightning_weapon_fx/zuus_lightning_bolt_groundfx_crack.vpcf", PATTACH_POINT, hero)
             ParticleManager:SetParticleControl(particle, 3, target)
 
-            hero:AreaEffect({
-                filter = Filters.Area(target, 256),
-                filterProjectiles = true,
-                damage = true,
-                modifier = { name = "modifier_zeus_r", duration = 4.5, ability = self },
-                action = function(target)
-                    local to = target:GetPos()
-                    local particle = ImmediateEffect("particles/units/heroes/hero_zuus/zuus_arc_lightning.vpcf", PATTACH_CUSTOMORIGIN, hero)
-                    ParticleManager:SetParticleControl(particle, 0, to + Vector(0, 0, 64))
-                    ParticleManager:SetParticleControl(particle, 1, to)
-                end
-            })
+            if not blank then
+                hero:AreaEffect({
+                    filter = Filters.Area(target, 256),
+                    filterProjectiles = true,
+                    damage = true,
+                    modifier = { name = "modifier_zeus_r", duration = 4.5, ability = self },
+                    action = function(target)
+                        local to = target:GetPos()
+                        local particle = ImmediateEffect("particles/units/heroes/hero_zuus/zuus_arc_lightning.vpcf", PATTACH_CUSTOMORIGIN, hero)
+                        ParticleManager:SetParticleControl(particle, 0, to + Vector(0, 0, 64))
+                        ParticleManager:SetParticleControl(particle, 1, to)
+                    end
+                })
 
-            Spells:GroundDamage(target, 256)
+                Spells:GroundDamage(target, 256)
+            end
 
             EmitSoundOnLocationWithCaster(target, "Hero_Zuus.GodsWrath.Target", nil)
         end

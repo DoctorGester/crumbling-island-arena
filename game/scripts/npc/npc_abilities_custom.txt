@@ -440,7 +440,7 @@
 		"precache"
 		{
 			"particle" "particles/econ/items/crystal_maiden/crystal_maiden_maiden_of_icewrack/maiden_arcana_ground_ambient.vpcf"
-			"particle" "particles/units/heroes/hero_crystalmaiden/maiden_freezing_field_explosion.vpcf"
+			"particle" "particles/cm_w/cm_w.vpcf"
 		}
 	}
 

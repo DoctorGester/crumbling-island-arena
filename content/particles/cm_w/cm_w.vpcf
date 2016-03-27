@@ -1,0 +1,138 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 4
+	m_ConstantColor =
+	[
+		218,
+		220,
+		255,
+		255,
+	]
+	m_Renderers =
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_bOrientZ = true
+			m_bSuppressTint = true
+			m_ModelList =
+			[
+				{
+					m_model = resource:"models/heroes/crystal_maiden/crystal_maiden_ice.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_bForceDrawInterlevedWithSiblings = true
+			m_nLOD = 1
+		},
+	]
+	m_Operators =
+	[
+		{
+			_class = "C_OP_BasicMovement"
+		},
+		{
+			_class = "C_OP_RemapVelocityToVector"
+			m_nFieldOutput = 21
+		},
+		{
+			_class = "C_OP_StopAfterCPDuration"
+			m_nCP = 2
+		},
+		{
+			_class = "C_OP_Decay"
+		},
+	]
+	m_Initializers =
+	[
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMin = 2.000000
+			m_flRadiusMax = 2.000000
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+			m_nControlPointNumber = 1
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+			m_nFieldOutput = 12
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+			m_flDegreesMax = 180.000000
+			m_flDegreesMin = 180.000000
+		},
+		{
+			_class = "C_INIT_RemapCPtoScalar"
+			m_nCPInput = 2
+			m_nFieldOutput = 1
+			m_flInputMax = 100.000000
+			m_flOutputMax = 100.000000
+		},
+	]
+	m_Emitters =
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 1
+		},
+	]
+	m_Constraints =
+	[
+		{
+			_class = "C_OP_ConstrainDistanceToPath"
+			m_flMaxDistance1 = 0.000000
+			m_flMaxDistanceMid = 0.000000
+			m_flMaxDistance0 = 0.000000
+			m_flTravelTime = 1.000000
+			m_PathParameters =
+			{
+				m_nStartControlPointNumber = 1
+			}
+			m_nFieldScale = 1
+		},
+	]
+	m_Children =
+	[
+		{
+			m_ChildRef = resource:"particles/cm_w/cm_w_a.vpcf"
+			m_bEndCap = true
+		},
+		{
+			m_ChildRef = resource:"particles/cm_w/cm_w_b.vpcf"
+			m_bEndCap = true
+		},
+		{
+			m_ChildRef = resource:"particles/cm_w/cm_w_c.vpcf"
+			m_bEndCap = true
+		},
+		{
+			m_ChildRef = resource:"particles/cm_w/cm_w_d.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/cm_w/cm_w_dust.vpcf"
+			m_bEndCap = true
+		},
+		{
+			m_ChildRef = resource:"particles/cm_w/cm_w_g.vpcf"
+			m_bEndCap = true
+		},
+		{
+			m_ChildRef = resource:"particles/cm_w/cm_w_e.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/cm_w/cm_w_h.vpcf"
+			m_bEndCap = true
+		},
+		{
+			m_ChildRef = resource:"particles/cm_w/cm_w_swirl.vpcf"
+			m_bEndCap = true
+		},
+		{
+			m_ChildRef = resource:"particles/cm_w/cm_w_ice_debris.vpcf"
+			m_bEndCap = true
+		},
+	]
+}
