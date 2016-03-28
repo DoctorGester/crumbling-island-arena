@@ -35,7 +35,11 @@ end
 
 function Precache(context)
     PrecacheResource("particle", "particles/cracks.vpcf", context)
+    PrecacheResource("particle", "particles/targeting/aoe.vpcf", context)
+    PrecacheResource("particle", "particles/targeting/cone.vpcf", context)
     PrecacheResource("particle", "particles/targeting/line.vpcf", context)
+    PrecacheResource("particle", "particles/targeting/thick_line.vpcf", context)
+    PrecacheResource("particle", "particles/targeting/half_circle.vpcf", context)
     PrecacheResource("particle", "particles/targeting/range.vpcf", context)
     PrecacheResource("particle", "particles/targeting/global_target.vpcf", context)
     PrecacheResource("particle", "particles/aoe_marker.vpcf", context)
