@@ -21,6 +21,27 @@ function Spells.TestPoint(point, unit)
     return trace.enthit
 end
 
+function Spells.TestEntity(entity)
+    local pos = entity:GetPos()
+    local hit = nil
+
+    for i = 0, 8 do
+        local an = math.pi / 4 * i
+        local point = pos + Vector(math.cos(an), math.sin(an)) * entity:GetRad()
+        local enthit = Spells.TestPoint(point, entity.unit)
+
+        if enthit and enthit:GetName() == "map_part" then
+            if not hit then
+                hit = {}
+            end
+
+            hit[enthit] = true
+        end
+    end
+
+    return hit
+end
+
 function Spells:Update()
     for i = #self.entities, 1, -1 do
         local entity = self.entities[i]
@@ -66,30 +87,17 @@ function Spells:Update()
     -- Resolving falling entities
     for _, entity in ipairs(self.entities) do
         if entity:CanFall() and not entity.falling then
-            local hit = false
-            local pos = entity:GetPos()
             local level = GameRules.GameMode.level
-            local hitSet = {}
-
-            for i = 0, 8 do
-                local an = math.pi / 4 * i
-                local point = pos + Vector(math.cos(an), math.sin(an)) * entity:GetRad()
-                local enthit = Spells.TestPoint(point, entity.unit)
-
-                if enthit and enthit:GetName() == "map_part" then
-                    hit = true
-                    hitSet[enthit] = true
-                end
-            end
+            local hit = Spells.TestEntity(entity)
 
             if not hit then
                 entity:MakeFall()
             end
 
             -- Doing damage to the pieces entity is standing on
-            if not level.running and instanceof(entity, Hero) then
-                for enthit, _ in pairs(hitSet) do
-                    level:DamageGround(enthit, 0.35)
+            if hit and not level.running and instanceof(entity, Hero) then
+                for enthit, _ in pairs(hit) do
+                    --level:DamageGround(enthit, 0.35)
                 end
             end
         end

@@ -78,7 +78,7 @@ end
 function EarthSpiritRemnant:EarthCollision()
     local pos = self:GetPos()
 
-    if Spells.TestPoint(pos, self.unit) then
+    if Spells.TestEntity(self) then
         ImmediateEffectPoint("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp.vpcf", PATTACH_CUSTOMORIGIN, self.hero, pos)
         ImmediateEffectPoint("particles/units/heroes/hero_earth_spirit/earth_dust_hit.vpcf", PATTACH_CUSTOMORIGIN, self.hero, pos)
 

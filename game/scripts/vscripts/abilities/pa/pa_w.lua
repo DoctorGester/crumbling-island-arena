@@ -1,16 +1,19 @@
 pa_w = class({})
 
 function pa_w:OnSpellStart()
-    local caster = self:GetCaster()
-    local hero = caster.hero
+    local hero = self:GetCaster().hero
     hero:EmitSound("DOTA_Item.Daedelus.Crit")
 
     Timers:CreateTimer(0.3,
         function()
             local particle = "particles/econ/items/axe/axe_weapon_bloodchaser/axe_attack_blur_counterhelix_bloodchaser_b.vpcf"
-            ImmediateEffect(particle, PATTACH_ABSORIGIN_FOLLOW, caster)
+            ImmediateEffect(particle, PATTACH_ABSORIGIN_FOLLOW, hero)
 
-            Spells:AreaDamage(hero, hero:GetPos(), 256)
+            hero:AreaEffect({
+                filter = Filters.Area(hero:GetPos(), 256),
+                damage = true
+            })
+
             GridNav:DestroyTreesAroundPoint(hero:GetPos(), 256, true)
         end
     )

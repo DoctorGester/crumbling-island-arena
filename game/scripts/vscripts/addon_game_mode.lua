@@ -2,7 +2,6 @@ require('lib/timers')
 require('lib/animations')
 require("lib/vector_target")
 require('targeting_indicator')
-require('misc')
 require('util')
 
 require('dynamic_entity')

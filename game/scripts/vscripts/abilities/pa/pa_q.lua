@@ -1,46 +1,13 @@
 pa_q = class({})
 
+require("abilities/pa/projectile_pa_q")
+
 function pa_q:OnSpellStart()
-    local caster = self:GetCaster()
+    local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
-    local direction = target - caster:GetOrigin()
-    local ability = self
 
-    local maxSpeed = 1300
-
-    if direction:Length2D() == 0 then
-        direction = caster:GetForwardVector()
-    end
-
-    local projectileData = {}
-    projectileData.owner = caster
-    projectileData.from = caster:GetOrigin() + Vector(0, 0, 64)
-    projectileData.to = target + Vector(0, 0, 64)
-    projectileData.graphics = "particles/pa_q/pa_q.vpcf"
-    projectileData.radius = 64
-
-    Misc:SetUpPAProjectile(projectileData)
-
-    projectileData.positionMethod =
-        function(self)
-            local dif = (self.owner:GetPos() - self.position)
-            dif = Vector(dif.x, dif.y, 0):Normalized()
-
-            self.velocity = self.velocity + dif * 32
-
-            return self.position + (self.velocity * Misc:GetPASpeedMultiplier(self)) / 30
-        end
-
-    local projectile = Spells:CreateProjectile(projectileData)
-    projectile.direction = Vector(direction.x, direction.y, 0):Normalized()
-    projectile.velocity = projectile.direction * maxSpeed
-    projectile.gracePeriod = {}
-    projectile.gracePeriod[projectile.owner] = 30
-
-    caster.paQProjectile = projectile
-    caster:EmitSound("Arena.PA.Throw")
-
-    Misc:RemovePAWeapon(caster)
+    hero:EmitSound("Arena.PA.Throw")
+    hero:WeaponLaunched(ProjectilePAQ(hero.round, hero, target):Activate())
 end
 
 function pa_q:GetCastAnimation()

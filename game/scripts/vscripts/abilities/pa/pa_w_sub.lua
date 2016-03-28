@@ -5,43 +5,20 @@ LinkLuaModifier("modifier_pa_w_sub", "abilities/pa/modifier_pa_w_sub", LUA_MODIF
 function pa_w_sub:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
-    local direction = target - hero:GetPos()
-    local ability = self
 
-    if direction:Length2D() == 0 then
-        direction = hero:GetFacing()
-    end
-
-    direction = direction:Normalized()
-
-    local projectileData = {}
-    projectileData.owner = hero
-    projectileData.from = hero:GetPos() + Vector(0, 0, 64)
-    projectileData.to = target + Vector(0, 0, 64)
-    projectileData.velocity = 1200
-    projectileData.graphics = "particles/pa_w_sub/pa_w_sub.vpcf"
-    projectileData.distance = 1200
-    projectileData.radius = 48
-    projectileData.heroBehaviour =
-        function(self, target)
-            target:EmitSound("Hero_PhantomAssassin.Dagger.Target")
-            target:AddNewModifier(hero, ability, "modifier_pa_w_sub", { duration = 2 })
-
-            return true
-        end
-
-    projectileData.initProjectile =
-        function(self)
-            self.velocity = direction * projectileData.velocity
-            self.passed = 0
-
-            ParticleManager:SetParticleControl(self.effectId, 1, target)
-            ParticleManager:SetParticleControl(self.effectId, 2, direction)
-            ParticleManager:SetParticleControl(self.effectId, 3, target - hero:GetPos())
-        end
+    DistanceCappedProjectile(hero.round, {
+        owner = hero,
+        from = hero:GetPos() + Vector(0, 0, 64),
+        to = target + Vector(0, 0, 64),
+        speed = 1200,
+        graphics = "particles/pa_w_sub/pa_w_sub.vpcf",
+        distance = 1200,
+        hitModifier = { name = "modifier_pa_w_sub", duration = 2.0, ability = self },
+        hitSound = "Hero_PhantomAssassin.Dagger.Target",
+        hitFunction = function() end
+    }):Activate()
 
     hero:EmitSound("Hero_PhantomAssassin.Dagger.Cast")
-    Spells:CreateProjectile(projectileData)
 end
 
 function pa_w_sub:GetCastAnimation()

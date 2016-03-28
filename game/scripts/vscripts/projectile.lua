@@ -18,8 +18,7 @@ function Projectile:constructor(round, params)
 
     self:SetFacing(self.to - self.from)
     self:GetUnit():SetNeverMoveToClearSpace(true)
-
-    self.particle = ParticleManager:CreateParticle(params.graphics, PATTACH_ABSORIGIN_FOLLOW , self:GetUnit())
+    self:SetGraphics(params.graphics)
 
     self.hitModifier = params.hitModifier -- { name, duration, ability }
     self.hitSound = params.hitSound
@@ -52,6 +51,10 @@ function Projectile:Update()
         return
     end
     
+    for target, time in pairs(self.hitGroup) do
+        self.hitGroup[target] = time - 1
+    end
+
     self:SetPos(self:GetNextPosition(pos))
 end
 
@@ -64,7 +67,7 @@ function Projectile:CollidesWith(target)
 end
 
 function Projectile:CollideWith(target)
-    if self.hitGroup[target] then
+    if self.hitGroup[target] and self.hitGroup[target] > 0 then
         return
     end
 
@@ -83,7 +86,7 @@ function Projectile:CollideWith(target)
     end
 
     if self.continueOnHit then
-        self.hitGroup[target] = true
+        self.hitGroup[target] = self.gracePeriod
     else
         self:Destroy()
     end
@@ -113,6 +116,15 @@ end
 
 function Projectile:SetSpeed(speed)
     self.speed = speed
+end
+
+function Projectile:SetGraphics(graphics)
+    if self.particle then
+        ParticleManager:DestroyParticle(self.particle, true)
+        ParticleManager:ReleaseParticleIndex(self.particle)
+    end
+
+    self.particle = ParticleManager:CreateParticle(graphics, PATTACH_ABSORIGIN_FOLLOW , self:GetUnit())
 end
 
 function Projectile:Remove()
