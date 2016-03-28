@@ -7,7 +7,7 @@ function Hero:constructor(round)
 
     self.protected = false
     self.modifierImmune = false
-    self.removeOnDeath = true
+    self.removeOnDeath = false
     self.collisionType = COLLISION_TYPE_RECEIVER
 end
 
