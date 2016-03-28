@@ -15,7 +15,7 @@ function LycanWolf:constructor(round, owner, target, offsetModifier)
     self.startTime = GameRules:GetGameTime()
 
     self:SetFacing(target - self.start)
-    self:AddNewModifier(self.hero, nil, "modifier_lycan_q", {})
+    self:AddNewModifier(self.hero, nil, "modifier_lycan_q", { duration = 3 })
 
     ImmediateEffect("particles/units/heroes/hero_lycan/lycan_summon_wolves_spawn.vpcf", PATTACH_ABSORIGIN, self.unit)
 end
@@ -50,12 +50,11 @@ end
 function LycanWolf:Update()
     getbase(LycanWolf).Update(self)
 
-    if GameRules:GetGameTime() - self.startTime >= 3 and not self.falling then
-        self:Destroy()
+    if self.falling then
         return
     end
 
-    if not self:GetUnit():IsAlive() then
+    if self:FindModifier("modifier_lycan_q"):GetRemainingTime() <= 0 then
         if self.attacking then
             local distance = (self.attacking:GetPos() - self:GetPos()):Length2D()
 

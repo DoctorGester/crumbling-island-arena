@@ -10,7 +10,7 @@ function EntitySniperW:constructor(round, owner, position, ability)
     self.invulnerable = true
     self.removeOnDeath = false
 
-    self:AddNewModifier(owner.unit, self, "modifier_sniper_w_trap", {})
+    self:AddNewModifier(self, ability, "modifier_sniper_w_trap", {})
     self:EmitSound("Arena.Sniper.CastW")
 end
 

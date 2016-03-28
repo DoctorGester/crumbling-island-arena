@@ -35,3 +35,7 @@ function modifier_lycan_q:GetModifierMoveSpeedOverride(params)
 
     return 700
 end
+
+function modifier_lycan_q:DestroyOnExpire()
+    return false
+end

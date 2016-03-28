@@ -1,5 +1,5 @@
 GRACE_TIME = 1
-ULTS_TIME = 55
+ULTS_TIME = 40
 
 Round = Round or class({})
 
@@ -93,6 +93,8 @@ function Round:CreateHeroes()
     end
 
     Shuffle(spawnPoints)
+
+    PrintTable(spawnPoints)
 
     local index = 1
 
