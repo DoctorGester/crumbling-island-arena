@@ -24,7 +24,7 @@ function Round:CheckEndConditions()
     end
 
     for _, player in pairs(self.players) do
-        if player.hero:Alive() then
+        if player:IsConnected() and player.hero:Alive() then
             amountAlive = amountAlive + 1
             lastAlive = player
         end
@@ -87,27 +87,24 @@ function Round:CreateHeroes()
     print("Creating heroes")
     local spawnPoints = {}
 
-    for i = 0, 9 do
-        local a = i * math.pi / 10
+    for i = 0, 3 do
+        local a = i * math.pi / 2
         table.insert(spawnPoints, Vector(math.cos(a), math.sin(a), 0) * 1200)
     end
 
     Shuffle(spawnPoints)
-
-    PrintTable(spawnPoints)
 
     local index = 1
 
     for i, player in pairs(self.players) do
         if player:IsConnected() then
             local hero = self:LoadHeroClass(player.selectedHero)
-            local unit = CreateUnitByName(player.selectedHero, Vector(0, 0, 0), true, nil, nil, player.team)
+            local unit = CreateUnitByName(player.selectedHero, spawnPoints[index], true, nil, nil, player.team)
             hero:SetUnit(unit)
 
             local ultimate = self.availableHeroes[hero:GetName()].ultimate
             hero:Setup()
             hero:SetOwner(player)
-            hero:SetPos(spawnPoints[index])
 
             unit:FindAbilityByName(ultimate):StartCooldown(ULTS_TIME)
 

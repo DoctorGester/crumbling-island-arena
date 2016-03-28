@@ -34,5 +34,5 @@ function Player:ReturnVision(caster)
 end
 
 function Player:IsConnected()
-    return PlayerResource:GetConnectionState(self.id) == DOTA_CONNECTION_STATE_CONNECTED
+    return PlayerResource:GetConnectionState(self.id) == DOTA_CONNECTION_STATE_CONNECTED or IsInToolsMode()
 end
