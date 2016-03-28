@@ -699,10 +699,40 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/sk/sk_q"
-		"AbilityTextureName" "sandking_burrowstrike"
-		"AbilityCooldown" "3.0"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "sandking_epicenter"
+		"AbilityCooldown" "2.7"
+		"AbilityCastRange" "1200"
+		"AbilityCastPoint" "0.4"
 
-		// Rework using a custom indicator which reads a buff
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "250"
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1200"
+		}
+
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_sandking/sandking_epicenter.vpcf"
+			"particle" "particles/status_fx/status_effect_earth_spirit_boulderslow.vpcf"
+		}
+	}
+
+	"sk_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/sk/sk_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "earthshaker_aftershock_egset"
+		"AbilityCooldown" "8.0"
+
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_THICK_LINE"
@@ -714,8 +744,7 @@
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "(function(){ if (HasModifier(unit, 'modifier_sk_e')) return 2000; return 200; })()"
-			"Offset" "(function(){ if (HasModifier(unit, 'modifier_sk_e')) return 0; return 350; })()"
+			"Radius" "2000"
 		}
 
 		"precache"
@@ -724,13 +753,41 @@
 		}
 	}
 
-	"sk_w"
+	"sk_e"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/sk/sk_w"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
+		"ScriptFile" "abilities/sk/sk_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityTextureName" "sandking_burrowstrike"
+		"AbilityCooldown" "7.0"
+		"AbilityCastPoint" "0.4"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "700"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "700"
+		}
+
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_sandking/sandking_burrowstrike.vpcf"
+		}
+	}
+
+	"sk_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/sk/sk_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "sandking_sand_storm"
-		"AbilityCooldown" "8.0"
+		"AbilityCooldown" "15.0"
 		"AbilityCastRange" "500"
 
 		"TargetingIndicator"
@@ -749,43 +806,6 @@
 		"precache"
 		{
 			"particle" "particles/sk_w/sk_w.vpcf"
-			"particle" "particles/status_fx/status_effect_earth_spirit_boulderslow.vpcf"
-		}
-	}
-
-	"sk_e"
-	{
-		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/sk/sk_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
-		"AbilityTextureName" "earthshaker_aftershock_egset"
-		"AbilityCooldown" "10.0"
-		"AbilityCastPoint" "0.4"
-
-		"precache"
-		{
-			"particle" "particles/units/heroes/hero_nyx_assassin/nyx_assassin_burrow.vpcf"
-		}
-	}
-
-	"sk_r"
-	{
-		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/sk/sk_r"
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName" "sandking_epicenter"
-		"AbilityCooldown" "14.0"
-
-		"HoverIndicator"
-		{
-			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "500"
-		}
-
-		"precache"
-		{
-			"particle" "particles/units/heroes/hero_sandking/sandking_epicenter.vpcf"
 		}
 	}
 

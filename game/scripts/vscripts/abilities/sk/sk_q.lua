@@ -1,5 +1,7 @@
 sk_q = class({})
 
+LinkLuaModifier("modifier_sk_q", "abilities/sk/modifier_sk_q", LUA_MODIFIER_MOTION_NONE)
+
 function sk_q:GroundEffect(position, target, effect)
     local hero = self:GetCaster().hero
     local effect = ImmediateEffect(effect or "particles/units/heroes/hero_sandking/sandking_burrowstrike_eruption.vpcf", PATTACH_POINT, hero)
@@ -7,18 +9,32 @@ function sk_q:GroundEffect(position, target, effect)
     ParticleManager:SetParticleControl(effect, 1, target or position)
 end
 
-function sk_q:GetBehavior()
-    local burrowed = self:GetCaster():HasModifier("modifier_sk_e")
-
-    if burrowed then
-        return DOTA_ABILITY_BEHAVIOR_POINT
-    end
-
-    return DOTA_ABILITY_BEHAVIOR_NO_TARGET
-end
-
 function sk_q:OnSpellStart()
     local hero = self:GetCaster().hero
+    local target = self:GetCursorPosition()
+    local area = 250
+
+    hero:EmitSound("Arena.SK.CastQ")
+
+    CreateAOEMarker(hero, target, area, 1.2, Vector(212, 212, 144))
+
+    Timers:CreateTimer(1.2, function()
+        hero:StopSound("Arena.SK.CastQ")
+        hero:EmitSound("Arena.SK.EndQ", target)
+        hero:AreaEffect({
+            filter = Filters.Area(target, area),
+            filterProjectiles = true,
+            damage = true,
+            modifier = { name = "modifier_sk_q", ability = self, duration = 1.2 }
+        })
+
+        Spells:GroundDamage(target, area)
+        local index = ImmediateEffectPoint("particles/units/heroes/hero_sandking/sandking_epicenter.vpcf", PATTACH_ABSORIGIN, hero, target)
+        ParticleManager:SetParticleControl(index, 1, Vector(area, area, area))
+    end)
+
+    if true then return end
+
     local casterPos = hero:GetPos()
     local burrowed = self:GetCaster():HasModifier("modifier_sk_e")
 
@@ -84,4 +100,12 @@ function sk_q:OnSpellStart()
             end
         )
     end
+end
+
+function sk_q:GetCastAnimation()
+    return ACT_DOTA_CAST_ABILITY_4
+end
+
+function sk_q:GetPlaybackRateOverride()
+    return 1.5
 end

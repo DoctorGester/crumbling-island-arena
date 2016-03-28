@@ -1,7 +1,7 @@
 "addon"
 {
 	"HeroName_npc_dota_hero_phantom_assassin"		"The Moon"
-	"HeroTips_npc_dota_hero_phantom_assassin"		"<font color='gold'>Q</font>: Short ranged boomerang<br/><font color='gold'>W</font>: Melee AOE attack<br/><font color='gold'>E</font>: Short jump, reactivate to double-jump<br/><font color='gold'>R</font>: Invisibility"
+	"HeroTips_npc_dota_hero_phantom_assassin"		"<font color='gold'>Q</font>: Short ranged boomerang<br/><font color='gold'>W</font>: Melee AOE attack<br/><font color='gold'>E</font>: Short jump<br/><font color='gold'>R</font>: Invisibility"
 
 	"HeroName_npc_dota_hero_crystal_maiden"			"The Magician"
 	"HeroTips_npc_dota_hero_crystal_maiden"			"If <font color=\"skyblue\"><b>Frozen</b></font> enemy gets <font color=\"skyblue\"><b>Frozen</b></font>, receive damage<br/><font color='gold'>Q</font>: Freezing projectile<br/><font color='gold'>W</font>: Freeze in a line<br/><font color='gold'>E</font>: Freezing wave, reactivate to relocate<br/><font color='gold'>R</font>: AOE slow + freeze"
@@ -22,7 +22,7 @@
 	"HeroTips_npc_dota_hero_sniper"					"<font color='gold'>Q</font>: Global projectile<br/><font color='gold'>W</font>: Rooting trap<br/><font color='gold'>E</font>: Speed boost<br/><font color='gold'>R</font>: Invisibility when no enemies nearby"
 
 	"HeroName_npc_dota_hero_sand_king"				"The High Priestess"
-	"HeroTips_npc_dota_hero_sand_king"				"<font color='gold'>Q</font>: Short ranged dash + AOE damage<br/><font color='gold'>W</font>: AOE slow + blind<br/><font color='gold'>E</font>: Invincibility + change Q to projectile<br/><font color='gold'>R</font>: Channeling. AOE damage"
+	"HeroTips_npc_dota_hero_sand_king"				"<font color='gold'>Q</font>: AOE damage + slow after a delay<br/><font color='gold'>W</font>: Damage in thick line<br/><font color='gold'>E</font>: Dash + damage<br/><font color='gold'>R</font>: Area with invisibility"
 
 	"HeroName_npc_dota_hero_legion_commander"		"Strength"
 	"HeroTips_npc_dota_hero_legion_commander"		"<font color='gold'>Q</font>: Melee slowing attack<br/><font color='gold'>W</font>: 1 damage shield, speed boost<br/><font color='gold'>E</font>: Dash + short stun<br/><font color='gold'>R</font>: AOE buff, immortality + reduced cooldowns"
@@ -120,14 +120,14 @@
 	"AbilityTooltip_pa_q_sub"						"Bring the glaive back"
 	"AbilityTooltip_pa_w"							"Strike an area around you"
 	"AbilityTooltip_pa_w_sub"						"Throw a dagger which slows the first enemy hit<br><br>Doesn\\\\'t deal damage"
-	"AbilityTooltip_pa_e"							"Perform a short jump<br><br>Reactivate to double-jump"
+	"AbilityTooltip_pa_e"							"Perform a short jump"
 	"AbilityTooltip_pa_e_sub"						"Perform a short jump, leaving your glaive behind"
 	"AbilityTooltip_pa_r"							"Become invisible for 5 seconds gaining bonus speed<br>Your glaive is also sped up<br><br>Casting spells briefly reveals you"
 
-	"AbilityTooltip_sk_q"							"Tunnel forward, damaging all enemies around the destination point<br><br>When <font color=\"#E2BD00\"><b>Burrowed</b></font> becomes a point target spell, that damages all enemies in the line when cast"
-	"AbilityTooltip_sk_w"							"Target an area<br>Enemies in that area are slowed and unable to see anything"
-	"AbilityTooltip_sk_e"							"<font color=\"#E2BD00\"><b>Burrow</b></font> and became immobile and invulnerable for a few seconds"
-	"AbilityTooltip_sk_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Damage an area around you two times over the course of channeling"
+	"AbilityTooltip_sk_q"							"Deal damage and slow enemies in the area after a 1.2 second delay"
+	"AbilityTooltip_sk_w"							"Deal damage in a line<br><br>Can't go though holes in the ground"
+	"AbilityTooltip_sk_e"							"Dash forward dealing damage to enemies on path<br><br>Can't go though holes in the ground"
+	"AbilityTooltip_sk_r"							"Create a sandstorm for 7.5 seconds which renders your hero invisible and gives him bonus speed"
 
 	"AbilityTooltip_storm_spirit_q"					"Launch a wave that creates a <font color=\"#00EFEF\"><b>Remnant</b></font> at the target point"
 	"AbilityTooltip_storm_spirit_w"					"Target a <font color=\"#00EFEF\"><b>Remnant</b></font> making it explode, damaging enemies around it"
@@ -180,8 +180,8 @@
 	"ModifierTooltip_modifier_sniper_e"						"Sprinting"
 	"ModifierTooltip_modifier_sniper_r"						"Stealthed movement"
 
-	"ModifierTooltip_modifier_sk_w"							"Blinded by sandstorm"
-	"ModifierTooltip_modifier_sk_e"							"<font color=\"#E2BD00\"><b>Burrowed</b></font>"
+	"ModifierTooltip_modifier_sk_q"							"Slowed down"
+	"ModifierTooltip_modifier_sk_r"							"Invisible in sandstorm"
 
 	"ModifierTooltip_modifier_pa_w_sub"						"Slowed down"
 	"ModifierTooltip_modifier_pa_e"							"Jumping"

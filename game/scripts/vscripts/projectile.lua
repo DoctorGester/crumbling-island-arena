@@ -124,7 +124,9 @@ function Projectile:SetGraphics(graphics)
         ParticleManager:ReleaseParticleIndex(self.particle)
     end
 
-    self.particle = ParticleManager:CreateParticle(graphics, PATTACH_ABSORIGIN_FOLLOW , self:GetUnit())
+    if graphics then
+        self.particle = ParticleManager:CreateParticle(graphics, PATTACH_ABSORIGIN_FOLLOW , self:GetUnit())
+    end
 end
 
 function Projectile:Remove()
@@ -132,8 +134,10 @@ function Projectile:Remove()
         self:destroyFunction()
     end
 
-    ParticleManager:DestroyParticle(self.particle, false)
-    ParticleManager:ReleaseParticleIndex(self.particle)
+    if self.particle then
+        ParticleManager:DestroyParticle(self.particle, false)
+        ParticleManager:ReleaseParticleIndex(self.particle)
+    end
 
     getbase(Projectile).Remove(self)
 end

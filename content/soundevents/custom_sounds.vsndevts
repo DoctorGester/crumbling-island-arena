@@ -1603,6 +1603,7 @@
     }
 }
 
+
 "Arena.SK.CastQ"
 {
     "operator_stacks"
@@ -1619,7 +1620,7 @@
                     {
                         "value"
                         {
-                              "value0"        "sounds/weapons/hero/sand_king/sand_king_burrow_attack.vsnd"
+                              "value0"        "sounds/weapons/hero/sand_king/sand_king_epicenter_spell.vsnd"
                         }
                     }
                     "volume"            {   "value"     "1.00000"  }
@@ -1635,7 +1636,39 @@
     }
 }
 
-"Arena.SK.CastQ.Sub"
+"Arena.SK.EndQ"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/earthshaker/fissure.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "100.00000" }
+                    "distance_max"      {   "value"     "2000.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.SK.CastW"
 {
     "operator_stacks"
     {
@@ -1668,7 +1701,7 @@
 }
 
 
-"Arena.SK.CastQ.Sub2"
+"Arena.SK.LoopW"
 {
     "operator_stacks"
     {
@@ -1702,72 +1735,6 @@
     }
 }
 
-"Arena.SK.CastW"
-{
-    "operator_stacks"
-    {
-        "update_stack"
-        {
-            "reference_operator"
-            {
-                "operator"              "sos_reference_stack"
-                "reference_stack"       "dota_src1_3d"
-                "operator_variables"
-                {
-                    "vsnd_files"
-                    {
-                        "value"
-                        {
-                              "value0"        "sounds/weapons/hero/sand_king/sand_king_sandstorm_start.vsnd"
-                        }
-                    }
-                    "volume"            {   "value"     "1.00000"  }
-                    "pitch_rand_min"    {   "value"     "-0.05000"  }
-                    "pitch_rand_max"    {   "value"     "0.050000"  }
-                    "pitch"             {   "value"     "1.000000"  }
-                    "soundlevel"        {   "value"     "100.00000" }
-                    "distance_max"      {   "value"     "2000.000"  }
-                    "event_type"        {   "value"     "1.000000"  }
-                }
-            }
-        }
-    }
-}
-
-"Arena.SK.LoopW"
-{
-    "operator_stacks"
-    {
-        "update_stack"
-        {
-            "reference_operator"
-            {
-                "operator"              "sos_reference_stack"
-                "reference_stack"       "dota_update_default"
-                "operator_variables"
-                {
-                    "vsnd_files"
-                    {
-                        "value"
-                        {
-                              "value0"        "sounds/weapons/hero/sand_king/sand_king_sandstorm_loop.vsnd"
-                        }
-                    }
-                    "volume"            {   "value"     "1.00000"  }
-                    "volume_fade_in"    {   "value"     "1.700000"  }
-                    "volume_fade_out"   {   "value"     "1.700000"  }
-                    "pitch_rand_min"    {   "value"     "-0.05000"  }
-                    "pitch_rand_max"    {   "value"     "0.050000"  }
-                    "pitch"             {   "value"     "1.000000"  }
-                    "soundlevel"        {   "value"     "60.00000" }
-                    "distance_max"      {   "value"     "2000.000"  }
-                    "event_type"        {   "value"     "1.000000"  }
-                }
-            }
-        }
-    }
-}
-
 "Arena.SK.CastE"
 {
     "operator_stacks"
@@ -1784,39 +1751,7 @@
                     {
                         "value"
                         {
-                              "value0"        "sounds/weapons/hero/nyx/burrow_in.vsnd"
-                        }
-                    }
-                    "volume"            {   "value"     "1.00000"  }
-                    "pitch_rand_min"    {   "value"     "-0.05000"  }
-                    "pitch_rand_max"    {   "value"     "0.050000"  }
-                    "pitch"             {   "value"     "1.000000"  }
-                    "soundlevel"        {   "value"     "100.00000" }
-                    "distance_max"      {   "value"     "2000.000"  }
-                    "event_type"        {   "value"     "1.000000"  }
-                }
-            }
-        }
-    }
-}
-
-"Arena.SK.EndE"
-{
-    "operator_stacks"
-    {
-        "update_stack"
-        {
-            "reference_operator"
-            {
-                "operator"              "sos_reference_stack"
-                "reference_stack"       "dota_src1_3d"
-                "operator_variables"
-                {
-                    "vsnd_files"
-                    {
-                        "value"
-                        {
-                              "value0"        "sounds/weapons/hero/nyx/burrow_out.vsnd"
+                              "value0"        "sounds/weapons/hero/sand_king/sand_king_burrow_attack.vsnd"
                         }
                     }
                     "volume"            {   "value"     "1.00000"  }
@@ -1848,7 +1783,7 @@
                     {
                         "value"
                         {
-                              "value0"        "sounds/weapons/hero/sand_king/sand_king_epicenter_spell.vsnd"
+                              "value0"        "sounds/weapons/hero/sand_king/sand_king_sandstorm_start.vsnd"
                         }
                     }
                     "volume"            {   "value"     "1.00000"  }
@@ -1864,7 +1799,7 @@
     }
 }
 
-"Arena.SK.TickR"
+"Arena.SK.LoopR"
 {
     "operator_stacks"
     {
@@ -1873,21 +1808,23 @@
             "reference_operator"
             {
                 "operator"              "sos_reference_stack"
-                "reference_stack"       "dota_src1_3d"
+                "reference_stack"       "dota_update_default"
                 "operator_variables"
                 {
                     "vsnd_files"
                     {
                         "value"
                         {
-                              "value0"        "sounds/weapons/hero/earthshaker/fissure.vsnd"
+                              "value0"        "sounds/weapons/hero/sand_king/sand_king_sandstorm_loop.vsnd"
                         }
                     }
                     "volume"            {   "value"     "1.00000"  }
+                    "volume_fade_in"    {   "value"     "1.700000"  }
+                    "volume_fade_out"   {   "value"     "1.700000"  }
                     "pitch_rand_min"    {   "value"     "-0.05000"  }
                     "pitch_rand_max"    {   "value"     "0.050000"  }
                     "pitch"             {   "value"     "1.000000"  }
-                    "soundlevel"        {   "value"     "100.00000" }
+                    "soundlevel"        {   "value"     "60.00000" }
                     "distance_max"      {   "value"     "2000.000"  }
                     "event_type"        {   "value"     "1.000000"  }
                 }
