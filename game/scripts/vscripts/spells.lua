@@ -175,3 +175,38 @@ function Filters.NotEquals(who)
         return target ~= who
     end
 end
+
+Wrappers = {}
+
+function Wrappers.DirectionalAbility(ability, optionalRange)
+    function ability:GetCastRange()
+        return 0
+    end
+
+    local getCursorPosition = ability.BaseClass.GetCursorPosition
+
+    function ability:GetDirection()
+        local target = getCursorPosition(ability)
+        local casterPos = self:GetCaster():GetAbsOrigin()
+        local direction = (target - casterPos):Normalized() * Vector(1, 1, 0)
+
+        if direction:Length2D() == 0 then
+            direction = hero:GetFacing()
+        end
+
+        return direction
+    end
+
+    function ability:GetCursorPosition()
+        local target = getCursorPosition(ability)
+        local realRange = optionalRange or self.BaseClass.GetCastRange(self)
+        local casterPos = self:GetCaster():GetAbsOrigin()
+        local direction = self:GetDirection()
+
+        if (target - casterPos):Length2D() > realRange then
+            target = casterPos + direction * realRange
+        end
+
+        return target
+    end
+end

@@ -10,6 +10,8 @@ function sk_q:GroundEffect(position, target, effect)
 end
 
 function sk_q:OnSpellStart()
+    Wrappers.DirectionalAbility(self, 1200)
+
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
     local area = 250

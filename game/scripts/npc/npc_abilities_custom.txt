@@ -38,7 +38,6 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "storm_spirit_overload"
 		"AbilityCooldown" "5.0"
-		"AbilityCastRange" "1100"
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_LINE"
@@ -304,7 +303,6 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "earth_spirit_stone_caller"
 		"AbilityCooldown" "5.0"
-		"AbilityCastRange" "1000"
 
 		"TargetingIndicator"
 		{
@@ -337,7 +335,6 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "earth_spirit_geomagnetic_grip"
 		"AbilityCooldown" "7.0"
-		"AbilityCastRange" "1800"
 
 		"precache"
 		{
@@ -352,7 +349,6 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "earth_spirit_magnetize"
 		"AbilityCooldown" "4.0"
-		"AbilityCastRange" "600"
 
 		"TargetingIndicator"
 		{
@@ -374,7 +370,6 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "earth_spirit_petrify"
 		"AbilityCooldown" "14.0"
-		"AbilityCastRange" "2400"
 
 		"precache"
 		{
@@ -390,7 +385,6 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "tusk_snowball"
 		"AbilityCooldown" "4.0"
-		"AbilityCastRange" "1500"
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_LINE"
@@ -451,7 +445,6 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "ancient_apparition_chilling_touch"
 		"AbilityCooldown" "6.0"
-		"AbilityCastRange" "1100"
 
 		"TargetingIndicator"
 		{
@@ -523,12 +516,18 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/sven/sven_q"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "sven_great_cleave"
 		"AbilityCooldown" "1.8"
 		"AbilityCastPoint" "0.4"
 
 		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "(function(){ if (HasModifier(unit, 'modifier_sven_r')) return 500; return 300; })()"
+		}
+
+		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
 			"Radius" "(function(){ if (HasModifier(unit, 'modifier_sven_r')) return 500; return 300; })()"
@@ -544,9 +543,9 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/sven/sven_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "sven_warcry"
 		"AbilityCooldown" "6.0"
-		"AbilityCastRange" "500"
 		"AbilityCastPoint" "0.2"
 
 		"TargetingIndicator"
@@ -702,7 +701,6 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "sandking_epicenter"
 		"AbilityCooldown" "2.7"
-		"AbilityCastRange" "1200"
 		"AbilityCastPoint" "0.4"
 
 		"TargetingIndicator"
@@ -839,7 +837,6 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName" "legion_commander_press_the_attack"
 		"AbilityCooldown" "6.0"
-		"AbilityCastRange" "500"
 
 		"precache"
 		{
@@ -853,7 +850,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/lc/lc_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "legion_commander_press_the_attack"
 		"AbilityCooldown" "6.0"
 
@@ -907,7 +904,6 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "lycan_summon_wolves"
 		"AbilityCooldown" "5.5"
-		"AbilityCastRange" "1600"
 
 		// TODO special indicator class
 
@@ -925,8 +921,6 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "lycan/hunter_of_kings_ability_icons/lycan_feral_impulse"
 		"AbilityCooldown" "3.0"
-		"AbilityCastPoint" "0.35"
-		"AbilityCastRange" "300"
 
 		"HoverIndicator"
 		{
@@ -989,14 +983,20 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/phoenix/phoenix_q"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "phoenix_icarus_dive"
 		"AbilityCooldown" "5.5"
 
-		"HoverIndicator"
+		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_LINE"
 			"MaxLength" "900"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "900"
 		}
 
 		"precache"
@@ -1012,7 +1012,6 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "phoenix_launch_fire_spirit"
 		"AbilityCooldown" "0.5"
-		"AbilityCastRange" "1200"
 
 		"TargetingIndicator"
 		{
@@ -1213,7 +1212,6 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "rubick_telekinesis_land"
 		"AbilityCooldown" "5.0"
-		"AbilityCastRange" "1500"
 		"AbilityCastPoint" "0.15"
 
 		"TargetingIndicator"

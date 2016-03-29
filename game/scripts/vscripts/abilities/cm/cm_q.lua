@@ -1,6 +1,8 @@
 cm_q = class({})
 
 function cm_q:OnSpellStart()
+    Wrappers.DirectionalAbility(self, 1500)
+
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
 

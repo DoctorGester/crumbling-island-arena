@@ -3,24 +3,11 @@ earth_spirit_e = class({})
 LinkLuaModifier("modifier_earth_spirit_e", "abilities/earth_spirit/modifier_earth_spirit_e", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_earth_spirit_e_animation", "abilities/earth_spirit/modifier_earth_spirit_e", LUA_MODIFIER_MOTION_NONE)
 
-function earth_spirit_e:GetCastRange(location, target)
-    if self:GetCaster():HasModifier("modifier_earth_spirit_stand") then
-        return 0
-    end
-
-    return 600
-end
-
 function earth_spirit_e:OnSpellStart()
+    Wrappers.DirectionalAbility(self, 600)
+
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
-    local dir = target - hero:GetPos()
-    local castRange = 600
-
-    if dir:Length2D() > castRange then
-        target = hero:GetPos() + dir:Normalized() * castRange
-    end
-
     local targetRemnant = EarthSpirit:FindNonStandRemnantCursor(self, target)
     local hadStand = false
 

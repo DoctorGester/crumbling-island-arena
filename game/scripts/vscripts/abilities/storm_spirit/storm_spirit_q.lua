@@ -4,6 +4,8 @@ LinkLuaModifier("modifier_storm_spirit_remnant", "abilities/storm_spirit/modifie
 require("abilities/storm_spirit/entity_storm_q")
 
 function storm_spirit_q:OnSpellStart()
+    Wrappers.DirectionalAbility(self, 1100)
+
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
     local direction = target - hero:GetPos()

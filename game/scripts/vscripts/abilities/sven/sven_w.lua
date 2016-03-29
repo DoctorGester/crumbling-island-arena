@@ -29,14 +29,12 @@ function sven_w:Shout(direction)
 end
 
 function sven_w:OnSpellStart()
+    Wrappers.DirectionalAbility(self, 500)
+
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
-    local direction = target - hero:GetPos()
+    local direction = self:GetDirection()
     local ability = self
-
-    if direction:Length2D() == 0 then
-        direction = hero:GetFacing()
-    end
 
     if not hero:IsEnraged() then
         self:Shout(direction:Normalized())

@@ -5,15 +5,13 @@ LinkLuaModifier("modifier_lycan_q", "abilities/lycan/modifier_lycan_q", LUA_MODI
 require('abilities/lycan/lycan_wolf')
 
 function lycan_q:OnSpellStart()
+    Wrappers.DirectionalAbility(self, 1600)
+
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition() * Vector(1, 1, 0)
-    local direction = target - hero:GetPos()
+    local direction = self:GetDirection()
 
     if direction:Length2D() < 500 then
-        if direction:Length2D() == 0 then
-            direction = hero:GetFacing()
-        end
-
         target = hero:GetPos() + direction:Normalized() * 500
     end
 

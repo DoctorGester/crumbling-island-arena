@@ -8,22 +8,11 @@ function zeus_e:CreateLightning(self, from, to)
 end
 
 function zeus_e:OnSpellStart()
+    Wrappers.DirectionalAbility(self, 950)
+
     local hero = self:GetCaster().hero
     local casterPos = hero:GetPos()
     local target = self:GetCursorPosition()
-    local direction = (target - casterPos):Normalized()
-
-    if direction:Length2D() == 0 then
-        direction = hero:GetFacing()
-    end
-
-    direction.z = 0
-
-    if (target - casterPos):Length2D() > 950 then
-        target = casterPos + direction * 950
-    end
-
-    target.z = hero:GetGroundHeight(target)
 
     GridNav:DestroyTreesAroundPoint(target, 128, true)
     hero:FindClearSpace(target, true)

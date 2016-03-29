@@ -11,8 +11,10 @@ phoenix_q.CastFilterResult = Phoenix.CastFilterResultLocation
 phoenix_q.GetCustomCastError = Phoenix.GetCustomCastErrorLocation
 
 function phoenix_q:OnSpellStart()
+    Wrappers.DirectionalAbility(self, 900)
+
     local hero = self:GetCaster().hero
-    local target = hero:GetPos() + hero:GetFacing() * 900
+    local target = self:GetCursorPosition()
 
     if hero:GetHealth() > 1 then
         hero:Damage(hero)
@@ -21,6 +23,7 @@ function phoenix_q:OnSpellStart()
     Dash(hero, target, 900, {
         loopingSound = "Arena.Phoenix.CastQ",
         modifier = { name = "modifier_phoenix_q", ability = self },
+        forceFacing = true,
         hitParams = {
             modifier = { name = "modifier_phoenix_q_slow", ability = self, duration = 1.5 },
             damage = true

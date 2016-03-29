@@ -8,13 +8,10 @@ function tiny_w:OnAbilityPhaseStart()
 end
 
 function tiny_w:OnSpellStart()
+    Wrappers.DirectionalAbility(self, 1500)
+
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
-    local direction = target - hero:GetPos()
-
-    if direction:Length2D() == 0 then
-        target = hero:GetPos() + hero:GetFacing()
-    end
 
     local height = 600
     local bounces = 0

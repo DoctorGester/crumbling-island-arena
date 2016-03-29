@@ -1,6 +1,8 @@
 cm_e = class({})
 
 function cm_e:OnSpellStart()
+    Wrappers.DirectionalAbility(self, 1100)
+
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
     local icePath = DistanceCappedProjectile(hero.round, {

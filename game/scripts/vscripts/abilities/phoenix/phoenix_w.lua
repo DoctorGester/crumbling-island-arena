@@ -14,14 +14,10 @@ phoenix_w.CastFilterResultLocation = Phoenix.CastFilterResultLocation
 phoenix_w.GetCustomCastErrorLocation = Phoenix.GetCustomCastErrorLocation
 
 function phoenix_w:OnSpellStart()
+    Wrappers.DirectionalAbility(self, 1200)
+
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
-    local direction = target - hero:GetPos()
-    local ability = self
-
-    if direction:Length2D() == 0 then
-        direction = hero:GetFacing()
-    end
 
     PointTargetProjectile(hero.round, {
         owner = hero,

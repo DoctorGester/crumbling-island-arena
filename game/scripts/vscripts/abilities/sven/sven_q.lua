@@ -8,9 +8,11 @@ function sven_q:OnAbilityPhaseStart()
 end
 
 function sven_q:OnSpellStart()
+    Wrappers.DirectionalAbility(self, 300)
+
     local hero = self:GetCaster().hero
     local pos = hero:GetPos()
-    local forward = (hero:GetFacing() * Vector(1, 1, 0)):Normalized()
+    local forward = self:GetDirection()
     local range = 300
 
     if hero:IsEnraged() then

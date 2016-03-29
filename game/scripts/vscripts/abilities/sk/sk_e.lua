@@ -7,23 +7,13 @@ function sk_e:OnAbilityPhaseStart()
 end
 
 function sk_e:OnSpellStart()
+    Wrappers.DirectionalAbility(self, 700)
+
     local hero = self:GetCaster().hero
     local casterPos = hero:GetPos()
     local target = self:GetCursorPosition()
-    local direction = (target - casterPos):Normalized()
-
-    if direction:Length2D() == 0 then
-        direction = hero:GetFacing()
-    end
-
-    direction.z = 0
-
+    local direction = self:GetDirection()
     local len = (target - casterPos):Length2D()
-
-    if len > 700 then
-        target = casterPos + direction * 700
-        len = 700
-    end
 
     local currentLen = 0
     local previousPoint = casterPos
