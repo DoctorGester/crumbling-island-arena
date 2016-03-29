@@ -34,20 +34,19 @@ function phoenix_w:OnSpellStart()
                 return instanceof(target, Projectile)
             end,
         targetReachedFunction =
-            function(self)
+            function(projectile)
                 hero:AreaEffect({
                     filter = Filters.Area(target, 200),
                     filterProjectiles = true,
                     damage = true,
-                    modifier = { name = "modifier_phoenix_w", duration = 2.0, ability = self },
-                    action = function()
-                        local particle = ImmediateEffect("particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf", PATTACH_ABSORIGIN, hero)
-                        ParticleManager:SetParticleControl(particle, 0, target)
-                        ParticleManager:SetParticleControl(particle, 1, Vector(200, 1, 1))
-
-                        hero:EmitSound("Arena.Phoenix.HitW", target)
-                    end
+                    modifier = { name = "modifier_phoenix_w", duration = 2.0, ability = self }
                 })
+
+                local particle = ImmediateEffect("particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf", PATTACH_ABSORIGIN, hero)
+                ParticleManager:SetParticleControl(particle, 0, target)
+                ParticleManager:SetParticleControl(particle, 1, Vector(200, 1, 1))
+
+                hero:EmitSound("Arena.Phoenix.HitW", target)
             end
     }):Activate()
 

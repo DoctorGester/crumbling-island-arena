@@ -93,7 +93,7 @@ function InjectAreaDebug()
 end
 
 function CheckAndEnableDebug()
-    local cheatsEnabled = Convars:GetInt("sv_cheats") == 1
+    local cheatsEnabled = IsInToolsMode()
 
     CustomNetTables:SetTableValue("main", "debug", { enabled = cheatsEnabled })
 
@@ -119,7 +119,9 @@ function CheckAndEnableDebug()
 
     --InjectProjectileDebug()
     --InjectAreaDebug()
-    InjectFreeSelection()
-
     ULTS_TIME = 1
+end
+
+if IsInToolsMode() then
+    InjectFreeSelection()
 end

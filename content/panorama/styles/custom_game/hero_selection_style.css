@@ -23,6 +23,7 @@
     pre-transform-scale2d: 2;
     vertical-align: middle;
     horizontal-align: center;
+    background-color: rgb(29, 39, 46);
 
     transform: none;
     transition-property: transform, blur, opacity;
