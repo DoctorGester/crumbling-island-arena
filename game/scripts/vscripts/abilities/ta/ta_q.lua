@@ -33,3 +33,7 @@ end
 function ta_q:GetCastAnimation()
     return ACT_DOTA_ATTACK2
 end
+
+function ta_q:GetPlaybackRateOverride()
+    return 1.33
+end

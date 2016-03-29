@@ -519,7 +519,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "sven_great_cleave"
 		"AbilityCooldown" "1.8"
-		"AbilityCastPoint" "0.4"
+		"AbilityCastPoint" "0.2"
 
 		"HoverIndicator"
 		{
@@ -643,7 +643,7 @@
 		"AbilityTextureName" "techies_stasis_trap"
 		"AbilityCooldown" "7.0"
 		"AbilityCastRange" "300"
-		"AbilityCastPoint" "0.6"
+		"AbilityCastPoint" "0.3"
 
 		"TargetingIndicator"
 		{
@@ -814,7 +814,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName" "legion_commander_moment_of_courage"
 		"AbilityCooldown" "1.8"
-		"AbilityCastPoint" "0.4"
+		"AbilityCastPoint" "0.2"
 
 		"HoverIndicator"
 		{
@@ -921,6 +921,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "lycan/hunter_of_kings_ability_icons/lycan_feral_impulse"
 		"AbilityCooldown" "3.0"
+		"AbilityCastPoint" "0.2"
 
 		"HoverIndicator"
 		{
@@ -1090,7 +1091,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "templar_assassin_psi_blades"
 		"AbilityCooldown" "1.8"
-		"AbilityCastPoint" "0.3"
+		"AbilityCastPoint" "0.2"
 
 		"TargetingIndicator"
 		{

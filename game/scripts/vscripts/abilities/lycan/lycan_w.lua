@@ -34,3 +34,7 @@ end
 function lycan_w:GetCastAnimation()
     return ACT_DOTA_ATTACK2
 end
+
+function lycan_w:GetPlaybackRateOverride()
+    return 2
+end

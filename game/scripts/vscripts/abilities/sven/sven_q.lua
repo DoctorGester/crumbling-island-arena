@@ -45,3 +45,6 @@ function sven_q:GetCastAnimation()
     return ACT_DOTA_ATTACK2
 end
 
+function sven_q:GetPlaybackRateOverride()
+    return 2
+end

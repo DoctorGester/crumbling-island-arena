@@ -30,3 +30,7 @@ end
 function lc_q:GetCastAnimation()
     return ACT_DOTA_ATTACK
 end
+
+function lc_q:GetPlaybackRateOverride()
+    return 2
+end
