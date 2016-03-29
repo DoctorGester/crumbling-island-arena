@@ -8,7 +8,7 @@ function Spells:constructor()
 end
 
 function Spells.TestPoint(point, unit)
-    local ground = point * Vector(1, 1, 0)
+    local ground = point * Vector(1, 1, 0) - Vector(0, 0, 1)
     
     local trace = {
         startpos = ground,

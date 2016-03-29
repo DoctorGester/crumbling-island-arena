@@ -28,11 +28,11 @@ function Debug.OnResetLevel(eventSourceIndex, args)
     GameRules.GameMode.level:Reset()
 end
 
-function Debug.OnCreateTestHero()
+function Debug.OnCreateTestHero(eventSourceIndex, args)
     local round = GameRules.GameMode.round
-    local hero = round:LoadHeroClass(Debug.debugHeroName)
+    local hero = round:LoadHeroClass(args.name)
 
-    hero:SetUnit(CreateUnitByName(Debug.debugHeroName, Vector(0, 0, 0), true, nil, nil, DOTA_TEAM_BADGUYS))
+    hero:SetUnit(CreateUnitByName(args.name, Vector(0, 0, 0), true, nil, nil, DOTA_TEAM_BADGUYS))
     hero:Setup()
 
     local _, first = next(round.players)

@@ -106,10 +106,17 @@ function AddDebugButton(text, eventName){
     });
 
     $.CreatePanel("Label", button, "").text = text;
+
+    return button;
 }
 
 function FillDebugPanel(){
-    AddDebugButton("Add Test Hero", "debug_create_test_hero");
+    AddDebugButton("Add Test Hero", null).SetPanelEvent("onactivate", function(){
+        GameEvents.SendCustomGameEventToServer("debug_create_test_hero", {
+            name: "npc_dota_hero_" + $("#DebugHeroName").text.trim()
+        });
+    });
+
     AddDebugButton("Take 1 damage", "debug_take_damage");
     AddDebugButton("Heal 1 health", "debug_heal_health");
     AddDebugButton("Heal debug hero", "debug_heal_debug_hero");

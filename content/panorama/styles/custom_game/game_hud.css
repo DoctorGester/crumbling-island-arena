@@ -114,6 +114,17 @@
     margin-top: 100px;
 }
 
+#DebugPanel TextEntry
+{
+    width: 160px;
+    height: 30px;
+    background-color: gray;
+    color: white;
+    border: 1px solid black;
+    border-radius: 2px;
+    padding: 4px;
+}
+
 #DebugPanel Button
 {
     width: 160px;

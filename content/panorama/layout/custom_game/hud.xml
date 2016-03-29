@@ -22,6 +22,7 @@
         <Image src="file://{images}/custom_game/zeus_r.png" style="opacity:0.0;"/>
         <Panel id="MainPanel" class="MainPanel" hittest="false">
             <Panel id="DebugPanel" hittest="false">
+                <TextEntry id="DebugHeroName" multiline="false" textmode="normal" text="sven"/>
             </Panel>
             <Panel id="Scoreboard"/>
             <Panel id="HeroDetails">

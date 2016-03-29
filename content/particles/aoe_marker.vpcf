@@ -40,7 +40,7 @@
 			m_flRadiusScale = 0.500000
 			m_bAdditive = true
 			m_hTexture = resource:"materials/particle/beam_hotwhite.vtex"
-			m_flOverbrightFactor = 3.000000
+			m_flOverbrightFactor = 10.000000
 		},
 	]
 	m_Initializers =

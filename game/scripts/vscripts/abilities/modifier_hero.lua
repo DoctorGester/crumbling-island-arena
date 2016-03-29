@@ -10,7 +10,7 @@ end
 
 function modifier_hero:IsForwardEmpty()
     local parent = self:GetParent()
-    local forward = parent:GetForwardVector() * parent:GetBaseMoveSpeed() / 30 + parent:GetAbsOrigin()
+    local forward = parent:GetForwardVector() * parent:GetBaseMoveSpeed() / 5 + parent:GetAbsOrigin()
     return not Spells.TestPoint(forward, parent)
 end
 

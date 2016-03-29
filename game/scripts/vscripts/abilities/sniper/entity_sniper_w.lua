@@ -1,7 +1,7 @@
 EntitySniperW = EntitySniperW or class({}, nil, UnitEntity)
 
 function EntitySniperW:constructor(round, owner, position, ability)
-    getbase(EntitySniperW).constructor(self, round, "npc_dota_techies_stasis_trap", position)
+    getbase(EntitySniperW).constructor(self, round, "npc_dota_techies_stasis_trap", position, owner:GetUnit():GetTeamNumber())
 
     self.hero = owner
     self.owner = owner.owner

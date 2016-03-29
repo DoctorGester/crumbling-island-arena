@@ -86,7 +86,9 @@ function Hero:Damage(source)
 end
 
 function Hero:Heal()
-    self.unit:SetHealth(self.unit:GetHealth() + 1)
+    if self.unit:IsAlive() then
+        self.unit:SetHealth(self.unit:GetHealth() + 1)
+    end
 end
 
 function Hero:FindAbility(name)

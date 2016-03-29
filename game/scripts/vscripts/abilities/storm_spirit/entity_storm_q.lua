@@ -10,10 +10,19 @@ function EntityStormQ:constructor(round, owner, position, facing)
     self:AddNewModifier(self, nil, "modifier_storm_spirit_remnant", {})
     self:EmitSound("Hero_StormSpirit.StaticRemnantPlant")
     self:SetFacing(facing)
+
+    self.rangeIndicator = ParticleManager:CreateParticle("particles/aoe_marker.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetUnit())
+    ParticleManager:SetParticleControl(self.rangeIndicator, 1, Vector(300, 1, 1))
+    ParticleManager:SetParticleControl(self.rangeIndicator, 2, Vector(67, 204, 250))
+    ParticleManager:SetParticleControl(self.rangeIndicator, 3, Vector(600, 0, 0))
 end
 
 function EntityStormQ:Remove()
     self:EmitSound("Hero_StormSpirit.StaticRemnantExplode")
     self.hero:RemoveRemnant(self)
+
+    ParticleManager:DestroyParticle(self.rangeIndicator, false)
+    ParticleManager:ReleaseParticleIndex(self.rangeIndicator)
+
     getbase(EntityStormQ).Remove(self)
 end

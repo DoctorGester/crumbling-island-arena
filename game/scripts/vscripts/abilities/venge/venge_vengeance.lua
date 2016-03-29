@@ -27,9 +27,8 @@ function Vengeance:CreateParticles()
     ParticleManager:SetParticleControl(self.healthCounter, 1, Vector(0, self.health, 0))
 
     self.rangeIndicator = ParticleManager:CreateParticle("particles/aoe_marker.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.unit)
-    ParticleManager:SetParticleControl(self.rangeIndicator, 0, self:GetPos())
     ParticleManager:SetParticleControl(self.rangeIndicator, 1, Vector(650, 1, 1))
-    ParticleManager:SetParticleControl(self.rangeIndicator, 2, Vector(0, 74, 127))
+    ParticleManager:SetParticleControl(self.rangeIndicator, 2, Vector(0, 74, 255))
     ParticleManager:SetParticleControl(self.rangeIndicator, 3, Vector(10, 0, 0))
 end
 
@@ -37,7 +36,6 @@ function Vengeance:SetPos(pos)
     getbase(Vengeance).SetPos(self, pos)
 
     ParticleManager:SetParticleControl(self.healthCounter, 0, Vector(self.position.x, self.position.y, self.position.z + 200))
-    ParticleManager:SetParticleControl(self.rangeIndicator, 0, self:GetPos())
 end
 
 function Vengeance:Remove()
