@@ -1,5 +1,19 @@
 modifier_phoenix_q = class({})
 
+function modifier_phoenix_q:OnCreated()
+    if IsServer() then
+        local p = self:GetParent()
+        local o = p:GetOrigin()
+        local index = ParticleManager:CreateParticle("particles/units/heroes/hero_phoenix/phoenix_icarus_dive.vpcf", PATTACH_ABSORIGIN_FOLLOW, p)
+        ParticleManager:SetParticleControlEnt(index, 1, p, PATTACH_POINT_FOLLOW, "attach_hitloc", o, true)
+        ParticleManager:SetParticleControlEnt(index, 4, p, PATTACH_POINT_FOLLOW, "attach_hitloc", o, true)
+        ParticleManager:SetParticleControlEnt(index, 5, p, PATTACH_POINT_FOLLOW, "attach_wingtipL", o, true)
+        ParticleManager:SetParticleControlEnt(index, 6, p, PATTACH_POINT_FOLLOW, "attach_wingtipR", o, true)
+
+        self:AddParticle(index, false, false, -1, false, false)
+    end
+end
+
 function modifier_phoenix_q:CheckState()
     local state = {
         [MODIFIER_STATE_STUNNED] = true,
@@ -7,14 +21,6 @@ function modifier_phoenix_q:CheckState()
     }
 
     return state
-end
-
-function modifier_phoenix_q:GetEffectName()
-    return "particles/units/heroes/hero_phoenix/phoenix_icarus_dive.vpcf"
-end
-
-function modifier_phoenix_q:GetEffectAttachType()
-    return PATTACH_ABSORIGIN_FOLLOW
 end
 
 function modifier_phoenix_q:DeclareFunctions()

@@ -7,6 +7,7 @@ function modifier_lc_w_speed:OnCreated(kv)
         local index = ParticleManager:CreateParticle("particles/units/heroes/hero_legion_commander/legion_commander_press.vpcf", PATTACH_ROOTBONE_FOLLOW, parent)
         ParticleManager:SetParticleControlEnt(index, 0, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", origin, false)
         ParticleManager:SetParticleControlEnt(index, 1, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", origin, false)
+        ParticleManager:SetParticleControlEnt(index, 2, parent, PATTACH_POINT_FOLLOW, "attach_hitloc", origin, false)
         self:AddParticle(index, false, false, 1, false, false)
         parent:EmitSound("Arena.LC.HitW")
     end
