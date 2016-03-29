@@ -10,17 +10,20 @@
 *.vxml_c
 *.vcss_c
 
+# Panorama debugger
+*.cfg
+
 # Commit panorama compiled textures
-!game/dota_addons/dotacraft/panorama/images/*.vtex_c
-!game/dota_addons/dotacraft/panorama/images/custom_game/*.vtex_c
+!game/panorama/images/*.vtex_c
+!game/panorama/images/custom_game/*.vtex_c
 
 # Map files
 *.vpk
 
 # Map overviews
-content/dota_addons/dotacraft/materials/overviews/*
-game/dota_addons/dotacraft/materials/overviews/*
-game/dota_addons/dotacraft/resource/overviews/*
+content/materials/overviews/*
+game/materials/overviews/*
+game/resource/overviews/*
 
 #Github dump
 *.stackdump

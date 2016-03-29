@@ -254,7 +254,7 @@ function GameStateChanged(data){
 
         for (var key in heroButtons) {
             heroButtons[key].style.boxShadow = null;
-            heroButtons[key].style.saturation = null;
+            heroButtons[key].RemoveClass("HeroButtonSaturated");
         }
     } else {
         SwitchClass(bg, "AnimationBackgroundVisible", "AnimationBackgroundInvisible")
@@ -337,7 +337,8 @@ function HeroSelectionUpdated(data){
             AddHoverHeroDetails(selectionImage, hero);
 
             heroButtons[hero].style.boxShadow = LuaColor(playerColors[id]) + " -2px -2px 4px 4px";
-            heroButtons[hero].style.saturation = "1.0";
+            //heroButtons[hero].style.saturation = "1.0";
+            heroButtons[hero].AddClass("HeroButtonSaturated");
         }
     }
 }
