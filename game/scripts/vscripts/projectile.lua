@@ -106,6 +106,7 @@ function Projectile:Damage(source)
     local sign = ParticleManager:CreateParticle("particles/msg_fx/msg_deny.vpcf", PATTACH_CUSTOMORIGIN, mode)
     ParticleManager:SetParticleControl(sign, 0, self:GetPos())
     ParticleManager:SetParticleControl(sign, 3, Vector(200, 0, 0))
+    ParticleManager:ReleaseParticleIndex(sign)
 
     self:Destroy()
 end

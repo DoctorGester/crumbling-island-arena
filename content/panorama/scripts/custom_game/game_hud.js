@@ -111,9 +111,14 @@ function AddDebugButton(text, eventName){
 }
 
 function FillDebugPanel(){
+    var heroText = $.CreatePanel("TextEntry", $("#DebugPanel"), "");
+    heroText.multiline = false;
+    heroText.textmode = "normal";
+    heroText.text = "sven";
+
     AddDebugButton("Add Test Hero", null).SetPanelEvent("onactivate", function(){
         GameEvents.SendCustomGameEventToServer("debug_create_test_hero", {
-            name: "npc_dota_hero_" + $("#DebugHeroName").text.trim()
+            name: "npc_dota_hero_" + heroText.text.trim()
         });
     });
 

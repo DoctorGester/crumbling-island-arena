@@ -88,6 +88,13 @@ end
 function Hero:Heal()
     if self.unit:IsAlive() then
         self.unit:SetHealth(self.unit:GetHealth() + 1)
+
+        local sign = ParticleManager:CreateParticle("particles/msg_fx/msg_heal.vpcf", PATTACH_CUSTOMORIGIN, mode)
+        ParticleManager:SetParticleControl(sign, 0, self:GetPos())
+        ParticleManager:SetParticleControl(sign, 1, Vector(10, 1, 0))
+        ParticleManager:SetParticleControl(sign, 2, Vector(2, 2, 0))
+        ParticleManager:SetParticleControl(sign, 3, Vector(100, 255, 50))
+        ParticleManager:ReleaseParticleIndex(sign)
     end
 end
 
