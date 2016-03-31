@@ -1,0 +1,14 @@
+﻿<root>
+    <styles>
+        <include src="file://{resources}/styles/custom_game/game_over.css" />
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/underscore-min.js" />
+        <include src="file://{resources}/scripts/custom_game/util.js" />
+        <include src="file://{resources}/scripts/custom_game/game_over.js" />
+    </scripts>
+    <Panel class="GameOverBackground" onactivate="Game.FinishGame()">
+        <Panel hittest="false" id="GameOverScoreboard" class="GameOverScoreboardInvisible">
+        </Panel>
+    </Panel>
+</root>

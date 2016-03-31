@@ -145,13 +145,13 @@ function GameStateChanged(data){
     if (data.state == GAME_STATE_ROUND_IN_PROGRESS){
         $("#HeroPanel").RemoveClass("AnimationHeroHudHidden");
         $("#HeroDetails").RemoveClass("AnimationHeroDetailsHidden");
-        $("#Scoreboard").RemoveClass("AnimationScoreboardHidden");
+        $("#ScoreboardContainer").RemoveClass("AnimationScoreboardHidden");
 
         Game.EmitSound("UI.RoundStart")
     } else {
         $("#HeroPanel").AddClass("AnimationHeroHudHidden");
         $("#HeroDetails").AddClass("AnimationHeroDetailsHidden");
-        $("#Scoreboard").AddClass("AnimationScoreboardHidden");
+        $("#ScoreboardContainer").AddClass("AnimationScoreboardHidden");
     }
 }
 

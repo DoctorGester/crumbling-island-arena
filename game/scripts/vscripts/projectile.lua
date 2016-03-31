@@ -31,6 +31,8 @@ function Projectile:constructor(round, params)
 
     self:SetPos(self.from)
     self:SetSpeed(params.speed or 600)
+
+    Statistics.IncreaseProjectilesFired(self.owner)
 end
 
 function Projectile:CanFall()

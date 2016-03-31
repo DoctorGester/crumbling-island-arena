@@ -120,6 +120,14 @@ function CheckAndEnableDebug()
     --InjectProjectileDebug()
     --InjectAreaDebug()
     ULTS_TIME = 1
+
+    Statistics.stats[1] = {}
+    Statistics.stats[2] = {}
+    Statistics.stats[3] = {}
+
+    Statistics.AddPlayedHero({ id=1 }, "npc_dota_hero_sven")
+    Statistics.AddPlayedHero({ id=2 }, "npc_dota_hero_sniper")
+    Statistics.AddPlayedHero({ id=3 }, "npc_dota_hero_earth_spirit")
 end
 
 if IsInToolsMode() then

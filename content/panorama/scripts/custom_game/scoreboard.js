@@ -5,15 +5,6 @@ function PlayersUpdated(players) {
     for (var key in players){
         var player = players[key];
         var info = Game.GetPlayerInfo(player.id) || {};
-
-        var result = {
-            id: player.id,
-            score: player.score,
-            steamId: info.player_steamid,
-            name: Players.GetPlayerName(player.id),
-            color: LuaColor(player.color)
-        };
-
         var panel = $.CreatePanel("Panel", scoreboard, "");
         panel.AddClass("ScoreboardPlayer");
         panel.style.backgroundColor = LuaColor(player.color);
@@ -41,6 +32,11 @@ function PlayersUpdated(players) {
     }
 }
 
-(function () {
-    SubscribeToNetTableKey("main", "players", true, PlayersUpdated);
-})();
+function GameInfoUpdated(gameInfo) {
+    var label = $("#ScoreboardGoal");
+    label.SetDialogVariableInt("goal", gameInfo.goal);
+    label.text = $.Localize("#GameGoal", label);
+}
+
+SubscribeToNetTableKey("main", "players", false, PlayersUpdated);
+SubscribeToNetTableKey("main", "gameInfo", false, GameInfoUpdated);

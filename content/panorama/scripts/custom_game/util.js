@@ -2,6 +2,7 @@ GAME_STATE_NONE = 0
 GAME_STATE_HERO_SELECTION = 1
 GAME_STATE_ROUND_IN_PROGRESS = 2
 GAME_STATE_ROUND_ENDED = 3
+GAME_STATE_GAME_OVER = 4
 
 function GetTexture(data, customIcons) {
     var icon = "file://{images}/spellicons/" + (data.texture || data) + ".png";
@@ -43,6 +44,12 @@ function LuaColor(color){
     color = color || [0, 128, 128, 128];
 
     return "rgb(" + [color[1], color[2], color[3]].join(",") + ")";
+}
+
+function LuaColorA(color, alpha) {
+    color = color || [0, 128, 128, 128];
+
+    return "rgba(" + [color[1], color[2], color[3], alpha].join(",") + ")";
 }
 
 function DeleteChildrenWithClass(panel, elClass){

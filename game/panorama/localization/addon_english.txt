@@ -50,6 +50,18 @@
 	"ScoreHeader" "score"
 	"HeroListHeader" "click to select your hero"
 	"RandomHero" "random hero"
+	"GameGoal" "Goal: {d:goal}"
+
+	"SbName" "Name"
+	"SbScore" "Score"
+	"SbDamage" "Damage dealt"
+	"SbRounds" "Rounds won"
+	"SbProj" "Missiles fired"
+	"SbAmountPlayed" "Heroes played"
+	"SbMostPlayed" "Most played"
+	"SbExit" "Click anywhere to exit"
+	"SbWinner" "Game winner"
+	"SbRunnerUp" "RunnerUp"
 
 	"GameInfoHeader" "game info"
 	"GameInfoTimer"	"Select your hero before time runs out!"

@@ -95,6 +95,8 @@ function Hero:Heal()
         ParticleManager:SetParticleControl(sign, 2, Vector(2, 2, 0))
         ParticleManager:SetParticleControl(sign, 3, Vector(100, 255, 50))
         ParticleManager:ReleaseParticleIndex(sign)
+
+        Statistics.IncreaseHealingReceived(self.owner)
     end
 end
 

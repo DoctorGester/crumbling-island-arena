@@ -97,6 +97,8 @@ function HeroSelection:OnClick(args)
 
     self:UpdateSelectionState()
     self:UpdateSelectedHeroes()
+
+    Statistics.AddPlayedHero(player, hero)
 end
 
 function HeroSelection:UpdateSelectionState()

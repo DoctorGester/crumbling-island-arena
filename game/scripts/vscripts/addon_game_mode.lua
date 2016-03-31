@@ -15,17 +15,21 @@ require('round')
 require('spells')
 require('projectile')
 require('dash')
+require('statistics')
 require('debug_util')
 
 STATE_NONE = 0
 STATE_HERO_SELECTION = 1
 STATE_ROUND_IN_PROGRESS = 2
 STATE_ROUND_ENDED = 3
+STATE_GAME_OVER = 4
 
 ROUND_ENDING_TIME = 5
 FIXED_DAY_TIME = 0.27
 
 THINK_PERIOD = 0.01
+
+GAME_GOAL = 50
 
 DUMMY_HERO = "npc_dota_hero_wisp"
 
@@ -141,7 +145,7 @@ function GameMode:InitSettings()
     GameRules:SetSameHeroSelectionEnabled(true)
     GameRules:SetHeroSelectionTime(1.0)
     GameRules:SetPreGameTime(0)
-    GameRules:SetPostGameTime(10.0)
+    GameRules:SetPostGameTime(300)
     GameRules:SetTreeRegrowTime(60.0)
     GameRules:SetUseCustomHeroXPValues(true)
     GameRules:SetGoldPerTick(0)
@@ -272,11 +276,32 @@ function GameMode:SetupMode()
     end
 end
 
+function GameMode:IncreaseScore(player, amount)
+    player.score = player.score + amount
+    self:UpdatePlayerTable()
+
+    if player.score >= self.gameGoal then
+        if not self.winner then
+            self.winner = player
+        elseif player ~= self.winner then
+            table.insert(self.runnerUps, player.id)
+        end
+    end
+end
+
 function GameMode:OnDamageDealt(hero, source)
     if hero ~= source and source and source.owner then
-        source.owner.score = source.owner.score + 1
-        self:UpdatePlayerTable()
+        self:IncreaseScore(source.owner, 1)
+
+        Statistics.IncreaseDamageDealt(source.owner)
     end
+end
+
+function GameMode:EndGame()
+    EmitAnnouncerSound("announcer_ann_custom_end_08")
+    self:UpdateGameInfo()
+    self:SetState(STATE_GAME_OVER)
+    GameRules:SetGameWinner(PlayerResource:GetTeam(self.winner.id))
 end
 
 function GameMode:OnRoundEnd(round)
@@ -287,6 +312,9 @@ function GameMode:OnRoundEnd(round)
     if winner ~= nil then
         playerData.id = winner.id
         playerData.color = self.TeamColors[PlayerResource:GetTeam(winner.id)]
+        self:IncreaseScore(winner, 3)
+
+        Statistics.IncreaseRoundsWon(winner)
     else
         playerData.id = -1
     end
@@ -300,19 +328,17 @@ function GameMode:OnRoundEnd(round)
     end
 
     Timers:CreateTimer(ROUND_ENDING_TIME, function ()
-        if winner then
-            winner.score = winner.score + 3
-            self:UpdatePlayerTable()
-        end
-
         round:Destroy()
         self.round = nil
 
-        self:SetState(STATE_HERO_SELECTION)
-        self.heroSelection:Start(function() self:OnHeroSelectionEnd() end)
-        self.level:Reset()
+        if self.winner then
+            self:EndGame()
+        else
+            self:SetState(STATE_HERO_SELECTION)
+            self.heroSelection:Start(function() self:OnHeroSelectionEnd() end)
+            self.level:Reset()
         end
-    )
+    end)
 end
 
 function GameMode:OnHeroSelectionEnd()
@@ -368,6 +394,45 @@ function GameMode:SetState(state)
     CustomNetTables:SetTableValue("main", "gameState", { state = state })
 end
 
+function GameMode:UpdateGameInfo()
+    local players = {}
+
+    for i, player in pairs(self.Players) do
+        local playerData = {}
+        playerData.id = i
+        playerData.color = self.TeamColors[player.team]
+        playerData.score = player.score
+
+        players[i] = playerData
+    end
+
+    if IsInToolsMode() then
+        players[1] = {}
+        players[1].id = 1
+        players[1].color = self.TeamColors[DOTA_TEAM_BADGUYS]
+
+        players[2] = {}
+        players[2].id = 2
+        players[2].color = self.TeamColors[DOTA_TEAM_CUSTOM_1]
+
+        players[3] = {}
+        players[3].id = 3
+        players[3].color = self.TeamColors[DOTA_TEAM_CUSTOM_2]
+
+        if #self.runnerUps == 0 then
+            table.insert(self.runnerUps, 2)
+        end
+    end
+
+    CustomNetTables:SetTableValue("main", "gameInfo", {
+        goal = self.gameGoal,
+        winner = self.winner and self.winner.id or nil,
+        runnerUps = self.runnerUps,
+        statistics = Statistics.stats,
+        players = players
+    })
+end
+
 function GameMode:LoadCustomHeroes()
     self.AvailableHeroes = {}
 
@@ -416,8 +481,13 @@ function GameMode:OnGameInProgress()
         end
     end
 
-    PrintTable(self.Players)
+    self.gameGoal = GAME_GOAL
+    self.winner = nil
+    self.runnerUps = {}
 
+    Statistics.Init(self.Players)
+
+    self:UpdateGameInfo()
     self:UpdatePlayerTable()
     self.GameItems = nil--LoadKeyValues("scripts/items/items_game.txt").items
 

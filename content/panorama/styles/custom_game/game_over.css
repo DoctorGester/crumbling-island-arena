@@ -1,0 +1,119 @@
+.GameOverBackground
+{
+    width: 100%;
+    height: 100%;
+}
+
+#GameOverScoreboard
+{
+    horizontal-align: center;
+    vertical-align: center;
+    flow-children: down;
+
+    transition-property: opacity;
+    transition-duration: 1.0s;
+}
+
+.GameOverScoreboardInvisible
+{
+    opacity: 0.0;
+}
+
+.GameOverScoreboardVisible
+{
+    opacity: 1.0;
+}
+
+.TableRow
+{
+    flow-children: right;
+}
+
+.TableCell
+{
+    width: 170px;
+    height: 80px;
+    border-radius: 3px;
+    background-color: black;
+}
+
+.TableNameCell
+{
+    width: 250px;
+}
+
+.TableColumnHeader
+{
+    width: 170px;
+    height: 30px;
+    border-radius: 3px;
+}
+
+.TableColumnHeaderWide
+{
+    width: 250px;
+    height: 30px;
+    border-radius: 3px;
+}
+
+.TableColumnHeaderText
+{
+    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+    vertical-align: center;
+    horizontal-align: center;
+    text-shadow: 0px 0px 3px 3.0 black;
+    color: gold;
+    font-size: 22;
+}
+
+.TableCellText
+{
+    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+    vertical-align: center;
+    horizontal-align: center;
+    text-shadow: 0px 0px 3px 3.0 black;
+    color: white;
+    white-space: nowrap;
+}
+
+.TableCellString
+{
+    font-size: 22;
+}
+
+.TableCellNumber
+{
+    font-size: 36;
+    font-weight: bold;
+}
+
+.TableIcon
+{
+    background-color: white;
+    horizontal-align: right;
+    vertical-align: center;
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+}
+
+.WinnerIcon
+{
+    opacity-mask: url("file://{images}/status_icons/trophy.psd");
+}
+
+.RunnerUpIcon
+{
+    opacity-mask: url('file://{images}/control_icons/star_favorite.psd');
+}
+
+.TableFooter
+{
+    margin-top: 40px;
+    font-size: 22;
+    horizontal-align: center;
+    vertical-align: center;
+    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+    color: white;
+    text-shadow: 0px 0px 3px 3.0 black;
+}

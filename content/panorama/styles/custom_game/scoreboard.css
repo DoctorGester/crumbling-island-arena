@@ -1,8 +1,14 @@
-#Scoreboard
+#ScoreboardContainer
 {
-    flow-children: right;
+    flow-children: down;
     horizontal-align: center;
     transition: transform 1.0s linear 0.0ms;
+}
+
+#Scoreboard
+{
+    horizontal-align: center;
+    flow-children: right;
 }
 
 .ScoreboardPlayer
@@ -42,9 +48,21 @@
     font-size: 36;
     margin-bottom: 6px;
     vertical-align: top;
-    horizontal-align: left;
     text-shadow: 0px 0px 1px 3.0 black;
     color: gold;
     white-space: nowrap;
     horizontal-align: center;
+}
+
+#ScoreBoardGoal
+{
+    horizontal-align: center;
+    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+    font-size: 28;
+    color: gold;
+    border-radius: 3px;
+    padding: 2px 40px 2px 40px;
+    background-color: rgba(0, 0, 0, 100);
+    /*width: 100%;*/
+    text-align: center;
 }
