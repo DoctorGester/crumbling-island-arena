@@ -9,6 +9,10 @@ function Statistics.Init(players)
 end
 
 function Statistics.IncreaseValue(player, value, amount)
+	if not player then
+		return
+	end
+
 	Statistics.stats[player.id][value] = (Statistics.stats[player.id][value] or 0) + amount
 end
 
@@ -33,6 +37,10 @@ function Statistics.IncreaseProjectilesFired(player)
 end
 
 function Statistics.AddPlayedHero(player, heroName)
+	if not player then
+		return
+	end
+	
 	player = player.id
 
 	local set = Statistics.stats[player].playedHeroes
