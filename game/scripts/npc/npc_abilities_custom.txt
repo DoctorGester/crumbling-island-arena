@@ -100,7 +100,7 @@
 		"ScriptFile" "abilities/zeus/zeus_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "storm_spirit_overload"
-		"AbilityCooldown" "3.0"
+		"AbilityCooldown" "2.5"
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_LINE"
@@ -111,6 +111,7 @@
 		"precache"
 		{
 			"particle" "particles/zeus_q/zeus_q.vpcf"
+			"particle" "particles/zeus_q_emp/zeus_q_emp.vpcf"
 		}
 	}
 

@@ -108,7 +108,7 @@
 	"AbilityTooltip_cm_e_sub"						"Relocate to the wave\\\\'s position"
 	"AbilityTooltip_cm_r"							"Target an area<br>All enemies in the area are slowed and considered <font color=\"skyblue\"><b>Frozen</b></font>"
 
-	"AbilityTooltip_zeus_q"							"Launch a short ranged projectile<br><br><font color=\"#7FC9FF\"><b>Empowered</b></font> projectiles reset this ability cooldown on hit"
+	"AbilityTooltip_zeus_q"							"Launch a short ranged projectile<br><br><font color=\"#7FC9FF\"><b>Empowered</b></font> projectiles also stun"
 	"AbilityTooltip_zeus_w"							"Create a lightning wall, you get bonus speed when passing through it<br><br><font color=\"#7FC9FF\"><b>Empowers</b></font> friendly passing projectiles"
 	"AbilityTooltip_zeus_e"							"Teleport to a target point<br><br>Teleporting through the lightning wall damages all enemies between teleport locations"
 	"AbilityTooltip_zeus_r"							"Target an area<br>After a 1.6 second delay all enemies in the area receive damage and slow"

@@ -6,24 +6,14 @@ function zeus_q:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
 
-    ZeusQProjectile(hero.round, {
+    ZeusQProjectile(self, hero.round, {
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 128),
         to = target + Vector(0, 0, 128),
         speed = 1200,
         graphics = "particles/zeus_q/zeus_q.vpcf",
         distance = 800,
-        hitSound = "Arena.Zeus.HitQ",
-        hitFunction = function(projectile, target)
-            target:Damage(hero)
-
-            if projectile.empowered then
-                if self:GetCooldownTimeRemaining() > 0.4 then
-                    self:EndCooldown()
-                    self:StartCooldown(0.4)
-                end
-            end
-        end
+        hitSound = "Arena.Zeus.HitQ"
     }):Activate()
 
     hero:EmitSound("Arena.Zeus.CastQ")
@@ -35,9 +25,10 @@ end
 
 ZeusQProjectile = ZeusQProjectile or class({}, nil, DistanceCappedProjectile)
 
-function ZeusQProjectile:constructor(...)
+function ZeusQProjectile:constructor(ability, ...)
     getbase(ZeusQProjectile).constructor(self, ...)
 
+    self.ability = ability
     self.empowered = false
 end
 
@@ -50,7 +41,10 @@ function ZeusQProjectile:Update()
         self.distance = 3000
         self.empowered = true
 
+        self.hitModifier = { name = "modifier_stunned", duration = 1.0, ability = self.ability }
+        self.hitSound = "Arena.Zeus.HitQ2"
         self:EmitSound("Arena.Zeus.EmpowerQ")
+        self:SetGraphics("particles/zeus_q_emp/zeus_q_emp.vpcf")
     end
 end
 
