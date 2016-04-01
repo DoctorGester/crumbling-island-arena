@@ -26,6 +26,10 @@ function TinyW:constructor(round, owner, ability, target, bounces, height)
     CreateAOEMarker(self, target, self.effectRadius, self.travelTime)
 end
 
+function TinyW:CollidesWith(target)
+    return false
+end
+
 function TinyW:CanFall()
     return false
 end

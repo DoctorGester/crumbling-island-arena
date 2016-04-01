@@ -17,6 +17,8 @@ function Level:constructor()
     self.indexedParts = {}
     self.particles = {}
     self.running = true
+    self.pulsePosition = 0
+    self.pulseDirection = 1
 
     self:BuildIndex()
     self:SetupBackground()
@@ -83,6 +85,8 @@ function Level:Reset()
     self.fallingParts = {}
     self.shakingParts = {}
     self.distance = STARTING_DISTANCE
+    self.pulsePosition = 0
+    self.pulseDirection = 1
 
     for _, part in ipairs(self.parts) do
         part:SetAbsOrigin(Vector(part.x, part.y, 0))
@@ -92,6 +96,7 @@ function Level:Reset()
         part.z = 0
         part.angles = Vector(0, 0, 0)
         part.angleVel = Vector(0, 0, 0)
+        part:SetRenderColor(255, 255, 255)
     end
 
     for _, particle in ipairs(self.particles) do
@@ -128,6 +133,11 @@ function Level:Update()
 
     for _, part in ipairs(self.shakingParts) do
         if part.velocity == 0 then
+            local pulseBound = (100 - part.health) * 0.8
+            local pulsePosition = self.pulsePosition / 100 * pulseBound
+
+            part:SetRenderColor(255, 255 - pulsePosition, 255 - pulsePosition)
+
             local amplitude = 0.8
 
             if part.health ~= 100 then
@@ -169,6 +179,18 @@ function Level:Update()
         self.distance = self.distance - 1
     else
         self.running = false
+    end
+
+    self.pulsePosition = self.pulsePosition + self.pulseDirection * 3
+
+    if self.pulsePosition <= 0 and self.pulseDirection == -1 then
+        self.pulsePosition = 0
+        self.pulseDirection = 1
+    end
+
+    if self.pulsePosition >= 100 and self.pulseDirection == 1 then
+        self.pulsePosition = 100
+        self.pulseDirection = -1
     end
 end
 

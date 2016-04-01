@@ -38,8 +38,8 @@ function TinyQ:CollideWith(target)
 end
 
 function TinyQ:CollidesWith(target)
-    if self:GetSpeed() == 0 and target == self.hero then
-        return true
+    if self:GetSpeed() == 0 then
+        return target == self.hero
     else
         return getbase(TinyQ).CollidesWith(self, target)
     end
