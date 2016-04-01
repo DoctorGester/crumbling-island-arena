@@ -28,15 +28,26 @@ function Projectile:constructor(round, params)
     self.continueOnHit = params.continueOnHit or false
     self.gracePeriod = params.gracePeriod or 30
     self.hitGroup = {}
+    self.disablePrediction = params.disablePrediction or false
 
-    self:SetPos(self.from)
     self:SetSpeed(params.speed or 600)
+    self:SetPos(self.from)
 
     Statistics.IncreaseProjectilesFired(self.owner)
 end
 
 function Projectile:CanFall()
     return false
+end
+
+function Projectile:SetPos(pos)
+    self.position = pos
+
+    if self.disablePrediction then
+        self:GetUnit():SetAbsOrigin(pos)
+    else
+        self:GetUnit():SetAbsOrigin(self:GetNextPosition(self:GetNextPosition(pos)))
+    end
 end
 
 function Projectile:Update()
@@ -173,10 +184,10 @@ end
 PointTargetProjectile = PointTargetProjectile or class({}, nil, Projectile)
 
 function PointTargetProjectile:constructor(round, params)
-    getbase(DistanceCappedProjectile).constructor(self, round, params)
-
     self.target = params.target or params.to
     self.targetReachedFunction = params.targetReachedFunction
+
+    getbase(DistanceCappedProjectile).constructor(self, round, params)
 end
 
 function PointTargetProjectile:Update()
@@ -204,9 +215,9 @@ HomingProjectile = HomingProjectile or class({}, nil, Projectile)
 function HomingProjectile:constructor(round, params)
     self.heightOffset = params.heightOffset or 0
     params.to = params.target:GetPos() + Vector(0, 0, self.heightOffset)
-    getbase(DistanceCappedProjectile).constructor(self, round, params)
-
     self.target = params.target
+
+    getbase(DistanceCappedProjectile).constructor(self, round, params)
 end
 
 function HomingProjectile:GetNextPosition(pos)

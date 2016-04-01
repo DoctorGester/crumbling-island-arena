@@ -11,7 +11,8 @@ function ProjectilePAQ:constructor(round, hero, target)
         to = target + Vector(0, 0, 100),
         speed = 1300,
         graphics = "particles/pa_q/pa_q.vpcf",
-        continueOnHit = true
+        continueOnHit = true,
+        disablePrediction = true
     })
 
     self.state = ProjectilePAQ.STATE_NORMAL
