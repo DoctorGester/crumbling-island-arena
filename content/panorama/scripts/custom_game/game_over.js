@@ -46,6 +46,15 @@ function AddPlayerRow(scoreboard, player, stats, winner, runnerUp) {
             })
             .value();
 
+    mostPlayed =
+        _(stats.playedHeroes)
+            .chain()
+            .pairs()
+            .filter(function(arr) {
+                return arr[1] == mostPlayed[1];
+            })
+            .value();
+
     var nameCell = AddTextCell(row, color, Players.GetPlayerName(player.id));
     nameCell.AddClass("TableCellString");
     nameCell.AddClass("TableNameCell");
@@ -74,17 +83,37 @@ function AddPlayerRow(scoreboard, player, stats, winner, runnerUp) {
         });
     }
 
+    $.Msg(stats);
+
     AddNumberCell(row, color, player.score);
     AddNumberCell(row, color, stats.damageDealt);
     AddNumberCell(row, color, stats.roundsWon);
     AddNumberCell(row, color, stats.projectilesFired);
     AddNumberCell(row, color, amountPlayed);
     AddTableCell(row, color, function(panel) {
-        var img = $.CreatePanel("DOTAHeroImage", panel, "");
+        var icons = $.CreatePanel("Panel", panel, "");
+        icons.AddClass("TableCellIcons");
 
-        img.AddClass("TableCellText");
-        img.heroimagestyle = "icon";
-        img.heroname = mostPlayed[0];
+        if (mostPlayed.length <= 3) {
+            _(mostPlayed).each(function(hero) {
+                var img = $.CreatePanel("DOTAHeroImage", icons, "");
+
+                img.AddClass("TableIconMini");
+                img.heroimagestyle = "icon";
+                img.heroname = hero[0];
+            });
+        } else {
+            var icon = $.CreatePanel("Panel", icons, "");
+            icon.AddClass("MultipleHeroesIcon");
+
+            icon.SetPanelEvent("onmouseover", function() {
+                $.DispatchEvent("DOTAShowTextTooltip", icon, $.Localize("SbTooManyHeroes"));
+            });
+
+            icon.SetPanelEvent("onmouseout", function() {
+                $.DispatchEvent("DOTAHideTextTooltip");
+            });
+        }
     });
 }
 

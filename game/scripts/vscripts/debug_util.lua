@@ -126,8 +126,23 @@ function CheckAndEnableDebug()
     Statistics.stats[3] = {}
 
     Statistics.AddPlayedHero({ id=1 }, "npc_dota_hero_sven")
+    Statistics.AddPlayedHero({ id=1 }, "npc_dota_hero_phoenix")
+    Statistics.AddPlayedHero({ id=1 }, "npc_dota_hero_sniper")
+    Statistics.AddPlayedHero({ id=1 }, "npc_dota_hero_pugna")
+    Statistics.AddPlayedHero({ id=1 }, "npc_dota_hero_phantom_assassin")
+    Statistics.AddPlayedHero({ id=1 }, "npc_dota_hero_sand_king")
+    Statistics.AddPlayedHero({ id=1 }, "npc_dota_hero_storm_spirit")
+
     Statistics.AddPlayedHero({ id=2 }, "npc_dota_hero_sniper")
+    Statistics.AddPlayedHero({ id=2 }, "npc_dota_hero_phoenix")
+    Statistics.AddPlayedHero({ id=2 }, "npc_dota_hero_pugna")
+    Statistics.AddPlayedHero({ id=2 }, "npc_dota_hero_phantom_assassin")
+    Statistics.AddPlayedHero({ id=2 }, "npc_dota_hero_sand_king")
+
     Statistics.AddPlayedHero({ id=3 }, "npc_dota_hero_earth_spirit")
+    Statistics.AddPlayedHero({ id=3 }, "npc_dota_hero_lycan")
+    Statistics.AddPlayedHero({ id=3 }, "npc_dota_hero_crystal_maiden")
+    Statistics.IncreaseDamageDealt({ id = 3 })
 end
 
 if IsInToolsMode() then

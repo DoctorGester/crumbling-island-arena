@@ -76,6 +76,17 @@
     white-space: nowrap;
 }
 
+.TableIconMini
+{
+    margin: 3px;
+}
+
+.TableCellIcons
+{
+    align: center center;
+    flow-children: right-wrap;
+}
+
 .TableCellString
 {
     font-size: 22;
@@ -105,6 +116,15 @@
 .RunnerUpIcon
 {
     opacity-mask: url('file://{images}/control_icons/star_favorite.psd');
+}
+
+.MultipleHeroesIcon
+{
+    align: center center;
+    width: 32px;
+    height: 32px;
+    background-image: url('file://{images}/hud/ancient.png');
+    background-size: 100% 100%;
 }
 
 .TableFooter

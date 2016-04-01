@@ -61,7 +61,8 @@
 	"SbMostPlayed" "Most played"
 	"SbExit" "Click anywhere to exit"
 	"SbWinner" "Game winner"
-	"SbRunnerUp" "RunnerUp"
+	"SbRunnerUp" "Runner up"
+	"SbTooManyHeroes" "Too many heroes to display"
 
 	"GameInfoHeader" "game info"
 	"GameInfoTimer"	"Select your hero before time runs out!"
