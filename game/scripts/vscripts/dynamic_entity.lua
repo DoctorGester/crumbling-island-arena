@@ -92,7 +92,7 @@ function DynamicEntity:AreaEffect(params)
     for _, target in pairs(self.round.spells:GetValidTargets()) do
         local passes = not params.filterProjectiles or not instanceof(target, Projectile)
 
-        if (target ~= self or params.affectsCaster) and passes and params.filter(target) then
+        if target.owner ~= self.owner and passes and params.filter(target) then
             if params.modifier then
                 local m = params.modifier
 

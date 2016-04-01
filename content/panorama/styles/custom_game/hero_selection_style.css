@@ -60,6 +60,32 @@
     flow-children: down;
 }
 
+#DifficultyLock
+{
+    width: 27%;
+    x: 39%;
+    background-color: #4d5860EF;
+    border-radius: 3px;
+    height: 109px;
+}
+
+#DifficultyLock Panel
+{
+    align: center top;
+    opacity-mask: url("file://{images}/custom_game/lock.png");
+    width: 48px;
+    height: 48px;
+    margin-top: 20px;
+    background-color: #aaaaaa;
+}
+
+#DifficultyLock Label
+{
+    color: #aaaaaa;
+    align: center bottom;
+    margin-bottom: 10px;
+}
+
 #DifficultyList
 {
     width: 100%;
@@ -88,8 +114,15 @@
 
 .HeroButtons
 {
-    flow-children: right-wrap;
-    width: 75%;
+    flow-children: down;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.HeroButtonRow
+{
+    flow-children: right;
+    horizontal-align: center;
 }
 
 #HeroAbilities

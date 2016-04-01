@@ -59,6 +59,46 @@ function TableAbilityDataProvider(heroData) {
     }
 }
 
+function CreateDifficultyLock(loaded) {
+    // Dis gon be ugly
+    if (!loaded) {
+        $.Schedule(0.01, function() {
+            if ($("#HardHeroes").actualyoffset == 3.4028234663852886e+38) {
+                $.Schedule(0.01, function() { CreateDifficultyLock(false) });
+                return;
+            }
+
+            CreateDifficultyLock(true);
+        });
+
+        return;
+    }
+    
+    var lockedHeroes = $("#HardHeroes");
+
+    var background = $("#HeroSelectionBackground");
+    var relation = 1080 / background.actuallayoutheight;
+
+    var offsetParent = lockedHeroes.GetParent();
+    var offsetY = 0;
+
+    while (offsetParent.id != "HeroSelectionBackground") {
+        offsetY += offsetParent.actualyoffset;
+        offsetParent = offsetParent.GetParent();
+    }
+
+    var lock = $.CreatePanel("Panel", $("#HeroSelectionBackground"), "DifficultyLock");
+    var mediumRowStartY = lockedHeroes.actualyoffset - 3;
+    var startY = (mediumRowStartY + offsetY) * relation;
+
+    lock.style.y = startY + "px";
+    lock.style.height = ((lockedHeroes.actualyoffset - mediumRowStartY + lockedHeroes.actuallayoutheight + 6) * relation) + "px";
+
+    var image = $.CreatePanel("Panel", lock, "");
+    var text = $.CreatePanel("Label", lock, "");
+    text.text = $.Localize("LockedHeroes");
+}
+
 function DeleteHeroPreview() {
     var preview = $("#HeroPreview");
 
@@ -185,46 +225,58 @@ function CreateScoreColumn(players){
 function CreateHeroList(heroList, heroes){
     DeleteChildrenWithClass(heroList, "HeroButtonContainer");
 
-    for (var i = 0; i < heroes.length; i++) {
-        var container = $.CreatePanel("Panel", heroList, "");
-        container.AddClass("HeroButtonContainer");
+    for (var i = 0; i < heroes.length; i += 4) {
+        var row = $.CreatePanel("Panel", heroList, "");
+        row.AddClass("HeroButtonRow");
 
-        var button = $.CreatePanel("DOTAHeroImage", container, "");
-        button.AddClass("HeroButton");
-        button.SetScaling("stretch-to-fit-y-preserve-aspect");
-        button.heroname = heroes[i];
-        button.heroimagestyle = "landscape";
+        for (var j = i; j < heroes.length && j < i + 4; j++) {
+            var container = $.CreatePanel("Panel", row, "");
+            container.AddClass("HeroButtonContainer");
 
-        var mouseOver = (function(element, name) {
-            return function() {
-                GameEvents.SendCustomGameEventToServer("selection_hero_hover", { "hero": name });
+            var button = $.CreatePanel("DOTAHeroImage", container, "");
+            button.AddClass("HeroButton");
+            button.SetScaling("stretch-to-fit-y-preserve-aspect");
+            button.heroname = heroes[j];
+            button.heroimagestyle = "landscape";
 
-                ShowHeroDetails(name);
-            }
-        } (button, heroes[i]));
+            var mouseOver = (function(element, name) {
+                return function() {
+                    GameEvents.SendCustomGameEventToServer("selection_hero_hover", { "hero": name });
 
-        var mouseClick = (function(name) {
-            return function() {
-                var heroSelected = _.contains(_.values(selectedHeroes), name);
-
-                if (selectedHeroes[Game.GetLocalPlayerID()] == "null" && !heroSelected) {
-                    GameEvents.SendCustomGameEventToServer("selection_hero_click", { "hero": name });
-                    Game.EmitSound("UI.SelectHeroLocal");
+                    ShowHeroDetails(name);
                 }
+            } (button, heroes[j]));
+
+            var mouseClick = (function(name) {
+                return function() {
+                    var heroSelected = _.contains(_.values(selectedHeroes), name);
+                    var lock = $("#DifficultyLock");
+
+                    $.Msg(heroButtons[name].GetParent())
+                    $.Msg($("#HardHeroes"))
+                    if (heroButtons[name].GetParent().GetParent() == $("#HardHeroes") && lock) {
+                        return;
+                    }
+
+                    if (selectedHeroes[Game.GetLocalPlayerID()] == "null" && !heroSelected) {
+                        GameEvents.SendCustomGameEventToServer("selection_hero_click", { "hero": name });
+                        Game.EmitSound("UI.SelectHeroLocal");
+                    }
+                }
+            } (heroes[j]));
+
+            var mouseOut = function(){
+                GameEvents.SendCustomGameEventToServer("selection_hero_hover", { "hero": "null" });
+
+                HideHeroDetails();
             }
-        } (heroes[i]));
 
-        var mouseOut = function(){
-            GameEvents.SendCustomGameEventToServer("selection_hero_hover", { "hero": "null" });
+            button.SetPanelEvent("onactivate", mouseClick);
+            button.SetPanelEvent("onmouseover", mouseOver);
+            button.SetPanelEvent("onmouseout", mouseOut);
 
-            HideHeroDetails();
+            heroButtons[heroes[j]] = container;
         }
-
-        button.SetPanelEvent("onactivate", mouseClick);
-        button.SetPanelEvent("onmouseover", mouseOver);
-        button.SetPanelEvent("onmouseout", mouseOut);
-
-        heroButtons[heroes[i]] = container;
     }
 }
 
@@ -283,11 +335,9 @@ function HeroesUpdated(data){
     }
 
     var easy = FilterDifficulty(heroes, data, "easy");
-    var medium = FilterDifficulty(heroes, data, "medium");
     var hard = FilterDifficulty(heroes, data, "hard");
 
     CreateHeroList($("#EasyHeroes"), easy);
-    CreateHeroList($("#MediumHeroes"), medium);
     CreateHeroList($("#HardHeroes"), hard);
 
     allHeroes = data;
@@ -343,6 +393,21 @@ function HeroSelectionUpdated(data){
     }
 }
 
+function GameInfoChanged(gameInfo) {
+    if (!gameInfo) {
+        return;
+    }
+
+    var lock = $("#DifficultyLock");
+    if (gameInfo.hardHeroesLocked) {
+        if (!lock)
+            CreateDifficultyLock();
+    } else {
+        if (lock)
+            lock.DeleteAsync(0);
+    }
+}
+
 (function () {
     GameEvents.Subscribe("selection_hero_hover_client", SelectionHoverClient);
     GameEvents.Subscribe("timer_tick", OnTimerTick);
@@ -350,5 +415,6 @@ function HeroSelectionUpdated(data){
     SubscribeToNetTableKey("main", "heroes", true, HeroesUpdated);
     SubscribeToNetTableKey("main", "players", true, PlayersUpdated);
     SubscribeToNetTableKey("main", "gameState", true, GameStateChanged);
-    SubscribeToNetTableKey("main", "selectedHeroes", true, HeroSelectionUpdated)
+    SubscribeToNetTableKey("main", "gameInfo", true, GameInfoChanged);
+    SubscribeToNetTableKey("main", "selectedHeroes", true, HeroSelectionUpdated);
 })();

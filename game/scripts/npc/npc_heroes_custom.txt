@@ -78,7 +78,7 @@
 		"AttributeBaseIntelligence" "0"
 		"VisionDaytimeRange" "0"
 		"VisionNighttimeRange" "0"
-		"Difficulty" "medium"
+		"Difficulty" "easy"
 
 		"Ability1" "storm_spirit_q"
 		"Ability2" "storm_spirit_w"
@@ -270,7 +270,7 @@
 		"AttributeBaseIntelligence" "0"
 		"VisionDaytimeRange" "0"
 		"VisionNighttimeRange" "0"
-		"Difficulty" "medium"
+		"Difficulty" "easy"
 		
 		"Ability1" "sk_q"
 		"Ability2" "sk_w"
@@ -333,7 +333,7 @@
 		"AttributeBaseIntelligence" "0"
 		"VisionDaytimeRange" "0"
 		"VisionNighttimeRange" "0"
-		"Difficulty" "hard"
+		"Difficulty" "easy"
 		
 		"Ability1" "lycan_q"
 		"Ability2" "lycan_w"
@@ -399,7 +399,7 @@
 		"AttributeBaseIntelligence" "0"
 		"VisionDaytimeRange" "0"
 		"VisionNighttimeRange" "0"
-		"Difficulty" "medium"
+		"Difficulty" "hard"
 		
 		"Ability1" "phoenix_q"
 		"Ability2" "phoenix_w"

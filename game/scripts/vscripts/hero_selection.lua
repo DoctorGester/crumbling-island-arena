@@ -1,6 +1,4 @@
-if HeroSelection == nil then
-    HeroSelection = class({})
-end
+HeroSelection = HeroSelection or class({})
 
 function HeroSelection:constructor(players, availableHeroes, teamColors)
     self.SelectionTimer = 0
@@ -10,6 +8,7 @@ function HeroSelection:constructor(players, availableHeroes, teamColors)
     self.Players = players
     self.TeamColors = teamColors
     self.AvailableHeroes = availableHeroes
+    self.HardHeroesLocked = true
 end
 
 function HeroSelection:UpdateSelectedHeroes()
@@ -24,14 +23,20 @@ function HeroSelection:UpdateSelectedHeroes()
     CustomNetTables:SetTableValue("main", "selectedHeroes", selected)
 end
 
-function HeroSelection:IsSelected(hero)
+function HeroSelection:CanBeSelected(hero)
+    local entry = self.AvailableHeroes[hero]
+
+    if self.HardHeroesLocked and entry and entry.difficulty == "hard" then
+        return false
+    end
+
     for _, player in pairs(self.Players) do
         if player.selectedHero == hero then
-            return true
+            return false
         end
     end
 
-    return false
+    return true
 end
 
 function HeroSelection:OnRandom(args)
@@ -61,7 +66,7 @@ function HeroSelection:OnHover(args)
         return
     end
 
-    if self:IsSelected(hero) then
+    if not self:CanBeSelected(hero) then
         return
     end
 
@@ -88,7 +93,7 @@ function HeroSelection:OnClick(args)
         return
     end
 
-    if self:IsSelected(hero) then
+    if not self:CanBeSelected(hero) then
         return
     end
 
@@ -120,7 +125,7 @@ function HeroSelection:AssignRandomHero(player)
     local index = 0
 
     for i, _ in pairs(self.AvailableHeroes) do
-        if not self:IsSelected(i) then
+        if self:CanBeSelected(i) then
             table[index] = i
             index = index + 1
         end

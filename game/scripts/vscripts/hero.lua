@@ -82,6 +82,13 @@ function Hero:Damage(source)
 
     ApplyDamage(damageTable)
 
+    local sign = ParticleManager:CreateParticle("particles/msg_fx/msg_damage.vpcf", PATTACH_CUSTOMORIGIN, mode)
+    ParticleManager:SetParticleControl(sign, 0, self:GetPos())
+    ParticleManager:SetParticleControl(sign, 1, Vector(0, 1, 3))
+    ParticleManager:SetParticleControl(sign, 2, Vector(2, 2, 0))
+    ParticleManager:SetParticleControl(sign, 3, Vector(200, 0, 0))
+    ParticleManager:ReleaseParticleIndex(sign)
+
     GameRules.GameMode:OnDamageDealt(self, source)
 end
 

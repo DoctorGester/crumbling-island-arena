@@ -334,6 +334,11 @@ function GameMode:OnRoundEnd(round)
         if self.winner then
             self:EndGame()
         else
+            if self.roundNumber == 4 then
+                self.heroSelection.HardHeroesLocked = false
+                self:UpdateGameInfo()
+            end
+
             self:SetState(STATE_HERO_SELECTION)
             self.heroSelection:Start(function() self:OnHeroSelectionEnd() end)
             self.level:Reset()
@@ -342,9 +347,11 @@ function GameMode:OnRoundEnd(round)
 end
 
 function GameMode:OnHeroSelectionEnd()
+    self.roundNumber = self.roundNumber + 1
     self.round = Round(self.Players, self.AvailableHeroes, function(round) self:OnRoundEnd(round) end)
     self.round:CreateHeroes()
     self:SetState(STATE_ROUND_IN_PROGRESS)
+    self:UpdateGameInfo()
 
     Timers:CreateTimer(1.5,
         function()
@@ -406,27 +413,11 @@ function GameMode:UpdateGameInfo()
         players[i] = playerData
     end
 
-    if IsInToolsMode() then
-        players[1] = {}
-        players[1].id = 1
-        players[1].color = self.TeamColors[DOTA_TEAM_BADGUYS]
-
-        players[2] = {}
-        players[2].id = 2
-        players[2].color = self.TeamColors[DOTA_TEAM_CUSTOM_1]
-
-        players[3] = {}
-        players[3].id = 3
-        players[3].color = self.TeamColors[DOTA_TEAM_CUSTOM_2]
-
-        if #self.runnerUps == 0 then
-            table.insert(self.runnerUps, 2)
-        end
-    end
-
     CustomNetTables:SetTableValue("main", "gameInfo", {
         goal = self.gameGoal,
+        hardHeroesLocked = self.heroSelection.HardHeroesLocked,
         winner = self.winner and self.winner.id or nil,
+        roundNumber = self.roundNumber,
         runnerUps = self.runnerUps,
         statistics = Statistics.stats,
         players = players
@@ -481,18 +472,20 @@ function GameMode:OnGameInProgress()
         end
     end
 
+    self.roundNumber = 1
     self.gameGoal = GAME_GOAL
     self.winner = nil
     self.runnerUps = {}
 
     Statistics.Init(self.Players)
 
-    self:UpdateGameInfo()
     self:UpdatePlayerTable()
     self.GameItems = nil--LoadKeyValues("scripts/items/items_game.txt").items
 
     self.level = Level()
     self.heroSelection = HeroSelection(self.Players, self.AvailableHeroes, self.TeamColors)
+
+    self:UpdateGameInfo()
 
     self:RegisterThinker(1,
         function()
