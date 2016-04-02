@@ -29,6 +29,10 @@ function modifier_storm_spirit_e:GetOverrideAnimation(params)
     return ACT_DOTA_OVERRIDE_ABILITY_4
 end
 
+function modifier_storm_spirit_e:IsStunDebuff()
+    return true
+end
+
 function modifier_storm_spirit_e:Airborne()
     return true
 end

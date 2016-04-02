@@ -65,7 +65,7 @@ function TinyW:Update()
         self.hero:AreaEffect({
             filter = Filters.Area(effectPosition, self.effectRadius),
             damage = true,
-            modifier = { name = "modifier_stunned", duration = 1.2, ability = self.ability },
+            modifier = { name = "modifier_stunned_lua", duration = 1.2, ability = self.ability },
         })
 
         Spells:GroundDamage(effectPosition, self.effectRadius)

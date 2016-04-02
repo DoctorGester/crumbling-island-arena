@@ -11,6 +11,10 @@ if IsServer() then
     end
 end
 
+function modifier_falling:IsStunDebuff()
+    return true
+end
+
 function modifier_falling:IsHidden()
     return true
 end

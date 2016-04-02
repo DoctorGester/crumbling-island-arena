@@ -11,7 +11,7 @@ function venge_q:OnSpellStart()
         speed = 1250,
         graphics = "particles/venge_q/venge_q.vpcf",
         distance = 950,
-        hitModifier = { name = "modifier_stunned", duration = 1.0, ability = self },
+        hitModifier = { name = "modifier_stunned_lua", duration = 1.0, ability = self },
         hitSound = "Arena.Venge.HitQ"
     }):Activate()
 

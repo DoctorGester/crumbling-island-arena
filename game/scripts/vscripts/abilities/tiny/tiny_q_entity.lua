@@ -1,7 +1,7 @@
 TinyQ = TinyQ or class({}, nil, Projectile)
 
 function TinyQ:constructor(round, owner, ability, target, stun)
-    local modifierName = (stun and "modifier_stunned" or "modifier_tiny_q")
+    local modifierName = (stun and "modifier_stunned_lua" or "modifier_tiny_q")
 
     getbase(TinyQ).constructor(self, round, {
         owner = owner,
@@ -11,7 +11,8 @@ function TinyQ:constructor(round, owner, ability, target, stun)
         hitSound = "Arena.Tiny.HitQ",
         graphics = "particles/tiny_q/tiny_q.vpcf",
         speed = 1800,
-        continueOnHit = true
+        continueOnHit = true,
+        disablePrediction = true
     })
 
     self.fell = false

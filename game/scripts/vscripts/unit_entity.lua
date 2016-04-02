@@ -48,7 +48,7 @@ end
 
 function UnitEntity:AddNewModifier(source, ability, modifier, params)
 	if not self.modifierImmune then
-	    self.unit:AddNewModifier(source.unit or source, ability, modifier, params)
+	    return self.unit:AddNewModifier(source.unit or source, ability, modifier, params)
 	end
 end
 
@@ -62,6 +62,10 @@ end
 
 function UnitEntity:FindModifier(name)
     return self.unit:FindModifierByName(name)
+end
+
+function UnitEntity:AllModifiers()
+	return self.unit:FindAllModifiers()
 end
 
 function UnitEntity:Remove()

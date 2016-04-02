@@ -57,7 +57,7 @@ function Precache(context)
     PrecacheResource("soundfile", "soundevents/custom_sounds.vsndevts", context)
     PrecacheResource("soundfile", "soundevents/game_sounds_vo_announcer.vsndevts", context)
 
-    LinkLuaModifier("modifier_charges", "abilities/modifier_stunned", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_stunned_lua", "abilities/modifier_stunned", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_charges", "abilities/modifier_charges", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_blind", "abilities/modifier_blind", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_hidden", "abilities/modifier_hidden", LUA_MODIFIER_MOTION_NONE)

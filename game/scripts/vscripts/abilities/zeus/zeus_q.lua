@@ -41,7 +41,7 @@ function ZeusQProjectile:Update()
         self.distance = 3000
         self.empowered = true
 
-        self.hitModifier = { name = "modifier_stunned", duration = 1.0, ability = self.ability }
+        self.hitModifier = { name = "modifier_stunned_lua", duration = 1.0, ability = self.ability }
         self.hitSound = "Arena.Zeus.HitQ2"
         self:EmitSound("Arena.Zeus.EmpowerQ")
         self:SetGraphics("particles/zeus_q_emp/zeus_q_emp.vpcf")

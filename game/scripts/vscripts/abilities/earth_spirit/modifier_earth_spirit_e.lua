@@ -24,6 +24,10 @@ function modifier_earth_spirit_e:CheckState()
     return state
 end
 
+function modifier_earth_spirit_e:IsStunDebuff()
+    return true
+end
+
 function modifier_earth_spirit_e:Airborne()
     return true
 end

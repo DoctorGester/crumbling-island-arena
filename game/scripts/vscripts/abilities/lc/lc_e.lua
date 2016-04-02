@@ -11,7 +11,7 @@ function lc_e:OnSpellStart()
     Dash(hero, target, 1200, {
         modifier = { name = "modifier_lc_e_animation", ability = self },
         hitParams = {
-            modifier = { name = "modifier_stunned", ability = self, duration = 0.7 }
+            modifier = { name = "modifier_stunned_lua", ability = self, duration = 0.7 }
         }
     })
 

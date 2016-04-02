@@ -126,10 +126,7 @@ function ParabolaZ2(y0, y1, h, d, x)
 end
 
 function AddLevelOneAbility(hero, abilityName)
-    hero:AddAbility(abilityName)
-
-    local ability = hero:FindAbilityByName(abilityName)
-    ability:SetLevel(1)
+    hero:AddAbility(abilityName):SetLevel(1)
 end
 
 function ImmediateEffect(path, attach, owner, time)

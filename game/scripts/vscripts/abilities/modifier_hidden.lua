@@ -19,3 +19,7 @@ function modifier_hidden:CheckState()
 
     return state
 end
+
+function modifier_hidden:IsStunDebuff()
+    return true
+end

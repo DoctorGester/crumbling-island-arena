@@ -37,7 +37,8 @@ function Dash:constructor(hero, to, speed, params)
     end
 
     if self.modifier then
-        self.hero:AddNewModifier(self.modifier.source or self.hero, self.modifier.ability, self.modifier.name, {})
+        self.modifierHandle
+            = self.hero:AddNewModifier(self.modifier.source or self.hero, self.modifier.ability, self.modifier.name, {})
     end
 
     hero.round.spells:AddDash(self)
@@ -58,6 +59,7 @@ function Dash:Update()
         end
 
         params.filter = Filters.And(Filters.Line(origin, result, self.hero:GetRad()), groupFilter)
+        params.filterProjectiles = true
 
         local hurt = self.hero:AreaEffect(params)
 
@@ -66,17 +68,30 @@ function Dash:Update()
         end
     end
 
-    if (self.to - origin):Length2D() <= self.velocity then
+    local stunned = self:IsStunned()
+    if (self.to - origin):Length2D() <= self.velocity or stunned then
         if self.findClearSpace then
             GridNav:DestroyTreesAroundPoint(result, self.radius, true)
             self.hero:FindClearSpace(result, false)
         end
 
-        self:OnArrival()
+        self:OnArrival(not stunned)
         self.destroyed = true
     end
 
     return result
+end
+
+function Dash:IsStunned()
+    for _, modifier in pairs(self.hero:AllModifiers()) do
+        if modifier ~= self.modifierHandle then
+            if modifier:IsStunDebuff() then
+                return true
+            end
+        end
+    end
+
+    return false
 end
 
 function Dash:PositionFunction(current)
@@ -92,7 +107,7 @@ function Dash:HeightFunction(current)
     return 0
 end
 
-function Dash:OnArrival()
+function Dash:OnArrival(reachedDestination)
     if self.modifier then
         self.hero:RemoveModifier(self.modifier.name)
     end
@@ -105,7 +120,7 @@ function Dash:OnArrival()
         self.hero:StopSound(self.loopingSound)
     end
 
-    if self.arrivalFunction then
+    if self.arrivalFunction and reachedDestination then
         self:arrivalFunction()
     end
 end

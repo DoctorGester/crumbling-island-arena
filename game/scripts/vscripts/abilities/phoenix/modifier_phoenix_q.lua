@@ -35,6 +35,10 @@ function modifier_phoenix_q:GetOverrideAnimation(params)
     return ACT_DOTA_OVERRIDE_ABILITY_3
 end
 
+function modifier_phoenix_q:IsStunDebuff()
+    return true
+end
+
 function modifier_phoenix_q:Airborne()
     return true
 end
