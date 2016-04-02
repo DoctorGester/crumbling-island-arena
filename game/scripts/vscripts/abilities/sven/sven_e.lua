@@ -51,7 +51,7 @@ function sven_e:OnChannelFinish(interrupted)
                 local tp = victim:GetPos()
                 local between = ClosestPointToSegment(from, target, tp)
 
-                KnockbackUnit(victim, between, 0.4, 300, 0, true)
+                Knockback(victim, self, tp - between, 300, 1000)
 
                 local effect = ImmediateEffectPoint("particles/econ/items/earthshaker/earthshaker_gravelmaw/earthshaker_fissure_dust_gravelmaw.vpcf", PATTACH_ABSORIGIN, hero, tp)
                 ParticleManager:SetParticleControl(effect, 1, between + (tp - between):Normalized() * 300)

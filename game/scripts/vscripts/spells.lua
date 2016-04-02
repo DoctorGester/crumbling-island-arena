@@ -104,6 +104,20 @@ function Spells:Update()
     end
 end
 
+function Spells:InterruptDashes(hero)
+    for i = #self.dashes, 1, -1 do
+        local dash = self.dashes[i]
+
+        if dash.hero == hero then
+            dash:Interrupt()
+
+            if dash.destroyed then
+                table.remove(self.dashes, i)
+            end
+        end
+    end
+end
+
 function Spells:GroundDamage(point, radius)
     GameRules.GameMode.level:DamageGroundInRadius(point, radius)
 end

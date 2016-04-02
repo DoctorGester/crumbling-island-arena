@@ -35,7 +35,8 @@ function sven_q:OnSpellStart()
                 ParticleManager:SetParticleControl(effect, 1, effectPos + direction * 300)
 
                 target:EmitSound("Arena.Sven.HitE")
-                KnockbackUnit(target, pos, 0.4, 300, 0, true)
+
+                Knockback(target, self, target:GetPos() - hero:GetPos(), 300, 1000)
             end
         end
     })

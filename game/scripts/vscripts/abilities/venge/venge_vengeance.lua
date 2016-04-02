@@ -10,7 +10,11 @@ function Vengeance:constructor(round, owner, target, facing, ability)
     self.collisionType = COLLISION_TYPE_RECEIVER
 
     local unit = self:GetUnit()
-    unit:SetControllableByPlayer(owner.owner.id, true)
+    
+    if owner.owner then
+        unit:SetControllableByPlayer(owner.owner.id, true)
+    end
+
     unit:FindAbilityByName("venge_q"):SetLevel(1)
     unit.hero = self
 

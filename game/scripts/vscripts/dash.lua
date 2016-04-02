@@ -70,16 +70,24 @@ function Dash:Update()
 
     local stunned = self:IsStunned()
     if (self.to - origin):Length2D() <= self.velocity or stunned then
-        if self.findClearSpace then
-            GridNav:DestroyTreesAroundPoint(result, self.radius, true)
-            self.hero:FindClearSpace(result, false)
-        end
-
-        self:OnArrival(not stunned)
-        self.destroyed = true
+        self:End(self.hero:GetPos(), not stunned)
     end
 
     return result
+end
+
+function Dash:End(at, reachedDestination)
+    if self.findClearSpace then
+        GridNav:DestroyTreesAroundPoint(at, self.radius, true)
+        self.hero:FindClearSpace(at, false)
+    end
+
+    self:OnArrival(reachedDestination)
+    self.destroyed = true
+end
+
+function Dash:Interrupt()
+    self:End(self.hero:GetPos(), false)
 end
 
 function Dash:IsStunned()
@@ -123,4 +131,14 @@ function Dash:OnArrival(reachedDestination)
     if self.arrivalFunction and reachedDestination then
         self:arrivalFunction()
     end
+end
+
+-- Knockback utility method
+
+function Knockback(hero, ability, direction, distance, speed)
+    hero.round.spells:InterruptDashes(hero)
+
+    Dash(hero, hero:GetPos() + direction:Normalized() * distance, speed, {
+        modifier = { name = "modifier_knockback_lua", ability = ability }
+    })
 end

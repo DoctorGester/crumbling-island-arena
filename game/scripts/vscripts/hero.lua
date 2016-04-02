@@ -38,14 +38,6 @@ function Hero:GetHealth()
     return math.floor(self.unit:GetHealth())
 end
 
-function Hero:GetGroundHeight(position)
-    return GetGroundHeight(position or self:GetPos(), self.unit)
-end
-
-function Hero:FindClearSpace(position, force)
-    FindClearSpaceForUnit(self.unit, position, force)
-end
-
 function Hero:Alive()
     return self.unit:IsAlive()
 end

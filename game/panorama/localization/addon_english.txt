@@ -179,7 +179,8 @@
 	"AbilityTooltip_venge_r"						"Summon a Spirit of Vengeance to guard target area<br/>Spirit fires stunning projectiles for every spell enemies cast<br/>Passively slows all enemies in the area<br/>Duration: 10.0s"
 
 	"ModifierTooltip_modifier_charges"						"Ability charges"
-	"ModifierTooltip_modifier_stunned"						"Stunned"
+	"ModifierTooltip_modifier_stunned_lua"					"Stunned"
+	"ModifierTooltip_modifier_knockback_lua"				"Knocked back"
 
 	"ModifierTooltip_modifier_zeus_w"						"Sped up"
 	"ModifierTooltip_modifier_zeus_r"						"Slowed down"

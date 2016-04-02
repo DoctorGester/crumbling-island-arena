@@ -68,6 +68,14 @@ function UnitEntity:AllModifiers()
 	return self.unit:FindAllModifiers()
 end
 
+function UnitEntity:GetGroundHeight(position)
+    return GetGroundHeight(position or self:GetPos(), self.unit)
+end
+
+function UnitEntity:FindClearSpace(position, force)
+    FindClearSpaceForUnit(self.unit, position, force)
+end
+
 function UnitEntity:Remove()
 	if self.removeOnDeath then
 		self:GetUnit():RemoveSelf()

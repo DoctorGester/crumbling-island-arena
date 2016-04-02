@@ -172,23 +172,6 @@ function MoveCameraToUnit(playerId, unit)
     )
 end
 
-function KnockbackUnit(unit, origin, duration, distance, height, should_stun)
-    local modifierKnockback = {
-        center_x = origin.x,
-        center_y = origin.y,
-        center_z = origin.z,
-        knockback_duration = duration,
-        knockback_distance = distance,
-        knockback_height = height,
-        duration = duration,
-    }
-    if should_stun then
-        modifierKnockback.should_stun = 1
-    end
-    unit = unit.unit or unit
-    unit:AddNewModifier(unit, nil, "modifier_knockback", modifierKnockback)
-end
-
 function LoadDefaultHeroItems(hero, gameItems)
     local heroName = hero:GetName()
     local defaultSlots = {}
