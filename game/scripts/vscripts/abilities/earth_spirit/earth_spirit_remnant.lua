@@ -1,13 +1,11 @@
-EarthSpiritRemnant = EarthSpiritRemnant or class({}, nil, DynamicEntity)
+EarthSpiritRemnant = EarthSpiritRemnant or class({}, nil, UnitEntity)
 
 function EarthSpiritRemnant:constructor(round, owner)
     getbase(EarthSpiritRemnant).constructor(self, round)
 
     self.owner = owner.owner
     self.hero = owner
-    self.unit = nil
     self.health = 2
-    self.size = 64
     self.fell = false
     self.target = nil
     self.speed = 0
@@ -184,8 +182,6 @@ function EarthSpiritRemnant:Damage(source)
         self:Destroy()
         return
     end
-
-    if source ~= self.hero and self.hero.remnantStand == self then return end
 
     self.health = self.health - 1
     ParticleManager:SetParticleControl(self.healthCounter, 1, Vector(0, self.health, 0))

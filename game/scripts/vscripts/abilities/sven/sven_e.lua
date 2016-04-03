@@ -49,7 +49,7 @@ function sven_e:OnChannelFinish(interrupted)
             action = function(victim)
                 local pos = hero:GetPos()
                 local tp = victim:GetPos()
-                local between = ClosestPointToSegment(from, target, tp)
+                local between = ClosestPointToSegment(from, pos, tp)
 
                 Knockback(victim, self, tp - between, 300, 1000)
 

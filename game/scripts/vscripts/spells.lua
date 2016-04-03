@@ -55,15 +55,17 @@ function Spells:Update()
     for i = #self.dashes, 1, -1 do
         local dash = self.dashes[i]
 
-        dash:Update()
-
-        if dash.destroyed then
+        if not dash.destroyed then
+            dash:Update()
+        else
             table.remove(self.dashes, i)
         end
     end
 
     for _, entity in ipairs(self.entities) do
-        entity:Update()
+        if not entity.destroyed then
+            entity:Update()
+        end
     end
 
     -- resolving collisions

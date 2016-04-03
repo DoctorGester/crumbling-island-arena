@@ -1,7 +1,7 @@
 EarthSpirit = class({}, nil, Hero)
 
 function EarthSpirit:constructor()
-    self.__base__.constructor(self)
+    getbase(self).constructor(self)
 
     self.remnants = {}
     self.remnantStand = nil
@@ -55,6 +55,7 @@ end
 function EarthSpirit:SetRemnantStand(remnant)
     local source = self.unit:FindAbilityByName("earth_spirit_q")
 
+    self.invulnerable = true
     self.remnantStand = remnant
     self:AddNewModifier(self, source, "modifier_earth_spirit_stand", {})
 end
@@ -68,6 +69,7 @@ function EarthSpirit:HasRemnantStand()
 end
 
 function EarthSpirit:RemoveRemnantStand()
+    self.invulnerable = false
     self.remnantStand = nil
     self:RemoveModifier("modifier_earth_spirit_stand")
 end
@@ -92,14 +94,6 @@ function EarthSpirit:FallFromStand()
             return 0.01
         end
     )
-end
-
-function EarthSpirit:Damage(source)
-    if source == self or self.remnantStand == nil then
-        Hero.Damage(self, source)
-    elseif self.remnantStand then
-        self.remnantStand:Damage(self)
-    end
 end
 
 function EarthSpirit:Remove()

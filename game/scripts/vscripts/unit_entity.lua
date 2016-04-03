@@ -3,11 +3,16 @@ UnitEntity = UnitEntity or class({}, nil, DynamicEntity)
 function UnitEntity:constructor(round, unitName, pos, team)
 	getbase(UnitEntity).constructor(self, round)
 
-	self.unit = CreateUnitByName(unitName or DUMMY_UNIT, pos, false, nil, nil, team or DOTA_TEAM_NOTEAM)
+	if self.unitName then
+		self.unit = CreateUnitByName(unitName, pos, false, nil, nil, team or DOTA_TEAM_NOTEAM)
+	end
+
 	self.removeOnDeath = true
 	self.modifierImmune = false
 
-	getbase(UnitEntity).SetPos(self, pos)
+	if pos then
+		getbase(UnitEntity).SetPos(self, pos)
+	end
 end
 
 function UnitEntity:MakeFall()
@@ -20,10 +25,16 @@ function UnitEntity:GetUnit()
 	return self.unit
 end
 
+function UnitEntity:SetUnit(unit)
+	self.unit = unit
+end
+
 function UnitEntity:SetPos(pos)
     getbase(UnitEntity).SetPos(self, pos)
 
-    self:GetUnit():SetAbsOrigin(pos)
+    if self:GetUnit() then
+	    self:GetUnit():SetAbsOrigin(pos)
+	end
 end
 
 function UnitEntity:GetFacing()

@@ -45,6 +45,15 @@ function Dash:constructor(hero, to, speed, params)
 end
 
 function Dash:Update()
+    if self.hero.destroyed then
+        if self.loopingSound then
+            self.hero:StopSound(self.loopingSound)
+        end
+
+        self.destroyed = true
+        return
+    end
+
     local origin = self.hero:GetPos()
     local result = self:PositionFunction(origin)
 
