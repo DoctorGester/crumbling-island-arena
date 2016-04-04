@@ -23,10 +23,10 @@ function venge_e:OnSpellStart()
             ParticleManager:SetParticleControl(effect, 1, hero:GetPos())
             ParticleManager:SetParticleControl(effect, 0, target:GetPos())
 
-            hero:FindClearSpace(target:GetPos(), false)
+            hero:FindClearSpace(target:GetPos(), true)
 
             if target.FindClearSpace then
-                target:FindClearSpace(pos, false)
+                target:FindClearSpace(pos, true)
             else
                 target:SetPos(pos)
             end

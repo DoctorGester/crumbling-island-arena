@@ -2,7 +2,6 @@ modifier_venge_r_visual = class({})
 
 function modifier_venge_r_visual:CheckState()
     local state = {
-        [MODIFIER_STATE_INVULNERABLE] = true,
         [MODIFIER_STATE_NO_HEALTH_BAR] = true,
         [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
         [MODIFIER_STATE_NOT_ON_MINIMAP] = true,

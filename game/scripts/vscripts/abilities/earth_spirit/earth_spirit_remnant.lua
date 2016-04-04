@@ -30,16 +30,26 @@ function EarthSpiritRemnant:MakeFall()
     end
 end
 
-function EarthSpiritRemnant:SetPos(pos)
-    getbase(EarthSpiritRemnant).SetPos(self, pos)
-
-    if self.unit then
-        self.unit:SetAbsOrigin(pos)
-    end
-
+function EarthSpiritRemnant:UpdateChildren()
     if self.healthCounter then
         ParticleManager:SetParticleControl(self.healthCounter, 0, self:GetPos() + Vector(0, 0, 200))
     end
+
+    if self.hero.remnantStand == self then
+        self.hero:SetPos(self:GetPos() + Vector(0, 0, 150))
+    end
+end
+
+function EarthSpiritRemnant:FindClearSpace(...)
+    getbase(EarthSpiritRemnant).FindClearSpace(self, ...)
+
+    self:UpdateChildren()
+end
+
+function EarthSpiritRemnant:SetPos(pos)
+    getbase(EarthSpiritRemnant).SetPos(self, pos)
+
+    self:UpdateChildren()
 end
 
 function EarthSpiritRemnant:SetUnit(unit, fall)
@@ -63,9 +73,11 @@ function EarthSpiritRemnant:RemoveTarget()
 end
 
 function EarthSpiritRemnant:CollideWith(target)
-    self.enemiesHit[target] = 30
+    if self.collisionType == COLLISION_TYPE_INFLICTOR then
+        self.enemiesHit[target] = 30
 
-    target:Damage(self)
+        target:Damage(self)
+    end
 end
 
 function EarthSpiritRemnant:CollidesWith(target)
@@ -82,7 +94,8 @@ function EarthSpiritRemnant:EarthCollision()
 
         self:AreaEffect({
             filter = Filters.And(Filters.Area(pos, 256), Filters.NotEquals(self.hero)),
-            damage = true
+            damage = true,
+            hitAllies = true
         })
 
         GridNav:DestroyTreesAroundPoint(pos, 256, true)
@@ -124,10 +137,6 @@ function EarthSpiritRemnant:Update()
             self.fell = true
             self:EarthCollision()
         end
-    end
-
-    if self.hero.remnantStand == self then
-        self.hero:SetPos(self:GetPos() + Vector(0, 0, 150))
     end
 
     for target, time in pairs(self.enemiesHit) do

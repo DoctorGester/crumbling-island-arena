@@ -42,6 +42,12 @@ function Vengeance:SetPos(pos)
     ParticleManager:SetParticleControl(self.healthCounter, 0, Vector(self.position.x, self.position.y, self.position.z + 200))
 end
 
+function Vengeance:FindClearSpace(...)
+    getbase(Vengeance).SetPos(self, ...)
+
+    ParticleManager:SetParticleControl(self.healthCounter, 0, Vector(self.position.x, self.position.y, self.position.z + 200))
+end
+
 function Vengeance:Remove()
     getbase(Vengeance).Remove(self)
 

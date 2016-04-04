@@ -85,6 +85,8 @@ end
 
 function UnitEntity:FindClearSpace(position, force)
     FindClearSpaceForUnit(self.unit, position, force)
+
+    getbase(UnitEntity).SetPos(self, self.unit:GetAbsOrigin())
 end
 
 function UnitEntity:Remove()
