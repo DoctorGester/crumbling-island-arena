@@ -3,7 +3,7 @@ UnitEntity = UnitEntity or class({}, nil, DynamicEntity)
 function UnitEntity:constructor(round, unitName, pos, team)
 	getbase(UnitEntity).constructor(self, round)
 
-	if self.unitName then
+	if unitName then
 		self.unit = CreateUnitByName(unitName, pos, false, nil, nil, team or DOTA_TEAM_NOTEAM)
 	end
 
