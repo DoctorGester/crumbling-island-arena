@@ -98,6 +98,13 @@ function UpdateUI(){
     }
 }
 
+function CenterCamera(){
+    GameUI.SetCameraTarget(GetLocalHero());
+    $.Schedule(0.025, function() {
+        GameUI.SetCameraTarget(-1);
+    })
+}
+
 function AddDebugButton(text, eventName){
     var panel = $("#DebugPanel");
     var button = $.CreatePanel("Button", panel, "");

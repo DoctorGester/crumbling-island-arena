@@ -29,7 +29,7 @@
             </Panel>
             <Panel id="HeroDetails">
                 <Panel id="HeroPortraitContainer">
-                    <DOTAHeroMovie id="HeroPortrait"/>
+                    <DOTAHeroMovie id="HeroPortrait" onactivate="CenterCamera()"/>
                 </Panel>
                 <Panel id="HeroNameContainer">
                     <Label id="HeroNameLabel" class="UILabel"/>
