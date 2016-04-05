@@ -61,9 +61,11 @@ function TableAbilityDataProvider(heroData) {
 
 function CreateDifficultyLock(loaded) {
     // Dis gon be ugly
+    var lockedHeroes = $("#HardHeroes");
+
     if (!loaded) {
         $.Schedule(0.01, function() {
-            if ($("#HardHeroes").actualyoffset == 3.4028234663852886e+38) {
+            if (lockedHeroes.GetPositionWithinWindow() == Infinity) {
                 CreateDifficultyLock(false);
                 return;
             }
@@ -74,27 +76,15 @@ function CreateDifficultyLock(loaded) {
         return;
     }
     
-    var lockedHeroes = $("#HardHeroes");
-
     var background = $("#HeroSelectionBackground");
     var relation = 1080 / background.actuallayoutheight;
 
-    var offsetParent = lockedHeroes.GetParent();
-    var offsetY = 0;
-    var offsetX = 0;
-
-    while (offsetParent.id != "HeroSelectionBackground") {
-        offsetY += offsetParent.actualyoffset;
-        offsetX += offsetParent.actualxoffset;
-        offsetParent = offsetParent.GetParent();
-    }
-
     var lock = $.CreatePanel("Panel", $("#HeroSelectionBackground"), "DifficultyLock");
-    var startY = (lockedHeroes.actualyoffset - 3 + offsetY) * relation;
+    var startY = (lockedHeroes.GetPositionWithinWindow().y - 3) * relation;
 
     var widestRow = _(lockedHeroes.Children()).max(function(row) { return row.actuallayoutwidth });
 
-    var startX = (widestRow.actualxoffset - 3 + offsetX) * relation;
+    var startX = (widestRow.GetPositionWithinWindow().x - 3) * relation;
 
     lock.style.x = startX + "px";
     lock.style.y = startY + "px";
@@ -103,6 +93,7 @@ function CreateDifficultyLock(loaded) {
 
     var image = $.CreatePanel("Panel", lock, "");
     var text = $.CreatePanel("Label", lock, "");
+    
     text.text = $.Localize("LockedHeroes");
 }
 
