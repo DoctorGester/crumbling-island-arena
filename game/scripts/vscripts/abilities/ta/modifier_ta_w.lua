@@ -1,23 +1,5 @@
 modifier_ta_w = class({})
 
-if IsServer() then
-    function modifier_ta_w:OnCreated()
-        local owner = self:GetParent().hero.owner
-
-        if owner then
-            owner:Blind(self:GetCaster())
-        end
-    end
-
-    function modifier_ta_w:OnDestroy()
-        local owner = self:GetParent().hero.owner
-
-        if owner then
-            owner:ReturnVision(self:GetCaster())
-        end
-    end
-end
-
 function modifier_ta_w:IsDebuff()
     return true
 end
@@ -25,9 +7,20 @@ end
 function modifier_ta_w:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+        MODIFIER_EVENT_ON_ABILITY_EXECUTED
     }
 
     return funcs
+end
+
+function modifier_ta_w:OnAbilityExecuted(event)
+    if event.unit == self:GetParent() then
+        local hero = self:GetCaster().hero
+        hero:Heal()
+        hero:EmitSound("Arena.TA.HitW")
+
+        ImmediateEffect("particles/ta_w_heal/ta_w_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero)
+    end
 end
 
 function modifier_ta_w:GetModifierMoveSpeedBonus_Percentage(params)

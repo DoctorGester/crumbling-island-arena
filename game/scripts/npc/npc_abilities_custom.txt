@@ -1111,6 +1111,7 @@
 		"precache"
 		{
 			"particle" "particles/units/heroes/hero_templar_assassin/templar_assassin_psi_blade.vpcf"
+			"particle" "particles/units/heroes/hero_templar_assassin/templar_assassin_meld_hit.vpcf"
 		}
 	}
 
@@ -1142,6 +1143,7 @@
 		{
 			"particle" "particles/ta_w/ta_w.vpcf"
 			"particle" "particles/ta_w/ta_w_debuff.vpcf"
+			"particle" "particles/ta_w_heal/ta_w_heal.vpcf"
 		}
 	}
 

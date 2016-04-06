@@ -20,7 +20,13 @@ function ta_q:OnSpellStart()
     local hurt = hero:AreaEffect({
         filter = Filters.Line(hero:GetPos(), target, 64),
         sound = "Arena.TA.HitQ",
-        damage = true
+        action = function(victim)
+            victim:Damage(hero)
+
+            local effect = ImmediateEffect("particles/units/heroes/hero_templar_assassin/templar_assassin_meld_hit.vpcf", PATTACH_ABSORIGIN, hero)
+            ParticleManager:SetParticleControlForward(effect, 0, direction:Normalized())
+            ParticleManager:SetParticleControl(effect, 3, victim:GetPos())
+        end
     })
 
     hero:EmitSound("Arena.TA.CastQ")

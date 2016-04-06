@@ -14,11 +14,11 @@ function ta_w:OnSpellStart()
 
     local effect = ImmediateEffect("particles/ta_w/ta_w.vpcf", PATTACH_CUSTOMORIGIN, hero)
     ParticleManager:SetParticleControl(effect, 0, hero:GetPos() + Vector(0, 0, 32))
-    ParticleManager:SetParticleControl(effect, 1, pos + castDirection * 500 + Vector(0, 0, 32))
+    ParticleManager:SetParticleControl(effect, 1, pos + castDirection * 400 + Vector(0, 0, 32))
 
     hero:AreaEffect({
         filter = Filters.Cone(pos, 500, castDirection, math.pi / 2),
-        modifier = { name = "modifier_ta_w", duration = 1.5, ability = self }
+        modifier = { name = "modifier_ta_w", duration = 3.5, ability = self }
     })
 
     hero:EmitSound("Arena.TA.CastW")
