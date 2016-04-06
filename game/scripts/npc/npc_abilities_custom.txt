@@ -192,6 +192,7 @@
 		"precache"
 		{
 			"particle" "particles/pa_q/pa_q.vpcf"
+			"particle" "particles/units/heroes/hero_riki/riki_backstab.vpcf"
 		}
 	}
 
@@ -221,6 +222,7 @@
 		"precache"
 		{
 			"particle" "particles/econ/items/axe/axe_weapon_bloodchaser/axe_attack_blur_counterhelix_bloodchaser_b.vpcf"
+			"particle" "particles/units/heroes/hero_riki/riki_backstab_hit_blood.vpcf"
 		}
 	}
 

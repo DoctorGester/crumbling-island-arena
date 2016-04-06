@@ -26,6 +26,12 @@ function ProjectilePAQ:constructor(round, hero, target)
         else
             target:EmitSound("DOTA_Item.BattleFury")
             target:Damage()
+
+            local direction = (target:GetPos() - self:GetPos()):Normalized()
+            local blood = ImmediateEffect("particles/units/heroes/hero_riki/riki_backstab_hit_blood.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero)
+            ParticleManager:SetParticleControlEnt(blood, 0, target:GetUnit(), PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetPos(), true)
+            ParticleManager:SetParticleControlForward(blood, 0, direction)
+            ParticleManager:SetParticleControl(blood, 2, direction * 1000)
         end
     end
 end
