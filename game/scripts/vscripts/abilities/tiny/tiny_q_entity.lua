@@ -83,11 +83,14 @@ function TinyQ:Update()
             if not self.fell then
                 self.fell = true
 
-                self.secondParticle = ParticleManager:CreateParticle("particles/tiny_q/tiny_q_ground.vpcf", PATTACH_ABSORIGIN_FOLLOW , self.unit)
-                self:EmitSound("Arena.Tiny.LandQ", pos)
-                self:RemoveSmoke()
+                if Spells.TestEntity(self) then
+                    self.secondParticle = ParticleManager:CreateParticle("particles/tiny_q/tiny_q_ground.vpcf", PATTACH_ABSORIGIN_FOLLOW , self.unit)
+                    self:EmitSound("Arena.Tiny.LandQ", pos)
 
-                Spells:GroundDamage(self:GetPos(), 128)
+                    Spells:GroundDamage(self:GetPos(), 128)
+                end
+
+                self:RemoveSmoke()
             end
         end
 

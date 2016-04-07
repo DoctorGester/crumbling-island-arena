@@ -133,6 +133,8 @@ function HeroSelection:AssignRandomHero(player)
 
     player.selectionLocked = true
     player.selectedHero = table[RandomInt(0, index - 1)]
+
+    Statistics.AddPlayedHero(player, player.selectedHero)
 end
 
 function HeroSelection:AssignRandomHeroes()

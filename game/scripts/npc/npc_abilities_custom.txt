@@ -806,7 +806,7 @@
 
 		"precache"
 		{
-			"particle" "particles/sk_w/sk_w.vpcf"
+			"particle" "particles/sk_r/sk_r.vpcf"
 		}
 	}
 

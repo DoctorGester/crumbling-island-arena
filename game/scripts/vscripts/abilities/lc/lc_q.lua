@@ -16,6 +16,8 @@ function lc_q:OnSpellStart()
     local effect = ImmediateEffect("particles/units/heroes/hero_centaur/centaur_warstomp.vpcf", PATTACH_ABSORIGIN, hero)
     ParticleManager:SetParticleControl(effect, 0, target)
     ParticleManager:SetParticleControl(effect, 1, Vector(600, 1, 1))
+    ParticleManager:SetParticleControl(effect, 2, target)
+    ParticleManager:SetParticleControl(effect, 3, target)
 
     hero:AreaEffect({
         filter = Filters.Area(target, 200),
@@ -23,6 +25,7 @@ function lc_q:OnSpellStart()
         modifier = { name = "modifier_lc_q", duration = 1.5, ability = self },
     })
     
+    ScreenShake(target, 5, 150, 0.25, 2000, 0, true)
     Spells:GroundDamage(target, 200)
     hero:EmitSound("Arena.LC.HitQ")
 end

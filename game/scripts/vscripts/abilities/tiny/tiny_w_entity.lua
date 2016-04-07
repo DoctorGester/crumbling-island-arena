@@ -68,6 +68,8 @@ function TinyW:Update()
             modifier = { name = "modifier_stunned_lua", duration = 1.2, ability = self.ability },
         })
 
+        print("shake shake baby")
+        ScreenShake(effectPosition, 5, 150, 0.25, 2000, 0, true)
         Spells:GroundDamage(effectPosition, self.effectRadius)
 
         self:EmitSound("Arena.Tiny.HitW")

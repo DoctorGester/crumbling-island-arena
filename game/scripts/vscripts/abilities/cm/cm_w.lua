@@ -37,7 +37,7 @@ function cm_w:OnSpellStart()
                     time = time + MAP_HEIGHT / speed
                 end
 
-                local effect = ParticleManager:CreateParticle("particles/cm_w/cm_w_ice.vpcf", PATTACH_CUSTOMORIGIN, hero:GetUnit())
+                local effect = ParticleManager:CreateParticle("particles/cm_w/cm_w.vpcf", PATTACH_CUSTOMORIGIN, hero:GetUnit())
                 ParticleManager:SetParticleControl(effect, 0, effectPos)
                 ParticleManager:SetParticleControl(effect, 1, skies)
                 ParticleManager:SetParticleControl(effect, 2, Vector(time, 0, 0))
