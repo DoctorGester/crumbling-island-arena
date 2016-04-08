@@ -44,6 +44,14 @@ function Dash:constructor(hero, to, speed, params)
     hero.round.spells:AddDash(self)
 end
 
+function Dash:SetModifierHandle(modifier)
+    if self.modifierHandle then
+        self.modifierHandle:Destroy()
+    end
+
+    self.modifierHandle = modifier
+end
+
 function Dash:Update()
     if self.hero.destroyed then
         if self.loopingSound then
@@ -125,9 +133,7 @@ function Dash:HeightFunction(current)
 end
 
 function Dash:OnArrival(reachedDestination)
-    if self.modifier then
-        self.hero:RemoveModifier(self.modifier.name)
-    end
+    self:SetModifierHandle(nil)
 
     if self.arrivalSound then
         self.hero:EmitSound(self.arrivalSound)

@@ -1099,7 +1099,7 @@
 		"ScriptFile" "abilities/ta/ta_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "templar_assassin_psi_blades"
-		"AbilityCooldown" "1.8"
+		"AbilityCooldown" "2.0"
 		"AbilityCastPoint" "0.2"
 
 		"TargetingIndicator"
@@ -1123,7 +1123,7 @@
 		"ScriptFile" "abilities/ta/ta_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "templar_assassin_self_trap"
-		"AbilityCooldown" "6.0"
+		"AbilityCooldown" "9.0"
 		"AbilityCastPoint" "0.2"
 
 		"TargetingIndicator"
@@ -1183,7 +1183,7 @@
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "templar_assassin_refraction"
-		"AbilityCooldown" "12.0"
+		"AbilityCooldown" "16.0"
 
 		"precache"
 		{
