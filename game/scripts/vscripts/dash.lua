@@ -46,7 +46,7 @@ end
 
 function Dash:SetModifierHandle(modifier)
     if self.modifierHandle then
-        self.hero:RemoveModifier(self.modifier.name)
+        self.hero:RemoveModifier(self.modifierHandle:GetName())
         --self.modifierHandle:Destroy()
     end
 
