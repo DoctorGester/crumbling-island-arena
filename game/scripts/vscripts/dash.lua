@@ -46,7 +46,8 @@ end
 
 function Dash:SetModifierHandle(modifier)
     if self.modifierHandle then
-        self.modifierHandle:Destroy()
+        self.hero:RemoveModifier(self.modifier.name)
+        --self.modifierHandle:Destroy()
     end
 
     self.modifierHandle = modifier
@@ -110,7 +111,7 @@ end
 function Dash:IsStunned()
     for _, modifier in pairs(self.hero:AllModifiers()) do
         if modifier ~= self.modifierHandle then
-            if modifier:IsStunDebuff() then
+            if modifier.IsStunDebuff and modifier:IsStunDebuff() then
                 return true
             end
         end
