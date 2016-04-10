@@ -197,11 +197,11 @@ VectorTarget.IsFastClickDragMode = function() {
     });
     
     //fast click-drag handling
-    GameUI.SetMouseCallback(function(eventName, button) {
+    /*GameUI.SetMouseCallback(function(eventName, button) {
         if (eventKeys.abilId && VectorTarget.IsFastClickDragMode() && eventName == "released" && button == 0) {
             Abilities.ExecuteAbility(eventKeys.abilId, eventKeys.unitId, true);
         }
-    });
+    });*/
     
     //VectorTarget.SetFastClickDragMode(true);
 

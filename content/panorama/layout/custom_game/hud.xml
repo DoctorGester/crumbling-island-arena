@@ -4,6 +4,7 @@
         <include src="file://{resources}/styles/custom_game/ability_bar.css" />
         <include src="file://{resources}/styles/custom_game/timer.css" />
         <include src="file://{resources}/styles/custom_game/scoreboard.css" />
+        <include src="file://{resources}/styles/custom_game/util.css" />
     </styles>
     <scripts>
         <include src="file://{resources}/scripts/custom_game/underscore-min.js" />
@@ -44,6 +45,10 @@
 
                 <Panel class="AbilityPanel" hittest="false" id="AbilityPanel">
                 </Panel>
+            </Panel>
+            <Panel id="GameChat" hittestchildren="false" hittest="false">
+                <Panel id="GameChatContent" class="Hidden"/>
+                <Panel id="GameChatEntryContainer"/>
             </Panel>
         </Panel>
     </Panel>

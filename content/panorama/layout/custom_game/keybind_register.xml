@@ -1,0 +1,6 @@
+﻿<root>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/keybind_register.js" />
+    </scripts>
+    <Panel hittest="false"/>
+</root>

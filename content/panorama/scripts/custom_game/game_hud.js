@@ -7,6 +7,51 @@ var currentHero = null;
 var abilityBar = null;
 var buffBar = null;
 var healthBar = null;
+var chatLines = [];
+
+GameUI.SetCameraPitchMin(60);
+GameUI.SetCameraPitchMax(60);
+GameUI.SetCameraLookAtPositionHeightOffset(100);
+GameUI.GameChat = $("#GameChat");
+
+// We can't completely lose focus without deleting the element which has it
+AddEnterListener("GameHudChatEnter", function() {
+    if ($("#HeroPanel").BCanSeeInParentScroll()) {
+        $("#GameChatEntryContainer").BLoadLayout("file://{resources}/layout/custom_game/chat.xml", true, true);
+        $("#GameChatEntry").SetFocus();
+        $("#GameChat").RemoveClass("Hidden");
+    }
+});
+
+function AddChatLine(hero, playerName, color, message) {
+    var line = $.CreatePanel("Panel", $("#GameChatContent"), "");
+    line.AddClass("GameChatLine");
+
+    var img = $.CreatePanel("DOTAHeroImage", line, "");
+
+    img.AddClass("GameChatImage");
+    img.heroimagestyle = "icon";
+    img.heroname = hero;
+
+    var label = $.CreatePanel("Label", line, "");
+    label.SetDialogVariable("name", playerName);
+    label.SetDialogVariable("color", color);
+    label.SetDialogVariable("message", message);
+    label.html = true;
+    label.text = $.Localize("#ChatLine", label);
+
+    $("#GameChatContent").ScrollToBottom();
+
+    $.Schedule(5, function(){
+        line.AddClass("GameChatLineHidden");
+    });
+}
+
+function OnCustomChatSay(args) {
+    var color = LuaColor(args.color);
+    
+    AddChatLine(args.hero, Players.GetPlayerName(args.player), color, args.message);
+}
 
 function SetupUI(){
     GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_TIMEOFDAY, false);
@@ -179,4 +224,6 @@ SetupUI();
         var eventData = { reason: 15, message: "dota_hud_error_ability_in_cooldown" };
         GameEvents.SendEventClientSide("dota_hud_error_message", eventData);
     });
+
+    GameEvents.Subscribe("custom_chat_say", OnCustomChatSay);
 })();

@@ -1,0 +1,54 @@
+b
+{
+    font-weight: bold;
+}
+
+VerticalScrollBar
+{
+    width: 8px;
+    margin: 0px, 8px, 0px 8px;
+    border-radius: 0px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: fill #00000055 -3px 0px 3px 4px;
+    horizontal-align: right;
+    vertical-align: center;
+
+    transition-property: transform;
+}
+
+VerticalScrollBar .ScrollThumb
+{
+    width: 8px;
+    min-height: 32px;  // need to get the scrollthumb to hit the bottom of the scrollbar
+    background-color: #566767;
+    border-top: 1px solid #aaaaaa22;
+    border-right: 1px solid #000000aa;
+    transition-property: position;
+    /*background-color: gradient( linear, 0% 0%, 0% 100%, from( #3e4446 ), to( #33383a ) );*/
+    transition-property: background-color, transform;
+    transition-duration: 0.1s;
+    transition-timing-function: linear;
+}
+
+VerticalScrollBar:hover .ScrollThumb,
+{
+    background-color: #566767;
+}
+
+
+VerticalScrollBar:active .ScrollThumb
+{
+    background-color: #566767;
+}
+
+VerticalScrollBar, VerticalScrollBar .ScrollThumb, 
+{
+    transition-duration: 0.20s;
+    transition-timing-function: ease-in-out;
+}
+
+VerticalScrollBar.MouseDown, VerticalScrollBar.MouseDown .ScrollThumb, 
+{
+    transition-duration: 0.0s;
+}

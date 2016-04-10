@@ -1,0 +1,37 @@
+﻿<root>
+    <styles>
+        <include src="file://{resources}/styles/custom_game/game_hud.css" />
+    </styles>
+    <script>
+        function HideGameChat() {
+            if (GameUI.GameChat) {
+                GameUI.GameChat.AddClass("Hidden");
+            }
+            
+            $("#GameChatEntry").DeleteAsync(0);
+        }
+
+        function SubmitGameChat() {
+            var entry = $("#GameChatEntry");
+            if (entry.text.length == 0 && entry.BCanSeeInParentScroll()) {
+                HideGameChat();
+                return;
+            }
+
+            GameEvents.SendCustomGameEventToServer("custom_chat_say", { message: entry.text });
+
+            entry.text = "";
+        }
+    </script>
+    <Panel>
+        <TextEntry
+            id="GameChatEntry"
+            multiline="false"
+            textmode="normal"
+            oninputsubmit="SubmitGameChat()"
+            maxchars="256"
+            oncancel="HideGameChat()"
+            onblur="HideGameChat()"
+        />
+    </Panel>
+</root>

@@ -4,6 +4,20 @@ GAME_STATE_ROUND_IN_PROGRESS = 2
 GAME_STATE_ROUND_ENDED = 3
 GAME_STATE_GAME_OVER = 4
 
+if (!Game.enterListeners) {
+    Game.enterListeners = {};
+}
+
+Game.OnEnterPressed = function() {
+    for (var key in Game.enterListeners) {
+        Game.enterListeners[key]();
+    }
+}
+
+function AddEnterListener(name, callback) {
+    Game.enterListeners[name] = callback;
+}
+
 function GetTexture(data, customIcons) {
     var icon = "file://{images}/spellicons/" + (data.texture || data) + ".png";
     var name = data.name;

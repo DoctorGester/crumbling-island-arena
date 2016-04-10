@@ -1,3 +1,5 @@
+@define selectedTextBackgroundColor: #66666633;
+
 .MainPanel
 {
     width: 100%;
@@ -388,6 +390,94 @@
     font-size: 48;
     horizontal-align: center;
     text-shadow: -1px 1px 2px 2.0 black;
+}
+
+#HeroSelectionChat
+{
+    align: left bottom;
+    width: 25%;
+    height: 30%;
+    flow-children: down;
+}
+
+#HeroSelectionChatContent
+{
+    width: 100%;
+    height: fill-parent-flow(1.0);
+    flow-children: down;
+    padding: 10px;
+    overflow: squish scroll;
+}
+
+#HeroSelectionChatEntry
+{
+    border: 0px solid yellow;
+    width: 100%;
+    height: 32px;
+    background-color: rgba(0, 0, 0, 200);
+    font-size: 16px;
+    padding: 6px 3px 5px 3px;
+    color: #9C9383;
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    text-overflow: clip;
+    border-radius: 3px;
+}
+
+.HeroSelectionChatLine
+{
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    color: white;
+    font-size: 16px;
+}
+
+#HeroSelectionChatEntry #PlaceholderText {
+    transition-property: opacity;
+    transition-duration: 0.2s;
+    font-size: 18px;
+    color: #555555;
+}
+
+#HeroSelectionChatEntry:focus #PlaceholderText {
+    opacity: 0.0;
+}
+
+VerticalScrollBar
+{
+    width: 8px;
+    margin: 0px, 8px, 0px 8px;
+    border-radius: 0px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow: fill #00000055 -3px 0px 3px 4px;
+    horizontal-align: right;
+    vertical-align: center;
+
+    transition-property: transform;
+}
+
+VerticalScrollBar .ScrollThumb
+{
+    width: 8px;
+    min-height: 32px;  // need to get the scrollthumb to hit the bottom of the scrollbar
+    background-color: #566767;
+    border-top: 1px solid #aaaaaa22;
+    border-right: 1px solid #000000aa;
+    transition-property: position;
+    /*background-color: gradient( linear, 0% 0%, 0% 100%, from( #3e4446 ), to( #33383a ) );*/
+    transition-property: background-color, transform;
+    transition-duration: 0.1s;
+    transition-timing-function: linear;
+}
+
+VerticalScrollBar:hover .ScrollThumb,
+{
+    background-color: #566767;
+}
+
+
+VerticalScrollBar:active .ScrollThumb
+{
+    background-color: #566767;
 }
 
 .AnimationSelectedHero

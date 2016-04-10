@@ -152,6 +152,82 @@
     color: #CCB966;
 }
 
+#GameChat
+{
+    margin-top: 250px;
+    align: center center;
+    width: 25%;
+    height: 12%;
+    flow-children: down;
+}
+
+#GameChatContent
+{
+    width: 100%;
+    height: fill-parent-flow(1.0);
+    flow-children: down;
+    padding: 2px;
+    overflow: squish scroll;
+}
+
+#GameChatEntryContainer
+{
+    margin-top: 2px;
+    width: 100%;
+    height: 32px;
+}
+
+#GameChatEntry
+{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 200);
+    font-size: 16px;
+    padding: 6px 3px 5px 3px;
+    color: #9C9383;
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    text-overflow: clip;
+    border-radius: 3px;
+}
+
+.GameChatLine
+{
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    color: white;
+    font-size: 16px;
+    height: 24px;
+    flow-children: right;
+    transition-property: opacity;
+    transition-duration: 0.15s;
+}
+
+.GameChatLineHidden
+{
+    opacity: 0.0;
+}
+
+#GameChat:descendantfocus .GameChatLine
+{
+    opacity: 1.0;
+}
+
+#GameChat.Hidden VerticalScrollBar
+{
+    opacity: 0.0;
+}
+
+.GameChatLine Label
+{
+    vertical-align: center;
+}
+
+.GameChatImage
+{
+    height: 24px;
+    width: 24px;
+    margin-right: 4px;
+}
+
 .HeroMarkerTransition
 {
     transition: position 0.3s linear 0.0ms;

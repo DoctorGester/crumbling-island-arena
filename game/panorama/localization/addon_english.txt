@@ -53,6 +53,9 @@
 	"LockedHeroes" "Not available for the first 3 rounds"
 	"GameGoal" "Goal: {d:goal}"
 
+	"ChatLine" "<b><font color='{s:color}'>{s:name}</font></b>: {s:message}"
+	"ChatPlaceholder" "Type here..."
+
 	"SbName" "Name"
 	"SbScore" "Score"
 	"SbDamage" "Damage dealt"

@@ -16,6 +16,7 @@ require('spells')
 require('projectile')
 require('dash')
 require('statistics')
+require('chat')
 require('debug_util')
 
 STATE_NONE = 0
@@ -472,6 +473,8 @@ function GameMode:OnGameInProgress()
             i = i + 1
         end
     end
+
+    Chat(self.Players, self.Users, self.TeamColors)
 
     self.roundNumber = 1
     self.gameGoal = GAME_GOAL

@@ -2,6 +2,7 @@
     <styles>
         <include src="file://{resources}/styles/custom_game/ability_bar.css" />
         <include src="file://{resources}/styles/custom_game/hero_selection_style.css" />
+        <include src="file://{resources}/styles/custom_game/util.css" />
     </styles>
     <scripts>
         <include src="file://{resources}/scripts/custom_game/underscore-min.js" />
@@ -43,6 +44,11 @@
                 <Label class="TimerColumnLabel" text="#GameInfoTimer"></Label>
                 <Label id="TimerText"></Label>
                 <Label class="TimerColumnLabel TimerColumnText" html="true" text="#GameInfoText"></Label>
+            </Panel>
+            <Panel id="HeroSelectionChat">
+                <Panel id="HeroSelectionChatContent" oncancel="SetInputFocus(HeroSelectionBackground)">
+                </Panel>
+                <TextEntry id="HeroSelectionChatEntry" multiline="false" textmode="normal" oninputsubmit="SubmitSelectionChat()" maxchars="256" placeholder="#ChatPlaceholder"/>
             </Panel>
         </Panel>
     </Panel>
