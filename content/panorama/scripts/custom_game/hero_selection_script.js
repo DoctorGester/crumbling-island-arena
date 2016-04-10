@@ -166,12 +166,16 @@ function ShowHeroDetails(heroName) {
 }
 
 function HideHeroDetails() {
-    abilityBar.SetProvider(new EmptyAbilityDataProvider());
-    $("#HeroAbilities").visible = false;
-    $("#HeroName").text = "";
-    $("#HeroTips").text = "";
+    if (selectedHeroes[Game.GetLocalPlayerID()] == "null") {
+        abilityBar.SetProvider(new EmptyAbilityDataProvider());
+        $("#HeroAbilities").visible = false;
+        $("#HeroName").text = "";
+        $("#HeroTips").text = "";
 
-    DeleteHeroPreview();
+        DeleteHeroPreview();
+    } else {
+        ShowHeroDetails(selectedHeroes[Game.GetLocalPlayerID()]);
+    }
 }
 
 function AddHoverHeroDetails(element, heroName){
