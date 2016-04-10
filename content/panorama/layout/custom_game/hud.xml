@@ -47,7 +47,7 @@
                 </Panel>
             </Panel>
             <Panel id="GameChat" hittestchildren="false" hittest="false">
-                <Panel id="GameChatContent" class="Hidden"/>
+                <Panel id="GameChatContent" class="Hidden" hittest="false"/>
                 <Panel id="GameChatEntryContainer"/>
             </Panel>
         </Panel>
