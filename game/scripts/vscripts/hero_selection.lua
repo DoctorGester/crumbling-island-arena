@@ -9,6 +9,7 @@ function HeroSelection:constructor(players, availableHeroes, teamColors)
     self.TeamColors = teamColors
     self.AvailableHeroes = availableHeroes
     self.HardHeroesLocked = true
+    self.PreviousRandomed = {}
 end
 
 function HeroSelection:UpdateSelectedHeroes()
@@ -125,7 +126,7 @@ function HeroSelection:AssignRandomHero(player)
     local index = 0
 
     for i, _ in pairs(self.AvailableHeroes) do
-        if self:CanBeSelected(i) then
+        if self:CanBeSelected(i) and self.PreviousRandomed[player.id] ~= i then
             table[index] = i
             index = index + 1
         end
@@ -133,6 +134,8 @@ function HeroSelection:AssignRandomHero(player)
 
     player.selectionLocked = true
     player.selectedHero = table[RandomInt(0, index - 1)]
+
+    self.PreviousRandomed[player.id] = player.selectedHero
 
     Statistics.AddPlayedHero(player, player.selectedHero)
 end

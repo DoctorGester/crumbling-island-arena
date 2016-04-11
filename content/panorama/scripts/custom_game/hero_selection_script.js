@@ -166,7 +166,9 @@ function ShowHeroDetails(heroName) {
 }
 
 function HideHeroDetails() {
-    if (selectedHeroes[Game.GetLocalPlayerID()] == "null") {
+    var selected = selectedHeroes[Game.GetLocalPlayerID()];
+
+    if (!selected || selected == "null") {
         abilityBar.SetProvider(new EmptyAbilityDataProvider());
         $("#HeroAbilities").visible = false;
         $("#HeroName").text = "";
@@ -174,7 +176,7 @@ function HideHeroDetails() {
 
         DeleteHeroPreview();
     } else {
-        ShowHeroDetails(selectedHeroes[Game.GetLocalPlayerID()]);
+        ShowHeroDetails(selected);
     }
 }
 
@@ -338,6 +340,9 @@ function GameStateChanged(data){
             heroButtons[key].style.boxShadow = null;
             heroButtons[key].RemoveClass("HeroButtonSaturated");
         }
+
+        selectedHeroes = {};
+        HideHeroDetails();
     } else {
         SwitchClass(bg, "AnimationBackgroundVisible", "AnimationBackgroundInvisible")
     }
