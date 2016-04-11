@@ -81,6 +81,7 @@ function SvenDash:Update()
 
     if self.tick % 5 == 0 then
         self.hero:EmitSound("Arena.Sven.StepE")
+        ScreenShake(position, 3, 60, 0.15, 2000, 0, true)
     end
 end
 

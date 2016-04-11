@@ -33,6 +33,8 @@ function sniper_q:OnSpellStart()
 
     hero:EmitSound("Arena.Sniper.CastQ")
     hero:EmitSound("Arena.Sniper.FlyQ")
+
+    ScreenShake(hero:GetPos(), 4, 50, 0.35, 2000, 0, true)
 end
 
 function sniper_q:GetCastAnimation()

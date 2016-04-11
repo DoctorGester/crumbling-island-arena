@@ -45,6 +45,8 @@ function sven_w:OnSpellStart()
         end
     end
 
+    ScreenShake(hero:GetPos(), 5, 150, 0.45, 2000, 0, true)
+
     hero:EmitSound("Arena.Sven.CastW")
 end
 

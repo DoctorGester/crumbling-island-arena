@@ -66,6 +66,7 @@ function cm_w:OnSpellStart()
                         end
                     })
 
+                    ScreenShake(damagePos, 3, 60, 0.15, 2000, 0, true)
                     Spells:GroundDamage(damagePos, 128)
 
                     local sound = "Arena.CM.CastW"
