@@ -1,0 +1,223 @@
+"addon"
+{
+	"Language" "russian"
+	"Tokens" {
+		"HeroName_npc_dota_hero_phantom_assassin"		"Луна"
+		"HeroTips_npc_dota_hero_phantom_assassin"		"<font color='gold'>Q</font>: Бумеранг<br/><font color='gold'>W</font>: Атака вокруг себя<br/><font color='gold'>E</font>: Прыжок<br/><font color='gold'>R</font>: Невидимость"
+
+		"HeroName_npc_dota_hero_crystal_maiden"			"Маг"
+		"HeroTips_npc_dota_hero_crystal_maiden"			"Если <font color=\"skyblue\"><b>Замороженного</b></font> врага <font color=\"skyblue\"><b>Заморозить</b></font>, он получит урон<br/><font color='gold'>Q</font>: Замораживающий снежок<br/><font color='gold'>W</font>: Заморозка по линии<br/><font color='gold'>E</font>: Замораживающая волна, примени еще раз, чтобы переместиться в неё<br/><font color='gold'>R</font>: Заморозка и замедление в области"
+
+		"HeroName_npc_dota_hero_storm_spirit"			"Умеренность"
+		"HeroTips_npc_dota_hero_storm_spirit"			"<font color='gold'>Q</font>: Волна, создаёт копию<br/><font color='gold'>W</font>: Взорвать копию<br/><font color='gold'>E</font>: Прыгнуть в копию<br/><font color='gold'>R</font>: Возродить 3 копии"
+
+		"HeroName_npc_dota_hero_zuus"					"Суд"
+		"HeroTips_npc_dota_hero_zuus"					"<font color='gold'>Q</font>: Слабый снаряд<br/><font color='gold'>W</font>: Стена, ускоряет героя и снаряды<br/><font color='gold'>E</font>: Телепортация<br/><font color='gold'>R</font>: Глобальная. Урон и замедление с задержкой"
+
+		"HeroName_npc_dota_hero_earth_spirit"			"Император"
+		"HeroTips_npc_dota_hero_earth_spirit"			"<font color='gold'>Q</font>: Копия и урон в области с задержкой<br/><font color='gold'>W</font>: Перетянуть копию, урон по линии<br/><font color='gold'>E</font>: Прыжок. Можно забираться на копии<br/><font color='gold'>R</font>: Поменяться местами и здоровьем с копией"
+
+		"HeroName_npc_dota_hero_sven"					"Дьявол"
+		"HeroTips_npc_dota_hero_sven"					"<font color='gold'>Q</font>: Атака перед собой<br/><font color='gold'>W</font>: Безмолвие и замедление в конусе<br/><font color='gold'>E</font>: Рывок, отталкивание, урон<br/><font color='gold'>R</font>: Перезарядить способности и улучшить их"
+
+		"HeroName_npc_dota_hero_sniper"					"Отшельник"
+		"HeroTips_npc_dota_hero_sniper"					"<font color='gold'>Q</font>: Дальнобойный выстрел<br/><font color='gold'>W</font>: Связывающая ловушка<br/><font color='gold'>E</font>: Ускорение<br/><font color='gold'>R</font>: Невидимость, когда рядом нет врагов"
+
+		"HeroName_npc_dota_hero_sand_king"				"Верховная Жрица"
+		"HeroTips_npc_dota_hero_sand_king"				"<font color='gold'>Q</font>: Урон в области и замедление после задержки<br/><font color='gold'>W</font>: Волна урона<br/><font color='gold'>E</font>: Рывок, урон<br/><font color='gold'>R</font>: Область, дающая невидимость"
+
+		"HeroName_npc_dota_hero_legion_commander"		"Сила"
+		"HeroTips_npc_dota_hero_legion_commander"		"<font color='gold'>Q</font>: Замедляющая атака перед собой<br/><font color='gold'>W</font>: Щит, ускорение<br/><font color='gold'>E</font>: Рывок, оглушение<br/><font color='gold'>R</font>: Бессмертие и уменьшенная перезарядка в области"
+
+		"HeroName_npc_dota_hero_lycan"					"Смерть"
+		"HeroTips_npc_dota_hero_lycan"					"<font color='gold'>Q</font>: Запустить 2 волков к цели<br/><font color='gold'>W</font>: Атака перед собой<br/><font color='gold'>E</font>: Страх в области<br/><font color='gold'>R</font>: Трансформация, скорость, улучшенные способности"
+
+		"HeroName_npc_dota_hero_phoenix"				"Солнце"
+		"HeroTips_npc_dota_hero_phoenix"				"Превращается в яйцо после смерти<br/><font color='gold'>Q</font>: Рывок, урон, замедление<br/><font color='gold'>W</font>: Замедление в области, урон<br/><font color='gold'>E</font>: Прерываемое. Лечение<br/><font color='gold'>R</font>: Прерываемое. Большой урон в области"
+
+		"HeroName_npc_dota_hero_templar_assassin"		"Императрица"
+		"HeroTips_npc_dota_hero_templar_assassin"		"<font color='gold'>Q</font>: Урон по линии<br/><font color='gold'>W</font>: Замедление в конусе<br/><font color='gold'>E</font>: Телепортация. Перезаряжается от урона<br/><font color='gold'>R</font>: Лечение с задержкой после получения урона"
+
+		"HeroName_npc_dota_hero_tiny"					"Башня"
+		"HeroTips_npc_dota_hero_tiny"					"<font color='gold'>Q</font>: Бросок камня. Можно подобрать CD<br/><font color='gold'>W</font>: Оглушение в области с задержкой<br/><font color='gold'>E</font>: Запереть всех в кругу<br/><font color='gold'>R</font>: Улучшение следующей примененной способности"
+		
+		"HeroName_npc_dota_hero_pugna"					"Звезда"
+		"HeroTips_npc_dota_hero_pugna"					"<font color='gold'>Q</font>: Получить урон, запустить снаряд, лечение, если попал<br/><font color='gold'>W</font>: Лечащая ловушка<br/><font color='gold'>E</font>: Поменять лечение и урон местами<br/><font color='gold'>R</font>: Заблокировать здоровье на время"
+
+		"HeroName_npc_dota_hero_vengefulspirit"			"Справедливость"
+		"HeroTips_npc_dota_hero_vengefulspirit"			"<font color='gold'>Q</font>: Оглушающий снаряд<br/><font color='gold'>W</font>: Дальнобойная волна. Урон и замедление<br/><font color='gold'>E</font>: Меняющий местами снаряд<br/><font color='gold'>R</font>: Вызов духа-защитника"
+
+		"PlayerHeader" "игрок"
+		"SelectionHeader" "выбор"
+		"ScoreHeader" "счет"
+		"HeroListHeader" "кликните, чтобы выбрать героя"
+		"RandomHero" "случайный выбор"
+		"LockedHeroes" "Недоступны первые 3 раунда"
+		"GameGoal" "Цель: {d:goal}"
+
+		"ChatLine" "<b><font color='{s:color}'>{s:name}</font></b>: {s:message}"
+		"ChatPlaceholder" "Введите Ваше сообщение..."
+
+		"SbName" "Имя"
+		"SbScore" "Счет"
+		"SbDamage" "Урон"
+		"SbRounds" "Побед в раундах"
+		"SbProj" "Выпущено снарядов"
+		"SbAmountPlayed" "Героев выбрано"
+		"SbMostPlayed" "Любимые герои"
+		"SbExit" "Нажмите куда угодно чтобы выйти"
+		"SbWinner" "Победитель"
+		"SbRunnerUp" "Второе место"
+		"SbTooManyHeroes" "Слишком много героев"
+
+		"GameInfoHeader" "информация"
+		"GameInfoTimer"	"Выберите героя, пока время не вышло!"
+		"GameInfoText" "У всех героев лишь <font color='#3A9B00'>5</font> здоровья<br>Автоатаки <font color='red'>выключены</font><br><font color='red'>Никаких</font> стандартных способностей<br>Ультимейты разблокируются в течение раунда<br>Выживи, чтобы победить!<br>Земля <font color='gold'>сужается</font> и <font color='gold'>рушится</font>"
+		"GameInfoTimesUp" "Время вышло!"
+
+		"RoundEnding" "<font color='{s:color}'>{s:name}</font> победил!"
+		"RoundEndingWasted" "Ничья!"
+
+		"AbilityTooltip"								"{s:description}<br><br><font color=\"gold\">Перезарядка</font>: {s:cooldown}"
+
+		"AbilityTooltip_earth_spirit_q"					"После короткой задержки, уронить <font color=\"#3A9B00\"><b>Копию</b></font> в указанную область"
+		"AbilityTooltip_earth_spirit_w"					"Укажите на <font color=\"#3A9B00\"><b>Копию</b></font>. Переместитесь к ней, если уже стоите на <font color=\"#3A9B00\"><b>Копии</b></font>. Если нет, притащите её к себе"
+		"AbilityTooltip_earth_spirit_e"					"Короткий прыжок. Можно указать на <font color=\"#3A9B00\"><b>Копию</b></font> и забраться на неё, получив неуязвимость"
+		"AbilityTooltip_earth_spirit_r"					"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>Укажите на <font color=\"#3A9B00\"><b>Копию</b></font>. После короткой задержки поменяйтесь с ней местами и здоровьем"
+
+		"AbilityTooltip_cm_q"							"Launch a projectile into a chosen direction<br>Enemies hit are <font color=\"skyblue\"><b>Frozen</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies take damage"
+		"AbilityTooltip_cm_w"							"Choose two point targets<br>Enemies along the chosen line are <font color=\"skyblue\"><b>Frozen</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies take damage"
+		"AbilityTooltip_cm_e"							"Launch a wave into a chosen direction<br>Reactivate to relocate to the wave\\\\'s position<br>Enemies hit are <font color=\"skyblue\"><b>Frozen</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies take damage"
+		"AbilityTooltip_cm_e_sub"						"Relocate to the wave\\\\'s position"
+		"AbilityTooltip_cm_r"							"Target an area<br>All enemies in the area are slowed and considered <font color=\"skyblue\"><b>Frozen</b></font>"
+
+		"AbilityTooltip_zeus_q"							"Launch a short ranged projectile<br><br><font color=\"#7FC9FF\"><b>Empowered</b></font> projectiles also stun"
+		"AbilityTooltip_zeus_w"							"Create a lightning wall, you get bonus speed when passing through it<br><br><font color=\"#7FC9FF\"><b>Empowers</b></font> friendly passing projectiles"
+		"AbilityTooltip_zeus_e"							"Teleport to a target point<br><br>Teleporting through the lightning wall damages all enemies between teleport locations"
+		"AbilityTooltip_zeus_r"							"Target an area<br>After a 1.6 second delay all enemies in the area receive damage and slow"
+
+		"AbilityTooltip_sniper_q"						"Запустить дальнобойный снаряд"
+		"AbilityTooltip_sniper_w"						"Поставить невидимую обездвиживающую ловушку"
+		"AbilityTooltip_sniper_e"						"Ускориться, постепенно замедляясь"
+		"AbilityTooltip_sniper_r"						"<font color=\"#DAFF7F\"><b>Переключаемое</b></font><br>Когда включено, стать невидимым, если рядом нет врагов"
+
+		"AbilityTooltip_sven_q"							"Атаковать перед собой<br><br><font color=\"#AE0000\"><b>Ярость</b></font> увеличенный радиус атаки и отбрасывание"
+		"AbilityTooltip_sven_w"							"Безмолвие и замедление в конусе<br><br><font color=\"#AE0000\"><b>Ярость</b></font> конус становится кругом"
+		"AbilityTooltip_sven_e"							"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>Рвануться к цели, отталкивая и нанося урон врагам на пути<br><br><font color=\"#AE0000\"><b>Ярость</b></font> применяется мгновенно"
+		"AbilityTooltip_sven_r"							"Войти в <font color=\"#AE0000\"><b>Ярость</b></font> и перезарядить все способности"
+
+		"AbilityTooltip_lc_q"							"Атаковать перед собой, замедляя пораженных врагов"
+		"AbilityTooltip_lc_w"							"Получить временный щит, защищающий от одной атаки.<br><br>Получить бонус к скорости, когда щит срабатывает"
+		"AbilityTooltip_lc_e"							"Рвануться вперед, оглушая врагов на пути<br><br>Дистанция рывка зависит от текущей скорости"
+		"AbilityTooltip_lc_r"							"Укажите область<br>Пока герой находится в ней, он бессмертен и перезарядка его способностей быстрее в два раза"
+
+		"AbilityTooltip_pa_q"							"Throw a boomerang glaive in the target direction<br><br>Reactivate to bring it back"
+		"AbilityTooltip_pa_q_sub"						"Bring the glaive back"
+		"AbilityTooltip_pa_w"							"Strike an area around you"
+		"AbilityTooltip_pa_w_sub"						"Throw a dagger which slows the first enemy hit<br><br>Doesn\\\\'t deal damage"
+		"AbilityTooltip_pa_e"							"Perform a short jump"
+		"AbilityTooltip_pa_e_sub"						"Perform a short jump, leaving your glaive behind"
+		"AbilityTooltip_pa_r"							"Become invisible for 5 seconds gaining bonus speed<br>Your glaive is also sped up<br><br>Casting spells briefly reveals you"
+
+		"AbilityTooltip_sk_q"							"Deal damage and slow enemies in the area after a 1.2 second delay"
+		"AbilityTooltip_sk_w"							"Deal damage in a line<br><br>Can't go though holes in the ground"
+		"AbilityTooltip_sk_e"							"Dash forward dealing damage to enemies on path<br><br>Can't go though holes in the ground"
+		"AbilityTooltip_sk_r"							"Create a sandstorm for 7.5 seconds which renders your hero invisible and gives him bonus speed"
+
+		"AbilityTooltip_storm_spirit_q"					"Launch a wave that creates a <font color=\"#00EFEF\"><b>Remnant</b></font> at the target point"
+		"AbilityTooltip_storm_spirit_w"					"Target a <font color=\"#00EFEF\"><b>Remnant</b></font> making it explode, damaging enemies around it"
+		"AbilityTooltip_storm_spirit_e"					"Target a <font color=\"#00EFEF\"><b>Remnant</b></font> and quickly dash to it"
+		"AbilityTooltip_storm_spirit_r"					"Ressurect up to 3 last dead <font color=\"#00EFEF\"><b>Remnants</b></font>"
+
+		"AbilityTooltip_lycan_q"						"Summon two wolves running to the target point<br><br>Enemies bitten start <font color=\"#D10000\"><b>Bleeding</b></font>"
+		"AbilityTooltip_lycan_w"						"Strike an area in front of you, making enemies hit <font color=\"#D10000\"><b>Bleed</b></font>"
+		"AbilityTooltip_lycan_e"						"Causes enemies around you to flee"
+		"AbilityTooltip_lycan_r"						"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Transform, gaining huge base movement speed<br><br><font color=\"gold\"><b>Q</b></font> Your Wolves move faster<br><font color=\"gold\"><b>W</b></font> <font color=\"#D10000\"><b>Bleeding</b></font> enemies take double damage<br><font color=\"gold\"><b>E</b></font> Fleeing and <font color=\"#D10000\"><b>Bleeding</b></font> enemies are silenced"
+
+		"AbilityTooltip_phoenix_q"						"Dash forward, damaging and slowing enemies on your path"
+		"AbilityTooltip_phoenix_w"						"<font color=\"#DAFF7F\"><b>Charged</b></font><br/>Launch a slowing and damaging projectile to the target area"
+		"AbilityTooltip_phoenix_e"						"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Heal for 1 health<br>If cast in the egg form, revive"
+		"AbilityTooltip_phoenix_r"						"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Target an area, after a 1 second delay periodically deal damage in that area<br>Caster always dies at the end of that ability"
+
+		"AbilityTooltip_ta_q"							"Deal damage in a line"
+		"AbilityTooltip_ta_w"							"Slow enemies in a cone<br/><br/>Heal when slowed enemy casts a spell"
+		"AbilityTooltip_ta_e"							"Blink<br/><br/>Dealing or taking damage resets the cooldown"
+		"AbilityTooltip_ta_r"							"Receive a shield, which heals you in 3 seconds after taking damage"
+
+		"AbilityTooltip_tiny_q"							"Throw a stone<br/>Pick it up to reset cooldown"
+		"AbilityTooltip_tiny_w"							"Throw a stone stunning and damaging all enemies in the target area"
+		"AbilityTooltip_tiny_e"							"After a short delay, create an impassable ring of stones"
+		"AbilityTooltip_tiny_r"							"Empower next your next used ability<br><br><font color=\"gold\"><b>Q</b></font> Applies a stun<br><font color=\"gold\"><b>W</b></font> Bounces 2 times<br><font color=\"gold\"><b>E</b></font> Has no delay on cast"
+
+		"AbilityTooltip_pugna_q"						"Take damage<br/>Fire a projectile<br/>If it hits, fire back healing projectile"
+		"AbilityTooltip_pugna_w"						"Place a healing trap which activates in 1.5 seconds"
+		"AbilityTooltip_pugna_e"						"<font color=\"#DAFF7F\"><b>Toggle</b></font><br>Your healing and damage is swapped"
+		"AbilityTooltip_pugna_r"						"You can't be silenced or slowed<br/>Your health can't change<br/>Duration: 4.5s"
+
+		"AbilityTooltip_venge_q"						"Fire a projectile which stuns enemies for 1 second"
+		"AbilityTooltip_venge_w"						"Launch a wave of terror which slows and damages enemies it hits"
+		"AbilityTooltip_venge_e"						"Fire a projectile which swaps positions between you and enemy hit"
+		"AbilityTooltip_venge_r"						"Summon a Spirit of Vengeance to guard target area<br/>Spirit fires stunning projectiles for every spell enemies cast<br/>Passively slows all enemies in the area<br/>Duration: 10.0s"
+
+		"ModifierTooltip_modifier_charges"						"Ability charges"
+		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
+		"ModifierTooltip_modifier_knockback_lua"				"Knocked back"
+
+		"ModifierTooltip_modifier_zeus_w"						"Sped up"
+		"ModifierTooltip_modifier_zeus_r"						"Slowed down"
+
+		"ModifierTooltip_modifier_sven_w_slow"					"Silenced and slowed down"
+		"ModifierTooltip_modifier_sven_e"						"Angry and rushin"
+		"ModifierTooltip_modifier_sven_r"						"<font color=\"#AE0000\"><b>Enraged</b></font>"
+
+		"ModifierTooltip_modifier_storm_spirit_e"				"Riding on the storm"
+
+		"ModifierTooltip_modifier_sniper_w"						"Movement disabled by trap"
+		"ModifierTooltip_modifier_sniper_e"						"Sprinting"
+		"ModifierTooltip_modifier_sniper_r"						"Stealthed movement"
+
+		"ModifierTooltip_modifier_sk_q"							"Slowed down"
+		"ModifierTooltip_modifier_sk_r"							"Invisible in sandstorm"
+
+		"ModifierTooltip_modifier_pa_w_sub"						"Slowed down"
+		"ModifierTooltip_modifier_pa_e"							"Jumping"
+		"ModifierTooltip_modifier_pa_r"							"Invisible"
+
+		"ModifierTooltip_modifier_lycan_bleed"					"<font color=\"#D10000\"><b>Bleeding</b></font>"
+		"ModifierTooltip_modifier_lycan_instinct"				"Moving faster towards <font color=\"#D10000\"><b>Bleeding</b></font> enemies"
+		"ModifierTooltip_modifier_lycan_e"						"Fleeing"
+		"ModifierTooltip_modifier_lycan_e_silence"				"Silenced"
+		"ModifierTooltip_modifier_lycan_r"						"Transformed"
+
+		"ModifierTooltip_modifier_lc_q"							"Slowed down"
+		"ModifierTooltip_modifier_lc_w_shield"					"Shielded from the next damage instance"
+		"ModifierTooltip_modifier_lc_w_speed"					"Sped up"
+		"ModifierTooltip_modifier_lc_e"							"Slidin"
+		"ModifierTooltip_modifier_lc_r"							"Immortal and has cooldowns halved"
+
+		"ModifierTooltip_modifier_earth_spirit_e"				"Flying Donatello style"
+		"ModifierTooltip_modifier_earth_spirit_stand"			"Invulnerable while on the <font color=\"#3A9B00\"><b>Remnant</b></font>"
+
+		"ModifierTooltip_modifier_cm_frozen"					"<font color=\"skyblue\"><b>Frozen</b></font>"
+		"ModifierTooltip_modifier_cm_r_slow"					"Slowed and considered <font color=\"skyblue\"><b>Frozen</b></font>"
+
+		"ModifierTooltip_modifier_phoenix_q"					"Birdy"
+		"ModifierTooltip_modifier_phoenix_q_slow"				"Slowed down"
+		"ModifierTooltip_modifier_phoenix_w"					"Slowed down"
+		"ModifierTooltip_modifier_phoenix_egg_tooltip"			"Turns into a 1 health egg after death<br>If the egg survives, revives with 1 health"
+		"ModifierTooltip_modifier_phoenix_egg"					"Reviving"
+
+		"ModifierTooltip_modifier_ta_w"							"Slowed, will heal caster if casts a spell"
+		"ModifierTooltip_modifier_ta_r_shield"					"Receives a heal after taking damage"
+		"ModifierTooltip_modifier_ta_r_heal"					"Will be healed"
+
+		"ModifierTooltip_modifier_tiny_q"						"Slowed"
+		"ModifierTooltip_modifier_tiny_r"						"Next ability you use will be empowered"
+
+		"ModifierTooltip_modifier_pugna_e"						"Healing and damage is swapped"
+
+		"ModifierTooltip_modifier_venge_w"						"Slowed and revealed"
+		"ModifierTooltip_modifier_venge_r_target"				"Slowed and revealed"
+	}
+}
+
