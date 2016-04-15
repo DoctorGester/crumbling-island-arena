@@ -86,7 +86,7 @@ end
 
 function GameMode:OnThink()
     if GameRules:IsGamePaused() == true then
-        return
+        return THINK_PERIOD
     end
 
     local now = Time()
