@@ -92,6 +92,22 @@ function InjectAreaDebug()
     Spells.AreaDamage = new
 end
 
+function CheckLocalizationFile(sourcePath, targetPath, pattern)
+    local source = LoadKeyValues(sourcePath)["Tokens"]
+    local target = LoadKeyValues(targetPath)["Tokens"]
+    PrintTable(target)
+
+    for key, _ in pairs(source) do
+        local value = target[key]
+
+        if not value then
+            ---print("["..targetPath.."] missing key "..key)
+        elseif not string.find(value, pattern) then
+            --print("["..targetPath.."]: "..key.." key doesn't match the pattern")
+        end
+    end
+end
+
 function CheckAndEnableDebug()
     local cheatsEnabled = IsInToolsMode()
 
@@ -149,4 +165,6 @@ end
 
 if IsInToolsMode() then
     InjectFreeSelection()
+
+    CheckLocalizationFile("panorama/localization/addon_english.txt", "panorama/localization/addon_russian.txt", "[а-яА-Я][а-яА-Я]+")
 end

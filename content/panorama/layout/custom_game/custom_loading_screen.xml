@@ -1,0 +1,5 @@
+﻿<root>
+    <Panel style="width:100%;height:100%;overflow:clip;background-color:black;">
+        <Image src="file://{images}/custom_game/loadscreen.png"/>
+    </Panel>
+</root>
