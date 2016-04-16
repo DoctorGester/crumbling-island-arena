@@ -423,16 +423,16 @@ function GameMode:SubmitRoundInfo(round, winner, gameOver)
 
         if player.selectedHero then
             playerData.hero = string.gsub(player.selectedHero, "npc_dota_hero_", "")
+        else
+            playerData.hero = ""
         end
 
         playerData.steamID32 = PlayerResource:GetSteamAccountID(player.id)
         playerData.score = player.score
 
-        for key, value in pairs(round.statistics.stats[player.id]) do
-            if type(value) == "number" then
-                playerData[key] = value
-            end
-        end
+        local stats = round.statistics.stats[player.id]
+        playerData.damageDealt = stats.damageDealt or 0
+        playerData.projectilesFired = stats.projectilesFired or 0
 
         table.insert(players, playerData)
     end
