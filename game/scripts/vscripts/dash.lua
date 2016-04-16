@@ -45,9 +45,8 @@ function Dash:constructor(hero, to, speed, params)
 end
 
 function Dash:SetModifierHandle(modifier)
-    if self.modifierHandle then
-        self.hero:RemoveModifier(self.modifierHandle:GetName())
-        --self.modifierHandle:Destroy()
+    if self.modifierHandle and IsValidEntity(self.modifierHandle) then
+        self.modifierHandle:Destroy()
     end
 
     self.modifierHandle = modifier
