@@ -45,8 +45,14 @@ function Dash:constructor(hero, to, speed, params)
 end
 
 function Dash:SetModifierHandle(modifier)
-    if self.modifierHandle and IsValidEntity(self.modifierHandle) then
-        self.modifierHandle:Destroy()
+    local all = self.hero:AllModifiers()
+
+    -- Destroying a modifier which is already removed results in crash
+    for _, modifier in pairs(all) do
+        if modifier == self.modifierHandle then
+            self.modifierHandle:Destroy()
+            break
+        end
     end
 
     self.modifierHandle = modifier
@@ -85,9 +91,9 @@ function Dash:Update()
         end
     end
 
-    local stunned = self:IsStunned()
-    if (self.to - origin):Length2D() <= self.velocity or stunned then
-        self:End(self.hero:GetPos(), not stunned)
+    local interrupted = self:IsStunned() or not self.hero:Alive()
+    if (self.to - origin):Length2D() <= self.velocity or interrupted then
+        self:End(self.hero:GetPos(), not interrupted)
     end
 
     return result
