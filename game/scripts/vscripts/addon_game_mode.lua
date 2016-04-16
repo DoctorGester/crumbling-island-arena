@@ -440,8 +440,8 @@ function GameMode:SubmitRoundInfo(round, winner, gameOver)
         table.insert(players, playerData)
     end
 
-    statCollection:sendCustom({ game = { version = GAME_VERSION }, players = players })
     statCollection:sendStage3(winners, gameOver)
+    statCollection:sendCustom({ game = game, players = players })
 end
 
 function GameMode:UpdateGameInfo()

@@ -107,7 +107,7 @@ function statCollection:init()
     self.winner = -1
 
     --Store roundID globally
-    self.roundID = 0
+    self.roundID = -1
 
     -- Hook requred functions to operate correctly
     self:hookFunctions()
