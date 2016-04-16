@@ -24,7 +24,7 @@ function Round:CheckEndConditions()
     end
 
     for _, player in pairs(self.players) do
-        if player:IsConnected() and (not player.hero.unit:IsNull() and player.hero:Alive()) then
+        if player:IsConnected() and (player.hero and not player.hero.unit:IsNull() and player.hero:Alive()) then
             amountAlive = amountAlive + 1
             lastAlive = player
         end
@@ -38,7 +38,9 @@ end
 
 function Round:EndRound()
     for _, player in pairs(self.players) do
-        player.hero.protected = true
+        if player.hero then
+            player.hero.protected = true
+        end
     end
 
     self.ended = true
