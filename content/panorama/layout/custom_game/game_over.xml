@@ -7,7 +7,7 @@
         <include src="file://{resources}/scripts/custom_game/util.js" />
         <include src="file://{resources}/scripts/custom_game/game_over.js" />
     </scripts>
-    <Panel class="GameOverBackground" onactivate="Game.FinishGame()">
+    <Panel class="GameOverBackground" hittest="false">
         <Panel hittest="false" id="GameOverScoreboard" class="GameOverScoreboardInvisible">
         </Panel>
     </Panel>

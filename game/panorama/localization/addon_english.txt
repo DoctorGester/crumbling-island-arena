@@ -66,7 +66,7 @@
 		"SbProj" "Missiles fired"
 		"SbAmountPlayed" "Heroes played"
 		"SbMostPlayed" "Most played"
-		"SbExit" "Click anywhere to exit"
+		"SbExit" "Click to exit"
 		"SbWinner" "Game winner"
 		"SbRunnerUp" "Runner up"
 		"SbTooManyHeroes" "Too many heroes to display"

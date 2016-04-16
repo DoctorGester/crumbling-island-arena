@@ -31,7 +31,7 @@ FIXED_DAY_TIME = 0.27
 
 THINK_PERIOD = 0.01
 
-GAME_GOAL = 75
+GAME_GOAL = 3
 
 DUMMY_HERO = "npc_dota_hero_wisp"
 
@@ -137,7 +137,7 @@ end
 function GameMode:EventStateChanged(args)
     local newState = GameRules:State_Get()
 
-    if newState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit then
+    if not IsInToolsMode() and newState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit then
         statCollection:init()
     end
 

@@ -125,9 +125,15 @@ function AddHeaders(scoreboard) {
 }
 
 function AddFooter(scoreboard) {
-    var label = $.CreatePanel("Label", scoreboard, "");
-    label.AddClass("TableFooter");
+    var button = $.CreatePanel("Button", scoreboard, "ExitButton");
+    button.AddClass("TableFooter");
+
+    var label = $.CreatePanel("Label", button, "");
     label.text = $.Localize("SbExit");
+
+    button.SetPanelEvent("onactivate", function() {
+        Game.FinishGame();
+    });
 }
 
 function GameInfoUpdated(gameInfo) {

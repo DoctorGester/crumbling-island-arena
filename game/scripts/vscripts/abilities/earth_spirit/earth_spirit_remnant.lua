@@ -151,7 +151,7 @@ function EarthSpiritRemnant:Update()
             self:Cracks()
 
             local pos = self:GetPos()
-            local diff = self.target:GetPos() - pos
+            local diff = (self.target:GetPos() - pos) * Vector(1, 1, 0)
             if diff:Length2D() <= self:GetRad() + self.target:GetRad() then
 
                 if instanceof(self.target, EarthSpiritRemnant) then

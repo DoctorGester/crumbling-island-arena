@@ -402,7 +402,7 @@ function statCollection:sendStage3(winners, lastRound)
             table.insert(players, {
                 steamID32 = steamID,
                 connectionState = PlayerResource:GetConnectionState(playerID),
-                isWinner = winners[steamID]
+                isWinner = winners[steamID] ~= nil
             })
         end
     end
