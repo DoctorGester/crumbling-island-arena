@@ -137,7 +137,7 @@ end
 function GameMode:EventStateChanged(args)
     local newState = GameRules:State_Get()
 
-    if not IsInToolsMode() and newState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit then
+    if newState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit then
         statCollection:init()
     end
 
