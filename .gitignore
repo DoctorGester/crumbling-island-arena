@@ -20,6 +20,8 @@
 # Map files
 *.vpk
 
+settings.kv
+
 # Map overviews
 content/materials/overviews/*
 game/materials/overviews/*

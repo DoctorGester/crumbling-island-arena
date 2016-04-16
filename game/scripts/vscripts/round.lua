@@ -13,6 +13,7 @@ function Round:constructor(players, availableHeroes, callback)
     self.availableHeroes = availableHeroes
 
     self.spells = Spells()
+    self.statistics = Statistics(players)
 end
 
 function Round:CheckEndConditions()
@@ -39,6 +40,8 @@ end
 function Round:EndRound()
     for _, player in pairs(self.players) do
         if player.hero then
+            self.statistics:AddPlayedHero(player, player.selectedHero)
+
             player.hero.protected = true
         end
     end

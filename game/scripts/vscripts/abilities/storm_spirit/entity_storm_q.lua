@@ -17,6 +17,14 @@ function EntityStormQ:constructor(round, owner, position, facing)
     ParticleManager:SetParticleControl(self.rangeIndicator, 3, Vector(600, 0, 0))
 end
 
+function EntityStormQ:Update()
+    getbase(EntityStormQ).Update(self)
+
+    if not self.hero:Alive() then
+        self:Destroy()
+    end
+end
+
 function EntityStormQ:Remove()
     self:EmitSound("Hero_StormSpirit.StaticRemnantExplode")
     self.hero:RemoveRemnant(self)

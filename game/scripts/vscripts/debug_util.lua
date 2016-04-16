@@ -139,6 +139,7 @@ function CheckAndEnableDebug()
     --InjectAreaDebug()
     ULTS_TIME = 1
 
+    --[[
     Statistics.stats[1] = {}
     Statistics.stats[2] = {}
     Statistics.stats[3] = {}
@@ -161,10 +162,11 @@ function CheckAndEnableDebug()
     Statistics.AddPlayedHero({ id=3 }, "npc_dota_hero_lycan")
     Statistics.AddPlayedHero({ id=3 }, "npc_dota_hero_crystal_maiden")
     Statistics.IncreaseDamageDealt({ id = 3 })
+    ]]
 end
 
 if IsInToolsMode() then
     InjectFreeSelection()
 
-    CheckLocalizationFile("panorama/localization/addon_english.txt", "panorama/localization/addon_russian.txt", "[а-яА-Я][а-яА-Я]+")
+    --CheckLocalizationFile("panorama/localization/addon_english.txt", "panorama/localization/addon_russian.txt", "[а-яА-Я][а-яА-Я]+")
 end

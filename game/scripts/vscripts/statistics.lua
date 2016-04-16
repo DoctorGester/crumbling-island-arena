@@ -1,54 +1,79 @@
-Statistics = Statistics or {}
+Statistics = Statistics or class({})
 
-function Statistics.Init(players)
-	Statistics.stats = {}
+function Statistics:constructor(players)
+	self.stats = {}
 
 	for _, player in pairs(players) do
-		Statistics.stats[player.id] = {}
+		self.stats[player.id] = {}
 	end
 end
 
-function Statistics.IncreaseValue(player, value, amount)
+function Statistics:IncreaseValue(player, value, amount)
 	if not player then
 		return
 	end
 
-	Statistics.stats[player.id][value] = (Statistics.stats[player.id][value] or 0) + amount
+	self.stats[player.id][value] = (self.stats[player.id][value] or 0) + amount
 end
 
-function Statistics.IncreaseRoundsWon(player)
-	Statistics.IncreaseValue(player, "roundsWon", 1)
+function Statistics:IncreaseRoundsWon(player)
+	self:IncreaseValue(player, "roundsWon", 1)
 end
 
-function Statistics.IncreaseDamageDealt(player)
-	Statistics.IncreaseValue(player, "damageDealt", 1)
+function Statistics:IncreaseDamageDealt(player)
+	self:IncreaseValue(player, "damageDealt", 1)
 end
 
-function Statistics.IncreaseGroundDamageDealt(player)
-	Statistics.IncreaseValue(player, "groundDamageDealt", 1)
+function Statistics:IncreaseGroundDamageDealt(player)
+	self:IncreaseValue(player, "groundDamageDealt", 1)
 end
 
-function Statistics.IncreaseHealingReceived(player)
-	Statistics.IncreaseValue(player, "healingReceived", 1)
+function Statistics:IncreaseHealingReceived(player)
+	self:IncreaseValue(player, "healingReceived", 1)
 end
 
-function Statistics.IncreaseProjectilesFired(player)
-	Statistics.IncreaseValue(player, "projectilesFired", 1)
+function Statistics:IncreaseProjectilesFired(player)
+	self:IncreaseValue(player, "projectilesFired", 1)
 end
 
-function Statistics.AddPlayedHero(player, heroName)
+function Statistics:AddPlayedHero(player, heroName)
 	if not player then
 		return
 	end
 	
 	player = player.id
 
-	local set = Statistics.stats[player].playedHeroes
+	local set = self.stats[player].playedHeroes
 
 	if not set then
 		set = {}
-		Statistics.stats[player].playedHeroes = set
+		self.stats[player].playedHeroes = set
 	end
 
 	set[heroName] = (set[heroName] or 0) + 1
+end
+
+function Statistics.MergeTables(source, target)
+	for key, value in pairs(source) do
+		local currentValue = target[key]
+
+		if type(value) == "number" then
+			target[key] = (currentValue or 0) + value
+		end
+
+		if type(value) == "table" then
+			if not currentValue then
+				currentValue = {}
+				target[key] = currentValue
+			end
+
+			Statistics.MergeTables(value, currentValue)
+		end
+	end
+end
+
+function Statistics:Add(statistics)
+	for player, stats in pairs(statistics.stats) do
+		Statistics.MergeTables(stats, self.stats[player])
+	end
 end

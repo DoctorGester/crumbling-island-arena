@@ -103,8 +103,6 @@ function HeroSelection:OnClick(args)
 
     self:UpdateSelectionState()
     self:UpdateSelectedHeroes()
-
-    Statistics.AddPlayedHero(player, hero)
 end
 
 function HeroSelection:UpdateSelectionState()
@@ -136,8 +134,6 @@ function HeroSelection:AssignRandomHero(player)
     player.selectedHero = table[RandomInt(0, index - 1)]
 
     self.PreviousRandomed[player.id] = player.selectedHero
-
-    Statistics.AddPlayedHero(player, player.selectedHero)
 end
 
 function HeroSelection:AssignRandomHeroes()

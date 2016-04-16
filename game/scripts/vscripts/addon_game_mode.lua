@@ -1,6 +1,7 @@
 require('lib/timers')
 require('lib/animations')
-require("lib/vector_target")
+require('lib/vector_target')
+require('lib/statcollection')
 require('targeting_indicator')
 require('util')
 
@@ -135,6 +136,10 @@ end
 
 function GameMode:EventStateChanged(args)
     local newState = GameRules:State_Get()
+
+    if newState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit then
+        statCollection:init()
+    end
 
     if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         self:OnGameInProgress()
@@ -295,7 +300,9 @@ function GameMode:OnDamageDealt(hero, source)
     if hero ~= source and source and source.owner then
         self:IncreaseScore(source.owner, 1)
 
-        Statistics.IncreaseDamageDealt(source.owner)
+        if self.round then
+            self.round.statistics:IncreaseDamageDealt(source.owner)
+        end
     end
 end
 
@@ -316,10 +323,13 @@ function GameMode:OnRoundEnd(round)
         playerData.color = self.TeamColors[PlayerResource:GetTeam(winner.id)]
         self:IncreaseScore(winner, 3)
 
-        Statistics.IncreaseRoundsWon(winner)
+        round.statistics:IncreaseRoundsWon(winner)
     else
         playerData.id = -1
     end
+
+    self.generalStatistics:Add(round.statistics)
+    self:SubmitRoundInfo(round, winner, self.winner ~= nil)
 
     CustomNetTables:SetTableValue("main", "roundState", { roundWinner = playerData })
 
@@ -399,6 +409,38 @@ function GameMode:SetState(state)
     CustomNetTables:SetTableValue("main", "gameState", { state = state })
 end
 
+function GameMode:SubmitRoundInfo(round, winner, gameOver)
+    local winners = {}
+
+    if winner then
+        winners[PlayerResource:GetSteamAccountID(winner.id)] = true
+    end
+
+    local players = {}
+
+    for i, player in pairs(self.Players) do
+        local playerData = {}
+
+        if player.selectedHero then
+            playerData.hero = string.gsub(player.selectedHero, "npc_dota_hero_", "")
+        end
+
+        playerData.steamID32 = PlayerResource:GetSteamAccountID(player.id)
+        playerData.score = player.score
+
+        for key, value in pairs(round.statistics.stats[player.id]) do
+            if type(value) == "number" then
+                playerData[key] = value
+            end
+        end
+
+        table.insert(players, playerData)
+    end
+
+    statCollection:sendCustom({ game = {}, players = players })
+    statCollection:sendStage3(winners, gameOver)
+end
+
 function GameMode:UpdateGameInfo()
     local players = {}
 
@@ -417,7 +459,7 @@ function GameMode:UpdateGameInfo()
         winner = self.winner and self.winner.id or nil,
         roundNumber = self.roundNumber,
         runnerUps = self.runnerUps,
-        statistics = Statistics.stats,
+        statistics = self.generalStatistics.stats,
         players = players
     })
 end
@@ -455,6 +497,10 @@ function GameMode:LoadCustomHeroes()
 end
 
 function GameMode:OnGameInProgress()
+    if not statCollection.sentStage2 and statCollection.sentStage1 then
+        statCollection:sendStage2()
+    end
+
     print("Setting players up")
 
     local i = 0
@@ -477,7 +523,7 @@ function GameMode:OnGameInProgress()
     self.winner = nil
     self.runnerUps = {}
 
-    Statistics.Init(self.Players)
+    self.generalStatistics = Statistics(self.Players)
 
     self:UpdatePlayerTable()
     self.GameItems = nil--LoadKeyValues("scripts/items/items_game.txt").items

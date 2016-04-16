@@ -33,7 +33,7 @@ function Projectile:constructor(round, params)
     self:SetSpeed(params.speed or 600)
     self:SetPos(self.from)
 
-    Statistics.IncreaseProjectilesFired(self.owner)
+    self.hero.round.statistics:IncreaseProjectilesFired(self.owner)
 end
 
 function Projectile:CanFall()
