@@ -31,7 +31,7 @@ FIXED_DAY_TIME = 0.27
 
 THINK_PERIOD = 0.01
 
-GAME_GOAL = 3
+GAME_GOAL = 75
 
 DUMMY_HERO = "npc_dota_hero_wisp"
 
