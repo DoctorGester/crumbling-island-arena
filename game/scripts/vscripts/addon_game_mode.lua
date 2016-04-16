@@ -325,10 +325,6 @@ function GameMode:OnRoundEnd(round)
 
     self:SetState(STATE_ROUND_ENDED)
 
-    for _, player in pairs(self.Players) do
-        player.hero.protected = true
-    end
-
     Timers:CreateTimer(ROUND_ENDING_TIME, function ()
         round:Destroy()
         self.round = nil
