@@ -269,3 +269,11 @@ function PrintTable(t, indent, done)
     end
   end
 end
+
+function PrintSchema(gameArray, playerArray)
+    print("-------- GAME DATA --------")
+    DeepPrintTable(gameArray)
+    print("\n-------- PLAYER DATA --------")
+    DeepPrintTable(playerArray)
+    print("-------------------------------------")
+end

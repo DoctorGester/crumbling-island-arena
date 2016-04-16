@@ -20,6 +20,8 @@ require('statistics')
 require('chat')
 require('debug_util')
 
+GAME_VERSION = "1.0"
+
 STATE_NONE = 0
 STATE_HERO_SELECTION = 1
 STATE_ROUND_IN_PROGRESS = 2
@@ -137,7 +139,7 @@ end
 function GameMode:EventStateChanged(args)
     local newState = GameRules:State_Get()
 
-    if newState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit then
+    if not IsInToolsMode() and newState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit then
         statCollection:init()
     end
 
@@ -417,6 +419,7 @@ function GameMode:SubmitRoundInfo(round, winner, gameOver)
     end
 
     local players = {}
+    local game = { version = GAME_VERSION }
 
     for i, player in pairs(self.Players) do
         local playerData = {}
@@ -431,13 +434,13 @@ function GameMode:SubmitRoundInfo(round, winner, gameOver)
         playerData.score = player.score
 
         local stats = round.statistics.stats[player.id]
-        playerData.damageDealt = stats.damageDealt or 0
-        playerData.projectilesFired = stats.projectilesFired or 0
+        playerData.dD = stats.damageDealt or 0
+        playerData.pF = stats.projectilesFired or 0
 
         table.insert(players, playerData)
     end
 
-    statCollection:sendCustom({ game = {}, players = players })
+    statCollection:sendCustom({ game = { version = GAME_VERSION }, players = players })
     statCollection:sendStage3(winners, gameOver)
 end
 
