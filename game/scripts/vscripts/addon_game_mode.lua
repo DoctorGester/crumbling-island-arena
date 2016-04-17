@@ -292,7 +292,7 @@ function GameMode:IncreaseScore(player, amount)
     if player.score >= self.gameGoal then
         if not self.winner then
             self.winner = player
-        elseif player ~= self.winner then
+        elseif player ~= self.winner and GetIndex(self.runnerUps, player.id) == nil then
             table.insert(self.runnerUps, player.id)
         end
     end
