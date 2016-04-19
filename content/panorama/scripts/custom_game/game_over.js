@@ -162,16 +162,7 @@ function GameInfoUpdated(gameInfo) {
     AddFooter(scoreboard);
 }
 
-function GameStateChanged(data){
-    var scoreboard = $("#GameOverScoreboard");
-
-    if (data.state == GAME_STATE_GAME_OVER){
-        scoreboard.style.visibility = "visible";
-        SwitchClass(scoreboard, "GameOverScoreboardInvisible", "GameOverScoreboardVisible");
-    } else {
-        SwitchClass(scoreboard, "GameOverScoreboardVisible", "GameOverScoreboardInvisible");
-    }
-}
+$.GetContextPanel().AddClass("GameOverScoreboardVisible");
+$("#GameOverChat").BLoadLayout("file://{resources}/layout/custom_game/simple_chat.xml", false, false);
 
 SubscribeToNetTableKey("main", "gameInfo", true, GameInfoUpdated);
-SubscribeToNetTableKey("main", "gameState", true, GameStateChanged);

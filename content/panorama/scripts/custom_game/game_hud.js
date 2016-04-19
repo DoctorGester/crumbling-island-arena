@@ -53,6 +53,47 @@ function OnCustomChatSay(args) {
     AddChatLine(args.hero, Players.GetPlayerName(args.player), color, args.message);
 }
 
+function OnKillLogEntry(args) {
+    var log = $("#KillLog");
+    var last = log.GetChild(0);
+
+    var entry = $.CreatePanel("Panel", log, "");
+    entry.AddClass("KillLogEntry");
+    entry.AddClass("KillLogEntryAppear");
+    entry.style.backgroundColor = LuaColorA(args.color, 128);
+
+    if (last != null) {
+        log.MoveChildBefore(entry, last);
+    }
+
+    var img = $.CreatePanel("DOTAHeroImage", entry, "");
+
+    img.heroimagestyle = "icon";
+    img.heroname = args.killer;
+    img.SetScaling("stretch-to-fit-y-preserve-aspect");
+
+    img = $.CreatePanel("Image", entry, "");
+
+    if (args.fell) {
+        img.SetImage("file://{images}/custom_game/fall.png");
+    } else {
+        img.SetImage("file://{images}/custom_game/swords.png");
+    }
+
+    img.SetScaling("stretch-to-fit-y-preserve-aspect");
+
+    if (!args.fell) {
+        img = $.CreatePanel("DOTAHeroImage", entry, "");
+
+        img.heroimagestyle = "icon";
+        img.heroname = args.victim;
+        img.SetScaling("stretch-to-fit-y-preserve-aspect");
+
+        var label = $.CreatePanel("Label", entry, "");
+        label.text = "(+3)";
+    }
+}
+
 function SetupUI(){
     GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_TIMEOFDAY, false);
     GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_HEROES, false);
@@ -73,6 +114,7 @@ function SetupUI(){
     GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_BAR_BACKGROUND, false);
     GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_MENU_BUTTONS, false);
     GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_ENDGAME, false);
+    GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_ENDGAME_CHAT, false);
 
     GameUI.SetRenderBottomInsetOverride(0);
     GameUI.SetRenderTopInsetOverride(0);
@@ -198,12 +240,15 @@ function GameStateChanged(data){
         $("#HeroPanel").RemoveClass("AnimationHeroHudHidden");
         $("#HeroDetails").RemoveClass("AnimationHeroDetailsHidden");
         $("#ScoreboardContainer").RemoveClass("AnimationScoreboardHidden");
+        $("#KillLog").RemoveClass("AnimationKillLogHidden");
+        $("#KillLog").RemoveAndDeleteChildren();
 
         Game.EmitSound("UI.RoundStart")
     } else {
         $("#HeroPanel").AddClass("AnimationHeroHudHidden");
         $("#HeroDetails").AddClass("AnimationHeroDetailsHidden");
         $("#ScoreboardContainer").AddClass("AnimationScoreboardHidden");
+        $("#KillLog").AddClass("AnimationKillLogHidden");
     }
 }
 
@@ -226,4 +271,5 @@ SetupUI();
     });
 
     GameEvents.Subscribe("custom_chat_say", OnCustomChatSay);
+    GameEvents.Subscribe("kill_log_entry", OnKillLogEntry);
 })();

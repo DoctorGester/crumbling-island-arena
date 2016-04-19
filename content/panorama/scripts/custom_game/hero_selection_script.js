@@ -5,36 +5,6 @@ var selectedHeroes = {};
 var abilityBar = new AbilityBar("#HeroAbilities");
 var previewSchedule = 0;
 
-AddEnterListener("HeroSelectionChatEnter", function() {
-    if ($("#HeroSelectionChat").BCanSeeInParentScroll()) {
-        $("#HeroSelectionChatEntry").SetFocus();
-    }
-});
-
-function SubmitSelectionChat() {
-    GameEvents.SendCustomGameEventToServer("custom_chat_say", { message: $("#HeroSelectionChatEntry").text });
-
-    $("#HeroSelectionChatEntry").text = "";
-}
-
-function AddChatLine(playerName, color, message) {
-    var line = $.CreatePanel("Label", $("#HeroSelectionChatContent"), "");
-    line.SetDialogVariable("name", playerName);
-    line.SetDialogVariable("color", color);
-    line.SetDialogVariable("message", message);
-    line.html = true;
-    line.text = $.Localize("#ChatLine", line);
-    line.AddClass("HeroSelectionChatLine");
-
-    $("#HeroSelectionChatContent").ScrollToBottom();
-}
-
-function OnCustomChatSay(args) {
-    var color = LuaColor(args.color);
-    
-    AddChatLine(Players.GetPlayerName(args.player), color, args.message);
-}
-
 function TableAbilityDataProvider(heroData) {
     this.heroData = heroData;
 
@@ -446,11 +416,12 @@ function GameInfoChanged(gameInfo) {
 (function () {
     GameEvents.Subscribe("selection_hero_hover_client", SelectionHoverClient);
     GameEvents.Subscribe("timer_tick", OnTimerTick);
-    GameEvents.Subscribe("custom_chat_say", OnCustomChatSay);
 
     SubscribeToNetTableKey("main", "heroes", true, HeroesUpdated);
     SubscribeToNetTableKey("main", "players", true, PlayersUpdated);
     SubscribeToNetTableKey("main", "gameState", true, GameStateChanged);
     SubscribeToNetTableKey("main", "gameInfo", true, GameInfoChanged);
     SubscribeToNetTableKey("main", "selectedHeroes", true, HeroSelectionUpdated);
+
+    $("#HeroSelectionChat").BLoadLayout("file://{resources}/layout/custom_game/simple_chat.xml", false, false);
 })();

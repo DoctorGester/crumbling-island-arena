@@ -305,6 +305,15 @@ function GameMode:OnDamageDealt(hero, source)
         if self.round then
             self.round.statistics:IncreaseDamageDealt(source.owner)
         end
+
+        if not hero:Alive() then
+             CustomGameEventManager:Send_ServerToAllClients("kill_log_entry", {
+                killer = source.owner.hero.unit:GetName(),
+                victim = hero.unit:GetName(),
+                color = self.TeamColors[PlayerResource:GetTeam(source.owner.id)],
+                fell = false
+            })
+        end
     end
 end
 
@@ -376,6 +385,17 @@ function GameMode:OnEntityKilled(event)
 
     if entity:IsHero() and entity.hero then
         entity.hero.round.entityDied = true
+
+        if entity:GetAbsOrigin().z <= -MAP_HEIGHT then
+            local name = entity:GetName()
+
+            CustomGameEventManager:Send_ServerToAllClients("kill_log_entry", {
+                killer = name,
+                victim = name,
+                color = self.TeamColors[entity:GetTeamNumber()],
+                fell = true
+            })
+        end
     end
 end
 

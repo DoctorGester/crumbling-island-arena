@@ -45,11 +45,7 @@
                 <Label id="TimerText"></Label>
                 <Label class="TimerColumnLabel TimerColumnText" html="true" text="#GameInfoText"></Label>
             </Panel>
-            <Panel id="HeroSelectionChat">
-                <Panel id="HeroSelectionChatContent" oncancel="SetInputFocus(HeroSelectionBackground)">
-                </Panel>
-                <TextEntry id="HeroSelectionChatEntry" multiline="false" textmode="normal" oninputsubmit="SubmitSelectionChat()" maxchars="256" placeholder="#ChatPlaceholder"/>
-            </Panel>
+            <Panel id="HeroSelectionChat"/>
         </Panel>
     </Panel>
 </root>

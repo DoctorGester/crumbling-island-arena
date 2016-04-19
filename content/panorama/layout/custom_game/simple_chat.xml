@@ -1,0 +1,46 @@
+<root>
+    <styles>
+        <include src="file://{resources}/styles/custom_game/simple_chat.css" />
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/util.js" />
+    </scripts>
+    <script>
+        AddEnterListener("SimpleChatEnter", function() {
+            if ($("#ChatContent").BCanSeeInParentScroll()) {
+                $("#ChatEntry").SetFocus();
+            }
+        });
+
+        function SubmitChat() {
+            GameEvents.SendCustomGameEventToServer("custom_chat_say", { message: $("#ChatEntry").text });
+
+            $("#ChatEntry").text = "";
+        }
+
+        function AddChatLine(playerName, color, message) {
+            var line = $.CreatePanel("Label", $("#ChatContent"), "");
+            line.SetDialogVariable("name", playerName);
+            line.SetDialogVariable("color", color);
+            line.SetDialogVariable("message", message);
+            line.html = true;
+            line.text = $.Localize("#ChatLine", line);
+            line.AddClass("ChatLine");
+
+            $("#ChatContent").ScrollToBottom();
+        }
+
+        function OnChatSay(args) {
+            var color = LuaColor(args.color);
+            
+            AddChatLine(Players.GetPlayerName(args.player), color, args.message);
+        }
+
+        GameEvents.Subscribe("custom_chat_say", OnChatSay);
+    </script>
+    <Panel class="Chat">
+        <Panel id="ChatContent">
+        </Panel>
+        <TextEntry id="ChatEntry" multiline="false" textmode="normal" oninputsubmit="SubmitChat()" maxchars="256" placeholder="#ChatPlaceholder"/>
+    </Panel>
+</root>

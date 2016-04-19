@@ -8,7 +8,9 @@
         <include src="file://{resources}/scripts/custom_game/game_over.js" />
     </scripts>
     <Panel class="GameOverBackground" hittest="false">
-        <Panel hittest="false" id="GameOverScoreboard" class="GameOverScoreboardInvisible">
+        <Image id="GameOverBackground" src="file://{images}/custom_game/loadscreen.png"/>
+        <Panel hittest="false" id="GameOverScoreboard">
         </Panel>
+        <Panel id="GameOverChat"/>
     </Panel>
 </root>
