@@ -88,9 +88,6 @@ function OnKillLogEntry(args) {
         img.heroimagestyle = "icon";
         img.heroname = args.victim;
         img.SetScaling("stretch-to-fit-y-preserve-aspect");
-
-        var label = $.CreatePanel("Label", entry, "");
-        label.text = "(+3)";
     }
 }
 

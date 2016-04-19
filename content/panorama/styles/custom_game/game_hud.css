@@ -96,7 +96,7 @@
     horizontal-align: right;
     margin-bottom: 50px;
     margin-right: 100px;
-    width: 240px;
+    width: 200px;
     transition: transform 1.0s linear 0.0ms;
     overflow: clip clip;
     transform: scaleY(-1.0);
@@ -121,16 +121,7 @@
     transform: translateX(0px) scaleY(-1.0);
 }
 
-.KillLogEntry Label
-{
-    margin-left: 20px;
-    font-size: 24px;
-    color: gold;
-    width: fill-parent-flow(1.0);
-    text-align: center;
-}
-
-.KillLogEntry Image, .KillLogEntry DOTAHeroImage, .KillLogEntry Label
+.KillLogEntry Image, .KillLogEntry DOTAHeroImage
 {
     width: fill-parent-flow(1.0);
 }
