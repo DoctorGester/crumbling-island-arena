@@ -48,6 +48,14 @@
 		"HeroName_npc_dota_hero_vengefulspirit"			"Справедливость"
 		"HeroTips_npc_dota_hero_vengefulspirit"			"<font color='gold'>Q</font>: Оглушающий снаряд<br/><font color='gold'>W</font>: Дальнобойная волна. Урон и замедление<br/><font color='gold'>E</font>: Меняющий местами снаряд<br/><font color='gold'>R</font>: Вызов духа-защитника"
 
+		"HeroName_npc_dota_hero_drow_ranger"			"Первосвященник"
+		"HeroTips_npc_dota_hero_drow_ranger"			"<font color='gold'>Q</font>: Замедляющая стрела<br/><font color='gold'>W</font>: Волна отбрасывания и безмолвия<br/><font color='gold'>E</font>: Рывок + замедление<br/><font color='gold'>R</font>: Прерываемое, отбрасывающая стрела"
+		"Available_on_npc_dota_hero_drow_ranger"		"Доступено с 23 апреля!"
+
+		"HeroName_npc_dota_hero_skeleton_king"			"Колесница"
+		"HeroTips_npc_dota_hero_skeleton_king"			"<font color='gold'>Q</font>: Вызов скелетов мечников<br/><font color='gold'>W</font>: Вызов скелетов лучников<br/><font color='gold'>E</font>: Вызов зомби защитников<br/><font color='gold'>R</font>: Удар по широкой длинной линии"
+		"Available_on_npc_dota_hero_skeleton_king"		"Доступено с 30 апреля!"
+
 		"PlayerHeader" "игрок"
 		"SelectionHeader" "выбор"
 		"ScoreHeader" "счет"

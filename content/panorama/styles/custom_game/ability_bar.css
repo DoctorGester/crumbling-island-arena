@@ -62,6 +62,8 @@
     margin:5px;
     border-radius: 5px;
     background-color: black;
+    tooltip-position: top;
+    tooltip-body-position: 50% 100%;
 
     transition-property: transform, saturation, wash-color, box-shadow;
     transition-duration: 0.1s;

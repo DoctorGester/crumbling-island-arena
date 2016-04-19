@@ -48,6 +48,15 @@
 		"HeroName_npc_dota_hero_vengefulspirit"			"Justice"
 		"HeroTips_npc_dota_hero_vengefulspirit"			"<font color='gold'>Q</font>: Stunning projectile<br/><font color='gold'>W</font>: Long range wave. Damage + Slow<br/><font color='gold'>E</font>: Swapping projectile<br/><font color='gold'>R</font>: Summon spirit guardian"
 
+		"HeroName_npc_dota_hero_drow_ranger"			"The Hierophant"
+		"HeroTips_npc_dota_hero_drow_ranger"			"<font color='gold'>Q</font>: Slowing projectile<br/><font color='gold'>W</font>: Knocback + silence wave<br/><font color='gold'>E</font>: Dash + slow<br/><font color='gold'>R</font>: Channeling, knockbacking arrow"
+		"Available_on_npc_dota_hero_drow_ranger"		"Available on April 23!"
+
+		"HeroName_npc_dota_hero_skeleton_king"			"The Chariot"
+		"HeroTips_npc_dota_hero_skeleton_king"			"<font color='gold'>Q</font>: Raise skeleton swordsmen<br/><font color='gold'>W</font>: Raise skeleton archers<br/><font color='gold'>E</font>: Raise zombie defenders<br/><font color='gold'>R</font>: Strike in a long wide line"
+		"Available_on_npc_dota_hero_skeleton_king"		"Available on April 30!"
+
+
 		"PlayerHeader" "player"
 		"SelectionHeader" "selection"
 		"ScoreHeader" "score"

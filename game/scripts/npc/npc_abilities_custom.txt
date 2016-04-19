@@ -1468,4 +1468,84 @@
 			"particle" "particles/venge_r/venge_r_counter.vpcf"
 		}
 	}
+
+	"drow_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/drow/drow_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "drow_ranger_frost_arrows"
+		"AbilityCooldown" "2.0"
+		"AbilityCastPoint" "0.2"
+	}
+
+	"drow_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/drow/drow_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "drow_ranger_silence"
+		"AbilityCooldown" "2.0"
+		"AbilityCastPoint" "0.2"
+	}
+
+	"drow_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/drow/drow_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "drow_ranger_trueshot"
+		"AbilityCooldown" "2.0"
+		"AbilityCastPoint" "0.2"
+	}
+
+	"drow_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/drow/drow_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "drow_ranger_marksmanship"
+		"AbilityCooldown" "2.0"
+		"AbilityCastPoint" "0.2"
+	}
+
+	"wk_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/drow/drow_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "undying_decay"
+		"AbilityCooldown" "2.0"
+		"AbilityCastPoint" "0.2"
+	}
+
+	"wk_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/drow/drow_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "undying_decay"
+		"AbilityCooldown" "2.0"
+		"AbilityCastPoint" "0.2"
+	}
+
+	"wk_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/drow/drow_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "undying_tombstone_zombie_deathstrike"
+		"AbilityCooldown" "2.0"
+		"AbilityCastPoint" "0.2"
+	}
+
+	"wk_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/drow/drow_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "undying_decay"
+		"AbilityCooldown" "2.0"
+		"AbilityCastPoint" "0.2"
+	}
 }

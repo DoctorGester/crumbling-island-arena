@@ -1,9 +1,3 @@
-function HideTooltip(){
-    $.DispatchEvent("DOTAHideTextTooltip");
-
-    SetCurrentHoverSpell(null);
-}
-
 // AbilityDataProvider ->
 //  GetAbilityData(slot)
 //  GetAbilityCount()
@@ -89,6 +83,12 @@ function EntityAbilityDataProvider(entityId) {
         element.SetDialogVariable("cooldown", data.cooldown.toFixed(1).toString());
         $.DispatchEvent("DOTAShowTextTooltip", element, $.Localize("AbilityTooltip", element))
     }
+
+    this.HideTooltip = function() {
+        $.DispatchEvent("DOTAHideTextTooltip");
+
+        SetCurrentHoverSpell(null);
+    }
 }
 
 function AbilityBar(elementId) {
@@ -149,7 +149,7 @@ function AbilityBar(elementId) {
         return this.abilities[slot];
     }
 
-    this.RegisterEvents = function() {
+    this.RegisterEvents = function(clickable) {
         for (key in this.abilities) {
             var executeCapture = (function(bar, slot) {
                 return function() {
@@ -168,13 +168,18 @@ function AbilityBar(elementId) {
                 }
             } (this, key));
 
-            var mouseOutCapture = function() {
-                HideTooltip();
-            };
+            var mouseOutCapture = (function(bar) {
+                return function() {
+                    bar.provider.HideTooltip();
+                }
+            } (this));
 
             var ability = this.abilities[key];
 
-            ability.image.SetPanelEvent("onactivate", executeCapture);
+            if (clickable) {
+                ability.image.SetPanelEvent("onactivate", executeCapture);
+            }
+            
             ability.image.SetPanelEvent("onmouseover", mouseOverCapture);
             ability.image.SetPanelEvent("onmouseout", mouseOutCapture);
         }

@@ -143,7 +143,7 @@ function LoadHeroUI(heroId){
     LoadCustomIcons();
 
     abilityBar.SetProvider(new EntityAbilityDataProvider(heroId));
-    abilityBar.RegisterEvents();
+    abilityBar.RegisterEvents(true);
 
     healthBar.SetEntity(heroId);
     buffBar.SetEntity(heroId);

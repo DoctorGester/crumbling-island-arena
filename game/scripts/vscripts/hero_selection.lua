@@ -27,6 +27,10 @@ end
 function HeroSelection:CanBeSelected(hero)
     local entry = self.AvailableHeroes[hero]
 
+    if entry and entry.disabled then
+        return false
+    end
+
     if self.HardHeroesLocked and entry and entry.difficulty == "hard" then
         return false
     end

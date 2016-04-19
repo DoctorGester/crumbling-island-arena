@@ -501,4 +501,72 @@
 
 		"Ultimate" "venge_r"
 	}
+
+	"npc_dota_hero_drow_ranger"
+	{
+		"override_hero"	"npc_dota_hero_drow_ranger"
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
+		"BountyXP"	"0"
+		"MovementSpeed"	"350"
+		"MovementTurnRate"	"10"
+		"StatusHealth"	"5"
+		"StatusHealthRegen"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"AttributeBaseStrength"	"0"
+		"AttributeBaseIntelligence" "0"
+		"VisionDaytimeRange" "0"
+		"VisionNighttimeRange" "0"
+		"Difficulty" "easy"
+		"Disabled" "true"
+		
+		"Ability1" "drow_q"
+		"Ability2" "drow_w"
+		"Ability3" "drow_e"
+		"Ability4" "drow_r"
+		"Ability5" ""
+		"Ability6" ""
+
+		"Ultimate" "drow_r"
+	}
+
+	"npc_dota_hero_skeleton_king"
+	{
+		"override_hero"	"npc_dota_hero_skeleton_king"
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
+		"BountyXP"	"0"
+		"MovementSpeed"	"350"
+		"MovementTurnRate"	"10"
+		"StatusHealth"	"5"
+		"StatusHealthRegen"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"AttributeBaseStrength"	"0"
+		"AttributeBaseIntelligence" "0"
+		"VisionDaytimeRange" "0"
+		"VisionNighttimeRange" "0"
+		"Difficulty" "easy"
+		"Disabled" "true"
+		
+		"Ability1" "wk_q"
+		"Ability2" "wk_w"
+		"Ability3" "wk_e"
+		"Ability4" "wk_r"
+		"Ability5" ""
+		"Ability6" ""
+
+		"Ultimate" "wk_r"
+
+		"CustomIcons"
+		{
+			"wk_q" "wk_q.png"
+			"wk_w" "wk_w.png"
+		}
+	}
 }

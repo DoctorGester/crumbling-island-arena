@@ -55,7 +55,11 @@ function TableAbilityDataProvider(heroData) {
     }
 
     this.ShowTooltip = function(element, data) {
-        $.DispatchEvent("DOTAShowAbilityTooltip", element, data.name);
+        $.DispatchEvent("DOTAShowTextTooltip", element, $.Localize("AbilityTooltip_" + data.name))
+    }
+
+    this.HideTooltip = function() {
+        $.DispatchEvent("DOTAHideTextTooltip");
     }
 }
 
@@ -108,18 +112,25 @@ function DeleteHeroPreview() {
 
 function ShowHeroPreview(heroName) {
     var previewStyle = "width: 100%; height: 100%; opacity-mask: url(\"s2r://panorama/images/masks/softedge_box_png.vtex\");"
-    var preview = $("#HeroPreview")
+    var preview = $("#HeroPreview");
+    preview.SetHasClass("NotAvailableHero", allHeroes[heroName].disabled);
     preview.LoadLayoutFromStringAsync("<root><Panel><DOTAScenePanel style='" + previewStyle + "' unit='" + heroName + "'/></Panel></root>", false, false);
 }
 
 function ShowHeroDetails(heroName) {
     var abilityPanel = $("#HeroAbilities");
     var heroData = allHeroes[heroName];
+    var notAvailable = allHeroes[heroName].disabled;
 
     abilityBar.SetProvider(new TableAbilityDataProvider(heroData));
+    abilityBar.RegisterEvents(false);
     $("#HeroAbilities").visible = true;
     $("#HeroName").text = $.Localize("#HeroName_" + heroData.name);
     $("#HeroTips").text = $.Localize("#HeroTips_" + heroData.name);
+
+    $("#HeroAbilities").SetHasClass("NotAvailableHero", notAvailable);
+    $("#HeroName").SetHasClass("NotAvailableHero", notAvailable);
+    $("#HeroTips").SetHasClass("NotAvailableHero", notAvailable);
 
     if (previewSchedule != 0) {
         $.CancelScheduled(previewSchedule);
@@ -226,56 +237,75 @@ function CreateScoreColumn(players){
     }
 }
 
+function AddButtonEvents(button, name) {
+    button.SetPanelEvent("onactivate", function() {
+        var heroSelected = _.contains(_.values(selectedHeroes), name);
+        var lock = $("#DifficultyLock");
+
+        if (heroButtons[name].GetParent().GetParent() == $("#HardHeroes") && lock) {
+            return;
+        }
+
+        if (selectedHeroes[Game.GetLocalPlayerID()] == "null" && !heroSelected) {
+            GameEvents.SendCustomGameEventToServer("selection_hero_click", { "hero": name });
+            Game.EmitSound("UI.SelectHeroLocal");
+        }
+    });
+
+    button.SetPanelEvent("onmouseover", function() {
+        GameEvents.SendCustomGameEventToServer("selection_hero_hover", { "hero": name });
+
+        ShowHeroDetails(name);
+    });
+
+    button.SetPanelEvent("onmouseout", function(){
+        GameEvents.SendCustomGameEventToServer("selection_hero_hover", { "hero": "null" });
+
+        HideHeroDetails();
+    });
+}
+
+function AddDisabledButtonEvents(button, name) {
+    button.SetPanelEvent("onmouseover", function() {
+        $.DispatchEvent("DOTAShowTextTooltip", button, $.Localize("Available_on_" + name))
+
+        ShowHeroDetails(name);
+    });
+
+    button.SetPanelEvent("onmouseout", function(){
+        $.DispatchEvent("DOTAHideTextTooltip");
+
+        HideHeroDetails();
+    });
+}
+
 function CreateHeroList(heroList, heroes){
     DeleteChildrenWithClass(heroList, "HeroButtonContainer");
+
+    heroes = _(heroes).sortBy(function(hero) { return allHeroes[hero].disabled });
 
     for (var i = 0; i < heroes.length; i += 4) {
         var row = $.CreatePanel("Panel", heroList, "");
         row.AddClass("HeroButtonRow");
 
         for (var j = i; j < heroes.length && j < i + 4; j++) {
+            var notAvailable = allHeroes[heroes[j]].disabled;
+
             var container = $.CreatePanel("Panel", row, "");
             container.AddClass("HeroButtonContainer");
 
             var button = $.CreatePanel("DOTAHeroImage", container, "");
             button.AddClass("HeroButton");
+            button.SetHasClass("NotAvailableHeroButton", notAvailable);
             button.SetScaling("stretch-to-fit-y-preserve-aspect");
             button.heroname = heroes[j];
             button.heroimagestyle = "landscape";
 
-            var mouseOver = (function(element, name) {
-                return function() {
-                    GameEvents.SendCustomGameEventToServer("selection_hero_hover", { "hero": name });
-
-                    ShowHeroDetails(name);
-                }
-            } (button, heroes[j]));
-
-            var mouseClick = (function(name) {
-                return function() {
-                    var heroSelected = _.contains(_.values(selectedHeroes), name);
-                    var lock = $("#DifficultyLock");
-
-                    if (heroButtons[name].GetParent().GetParent() == $("#HardHeroes") && lock) {
-                        return;
-                    }
-
-                    if (selectedHeroes[Game.GetLocalPlayerID()] == "null" && !heroSelected) {
-                        GameEvents.SendCustomGameEventToServer("selection_hero_click", { "hero": name });
-                        Game.EmitSound("UI.SelectHeroLocal");
-                    }
-                }
-            } (heroes[j]));
-
-            var mouseOut = function(){
-                GameEvents.SendCustomGameEventToServer("selection_hero_hover", { "hero": "null" });
-
-                HideHeroDetails();
+            if (notAvailable) {
+                AddDisabledButtonEvents(button, heroes[j])
+            } else {
+                AddButtonEvents(button, heroes[j]);
             }
-
-            button.SetPanelEvent("onactivate", mouseClick);
-            button.SetPanelEvent("onmouseover", mouseOver);
-            button.SetPanelEvent("onmouseout", mouseOut);
 
             heroButtons[heroes[j]] = container;
         }
@@ -325,6 +355,8 @@ function FilterDifficulty(heroes, data, difficulty) {
 }
 
 function HeroesUpdated(data){
+    allHeroes = data;
+
     var heroes = [];
 
     for (var key in data){
@@ -344,8 +376,6 @@ function HeroesUpdated(data){
 
     CreateHeroList($("#EasyHeroes"), easy);
     CreateHeroList($("#HardHeroes"), hard);
-
-    allHeroes = data;
 }
 
 function PlayersUpdated(data){

@@ -62,6 +62,19 @@
     flow-children: down;
 }
 
+.NotAvailableHeroButton
+{
+    saturation: 0;
+    wash-color: #333333;
+}
+
+.NotAvailableHero
+{
+    blur: gaussian(2, 2, 2);
+    saturation: 0;
+    wash-color: #333333;
+}
+
 #DifficultyLock
 {
     background-color: #4d5860EF;

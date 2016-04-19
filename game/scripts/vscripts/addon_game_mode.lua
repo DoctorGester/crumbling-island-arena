@@ -139,7 +139,7 @@ end
 function GameMode:EventStateChanged(args)
     local newState = GameRules:State_Get()
 
-    if not IsInToolsMode() and newState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit then
+    if not IsInToolsMode() and PlayerResource:GetPlayerCount() > 1 and newState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit then
         statCollection:init()
     end
 
@@ -499,7 +499,8 @@ function GameMode:LoadCustomHeroes()
                 ultimate = data.Ultimate,
                 class = data.Class,
                 customIcons = data.CustomIcons,
-                difficulty = data.Difficulty or "easy"
+                difficulty = data.Difficulty or "easy",
+                disabled = data.Disabled and data.Disabled == "true" or false
             }
 
             local abilities = {}
