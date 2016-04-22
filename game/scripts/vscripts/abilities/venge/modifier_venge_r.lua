@@ -37,7 +37,7 @@ function modifier_venge_r:IsAura()
 end
 
 function modifier_venge_r:GetAuraRadius()
-    return 650
+    return 550
 end
 
 function modifier_venge_r:GetAuraDuration()

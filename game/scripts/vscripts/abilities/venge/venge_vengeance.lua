@@ -5,7 +5,7 @@ function Vengeance:constructor(round, owner, target, facing, ability)
 
     self.owner = owner.owner
     self.hero = owner
-    self.health = 3
+    self.health = 1
     self.size = 64
     self.collisionType = COLLISION_TYPE_RECEIVER
 
@@ -31,7 +31,7 @@ function Vengeance:CreateParticles()
     ParticleManager:SetParticleControl(self.healthCounter, 1, Vector(0, self.health, 0))
 
     self.rangeIndicator = ParticleManager:CreateParticle("particles/aoe_marker.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.unit)
-    ParticleManager:SetParticleControl(self.rangeIndicator, 1, Vector(650, 1, 1))
+    ParticleManager:SetParticleControl(self.rangeIndicator, 1, Vector(550, 1, 1))
     ParticleManager:SetParticleControl(self.rangeIndicator, 2, Vector(0, 74, 255))
     ParticleManager:SetParticleControl(self.rangeIndicator, 3, Vector(10, 0, 0))
 end

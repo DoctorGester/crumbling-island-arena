@@ -46,7 +46,7 @@
 		"HeroTips_npc_dota_hero_pugna"					"<font color='gold'>Q</font>: Получить урон, запустить снаряд, лечение, если попал<br/><font color='gold'>W</font>: Лечащая ловушка<br/><font color='gold'>E</font>: Поменять лечение и урон местами<br/><font color='gold'>R</font>: Заблокировать здоровье на время"
 
 		"HeroName_npc_dota_hero_vengefulspirit"			"Справедливость"
-		"HeroTips_npc_dota_hero_vengefulspirit"			"<font color='gold'>Q</font>: Оглушающий снаряд<br/><font color='gold'>W</font>: Дальнобойная волна. Урон и замедление<br/><font color='gold'>E</font>: Меняющий местами снаряд<br/><font color='gold'>R</font>: Вызов духа-защитника"
+		"HeroTips_npc_dota_hero_vengefulspirit"			"<font color='gold'>Q</font>: Оглушающий снаряд<br/><font color='gold'>W</font>: Дальнобойная замедляющая волна<br/><font color='gold'>E</font>: Меняющий местами снаряд<br/><font color='gold'>R</font>: Вызов духа-защитника"
 
 		"HeroName_npc_dota_hero_drow_ranger"			"Первосвященник"
 		"HeroTips_npc_dota_hero_drow_ranger"			"<font color='gold'>Q</font>: Замедляющая стрела<br/><font color='gold'>W</font>: Волна отбрасывания и безмолвия<br/><font color='gold'>E</font>: Рывок + замедление<br/><font color='gold'>R</font>: Прерываемое, отбрасывающая стрела"
@@ -169,7 +169,7 @@
 		"AbilityTooltip_pugna_r"						"Не может быть замедлен или обезмолвлен<br/>Здоровье не может измениться<br/>Продолжительность: 4.5s"
 
 		"AbilityTooltip_venge_q"						"Оглушающий на 1 секунду снаряд"
-		"AbilityTooltip_venge_w"						"Запустить замедляющую и наносящую урон волну"
+		"AbilityTooltip_venge_w"						"Запустить замедляющую волну"
 		"AbilityTooltip_venge_e"						"Запустить снаряд, меняющий местами героя и противника, в которого попал"
 		"AbilityTooltip_venge_r"						"Вызвать Духа Возмездия в указанную область<br/>Дух запускает оглушающие снаряды в ответ на применение противниками способностей<br/>Пассивно замедляет всех противников в области<br/>Продолжительность: 10.0s"
 

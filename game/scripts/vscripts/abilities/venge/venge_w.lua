@@ -14,7 +14,8 @@ function venge_w:OnSpellStart()
         graphics = "particles/venge_w/venge_w.vpcf",
         distance = 1400,
         hitModifier = { name = "modifier_venge_w", duration = 3.0, ability = self },
-        continueOnHit = true
+        continueOnHit = true,
+        hitFunction = function() end
     }):Activate()
 
     hero:EmitSound("Arena.Venge.CastW")
