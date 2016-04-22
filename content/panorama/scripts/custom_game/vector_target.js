@@ -198,14 +198,36 @@ VectorTarget.IsFastClickDragMode = function() {
     
     //fast click-drag handling
     /*GameUI.SetMouseCallback(function(eventName, button) {
+        $.Msg(eventName);
         if (eventKeys.abilId && VectorTarget.IsFastClickDragMode() && eventName == "released" && button == 0) {
             Abilities.ExecuteAbility(eventKeys.abilId, eventKeys.unitId, true);
         }
     });*/
+
+    $.Schedule(1 / 120, function(){
+        if ( GameUI.IsMouseDown( 0 ) )
+        {
+            $.Schedule( 1.0/30.0, tic );
+            if ( Entities.IsValidEntity( order.TargetIndex) )
+            {
+                Game.PrepareUnitOrders( order );
+            }
+        }
+    });
     
-    //VectorTarget.SetFastClickDragMode(true);
+    VectorTarget.SetFastClickDragMode(true);
+
+    CheckDrag();
 
     /* functional programming helpers */
+
+    function CheckDrag() {
+        if (eventKeys.abilId && VectorTarget.IsFastClickDragMode() && !GameUI.IsMouseDown( 0 ) && Abilities.GetLocalPlayerActiveAbility() == eventKeys.abilId) {
+            Abilities.ExecuteAbility(eventKeys.abilId, eventKeys.unitId, true);
+        }
+
+        $.Schedule(1 / 120, CheckDrag);
+    }
 
     function zipWith(f, a, b) {
         return a.map(function(x, i) { return f(x, b[i]); });
