@@ -55,6 +55,11 @@
 		"HeroName_npc_dota_hero_skeleton_king"			"Колесница"
 		"HeroTips_npc_dota_hero_skeleton_king"			"<font color='gold'>Q</font>: Вызов скелетов мечников<br/><font color='gold'>W</font>: Вызов скелетов лучников<br/><font color='gold'>E</font>: Вызов зомби защитников<br/><font color='gold'>R</font>: Удар по широкой длинной линии"
 		"Available_on_npc_dota_hero_skeleton_king"		"Доступено с 30 апреля!"
+		"AbilityTooltip_drow_q"							"Fire a slowing projectile"
+		"AbilityTooltip_drow_w"							"Launch a silencing and knocking back wave"
+		"AbilityTooltip_drow_e"							"Quickly dash to the target point slowing enemies on the way"
+		"AbilityTooltip_drow_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Fire a global arrow which damages and knocks back first enemy hit"
+
 
 		"PlayerHeader" "игрок"
 		"SelectionHeader" "выбор"
@@ -168,6 +173,11 @@
 		"AbilityTooltip_venge_e"						"Запустить снаряд, меняющий местами героя и противника, в которого попал"
 		"AbilityTooltip_venge_r"						"Вызвать Духа Возмездия в указанную область<br/>Дух запускает оглушающие снаряды в ответ на применение противниками способностей<br/>Пассивно замедляет всех противников в области<br/>Продолжительность: 10.0s"
 
+		"AbilityTooltip_drow_q"							"Запустить замедляющую стрелу"
+		"AbilityTooltip_drow_w"							"Запустить волну безмолвия, отбрасывающую противников"
+		"AbilityTooltip_drow_e"							"Рвануться к указанной точке, замедляя врагов на пути"
+		"AbilityTooltip_drow_r"							"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>Запустить дальнобойную стрелу, наносяющую урон и отбрасывающую противника, в которого попадет"
+
 		"ModifierTooltip_modifier_charges"						"Заряды способности"
 		"ModifierTooltip_modifier_stunned_lua"					"Оглушен"
 		"ModifierTooltip_modifier_knockback_lua"				"Отброшен"
@@ -227,6 +237,11 @@
 
 		"ModifierTooltip_modifier_venge_w"						"Замедлен и размаскирован"
 		"ModifierTooltip_modifier_venge_r_target"				"Замедлен и размаскирован"
+
+		"ModifierTooltip_modifier_drow_q"						"Замедлен"
+		"ModifierTooltip_modifier_drow_w"						"Безмолвие"
+		"ModifierTooltip_modifier_drow_e"						"Шадоустеп"
+		"ModifierTooltip_modifier_drow_e_slow"					"Замедлен"
 	}
 }
 

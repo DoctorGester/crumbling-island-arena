@@ -24,3 +24,7 @@ end
 function tiny_q:GetCastAnimation()
     return ACT_DOTA_ATTACK
 end
+
+function tiny_q:GetPlaybackRateOverride()
+    return 2
+end

@@ -1199,7 +1199,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "tiny_toss"
 		"AbilityCooldown" "7.0"
-		"AbilityCastPoint" "0.3"
+		"AbilityCastPoint" "0.15"
 
 		"TargetingIndicator"
 		{
@@ -1253,7 +1253,7 @@
 		"AbilityTextureName" "tiny_avalanche"
 		"AbilityCooldown" "9.0"
 		"AbilityCastRange" "800"
-		"AbilityCastPoint" "0.5"
+		"AbilityCastPoint" "0.25"
 		
 		"TargetingIndicator"
 		{

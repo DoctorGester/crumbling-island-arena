@@ -181,7 +181,7 @@ function GameMode:InitSettings()
     mode:SetExecuteOrderFilter(Dynamic_Wrap(GameMode, "FilterExecuteOrder"), self)
 
     SendToServerConsole("dota_surrender_on_disconnect 0")
-    SendToServerConsole("dota_combine_models 1")
+    SendToServerConsole("dota_combine_models 0")
 end
 
 function GameMode:FilterExecuteOrder(filterTable)
@@ -521,6 +521,8 @@ function GameMode:LoadCustomHeroes()
 end
 
 function GameMode:OnGameInProgress()
+    SendToServerConsole("dota_combine_models 0")
+    
     if not statCollection.sentStage2 and statCollection.sentStage1 then
         statCollection:sendStage2()
     end
