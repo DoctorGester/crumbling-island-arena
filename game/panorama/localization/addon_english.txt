@@ -49,7 +49,7 @@
 		"HeroTips_npc_dota_hero_vengefulspirit"			"<font color='gold'>Q</font>: Stunning projectile<br/><font color='gold'>W</font>: Long range wave. Damage + Slow<br/><font color='gold'>E</font>: Swapping projectile<br/><font color='gold'>R</font>: Summon spirit guardian"
 
 		"HeroName_npc_dota_hero_drow_ranger"			"The Hierophant"
-		"HeroTips_npc_dota_hero_drow_ranger"			"<font color='gold'>Q</font>: Slowing projectile<br/><font color='gold'>W</font>: Knocback + silence wave<br/><font color='gold'>E</font>: Dash + slow<br/><font color='gold'>R</font>: Channeling, knockbacking arrow"
+		"HeroTips_npc_dota_hero_drow_ranger"			"<font color='gold'>Q</font>: Slowing projectile<br/><font color='gold'>W</font>: Knockback + silence wave<br/><font color='gold'>E</font>: Dash + slow<br/><font color='gold'>R</font>: Channeling, knockbacking arrow"
 		"Available_on_npc_dota_hero_drow_ranger"		"Available on April 23!"
 
 		"HeroName_npc_dota_hero_skeleton_king"			"The Chariot"
@@ -176,6 +176,11 @@
 		"AbilityTooltip_venge_e"						"Fire a projectile which swaps positions between you and enemy hit"
 		"AbilityTooltip_venge_r"						"Summon a Spirit of Vengeance to guard target area<br/>Spirit fires stunning projectiles for every spell enemies cast<br/>Passively slows all enemies in the area<br/>Duration: 10.0s"
 
+		"AbilityTooltip_drow_q"							"Fire a slowing projectile"
+		"AbilityTooltip_drow_w"							"Launch a silencing and knocking back wave"
+		"AbilityTooltip_drow_e"							"Quickly dash to the target point slowing enemies on the way"
+		"AbilityTooltip_drow_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Fire a global arrow which damages and knocks back first enemy hit"
+
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
 		"ModifierTooltip_modifier_knockback_lua"				"Knocked back"
@@ -235,6 +240,11 @@
 
 		"ModifierTooltip_modifier_venge_w"						"Slowed and revealed"
 		"ModifierTooltip_modifier_venge_r_target"				"Slowed and revealed"
+
+		"ModifierTooltip_modifier_drow_q"						"Slowed"
+		"ModifierTooltip_modifier_drow_w"						"Silenced"
+		"ModifierTooltip_modifier_drow_e"						"Shadowsteppin"
+		"ModifierTooltip_modifier_drow_e_slow"					"Slowed"
 	}
 }
 

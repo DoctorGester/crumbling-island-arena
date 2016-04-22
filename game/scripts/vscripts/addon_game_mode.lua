@@ -181,7 +181,7 @@ function GameMode:InitSettings()
     mode:SetExecuteOrderFilter(Dynamic_Wrap(GameMode, "FilterExecuteOrder"), self)
 
     SendToServerConsole("dota_surrender_on_disconnect 0")
-    SendToServerConsole("dota_combine_models 0")
+    SendToServerConsole("dota_combine_models 1")
 end
 
 function GameMode:FilterExecuteOrder(filterTable)
@@ -500,7 +500,7 @@ function GameMode:LoadCustomHeroes()
                 class = data.Class,
                 customIcons = data.CustomIcons,
                 difficulty = data.Difficulty or "easy",
-                disabled = data.Disabled and data.Disabled == "true" or false
+                disabled = (data.Disabled and not IsInToolsMode()) and data.Disabled == "true" or false
             }
 
             local abilities = {}
@@ -536,9 +536,16 @@ function GameMode:OnGameInProgress()
             player:SetTeam(self.Teams[i])
 
             self.Players[player.id] = player
+
+            if string.len(PlayerResource:GetSelectedHeroName(id)) == 0 then
+                CreateHeroForPlayer(DUMMY_HERO, PlayerResource:GetPlayer(id))
+            end
+
             i = i + 1
         end
     end
+
+    PrintTable(self.Players)
 
     Chat(self.Players, self.Users, self.TeamColors)
 

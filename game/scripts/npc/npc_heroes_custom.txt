@@ -521,7 +521,6 @@
 		"VisionDaytimeRange" "0"
 		"VisionNighttimeRange" "0"
 		"Difficulty" "easy"
-		"Disabled" "true"
 		
 		"Ability1" "drow_q"
 		"Ability2" "drow_w"

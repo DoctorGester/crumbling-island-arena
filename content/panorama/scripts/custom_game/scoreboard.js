@@ -38,5 +38,5 @@ function GameInfoUpdated(gameInfo) {
     label.text = $.Localize("#GameGoal", label);
 }
 
-SubscribeToNetTableKey("main", "players", false, PlayersUpdated);
+SubscribeToNetTableKey("main", "players", true, PlayersUpdated);
 SubscribeToNetTableKey("main", "gameInfo", false, GameInfoUpdated);
