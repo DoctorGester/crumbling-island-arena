@@ -324,6 +324,25 @@ function GameMode:EndGame()
     GameRules:SetGameWinner(PlayerResource:GetTeam(self.winner.id))
 end
 
+function GameMode:CheckEveryoneAbandoned()
+    local playerCount = 0
+    local connectedPlayerCount = 0
+    local connectedPlayer = nil
+
+    for i, player in pairs(self.Players) do
+        if PlayerResource:GetConnectionState(player.id) ~= DOTA_CONNECTION_STATE_ABANDONED then
+            connectedPlayer = player
+            connectedPlayerCount = connectedPlayerCount + 1
+        end
+
+        playerCount = playerCount + 1
+    end
+    
+    if playerCount > 1 and connectedPlayerCount == 1 then
+        self.winner = connectedPlayer
+    end
+end
+
 function GameMode:OnRoundEnd(round)
     local winner = round.winner
 
@@ -340,6 +359,7 @@ function GameMode:OnRoundEnd(round)
     end
 
     self.generalStatistics:Add(round.statistics)
+    self:CheckEveryoneAbandoned()
     self:SubmitRoundInfo(round, winner, self.winner ~= nil)
 
     CustomNetTables:SetTableValue("main", "roundState", { roundWinner = playerData })
