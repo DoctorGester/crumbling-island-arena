@@ -522,7 +522,7 @@ end
 
 function GameMode:OnGameInProgress()
     SendToServerConsole("dota_combine_models 0")
-    
+
     if not statCollection.sentStage2 and statCollection.sentStage1 then
         statCollection:sendStage2()
     end
@@ -549,7 +549,7 @@ function GameMode:OnGameInProgress()
 
     PrintTable(self.Players)
 
-    Chat(self.Players, self.Users, self.TeamColors)
+    self.chat = Chat(self.Players, self.Users, self.TeamColors)
 
     self.roundNumber = 1
     self.gameGoal = GAME_GOAL
@@ -562,7 +562,7 @@ function GameMode:OnGameInProgress()
     self.GameItems = nil--LoadKeyValues("scripts/items/items_game.txt").items
 
     self.level = Level()
-    self.heroSelection = HeroSelection(self.Players, self.AvailableHeroes, self.TeamColors)
+    self.heroSelection = HeroSelection(self.Players, self.AvailableHeroes, self.TeamColors, self.chat)
 
     self:UpdateGameInfo()
 

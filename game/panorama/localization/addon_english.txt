@@ -66,6 +66,7 @@
 		"GameGoal" "Goal: {d:goal}"
 
 		"ChatLine" "<b><font color='{s:color}'>{s:name}</font></b>: {s:message}"
+		"ChatRandomed" "<b><font color='{s:color}'>{s:name}</font></b> has randomed <font color='gold'>{s:hero}</font>"
 		"ChatPlaceholder" "Type here..."
 
 		"SbName" "Name"

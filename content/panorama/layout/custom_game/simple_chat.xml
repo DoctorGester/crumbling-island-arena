@@ -30,6 +30,20 @@
             $("#ChatContent").ScrollToBottom();
         }
 
+        function OnRandomedMessage(args) {
+            var color = LuaColor(args.color);
+            var playerName = Players.GetPlayerName(args.player);
+            var line = $.CreatePanel("Label", $("#ChatContent"), "");
+            line.SetDialogVariable("name", playerName);
+            line.SetDialogVariable("color", color);
+            line.SetDialogVariable("hero", $.Localize("HeroName_" + args.hero));
+            line.html = true;
+            line.text = $.Localize("#ChatRandomed", line);
+            line.AddClass("ChatLine");
+
+            $("#ChatContent").ScrollToBottom();
+        }
+
         function OnChatSay(args) {
             var color = LuaColor(args.color);
             
@@ -37,6 +51,7 @@
         }
 
         GameEvents.Subscribe("custom_chat_say", OnChatSay);
+        GameEvents.Subscribe("custom_randomed_message", OnRandomedMessage);
     </script>
     <Panel class="Chat">
         <Panel id="ChatContent">

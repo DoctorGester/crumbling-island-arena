@@ -70,6 +70,7 @@
 		"GameGoal" "Цель: {d:goal}"
 
 		"ChatLine" "<b><font color='{s:color}'>{s:name}</font></b>: {s:message}"
+		"ChatRandomed" "<b><font color='{s:color}'>{s:name}</font></b> случайно выбрал <font color='gold'>{s:hero}</font>"
 		"ChatPlaceholder" "Введите Ваше сообщение..."
 
 		"SbName" "Имя"

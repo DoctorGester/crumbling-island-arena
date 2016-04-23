@@ -1,6 +1,6 @@
 HeroSelection = HeroSelection or class({})
 
-function HeroSelection:constructor(players, availableHeroes, teamColors)
+function HeroSelection:constructor(players, availableHeroes, teamColors, chat)
     self.SelectionTimer = 0
     self.SelectionTimerTime = 20
     self.PreGameTimer = 0
@@ -10,6 +10,7 @@ function HeroSelection:constructor(players, availableHeroes, teamColors)
     self.AvailableHeroes = availableHeroes
     self.HardHeroesLocked = true
     self.PreviousRandomed = {}
+    self.Chat = chat
 end
 
 function HeroSelection:UpdateSelectedHeroes()
@@ -51,6 +52,7 @@ function HeroSelection:OnRandom(args)
         self:AssignRandomHero(player)
         self:UpdateSelectionState()
         self:UpdateSelectedHeroes()
+        self.Chat:PlayerRandomed(args.PlayerID, player.selectedHero)
     end
 end
 

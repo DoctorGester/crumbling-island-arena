@@ -26,3 +26,11 @@ function Chat:OnSay(args)
         message = args.message
     })
 end
+
+function Chat:PlayerRandomed(id, hero)
+    CustomGameEventManager:Send_ServerToAllClients("custom_randomed_message", {
+        color = self.teamColors[PlayerResource:GetTeam(id)],
+        player = id,
+        hero = hero
+    })
+end
