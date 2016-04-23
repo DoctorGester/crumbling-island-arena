@@ -28,6 +28,9 @@ STATE_ROUND_IN_PROGRESS = 2
 STATE_ROUND_ENDED = 3
 STATE_GAME_OVER = 4
 
+GAME_MODE_FFA = "ffa"
+GAME_MODE_2V2 = "2v2"
+
 ROUND_ENDING_TIME = 5
 FIXED_DAY_TIME = 0.27
 
@@ -141,6 +144,7 @@ function GameMode:EventStateChanged(args)
 
     if not IsInToolsMode() and PlayerResource:GetPlayerCount() > 1 and newState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit then
         statCollection:init()
+        statCollection:setFlags({ version = GAME_VERSION, mode = GAME_MODE_FFA })
     end
 
     if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
@@ -459,7 +463,6 @@ function GameMode:SubmitRoundInfo(round, winner, gameOver)
     end
 
     local players = {}
-    local game = { version = GAME_VERSION }
 
     for i, player in pairs(self.Players) do
         local playerData = {}
@@ -481,7 +484,7 @@ function GameMode:SubmitRoundInfo(round, winner, gameOver)
     end
 
     statCollection:sendStage3(winners, gameOver)
-    statCollection:sendCustom({ game = game, players = players })
+    statCollection:sendCustom({ game = {}, players = players })
 end
 
 function GameMode:UpdateGameInfo()
