@@ -544,8 +544,6 @@ function GameMode:LoadCustomHeroes()
 end
 
 function GameMode:OnGameInProgress()
-    SendToServerConsole("dota_combine_models 0")
-
     if not statCollection.sentStage2 and statCollection.sentStage1 then
         statCollection:sendStage2()
     end

@@ -267,6 +267,82 @@
     margin-right: 4px;
 }
 
+@keyframes 'roundTop'
+{
+    0% {
+        transform: translateX(0%) translateY(-100%);
+    }
+
+    30%  {
+        transform: translateX(0%);
+    }
+
+    85%  {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes 'roundBottom'
+{
+    0% {
+        transform: translateX(0%) translateY(100%);
+    }
+
+    30%  {
+        transform: translateX(0%);
+    }
+
+    85%  {
+        transform: translateX(0%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.RoundMessage
+{
+    font-family: Goudy Trajan Medium, FZKai-Z03, TH Sarabun New;
+    font-size: 80;
+    horizontal-align: center;
+    vertical-align: middle;
+    text-shadow: -1px 1px 2px 2.0 #000000;
+    color: white;
+    visibility: collapse;
+}
+
+#RoundMessageTop
+{
+    margin-bottom: 80px;
+}
+
+.RoundMessageTopAnimation
+{
+    visibility: visible;
+    animation-name: roundTop;
+    animation-duration: 3s;
+    animation-timing-function: ease-in;
+}
+
+#RoundMessageBottom
+{
+    margin-top: 80px;
+    color: #CCB966;
+}
+
+.RoundMessageBottomAnimation
+{
+    visibility: visible;
+    animation-name: roundBottom;
+    animation-duration: 3s;
+    animation-timing-function: ease-in;
+}
+
 .HeroMarkerTransition
 {
     transition: position 0.3s linear 0.0ms;

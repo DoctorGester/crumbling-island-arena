@@ -245,6 +245,13 @@ function GameStateChanged(data){
         $("#ScoreboardContainer").RemoveClass("AnimationScoreboardHidden");
         $("#KillLog").RemoveClass("AnimationKillLogHidden");
         $("#KillLog").RemoveAndDeleteChildren();
+        $("#RoundMessageTop").AddClass("RoundMessageTopAnimation");
+        $("#RoundMessageBottom").AddClass("RoundMessageBottomAnimation");
+
+        $.Schedule(3, function() {
+            $("#RoundMessageTop").RemoveClass("RoundMessageTopAnimation");
+            $("#RoundMessageBottom").RemoveClass("RoundMessageBottomAnimation");
+        });
 
         Game.EmitSound("UI.RoundStart")
     } else {
@@ -252,6 +259,15 @@ function GameStateChanged(data){
         $("#HeroDetails").AddClass("AnimationHeroDetailsHidden");
         $("#ScoreboardContainer").AddClass("AnimationScoreboardHidden");
         $("#KillLog").AddClass("AnimationKillLogHidden");
+        $("#RoundMessageTop").RemoveClass("RoundMessageTopAnimation");
+        $("#RoundMessageBottom").RemoveClass("RoundMessageBottomAnimation");
+    }
+}
+
+
+function GameInfoChanged(data){
+    if (data && data.roundNumber) {
+        $("#RoundMessageBottom").text = (data.roundNumber - 1).toString();
     }
 }
 
@@ -265,6 +281,7 @@ SetupUI();
     SubscribeToNetTableKey("main", "debug", true, DebugUpdate)
     SubscribeToNetTableKey("main", "heroes", true, HeroesUpdate);
     SubscribeToNetTableKey("main", "gameState", true, GameStateChanged);
+    SubscribeToNetTableKey("main", "gameInfo", true, GameInfoChanged);
 
     UpdateUI();
 
