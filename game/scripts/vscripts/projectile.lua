@@ -29,6 +29,11 @@ function Projectile:constructor(round, params)
     self.gracePeriod = params.gracePeriod or 30
     self.hitGroup = {}
     self.disablePrediction = params.disablePrediction or false
+    self.destroyOnDamage = params.destroyOnDamage
+
+    if self.destroyOnDamage == nil then
+       self.destroyOnDamage = true 
+    end
 
     self:SetSpeed(params.speed or 600)
     self:SetPos(self.from)
@@ -100,7 +105,7 @@ function Projectile:CollideWith(target)
 
     if self.continueOnHit then
         self.hitGroup[target] = self.gracePeriod
-    else
+    elseif not instanceof(target, Projectile) then
         self:Destroy()
     end
 end
@@ -110,6 +115,10 @@ function Projectile:GetNextPosition(pos)
 end
 
 function Projectile:Damage(source)
+    if not self.destroyOnDamage then
+        return
+    end
+
     local mode = GameRules:GetGameModeEntity()
     local dust = ParticleManager:CreateParticle("particles/ui/ui_generic_treasure_impact.vpcf", PATTACH_ABSORIGIN, mode)
     ParticleManager:SetParticleControl(dust, 0, self:GetPos())

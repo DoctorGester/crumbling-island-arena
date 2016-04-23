@@ -40,7 +40,8 @@ function drow_r:OnChannelFinish(interrupted)
             effect = ImmediateEffectPoint("particles/drow_r/drow_r_bash.vpcf", PATTACH_ABSORIGIN, target, pos)
             ParticleManager:SetParticleControlForward(effect, 1, -direction)
             ScreenShake(pos, 5, 150, 0.25, 2000, 0, true)
-        end
+        end,
+        destroyOnDamage = false
     }):Activate()
 
     hero:StopSound("Arena.Drow.PreR")
