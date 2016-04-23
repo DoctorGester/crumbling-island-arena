@@ -25,7 +25,13 @@ AddEnterListener("GameHudChatEnter", function() {
 
 function AddChatLine(hero, playerName, color, message) {
     var line = $.CreatePanel("Panel", $("#GameChatContent"), "");
+    var last = $("#GameChatContent").GetChild(0);
     line.AddClass("GameChatLine");
+    line.AddClass("GameChatLineAppear");
+
+    if (last != null) {
+        $("#GameChatContent").MoveChildBefore(line, last);
+    }
 
     var img = $.CreatePanel("DOTAHeroImage", line, "");
 

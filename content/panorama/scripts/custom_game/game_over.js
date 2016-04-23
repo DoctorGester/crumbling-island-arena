@@ -164,5 +164,6 @@ function GameInfoUpdated(gameInfo) {
 
 $.GetContextPanel().AddClass("GameOverScoreboardVisible");
 $("#GameOverChat").BLoadLayout("file://{resources}/layout/custom_game/simple_chat.xml", false, false);
+$("#GameOverChat").RegisterListener("GameOverEnter");
 
 SubscribeToNetTableKey("main", "gameInfo", true, GameInfoUpdated);

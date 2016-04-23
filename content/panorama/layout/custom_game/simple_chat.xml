@@ -6,11 +6,16 @@
         <include src="file://{resources}/scripts/custom_game/util.js" />
     </scripts>
     <script>
-        AddEnterListener("SimpleChatEnter", function() {
-            if ($("#ChatContent").BCanSeeInParentScroll()) {
-                $("#ChatEntry").SetFocus();
-            }
-        });
+        var contentPanel = $("#ChatContent");
+        var entry = $("#ChatEntry");
+
+        $.GetContextPanel().RegisterListener = function(uniqueName) {
+            AddEnterListener(uniqueName, function() {
+                if (contentPanel.BCanSeeInParentScroll()) {
+                    entry.SetFocus();
+                }
+            });
+        }
 
         function SubmitChat() {
             GameEvents.SendCustomGameEventToServer("custom_chat_say", { message: $("#ChatEntry").text });
@@ -18,36 +23,38 @@
             $("#ChatEntry").text = "";
         }
 
-        function AddChatLine(playerName, color, message) {
+        function AddChatLine(token, vars) {
+            var last = $("#ChatContent").GetChild(0);
             var line = $.CreatePanel("Label", $("#ChatContent"), "");
-            line.SetDialogVariable("name", playerName);
-            line.SetDialogVariable("color", color);
-            line.SetDialogVariable("message", message);
-            line.html = true;
-            line.text = $.Localize("#ChatLine", line);
-            line.AddClass("ChatLine");
 
-            $("#ChatContent").ScrollToBottom();
+            for (key in vars) {
+                line.SetDialogVariable(key, vars[key]);
+            }
+
+            line.html = true;
+            line.text = $.Localize(token, line);
+            line.AddClass("ChatLine");
+            line.AddClass("ChatLineAppear");
+
+            if (last != null) {
+                $("#ChatContent").MoveChildBefore(line, last);
+            }
         }
 
         function OnRandomedMessage(args) {
-            var color = LuaColor(args.color);
-            var playerName = Players.GetPlayerName(args.player);
-            var line = $.CreatePanel("Label", $("#ChatContent"), "");
-            line.SetDialogVariable("name", playerName);
-            line.SetDialogVariable("color", color);
-            line.SetDialogVariable("hero", $.Localize("HeroName_" + args.hero));
-            line.html = true;
-            line.text = $.Localize("#ChatRandomed", line);
-            line.AddClass("ChatLine");
-
-            $("#ChatContent").ScrollToBottom();
+            AddChatLine("#ChatRandomed", {
+                name: Players.GetPlayerName(args.player),
+                color: LuaColor(args.color),
+                hero: $.Localize("HeroName_" + args.hero)
+            });
         }
 
         function OnChatSay(args) {
-            var color = LuaColor(args.color);
-            
-            AddChatLine(Players.GetPlayerName(args.player), color, args.message);
+            AddChatLine("#ChatLine", {
+                name: Players.GetPlayerName(args.player),
+                color:  LuaColor(args.color),
+                message: args.message
+            });
         }
 
         GameEvents.Subscribe("custom_chat_say", OnChatSay);

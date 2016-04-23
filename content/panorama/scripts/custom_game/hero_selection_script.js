@@ -454,4 +454,5 @@ function GameInfoChanged(gameInfo) {
     SubscribeToNetTableKey("main", "selectedHeroes", true, HeroSelectionUpdated);
 
     $("#HeroSelectionChat").BLoadLayout("file://{resources}/layout/custom_game/simple_chat.xml", false, false);
+    $("#HeroSelectionChat").RegisterListener("HeroSelectionEnter");
 })();

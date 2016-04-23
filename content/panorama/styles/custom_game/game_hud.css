@@ -204,7 +204,8 @@
     height: fill-parent-flow(1.0);
     flow-children: down;
     padding: 2px;
-    overflow: squish scroll;
+    overflow: squish clip;
+    transform: scaleY(-1.0);
 }
 
 #GameChatEntryContainer
@@ -234,8 +235,14 @@
     font-size: 16px;
     height: 24px;
     flow-children: right;
-    transition-property: opacity;
-    transition-duration: 0.15s;
+    transition-property: opacity, transform, position;
+    transition-duration: 0.2s;
+    transform: translateX(-100%) scaleY(-1.0);
+}
+
+.GameChatLineAppear
+{
+    transform: translateX(0px) scaleY(-1.0);
 }
 
 .GameChatLineHidden
@@ -246,11 +253,6 @@
 #GameChat:descendantfocus .GameChatLine
 {
     opacity: 1.0;
-}
-
-#GameChat.Hidden VerticalScrollBar
-{
-    opacity: 0.0;
 }
 
 .GameChatLine Label
