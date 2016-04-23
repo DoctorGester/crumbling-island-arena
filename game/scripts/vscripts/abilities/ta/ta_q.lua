@@ -21,6 +21,13 @@ function ta_q:OnSpellStart()
         filter = Filters.Line(hero:GetPos(), target, 64),
         sound = "Arena.TA.HitQ",
         action = function(victim)
+            if victim:HasModifier("modifier_ta_w") then
+                hero:Heal()
+                hero:EmitSound("Arena.TA.HitW")
+
+                ImmediateEffect("particles/ta_w_heal/ta_w_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero)
+            end
+
             victim:Damage(hero)
 
             local effect = ImmediateEffect("particles/units/heroes/hero_templar_assassin/templar_assassin_meld_hit.vpcf", PATTACH_ABSORIGIN, hero)

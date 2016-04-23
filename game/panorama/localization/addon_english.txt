@@ -158,7 +158,7 @@
 		"AbilityTooltip_phoenix_r"						"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Target an area, after a 1 second delay periodically deal damage in that area<br>Caster always dies at the end of that ability"
 
 		"AbilityTooltip_ta_q"							"Deal damage in a line"
-		"AbilityTooltip_ta_w"							"Slow enemies in a cone<br/><br/>Heal when slowed enemy casts a spell"
+		"AbilityTooltip_ta_w"							"Slow enemies in a cone<br/><br/>Heal when dealing damage to a slowed enemy"
 		"AbilityTooltip_ta_e"							"Blink<br/><br/>Dealing or taking damage resets the cooldown"
 		"AbilityTooltip_ta_r"							"Receive a shield, which heals you in 3 seconds after taking damage"
 

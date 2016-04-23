@@ -13,16 +13,6 @@ function modifier_ta_w:DeclareFunctions()
     return funcs
 end
 
-function modifier_ta_w:OnAbilityExecuted(event)
-    if event.unit == self:GetParent() then
-        local hero = self:GetCaster().hero
-        hero:Heal()
-        hero:EmitSound("Arena.TA.HitW")
-
-        ImmediateEffect("particles/ta_w_heal/ta_w_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero)
-    end
-end
-
 function modifier_ta_w:GetModifierMoveSpeedBonus_Percentage(params)
     return -20
 end
