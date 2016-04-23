@@ -222,7 +222,7 @@ VectorTarget.IsFastClickDragMode = function() {
     /* functional programming helpers */
 
     function CheckDrag() {
-        if (eventKeys.abilId && VectorTarget.IsFastClickDragMode() && !GameUI.IsMouseDown( 0 ) && Abilities.GetLocalPlayerActiveAbility() == eventKeys.abilId) {
+        if (eventKeys.abilId && VectorTarget.IsFastClickDragMode() && !GameUI.IsMouseDown(0) && Abilities.GetLocalPlayerActiveAbility() == eventKeys.abilId) {
             Abilities.ExecuteAbility(eventKeys.abilId, eventKeys.unitId, true);
         }
 
