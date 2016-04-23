@@ -130,13 +130,10 @@ function Hero:Update()
     getbase(Hero).Update(self)
 
     if self.owner and self.unit and self.owner:IsConnected() then
-        local pos = self:GetPos()
-        local to = Vector(pos.x, pos.y, 10000)
-
         local assigned = PlayerResource:GetPlayer(self.owner.id):GetAssignedHero()
 
         if assigned then
-            assigned:SetAbsOrigin(to)
+            assigned:SetAbsOrigin(self:GetPos())
         end
     end
 end

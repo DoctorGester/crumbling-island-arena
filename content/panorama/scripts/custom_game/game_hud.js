@@ -14,15 +14,6 @@ GameUI.SetCameraPitchMax(60);
 GameUI.SetCameraLookAtPositionHeightOffset(100);
 GameUI.GameChat = $("#GameChat");
 
-// We can't completely lose focus without deleting the element which has it
-AddEnterListener("GameHudChatEnter", function() {
-    if ($("#HeroPanel").BCanSeeInParentScroll()) {
-        $("#GameChatEntryContainer").BLoadLayout("file://{resources}/layout/custom_game/chat.xml", true, true);
-        $("#GameChatEntry").SetFocus();
-        $("#GameChat").RemoveClass("Hidden");
-    }
-});
-
 function AddChatLine(hero, playerName, color, message) {
     var line = $.CreatePanel("Panel", $("#GameChatContent"), "");
     var last = $("#GameChatContent").GetChild(0);
@@ -292,4 +283,13 @@ SetupUI();
 
     GameEvents.Subscribe("custom_chat_say", OnCustomChatSay);
     GameEvents.Subscribe("kill_log_entry", OnKillLogEntry);
+
+    // We can't completely lose focus without deleting the element which has it
+    AddEnterListener("GameHudChatEnter", function() {
+        if ($("#HeroPanel").BCanSeeInParentScroll()) {
+            $("#GameChatEntryContainer").BLoadLayout("file://{resources}/layout/custom_game/chat.xml", true, true);
+            $("#GameChatEntry").SetFocus();
+            $("#GameChat").RemoveClass("Hidden");
+        }
+    });
 })();

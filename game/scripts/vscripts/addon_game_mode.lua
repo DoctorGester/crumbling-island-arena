@@ -614,7 +614,6 @@ function GameMode:OnPlayerPickHero(keys)
     if keys.hero == DUMMY_HERO then
         local hero = EntIndexToHScript(keys.heroindex)
 
-        hero:SetAbsOrigin(Vector(0, 0, 10000))
         hero:AddNoDraw()
         hero:AddNewModifier(hero, nil, "modifier_hidden", {})
     end
