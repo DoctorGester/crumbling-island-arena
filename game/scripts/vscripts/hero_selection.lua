@@ -52,7 +52,6 @@ function HeroSelection:OnRandom(args)
         self:AssignRandomHero(player)
         self:UpdateSelectionState()
         self:UpdateSelectedHeroes()
-        self.Chat:PlayerRandomed(args.PlayerID, player.selectedHero)
     end
 end
 
@@ -140,6 +139,7 @@ function HeroSelection:AssignRandomHero(player)
     player.selectedHero = table[RandomInt(0, index - 1)]
 
     self.PreviousRandomed[player.id] = player.selectedHero
+    self.Chat:PlayerRandomed(player.id, player.selectedHero)
 end
 
 function HeroSelection:AssignRandomHeroes()

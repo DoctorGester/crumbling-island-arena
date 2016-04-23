@@ -20,7 +20,7 @@ require('statistics')
 require('chat')
 require('debug_util')
 
-GAME_VERSION = "1.0"
+GAME_VERSION = "1.1"
 
 STATE_NONE = 0
 STATE_HERO_SELECTION = 1
