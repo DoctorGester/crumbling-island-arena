@@ -1617,4 +1617,44 @@
 		"AbilityCooldown" "2.0"
 		"AbilityCastPoint" "0.2"
 	}
+
+	"ogre_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ogre/ogre_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "ogre_magi/antipodeanabilityicons/ogre_magi_fireblast"
+		"AbilityCooldown" "2.0"
+		"AbilityCastPoint" "0.2"
+	}
+
+	"ogre_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ogre/ogre_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "ogre_magi/antipodeanabilityicons/ogre_magi_ignite"
+		"AbilityCooldown" "2.0"
+		"AbilityCastPoint" "0.2"
+	}
+
+	"ogre_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ogre/ogre_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "batrider_flamebreak"
+		"AbilityCooldown" "2.0"
+		"AbilityCastPoint" "0.2"
+	}
+
+	"ogre_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ogre/ogre_r"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "ogre_magi_multicast"
+		"AbilityCooldown" "2.0"
+		"AbilityCastPoint" "0.2"
+	}
 }

@@ -56,6 +56,9 @@
 		"HeroTips_npc_dota_hero_skeleton_king"			"<font color='gold'>Q</font>: Raise skeleton swordsmen<br/><font color='gold'>W</font>: Raise skeleton archers<br/><font color='gold'>E</font>: Raise zombie defenders<br/><font color='gold'>R</font>: Strike in a long wide line"
 		"Available_on_npc_dota_hero_skeleton_king"		"Available on April 30!"
 
+		"HeroName_npc_dota_hero_ogre_magi"			"Wheel of Fortune"
+		"HeroTips_npc_dota_hero_ogre_magi"			"<font color='gold'>Q</font>: Throw a concoction<br/><font color='gold'>W</font>: Use a concoction on yourself<br/><font color='gold'>E</font>: Mix a random concoction<br/><font color='gold'>R</font>: Use concoctions without mixing"
+		"Available_on_npc_dota_hero_ogre_magi"		"Available on May 7!"
 
 		"PlayerHeader" "player"
 		"SelectionHeader" "selection"
