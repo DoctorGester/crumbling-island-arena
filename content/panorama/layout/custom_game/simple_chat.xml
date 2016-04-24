@@ -3,6 +3,7 @@
         <include src="file://{resources}/styles/custom_game/simple_chat.css" />
     </styles>
     <scripts>
+        <include src="file://{resources}/scripts/custom_game/kappa.js" />
         <include src="file://{resources}/scripts/custom_game/util.js" />
     </scripts>
     <script>
@@ -53,7 +54,7 @@
             AddChatLine("#ChatLine", {
                 name: Players.GetPlayerName(args.player),
                 color:  LuaColor(args.color),
-                message: args.message
+                message: InsertEmotes(args.message)
             });
         }
 

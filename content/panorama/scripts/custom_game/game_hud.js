@@ -33,7 +33,7 @@ function AddChatLine(hero, playerName, color, message) {
     var label = $.CreatePanel("Label", line, "");
     label.SetDialogVariable("name", playerName);
     label.SetDialogVariable("color", color);
-    label.SetDialogVariable("message", message);
+    label.SetDialogVariable("message", InsertEmotes(message));
     label.html = true;
     label.text = $.Localize("#ChatLine", label);
 

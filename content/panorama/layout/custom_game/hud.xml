@@ -18,6 +18,7 @@
         <include src="file://{resources}/scripts/custom_game/hero_detector.js" />
         <include src="file://{resources}/scripts/custom_game/target_indicator.js" />
         <include src="file://{resources}/scripts/custom_game/vector_target.js" />
+        <include src="file://{resources}/scripts/custom_game/kappa.js" />
     </scripts>
     <Panel class="MainPanel" hittest="false">
         <Image src="file://{images}/custom_game/wk_q.png" style="opacity:0.0;"/>
