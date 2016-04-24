@@ -219,10 +219,11 @@
 {
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 200);
+    background-color: rgba(0, 0, 0, 240);
     font-size: 16px;
     padding: 6px 3px 5px 3px;
-    color: #9C9383;
+    color: white;
+    font-weight: bold;
     font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
     text-overflow: clip;
     border-radius: 3px;
@@ -231,9 +232,9 @@
 .GameChatLine
 {
     font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    font-weight: bold;
     color: white;
     font-size: 16px;
-    height: 24px;
     flow-children: right;
     transition-property: opacity, transform, position;
     transition-duration: 0.2s;
@@ -258,6 +259,12 @@
 .GameChatLine Label
 {
     vertical-align: center;
+    text-shadow: 0px 0px 4px 2.0 black;
+}
+
+.GameChatLine Label .InlineImage
+{
+    height: 24px;
 }
 
 .GameChatImage
@@ -265,6 +272,7 @@
     height: 24px;
     width: 24px;
     margin-right: 4px;
+    vertical-align: center;
 }
 
 @keyframes 'roundTop'
