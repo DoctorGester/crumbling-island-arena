@@ -152,9 +152,18 @@ var emotes = {
 
 var template = "https://static-cdn.jtvnw.net/emoticons/v1/{image_id}/1.0";
 
+function EscapeHtml(unsafe) {
+    return unsafe
+         .replace(/&/g, "&amp;")
+         .replace(/</g, "&lt;")
+         .replace(/>/g, "&gt;")
+         .replace(/"/g, "&quot;")
+         .replace(/'/g, "&#039;");
+ }
+
 function InsertEmotes(input) {
-    input = encodeURI(input);
-    
+    input = EscapeHtml(input);
+
     for (var emote in emotes) {
         var url = template.replace("{image_id}", emotes[emote]);
         input = input.replace(new RegExp("\\b" + emote + "\\b", "g"), "<img src='" + url + "'/>");
