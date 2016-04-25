@@ -1333,9 +1333,9 @@
 
 		"precache"
 		{
-			"particle" "particles/pugna_w.vpcf"
-			"particle" "particles/pugna_w_rune.vpcf"
-			"particle" "particles/pugna_w_explode.vpcf"
+			"particle" "particles/pugna_w/pugna_w.vpcf"
+			"particle" "particles/pugna_w/pugna_w_rune.vpcf"
+			"particle" "particles/pugna_w/pugna_w_explode.vpcf"
 		}
 	}
 
