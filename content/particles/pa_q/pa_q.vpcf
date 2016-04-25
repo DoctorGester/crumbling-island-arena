@@ -4,8 +4,7 @@
 	m_Children =
 	[
 		{
-			m_ChildRef = resource:"particles/pa_q/pa_q_scythe.vpcf"
-			m_bDisableChild = true
+			m_ChildRef = resource:"particles/pa_q/pa_q_trail.vpcf"
 		},
 	]
 	m_Operators =
