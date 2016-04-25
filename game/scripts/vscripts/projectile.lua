@@ -229,6 +229,14 @@ function HomingProjectile:constructor(round, params)
     getbase(DistanceCappedProjectile).constructor(self, round, params)
 end
 
+function HomingProjectile:Update()
+    getbase(HomingProjectile).Update(self)
+
+    if not self.target:Alive() then
+        self:Destroy()
+    end
+end
+
 function HomingProjectile:GetNextPosition(pos)
     return pos + ((self.target:GetPos() + Vector(0, 0, self.heightOffset) - pos):Normalized() * (self:GetSpeed() / 30))
 end
