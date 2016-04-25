@@ -25,7 +25,7 @@ function ProjectilePAQ:constructor(round, hero, target)
             self:Destroy()
         else
             target:EmitSound("DOTA_Item.BattleFury")
-            target:Damage()
+            target:Damage(self)
 
             local direction = (target:GetPos() - self:GetPos()):Normalized()
             local blood = ImmediateEffect("particles/units/heroes/hero_riki/riki_backstab_hit_blood.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero)
