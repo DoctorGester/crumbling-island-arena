@@ -24,7 +24,7 @@
 		150,
 	]
 	m_nGroupID = 3
-	m_flMaxDrawDistance = 2000.000000
+	m_flMaxDrawDistance = 3000.000000
 	m_bShouldSort = false
 	m_flMaxRecreationTime = -1.000000
 	m_Renderers =
