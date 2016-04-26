@@ -63,23 +63,9 @@ function TableAbilityDataProvider(heroData) {
     }
 }
 
-function CreateDifficultyLock(loaded) {
+function CreateDifficultyLock() {
     // Dis gon be ugly
     var lockedHeroes = $("#HardHeroes");
-
-    if (!loaded) {
-        $.Schedule(0.01, function() {
-            if (lockedHeroes.GetPositionWithinWindow() == Infinity) {
-                CreateDifficultyLock(false);
-                return;
-            }
-
-            CreateDifficultyLock(true);
-        });
-
-        return;
-    }
-    
     var background = $("#HeroSelectionBackground");
     var relation = 1080 / background.actuallayoutheight;
 
@@ -89,6 +75,12 @@ function CreateDifficultyLock(loaded) {
     var widestRow = _(lockedHeroes.Children()).max(function(row) { return row.actuallayoutwidth });
 
     var startX = (widestRow.GetPositionWithinWindow().x - 3) * relation;
+
+    if (startX == Infinity || startY == Infinity) {
+        $.Schedule(0.01, CreateDifficultyLock);
+        lock.DeleteAsync(0);
+        return;
+    }
 
     lock.style.x = startX + "px";
     lock.style.y = startY + "px";
@@ -434,12 +426,15 @@ function GameInfoChanged(gameInfo) {
     }
 
     var lock = $("#DifficultyLock");
-    if (gameInfo.hardHeroesLocked) {
+    if (gameInfo.hardHeroesLocked == 1) {
         if (!lock)
             CreateDifficultyLock();
     } else {
-        if (lock)
+        $.Msg("Deleting lock");
+        if (lock) {
+            $.Msg("Delete");
             lock.DeleteAsync(0);
+        }
     }
 }
 
