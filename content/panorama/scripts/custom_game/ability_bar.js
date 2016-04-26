@@ -201,6 +201,8 @@ function AbilityButton(parent, hero, ability) {
     this.cooldown = $.CreatePanel("Label", this.image, "");
     this.cooldown.AddClass("CooldownText");
 
+    this.shineMask = $.CreatePanel("Panel", this.image, "");
+
     this.silence = $.CreatePanel("Panel", this.image, "");
     this.silence.AddClass("AbilitySilenced");
 
@@ -255,6 +257,12 @@ function AbilityButton(parent, hero, ability) {
 
         if (!ready){
             text = remaining.toFixed(1);
+        }
+
+        if (remaining == 0 && activated) {
+            this.shineMask.AddClass("CooldownEndShine");
+        } else {
+            this.shineMask.RemoveClass("CooldownEndShine"); 
         }
 
         if (cd == 0 || !activated) {
