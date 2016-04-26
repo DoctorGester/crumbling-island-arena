@@ -19,6 +19,7 @@ function Level:constructor()
     self.running = true
     self.pulsePosition = 0
     self.pulseDirection = 1
+    self.tick = 0
 
     self:BuildIndex()
     self:SetupBackground()
@@ -73,6 +74,11 @@ function Level:DamageGround(part, damage)
 
     if part.health <= 50 then
         table.insert(self.shakingParts, part)
+    end
+
+    if part.health <= 20 and part.z >= -8 then
+        part.z = (part.health / 20 - 1) * 8
+        part:SetAbsOrigin(Vector(part.x, part.y, part.z))
     end
 
     if part.health <= 0 then
@@ -131,24 +137,28 @@ function Level:Update()
         end
     end
 
-    for _, part in ipairs(self.shakingParts) do
-        if part.velocity == 0 then
-            local pulseBound = (100 - part.health) * 0.8
-            local pulsePosition = self.pulsePosition / 100 * pulseBound
+    self.tick = self.tick + 1
 
-            part:SetRenderColor(255, 255 - pulsePosition, 255 - pulsePosition)
+    if self.tick % 3 == 0 then
+        for _, part in ipairs(self.shakingParts) do
+            if part.velocity == 0 then
+                local pulseBound = (100 - part.health) * 0.8
+                local pulsePosition = self.pulsePosition / 100 * pulseBound
 
-            local amplitude = 0.8
+                part:SetRenderColor(255, 255 - pulsePosition, 255 - pulsePosition)
 
-            if part.health ~= 100 then
-                amplitude = 1 - part.health / 80
+                local amplitude = 0.8
+
+                if part.health ~= 100 then
+                    amplitude = 1 - part.health / 80
+                end
+
+                local yaw = RandomFloat(-amplitude, amplitude)
+                local pitch = RandomFloat(-amplitude, amplitude)
+                local roll = RandomFloat(-amplitude, amplitude)
+
+                part:SetAngles(yaw, pitch, roll)
             end
-
-            local yaw = RandomFloat(-amplitude, amplitude)
-            local pitch = RandomFloat(-amplitude, amplitude)
-            local roll = RandomFloat(-amplitude, amplitude)
-
-            part:SetAngles(yaw, pitch, roll)
         end
     end
 

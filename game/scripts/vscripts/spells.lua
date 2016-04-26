@@ -12,7 +12,7 @@ function Spells.TestPoint(point, unit)
     
     local trace = {
         startpos = ground,
-        endpos = ground - Vector(0, 0, 5),
+        endpos = ground - Vector(0, 0, 10),
         ignore = unit
     }
 
