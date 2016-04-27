@@ -11,6 +11,7 @@ function EarthSpiritRemnant:constructor(round, owner)
     self.speed = 0
     self.collisionType = COLLISION_TYPE_RECEIVER
     self.enemiesHit = {}
+    self.invulnerable = true
 end
 
 function EarthSpiritRemnant:CreateCounter()
@@ -101,6 +102,7 @@ function EarthSpiritRemnant:EarthCollision()
         ScreenShake(pos, 5, 150, 0.25, 2000, 0, true)
         GridNav:DestroyTreesAroundPoint(pos, 256, true)
         Spells:GroundDamage(pos, 256)
+        self.invulnerable = false
         
         EmitSoundOnLocationWithCaster(pos, "Arena.Earth.CastQ", nil)
     else
