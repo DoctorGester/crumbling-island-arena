@@ -43,3 +43,10 @@ end
 function Phoenix:GetCustomCastErrorLocation()
     return (self:GetCaster():HasModifier(EGG_MODIFIER) and "#dota_hud_error_cant_cast_in_egg" or "")
 end
+
+function Phoenix:Remove()
+    self:StopSound("Arena.Phoenix.LoopR")
+    self:StopSound("Arena.Phoenix.LoopR2")
+
+    getbase(Phoenix).Remove(self)
+end

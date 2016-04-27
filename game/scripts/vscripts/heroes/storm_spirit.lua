@@ -40,3 +40,9 @@ end
 function StormSpirit:HasRemnants()
     return #self.remnants > 0
 end
+
+function StormSpirit:Remove()
+    self:StopSound("Hero_StormSpirit.BallLightning.Loop")
+
+    getbase(StormSpirit).Remove(self)
+end
