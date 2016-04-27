@@ -41,18 +41,6 @@
     background-color: gradient( linear, 0% 0%, 0% 100%, from( #000000 ), to( #00000000 ) );
 }
 
-.ExitGameOverlay
-{
-    background-image: url("file://{images}/control_icons/return_to_game.png");
-    width: 62px;
-    height: 57px;
-    background-size: 30px;
-    background-position: 50% 50%;
-    background-repeat: no-repeat;
-    wash-color: #444a55;
-    transform: rotatez(180deg);
-}
-
 #HeroList
 {
     x: 40%;

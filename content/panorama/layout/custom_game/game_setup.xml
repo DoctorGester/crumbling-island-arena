@@ -1,6 +1,7 @@
 <root>
     <styles>
         <include src="file://{resources}/styles/custom_game/game_setup.css" />
+        <include src="file://{resources}/styles/custom_game/util.css" />
     </styles>
     <scripts>
         <include src="file://{resources}/scripts/custom_game/underscore-min.js" />
@@ -9,6 +10,7 @@
     </scripts>
     <Panel class="GameSetupBackground" hittest="false">
         <Image id="GameSetupBackground" src="file://{images}/custom_game/loadscreen.png" hittest="false"/>
+        <Panel class="ExitGameOverlay" hittest="false"/>
         <Panel id="ModeVoteDialog" class="GameSetupDialog">
             <Label id="ModeSelectHeader" class="VotingHeader" text="#GameSetupModeSelect"/>
             <Label class="VotingTimer" text="30"/>
