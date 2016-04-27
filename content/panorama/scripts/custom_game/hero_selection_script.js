@@ -9,7 +9,7 @@ function TableAbilityDataProvider(heroData) {
     this.heroData = heroData;
 
     this.FilterAbility = function(ability) {
-        return ability.name.indexOf("sub") == -1;
+        return ability.name.indexOf("sub") == -1 && ability.name != "tiny_grow"; // Thanks Valve
     }
 
     this.FilterAbilities = function() {

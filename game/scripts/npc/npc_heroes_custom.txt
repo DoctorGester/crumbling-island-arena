@@ -467,7 +467,7 @@
 		"Ability3" "tiny_e"
 		"Ability4" "tiny_r"
 		"Ability5" ""
-		"Ability6" ""
+		"Ability6" "tiny_grow"
 
 		"Ultimate" "tiny_r"
 	}

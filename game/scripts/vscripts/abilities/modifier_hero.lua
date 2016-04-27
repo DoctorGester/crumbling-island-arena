@@ -6,9 +6,9 @@ end
 
 if IsClient() then
     function modifier_hero:OnCreated()
-        SendToConsole("dota_combine_models 0")
+        SendToConsole("dota_combine_models 1")
     end
-    
+
     return
 end
 

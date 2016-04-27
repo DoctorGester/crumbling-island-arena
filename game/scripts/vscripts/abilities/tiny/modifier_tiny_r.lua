@@ -28,24 +28,26 @@ if IsServer() then
 
         Timers:CreateTimer(
             function()
-                self:GetParent():NotifyWearablesOfModelChange(true)
-                self:ChangeModelLevel(1, 4)
+                self:GetParent():FindAbilityByName("tiny_grow"):SetLevel(3)
+                --self:GetParent():NotifyWearablesOfModelChange(true)
+                --self:ChangeModelLevel(1, 4)
             end
         )
     end
 
     function modifier_tiny_r:OnDestroy(kv)
-        self:GetParent():NotifyWearablesOfModelChange(true)
-        self:ChangeModelLevel(4, 1)
+        self:GetParent():FindAbilityByName("tiny_grow"):SetLevel(0)
+        --self:GetParent():NotifyWearablesOfModelChange(true)
+        --self:ChangeModelLevel(4, 1)
 
-        ImmediateEffect("particles/units/heroes/hero_tiny/tiny_transform.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
+        --ImmediateEffect("particles/units/heroes/hero_tiny/tiny_transform.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
     end
 end
 
 function modifier_tiny_r:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-        MODIFIER_PROPERTY_MODEL_CHANGE,
+        --MODIFIER_PROPERTY_MODEL_CHANGE,
     }
 
     return funcs

@@ -1289,6 +1289,21 @@
 		}
 	}
 
+	"tiny_grow"
+	{
+		"BaseClass" "tiny_grow"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_HIDDEN"
+
+		"AbilitySpecial"
+		{
+			"03"
+			{
+				"var_type"					"FIELD_INTEGER"
+				"bonus_movement_speed"		"0 0 0"
+			}
+		}
+	}
+
 	"pugna_q"
 	{
 		"BaseClass" "ability_lua"
