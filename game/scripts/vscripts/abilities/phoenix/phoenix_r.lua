@@ -56,7 +56,7 @@ if IsServer() then
             hero:SetPos(hero:GetPos() + Vector(0, 0, up))
         end
 
-        if self.timePassed > 1.0 then
+        if self.timePassed > 0.5 then
             if not self.beam then
                 self:DestroyMarker()
 
