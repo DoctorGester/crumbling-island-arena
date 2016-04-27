@@ -37,13 +37,13 @@ function LycanWolf:CollideWith(target)
 
         ExecuteOrderFromTable({ UnitIndex = unit:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_STOP })
 
-        self:FindModifier("modifier_lycan_q"):SetDuration(0.5, false)
+        self:FindModifier("modifier_lycan_q"):SetDuration(0.25, false)
         self:SetFacing(direction:Normalized())
         self.attacking = target
         self.collisionType = COLLISION_TYPE_RECEIVER
         self:EmitSound("Arena.Lycan.HitQ")
 
-        StartAnimation(unit, { duration = 0.5, activity = ACT_DOTA_ATTACK })
+        StartAnimation(unit, { duration = 0.25, activity = ACT_DOTA_ATTACK, rate = 2.0 })
     end
 end
 
