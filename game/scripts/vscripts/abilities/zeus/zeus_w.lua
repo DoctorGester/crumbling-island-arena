@@ -40,7 +40,7 @@ function zeus_w:OnSpellStart()
 
             timePassed = timePassed + 0.1
 
-            if timePassed >= 6 then
+            if timePassed >= 3.5 then
                 hero:RemoveWall()
                 ParticleManager:DestroyParticle(particle, false)
                 ParticleManager:ReleaseParticleIndex(particle)
