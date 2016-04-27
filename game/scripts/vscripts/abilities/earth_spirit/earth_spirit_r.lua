@@ -21,6 +21,8 @@ function earth_spirit_r:OnChannelFinish(interrupted)
 
     if not remnant then return end
 
+    hero.round.spells:InterruptDashes(remnant)
+
     local particlePath = "particles/units/heroes/hero_earth_spirit/espirit_magnet_arclightning.vpcf"
     local particle = ImmediateEffect(particlePath, PATTACH_CUSTOMORIGIN, self:GetCaster())
     ParticleManager:SetParticleControl(particle, 0, hero:GetPos())
