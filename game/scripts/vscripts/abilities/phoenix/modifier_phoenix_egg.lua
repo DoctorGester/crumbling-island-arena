@@ -26,6 +26,10 @@ if IsServer() then
         local p = u:GetOrigin()
         Timers:CreateTimer(.066,
             function()
+                if not u:HasModifier(EGG_MODIFIER) then
+                    return
+                end
+
                 local index = ParticleManager:CreateParticle("particles/units/heroes/hero_phoenix/phoenix_supernova_egg.vpcf", PATTACH_POINT_FOLLOW, u)
                 ParticleManager:SetParticleControlEnt(index, 0, u, PATTACH_POINT_FOLLOW, "attach_hitloc", p, true)
                 ParticleManager:SetParticleControlEnt(index, 1, u, PATTACH_POINT_FOLLOW, "attach_hitloc", p, true)
@@ -41,12 +45,13 @@ if IsServer() then
     function modifier_phoenix_egg:OnDestroy()
         local unit = self:GetParent()
 
-        unit:StopSound("Arena.Phoenix.LoopP")
         unit:EmitSound("Arena.Phoenix.EndP")
 
         -- Can't start a new animation earlier
         Timers:CreateTimer(.066,
             function()
+                unit:StopSound("Arena.Phoenix.LoopP")
+
                 StartAnimation(unit, { duration = 1.0, activity = ACT_DOTA_INTRO })
 
                 ImmediateEffect("particles/units/heroes/hero_phoenix/phoenix_supernova_reborn.vpcf", PATTACH_POINT_FOLLOW, unit)
