@@ -9,7 +9,7 @@ function Statistics:constructor(players)
 end
 
 function Statistics:IncreaseValue(player, value, amount)
-	if not player then
+	if not player or not self.stats[player.id] then
 		return
 	end
 

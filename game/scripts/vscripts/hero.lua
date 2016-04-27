@@ -129,7 +129,7 @@ end
 function Hero:Update()
     getbase(Hero).Update(self)
 
-    if self.owner and self.unit and self.owner:IsConnected() then
+    if self.owner and self.unit and self.owner:IsConnected() and PlayerResource:GetPlayer(self.owner.id) then
         local assigned = PlayerResource:GetPlayer(self.owner.id):GetAssignedHero()
 
         if assigned then
