@@ -17,6 +17,7 @@ function ta_w:OnSpellStart()
     ParticleManager:SetParticleControl(effect, 1, pos + castDirection * 350 + Vector(0, 0, 32))
 
     hero:AreaEffect({
+        onlyHeroes = true,
         filter = Filters.Cone(pos, 500, castDirection, math.pi / 2),
         modifier = { name = "modifier_ta_w", duration = 3.5, ability = self }
     })
