@@ -286,10 +286,6 @@ function statCollection:sendStage1()
         statCollection:print(messagePhase1Complete)
         statCollection:print("Auth Key: ", self.authKey)
         statCollection:print("MatchID: ", self.matchID)
-
-        if GameRules:State_Get() >= DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-            statCollection:sendStage2()
-        end
     end)
 end
 

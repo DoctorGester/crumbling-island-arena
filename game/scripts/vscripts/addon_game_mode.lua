@@ -21,7 +21,7 @@ require('statistics')
 require('chat')
 require('debug_util')
 
-GAME_VERSION = "1.1"
+_G.GAME_VERSION = "1.1"
 
 STATE_NONE = 0
 STATE_GAME_SETUP = 1
@@ -134,7 +134,6 @@ function GameMode:EventStateChanged(args)
 
     if not IsInToolsMode() and PlayerResource:GetPlayerCount() > 1 and newState >= DOTA_GAMERULES_STATE_INIT and not statCollection.doneInit then
         statCollection:init()
-        statCollection:setFlags({ version = GAME_VERSION, mode = GAME_MODE_FFA })
     end
 
     if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
@@ -327,15 +326,15 @@ function GameMode:OnDamageDealt(hero, source)
         if self.round then
             self.round.statistics:IncreaseDamageDealt(source.owner)
         end
+    end
 
-        if not hero:Alive() then
-             CustomGameEventManager:Send_ServerToAllClients("kill_log_entry", {
-                killer = source.owner.hero.unit:GetName(),
-                victim = hero.unit:GetName(),
-                color = self.TeamColors[PlayerResource:GetTeam(source.owner.id)],
-                fell = false
-            })
-        end
+    if not hero:Alive() and hero.owner then
+         CustomGameEventManager:Send_ServerToAllClients("kill_log_entry", {
+            killer = source.owner.hero.unit:GetName(),
+            victim = hero.unit:GetName(),
+            color = self.TeamColors[source.owner.team],
+            fell = false
+        })
     end
 end
 
@@ -414,6 +413,10 @@ function GameMode:OnRoundEnd(round)
 end
 
 function GameMode:OnGameSetupEnd()
+    if not statCollection.sentStage2 and statCollection.sentStage1 then
+        statCollection:sendStage2()
+    end
+
     self.gameGoal = self.gameSetup:GetGameGoal()
     self:UpdatePlayerTable()
     self:UpdateGameInfo()
@@ -448,7 +451,7 @@ function GameMode:OnEntityKilled(event)
             CustomGameEventManager:Send_ServerToAllClients("kill_log_entry", {
                 killer = name,
                 victim = name,
-                color = self.TeamColors[entity:GetTeamNumber()],
+                color = self.TeamColors[entity.hero.owner.team],
                 fell = true
             })
         end
@@ -582,10 +585,6 @@ function GameMode:LoadCustomHeroes()
 end
 
 function GameMode:OnGameInProgress()
-    if not statCollection.sentStage2 and statCollection.sentStage1 then
-        statCollection:sendStage2()
-    end
-
     print("Setting players up")
 
     local i = 0

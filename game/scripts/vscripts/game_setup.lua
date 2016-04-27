@@ -223,6 +223,8 @@ function GameSetup:End()
             self.players[id]:SetTeam(self.teams[player.selectedTeam])
         end
     end
+
+    statCollection:setFlags({ version = GAME_VERSION, mode = self.selectedMode })
     
     self:callback()
 end
