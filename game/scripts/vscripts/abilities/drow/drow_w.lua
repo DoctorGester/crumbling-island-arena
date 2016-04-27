@@ -22,7 +22,7 @@ function drow_w:OnSpellStart()
         continueOnHit = true,
         hitModifier = { name = "modifier_drow_w", duration = 2.0, ability = self },
         hitCondition = function(projectile, target)
-            return projectile.owner ~= target.owner and not instanceof(target, Projectile)
+            return projectile.owner.team ~= target.owner.team and not instanceof(target, Projectile)
         end,
         hitFunction = function(projectile, target)
             local delta = 1 - math.min(1, (target:GetPos() - startPos):Length2D() / 1000)

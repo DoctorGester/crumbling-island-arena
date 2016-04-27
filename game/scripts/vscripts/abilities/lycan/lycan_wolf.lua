@@ -25,7 +25,7 @@ function LycanWolf:GetPos()
 end
 
 function LycanWolf:CollidesWith(target)
-    return self.owner ~= target.owner
+    return self.owner.team ~= target.owner.team
 end
 
 function LycanWolf:CollideWith(target)

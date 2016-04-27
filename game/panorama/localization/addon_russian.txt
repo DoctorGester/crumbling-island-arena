@@ -72,6 +72,18 @@
 		"ChatRandomed" "<b><font color='{s:color}'>{s:name}</font></b> случайно выбрал <font color='gold'>{s:hero}</font>"
 		"ChatPlaceholder" "Введите Ваше сообщение..."
 
+		"GameSetupModeSelect" "Выберите режим игры"
+		"GameSetupFFA" "Каждый за себя"
+		"GameSetup2v2" "2 на 2"
+		"GameSetupHeader_ffa" "Каждый за себя выбран!"
+		"GameSetupHeader_2v2" "2 на 2 выбран!"
+		"GameSetupTeamSelect" "Выберите команду"
+		"GameSetupTeam1" "Команда 1"
+		"GameSetupTeam2" "Команда 2"
+
+		"DOTA_GoodGuys" "Команда 1"
+		"DOTA_BadGuys" "Команда 2"
+		
 		"SbName" "Имя"
 		"SbScore" "Счет"
 		"SbDamage" "Урон"

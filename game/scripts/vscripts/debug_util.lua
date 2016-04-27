@@ -117,6 +117,7 @@ function CheckAndEnableDebug()
         return
     end
 
+    GameRules.GameMode.gameSetup.timer = 20000
     GameRules.GameMode.heroSelection.SelectionTimerTime = 20000
     GameRules.GameMode.heroSelection.PreGameTime = 0
     GameRules.GameMode.heroSelection.HardHeroesLocked = false

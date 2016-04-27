@@ -83,8 +83,6 @@ function AddPlayerRow(scoreboard, player, stats, winner, runnerUp) {
         });
     }
 
-    $.Msg(stats);
-
     AddNumberCell(row, color, player.score);
     AddNumberCell(row, color, stats.damageDealt);
     AddNumberCell(row, color, stats.roundsWon);
@@ -136,27 +134,49 @@ function AddFooter(scoreboard) {
     });
 }
 
+function SortedTeamPlayers(players, team) {
+    return _(players)
+            .chain()
+            .filter(function(player) { return player.team == team })
+            .sortBy(function(player) { return -player.score })
+            .value();
+}
+
 function GameInfoUpdated(gameInfo) {
     var scoreboard = $("#GameOverScoreboard");
     var players = gameInfo.players;
     var stats = gameInfo.statistics;
 
-    var winners = _(gameInfo.runnerUps).values();
-    winners.unshift(gameInfo.winner);
+    var winners =
+        _(gameInfo.runnerUps)
+        .chain()
+        .map(function(team) {
+            return SortedTeamPlayers(players, team);
+        })
+        .value();
+
+    winners.unshift.apply(winners, SortedTeamPlayers(players, gameInfo.winner));
 
     var playerIds = _(players).map(function(k, v) { return parseInt(v) });
     var nonWinners = _(playerIds).without.apply(_(playerIds), winners);
     nonWinners = _(nonWinners).sortBy(function(id) { return players[id].score }).reverse();
+    nonWinners = _(nonWinners).map(function(id) { return players[id] });
+
+    var nonWinners = _(players).filter(function(player) {
+        return !_(winners).find(function(winner) {
+            return winner.id == player.id
+        });
+    });
 
     winners.push.apply(winners, nonWinners); // All players combined and sorted
 
     AddHeaders(scoreboard);
 
-    _(winners).each(function(id) {
-        var winner = id == gameInfo.winner;
-        var runnerUp = _(gameInfo.runnerUps).values().indexOf(id) != -1;
+    _(winners).each(function(player) {
+        var winner = player.team == gameInfo.winner;
+        var runnerUp = _(gameInfo.runnerUps).values().indexOf(player.team) != -1;
 
-        AddPlayerRow(scoreboard, players[id.toString()], stats[id.toString()], winner, runnerUp);
+        AddPlayerRow(scoreboard, players[player.id.toString()], stats[player.id.toString()], winner, runnerUp);
     });
 
     AddFooter(scoreboard);

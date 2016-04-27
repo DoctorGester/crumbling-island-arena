@@ -61,7 +61,7 @@ function Vengeance:Remove()
 end
 
 function Vengeance:Damage(source)
-    if source.owner ~= self.hero then
+    if source.owner.team ~= self.hero.team then
         self.health = self.health - 1
     end
 

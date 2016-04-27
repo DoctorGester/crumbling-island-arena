@@ -81,7 +81,7 @@ function Projectile:CollidesWith(target)
         return self:hitCondition(target)
     end
 
-    return self.owner ~= target.owner
+    return self.owner.team ~= target.owner.team
 end
 
 function Projectile:CollideWith(target)

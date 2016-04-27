@@ -51,7 +51,7 @@ function ProjectilePAQ:CollidesWith(target)
         return target == self.hero
     end
 
-    return true
+    return target == self.hero or self.owner.team ~= target.owner.team
 end
 
 function ProjectilePAQ:Update()

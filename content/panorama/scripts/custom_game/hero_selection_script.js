@@ -430,9 +430,7 @@ function GameInfoChanged(gameInfo) {
         if (!lock)
             CreateDifficultyLock();
     } else {
-        $.Msg("Deleting lock");
         if (lock) {
-            $.Msg("Delete");
             lock.DeleteAsync(0);
         }
     }

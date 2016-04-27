@@ -18,7 +18,7 @@
     vertical-align: top;
     opacity: 0.6;
     width: 150px;
-    height: 80px;
+    height: fit-children;
     border-radius: 3px;
     transition-property: opacity;
     transition-duration: 0.1s;

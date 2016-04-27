@@ -15,7 +15,7 @@ function EntitySniperW:constructor(round, owner, position, ability)
 end
 
 function EntitySniperW:CollidesWith(target)
-    return self.owner ~= target.owner and instanceof(target, Hero)
+    return self.owner.team ~= target.owner.team and instanceof(target, Hero)
 end
 
 function EntitySniperW:CollideWith(target)

@@ -5,7 +5,10 @@ function modifier_hero:IsHidden()
 end
 
 if IsClient() then
-    SendToConsole("dota_combine_models 0")
+    function modifier_hero:OnCreated()
+        SendToConsole("dota_combine_models 0")
+    end
+    
     return
 end
 

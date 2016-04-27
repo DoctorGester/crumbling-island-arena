@@ -7,7 +7,7 @@ function lc_r:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
     local holder = CreateUnitByName(DUMMY_UNIT, target, false, hero.unit, hero.unit, hero.unit:GetTeam())
-    holder:AddNewModifier(holder, self, "modifier_lc_r_aura", { duration = 5 })
+    holder:AddNewModifier(hero:GetUnit(), self, "modifier_lc_r_aura", { duration = 5 })
 end
 
 function lc_r:GetCastAnimation()

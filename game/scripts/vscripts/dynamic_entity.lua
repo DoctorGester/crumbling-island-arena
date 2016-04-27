@@ -91,7 +91,7 @@ function DynamicEntity:AreaEffect(params)
 
     for _, target in pairs(self.round.spells:GetValidTargets()) do
         local passes = not params.filterProjectiles or not instanceof(target, Projectile)
-        local allyFilter = target.owner ~= self.owner or (params.hitAllies and target ~= self)
+        local allyFilter = target.owner.team ~= self.owner.team or (params.hitAllies and target ~= self)
 
         if allyFilter and passes and params.filter(target) then
             if params.modifier then

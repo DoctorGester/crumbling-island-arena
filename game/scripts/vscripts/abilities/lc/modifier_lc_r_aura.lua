@@ -30,6 +30,10 @@ function modifier_lc_r_aura:GetAuraSearchTeam()
     return DOTA_UNIT_TARGET_TEAM_FRIENDLY
 end
 
+function modifier_lc_r_aura:GetAuraEntityReject(target)
+    return target ~= self:GetCaster()
+end
+
 function modifier_lc_r_aura:GetAuraSearchType()
     return DOTA_UNIT_TARGET_HERO
 end

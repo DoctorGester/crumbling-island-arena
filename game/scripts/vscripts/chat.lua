@@ -21,7 +21,7 @@ function Chat:OnSay(args)
 
     CustomGameEventManager:Send_ServerToAllClients("custom_chat_say", {
         hero = self.players[id].selectedHero,
-        color = self.teamColors[PlayerResource:GetTeam(id)],
+        color = self.teamColors[self.players[id].team],
         player = id,
         message = args.message
     })
@@ -29,7 +29,7 @@ end
 
 function Chat:PlayerRandomed(id, hero)
     CustomGameEventManager:Send_ServerToAllClients("custom_randomed_message", {
-        color = self.teamColors[PlayerResource:GetTeam(id)],
+        color = self.teamColors[self.players[id].team],
         player = id,
         hero = hero
     })

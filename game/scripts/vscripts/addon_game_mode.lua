@@ -10,6 +10,7 @@ require('unit_entity')
 require('hero')
 require('player')
 require('level')
+require('game_setup')
 require('hero_selection')
 require('round')
 
@@ -23,20 +24,19 @@ require('debug_util')
 GAME_VERSION = "1.1"
 
 STATE_NONE = 0
-STATE_HERO_SELECTION = 1
-STATE_ROUND_IN_PROGRESS = 2
-STATE_ROUND_ENDED = 3
-STATE_GAME_OVER = 4
+STATE_GAME_SETUP = 1
+STATE_HERO_SELECTION = 2
+STATE_ROUND_IN_PROGRESS = 3
+STATE_ROUND_ENDED = 4
+STATE_GAME_OVER = 5
 
-GAME_MODE_FFA = "ffa"
-GAME_MODE_2V2 = "2v2"
+_G.GAME_MODE_FFA = "ffa"
+_G.GAME_MODE_2V2 = "2v2"
 
 ROUND_ENDING_TIME = 5
 FIXED_DAY_TIME = 0.27
 
 THINK_PERIOD = 0.01
-
-GAME_GOAL = 75
 
 DUMMY_HERO = "npc_dota_hero_wisp"
 
@@ -63,17 +63,7 @@ function Precache(context)
     PrecacheResource("model", "models/development/invisiblebox.vmdl", context)
     PrecacheResource("particle", "particles/ui/ui_generic_treasure_impact.vpcf", context)
     PrecacheResource("soundfile", "soundevents/custom_sounds.vsndevts", context)
-    PrecacheResource("soundfile", "soundevents/game_sounds_vo_announcer.vsndevts", context)
-
-    LinkLuaModifier("modifier_stunned_lua", "abilities/modifier_stunned", LUA_MODIFIER_MOTION_NONE)
-    LinkLuaModifier("modifier_knockback_lua", "abilities/modifier_knockback", LUA_MODIFIER_MOTION_NONE)
-    LinkLuaModifier("modifier_charges", "abilities/modifier_charges", LUA_MODIFIER_MOTION_NONE)
-    LinkLuaModifier("modifier_hidden", "abilities/modifier_hidden", LUA_MODIFIER_MOTION_NONE)
-    LinkLuaModifier("modifier_falling", "abilities/modifier_falling", LUA_MODIFIER_MOTION_NONE)
-    LinkLuaModifier("modifier_falling_animation", "abilities/modifier_falling", LUA_MODIFIER_MOTION_NONE)
-    LinkLuaModifier("modifier_hero", "abilities/modifier_hero", LUA_MODIFIER_MOTION_NONE)
-    LinkLuaModifier("modifier_tower", "abilities/modifier_tower", LUA_MODIFIER_MOTION_NONE)
-    LinkLuaModifier("modifier_creep", "abilities/modifier_creep", LUA_MODIFIER_MOTION_NONE)
+    PrecacheResource("soundfile", "soundevents/voscripts/game_sounds_vo_announcer.vsndevts", context)
 
     local heroes = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
 
@@ -185,7 +175,6 @@ function GameMode:InitSettings()
     mode:SetExecuteOrderFilter(Dynamic_Wrap(GameMode, "FilterExecuteOrder"), self)
 
     SendToServerConsole("dota_surrender_on_disconnect 0")
-    SendToServerConsole("dota_combine_models 0")
 end
 
 function GameMode:FilterExecuteOrder(filterTable)
@@ -236,9 +225,21 @@ function GameMode:InitEvents()
     ListenToGameEvent('entity_killed', Dynamic_Wrap(self, 'OnEntityKilled'), self)
 end
 
+function GameMode:InitModifiers()
+    LinkLuaModifier("modifier_stunned_lua", "abilities/modifier_stunned", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_knockback_lua", "abilities/modifier_knockback", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_charges", "abilities/modifier_charges", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_hidden", "abilities/modifier_hidden", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_falling", "abilities/modifier_falling", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_falling_animation", "abilities/modifier_falling", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_hero", "abilities/modifier_hero", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_tower", "abilities/modifier_tower", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_creep", "abilities/modifier_creep", LUA_MODIFIER_MOTION_NONE)
+end
+
 function GameMode:SetupMode()
     self.Players = {}
-    self:SetState(STATE_HERO_SELECTION)
+    self:SetState(STATE_GAME_SETUP)
     self:LoadCustomHeroes()
     self:UpdateAvailableHeroesTable()
 
@@ -248,6 +249,7 @@ function GameMode:SetupMode()
 
     self:InitSettings()
     self:InitEvents()
+    self:InitModifiers()
 
     self.Teams = {}
     self.Teams[0] = DOTA_TEAM_GOODGUYS
@@ -274,7 +276,7 @@ function GameMode:SetupMode()
     self.TeamColors[DOTA_TEAM_CUSTOM_8] = { 140, 42, 244 }  --      Purple
 
     for team = 0, (DOTA_TEAM_COUNT-1) do
-        GameRules:SetCustomGameTeamMaxPlayers(team, 1)
+        GameRules:SetCustomGameTeamMaxPlayers(team, 2)
         color = self.TeamColors[team]
         if color then
             SetTeamCustomHealthbarColor(team, color[1], color[2], color[3])
@@ -285,25 +287,41 @@ function GameMode:SetupMode()
 
     for i = 0, count do
         local color = self.TeamColors[self.Teams[i]]
-        PlayerResource:SetCustomPlayerColor(i, color[1], color[2], color[3])
+        --PlayerResource:SetCustomPlayerColor(i, color[1], color[2], color[3])
     end
 end
 
+function GameMode:GetTeamScore(team)
+    local score = 0
+
+    for _, player in pairs(self.Players) do
+        if player.team == team then
+            score = score + player.score
+        end
+    end
+
+    return score
+end
+
 function GameMode:IncreaseScore(player, amount)
+    local team = player.team
+
     player.score = player.score + amount
     self:UpdatePlayerTable()
 
-    if player.score >= self.gameGoal then
+    local totalScore = self:GetTeamScore(team)
+
+    if totalScore >= self.gameGoal then
         if not self.winner then
-            self.winner = player
-        elseif player ~= self.winner and GetIndex(self.runnerUps, player.id) == nil then
-            table.insert(self.runnerUps, player.id)
+            self.winner = team
+        elseif team ~= self.winner and GetIndex(self.runnerUps, team) == nil then
+            table.insert(self.runnerUps, team)
         end
     end
 end
 
 function GameMode:OnDamageDealt(hero, source)
-    if hero ~= source and source and source.owner then
+    if hero ~= source and source and source.owner and hero.owner and source.owner.team ~= hero.owner.team then
         self:IncreaseScore(source.owner, 1)
 
         if self.round then
@@ -325,7 +343,7 @@ function GameMode:EndGame()
     EmitAnnouncerSound("announcer_ann_custom_end_08")
     self:UpdateGameInfo()
     self:SetState(STATE_GAME_OVER)
-    GameRules:SetGameWinner(PlayerResource:GetTeam(self.winner.id))
+    GameRules:SetGameWinner(self.winner)
 end
 
 function GameMode:CheckEveryoneAbandoned()
@@ -343,30 +361,36 @@ function GameMode:CheckEveryoneAbandoned()
     end
     
     if playerCount > 1 and connectedPlayerCount == 1 then
-        self.winner = connectedPlayer
+        self.winner = connectedPlayer.team
     end
 end
 
 function GameMode:OnRoundEnd(round)
     local winner = round.winner
 
-    playerData = {}
+    winnerData = {}
 
     if winner ~= nil then
-        playerData.id = winner.id
-        playerData.color = self.TeamColors[PlayerResource:GetTeam(winner.id)]
-        self:IncreaseScore(winner, 3)
+        for _, player in pairs(self.Players) do
+            if player.team == winner then
+                playerData = {}
+                playerData.id = player.id
+                playerData.team = player.team
+                playerData.color = self.TeamColors[winner]
+                self:IncreaseScore(player, 3)
 
-        round.statistics:IncreaseRoundsWon(winner)
-    else
-        playerData.id = -1
+                round.statistics:IncreaseRoundsWon(player)
+
+                table.insert(winnerData, playerData)
+            end
+        end
     end
 
     self.generalStatistics:Add(round.statistics)
     self:CheckEveryoneAbandoned()
     self:SubmitRoundInfo(round, winner, self.winner ~= nil)
 
-    CustomNetTables:SetTableValue("main", "roundState", { roundWinner = playerData })
+    CustomNetTables:SetTableValue("main", "roundState", { roundWinner = winnerData })
 
     self:SetState(STATE_ROUND_ENDED)
 
@@ -387,6 +411,14 @@ function GameMode:OnRoundEnd(round)
             self.level:Reset()
         end
     end)
+end
+
+function GameMode:OnGameSetupEnd()
+    self.gameGoal = self.gameSetup:GetGameGoal()
+    self:UpdatePlayerTable()
+    self:UpdateGameInfo()
+    self:SetState(STATE_HERO_SELECTION)
+    self.heroSelection:Start(function() self:OnHeroSelectionEnd() end)
 end
 
 function GameMode:OnHeroSelectionEnd()
@@ -429,6 +461,7 @@ function GameMode:UpdatePlayerTable()
     for i, player in pairs(self.Players) do
         local playerData = {}
         playerData.id = i
+        playerData.team = player.team
         playerData.color = self.TeamColors[player.team]
         playerData.score = player.score
 
@@ -459,7 +492,11 @@ function GameMode:SubmitRoundInfo(round, winner, gameOver)
     local winners = {}
 
     if winner then
-        winners[PlayerResource:GetSteamAccountID(winner.id)] = true
+        for i, player in pairs(self.Players) do
+            if player.team == winner then
+                winners[PlayerResource:GetSteamAccountID(player.id)] = true
+            end
+        end
     end
 
     local players = {}
@@ -493,6 +530,7 @@ function GameMode:UpdateGameInfo()
     for i, player in pairs(self.Players) do
         local playerData = {}
         playerData.id = i
+        playerData.team = player.team
         playerData.color = self.TeamColors[player.team]
         playerData.score = player.score
 
@@ -502,7 +540,7 @@ function GameMode:UpdateGameInfo()
     CustomNetTables:SetTableValue("main", "gameInfo", {
         goal = self.gameGoal,
         hardHeroesLocked = self.heroSelection.HardHeroesLocked,
-        winner = self.winner and self.winner.id or nil,
+        winner = self.winner,
         roundNumber = self.roundNumber,
         runnerUps = self.runnerUps,
         statistics = self.generalStatistics.stats,
@@ -583,9 +621,18 @@ function GameMode:OnGameInProgress()
     self.GameItems = nil--LoadKeyValues("scripts/items/items_game.txt").items
 
     self.level = Level()
+    self.gameSetup = GameSetup(self.Players, self.Teams)
     self.heroSelection = HeroSelection(self.Players, self.AvailableHeroes, self.TeamColors, self.chat)
 
     self:UpdateGameInfo()
+
+    self:RegisterThinker(1,
+        function()
+            if self.State == STATE_GAME_SETUP and self.gameSetup then
+                self.gameSetup:Update()
+            end
+        end
+    )
 
     self:RegisterThinker(1,
         function()
@@ -606,8 +653,8 @@ function GameMode:OnGameInProgress()
 
     CheckAndEnableDebug()
 
-    self:SetState(STATE_HERO_SELECTION)
-    self.heroSelection:Start(function() self:OnHeroSelectionEnd() end)
+    self:SetState(STATE_GAME_SETUP)
+    self.gameSetup:Start(function() self:OnGameSetupEnd() end)
 end
 
 function GameMode:OnPlayerPickHero(keys)

@@ -1,0 +1,292 @@
+.GameSetupBackground
+{
+    width: 100%;
+    height: 100%;
+    overflow: clip;
+
+    transition-property: opacity;
+    transition-duration: 1.0s;
+}
+
+.GameOverBackground Image
+{
+    saturation: 0.0;
+}
+
+.AnimationGameSetupVisible
+{
+    opacity: 1.0;
+}
+
+.AnimationGameSetupInvisible
+{
+    opacity: 0.0;
+}
+
+.VotingHeader
+{
+    text-align: center;
+    width: 100%;
+    margin: 5px;
+    margin-top: 20px;
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    color: white;
+    font-size: 48px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.VotingTimer
+{
+    text-align: center;
+    width: 100%;
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    color: white;
+    font-size: 56px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#GameSetupChat
+{
+    align: center bottom;
+    width: 45%;
+    height: 20%;
+    background-color: #00000099;
+    border-radius: 3px;
+}
+
+.GameSetupDialog
+{
+    background-color: rgba(29, 39, 46, 240);
+    width: 50%;
+    height: 40%;
+    border-radius: 3px;
+    box-shadow: -4px -4px 8px 8px black;
+    align: center center;
+    flow-children: down;
+}
+
+.AspectRatio5x4 .GameSetupDialog, .AspectRatio4x3 .GameSetupDialog
+{
+    width: 70%;
+}
+
+@keyframes 'panelStateAnimation'
+{
+    from
+    {
+        transform: rotateX(0deg);
+        opacity: 1;
+    }
+
+    to
+    {
+        transform: rotateX(90deg);
+        opacity: 0;
+    }
+}
+
+.HideVotingPanel
+{
+    opacity: 0;
+    transform: rotateX(90deg);
+    transform-origin: 50% 100%;
+    animation-name: panelStateAnimation; 
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-direction: normal;
+}
+
+.ShowVotingPanel
+{
+    opacity: 1;
+    transform: rotateX(0deg);
+    transform-origin: 50% 100%;
+    animation-name: panelStateAnimation; 
+    animation-duration: 0.5s;
+    animation-timing-function: ease-in-out;
+    animation-direction: reverse;
+}
+
+.VotingPanelHidden
+{
+    opacity: 0;
+}
+
+.VotingButtons
+{
+    flow-children: right;
+    width: 100%;
+}
+
+.PlayerVotes
+{
+    align: center center;
+    flow-children: right;
+    margin-bottom: 20px;
+}
+
+.PlayerVote
+{
+    width: 64px;
+    height: 64px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border: 1px solid black;
+    border-radius: 3px;
+    tooltip-position: bottom;
+    tooltip-body-position: 50% 100%;
+}
+
+.PlayerVoteFront
+{
+    background-image: url("s2r://panorama/images/status_icons/ready_up_accept_psd.vtex");
+    background-size: 100% 100%;
+    background-position: 50% 50%;
+    width: 100%;
+    height: 100%;
+    opacity: 0.0;
+    transition-property: opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+
+.PlayerVoteFFA {
+    hue-rotation: 240deg;
+    opacity: 1.0;
+}
+
+.PlayerVote2v2 {
+    hue-rotation: 20deg;
+    opacity: 1.0;
+}
+
+.PlayerVoteTeam1 {
+    hue-rotation: 30deg;
+    opacity: 1.0;
+}
+
+.PlayerVoteTeam2 {
+    hue-rotation: 300deg;
+    opacity: 1.0;
+}
+
+#FreeForAllButton
+{
+    background-color: #e74c3c;
+    border: 0;
+    border-bottom: 4px solid #db4334;
+}
+
+#FreeForAllButton:active
+{
+    border-bottom: 0;
+}
+
+#2v2Button
+{
+    background-color: #27ae60;
+    border: 0;
+    border-bottom: 4px solid #219d55;
+}
+
+#2v2Button:active
+{
+    border-bottom: 0;
+}
+
+#Team1Button
+{
+    background-color: rgb(61, 210, 150);
+    border: 0;
+    border-bottom: 4px solid rgb(51, 180, 130);
+}
+
+#Team1Button Label
+{
+    text-shadow: 1px 1px 4px 4.0 #11111150;
+}
+
+#Team1Button:active
+{
+    border-bottom: 0;
+}
+
+#Team2Button
+{
+    background-color: rgb(243, 201, 9);
+    border: 0;
+    border-bottom: 4px solid rgb(213, 171, 9);
+}
+
+#Team2Button Label
+{
+    text-shadow: 1px 1px 4px 4.0 #11111150;
+}
+
+#Team2Button:active
+{
+    border-bottom: 0;
+}
+
+.VotingButton
+{
+    width: fill-parent-flow(1.0);
+    height: 64px;
+    margin: 20px;
+
+    border-style: solid;
+    border-width: 1px;
+
+    border-color: #404040;
+
+    transition-property: background-color;
+    transition-duration: 0.05s;
+
+    box-shadow: #00000055 -4px -4px 8px 8px;
+    vertical-align: top;
+    horizontal-align: center;
+    wash-color: #74EAFE66;
+}
+
+.VotingButton:enabled:hover
+{
+    background-color: #6c7d88;
+
+    border-top-color: #aaaaaa77;
+    border-left-color: #aaaaaa33;
+    border-bottom-color: #333333;
+    border-right-color: #404040;
+}
+
+.VotingButton:active
+{
+    background-color: white;
+    sound: "ui_generic_button_click";
+    transform: translateY(1px);
+    border-bottom: 0;
+}
+
+.VotingButton Label
+{
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    horizontal-align: center;
+    vertical-align: center;
+    text-align: center;
+    color: white;
+    font-size: 44px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 2px;
+    width: 100%;
+}
+
+.VotingButton:disabled
+{
+    wash-color: #777777;
+    saturation: 0;
+}

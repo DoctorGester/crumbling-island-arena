@@ -6,12 +6,22 @@ function RoundStateChanged(data){
     if (data) {
         var label = $("#ResultMessage");
         var winner = data.roundWinner;
+        var winnerAmount = Object.keys(winner).length;
 
-        if (winner.id == -1){
+        if (winnerAmount == 0){
             label.text = $.Localize("#RoundEndingWasted");
         } else {
-            var color = LuaColor(winner.color);
-            label.SetDialogVariable("name", Players.GetPlayerName(winner.id));
+            var first = Object.keys(winner)[0];
+            var text = "";
+
+            if (winnerAmount == 1) {
+                text = Players.GetPlayerName(winner[first].id)
+            } else {
+                text = $.Localize(Game.GetTeamDetails(winner[first].team).team_name);
+            }
+
+            var color = LuaColor(winner[first].color);
+            label.SetDialogVariable("name", text);
             label.SetDialogVariable("color", color);
             label.text = $.Localize("#RoundEnding", label);
         }

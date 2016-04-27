@@ -17,18 +17,24 @@ function Round:constructor(players, availableHeroes, callback)
 end
 
 function Round:CheckEndConditions()
-    local amountAlive = 0
-    local lastAlive = nil
-
     if self.ended then
         return
     end
 
+    local teams = {}
+    
     for _, player in pairs(self.players) do
         if player:IsConnected() and (player.hero and not player.hero.unit:IsNull() and player.hero:Alive()) then
-            amountAlive = amountAlive + 1
-            lastAlive = player
+            teams[player.team] = true
         end
+    end
+
+    local amountAlive = 0
+    local lastAlive = nil
+
+    for team, _ in pairs(teams) do
+        amountAlive = amountAlive + 1
+        lastAlive = team
     end
 
     if amountAlive <= 1 then

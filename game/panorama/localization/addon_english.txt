@@ -72,6 +72,18 @@
 		"ChatRandomed" "<b><font color='{s:color}'>{s:name}</font></b> has randomed <font color='gold'>{s:hero}</font>"
 		"ChatPlaceholder" "Type here..."
 
+		"GameSetupModeSelect" "Select a game mode"
+		"GameSetupFFA" "Free for all"
+		"GameSetup2v2" "2 vs 2"
+		"GameSetupHeader_ffa" "Free For All Selected!"
+		"GameSetupHeader_2v2" "2 VS 2 Selected!"
+		"GameSetupTeamSelect" "Select your team"
+		"GameSetupTeam1" "Team 1"
+		"GameSetupTeam2" "Team 2"
+
+		"DOTA_GoodGuys" "Team 1"
+		"DOTA_BadGuys" "Team 2"
+
 		"SbName" "Name"
 		"SbScore" "Score"
 		"SbDamage" "Damage dealt"
