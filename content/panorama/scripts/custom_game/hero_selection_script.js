@@ -382,13 +382,16 @@ function PlayersUpdated(data){
             score: player.score,
             steamId: info.player_steamid,
             name: Players.GetPlayerName(player.id),
-            color: LuaColor(player.color)
+            color: LuaColor(player.color),
+            team: player.team
         };
 
         players.push(result);
 
         playerColors[player.id] = player.color;
     }
+
+    players = _(players).sortBy(function(player) { return player.team });
 
     CreatePlayerList(players);
     CreateScoreColumn(players);
