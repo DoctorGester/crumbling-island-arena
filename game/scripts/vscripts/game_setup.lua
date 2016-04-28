@@ -52,6 +52,10 @@ function GameSetup:UpdateNetworkState()
 end
 
 function GameSetup:UpdateModeSelection()
+    if self.selectedMode ~= nil then
+        return
+    end
+    
     local ffaVotes = self:GetModeVotesCount(GAME_MODE_FFA)
     local teamVotes = self:GetModeVotesCount(GAME_MODE_2V2)
     local players = self:GetPlayerCount()
