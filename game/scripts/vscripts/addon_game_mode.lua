@@ -109,27 +109,40 @@ function GameMode:EventPlayerConnected(args)
     print("Player connected")
     PrintTable(args)
 
+    local id = args.PlayerID
     local userID = args.userid
 
     self.Users = self.Users or {}
     self.Users[userID] = playerEntity
 
-    local player = Player()
-    player:SetPlayerID(args.PlayerID)
-    self.Players[player.id] = player
+    if not self.Players[id] then
+        local player = Player()
+        player:SetPlayerID(id)
+        self.Players[id] = player
 
-    if self.gameSetup then
-        self.gameSetup:AddPlayer(player)
+        if self.gameSetup then
+            self.gameSetup:AddPlayer(player)
+        end
+    elseif self.Players[id].team ~= nil then
+        if PlayerResource:GetCustomTeamAssignment(id) ~= self.Players[id].team then
+            PlayerResource:SetCustomTeamAssignment(id, self.Players[id].team)
+        end
     end
 end
 
 function GameMode:EventPlayerReconnected(args)
+    print("Player reconnected")
+    PrintTable(args)
+
     if self.HeroSelection then
         self.HeroSelection:UpdateSelectedHeroes()
     end
 end
 
 function GameMode:EventPlayerDisconnected(args)
+    print("Player disconnected")
+    PrintTable(args)
+
     if self.HeroSelection then
         self.HeroSelection:UpdateSelectedHeroes()
     end
@@ -386,21 +399,28 @@ function GameMode:EndGame()
 end
 
 function GameMode:CheckEveryoneAbandoned()
+    local teams = {}
+    local teamCount = 0
     local playerCount = 0
-    local connectedPlayerCount = 0
-    local connectedPlayer = nil
-
-    for i, player in pairs(self.Players) do
+    
+    for _, player in pairs(self.Players) do
         if PlayerResource:GetConnectionState(player.id) ~= DOTA_CONNECTION_STATE_ABANDONED then
-            connectedPlayer = player
-            connectedPlayerCount = connectedPlayerCount + 1
+            teams[player.team] = true
         end
 
         playerCount = playerCount + 1
     end
-    
-    if playerCount > 1 and connectedPlayerCount == 1 then
-        self.winner = connectedPlayer.team
+
+    local connectedTeamCount = 0
+    local connectedTeam = nil
+
+    for team, _ in pairs(teams) do
+        connectedTeamCount = connectedTeamCount + 1
+        connectedTeam = team
+    end
+
+    if playerCount > 1 and connectedTeamCount == 1 then
+        self.winner = connectedTeam
     end
 end
 
