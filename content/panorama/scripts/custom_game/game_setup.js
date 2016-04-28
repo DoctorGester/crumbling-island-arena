@@ -17,13 +17,24 @@ function OnTimerTick(args){
     }
 }
 
+function TryFetchSteamId(avatar) {
+    var info = Game.GetPlayerInfo(Number(id));
+
+    if (!info) {
+        $.Schedule(0.1, function() {
+            TryFetchSteamId(avatar);
+        });
+    } else {
+        avatar.steamid = info.player_steamid;
+    }
+}
+
 function UpdatePlayerVotes(panel, players, key, map) {
     var votes = panel.FindChildrenWithClassTraverse("PlayerVotes")[0];
 
     for (id in players) {
         var player = players[id];
         var playerVotes = votes.playerVotes;
-        var info = Game.GetPlayerInfo(Number(id)) || {};
 
         if (!playerVotes) {
             playerVotes = {};
@@ -33,7 +44,8 @@ function UpdatePlayerVotes(panel, players, key, map) {
         if (!playerVotes[id]) {
             playerVotes[id] = $.CreatePanel("DOTAAvatarImage", votes, "");
             playerVotes[id].AddClass("PlayerVote");
-            playerVotes[id].steamid = info.player_steamid;
+
+            TryFetchSteamId(playerVotes[id]);
 
             playerVotes[id].front = $.CreatePanel("Panel", playerVotes[id], "");
             playerVotes[id].front.AddClass("PlayerVoteFront");
@@ -85,6 +97,6 @@ function GameStateChanged(data){
     SubscribeToNetTableKey("main", "gameSetup", true, GameSetupChanged);
     GameEvents.Subscribe("setup_timer_tick", OnTimerTick);
 
-    $("#GameSetupChat").BLoadLayout("file://{resources}/layout/custom_game/simple_chat.xml", false, false);
-    $("#GameSetupChat").RegisterListener("GameSetupEnter");
+    //$("#GameSetupChat").BLoadLayout("file://{resources}/layout/custom_game/simple_chat.xml", false, false);
+    //$("#GameSetupChat").RegisterListener("GameSetupEnter");
 })();

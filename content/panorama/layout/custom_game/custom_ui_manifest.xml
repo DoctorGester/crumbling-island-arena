@@ -1,7 +1,7 @@
 <root>
     <Panel>
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/hud.xml" />
-        <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/game_setup.xml" />
+        <CustomUIElement type="GameSetup" layoutfile="file://{resources}/layout/custom_game/game_setup.xml" />
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/hero_selection.xml" />
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/round_ending.xml" />
         <CustomUIElement type="Hud" layoutfile="file://{resources}/layout/custom_game/keybind_register.xml" />

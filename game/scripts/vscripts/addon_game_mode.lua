@@ -78,6 +78,7 @@ function Activate()
     GameRules.GameMode = GameMode()
     GameRules.GameMode:SetupMode()
     VectorTarget:Init({ noOrderFilter = true })
+    SendToServerConsole("dota_create_fake_clients 3")
 end
 
 function GameMode:OnThink()
@@ -86,7 +87,7 @@ function GameMode:OnThink()
     end
 
     local now = Time()
-    if GameRules:State_Get() == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+    if GameRules:State_Get() >= DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
         for _, thinker in ipairs(self.Thinkers) do
             
             if now >= thinker.next then
@@ -114,7 +115,13 @@ function GameMode:EventPlayerConnected(args)
     self.Users = self.Users or {}
     self.Users[userID] = playerEntity
 
-    PlayerResource:SetCustomTeamAssignment(args.index, self.Teams[args.index])
+    local player = Player()
+    player:SetPlayerID(args.PlayerID)
+    self.Players[player.id] = player
+
+    if self.gameSetup then
+        self.gameSetup:AddPlayer(player)
+    end
 end
 
 function GameMode:EventPlayerReconnected(args)
@@ -136,9 +143,44 @@ function GameMode:EventStateChanged(args)
         statCollection:init()
     end
 
+    if newState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
+        self:OnGameSetup()
+    end
+     
     if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
         self:OnGameInProgress()
     end
+end
+
+function GameMode:OnGameSetup()
+    print("Setting players up")
+
+    local i = 0
+
+    for id = 0, DOTA_MAX_PLAYERS do
+        if PlayerResource:IsValidPlayer(id) then
+            local player = Player()
+            player:SetPlayerID(id)
+            self.Players[player.id] = player
+
+            i = i + 1
+        end
+    end
+
+    PrintTable(self.Players)
+
+    self.gameSetup = GameSetup(self.Players, self.Teams)
+
+    self:SetState(STATE_GAME_SETUP)
+    self.gameSetup:Start()
+
+    self:RegisterThinker(1,
+        function()
+            if self.State == STATE_GAME_SETUP and self.gameSetup then
+                self.gameSetup:Update()
+            end
+        end
+    )
 end
 
 function GameMode:InitSettings()
@@ -153,8 +195,7 @@ function GameMode:InitSettings()
     GameRules:SetGoldPerTick(0)
     GameRules:SetUseBaseGoldBountyOnHeroes(true)
     GameRules:SetFirstBloodActive(false)
-    GameRules:SetCustomGameSetupTimeout(0)
-    GameRules:SetCustomGameSetupAutoLaunchDelay(0)
+    GameRules:EnableCustomGameSetupAutoLaunch(false)
     GameRules:SetTimeOfDay(FIXED_DAY_TIME)
 
     local mode = GameRules:GetGameModeEntity()
@@ -412,18 +453,6 @@ function GameMode:OnRoundEnd(round)
     end)
 end
 
-function GameMode:OnGameSetupEnd()
-    if not statCollection.sentStage2 and statCollection.sentStage1 then
-        statCollection:sendStage2()
-    end
-
-    self.gameGoal = self.gameSetup:GetGameGoal()
-    self:UpdatePlayerTable()
-    self:UpdateGameInfo()
-    self:SetState(STATE_HERO_SELECTION)
-    self.heroSelection:Start(function() self:OnHeroSelectionEnd() end)
-end
-
 function GameMode:OnHeroSelectionEnd()
     self.roundNumber = self.roundNumber + 1
     self.round = Round(self.Players, self.AvailableHeroes, function(round) self:OnRoundEnd(round) end)
@@ -585,53 +614,22 @@ function GameMode:LoadCustomHeroes()
 end
 
 function GameMode:OnGameInProgress()
-    print("Setting players up")
-
-    local i = 0
-
-    for id = 0, DOTA_MAX_PLAYERS do
-        if PlayerResource:IsValidPlayer(id) then
-            local player = Player()
-            player:SetPlayerID(id)
-            player:SetTeam(self.Teams[i])
-
-            self.Players[player.id] = player
-
-            if string.len(PlayerResource:GetSelectedHeroName(id)) == 0 then
-                CreateHeroForPlayer(DUMMY_HERO, PlayerResource:GetPlayer(id))
-            end
-
-            i = i + 1
-        end
+    if not statCollection.sentStage2 and statCollection.sentStage1 then
+        statCollection:sendStage2()
     end
-
-    PrintTable(self.Players)
 
     self.chat = Chat(self.Players, self.Users, self.TeamColors)
 
     self.roundNumber = 1
-    self.gameGoal = GAME_GOAL
     self.winner = nil
     self.runnerUps = {}
 
     self.generalStatistics = Statistics(self.Players)
 
-    self:UpdatePlayerTable()
     self.GameItems = nil--LoadKeyValues("scripts/items/items_game.txt").items
 
     self.level = Level()
-    self.gameSetup = GameSetup(self.Players, self.Teams)
     self.heroSelection = HeroSelection(self.Players, self.AvailableHeroes, self.TeamColors, self.chat)
-
-    self:UpdateGameInfo()
-
-    self:RegisterThinker(1,
-        function()
-            if self.State == STATE_GAME_SETUP and self.gameSetup then
-                self.gameSetup:Update()
-            end
-        end
-    )
 
     self:RegisterThinker(1,
         function()
@@ -650,10 +648,13 @@ function GameMode:OnGameInProgress()
         end
     )
 
-    CheckAndEnableDebug()
+    self.gameGoal = self.gameSetup:GetGameGoal()
+    self:UpdatePlayerTable()
+    self:UpdateGameInfo()
+    self:SetState(STATE_HERO_SELECTION)
+    self.heroSelection:Start(function() self:OnHeroSelectionEnd() end)
 
-    self:SetState(STATE_GAME_SETUP)
-    self.gameSetup:Start(function() self:OnGameSetupEnd() end)
+    CheckAndEnableDebug()
 end
 
 function GameMode:OnPlayerPickHero(keys)

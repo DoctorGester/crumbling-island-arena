@@ -9,8 +9,6 @@
         <include src="file://{resources}/scripts/custom_game/game_setup.js" />
     </scripts>
     <Panel class="GameSetupBackground" hittest="false">
-        <Image id="GameSetupBackground" src="file://{images}/custom_game/loadscreen.png" hittest="false"/>
-        <Panel class="ExitGameOverlay" hittest="false"/>
         <Panel id="ModeVoteDialog" class="GameSetupDialog">
             <Label id="ModeSelectHeader" class="VotingHeader" text="#GameSetupModeSelect"/>
             <Label class="VotingTimer" text="30"/>
@@ -37,6 +35,6 @@
             </Panel>
             <Panel class="PlayerVotes"/>
         </Panel>
-        <Panel id="GameSetupChat"/>
+        <!--<Panel id="GameSetupChat"/>-->
     </Panel>
 </root>

@@ -21,6 +21,15 @@ function GameSetup:constructor(players, teams)
     end
 end
 
+function GameSetup:AddPlayer(player)
+    self.playerState[player.id] = {
+        selectedMode = nil,
+        selectedTeam = nil
+    }
+
+    self:UpdateNetworkState()
+end
+
 function GameSetup:GetGameGoal()
     if self.selectedMode == GAME_MODE_FFA then
         return 75
@@ -200,14 +209,13 @@ function GameSetup:SelectRandomOptions()
     end
 end
 
-function GameSetup:Start(callback)
+function GameSetup:Start()
     print("Starting game setup")
 
     self:SendTimeToPlayers()
 
     EmitAnnouncerSound("announcer_ann_custom_vote_begun")
 
-    self.callback = callback
     self.modeListener = CustomGameEventManager:RegisterListener("setup_mode_select", function(id, ...) Dynamic_Wrap(self, "OnModeSelect")(self, ...) end)
     self.teamListener = CustomGameEventManager:RegisterListener("setup_team_select", function(id, ...) Dynamic_Wrap(self, "OnTeamSelect")(self, ...) end)
 
@@ -224,9 +232,16 @@ function GameSetup:End()
         end
     end
 
+    if self.selectedMode == GAME_MODE_FFA then
+        local team = 0
+        for id, player in pairs(self.playerState) do
+            self.players[id]:SetTeam(self.teams[team])
+            team = team + 1
+        end
+    end
+
     statCollection:setFlags({ version = GAME_VERSION, mode = self.selectedMode })
-    
-    self:callback()
+    GameRules:FinishCustomGameSetup()
 end
 
 function GameSetup:Update()

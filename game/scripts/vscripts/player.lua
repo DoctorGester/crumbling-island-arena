@@ -15,7 +15,7 @@ end
 function Player:SetTeam(i)
     self.team = i
 
-    if PlayerResource:GetCustomTeamAssignment(self.id) == 0 and i then
+    if i ~= nil then
         PlayerResource:SetCustomTeamAssignment(self.id, i)
     end
 end
