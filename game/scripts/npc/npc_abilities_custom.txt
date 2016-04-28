@@ -387,7 +387,7 @@
 		"ScriptFile" "abilities/cm/cm_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "tusk_snowball"
-		"AbilityCooldown" "4.0"
+		"AbilityCooldown" "5.0"
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_LINE"
@@ -414,7 +414,7 @@
 		"ScriptFile" "abilities/cm/cm_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "crystal_maiden_freezing_field"
-		"AbilityCooldown" "5.0"
+		"AbilityCooldown" "6.0"
 		"AbilityCastRange" "1100"
 		"VectorTarget"
 		{
@@ -447,7 +447,7 @@
 		"ScriptFile" "abilities/cm/cm_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "ancient_apparition_chilling_touch"
-		"AbilityCooldown" "6.0"
+		"AbilityCooldown" "7.0"
 
 		"TargetingIndicator"
 		{
@@ -491,7 +491,7 @@
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "ancient_apparition_ice_vortex"
-		"AbilityCooldown" "16.0"
+		"AbilityCooldown" "18.0"
 		"AbilityCastRange" "800"
 
 		"TargetingIndicator"
