@@ -28,7 +28,7 @@ function StormSpirit:FindClosestRemnant(point)
     for _, value in pairs(self.remnants) do
         local toRemnant = (point - value:GetPos()):Length2D()
 
-        if toRemnant <= distance then
+        if toRemnant <= distance and not value.falling then
             closest = value
             distance = toRemnant
         end
