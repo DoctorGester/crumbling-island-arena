@@ -20,7 +20,7 @@ function modifier_sniper_r:CheckState()
         for _, target in pairs(hero.round.spells:GetHeroTargets()) do
             local distance = (target:GetPos() - hero:GetPos()):Length2D()
 
-            if target ~= hero and distance <= 400 then
+            if target.owner.team ~= hero.owner.team and distance <= 400 then
                 invisible = false
                 break
             end
