@@ -21,7 +21,7 @@ function modifier_phoenix_w:GetStatusEffectName()
 end
 
 function modifier_phoenix_w:GetEffectName()
-    return "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_burn.vpcf"
+    return "particles/phoenix_w/phoenix_w_burn.vpcf"
 end
 
 function modifier_phoenix_w:StatusEffectPriority()

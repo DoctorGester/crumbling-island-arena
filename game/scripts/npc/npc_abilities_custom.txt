@@ -1040,7 +1040,7 @@
 		{
 			"particle" "particles/phoenix_w/phoenix_w.vpcf"
 			"particle" "particles/status_fx/status_effect_phoenix_burning.vpcf"
-			"particle" "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_burn.vpcf"
+			"particle" "particles/phoenix_w/phoenix_w_burn.vpcf"
 			"particle" "particles/units/heroes/hero_phoenix/phoenix_fire_spirit_ground.vpcf"
 			"particle" "particles/units/heroes/hero_phoenix/phoenix_fire_spirits_bird_fire.vpcf"
 		}
