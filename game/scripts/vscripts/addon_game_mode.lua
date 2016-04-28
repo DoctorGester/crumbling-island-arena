@@ -650,10 +650,11 @@ function GameMode:OnGameInProgress()
     self.gameGoal = self.gameSetup:GetGameGoal()
     self:UpdatePlayerTable()
     self:UpdateGameInfo()
-    self:SetState(STATE_HERO_SELECTION)
-    self.heroSelection:Start(function() self:OnHeroSelectionEnd() end)
 
     CheckAndEnableDebug()
+
+    self:SetState(STATE_HERO_SELECTION)
+    self.heroSelection:Start(function() self:OnHeroSelectionEnd() end)
 end
 
 function GameMode:OnPlayerPickHero(keys)
