@@ -183,7 +183,7 @@ function EarthSpiritRemnant:Remove()
         self.unit:RemoveSelf()
     end
 
-    ParticleManager:DestroyParticle(self.healthCounter, false)
+    ParticleManager:DestroyParticle(self.healthCounter, true)
     ParticleManager:ReleaseParticleIndex(self.healthCounter)
 
     ImmediateEffectPoint("particles/units/heroes/hero_earth_spirit/earthspirit_petrify_shockwave.vpcf", PATTACH_CUSTOMORIGIN, self.hero, self:GetPos())
@@ -194,11 +194,13 @@ function EarthSpiritRemnant:Remove()
 end
 
 function EarthSpiritRemnant:Damage(source)
-    if instanceof(source, EarthSpiritRemnant) and self.collisionType == COLLISION_TYPE_RECEIVER then
+    if instanceof(source, EarthSpiritRemnant) then
         source.health = source.health + self.health
         ParticleManager:SetParticleControl(source.healthCounter, 1, Vector(0, source.health, 0))
+
         self.unit:EmitSound("Arena.Earth.EndQ")
         self:Destroy()
+
         return
     end
 
