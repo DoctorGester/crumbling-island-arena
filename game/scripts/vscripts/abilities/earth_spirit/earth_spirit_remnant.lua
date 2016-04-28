@@ -83,7 +83,7 @@ end
 
 function EarthSpiritRemnant:CollidesWith(target)
     local hit = self.enemiesHit[target] and self.enemiesHit[target] > 0
-    return target ~= self.hero and not hit
+    return (not instanceof(target, Hero) or target.owner.team ~= self.owner.team) and not hit
 end
 
 function EarthSpiritRemnant:EarthCollision()
@@ -93,8 +93,13 @@ function EarthSpiritRemnant:EarthCollision()
         ImmediateEffectPoint("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp.vpcf", PATTACH_CUSTOMORIGIN, self.hero, pos)
         ImmediateEffectPoint("particles/units/heroes/hero_earth_spirit/earth_dust_hit.vpcf", PATTACH_CUSTOMORIGIN, self.hero, pos)
 
+        local allyHeroFilter =
+            function(target)
+                return not instanceof(target, Hero) or target.owner.team ~= self.owner.team
+            end
+
         self:AreaEffect({
-            filter = Filters.And(Filters.Area(pos, 256), Filters.NotEquals(self.hero)),
+            filter = Filters.And(Filters.Area(pos, 256), allyHeroFilter),
             damage = true,
             hitAllies = true
         })
