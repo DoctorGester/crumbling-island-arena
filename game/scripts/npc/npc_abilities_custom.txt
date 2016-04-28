@@ -140,13 +140,13 @@
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_LINE"
-			"MaxLength" "950"
+			"MaxLength" "600"
 		}
 
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "950"
+			"Radius" "600"
 		}
 
 		"precache"

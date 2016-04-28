@@ -8,7 +8,7 @@ function zeus_e:CreateLightning(self, from, to)
 end
 
 function zeus_e:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 950)
+    Wrappers.DirectionalAbility(self, 600)
 
     local hero = self:GetCaster().hero
     local casterPos = hero:GetPos()
