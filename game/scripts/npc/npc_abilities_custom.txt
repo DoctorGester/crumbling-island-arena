@@ -1599,8 +1599,21 @@
 		"ScriptFile" "abilities/wk/wk_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "undying_decay"
-		"AbilityCooldown" "2.0"
+		"AbilityCooldown" "6.0"
 		"AbilityCastPoint" "0.2"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_THICK_LINE"
+			"MaxLength" "1700"
+			"MinLength" "1700"
+			"Width" "320"
+		}
+
+		"precache"
+		{
+			"particle" "particles/neutral_fx/skeleton_spawn_c.vpcf"
+		}
 	}
 
 	"wk_w"
@@ -1609,8 +1622,22 @@
 		"ScriptFile" "abilities/wk/wk_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "undying_decay"
-		"AbilityCooldown" "2.0"
+		"AbilityCooldown" "7.0"
 		"AbilityCastPoint" "0.2"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "400"
+		}
+
+		"precache"
+		{
+			"particle" "particles/wk_w/wk_w.vpcf"
+			"particle" "particles/units/heroes/hero_clinkz/clinkz_windwalk.vpcf"
+			"particle" "particles/units/heroes/hero_clinkz/clinkz_death.vpcf"
+			"particle" "particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast_debuff.vpcf"
+		}
 	}
 
 	"wk_e"
@@ -1619,18 +1646,47 @@
 		"ScriptFile" "abilities/wk/wk_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "undying_tombstone_zombie_deathstrike"
-		"AbilityCooldown" "2.0"
-		"AbilityCastPoint" "0.2"
+		"AbilityCooldown" "8.0"
+		"AbilityCastPoint" "0.3"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_DIRECTION_GLOBAL"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "256"
+		}
+
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_undying/undying_zombie_spawn.vpcf"
+		}
 	}
 
 	"wk_r"
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/wk/wk_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "undying_decay"
-		"AbilityCooldown" "2.0"
-		"AbilityCastPoint" "0.2"
+		"AbilityCooldown" "14.0"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_THICK_LINE"
+			"MaxLength" "2500"
+			"MinLength" "2500"
+			"Width" "128"
+		}
+
+		"precache"
+		{
+			"particle" "particles/wk_r/wk_r.vpcf"
+		}
 	}
 
 	"ogre_q"

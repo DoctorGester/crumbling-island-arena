@@ -197,6 +197,11 @@
 		"AbilityTooltip_drow_e"							"Quickly dash to the target point slowing enemies on the way"
 		"AbilityTooltip_drow_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Fire a global arrow which damages and knocks back first enemy hit"
 
+		"AbilityTooltip_wk_q"							"Raise a squad of skeleton footmen<br/>Skeletons attack first enemy they encounter<br/>Every attack applies a stacking slow"
+		"AbilityTooltip_wk_w"							"Raise three skeleton archers who attack target area, slowing all enemies caught"
+		"AbilityTooltip_wk_e"							"Raise a wall of immortal zombies"
+		"AbilityTooltip_wk_r"							"Strike ground in a long wide line, stunning all enemies caught"
+
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
 		"ModifierTooltip_modifier_knockback_lua"				"Knocked back"
@@ -261,6 +266,9 @@
 		"ModifierTooltip_modifier_drow_w"						"Silenced"
 		"ModifierTooltip_modifier_drow_e"						"Shadowsteppin"
 		"ModifierTooltip_modifier_drow_e_slow"					"Slowed"
+
+		"ModifierTooltip_modifier_wk_q"							"Slowed"
+		"ModifierTooltip_modifier_wk_w"							"Slowed"
 	}
 }
 

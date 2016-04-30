@@ -36,6 +36,9 @@ function Level:BuildIndex()
         part.angleVel = Vector(0, 0, 0)
         part.health = 100
 
+        part.offsetX = 0
+        part.offsetY = 0
+
         local id = math.floor(position:Length2D())
         local index = self.indexedParts[id]
 
@@ -86,6 +89,9 @@ function Level:DamageGround(part, damage)
     end
 end
 
+function Level:GroundAction()
+end
+
 function Level:Reset()
     self.running = true
     self.fallingParts = {}
@@ -100,6 +106,8 @@ function Level:Reset()
         part.velocity = 0
         part.health = 100
         part.z = 0
+        part.offsetX = 0
+        part.offsetY = 0
         part.angles = Vector(0, 0, 0)
         part.angleVel = Vector(0, 0, 0)
         part:SetRenderColor(255, 255, 255)
@@ -168,7 +176,7 @@ function Level:Update()
         part.z = part.z - part.velocity
         part.angles = part.angles + part.angleVel
         part:SetAngles(part.angles.x, part.angles.y, part.angles.z)
-        part:SetAbsOrigin(Vector(part.x, part.y, part.z))
+        part:SetAbsOrigin(Vector(part.x + part.offsetX, part.y + part.offsetY, part.z))
 
         if part.z <= -MAP_HEIGHT - 200 then
             table.remove(self.fallingParts, i)
@@ -186,7 +194,9 @@ function Level:Update()
     end
 
     if self.distance > FINISHING_DISTANCE then
-        self.distance = self.distance - 1
+        if not IsInToolsMode() then
+            self.distance = self.distance - 1
+        end
     else
         self.running = false
     end
@@ -201,6 +211,14 @@ function Level:Update()
     if self.pulsePosition >= 100 and self.pulseDirection == 1 then
         self.pulsePosition = 100
         self.pulseDirection = -1
+    end
+end
+
+function Level:GroundAction(action)
+    for _, part in ipairs(self.parts) do
+        if part.z >= -8 then
+            action(part)
+        end
     end
 end
 

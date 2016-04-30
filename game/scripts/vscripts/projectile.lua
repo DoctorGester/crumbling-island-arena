@@ -195,6 +195,7 @@ PointTargetProjectile = PointTargetProjectile or class({}, nil, Projectile)
 function PointTargetProjectile:constructor(round, params)
     self.target = params.target or params.to
     self.targetReachedFunction = params.targetReachedFunction
+    self.parabola = params.parabola
 
     getbase(DistanceCappedProjectile).constructor(self, round, params)
 end
@@ -214,7 +215,17 @@ function PointTargetProjectile:Update()
 end
 
 function PointTargetProjectile:GetNextPosition(pos)
-    return pos + ((self.target - pos):Normalized() * (self:GetSpeed() / 30))
+    local result = pos + ((self.target - pos):Normalized() * (self:GetSpeed() / 30))
+
+    if self.parabola then
+        local d = (self.from - self.to):Length2D()
+        local x = (self.from - result):Length2D()
+        result.z = ParabolaZ(self.parabola, d, x)
+
+        self:SetFacing(result - pos)
+    end
+
+    return result
 end
 
 -- Projectile with unit target

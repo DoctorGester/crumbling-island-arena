@@ -1,5 +1,6 @@
 var modifiersWithStacks = [
-    "modifier_charges"
+    "modifier_charges",
+    "modifier_wk_q"
 ];
 
 function ShowBuffTooltip(element, entityId, buffId) {
@@ -34,13 +35,16 @@ function Buff(parent) {
             stacks = Buffs.GetStackCount(entityId, buffId);
         }
 
+        var textureData = {};
+        textureData.texture = texture;
+        textureData.name = Abilities.GetAbilityName(Buffs.GetAbility(entityId, buffId));
+
+        texture = GetTexture(textureData, customIcons);
+
         if (texture != this.data.texture) {
             this.data.texture = texture;
-
-            var textureData = {};
-            textureData.texture = texture;
-            textureData.name = Abilities.GetAbilityName(Buffs.GetAbility(entityId, buffId));
-            this.element.SetImage(GetTexture(textureData, customIcons));
+            
+            this.element.SetImage(texture);
         }
 
         if (debuff != this.data.debuff) {

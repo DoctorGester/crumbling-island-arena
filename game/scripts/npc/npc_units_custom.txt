@@ -112,4 +112,23 @@
 		"VisionDaytimeRange"		"0"		// Range of vision during day light.
 		"VisionNighttimeRange"		"0"		// Range of vision at night time.
 	}
+
+	"wk_archer"
+	{
+	    "BaseClass"     "npc_dota_creature"
+	    "Model"         "models/heroes/clinkz/clinkz.vmdl"
+	    "ModelScale"    "0.7"
+	    "Creature"
+	    {
+	        "AttachWearables"
+	        {
+	            "1" { "ItemDef" "56" }
+	            "2" { "ItemDef" "60" }
+	            "3" { "ItemDef" "57" }
+	            "4" { "ItemDef" "61" }
+	            "5" { "ItemDef" "58" }
+	            "6" { "ItemDef" "59" }
+	        }
+	    }
+	}
 }

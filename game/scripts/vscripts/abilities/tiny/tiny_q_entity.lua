@@ -83,7 +83,7 @@ function TinyQ:Update()
             if not self.fell then
                 self.fell = true
 
-                if Spells.TestEntity(self) then
+                if self:TestFalling() then
                     self.secondParticle = ParticleManager:CreateParticle("particles/tiny_q/tiny_q_ground.vpcf", PATTACH_ABSORIGIN_FOLLOW , self.unit)
                     self:EmitSound("Arena.Tiny.LandQ", pos)
 

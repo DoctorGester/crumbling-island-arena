@@ -41,6 +41,10 @@ function IsOutOfTheMap(pos)
     return pos.x < GetWorldMinX() or pos.y < GetWorldMinY() or pos.x > GetWorldMaxX() or pos.y > GetWorldMaxY()
 end
 
+function ClampToMap(pos)
+    return Vector(math.max(GetWorldMinX() + 128, math.min(GetWorldMaxX() - 128, pos.x)), math.max(GetWorldMinY() + 128, math.min(GetWorldMaxY() - 128, pos.y)))
+end
+
 function IsLeft(a, b, c)
      return ((b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x)) > 0
 end

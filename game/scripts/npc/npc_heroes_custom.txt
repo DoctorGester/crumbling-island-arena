@@ -551,7 +551,6 @@
 		"VisionDaytimeRange" "0"
 		"VisionNighttimeRange" "0"
 		"Difficulty" "easy"
-		"Disabled" "true"
 		
 		"Ability1" "wk_q"
 		"Ability2" "wk_w"

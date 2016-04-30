@@ -195,6 +195,11 @@
 		"AbilityTooltip_drow_e"							"Quickly dash to the target point slowing enemies on the way"
 		"AbilityTooltip_drow_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Fire a global arrow which damages and knocks back first enemy hit"
 
+		"AbilityTooltip_wk_q"							"Призвать отряд скелетов мечников<br/>Скелеты атакуют первого врага на пути<br/>Каждая атака накладывает замедление"
+		"AbilityTooltip_wk_w"							"Призвать трех скелетов-лучников, атакующих указанную область, замедляя противников при попадании"
+		"AbilityTooltip_wk_e"							"Призвать стену бессмертных зомби"
+		"AbilityTooltip_wk_r"							"Атаковать землю по длинной и широкой линии, оглушая противников на ней"
+
 		"ModifierTooltip_modifier_charges"						"Заряды способности"
 		"ModifierTooltip_modifier_stunned_lua"					"Оглушен"
 		"ModifierTooltip_modifier_knockback_lua"				"Отброшен"
@@ -259,6 +264,9 @@
 		"ModifierTooltip_modifier_drow_w"						"Безмолвие"
 		"ModifierTooltip_modifier_drow_e"						"Шадоустеп"
 		"ModifierTooltip_modifier_drow_e_slow"					"Замедлен"
+
+		"ModifierTooltip_modifier_wk_q"							"Замедлен"
+		"ModifierTooltip_modifier_wk_w"							"Замедлен"
 	}
 }
 

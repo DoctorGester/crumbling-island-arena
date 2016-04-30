@@ -65,6 +65,8 @@ function Precache(context)
     PrecacheResource("soundfile", "soundevents/custom_sounds.vsndevts", context)
     PrecacheResource("soundfile", "soundevents/voscripts/game_sounds_vo_announcer.vsndevts", context)
 
+    PrecacheUnitByNameSync("wk_archer", context)
+
     local heroes = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
 
     for _, data in pairs(heroes) do
