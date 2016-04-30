@@ -204,17 +204,6 @@ VectorTarget.IsFastClickDragMode = function() {
         }
     });*/
 
-    $.Schedule(1 / 120, function(){
-        if ( GameUI.IsMouseDown( 0 ) )
-        {
-            $.Schedule( 1.0/30.0, tic );
-            if ( Entities.IsValidEntity( order.TargetIndex) )
-            {
-                Game.PrepareUnitOrders( order );
-            }
-        }
-    });
-    
     VectorTarget.SetFastClickDragMode(true);
 
     CheckDrag();

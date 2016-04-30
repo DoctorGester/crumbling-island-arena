@@ -38,11 +38,11 @@ function tiny_e:OnSpellStart()
                 table.insert(obstructions, pso)
             end
 
-            hero:EmitSound("Arena.Tiny.CastE")
+            hero:EmitSound("Arena.Tiny.CastE", target)
 
             Timers:CreateTimer(duration,
                 function()
-                    hero:EmitSound("Arena.Tiny.EndE")
+                    hero:EmitSound("Arena.Tiny.EndE", target)
                     for _, pso in ipairs(obstructions) do
                         pso:RemoveSelf()
                     end
