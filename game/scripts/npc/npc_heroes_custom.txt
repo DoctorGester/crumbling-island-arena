@@ -78,7 +78,7 @@
 		"AttributeBaseIntelligence" "0"
 		"VisionDaytimeRange" "0"
 		"VisionNighttimeRange" "0"
-		"Difficulty" "easy"
+		"Difficulty" "hard"
 
 		"Ability1" "storm_spirit_q"
 		"Ability2" "storm_spirit_w"
