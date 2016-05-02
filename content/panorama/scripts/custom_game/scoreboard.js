@@ -1,9 +1,15 @@
+var scoreboardConnectionStates = {};
+
 function PlayersUpdated(players) {
     var scoreboard = $("#Scoreboard");
-    DeleteChildrenWithClass(scoreboard, "ScoreboardPlayer");
+    DeleteChildrenWithClass(scoreboard, "ScoreboardTeam");
+
+    scoreboardConnectionStates = {};
 
     for (var key in players) {
-        players[key].name = [ Players.GetPlayerName(players[key].id) ];
+        players[key].ids = [ players[key].id ];
+        players[key].heroes = [ players[key].hero ];
+        players[key].names = [ Players.GetPlayerName(players[key].id) ];
     }
 
     var teams = _(players).groupBy(function(player) { return player.team });
@@ -14,26 +20,65 @@ function PlayersUpdated(players) {
         var player = _.reduce(team, function(p1, p2){
             return {
                 color: p2.color,
-                names: p1.name.concat(p2.name),
+                ids: p1.ids.concat(p2.ids),
+                names: p1.names.concat(p2.names),
+                heroes: p1.heroes.concat(p2.heroes),
                 score: p1.score + p2.score
             };
+        }, {
+            ids: [],
+            heroes: [],
+            names: [],
+            score: 0
         });
 
         var panel = $.CreatePanel("Panel", scoreboard, "");
-        panel.AddClass("ScoreboardPlayer");
+        panel.AddClass("ScoreboardTeam");
         panel.style.backgroundColor = LuaColor(player.color);
 
-        var names = player.names || player.name;
-        for (var index in names) {
-            var playerName = names[index];
-            var name = $.CreatePanel("Label", panel, "");
+        var playersPanel = $.CreatePanel("Panel", panel, "");
+        playersPanel.AddClass("ScoreboardPlayers");
+
+        for (var index in player.names) {
+            var playerPanel = $.CreatePanel("Panel", playersPanel, "");
+            playerPanel.AddClass("ScoreboardPlayer")
+
+            var hero = $.CreatePanel("DOTAHeroImage", playerPanel, "");
+            hero.heroname = player.heroes[index];
+            hero.heroimagestyle = "icon";
+            hero.AddClass("ScoreboardPlayerHero")
+            hero.SetScaling("stretch-to-fit-y-preserve-aspect");
+
+            var namePanel = $.CreatePanel("Panel", playerPanel, "");
+            namePanel.AddClass("ScoreboardPlayerNameContainer");
+
+            var playerName = player.names[index];
+            var name = $.CreatePanel("Label", namePanel, "");
             name.AddClass("ScoreboardPlayerName");
             name.text = playerName;
+
+            var connectionStatePanel = $.CreatePanel("Panel", namePanel, "");
+            connectionStatePanel.AddClass("ConnectionStatePanel")
+
+            scoreboardConnectionStates[player.ids[index]] = connectionStatePanel;
         }
 
         var score = $.CreatePanel("Label", panel, "");
-        score.AddClass("ScoreboardPlayerScore");
+        score.AddClass("ScoreboardTeamScore");
         score.text = player.score.toString();
+    }
+}
+
+function UpdateScoreboardConnectionStates() {
+    $.Schedule(0.1, UpdateScoreboardConnectionStates);
+
+    for (var id in scoreboardConnectionStates) {
+        var panel = scoreboardConnectionStates[id];
+        var state = Game.GetPlayerInfo(parseInt(id)).player_connection_state;
+
+        panel.SetHasClass("ConnectionStateDisconnected", state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_DISCONNECTED);
+        panel.SetHasClass("ConnectionStateAbandoned", state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED);
+        panel.GetParent().SetHasClass("ConnectionStateAbandonedName", state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED);
     }
 }
 
@@ -47,3 +92,5 @@ function GameInfoUpdated(gameInfo) {
 
 SubscribeToNetTableKey("main", "players", true, PlayersUpdated);
 SubscribeToNetTableKey("main", "gameInfo", true, GameInfoUpdated);
+
+UpdateScoreboardConnectionStates();

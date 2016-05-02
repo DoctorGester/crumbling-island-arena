@@ -11,47 +11,71 @@
     flow-children: right;
 }
 
-.ScoreboardPlayer
+.ScoreboardTeam
 {
-    flow-children: down;
+    flow-children: right;
     horizontal-align: center;
     vertical-align: top;
-    opacity: 0.6;
-    width: 150px;
+    opacity: 0.7;
+    width: 200px;
     height: fit-children;
     border-radius: 3px;
     transition-property: opacity;
     transition-duration: 0.1s;
+    margin: 4px;
 }
 
-.ScoreboardPlayer:hover
+.ScoreboardTeam:hover
 {
-    opacity: 0.8;
+    opacity: 0.9;
+}
+
+.ScoreboardPlayers
+{
+    flow-children: down;
+    width: 160px;
+}
+
+.ScoreboardPlayer
+{
+    width: 100%;
+    padding: 5px;
+    flow-children: right;
+}
+
+.ScoreboardPlayerHero
+{
+    align: left center;
+    margin-left: 8px;
+}
+
+.ScoreboardPlayerNameContainer
+{
+    z-index: -1;
+    width: 150px;
+    height: 100%;
 }
 
 .ScoreboardPlayerName
 {
     font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
     font-size: 16;
-    margin-top: 6px;
-    vertical-align: top;
-    horizontal-align: left;
+    align: center center;
     text-shadow: 0px 0px 3px 3.0 black;
     color: #CCB966;
     white-space: nowrap;
-    horizontal-align: center;
+    text-align: center;
 }
 
-.ScoreboardPlayerScore
+.ScoreboardTeamScore
 {
     font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
-    font-size: 36;
-    margin-bottom: 6px;
-    vertical-align: top;
+    font-size: 32;
+    align: center center;
     text-shadow: 0px 0px 1px 3.0 black;
     color: gold;
     white-space: nowrap;
-    horizontal-align: center;
+    width: 32px;
 }
 
 #ScoreBoardGoal
@@ -65,4 +89,33 @@
     background-color: rgba(0, 0, 0, 100);
     /*width: 100%;*/
     text-align: center;
+}
+
+.ConnectionStatePanel
+{
+    width: 100%;
+    height: 100%;
+}
+
+.ConnectionStateDisconnected
+{
+    background-image: url('file://{images}/custom_game/icon_disconnect.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+.ConnectionStateAbandoned
+{
+    background-image: url('file://{images}/custom_game/icon_disconnect.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+}
+
+.ConnectionStateAbandonedName .ScoreboardPlayerName
+{
+    text-decoration: line-through;
+    color: black;
+    text-shadow: none;
 }

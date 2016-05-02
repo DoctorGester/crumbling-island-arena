@@ -2,7 +2,7 @@ var dummy = "npc_dota_hero_wisp";
 var heroPanels = {};
 
 function UpdateHeroDetector(){
-    $.Schedule(0.025, UpdateHeroDetector);
+    $.Schedule(1 / 120, UpdateHeroDetector);
 
     var mainPanel = $("#MainPanel");
     var all = Entities.GetAllHeroEntities();
@@ -30,8 +30,10 @@ function UpdateHeroDetector(){
         .each(function(entity) {
             if (_.has(heroPanels, entity.id)) {
                 var panel = heroPanels[entity.id]
-                var realW = Clamp(entity.x, 0, mainPanel.actuallayoutwidth - panel.actuallayoutwidth) / mainPanel.actuallayoutwidth;
-                var realH = Clamp(entity.y, 0, mainPanel.actuallayoutheight - panel.actuallayoutwidth) / mainPanel.actuallayoutheight;
+                var screenWidth = Game.GetScreenWidth();
+                var screenHeight = Game.GetScreenHeight();
+                var realW = Clamp(entity.x, 0, screenWidth - panel.actuallayoutwidth) / screenWidth;
+                var realH = Clamp(entity.y, 0, screenHeight - panel.actuallayoutwidth) / screenHeight;
 
                 if (isNaN(realW) || isNaN(realH)) {
                     return;

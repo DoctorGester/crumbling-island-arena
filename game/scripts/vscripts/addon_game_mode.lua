@@ -232,7 +232,9 @@ function GameMode:InitSettings()
 
     mode:SetExecuteOrderFilter(Dynamic_Wrap(GameMode, "FilterExecuteOrder"), self)
 
-    SendToServerConsole("dota_surrender_on_disconnect 0")
+    if IsInToolsMode() then
+        SendToServerConsole("dota_surrender_on_disconnect 0")
+    end
 end
 
 function GameMode:FilterExecuteOrder(filterTable)
@@ -487,6 +489,7 @@ function GameMode:OnHeroSelectionEnd()
     self.round:CreateHeroes()
     self:SetState(STATE_ROUND_IN_PROGRESS)
     self:UpdateGameInfo()
+    self:UpdatePlayerTable()
 
     Timers:CreateTimer(1.5,
         function()
@@ -521,6 +524,7 @@ function GameMode:UpdatePlayerTable()
     for i, player in pairs(self.Players) do
         local playerData = {}
         playerData.id = i
+        playerData.hero = player.selectedHero;
         playerData.team = player.team
         playerData.color = self.TeamColors[player.team]
         playerData.score = player.score

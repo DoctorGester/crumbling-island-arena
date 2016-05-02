@@ -4,6 +4,7 @@ var playerColors = {};
 var selectedHeroes = {};
 var abilityBar = new AbilityBar("#HeroAbilities");
 var previewSchedule = 0;
+var playerConnectionStates = {};
 
 function TableAbilityDataProvider(heroData) {
     this.heroData = heroData;
@@ -174,6 +175,7 @@ function PickRandomHero(){
 function CreatePlayerList(players){
     var playerList = $("#NameColumn");
     DeleteChildrenWithClass(playerList, "NamePanel");
+    playerConnectionStates = {};
 
     for (var i = 0; i < players.length; i++) {
         var player = players[i];
@@ -193,6 +195,11 @@ function CreatePlayerList(players){
 
         panel.SetPanelEvent("onmouseover", mouseOver);
         panel.SetPanelEvent("onmouseout", mouseOut);
+
+        var connectionStatePanel = $.CreatePanel("Panel", panel, "");
+        connectionStatePanel.AddClass("ConnectionStatePanel");
+
+        playerConnectionStates[player.id] = connectionStatePanel;
 
         var name = $.CreatePanel("Label", panel, "");
         name.AddClass("NameLabel");
@@ -439,6 +446,19 @@ function GameInfoChanged(gameInfo) {
     }
 }
 
+function CheckConnectionState() {
+    $.Schedule(0.1, CheckConnectionState);
+
+    for (var id in playerConnectionStates) {
+        var panel = playerConnectionStates[id];
+        var state = Game.GetPlayerInfo(parseInt(id)).player_connection_state;
+
+        panel.SetHasClass("ConnectionStateDisconnected", state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_DISCONNECTED);
+        panel.SetHasClass("ConnectionStateAbandoned", state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED);
+        panel.GetParent().SetHasClass("ConnectionStateAbandonedName", state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED);
+    }
+}
+
 (function () {
     GameEvents.Subscribe("selection_hero_hover_client", SelectionHoverClient);
     GameEvents.Subscribe("timer_tick", OnTimerTick);
@@ -451,4 +471,6 @@ function GameInfoChanged(gameInfo) {
 
     $("#HeroSelectionChat").BLoadLayout("file://{resources}/layout/custom_game/simple_chat.xml", false, false);
     $("#HeroSelectionChat").RegisterListener("HeroSelectionEnter");
+
+    CheckConnectionState();
 })();
