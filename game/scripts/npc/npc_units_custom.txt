@@ -113,6 +113,22 @@
 		"VisionNighttimeRange"		"0"		// Range of vision at night time.
 	}
 
+	"wk_zombie"
+	{
+	    "BaseClass"     "npc_dota_creature"
+	    "Model"         "models/heroes/undying/undying_minion.vmdl"
+	    "ModelScale"    "1.0"
+	    "MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+	}
+
+	"wk_skeleton"
+	{
+	    "BaseClass"     "npc_dota_creature"
+	    "Model"         "models/creeps/neutral_creeps/n_creep_troll_skeleton/n_creep_skeleton_melee.vmdl"
+	    "ModelScale"    "1.0"
+	    "MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+	}
+
 	"wk_archer"
 	{
 	    "BaseClass"     "npc_dota_creature"

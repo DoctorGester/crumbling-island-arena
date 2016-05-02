@@ -16,6 +16,7 @@
         <include src="file://{resources}/scripts/custom_game/game_hud.js" />
         <include src="file://{resources}/scripts/custom_game/scoreboard.js" />
         <include src="file://{resources}/scripts/custom_game/hero_detector.js" />
+        <!--include src="file://{resources}/scripts/custom_game/hero_bars.js" /-->
         <include src="file://{resources}/scripts/custom_game/target_indicator.js" />
         <include src="file://{resources}/scripts/custom_game/vector_target.js" />
         <include src="file://{resources}/scripts/custom_game/kappa.js" />

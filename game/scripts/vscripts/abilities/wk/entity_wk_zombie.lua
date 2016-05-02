@@ -1,7 +1,7 @@
 WKZombie = WKZombie or class({}, nil, UnitEntity)
 
 function WKZombie:constructor(round, owner, position, direction)
-    getbase(WKZombie).constructor(self, round, "npc_dota_unit_undying_zombie", position, owner.unit:GetTeamNumber())
+    getbase(WKZombie).constructor(self, round, "wk_zombie", position, owner.unit:GetTeamNumber())
 
     self.ability = ability
     self.owner = owner.owner

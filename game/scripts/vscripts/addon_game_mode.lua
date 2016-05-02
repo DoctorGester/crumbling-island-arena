@@ -65,6 +65,10 @@ function Precache(context)
     PrecacheResource("soundfile", "soundevents/custom_sounds.vsndevts", context)
     PrecacheResource("soundfile", "soundevents/voscripts/game_sounds_vo_announcer.vsndevts", context)
 
+    PrecacheUnitByNameSync("npc_dota_dark_troll_warlord_skeleton_warrior", context)
+    PrecacheUnitByNameSync("npc_dota_unit_undying_zombie", context)
+    PrecacheUnitByNameSync("wk_skeleton", context)
+    PrecacheUnitByNameSync("wk_zombie", context)
     PrecacheUnitByNameSync("wk_archer", context)
 
     local heroes = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")

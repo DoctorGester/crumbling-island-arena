@@ -1,7 +1,7 @@
 WKSkeleton = WKSkeleton or class({}, nil, UnitEntity)
 
 function WKSkeleton:constructor(round, owner, ability, position, direction)
-    getbase(WKSkeleton).constructor(self, round, "npc_dota_dark_troll_warlord_skeleton_warrior", position, owner.unit:GetTeamNumber())
+    getbase(WKSkeleton).constructor(self, round, "wk_skeleton", position, owner.unit:GetTeamNumber())
 
     self.ability = ability
     self.owner = owner.owner
