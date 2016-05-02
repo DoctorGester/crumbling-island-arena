@@ -162,6 +162,8 @@ function GameInfoUpdated(gameInfo) {
     nonWinners = _(nonWinners).sortBy(function(id) { return players[id].score }).reverse();
     nonWinners = _(nonWinners).map(function(id) { return players[id] });
 
+    winners = _(winners).flatten();
+
     var nonWinners = _(players).filter(function(player) {
         return !_(winners).find(function(winner) {
             return winner.id == player.id
