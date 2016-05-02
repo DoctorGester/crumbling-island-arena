@@ -1314,8 +1314,8 @@
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_LINE"
-			"MaxLength" "1400"
-			"MinLength" "1400"
+			"MaxLength" "1200"
+			"MinLength" "1200"
 		}
 
 		"precache"

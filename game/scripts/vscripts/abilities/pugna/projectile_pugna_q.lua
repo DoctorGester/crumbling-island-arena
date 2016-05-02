@@ -5,9 +5,9 @@ function ProjectilePugnaQPrimary:constructor(round, hero, target)
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 64),
         to = target + Vector(0, 0, 64),
-        speed = 900,
+        speed = 1200,
         graphics = "particles/pugna_q/pugna_q.vpcf",
-        distance = 1400,
+        distance = 1200,
         hitFunction = function(projectile, target)
             if not hero:IsReversed() then
                 target:Damage(hero)
@@ -15,9 +15,7 @@ function ProjectilePugnaQPrimary:constructor(round, hero, target)
                 target:Heal()
             end
 
-            if instanceof(target, Hero) then
-                ProjectilePugnaQSecondary(round, target, hero):Activate()
-            end
+            ProjectilePugnaQSecondary(round, target, hero):Activate()
 
             target:EmitSound(hero:GetProjectileSound())
         end
