@@ -4,7 +4,7 @@ GAME_SETUP_STAGE_MODE = 0
 GAME_SETUP_STAGE_TEAM = 1
 
 function GameSetup:constructor(players, teams)
-    self.timer = 30
+    self.timer = IsInToolsMode() and 5 or 30
     self.players = players
     self.teams = teams
     self.stage = GAME_SETUP_STAGE_MODE

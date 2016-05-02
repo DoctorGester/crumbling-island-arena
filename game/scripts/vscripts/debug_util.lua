@@ -32,9 +32,9 @@ function Debug.OnCreateTestHero(eventSourceIndex, args)
     local round = GameRules.GameMode.round
     local hero = round:LoadHeroClass(args.name)
 
-    hero:SetUnit(CreateUnitByName(args.name, Vector(0, 0, 0), true, nil, nil, DOTA_TEAM_GOODGUYS))
+    hero:SetUnit(CreateUnitByName(args.name, Vector(0, 0, 0), true, nil, nil, DOTA_TEAM_CUSTOM_2))
     hero:Setup()
-    hero:SetOwner({ id = 2, team = DOTA_TEAM_GOODGUYS, score = 0, IsConnected = function() return true end })
+    hero:SetOwner({ id = 2, team = DOTA_TEAM_CUSTOM_2, score = 0, IsConnected = function() return true end })
 
     local _, first = next(round.players)
     hero.unit:SetControllableByPlayer(first.id, true)
