@@ -1,7 +1,11 @@
 LycanWolf = LycanWolf or class({}, nil, UnitEntity)
 
 function LycanWolf:constructor(round, owner, target, offsetModifier)
-    getbase(LycanWolf).constructor(self, round, "npc_dota_lycan_wolf1", owner:GetPos(), owner.unit:GetTeamNumber())
+    local direction = (target - owner:GetPos()):Normalized()
+    direction = Vector(direction.y, -direction.x, 0)
+    local pos = owner:GetPos() + direction * 200 * offsetModifier
+
+    getbase(LycanWolf).constructor(self, round, "npc_dota_lycan_wolf1", pos, owner.unit:GetTeamNumber())
 
     self.owner = owner.owner
     self.hero = owner
@@ -84,7 +88,7 @@ function LycanWolf:Update()
     local projected = (currentPosition:Length2D() + 300) * normal
 
     local progress = projected:Length2D() / direction:Length2D() - 2 -- graph shifting
-    local y = (progress * progress) * 128
+    local y = (progress * progress) * 256
     local offset = Vector(normal.y, -normal.x) * y * self.offsetModifier
     local result = self.start + projected + offset
 
