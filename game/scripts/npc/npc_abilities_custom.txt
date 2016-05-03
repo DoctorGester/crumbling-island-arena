@@ -1723,8 +1723,50 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/ogre/ogre_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "ogre_magi_multicast"
+		"AbilityCooldown" "2.0"
+		"AbilityCastPoint" "0.2"
+	}
+
+	"shaker_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/shaker/shaker_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "earthshaker_fissure"
+		"AbilityCooldown" "2.0"
+		"AbilityCastPoint" "0.2"
+	}
+
+	"shaker_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/shaker/shaker_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "ursa_earthshock"
+		"AbilityCooldown" "2.0"
+		"AbilityCastPoint" "0.2"
+	}
+
+	"shaker_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/shaker/shaker_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "earthshaker_enchant_totem"
+		"AbilityCooldown" "2.0"
+		"AbilityCastPoint" "0.2"
+	}
+
+	"shaker_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/shaker/shaker_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "earthshaker_echo_slam"
 		"AbilityCooldown" "2.0"
 		"AbilityCastPoint" "0.2"
 	}

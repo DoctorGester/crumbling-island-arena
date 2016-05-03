@@ -60,6 +60,10 @@
 		"HeroTips_npc_dota_hero_ogre_magi"				"<font color='gold'>Q</font>: Бросить смесь<br/><font color='gold'>W</font>: Использовать смесь на себя<br/><font color='gold'>E</font>: Замешать случайную смесь<br/><font color='gold'>R</font>: Использовать смеси не замешивая"
 		"Available_on_npc_dota_hero_ogre_magi"			"Доступно с 7 мая!"
 
+		"HeroName_npc_dota_hero_earthshaker"			"Рука"
+		"HeroTips_npc_dota_hero_earthshaker"			"<font color='gold'>Q</font>: Урон по линии + отбрасывание<br/><font color='gold'>W</font>: Урон и отбрасывание вокруг героя<br/><font color='gold'>E</font>: Прыжок + оглушение в области<br/><font color='gold'>R</font>: Уничтожить всю поврежденную землю"
+		"Available_on_npc_dota_hero_earthshaker"		"Доступно с 14 мая!"
+
 		"PlayerHeader" "игрок"
 		"SelectionHeader" "выбор"
 		"ScoreHeader" "счет"

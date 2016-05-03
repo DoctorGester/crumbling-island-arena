@@ -598,4 +598,35 @@
 
 		"Ultimate" "ogre_r"
 	}
+
+	"npc_dota_hero_earthshaker"
+	{
+		"override_hero"	"npc_dota_hero_earthshaker"
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
+		"BountyXP"	"0"
+		"MovementSpeed"	"350"
+		"MovementTurnRate"	"10"
+		"StatusHealth"	"5"
+		"StatusHealthRegen"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"AttributeBaseStrength"	"0"
+		"AttributeBaseIntelligence" "0"
+		"VisionDaytimeRange" "0"
+		"VisionNighttimeRange" "0"
+		"Difficulty" "easy"
+		"Disabled" "true"
+		
+		"Ability1" "shaker_q"
+		"Ability2" "shaker_w"
+		"Ability3" "shaker_e"
+		"Ability4" "shaker_r"
+		"Ability5" ""
+		"Ability6" ""
+
+		"Ultimate" "shaker_r"
+	}
 }

@@ -60,6 +60,10 @@
 		"HeroTips_npc_dota_hero_ogre_magi"			"<font color='gold'>Q</font>: Throw a concoction<br/><font color='gold'>W</font>: Use a concoction on yourself<br/><font color='gold'>E</font>: Mix a random concoction<br/><font color='gold'>R</font>: Use concoctions without mixing"
 		"Available_on_npc_dota_hero_ogre_magi"		"Available on May 7!"
 
+		"HeroName_npc_dota_hero_earthshaker"			"The Hand"
+		"HeroTips_npc_dota_hero_earthshaker"			"<font color='gold'>Q</font>: Damage in a line + knockback<br/><font color='gold'>W</font>: Damage + knockback around you<br/><font color='gold'>E</font>: Jump + stun in area<br/><font color='gold'>R</font>: Destroy all damaged ground"
+		"Available_on_npc_dota_hero_earthshaker"		"Available on May 14!"
+
 		"PlayerHeader" "player"
 		"SelectionHeader" "selection"
 		"ScoreHeader" "score"
