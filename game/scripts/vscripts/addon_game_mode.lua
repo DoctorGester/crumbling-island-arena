@@ -152,6 +152,12 @@ function GameMode:EventPlayerDisconnected(args)
     if self.HeroSelection then
         self.HeroSelection:UpdateSelectedHeroes()
     end
+
+    Timers:CreateTimer(
+        function()
+            self:CheckEveryoneAbandoned()
+        end
+    )
 end
 
 function GameMode:EventStateChanged(args)
@@ -410,6 +416,10 @@ function GameMode:EndGame()
 end
 
 function GameMode:CheckEveryoneAbandoned()
+    if self.State == STATE_GAME_OVER then
+        return
+    end
+
     local teams = {}
     local teamCount = 0
     local playerCount = 0
@@ -432,6 +442,7 @@ function GameMode:CheckEveryoneAbandoned()
 
     if playerCount > 1 and connectedTeamCount == 1 then
         self.winner = connectedTeam
+        self:EndGame()
     end
 end
 
@@ -457,7 +468,6 @@ function GameMode:OnRoundEnd(round)
     end
 
     self.generalStatistics:Add(round.statistics)
-    self:CheckEveryoneAbandoned()
     self:SubmitRoundInfo(round, winner, self.winner ~= nil)
 
     CustomNetTables:SetTableValue("main", "roundState", { roundWinner = winnerData })

@@ -212,3 +212,17 @@
 {
     color: black;
 }
+
+.ConnectionStatePanel
+{
+    width: 100%;
+    height: 100%;
+}
+
+.ConnectionStateDisconnected
+{
+    background-image: url('file://{images}/custom_game/icon_disconnect.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 1;
+}

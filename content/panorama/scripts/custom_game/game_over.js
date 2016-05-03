@@ -1,3 +1,5 @@
+var scoreboardPlayerStates = {};
+
 function AddTableHeaders(row, cl) {
     _(arguments).chain().rest(2).each(function(header) {
         var panel = $.CreatePanel("Panel", row, "");
@@ -58,6 +60,9 @@ function AddPlayerRow(scoreboard, player, stats, winner, runnerUp) {
     var nameCell = AddTextCell(row, color, Players.GetPlayerName(player.id));
     nameCell.AddClass("TableCellString");
     nameCell.AddClass("TableNameCell");
+
+    scoreboardPlayerStates[player.id] = $.CreatePanel("Panel", nameCell, "");
+    scoreboardPlayerStates[player.id].AddClass("ConnectionStatePanel");
 
     if (winner || runnerUp) {
         var icon = $.CreatePanel("Panel", nameCell, "");
@@ -143,6 +148,8 @@ function SortedTeamPlayers(players, team) {
 }
 
 function GameInfoUpdated(gameInfo) {
+    scoreboardPlayerStates = {};
+
     var scoreboard = $("#GameOverScoreboard");
     var players = gameInfo.players;
     var stats = gameInfo.statistics;
@@ -184,8 +191,22 @@ function GameInfoUpdated(gameInfo) {
     AddFooter(scoreboard);
 }
 
+function UpdateGameOverConnectionStates() {
+    $.Schedule(0.1, UpdateGameOverConnectionStates);
+
+    for (var id in scoreboardPlayerStates) {
+        var panel = scoreboardPlayerStates[id];
+        var state = Game.GetPlayerInfo(parseInt(id)).player_connection_state;
+        var dc = state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_DISCONNECTED || state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED
+
+        panel.SetHasClass("ConnectionStateDisconnected", dc);
+    }
+}
+
 $.GetContextPanel().AddClass("GameOverScoreboardVisible");
 $("#GameOverChat").BLoadLayout("file://{resources}/layout/custom_game/simple_chat.xml", false, false);
 $("#GameOverChat").RegisterListener("GameOverEnter");
 
 SubscribeToNetTableKey("main", "gameInfo", true, GameInfoUpdated);
+
+UpdateGameOverConnectionStates();
