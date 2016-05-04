@@ -442,6 +442,12 @@ function GameMode:CheckEveryoneAbandoned()
     if playerCount > 1 and connectedTeamCount == 1 then
         self.winner = connectedTeam
         self:EndGame()
+
+        if self.State == STATE_ROUND_IN_PROGRESS and self.round then
+            self:SubmitRoundInfo(self.round, self.winner, true)
+        else
+            self:SubmitRoundInfo({ statistics = Statistics(self.Players) }, self.winner, true)
+        end
     end
 end
 
