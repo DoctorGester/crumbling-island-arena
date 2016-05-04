@@ -67,11 +67,11 @@ function PlayersUpdated(players) {
         score.AddClass("ScoreboardTeamScore");
         score.text = player.score.toString();
     }
+
+    UpdateScoreboardConnectionStates();
 }
 
 function UpdateScoreboardConnectionStates() {
-    $.Schedule(0.1, UpdateScoreboardConnectionStates);
-
     for (var id in scoreboardConnectionStates) {
         var panel = scoreboardConnectionStates[id];
         var state = Game.GetPlayerInfo(parseInt(id)).player_connection_state;
@@ -80,6 +80,12 @@ function UpdateScoreboardConnectionStates() {
         panel.SetHasClass("ConnectionStateAbandoned", state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED);
         panel.GetParent().SetHasClass("ConnectionStateAbandonedName", state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED);
     }
+}
+
+function ScheduleScoreboardUpdateConnectionStates() {
+    $.Schedule(0.1, ScheduleScoreboardUpdateConnectionStates);
+
+    UpdateScoreboardConnectionStates();
 }
 
 function GameInfoUpdated(gameInfo) {
@@ -93,4 +99,4 @@ function GameInfoUpdated(gameInfo) {
 SubscribeToNetTableKey("main", "players", true, PlayersUpdated);
 SubscribeToNetTableKey("main", "gameInfo", true, GameInfoUpdated);
 
-UpdateScoreboardConnectionStates();
+ScheduleScoreboardUpdateConnectionStates();
