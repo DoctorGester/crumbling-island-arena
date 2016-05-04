@@ -15,9 +15,19 @@ function ProjectilePugnaQPrimary:constructor(round, hero, target)
                 target:Heal()
             end
 
-            ProjectilePugnaQSecondary(round, target, hero):Activate()
+            local newOwner = target.hero
+
+            if instanceof(target, Hero) then
+                newOwner = target
+            end
+
+            if newOwner then
+                ProjectilePugnaQSecondary(round, newOwner, hero, target:GetPos()):Activate()
+            end
 
             target:EmitSound(hero:GetProjectileSound())
+
+            self:Destroy()
         end
     })
 end
@@ -32,10 +42,10 @@ end
 
 ProjectilePugnaQSecondary = ProjectilePugnaQSecondary or class({}, nil, HomingProjectile)
 
-function ProjectilePugnaQSecondary:constructor(round, hero, originalOwner)
+function ProjectilePugnaQSecondary:constructor(round, hero, originalOwner, pos)
     getbase(ProjectilePugnaQSecondary).constructor(self, round, {
         owner = hero,
-        from = hero:GetPos() + Vector(0, 0, 64),
+        from = pos + Vector(0, 0, 64),
         heightOffset = 64,
         target = originalOwner,
         speed = 900,
