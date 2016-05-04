@@ -116,6 +116,11 @@ function GameMode:EventPlayerConnected(args)
     PrintTable(args)
 
     local id = args.PlayerID
+
+    if id == -1 then
+        return
+    end
+    
     local userID = args.userid
 
     self.Users = self.Users or {}
@@ -152,12 +157,6 @@ function GameMode:EventPlayerDisconnected(args)
     if self.HeroSelection then
         self.HeroSelection:UpdateSelectedHeroes()
     end
-
-    Timers:CreateTimer(
-        function()
-            self:CheckEveryoneAbandoned()
-        end
-    )
 end
 
 function GameMode:EventStateChanged(args)
@@ -628,6 +627,8 @@ function GameMode:LoadCustomHeroes()
     local customHeroes = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
     local customAbilities = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
 
+    local disableForDebug = not (IsInToolsMode() and PlayerResource:GetPlayerCount() == 1)
+
     for customName, data in pairs(customHeroes) do
         if data.override_hero ~= DUMMY_HERO then
             self.AvailableHeroes[data.override_hero] = {
@@ -635,7 +636,7 @@ function GameMode:LoadCustomHeroes()
                 class = data.Class,
                 customIcons = data.CustomIcons,
                 difficulty = data.Difficulty or "easy",
-                disabled = (data.Disabled and not IsInToolsMode()) and data.Disabled == "true" or false
+                disabled = (data.Disabled and disableForDebug) and data.Disabled == "true" or false
             }
 
             local abilities = {}
@@ -686,6 +687,14 @@ function GameMode:OnGameInProgress()
             if self.State == STATE_ROUND_IN_PROGRESS and self.round then
                 self.round:Update()
                 self.level:Update()
+            end
+        end
+    )
+
+    self:RegisterThinker(1,
+        function()
+            if self.State ~= STATE_GAME_OVER then
+                self:CheckEveryoneAbandoned()
             end
         end
     )

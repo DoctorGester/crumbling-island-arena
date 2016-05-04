@@ -119,7 +119,7 @@ function CheckAndEnableDebug()
     end
 
     GameRules.GameMode.gameSetup.timer = 20000
-    GameRules.GameMode.heroSelection.SelectionTimerTime = 20000
+    GameRules.GameMode.heroSelection.SelectionTimerTime = (PlayerResource:GetPlayerCount() > 1) and 3 or 20000 
     GameRules.GameMode.heroSelection.PreGameTime = 0
     GameRules.GameMode.heroSelection.HardHeroesLocked = false
     GameRules.GameMode:UpdateGameInfo()
