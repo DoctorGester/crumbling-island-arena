@@ -13,7 +13,6 @@ end
 function modifier_phoenix_egg:CheckState()
     local state = {
         [MODIFIER_STATE_ROOTED] = true,
-        [MODIFIER_STATE_NO_HEALTH_BAR] = true,
         [MODIFIER_STATE_NO_UNIT_COLLISION] = true
     }
  
