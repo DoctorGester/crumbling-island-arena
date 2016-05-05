@@ -34,7 +34,7 @@ function Debug.OnCreateTestHero(eventSourceIndex, args)
 
     hero:SetUnit(CreateUnitByName(args.name, Vector(0, 0, 0), true, nil, nil, DOTA_TEAM_CUSTOM_2))
     hero:Setup()
-    hero:SetOwner({ id = 2, team = DOTA_TEAM_CUSTOM_2, score = 0, IsConnected = function() return true end })
+    hero:SetOwner({ id = 2, hero = hero, team = DOTA_TEAM_CUSTOM_2, score = 0, IsConnected = function() return true end })
 
     local _, first = next(round.players)
     hero.unit:SetControllableByPlayer(first.id, true)
@@ -46,8 +46,12 @@ end
 
 function InjectFreeSelection()
     Hero.SetOwner = function(self, owner)
+        local c = GameRules.GameMode.TeamColors[owner.team]
+        local name = IsInToolsMode() and "Player" or PlayerResource:GetPlayerName(owner.id)
+
         self.owner = owner
         self.unit:SetControllableByPlayer(owner.id, true)
+        self.unit:SetCustomHealthLabel(name, c[1], c[2], c[3])
     end
 end
 

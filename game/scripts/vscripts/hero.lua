@@ -17,8 +17,12 @@ function Hero:SetUnit(unit)
 end
 
 function Hero:SetOwner(owner)
+    local c = GameRules.GameMode.TeamColors[owner.team]
+    local name = IsInToolsMode() and "Player" or PlayerResource:GetPlayerName(owner.id)
+
     self.owner = owner
     self.unit:SetControllableByPlayer(owner.id, true)
+    self.unit:SetCustomHealthLabel(name, c[1], c[2], c[3])
     PlayerResource:SetOverrideSelectionEntity(owner.id, self.unit)
 end
 

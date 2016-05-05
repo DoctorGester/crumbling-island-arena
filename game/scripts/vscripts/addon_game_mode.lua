@@ -350,13 +350,6 @@ function GameMode:SetupMode()
             SetTeamCustomHealthbarColor(team, color[1], color[2], color[3])
         end
     end
-
-    local count = math.min(PlayerResource:GetPlayerCount() - 1, 7)
-
-    for i = 0, count do
-        local color = self.TeamColors[self.Teams[i]]
-        --PlayerResource:SetCustomPlayerColor(i, color[1], color[2], color[3])
-    end
 end
 
 function GameMode:GetTeamScore(team)

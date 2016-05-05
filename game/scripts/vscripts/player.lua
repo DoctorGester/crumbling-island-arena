@@ -16,7 +16,9 @@ function Player:SetTeam(i)
     self.team = i
 
     if i ~= nil then
+        local color = GameRules.GameMode.TeamColors[i]
         PlayerResource:SetCustomTeamAssignment(self.id, i)
+        PlayerResource:SetCustomPlayerColor(self.id, color[1], color[2], color[3])
     end
 end
 
