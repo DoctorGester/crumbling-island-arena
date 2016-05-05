@@ -19,6 +19,10 @@ function Phoenix:SetUnit(unit)
     self:AddNewModifier(self, nil, "modifier_phoenix_egg_tooltip", {})
 end
 
+function Phoenix:CanFall()
+    return not self:FindAbility("phoenix_r"):IsChanneling() and getbase(Phoenix).CanFall(self)
+end
+
 function Phoenix:Damage(source)
     if source == self then
         Hero.Damage(self, source)
