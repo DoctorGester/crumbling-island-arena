@@ -7,8 +7,8 @@ if IsClient() then
     require("heroes/phoenix")
 end
 
-phoenix_q.CastFilterResult = Phoenix.CastFilterResultLocation
-phoenix_q.GetCustomCastError = Phoenix.GetCustomCastErrorLocation
+phoenix_q.CastFilterResultLocation = Phoenix.CastFilterResultLocation
+phoenix_q.GetCustomCastErrorLocation = Phoenix.GetCustomCastErrorLocation
 
 function phoenix_q:OnSpellStart()
     Wrappers.DirectionalAbility(self, 900)

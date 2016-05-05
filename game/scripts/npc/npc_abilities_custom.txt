@@ -1052,7 +1052,7 @@
 		"ScriptFile" "abilities/phoenix/phoenix_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName" "phoenix_fire_spirits"
-		"AbilityCooldown" "8"
+		"AbilityCooldown" "5"
 
 		"precache"
 		{
