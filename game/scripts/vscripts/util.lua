@@ -176,6 +176,70 @@ function MoveCameraToUnit(playerId, unit)
     )
 end
 
+--[[
+Declares a general lua modifier
+definition is {
+    [IsDebuff] = true,
+    [GetEffectName] = "vfx.vpcf"
+}
+
+states are {
+    MODIFIER_STATE_STUNNED,
+    MODIFIER_STATE_NO_HEALTH_BAR
+}
+
+properties are {
+    [MODIFIER_PROPERTY_OVERRIDE_ANIMATION] = ACT_DOTA_DISABLED,
+    [MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE] = function(self) return self:GetParent():GetBaseMoveSpeed() end
+}
+]]
+
+_G.GenericModifier = function(definition, states, properties)
+    local modifier = class({})
+
+    for property, value in pairs(definition) do
+        modifier[property] = function(self)
+            if type(value) == "function" then
+                return value(self)
+            end
+
+            return value
+        end
+    end
+
+    modifier.CheckState = function()
+        local finalState = {}
+
+        for _, state in ipairs(states) do
+            finalState[state] = true
+        end
+
+        return finalState
+    end
+
+    modifier.DeclareFunctions = function()
+        local funcs = {}
+
+        for property, _ in pairs(properties) do
+            table.insert(funcs, _G[property])
+        end
+
+        return funcs
+    end
+
+    for property, value in pairs(properties) do
+        modifier[EDesc.modifierfunction[property]] = function(self)
+            if type(value) == "function" then
+                return value(self)
+            end
+
+            return value
+        end
+    end
+
+    return modifier
+end
+
 function LoadDefaultHeroItems(hero, gameItems)
     local heroName = hero:GetName()
     local defaultSlots = {}
