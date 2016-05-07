@@ -1710,6 +1710,32 @@
 			"Type" "TARGETING_INDICATOR_RANGE"
 			"Radius" "1500"
 		}
+
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_lone_druid/lone_druid_bear_entangle.vpcf"
+			"particle" "particles/items_fx/item_sheepstick.vpcf"
+			"particle" "particles/generic_gameplay/generic_silence.vpcf"
+			"particle" "particles/units/heroes/hero_sven/sven_warcry_buff_b.vpcf"
+			"particle" "particles/status_fx/status_effect_frost_lich.vpcf"
+			"particle" "particles/generic_gameplay/generic_slowed_cold.vpcf"
+			"particle" "particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf"
+			"particle" "particles/ogre/ogre_explosion_2.vpcf"
+			"particle" "particles/ogre/ogre_explosion_3.vpcf"
+			"particle" "particles/units/heroes/hero_drow/drow_silence.vpcf"
+			"particle" "particles/units/heroes/hero_dragon_knight/dragon_knight_transform_green.vpcf"
+			"particle" "particles/units/heroes/hero_abaddon/abaddon_aphotic_shield_explosion.vpcf"
+			"particle" "particles/ogre/ogre_explosion_7.vpcf"
+			"particle" "particles/ogre/projectile_ogre_1.vpcf"
+			"particle" "particles/ogre/projectile_ogre_2.vpcf"
+			"particle" "particles/ogre/projectile_ogre_3.vpcf"
+			"particle" "particles/ogre/projectile_ogre_4.vpcf"
+			"particle" "particles/ogre/projectile_ogre_5.vpcf"
+			"particle" "particles/ogre/projectile_ogre_6.vpcf"
+			"particle" "particles/ogre/projectile_ogre_7.vpcf"
+			"particle" "particles/ogre/msg_ogre_spell.vpcf"
+			"model" "models/items/hex/sheep_hex/sheep_hex.vmdl"
+		}
 	}
 
 	"ogre_w"
@@ -1745,6 +1771,12 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "ogre_magi_multicast"
 		"AbilityCooldown" "12.0"
+
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_buff.vpcf"
+			"particle" "particles/units/heroes/hero_ogre_magi/ogre_magi_bloodlust_cast.vpcf"
+		}
 	}
 
 	"shaker_q"
