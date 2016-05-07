@@ -204,6 +204,11 @@
 		"AbilityTooltip_wk_e"							"Призвать стену бессмертных зомби"
 		"AbilityTooltip_wk_r"							"Атаковать землю по длинной и широкой линии, оглушая противников на ней"
 
+		"AbilityTooltip_ogre_q"							"Бросить смесь в область, применяя её эффект на всех героев"
+		"AbilityTooltip_ogre_w"							"Использовать смесь на себя и героев поблизости"
+		"AbilityTooltip_ogre_e"							"Замешать смесь со случайным эффектом<br/>Также наносит урон или восстанавливает здоровье"
+		"AbilityTooltip_ogre_r"							"Войти в безумие, замешивая по 10 смесей в секунду"
+
 		"ModifierTooltip_modifier_charges"						"Заряды способности"
 		"ModifierTooltip_modifier_stunned_lua"					"Оглушен"
 		"ModifierTooltip_modifier_knockback_lua"				"Отброшен"
@@ -271,6 +276,14 @@
 
 		"ModifierTooltip_modifier_wk_q"							"Замедлен"
 		"ModifierTooltip_modifier_wk_w"							"Замедлен"
+
+		"ModifierTooltip_modifier_ogre_1"						"Замедлен"
+		"ModifierTooltip_modifier_ogre_2"						"Ускорен"
+		"ModifierTooltip_modifier_ogre_3"						"Привязан к месту"
+		"ModifierTooltip_modifier_ogre_4"						"Невидим"
+		"ModifierTooltip_modifier_ogre_5"						"Обезмолвлен"
+		"ModifierTooltip_modifier_ogre_6"						"Овечка"
+		"ModifierTooltip_modifier_ogre_r"						"Делает смеси без остановки"
 	}
 }
 

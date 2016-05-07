@@ -1,0 +1,14 @@
+sequence 0
+frame fast.png 1
+sequence 1
+frame slow.png 1
+sequence 2
+frame invisible.png 1
+sequence 3
+frame root.png 1
+sequence 4
+frame sheep.png 1
+sequence 5
+frame silenced.png 1
+sequence 6
+frame stun.png 1

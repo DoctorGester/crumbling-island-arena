@@ -206,6 +206,11 @@
 		"AbilityTooltip_wk_e"							"Raise a wall of immortal zombies"
 		"AbilityTooltip_wk_r"							"Strike ground in a long wide line, stunning all enemies caught"
 
+		"AbilityTooltip_ogre_q"							"Throw a concoction into a target area, applying concoction effect to all heroes"
+		"AbilityTooltip_ogre_w"							"Use a concoction onto yourself and nearby heroes"
+		"AbilityTooltip_ogre_e"							"Mix a concoction with random effect<br/>It also deals damage or heals"
+		"AbilityTooltip_ogre_r"							"Enter bloodlust, mixing concoctions 10 times per second"
+
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
 		"ModifierTooltip_modifier_knockback_lua"				"Knocked back"
@@ -273,6 +278,14 @@
 
 		"ModifierTooltip_modifier_wk_q"							"Slowed"
 		"ModifierTooltip_modifier_wk_w"							"Slowed"
+
+		"ModifierTooltip_modifier_ogre_1"						"Slowed"
+		"ModifierTooltip_modifier_ogre_2"						"Sped up"
+		"ModifierTooltip_modifier_ogre_3"						"Rooted"
+		"ModifierTooltip_modifier_ogre_4"						"Invisible"
+		"ModifierTooltip_modifier_ogre_5"						"Silenced"
+		"ModifierTooltip_modifier_ogre_6"						"A sheep"
+		"ModifierTooltip_modifier_ogre_r"						"Mixing concoctions non-stop"
 	}
 }
 

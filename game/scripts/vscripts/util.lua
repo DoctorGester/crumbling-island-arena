@@ -179,8 +179,8 @@ end
 --[[
 Declares a general lua modifier
 definition is {
-    [IsDebuff] = true,
-    [GetEffectName] = "vfx.vpcf"
+    IsDebuff = true,
+    GetEffectName = "vfx.vpcf"
 }
 
 states are {
@@ -189,8 +189,8 @@ states are {
 }
 
 properties are {
-    [MODIFIER_PROPERTY_OVERRIDE_ANIMATION] = ACT_DOTA_DISABLED,
-    [MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE] = function(self) return self:GetParent():GetBaseMoveSpeed() end
+    MODIFIER_PROPERTY_OVERRIDE_ANIMATION = ACT_DOTA_DISABLED,
+    MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE = function(self) return self:GetParent():GetBaseMoveSpeed() end
 }
 ]]
 
