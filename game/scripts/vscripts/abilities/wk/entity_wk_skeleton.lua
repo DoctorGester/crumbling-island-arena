@@ -32,7 +32,7 @@ end
 function WKSkeleton:CollideWith(target)
     local unit = self:GetUnit()
 
-    if instanceof(target, Hero) and not unit:IsStunned() and not unit:IsRooted() then
+    if not instanceof(target, Projectile) and not unit:IsStunned() and not unit:IsRooted() and not self.attacking then
         local direction = (target:GetPos() - self:GetPos())
         local distance = direction:Length2D()
 
@@ -56,7 +56,7 @@ function WKSkeleton:Update()
     end
 
     if self:FindModifier("modifier_wk_skeleton"):GetRemainingTime() <= 0 then
-        if self.attacking then
+        if self.attacking and self.attacking:Alive() then
             local distance = (self.attacking:GetPos() - self:GetPos()):Length2D()
 
             if distance <= 250 then
