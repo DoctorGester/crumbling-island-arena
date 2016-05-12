@@ -4,6 +4,7 @@ require('lib/vector_target')
 require('lib/statcollection')
 require('targeting_indicator')
 require('util')
+require('stats')
 
 require('dynamic_entity')
 require('unit_entity')
@@ -401,6 +402,10 @@ function GameMode:OnDamageDealt(hero, source)
 end
 
 function GameMode:EndGame()
+    if self.winner then
+        Stats.SubmitMatchWinner(self.winner)
+    end
+
     EmitAnnouncerSound("announcer_ann_custom_end_08")
     self:UpdateGameInfo()
     self:SetState(STATE_GAME_OVER)
@@ -467,6 +472,7 @@ function GameMode:OnRoundEnd(round)
 
     self.generalStatistics:Add(round.statistics)
     self:SubmitRoundInfo(round, winner, self.winner ~= nil)
+    Stats.SubmitRoundInfo(self.Players, self.roundNumber - 2, winner, round.statistics)
 
     CustomNetTables:SetTableValue("main", "roundState", { roundWinner = winnerData })
 
@@ -659,6 +665,8 @@ function GameMode:OnGameInProgress()
     if not statCollection.sentStage2 and statCollection.sentStage1 then
         statCollection:sendStage2()
     end
+
+    Stats.SubmitMatchInfo(self.Players, self.gameSetup.selectedMode, GAME_VERSION)
 
     self.chat = Chat(self.Players, self.Users, self.TeamColors)
 
