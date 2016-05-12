@@ -19,6 +19,20 @@ function wk_e:OnSpellStart()
         ParticleManager:ReleaseParticleIndex(particle)
     end
 
+    local p1 = hero:GetPos() + direction * 256 + rotated * -3 * 64
+    local p2 = hero:GetPos() + direction * 256 + rotated * 3 * 64
+
+    hero:AreaEffect({
+        filter = Filters.Line(p1, p2, 200),
+        onlyHeroes = true,
+        hitAllies = true,
+        action = function(target)
+            if target ~= self.hero then
+                target:FindClearSpace(target:GetPos(), true)
+            end
+        end
+    })
+
     ScreenShake(hero:GetPos(), 5, 150, 0.25, 2000, 0, true)
 end
 

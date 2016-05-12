@@ -71,6 +71,17 @@ function EarthSpiritRemnant:RemoveTarget()
     self.collisionType = COLLISION_TYPE_RECEIVER
 
     self.unit:StopSound("Hero_EarthSpirit.RollingBoulder.Loop")
+
+    self:AreaEffect({
+        filter = Filters.Area(self:GetPos(), 256),
+        onlyHeroes = true,
+        hitAllies = true,
+        action = function(target)
+            if target ~= self.hero then
+                target:FindClearSpace(target:GetPos(), true)
+            end
+        end
+    })
 end
 
 function EarthSpiritRemnant:CollideWith(target)
@@ -94,12 +105,12 @@ function EarthSpiritRemnant:EarthCollision()
         ImmediateEffectPoint("particles/units/heroes/hero_earth_spirit/earth_dust_hit.vpcf", PATTACH_CUSTOMORIGIN, self.hero, pos)
 
         local allyHeroFilter =
-            function(target)
+            Filters.WrapFilter(function(target)
                 return not instanceof(target, Hero) or target.owner.team ~= self.owner.team
-            end
+            end)
 
         self:AreaEffect({
-            filter = Filters.And(Filters.Area(pos, 256), allyHeroFilter),
+            filter = Filters.Area(pos, 256) + allyHeroFilter,
             damage = true,
             hitAllies = true
         })
