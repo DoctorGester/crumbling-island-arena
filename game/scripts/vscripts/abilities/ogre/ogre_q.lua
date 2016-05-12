@@ -44,6 +44,7 @@ function ogre_q:OnSpellStart()
         speed = 2000,
         parabola = 600,
         disablePrediction = true,
+        invulnerable = true,
         hitCondition = 
             function(self, target)
                 return false

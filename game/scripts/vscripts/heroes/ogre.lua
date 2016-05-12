@@ -10,7 +10,7 @@ function Ogre:constructor()
 
     self:AddSpell("modifier_ogre_1", "particles/ogre/projectile_ogre_1.vpcf", {
         path = "particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf",
-        cp = { [1] = Vector(300, 1, 1) }
+        cp = { [1] = Vector(500, 1, 1) }
     }, 2.0, 1, "Arena.Ogre.HitQ.Slow")
 
     self:AddSpell("modifier_ogre_2", "particles/ogre/projectile_ogre_2.vpcf", {
