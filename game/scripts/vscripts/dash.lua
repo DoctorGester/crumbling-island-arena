@@ -8,11 +8,15 @@ function Dash:constructor(hero, to, speed, params)
     self.from = hero:GetPos()
     self.zStart = hero:GetGroundHeight(self.from)
 
-    self.findClearSpace = params.findClearSpace or true
     self.radius = params.radius or 128
     self.modifier = params.modifier
     self.arrivalSound = params.arrivalSound
     self.loopingSound = params.loopingSound
+    self.findClearSpace = params.findClearSpace
+
+    if self.findClearSpace == nil then
+       self.findClearSpace = true 
+    end
 
     self.PositionFunction = params.positionFunction or self.PositionFunction
     self.heightFunction = params.heightFunction
@@ -103,6 +107,8 @@ function Dash:End(at, reachedDestination)
     if self.findClearSpace then
         GridNav:DestroyTreesAroundPoint(at, self.radius, true)
         self.hero:FindClearSpace(at, false)
+    else
+        self.hero:SetPos(at)
     end
 
     self:OnArrival(reachedDestination)

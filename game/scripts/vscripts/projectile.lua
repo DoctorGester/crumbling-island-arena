@@ -30,6 +30,7 @@ function Projectile:constructor(round, params)
     self.hitGroup = {}
     self.disablePrediction = params.disablePrediction or false
     self.destroyOnDamage = params.destroyOnDamage
+    self.invulnerable = params.invulnerable or false
 
     if self.destroyOnDamage == nil then
        self.destroyOnDamage = true 
