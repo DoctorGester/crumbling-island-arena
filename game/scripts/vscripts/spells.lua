@@ -137,38 +137,75 @@ end
 
 Filters = {}
 
+function Filters.WrapFilter(filter)
+    local meta = {
+        __add = function(filter1, filter2) 
+            return Filters.And(filter1, filter2)
+        end,
+        __call = function(table, ...)
+            return table.f(...)
+        end,
+        __concat = function(table, ...)
+            return Filters.Or(filter1, filter2)
+        end,
+        __unm = function(table, ...)
+            return Filters.Not(filter1)
+        end
+    }
+
+    local table = {
+        f = filter
+    }
+
+    setmetatable(table, meta)
+
+    return table
+end
+
 function Filters.Area(from, radius)
-    return function(target)
+    return Filters.WrapFilter(function(target)
         return (target:GetPos() - from):Length2D() <= radius
-    end
+    end)
 end
 
 function Filters.Cone(from, radius, direction, coneAngle)
     local rfilter = Filters.Area(from, radius)
 
-    return function(target)
+    return Filters.WrapFilter(function(target)
         local angle = math.acos(direction:Dot((target:GetPos() - from):Normalized()))
 
         return angle <= coneAngle / 2 and rfilter(target)
-    end
+    end)
 end
 
 function Filters.Line(from, to, width)
-    return function(target)
+    return Filters.WrapFilter(function(target)
         return SegmentCircleIntersection(from, to, target:GetPos(), target:GetRad() + (width or 0))
-    end
+    end)
 end
 
 function Filters.And(filter1, filter2)
-    return function(target)
+    return Filters.WrapFilter(function(target)
         return filter1(target) and filter2(target)
-    end
+    end)
+end
+
+function Filters.Or(filter1, filter2)
+    return Filters.WrapFilter(function(target)
+        return filter1(target) or filter2(target)
+    end)
+end
+
+function Filters.Not(filter1)
+    return Filters.WrapFilter(function(target)
+        return not filter1(target)
+    end)
 end
 
 function Filters.NotEquals(who)
-    return function(target)
+    return Filters.WrapFilter(function(target)
         return target ~= who
-    end
+    end)
 end
 
 Wrappers = {}
