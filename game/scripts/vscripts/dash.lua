@@ -122,7 +122,7 @@ end
 function Dash:IsStunned()
     for _, modifier in pairs(self.hero:AllModifiers()) do
         if modifier ~= self.modifierHandle then
-            if modifier.IsStunDebuff and modifier:IsStunDebuff() then
+            if modifier.IsStunDebuff and modifier:IsStunDebuff() and modifier:GetCaster() ~= self.modifierHandle:GetCaster() then
                 return true
             end
         end
@@ -162,10 +162,11 @@ end
 
 -- Knockback utility method
 
-function Knockback(hero, ability, direction, distance, speed)
+function Knockback(hero, ability, direction, distance, speed, heightFunction)
     hero.round.spells:InterruptDashes(hero)
 
     Dash(hero, hero:GetPos() + direction:Normalized() * distance, speed, {
-        modifier = { name = "modifier_knockback_lua", ability = ability }
+        modifier = { name = "modifier_knockback_lua", ability = ability, source = ability:GetCaster() },
+        heightFunction = heightFunction
     })
 end
