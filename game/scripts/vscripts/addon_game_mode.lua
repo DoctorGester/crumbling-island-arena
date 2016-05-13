@@ -309,8 +309,6 @@ end
 function GameMode:SetupMode()
     self.Players = {}
     self:SetState(STATE_GAME_SETUP)
-    self:LoadCustomHeroes()
-    self:UpdateAvailableHeroesTable()
 
     self.Round = nil
 
@@ -632,7 +630,9 @@ function GameMode:LoadCustomHeroes()
     local customHeroes = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
     local customAbilities = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
 
-    local disableForDebug = not (IsInToolsMode() and PlayerResource:GetPlayerCount() == 1)
+    local enableForDebug = IsInToolsMode() and PlayerResource:GetPlayerCount() == 1
+
+    print("Enable for dbg", enableForDebug, PlayerResource:GetPlayerCount())
 
     for customName, data in pairs(customHeroes) do
         if data.override_hero ~= DUMMY_HERO then
@@ -641,7 +641,7 @@ function GameMode:LoadCustomHeroes()
                 class = data.Class,
                 customIcons = data.CustomIcons,
                 difficulty = data.Difficulty or "easy",
-                disabled = (data.Disabled and disableForDebug) and data.Disabled == "true" or false
+                disabled = (data.Disabled and data.Disabled == "true" and not enableForDebug) or false
             }
 
             local abilities = {}
@@ -662,6 +662,9 @@ function GameMode:LoadCustomHeroes()
 end
 
 function GameMode:OnGameInProgress()
+    self:LoadCustomHeroes()
+    self:UpdateAvailableHeroesTable()
+
     if not statCollection.sentStage2 and statCollection.sentStage1 then
         statCollection:sendStage2()
     end
