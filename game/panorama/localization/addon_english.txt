@@ -56,13 +56,17 @@
 		"HeroTips_npc_dota_hero_skeleton_king"			"<font color='gold'>Q</font>: Raise skeleton swordsmen<br/><font color='gold'>W</font>: Raise skeleton archers<br/><font color='gold'>E</font>: Raise zombie defenders<br/><font color='gold'>R</font>: Strike in a long wide line"
 		"Available_on_npc_dota_hero_skeleton_king"		"Available on April 30!"
 
-		"HeroName_npc_dota_hero_ogre_magi"			"Wheel of Fortune"
-		"HeroTips_npc_dota_hero_ogre_magi"			"<font color='gold'>Q</font>: Throw a concoction<br/><font color='gold'>W</font>: Use a concoction on yourself<br/><font color='gold'>E</font>: Mix a random concoction<br/><font color='gold'>R</font>: Use concoctions without mixing"
-		"Available_on_npc_dota_hero_ogre_magi"		"Available on May 7!"
+		"HeroName_npc_dota_hero_ogre_magi"				"Wheel of Fortune"
+		"HeroTips_npc_dota_hero_ogre_magi"				"<font color='gold'>Q</font>: Throw a concoction<br/><font color='gold'>W</font>: Use a concoction on yourself<br/><font color='gold'>E</font>: Mix a random concoction<br/><font color='gold'>R</font>: Use concoctions without mixing"
+		"Available_on_npc_dota_hero_ogre_magi"			"Available on May 7!"
 
 		"HeroName_npc_dota_hero_earthshaker"			"The Hand"
 		"HeroTips_npc_dota_hero_earthshaker"			"<font color='gold'>Q</font>: Damage in a line + knockback<br/><font color='gold'>W</font>: Damage + knockback around you<br/><font color='gold'>E</font>: Jump + stun in area<br/><font color='gold'>R</font>: Damage + stun + destroy damaged ground"
 		"Available_on_npc_dota_hero_earthshaker"		"Available on May 14!"
+
+		"HeroName_npc_dota_hero_ember_spirit"			"The Lovers"
+		"HeroTips_npc_dota_hero_ember_spirit"			"All abilities apply <font color=\"#FF6A00\"><b>Burn</b></font><br/><font color='gold'>Q</font>: Damaging wave<br/><font color='gold'>W</font>: Rooting projectile<br/><font color='gold'>E</font>: Short dash<br/><font color='gold'>R</font>: Create a copy of yourself"
+		"Available_on_npc_dota_hero_ember_spirit"		"Available on May 21!"
 
 		"PlayerHeader" "player"
 		"SelectionHeader" "selection"

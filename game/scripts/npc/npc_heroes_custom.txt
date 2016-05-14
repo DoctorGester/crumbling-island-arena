@@ -628,4 +628,35 @@
 
 		"Ultimate" "shaker_r"
 	}
+
+	"npc_dota_hero_ember_spirit"
+	{
+		"override_hero"	"npc_dota_hero_ember_spirit"
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
+		"BountyXP"	"0"
+		"MovementSpeed"	"350"
+		"MovementTurnRate"	"10"
+		"StatusHealth"	"5"
+		"StatusHealthRegen"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"AttributeBaseStrength"	"0"
+		"AttributeBaseIntelligence" "0"
+		"VisionDaytimeRange" "0"
+		"VisionNighttimeRange" "0"
+		"Difficulty" "easy"
+		"Disabled" "true"
+		
+		"Ability1" "ember_q"
+		"Ability2" "ember_w"
+		"Ability3" "ember_e"
+		"Ability4" "ember_r"
+		"Ability5" ""
+		"Ability6" ""
+
+		"Ultimate" "ember_r"
+	}
 }

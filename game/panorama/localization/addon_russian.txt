@@ -64,6 +64,10 @@
 		"HeroTips_npc_dota_hero_earthshaker"			"<font color='gold'>Q</font>: Урон по линии + отбрасывание<br/><font color='gold'>W</font>: Урон и отбрасывание вокруг героя<br/><font color='gold'>E</font>: Прыжок + оглушение в области<br/><font color='gold'>R</font>: Урон + оглушение + уничтожить поврежденную землю"
 		"Available_on_npc_dota_hero_earthshaker"		"Доступно с 14 мая!"
 
+		"HeroName_npc_dota_hero_ember_spirit"			"Влюбленный"
+		"HeroTips_npc_dota_hero_ember_spirit"			"Все способности накладывают <font color=\"#FF6A00\"><b>Горение</b></font><br/><font color='gold'>Q</font>: Волна урона<br/><font color='gold'>W</font>: Связывающий снаряд<br/><font color='gold'>E</font>: Короткий рывок<br/><font color='gold'>R</font>: Создать копию себя"
+		"Available_on_npc_dota_hero_ember_spirit"		"Доступно с 21 мая!"
+
 		"PlayerHeader" "игрок"
 		"SelectionHeader" "выбор"
 		"ScoreHeader" "счет"

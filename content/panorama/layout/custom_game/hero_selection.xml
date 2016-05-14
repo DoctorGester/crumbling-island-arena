@@ -34,7 +34,7 @@
                 <Button id="RandomHero" onactivate="PickRandomHero()">
                     <Label text="#RandomHero"/>
                 </Button>
-                <Panel style="height:10%;"/>
+                <Panel style="height:5%;"/>
                 <Label id="HeroName" class="HeaderLabel HeroListHeader"></Label>
                 <Panel id="HeroAbilities" class="AbilityPanel"></Panel>
                 <Label id="HeroTips" html="true"></Label>

@@ -1872,4 +1872,43 @@
 			"particle" "particles/econ/items/earthshaker/egteam_set/hero_earthshaker_egset/earthshaker_echoslam_start_egset.vpcf"
 		}
 	}
+
+	"ember_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ember/ember_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "ember_spirit_sleight_of_fist"
+		"AbilityCooldown" "4.5"
+		"AbilityCastPoint" "0.3"
+	}
+
+	"ember_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ember/ember_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "ember_spirit_searing_chains"
+		"AbilityCooldown" "5.5"
+	}
+
+	"ember_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ember/ember_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "ember_spirit_activate_fire_remnant"
+		"AbilityCooldown" "6.5"
+	}
+
+	"ember_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ember/ember_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "ember_spirit_fire_remnant"
+		"AbilityCooldown" "18.0"
+		"AbilityCastPoint" "0.35"
+	}
 }
