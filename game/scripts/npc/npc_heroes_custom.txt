@@ -618,7 +618,6 @@
 		"VisionDaytimeRange" "0"
 		"VisionNighttimeRange" "0"
 		"Difficulty" "easy"
-		"Disabled" "true"
 		
 		"Ability1" "shaker_q"
 		"Ability2" "shaker_w"

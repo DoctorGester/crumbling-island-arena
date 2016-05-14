@@ -93,7 +93,7 @@ function wk_r:OnChannelFinish(interrupted)
             part.offsetX = part.offsetX + offset.x
             part.offsetY = part.offsetY + offset.y
 
-            part:SetAbsOrigin(Vector(part.x + part.offsetX, part.y + part.offsetY, part.z))
+            Level.UpdatePartPosition(part)
         end
     )
 

@@ -61,7 +61,7 @@
 		"Available_on_npc_dota_hero_ogre_magi"			"Доступно с 7 мая!"
 
 		"HeroName_npc_dota_hero_earthshaker"			"Рука"
-		"HeroTips_npc_dota_hero_earthshaker"			"<font color='gold'>Q</font>: Урон по линии + отбрасывание<br/><font color='gold'>W</font>: Урон и отбрасывание вокруг героя<br/><font color='gold'>E</font>: Прыжок + оглушение в области<br/><font color='gold'>R</font>: Уничтожить всю поврежденную землю"
+		"HeroTips_npc_dota_hero_earthshaker"			"<font color='gold'>Q</font>: Урон по линии + отбрасывание<br/><font color='gold'>W</font>: Урон и отбрасывание вокруг героя<br/><font color='gold'>E</font>: Прыжок + оглушение в области<br/><font color='gold'>R</font>: Урон + оглушение + уничтожить поврежденную землю"
 		"Available_on_npc_dota_hero_earthshaker"		"Доступно с 14 мая!"
 
 		"PlayerHeader" "игрок"
@@ -209,6 +209,11 @@
 		"AbilityTooltip_ogre_e"							"Замешать смесь со случайным эффектом<br/>Также наносит урон или восстанавливает здоровье"
 		"AbilityTooltip_ogre_r"							"Войти в безумие, замешивая по 10 смесей в секунду"
 
+		"AbilityTooltip_shaker_q"						"Запустить отбрасывающую и наносящую урон волну"
+		"AbilityTooltip_shaker_w"						"Нанести урон и отбросить врагов вокруг"
+		"AbilityTooltip_shaker_e"						"Прыгнуть в указанную область, оглушая врагов при приземлении"
+		"AbilityTooltip_shaker_r"						"Уничтожить всю поврежденную (красную) землю вокруг, нанося урон и оглушая врагов"
+
 		"ModifierTooltip_modifier_charges"						"Заряды способности"
 		"ModifierTooltip_modifier_stunned_lua"					"Оглушен"
 		"ModifierTooltip_modifier_knockback_lua"				"Отброшен"
@@ -284,6 +289,8 @@
 		"ModifierTooltip_modifier_ogre_5"						"Обезмолвлен"
 		"ModifierTooltip_modifier_ogre_6"						"Овечка"
 		"ModifierTooltip_modifier_ogre_r"						"Делает смеси без остановки"
+
+		"ModifierTooltip_modifier_shaker_e"						"Трехочковый"
 	}
 }
 

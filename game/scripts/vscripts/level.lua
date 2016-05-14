@@ -38,6 +38,7 @@ function Level:BuildIndex()
 
         part.offsetX = 0
         part.offsetY = 0
+        part.offsetZ = 0
 
         local id = math.floor(position:Length2D())
         local index = self.indexedParts[id]
@@ -108,6 +109,7 @@ function Level:Reset()
         part.z = 0
         part.offsetX = 0
         part.offsetY = 0
+        part.offsetZ = 0
         part.angles = Vector(0, 0, 0)
         part.angleVel = Vector(0, 0, 0)
         part:SetRenderColor(255, 255, 255)
@@ -176,7 +178,7 @@ function Level:Update()
         part.z = part.z - part.velocity
         part.angles = part.angles + part.angleVel
         part:SetAngles(part.angles.x, part.angles.y, part.angles.z)
-        part:SetAbsOrigin(Vector(part.x + part.offsetX, part.y + part.offsetY, part.z))
+        part:SetAbsOrigin(Vector(part.x + part.offsetX, part.y + part.offsetY, part.z + part.offsetZ))
 
         if part.z <= -MAP_HEIGHT - 200 then
             table.remove(self.fallingParts, i)
@@ -220,6 +222,10 @@ function Level:GroundAction(action)
             action(part)
         end
     end
+end
+
+function Level.UpdatePartPosition(part)
+    part:SetAbsOrigin(Vector(part.x + part.offsetX, part.y + part.offsetY, part.z + part.offsetZ))
 end
 
 function Level.CreateCreep(name, spawn, team, goal)

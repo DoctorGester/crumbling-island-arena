@@ -145,10 +145,10 @@ function Filters.WrapFilter(filter)
         __call = function(table, ...)
             return table.f(...)
         end,
-        __concat = function(table, ...)
+        __concat = function(filter1, filter2)
             return Filters.Or(filter1, filter2)
         end,
-        __unm = function(table, ...)
+        __unm = function(filter1)
             return Filters.Not(filter1)
         end
     }
@@ -210,7 +210,7 @@ end
 
 Wrappers = {}
 
-function Wrappers.DirectionalAbility(ability, optionalRange)
+function Wrappers.DirectionalAbility(ability, optionalRange, optionalMinRange)
     function ability:GetCastRange()
         return 0
     end
@@ -232,11 +232,16 @@ function Wrappers.DirectionalAbility(ability, optionalRange)
     function ability:GetCursorPosition()
         local target = getCursorPosition(ability)
         local realRange = optionalRange or self.BaseClass.GetCastRange(self)
+        local minRange = optionalMinRange or 0
         local casterPos = self:GetCaster():GetAbsOrigin()
         local direction = self:GetDirection()
 
         if (target - casterPos):Length2D() > realRange then
             target = casterPos + direction * realRange
+        end
+
+        if (target - casterPos):Length2D() < minRange then
+            target = casterPos + direction * minRange
         end
 
         return target
