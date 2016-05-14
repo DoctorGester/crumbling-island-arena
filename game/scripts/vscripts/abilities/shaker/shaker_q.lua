@@ -13,7 +13,7 @@ function shaker_q:OnSpellStart()
     local direction = self:GetDirection()
     local start = hero:GetPos() + direction * 64
     local len = 1200
-    local speed = 70
+    local speed = 30
     local currentLen = 0
     local tick = 0
 
@@ -68,13 +68,13 @@ function shaker_q:OnSpellStart()
                         Level.UpdatePartPosition(part)
                     end
 
-                    if distance < currentLen - speed * 6 and offsets[part] then
+                    if distance < currentLen - 350 and offsets[part] then
                         part.offsetZ = part.offsetZ - offsets[part]
                         offsets[part] = nil
                         Level.UpdatePartPosition(part)
                     end
 
-                    if distance > currentLen and distance < currentLen + speed * 4 then
+                    if distance > currentLen and distance < currentLen + 300 then
                         working = true
                     end
                 end
@@ -102,7 +102,7 @@ function shaker_q:OnSpellStart()
 
             local hurt = hero:AreaEffect({
                 filter = Filters.Line(start + direction * (currentLen - speed), start + direction, 100) + groupFilter,
-                sound = "Arena.WK.HitR",
+                sound = "Arena.Shaker.HitQ2",
                 damage = 1,
                 action = function(target)
                     damaged[target] = true

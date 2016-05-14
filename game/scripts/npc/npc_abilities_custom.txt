@@ -1795,6 +1795,11 @@
 			"MinLength" "1200"
 			"Width" "200"
 		}
+
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_eruption_dust.vpcf"
+		}
 	}
 
 	"shaker_w"
@@ -1810,6 +1815,11 @@
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
 			"Radius" "350"
+		}
+
+		"precache"
+		{
+			"particle" "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap.vpcf"
 		}
 	}
 
@@ -1834,6 +1844,11 @@
 			"Radius" "650"
 		}
 
+		"precache"
+		{
+			"particle" "particles/econ/items/earthshaker/earthshaker_gravelmaw/earthshaker_fissure_head_gravelmaw.vpcf"
+			"particle" "particles/econ/items/earthshaker/egteam_set/hero_earthshaker_egset/earthshaker_aftershock_egset.vpcf"
+		}
 	}
 
 	"shaker_r"
@@ -1850,6 +1865,11 @@
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
 			"Radius" "1200"
+		}
+
+		"precache"
+		{
+			"particle" "particles/econ/items/earthshaker/egteam_set/hero_earthshaker_egset/earthshaker_echoslam_start_egset.vpcf"
 		}
 	}
 }
