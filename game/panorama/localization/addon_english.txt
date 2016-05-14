@@ -61,7 +61,7 @@
 		"Available_on_npc_dota_hero_ogre_magi"			"Available on May 7!"
 
 		"HeroName_npc_dota_hero_earthshaker"			"The Hand"
-		"HeroTips_npc_dota_hero_earthshaker"			"<font color='gold'>Q</font>: Damage in a line + knockback<br/><font color='gold'>W</font>: Damage + knockback around you<br/><font color='gold'>E</font>: Jump + stun in area<br/><font color='gold'>R</font>: Damage + stun + destroy damaged ground"
+		"HeroTips_npc_dota_hero_earthshaker"			"<font color='gold'>Q</font>: Damage in a line + knockback<br/><font color='gold'>W</font>: Damage + knockback around you<br/><font color='gold'>E</font>: Jump + stun in area<br/><font color='gold'>R</font>: Stun + destroy damaged ground"
 		"Available_on_npc_dota_hero_earthshaker"		"Available on May 14!"
 
 		"HeroName_npc_dota_hero_ember_spirit"			"The Lovers"
@@ -218,7 +218,7 @@
 		"AbilityTooltip_shaker_q"						"Launch a wave of damage and knockback"
 		"AbilityTooltip_shaker_w"						"Damage and knockback enemies around you"
 		"AbilityTooltip_shaker_e"						"Jump to a target area, stunning enemies on landing"
-		"AbilityTooltip_shaker_r"						"Destroy all damaged (red) ground around you, stunning and damaging all enemies caught"
+		"AbilityTooltip_shaker_r"						"Destroy all damaged (red) ground around you, stunning all enemies caught"
 
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
