@@ -104,6 +104,7 @@ function shaker_q:OnSpellStart()
                 filter = Filters.Line(start + direction * (currentLen - speed), start + direction, 100) + groupFilter,
                 sound = "Arena.Shaker.HitQ2",
                 damage = 1,
+                filterProjectiles = true,
                 action = function(target)
                     damaged[target] = true
 

@@ -12,6 +12,7 @@ function shaker_w:OnSpellStart()
     hero:AreaEffect({
         filter = Filters.Area(pos, 350),
         damage = true,
+        filterProjectiles = true,
         action = function(target)
             Knockback(target, self, target:GetPos() - pos, 250, 1300,
                 function(dash, current)
