@@ -1827,7 +1827,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/shaker/shaker_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "earthshaker_enchant_totem"
 		"AbilityCooldown" "6.5"
 
