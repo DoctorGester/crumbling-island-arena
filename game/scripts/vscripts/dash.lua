@@ -122,7 +122,11 @@ end
 function Dash:IsStunned()
     for _, modifier in pairs(self.hero:AllModifiers()) do
         if modifier ~= self.modifierHandle then
-            if modifier.IsStunDebuff and modifier:IsStunDebuff() and modifier:GetCaster() ~= self.modifierHandle:GetCaster() then
+            if modifier.IsStunDebuff and modifier:IsStunDebuff() then
+                if self.modifierHandle then
+                    return modifier:GetCaster() ~= self.modifierHandle:GetCaster()
+                end
+
                 return true
             end
         end
