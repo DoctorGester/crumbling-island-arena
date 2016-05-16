@@ -3,7 +3,7 @@ shaker_e = class({})
 LinkLuaModifier("modifier_shaker_e", "abilities/shaker/modifier_shaker_e", LUA_MODIFIER_MOTION_NONE)
 
 function shaker_e:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 650, 350)
+    Wrappers.DirectionalAbility(self, 550, 350)
 
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
@@ -25,9 +25,9 @@ function shaker_e:OnSpellStart()
         arrivalFunction = function(dash)
             hero:AreaEffect({
                 filter = Filters.Area(target, 256),
-                modifier = { name = "modifier_stunned_lua", duration = 0.9, ability = self },
+                modifier = { name = "modifier_stunned_lua", duration = 0.4, ability = self },
             })
-            
+
             hero:EmitSound("Arena.Shaker.HitE")
 
             local effect = ImmediateEffect("particles/econ/items/earthshaker/egteam_set/hero_earthshaker_egset/earthshaker_aftershock_egset.vpcf", PATTACH_ABSORIGIN, hero)
