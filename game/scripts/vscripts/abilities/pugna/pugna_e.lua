@@ -8,7 +8,7 @@ function pugna_e:OnToggle()
     if on then
         hero:AddNewModifier(hero, self, "modifier_pugna_e", {})
     else
-        hero:FindModifier("modifier_pugna_e"):Destroy()
+        hero:FindModifier("modifier_pugna_e"):Destroy(false)
     end
     
     hero:UpdateColor()

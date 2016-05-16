@@ -54,7 +54,7 @@ function Dash:SetModifierHandle(modifier)
     -- Destroying a modifier which is already removed results in crash
     for _, modifier in pairs(all) do
         if modifier == self.modifierHandle then
-            self.modifierHandle:Destroy()
+            self.modifierHandle:Destroy(false)
             break
         end
     end
