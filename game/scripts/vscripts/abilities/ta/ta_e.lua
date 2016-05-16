@@ -21,7 +21,7 @@ function ta_e:OnSpellStart()
 
     ImmediateEffectPoint("particles/econ/events/ti4/blink_dagger_start_ti4.vpcf", PATTACH_ABSORIGIN, hero, hero:GetPos() + Vector(0, 0, 32))
 
-    GridNav:DestroyTreesAroundPoint(target, 128, true)
+    GridNav:DestroyTreesAroundPoint(target, 128, true, 1)
     hero:FindClearSpace(target, true)
 
     ImmediateEffectPoint("particles/econ/events/ti4/blink_dagger_end_ti4.vpcf", PATTACH_ABSORIGIN, hero, hero:GetPos() + Vector(0, 0, 32))

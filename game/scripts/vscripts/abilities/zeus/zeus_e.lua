@@ -14,7 +14,7 @@ function zeus_e:OnSpellStart()
     local casterPos = hero:GetPos()
     local target = self:GetCursorPosition()
 
-    GridNav:DestroyTreesAroundPoint(target, 128, true)
+    GridNav:DestroyTreesAroundPoint(target, 128, true, 1)
     hero:FindClearSpace(target, true)
 
     if hero:WallIntersection(casterPos, target) then

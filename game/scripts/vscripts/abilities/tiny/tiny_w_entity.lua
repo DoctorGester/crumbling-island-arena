@@ -60,7 +60,7 @@ function TinyW:Update()
         effectPosition.z = GetGroundHeight(effectPosition, self.unit)
         ImmediateEffectPoint("particles/tiny_w/tiny_w_explode.vpcf", PATTACH_ABSORIGIN, self, effectPosition)
 
-        GridNav:DestroyTreesAroundPoint(result, self.effectRadius, false)
+        GridNav:DestroyTreesAroundPoint(result, self.effectRadius, false, 1)
 
         self.hero:AreaEffect({
             filter = Filters.Area(effectPosition, self.effectRadius),

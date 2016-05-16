@@ -105,7 +105,7 @@ end
 
 function Dash:End(at, reachedDestination)
     if self.findClearSpace then
-        GridNav:DestroyTreesAroundPoint(at, self.radius, true)
+        GridNav:DestroyTreesAroundPoint(at, self.radius, true, 1)
         self.hero:FindClearSpace(at, false)
     else
         self.hero:SetPos(at)
