@@ -2,7 +2,6 @@ SECOND_STAGE_OBSTRUCTOR = "Layer2Obstructor"
 THIRD_STAGE_OBSTRUCTOR = "Layer3Obstructor"
 
 MAP_HEIGHT = 3500
-STARTING_DISTANCE = 2300
 FINISHING_DISTANCE = 900
 
 if Level == nil then
@@ -11,7 +10,7 @@ end
 
 function Level:constructor()
     self.parts = Entities:FindAllByName("map_part")
-    self.distance = STARTING_DISTANCE
+    self.distance = self:GetStartingDistance()
     self.shakingParts = {}
     self.fallingParts = {}
     self.indexedParts = {}
@@ -23,6 +22,14 @@ function Level:constructor()
 
     self:BuildIndex()
     self:SetupBackground()
+end
+
+function Level:GetStartingDistance()
+    if GetMapName() == "arena" then
+        return 2300
+    end
+
+    return 3000
 end
 
 function Level:BuildIndex()
@@ -97,7 +104,7 @@ function Level:Reset()
     self.running = true
     self.fallingParts = {}
     self.shakingParts = {}
-    self.distance = STARTING_DISTANCE
+    self.distance = self:GetStartingDistance()
     self.pulsePosition = 0
     self.pulseDirection = 1
 

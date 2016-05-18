@@ -21,8 +21,6 @@ function GameSetup:constructor(modes, players, teams)
             selectedTeam = nil
         }
     end
-
-    self:UpdateModes()
 end
 
 function GameSetup:UpdateModes()
@@ -81,6 +79,14 @@ function GameSetup:UpdateNetworkState()
     CustomNetTables:SetTableValue("gameSetup", "state", result)
 end
 
+function GameSetup:DistinctTeams()
+    local team = 0
+    for _, player in pairs(self.playerState) do
+        player.selectedTeam = team
+        team = team + 1
+    end
+end
+
 function GameSetup:UpdateModeSelection()
     if self.selectedMode ~= nil then
         return
@@ -104,12 +110,7 @@ function GameSetup:UpdateModeSelection()
 
                 CustomNetTables:SetTableValue("gameSetup", "teams", { teamNumber = self.teamNumber })
             else
-                local team = 0
-                for _, player in pairs(self.playerState) do
-                    player.selectedTeam = team
-                    team = team + 1
-                end
-
+                self:DistinctTeams()
                 self.timer = 3
             end
 
@@ -263,19 +264,28 @@ end
 function GameSetup:Start()
     print("Starting game setup")
 
-    self:SendTimeToPlayers()
+    if self:GetPlayerCount() <= 2 then
+        self.selectedMode = "ffa"
+        self:DistinctTeams()
+        self:End()
+    else
+        self:SendTimeToPlayers()
 
-    EmitAnnouncerSound("announcer_ann_custom_vote_begun")
+        EmitAnnouncerSound("announcer_ann_custom_vote_begun")
 
-    self.modeListener = CustomGameEventManager:RegisterListener("setup_mode_select", function(id, ...) Dynamic_Wrap(self, "OnModeSelect")(self, ...) end)
-    self.teamListener = CustomGameEventManager:RegisterListener("setup_team_select", function(id, ...) Dynamic_Wrap(self, "OnTeamSelect")(self, ...) end)
+        self.modeListener = CustomGameEventManager:RegisterListener("setup_mode_select", function(id, ...) Dynamic_Wrap(self, "OnModeSelect")(self, ...) end)
+        self.teamListener = CustomGameEventManager:RegisterListener("setup_team_select", function(id, ...) Dynamic_Wrap(self, "OnTeamSelect")(self, ...) end)
 
-    self:UpdateNetworkState()
+        self:UpdateNetworkState()
+        self:UpdateModes()
+    end
 end
 
 function GameSetup:End()
-    CustomGameEventManager:UnregisterListener(self.modeListener)
-    CustomGameEventManager:UnregisterListener(self.teamListener)
+    if self.modeListener and self.teamListener then
+        CustomGameEventManager:UnregisterListener(self.modeListener)
+        CustomGameEventManager:UnregisterListener(self.teamListener)
+    end
 
     for id, player in pairs(self.playerState) do
         self.players[id]:SetTeam(self.teams[player.selectedTeam])

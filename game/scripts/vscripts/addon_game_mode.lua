@@ -220,8 +220,6 @@ function GameMode:OnGameSetup()
         ["3v3"] = { playersInTeam = 3, goal = 225, announce = "announcer_ann_custom_mode_07", spawns = teamSpawnPoints }
     }
 
-    PrintTable(self.Players)
-
     self.gameSetup = GameSetup(modes, self.Players, self.Teams)
 
     self:SetState(STATE_GAME_SETUP)
