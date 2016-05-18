@@ -10,7 +10,7 @@ function zeus_r:OnSpellStart()
 
     Timers:CreateTimer(1.6,
         function()
-            GridNav:DestroyTreesAroundPoint(target, 256, true, 1)
+            GridNav:DestroyTreesAroundPoint(target, 256, true)
 
             local skies = target + Vector(0, 0, 2000)
             local blank = not Spells.TestPoint(target)

@@ -54,7 +54,7 @@ function Dash:SetModifierHandle(modifier)
     -- Destroying a modifier which is already removed results in crash
     for _, modifier in pairs(all) do
         if modifier == self.modifierHandle then
-            self.modifierHandle:Destroy(false)
+            self.modifierHandle:Destroy()
             break
         end
     end
@@ -105,7 +105,7 @@ end
 
 function Dash:End(at, reachedDestination)
     if self.findClearSpace then
-        GridNav:DestroyTreesAroundPoint(at, self.radius, true, 1)
+        GridNav:DestroyTreesAroundPoint(at, self.radius, true)
         self.hero:FindClearSpace(at, false)
     else
         self.hero:SetPos(at)

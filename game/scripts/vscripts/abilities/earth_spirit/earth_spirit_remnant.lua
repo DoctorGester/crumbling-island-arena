@@ -116,7 +116,7 @@ function EarthSpiritRemnant:EarthCollision()
         })
 
         ScreenShake(pos, 5, 150, 0.25, 2000, 0, true)
-        GridNav:DestroyTreesAroundPoint(pos, 256, true, 1)
+        GridNav:DestroyTreesAroundPoint(pos, 256, true)
         Spells:GroundDamage(pos, 256)
         self.invulnerable = false
         

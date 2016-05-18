@@ -69,7 +69,7 @@ if IsServer() then
                 ParticleManager:SetParticleControl(self.beam, 1, Vector(radius, 1, 1))
                 ParticleManager:SetParticleControlEnt(self.beam, 3, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_hitloc", hero:GetPos(), true)
 
-                GridNav:DestroyTreesAroundPoint(target, radius, true, 1)
+                GridNav:DestroyTreesAroundPoint(target, radius, true)
             end
 
             local damaged = self.damaged or {}

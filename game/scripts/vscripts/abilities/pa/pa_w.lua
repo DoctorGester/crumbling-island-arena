@@ -22,7 +22,7 @@ function pa_w:OnSpellStart()
                 end
             })
 
-            GridNav:DestroyTreesAroundPoint(hero:GetPos(), 256, true, 1)
+            GridNav:DestroyTreesAroundPoint(hero:GetPos(), 256, true)
         end
     )
 
