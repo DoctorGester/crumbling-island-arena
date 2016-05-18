@@ -74,7 +74,7 @@ function shaker_q:OnSpellStart()
                         Level.UpdatePartPosition(part)
                     end
 
-                    if distance > currentLen and distance < currentLen + 300 then
+                    if distance > currentLen and distance < currentLen + 500 then
                         working = true
                     end
                 end

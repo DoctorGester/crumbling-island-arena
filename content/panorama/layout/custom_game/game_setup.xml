@@ -12,27 +12,13 @@
         <Panel id="ModeVoteDialog" class="GameSetupDialog">
             <Label id="ModeSelectHeader" class="VotingHeader" text="#GameSetupModeSelect"/>
             <Label class="VotingTimer" text="30"/>
-            <Panel class="VotingButtons">
-                <Button id="FreeForAllButton" class="VotingButton" onactivate="Vote('setup_mode_select', 'mode', 'ffa')">
-                    <Label text="#GameSetupFFA"/>
-                </Button>
-                <Button id="2v2Button" class="VotingButton" onactivate="Vote('setup_mode_select', 'mode', '2v2')">
-                    <Label text="#GameSetup2v2"/>
-                </Button>
-            </Panel>
+            <Panel class="VotingButtons"/>
             <Panel class="PlayerVotes"/>
         </Panel>
         <Panel id="TeamSelectDialog" class="GameSetupDialog VotingPanelHidden" hittest="false">
             <Label class="VotingHeader" text="#GameSetupTeamSelect"/>
             <Label class="VotingTimer" text="30"/>
-            <Panel class="VotingButtons">
-                <Button id="Team1Button" class="VotingButton" onactivate="Vote('setup_team_select', 'team', 0)">
-                    <Label text="#GameSetupTeam1"/>
-                </Button>
-                <Button id="Team2Button" class="VotingButton" onactivate="Vote('setup_team_select', 'team', 1)">
-                    <Label text="#GameSetupTeam2"/>
-                </Button>
-            </Panel>
+            <Panel class="VotingButtons"/>
             <Panel class="PlayerVotes"/>
         </Panel>
         <!--<Panel id="GameSetupChat"/>-->

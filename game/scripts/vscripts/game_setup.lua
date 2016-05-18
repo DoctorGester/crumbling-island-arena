@@ -3,13 +3,15 @@ GameSetup = GameSetup or class({})
 GAME_SETUP_STAGE_MODE = 0
 GAME_SETUP_STAGE_TEAM = 1
 
-function GameSetup:constructor(players, teams)
+function GameSetup:constructor(modes, players, teams)
     self.timer = IsInToolsMode() and 5 or 30
     self.players = players
     self.teams = teams
     self.stage = GAME_SETUP_STAGE_MODE
     self.selectedMode = nil
     self.gameGoal = 0
+    self.modes = modes
+    self.teamNumber = 0
 
     self.playerState = {}
 
@@ -18,6 +20,37 @@ function GameSetup:constructor(players, teams)
             selectedMode = nil,
             selectedTeam = nil
         }
+    end
+
+    self:UpdateModes()
+end
+
+function GameSetup:UpdateModes()
+    local result = {}
+
+    for mode, params in pairs(self.modes) do
+        local teamNumber = self:CalculateTeamCount(params)
+
+        if teamNumber > 1 then
+            table.insert(result, mode)
+        end
+    end
+
+    table.sort(result, function(mode1, mode2)
+        return self.modes[mode1].playersInTeam < self.modes[mode2].playersInTeam
+    end)
+
+    CustomNetTables:SetTableValue("gameSetup", "modes", result)
+end
+
+function GameSetup:CalculateTeamCount(mode)
+    local players = self:GetPlayerCount()
+    local result = players / mode.playersInTeam
+
+    if result - math.floor(result) < 0.5 then
+        return math.floor(result)
+    else
+        return math.ceil(result)
     end
 end
 
@@ -28,18 +61,15 @@ function GameSetup:AddPlayer(player)
     }
 
     self:UpdateNetworkState()
+    self:UpdateModes()
 end
 
 function GameSetup:GetGameGoal()
-    if self.selectedMode == GAME_MODE_FFA then
-        return 75
-    end
+    return self.modes[self.selectedMode].goal or 0
+end
 
-    if self.selectedMode == GAME_MODE_2V2 then
-        return 150
-    end
-
-    return 0
+function GameSetup:GetSpawnPoints()
+    return self.modes[self.selectedMode].spawns
 end
 
 function GameSetup:UpdateNetworkState()
@@ -48,41 +78,46 @@ function GameSetup:UpdateNetworkState()
     result.selectedMode = self.selectedMode
     result.players = self.playerState
 
-    CustomNetTables:SetTableValue("main", "gameSetup", result)
+    CustomNetTables:SetTableValue("gameSetup", "state", result)
 end
 
 function GameSetup:UpdateModeSelection()
     if self.selectedMode ~= nil then
         return
     end
-    
-    local ffaVotes = self:GetModeVotesCount(GAME_MODE_FFA)
-    local teamVotes = self:GetModeVotesCount(GAME_MODE_2V2)
+
     local players = self:GetPlayerCount()
 
-    if teamVotes >= players / 2 then
-        self.selectedMode = GAME_MODE_2V2
-        self.stage = GAME_SETUP_STAGE_TEAM
-        EmitAnnouncerSound("announcer_ann_custom_mode_07")
-        
-        --EmitAnnouncerSound("announcer_ann_custom_vote_complete")
+    for mode, params in pairs(self.modes) do
+        local votes = self:GetModeVotesCount(mode)
 
-        if self.timer < 15 then
-            self.timer = 15
+        if (votes >= players / 2 and params.playersInTeam > 1) or (votes > players / 2 and params.playersInTeam == 1) then
+            self.selectedMode = mode
+            self.teamNumber = self:CalculateTeamCount(params)
+
+            if params.playersInTeam > 1 then
+                self.stage = GAME_SETUP_STAGE_TEAM
+
+                if self.timer < 15 then
+                    self.timer = 15
+                end
+
+                CustomNetTables:SetTableValue("gameSetup", "teams", { teamNumber = self.teamNumber })
+            else
+                local team = 0
+                for _, player in pairs(self.playerState) do
+                    player.selectedTeam = team
+                    team = team + 1
+                end
+
+                self.timer = 3
+            end
+
+            EmitAnnouncerSound(params.announce)
             self:SendTimeToPlayers()
+
+            break
         end
-
-        return
-    end
-
-    if ffaVotes > players / 2 then
-        self.selectedMode = GAME_MODE_FFA
-        EmitAnnouncerSound("announcer_ann_custom_mode_06")
-
-        self.timer = 3
-        self:SendTimeToPlayers()
-
-        return
     end
 end
 
@@ -139,7 +174,7 @@ function GameSetup:OnModeSelect(args)
         return
     end
 
-    if mode ~= GAME_MODE_FFA and mode ~= GAME_MODE_2V2 then
+    if self.modes[mode] == nil then
         return
     end
 
@@ -164,11 +199,11 @@ function GameSetup:OnTeamSelect(args)
         return
     end
 
-    if team ~= 0 and team ~= 1 then
+    if team < 0 or team >= self.teamNumber then
         return
     end
 
-    if self:GetTeamPlayerCount(team) >= 2 then
+    if self:GetTeamPlayerCount(team) >= self.modes[self.selectedMode].playersInTeam then
         return
     end
 
@@ -181,11 +216,27 @@ function GameSetup:SendTimeToPlayers()
     CustomGameEventManager:Send_ServerToAllClients("setup_timer_tick", { time = self.timer })
 end
 
+function GameSetup:GetLowestPlayerTeam()
+    local playerCount = 24
+    local lowestTeam = -1
+
+    for i = 0, self.teamNumber - 1 do
+        local count = self:GetTeamPlayerCount(i)
+
+        if count < playerCount and count < self.modes[self.selectedMode].playersInTeam then
+            lowestTeam = i
+            playerCount = count
+        end
+    end
+
+    return lowestTeam
+end
+
 function GameSetup:SelectRandomOptions()
     if self.stage == GAME_SETUP_STAGE_MODE and self.selectedMode == nil then
         for id, player in pairs(self.playerState) do
             if self.players[id]:IsConnected() and player.selectedMode == nil then
-                player.selectedMode = GAME_MODE_FFA
+                player.selectedMode = "ffa"
             end
         end
 
@@ -198,11 +249,7 @@ function GameSetup:SelectRandomOptions()
     if self.stage == GAME_SETUP_STAGE_TEAM then
         for id, player in pairs(self.playerState) do
             if player.selectedTeam == nil then
-                if self:GetTeamPlayerCount(0) < 2 then
-                    player.selectedTeam = 0
-                else
-                    player.selectedTeam = 1
-                end
+                player.selectedTeam = self:GetLowestPlayerTeam()
             end
         end
 
@@ -230,18 +277,8 @@ function GameSetup:End()
     CustomGameEventManager:UnregisterListener(self.modeListener)
     CustomGameEventManager:UnregisterListener(self.teamListener)
 
-    if self.selectedMode == GAME_MODE_2V2 then
-        for id, player in pairs(self.playerState) do
-            self.players[id]:SetTeam(self.teams[player.selectedTeam])
-        end
-    end
-
-    if self.selectedMode == GAME_MODE_FFA then
-        local team = 0
-        for id, player in pairs(self.playerState) do
-            self.players[id]:SetTeam(self.teams[team])
-            team = team + 1
-        end
+    for id, player in pairs(self.playerState) do
+        self.players[id]:SetTeam(self.teams[player.selectedTeam])
     end
 
     statCollection:setFlags({ version = GAME_VERSION, mode = self.selectedMode })

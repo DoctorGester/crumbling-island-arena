@@ -61,7 +61,7 @@
 .GameSetupDialog
 {
     background-color: rgba(29, 39, 46, 240);
-    width: 50%;
+    width: 70%;
     height: 40%;
     border-radius: 3px;
     box-shadow: -4px -4px 8px 8px black;
@@ -71,7 +71,7 @@
 
 .AspectRatio5x4 .GameSetupDialog, .AspectRatio4x3 .GameSetupDialog
 {
-    width: 70%;
+    width: 90%;
 }
 
 @keyframes 'panelStateAnimation'
@@ -164,24 +164,34 @@
     opacity: 1.0;
 }
 
-.PlayerVoteTeam1 {
+.PlayerVote3v3 {
+    hue-rotation: 255deg;
+    opacity: 1.0;
+}
+
+.PlayerVoteTeam0 {
     hue-rotation: 30deg;
     opacity: 1.0;
 }
 
-.PlayerVoteTeam2 {
+.PlayerVoteTeam1 {
     hue-rotation: 300deg;
     opacity: 1.0;
 }
 
-#FreeForAllButton
+.PlayerVoteTeam2 {
+    hue-rotation: 165deg;
+    opacity: 1.0;
+}
+
+#FFAButton
 {
     background-color: #e74c3c;
     border: 0;
     border-bottom: 4px solid #db4334;
 }
 
-#FreeForAllButton:active
+#FFAButton:active
 {
     border-bottom: 0;
 }
@@ -194,6 +204,18 @@
 }
 
 #2v2Button:active
+{
+    border-bottom: 0;
+}
+
+#3v3Button
+{
+    background-color: #FF6A00;
+    border: 0;
+    border-bottom: 4px solid #E25A00;
+}
+
+#3v3Button:active
 {
     border-bottom: 0;
 }
@@ -228,6 +250,23 @@
 }
 
 #Team2Button:active
+{
+    border-bottom: 0;
+}
+
+#Team3Button
+{
+    background-color: rgb(197, 77, 168);
+    border: 0;
+    border-bottom: 4px solid rgb(175, 55, 158);
+}
+
+#Team3Button Label
+{
+    text-shadow: 1px 1px 4px 4.0 #11111150;
+}
+
+#Team3Button:active
 {
     border-bottom: 0;
 }

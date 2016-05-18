@@ -6,6 +6,10 @@
 	{
 					"MaxPlayers"                    "4"
 	}
+    "arena_6"
+    {
+                    "MaxPlayers"                    "6"
+    }
 
     "Default_Keys"
     {

@@ -2,6 +2,7 @@
  {
     custom_net_tables =
     [
-        "main"
+        "main",
+        "gameSetup"
     ]
 }

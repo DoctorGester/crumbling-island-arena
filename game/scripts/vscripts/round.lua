@@ -3,13 +3,14 @@ ULTS_TIME = 40
 
 Round = Round or class({})
 
-function Round:constructor(players, availableHeroes, callback)
+function Round:constructor(players, teams, availableHeroes, callback)
     self.winner = nil
     self.ended = false
     self.entityDied = false
     self.callback = callback
 
     self.players = players
+    self.teams = teams
     self.availableHeroes = availableHeroes
 
     self.spells = Spells()
@@ -94,23 +95,26 @@ function Round:LoadHeroClass(name)
     end
 end
 
-function Round:CreateHeroes()
-    print("Creating heroes")
-    local spawnPoints = {}
+function Round:GetTeamInverted(team)
+    local inverted = {}
 
-    for i = 0, 3 do
-        local a = i * math.pi / 2
-        table.insert(spawnPoints, Vector(math.cos(a), math.sin(a), 0) * 1200)
+    for key, value in pairs(self.teams) do
+        if value == team then
+            return key
+        end
     end
 
-    Shuffle(spawnPoints)
+    return -1
+end
 
-    local index = 1
+function Round:CreateHeroes(spawnPoints)
+    print("Creating heroes")
+    Shuffle(spawnPoints)
 
     for i, player in pairs(self.players) do
         if player:IsConnected() then
             local hero = self:LoadHeroClass(player.selectedHero)
-            local unit = CreateUnitByName(player.selectedHero, spawnPoints[index], true, nil, nil, player.team)
+            local unit = CreateUnitByName(player.selectedHero, spawnPoints[self:GetTeamInverted(player.team) + 1] + RandomVector(150), true, nil, nil, player.team)
             hero:SetUnit(unit)
 
             local ultimate = self.availableHeroes[hero:GetName()].ultimate
@@ -124,8 +128,6 @@ function Round:CreateHeroes()
             MoveCameraToUnit(player.id, unit)
 
             player.hero = hero
-
-            index = index + 1
         else
             player.hero = nil
         end

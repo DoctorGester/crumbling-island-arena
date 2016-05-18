@@ -17,22 +17,22 @@ function OnTimerTick(args){
     }
 }
 
-function TryFetchSteamId(avatar) {
+function TryFetchSteamId(id, avatar) {
     var info = Game.GetPlayerInfo(Number(id));
 
     if (!info) {
         $.Schedule(0.1, function() {
-            TryFetchSteamId(avatar);
+            TryFetchSteamId(id, avatar);
         });
     } else {
         avatar.steamid = info.player_steamid;
     }
 }
 
-function UpdatePlayerVotes(panel, players, key, map) {
+function UpdatePlayerVotes(panel, players, key, cl) {
     var votes = panel.FindChildrenWithClassTraverse("PlayerVotes")[0];
 
-    for (id in players) {
+    for (var id in players) {
         var player = players[id];
         var playerVotes = votes.playerVotes;
 
@@ -45,14 +45,14 @@ function UpdatePlayerVotes(panel, players, key, map) {
             playerVotes[id] = $.CreatePanel("DOTAAvatarImage", votes, "");
             playerVotes[id].AddClass("PlayerVote");
 
-            TryFetchSteamId(playerVotes[id]);
+            TryFetchSteamId(id, playerVotes[id]);
 
             playerVotes[id].front = $.CreatePanel("Panel", playerVotes[id], "");
             playerVotes[id].front.AddClass("PlayerVoteFront");
         }
 
         if (player[key] != null) {
-            playerVotes[id].front.SetHasClass(map[player[key].toString()], true);
+            playerVotes[id].front.SetHasClass(cl + player[key], true);
         }
     }
 }
@@ -62,8 +62,8 @@ function GameSetupChanged(data){
         return;
     }
 
-    UpdatePlayerVotes($("#ModeVoteDialog"), data.players, "selectedMode", { "ffa": "PlayerVoteFFA", "2v2": "PlayerVote2v2" });
-    UpdatePlayerVotes($("#TeamSelectDialog"), data.players, "selectedTeam", { "0": "PlayerVoteTeam1", "1": "PlayerVoteTeam2" });
+    UpdatePlayerVotes($("#ModeVoteDialog"), data.players, "selectedMode", "PlayerVote");
+    UpdatePlayerVotes($("#TeamSelectDialog"), data.players, "selectedTeam", "PlayerVoteTeam");
 
     if (data.stage == 1) {
         $("#ModeVoteDialog").SetHasClass("HideVotingPanel", true);
@@ -92,9 +92,60 @@ function GameStateChanged(data){
     }
 }
 
+function AddModeSelectionEvent(button, mode) {
+    button.SetPanelEvent("onactivate", function() {
+        Vote("setup_mode_select", "mode", mode);
+    });
+}
+
+function AddTeamSelectionEvent(button, team) {
+    button.SetPanelEvent("onactivate", function() {
+        Vote("setup_team_select", "team", team);
+    });
+}
+
+function GameModesChanges(data) {
+    var modesPanel = $("#ModeVoteDialog");
+    var buttons = modesPanel.FindChildrenWithClassTraverse("VotingButtons")[0];
+    buttons.RemoveAndDeleteChildren();
+
+    for (var key in data) {
+        var mode = data[key];
+        var button = $.CreatePanel("Button", buttons, mode + "Button");
+        button.AddClass("VotingButton");
+
+        var label = $.CreatePanel("Label", button, "");
+        label.text = $.Localize("#GameSetup" + mode);
+
+        AddModeSelectionEvent(button, mode);
+    }
+}
+
+function GameTeamsChanges(data) {
+    if (!data) {
+        return;
+    }
+
+    var teamsPanel = $("#TeamSelectDialog");
+    var buttons = teamsPanel.FindChildrenWithClassTraverse("VotingButtons")[0];
+    var teamNumber = data.teamNumber;
+
+    for (var i = 0; i < teamNumber; i++) {
+        var button = $.CreatePanel("Button", buttons, "Team" + (i + 1) + "Button");
+        button.AddClass("VotingButton");
+
+        var label = $.CreatePanel("Label", button, "");
+        label.text = $.Localize("#GameSetupTeam" + (i + 1));
+
+        AddTeamSelectionEvent(button, i);
+    }
+}
+
 (function () {
     SubscribeToNetTableKey("main", "gameState", true, GameStateChanged);
-    SubscribeToNetTableKey("main", "gameSetup", true, GameSetupChanged);
+    SubscribeToNetTableKey("gameSetup", "modes", true, GameModesChanges);
+    SubscribeToNetTableKey("gameSetup", "teams", true, GameTeamsChanges);
+    SubscribeToNetTableKey("gameSetup", "state", true, GameSetupChanged);
     GameEvents.Subscribe("setup_timer_tick", OnTimerTick);
 
     //$("#GameSetupChat").BLoadLayout("file://{resources}/layout/custom_game/simple_chat.xml", false, false);

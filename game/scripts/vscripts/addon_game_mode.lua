@@ -31,9 +31,6 @@ STATE_ROUND_IN_PROGRESS = 3
 STATE_ROUND_ENDED = 4
 STATE_GAME_OVER = 5
 
-_G.GAME_MODE_FFA = "ffa"
-_G.GAME_MODE_2V2 = "2v2"
-
 ROUND_ENDING_TIME = 5
 FIXED_DAY_TIME = 0.27
 
@@ -85,6 +82,7 @@ function Activate()
     GameRules.GameMode = GameMode()
     GameRules.GameMode:SetupMode()
     VectorTarget:Init({ noOrderFilter = true })
+    SendToServerConsole("dota_create_fake_clients 4")
 end
 
 function GameMode:OnThink()
@@ -191,9 +189,41 @@ function GameMode:OnGameSetup()
         end
     end
 
+    local circleSize = 1200
+
+    if GetMapName() == "arena_6" then
+        circleSize = 1550
+    end
+
+    local roundSpawnPoints = {}
+
+    for i = 0, 3 do
+        local a = i * math.pi / 4 * 2
+        table.insert(roundSpawnPoints, Vector(math.cos(a), math.sin(a), 0) * circleSize)
+    end
+
+    local roundSpawnPointsBig = {}
+
+    for i = 0, 5 do
+        local a = i * math.pi / 6 * 2
+        table.insert(roundSpawnPointsBig, Vector(math.cos(a), math.sin(a), 0) * circleSize)
+    end
+
+    local teamSpawnPoints = {}
+
+    for _, start in ipairs(Entities:FindAllByName("3v3_start")) do
+        table.insert(teamSpawnPoints, start:GetAbsOrigin())
+    end
+
+    local modes = {
+        ["ffa"] = { playersInTeam = 1, goal = 75, announce = "announcer_ann_custom_mode_06", spawns = roundSpawnPointsBig },
+        ["2v2"] = { playersInTeam = 2, goal = 150, announce = "announcer_ann_custom_mode_07", spawns = roundSpawnPoints },
+        ["3v3"] = { playersInTeam = 3, goal = 225, announce = "announcer_ann_custom_mode_07", spawns = teamSpawnPoints }
+    }
+
     PrintTable(self.Players)
 
-    self.gameSetup = GameSetup(self.Players, self.Teams)
+    self.gameSetup = GameSetup(modes, self.Players, self.Teams)
 
     self:SetState(STATE_GAME_SETUP)
     self.gameSetup:Start()
@@ -343,7 +373,7 @@ function GameMode:SetupMode()
     self.TeamColors[DOTA_TEAM_CUSTOM_8] = { 140, 42, 244 }  --      Purple
 
     for team = 0, (DOTA_TEAM_COUNT-1) do
-        GameRules:SetCustomGameTeamMaxPlayers(team, 2)
+        GameRules:SetCustomGameTeamMaxPlayers(team, 3)
         color = self.TeamColors[team]
         if color then
             SetTeamCustomHealthbarColor(team, color[1], color[2], color[3])
@@ -497,8 +527,8 @@ end
 
 function GameMode:OnHeroSelectionEnd()
     self.roundNumber = self.roundNumber + 1
-    self.round = Round(self.Players, self.AvailableHeroes, function(round) self:OnRoundEnd(round) end)
-    self.round:CreateHeroes()
+    self.round = Round(self.Players, self.Teams, self.AvailableHeroes, function(round) self:OnRoundEnd(round) end)
+    self.round:CreateHeroes(self.gameSetup:GetSpawnPoints())
     self:SetState(STATE_ROUND_IN_PROGRESS)
     self:UpdateGameInfo()
     self:UpdatePlayerTable()

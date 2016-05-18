@@ -83,13 +83,17 @@
 		"GameSetupModeSelect" "Выберите режим игры"
 		"GameSetupFFA" "Каждый за себя"
 		"GameSetup2v2" "2 на 2"
+		"GameSetup3v3" "3 на 3"
 		"GameSetupHeader_ffa" "Каждый за себя выбран!"
 		"GameSetupHeader_2v2" "2 на 2 выбран!"
+		"GameSetupHeader_3v3" "3 на 3 выбран!"
 		"GameSetupTeamSelect" "Выберите команду"
 		"GameSetupTeam1" "Команда 1"
 		"GameSetupTeam2" "Команда 2"
+		"GameSetupTeam3" "Команда 3"
 
 		"DOTA_GoodGuys" "Команда 1"
+		"DOTA_BadGuys" "Команда 2"
 		"DOTA_BadGuys" "Команда 2"
 		
 		"SbName" "Имя"
