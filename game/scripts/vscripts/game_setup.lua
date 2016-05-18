@@ -87,52 +87,113 @@ function GameSetup:DistinctTeams()
     end
 end
 
+function GameSetup:MostVotedMode()
+    local count = -1
+    local mostVoted = nil
+
+    for mode, _ in pairs(self.modes) do
+        local votes = self:GetModeVotesCount(mode)
+
+        if votes > count then
+            count = votes
+            mostVoted = mode
+        end
+    end
+
+    return mostVoted
+end
+
+function GameSetup:SetupSelectedMode()
+    local params = self.modes[self.selectedMode]
+
+    self.teamNumber = self:CalculateTeamCount(params)
+
+    if params.playersInTeam > 1 then
+        self.stage = GAME_SETUP_STAGE_TEAM
+
+        if self.timer < 15 then
+            self.timer = 15
+        end
+
+        CustomNetTables:SetTableValue("gameSetup", "teams", { teamNumber = self.teamNumber })
+    else
+        self:DistinctTeams()
+        self.timer = 3
+    end
+
+    EmitAnnouncerSound(params.announce)
+    self:SendTimeToPlayers()
+end
+
 function GameSetup:UpdateModeSelection()
     if self.selectedMode ~= nil then
         return
     end
 
     local players = self:GetPlayerCount()
+    local notVoted = self:GetModeVotesCount(nil)
 
     for mode, params in pairs(self.modes) do
         local votes = self:GetModeVotesCount(mode)
 
         if (votes >= players / 2 and params.playersInTeam > 1) or (votes > players / 2 and params.playersInTeam == 1) then
             self.selectedMode = mode
-            self.teamNumber = self:CalculateTeamCount(params)
-
-            if params.playersInTeam > 1 then
-                self.stage = GAME_SETUP_STAGE_TEAM
-
-                if self.timer < 15 then
-                    self.timer = 15
-                end
-
-                CustomNetTables:SetTableValue("gameSetup", "teams", { teamNumber = self.teamNumber })
-            else
-                self:DistinctTeams()
-                self.timer = 3
-            end
-
-            EmitAnnouncerSound(params.announce)
-            self:SendTimeToPlayers()
+            self:SetupSelectedMode()
 
             break
         end
     end
+
+    if notVoted == 0 and self.selectedMode == nil then
+        self.selectedMode = self:MostVotedMode()
+        self:SetupSelectedMode()
+    end
 end
 
 function GameSetup:UpdateTeamSelection()
-    local team1Players = self:GetTeamPlayerCount(0)
-    local team2Players = self:GetTeamPlayerCount(1)
+    local lonelyTeam = self:FindLonelyTeam()
+
+    if lonelyTeam ~= nil then
+        for _, playerState in pairs(self.playerState) do
+            if playerState.selectedTeam == nil then
+                playerState.selectedTeam = lonelyTeam
+            end
+        end
+
+        self:UpdateNetworkState()
+    end
+
+    local count = 0
     local players = self:GetPlayerCount()
 
-    if team1Players + team2Players == players then
+    for team = 0, self.teamNumber - 1 do
+        count = count + self:GetTeamPlayerCount(team)
+    end
+
+    if count == players then
         if self.timer > 3 then
             self.timer = 3
             self:SendTimeToPlayers()
         end
     end
+end
+
+function GameSetup:FindLonelyTeam()
+    local lonelyTeam = nil
+
+    for team = 0, self.teamNumber - 1 do
+        local count = self:GetTeamPlayerCount(team)
+
+        if count < self.modes[self.selectedMode].playersInTeam then
+            if lonelyTeam ~= nil then
+                return nil
+            end
+
+            lonelyTeam = team
+        end
+    end
+
+    return lonelyTeam
 end
 
 function GameSetup:CountProperty(property, mode)
@@ -262,7 +323,7 @@ function GameSetup:SelectRandomOptions()
 end
 
 function GameSetup:Start()
-    print("Starting game setup")
+    print("Starting game setup", self:GetPlayerCount())
 
     if self:GetPlayerCount() <= 2 then
         self.selectedMode = "ffa"
