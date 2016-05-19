@@ -446,6 +446,12 @@ function GameInfoChanged(gameInfo) {
     }
 }
 
+function CheckPause() {
+    $.Schedule(0.3, CheckPause);
+    $("#HeroSelectionBackground").SetHasClass("PauseBackground", Game.IsGamePaused());
+    $("#PauseOverlay").style.visibility = Game.IsGamePaused() ? "visible" : "collapse";
+}
+
 function CheckConnectionState() {
     $.Schedule(0.1, CheckConnectionState);
 
@@ -473,4 +479,5 @@ function CheckConnectionState() {
     $("#HeroSelectionChat").RegisterListener("HeroSelectionEnter");
 
     CheckConnectionState();
+    CheckPause();
 })();

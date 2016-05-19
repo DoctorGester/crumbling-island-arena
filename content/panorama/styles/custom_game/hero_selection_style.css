@@ -439,6 +439,28 @@
     sound: "UI.SelectHero";
 }
 
+#PauseOverlay
+{
+    width: 100%;
+    height: 100%;
+    background-color: #33333344;
+    visibility: collapse;
+}
+
+#PauseOverlay Label
+{
+    font-size: 96;
+    align: center center;
+    color: red;
+    text-transform: uppercase;
+    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+}
+
+.PauseBackground
+{
+    saturation: 0.3;
+}
+
 .AspectRatio16x10 .AnimationSelectedHero
 {
     transform: translateX(170px);

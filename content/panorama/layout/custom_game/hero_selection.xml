@@ -46,6 +46,9 @@
                 <Label class="TimerColumnLabel TimerColumnText" html="true" text="#GameInfoText"></Label>
             </Panel>
             <Panel id="HeroSelectionChat"/>
+            <Panel id="PauseOverlay">
+                <Label text="#GamePaused"/>
+            </Panel>
         </Panel>
     </Panel>
 </root>

@@ -92,6 +92,8 @@
 		"GameSetupTeam2" "Team 2"
 		"GameSetupTeam3" "Team 3"
 
+		"GamePaused" "Game paused"
+
 		"DOTA_GoodGuys" "Team 1"
 		"DOTA_BadGuys" "Team 2"
 		"DOTA_Custom1" "Team 3"
