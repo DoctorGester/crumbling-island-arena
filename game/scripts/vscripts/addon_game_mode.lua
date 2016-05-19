@@ -85,11 +85,11 @@ function Activate()
 end
 
 function GameMode:OnThink()
-    if GameRules:IsGamePaused() == true then
+    if GameRules:IsGamePaused() then
         return THINK_PERIOD
     end
 
-    local now = Time()
+    local now = GameRules:GetGameTime()
     if GameRules:State_Get() >= DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
         for _, thinker in ipairs(self.Thinkers) do
             
