@@ -1,17 +1,17 @@
 "AddonInfo"
 {
-	maps			"arena_6 arena"
+	maps			"arena arena_6"
 	"IsPlayable"	"1"
+    
+    "arena"
+    {
+                    "MaxPlayers"                    "4"
+    }
 
     "arena_6"
     {
                     "MaxPlayers"                    "6"
     }
-
-	"arena"
-	{
-					"MaxPlayers"                    "4"
-	}
 
     "Default_Keys"
     {
