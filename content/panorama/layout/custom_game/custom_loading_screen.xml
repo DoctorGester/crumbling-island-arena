@@ -1,5 +1,10 @@
 ﻿<root>
+    <styles>
+        <include src="file://{resources}/styles/custom_game/loading_screen.css" />
+    </styles>
     <Panel style="width:100%;height:100%;overflow:clip;background-color:black;">
         <Image src="file://{images}/custom_game/loadscreen.png"/>
+        <Label id="MapName" text="#GameName"/>
+        <Label id="GameTips" html="true" text="#GameTips"></Label>
     </Panel>
 </root>

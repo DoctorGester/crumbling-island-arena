@@ -1,0 +1,24 @@
+#MapName
+{
+    font-size: 96;
+    letter-spacing: 6px;
+    vertical-align: bottom;
+    text-transform: uppercase;
+    color: white;
+    opacity: 0.2;
+    margin-bottom: 20px;
+    margin-left: 40px;
+}
+
+#GameTips
+{
+    font-size: 24px;
+    margin-bottom: 180px;
+    margin-left: 40px;
+    line-height: 30px;
+    letter-spacing: 1px;
+    color: white;
+    opacity: 0.8;
+    vertical-align: bottom;
+    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+}

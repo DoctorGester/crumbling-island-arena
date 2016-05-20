@@ -80,6 +80,8 @@
 		"ChatRandomed" "<b><font color='{s:color}'>{s:name}</font></b> has randomed <font color='gold'>{s:hero}</font>"
 		"ChatPlaceholder" "Type here..."
 
+		"GameName" "Crumbling Island Arena"
+		"GameTips" "New hero every Saturday<br/>You can destroy terrain with your abilities<br/>To play 3v3, select the 'arena_6' map in menu"
 		"GameSetupModeSelect" "Select a game mode"
 		"GameSetupFFA" "Free for all"
 		"GameSetup2v2" "2 vs 2"
