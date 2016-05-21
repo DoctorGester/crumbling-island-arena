@@ -107,7 +107,7 @@ function Spells:GetValidTargets()
     local result = {}
 
     for _, ent in pairs(self.entities) do
-        if not ent.invulnerable and ent:Alive() then
+        if not ent:IsInvulnerable() and ent:Alive() then
             table.insert(result, ent)
         end
     end

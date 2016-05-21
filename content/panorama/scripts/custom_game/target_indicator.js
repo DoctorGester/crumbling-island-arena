@@ -149,6 +149,50 @@ indicatorTypes["TARGETING_INDICATOR_HALF_CIRCLE"] = function(data, unit) {
     }
 };
 
+indicatorTypes["TARGETING_INDICATOR_LINE_EMBER"] = function(data, unit) {
+    this.data = data;
+    this.unit = unit;
+    this.particle = Particles.CreateParticle("particles/targeting/line.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN_FOLLOW, unit);
+
+    this.FindRemnant = function(){
+        for (var unit of Entities.GetAllEntitiesByName(Entities.GetUnitName(this.unit))) {
+            if (unit != this.unit && Entities.IsCommandRestricted(unit)) {
+                return unit;
+            }
+        }
+
+        return null;
+    }
+
+    var remnant = this.FindRemnant();
+    if (remnant != null) {
+        this.remnant = remnant;
+        this.remnantParticle = Particles.CreateParticle("particles/targeting/line.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN_FOLLOW, remnant);
+    }
+
+    this.Update = function(cursor){
+        var to = UpdateLine(this.particle, this.unit, this.data, cursor);
+        var result = to.minus(Vector.FromArray(Entities.GetAbsOrigin(unit))).normalize().scale(150).add(to);
+        Particles.SetParticleControl(this.particle, 2, result);
+
+        if (this.remnantParticle && this.remnant) {
+            var to = UpdateLine(this.remnantParticle, this.remnant, this.data, cursor);
+            var result = to.minus(Vector.FromArray(Entities.GetAbsOrigin(this.remnant))).normalize().scale(150).add(to);
+            Particles.SetParticleControl(this.remnantParticle, 2, result);
+        }
+    }
+
+    this.Delete = function(){
+        Particles.DestroyParticleEffect(this.particle, false);
+        Particles.ReleaseParticleIndex(this.particle);
+
+        if (this.remnantParticle) {
+            Particles.DestroyParticleEffect(this.remnantParticle, false);
+            Particles.ReleaseParticleIndex(this.remnantParticle);
+        }
+    }
+};
+
 
 function UpdateLine(particle, unit, data, cursor) {
     var pos = Vector.FromArray(Entities.GetAbsOrigin(unit));

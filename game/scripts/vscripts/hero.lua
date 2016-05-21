@@ -65,7 +65,7 @@ function Hero:Damage(source)
         return
     end
 
-    if self.invulnerable and source ~= self then
+    if self:IsInvulnerable() and source ~= self then
         return
     end
 

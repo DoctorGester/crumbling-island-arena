@@ -225,6 +225,11 @@
 		"AbilityTooltip_shaker_e"						"Прыгнуть в указанную область, оглушая врагов при приземлении"
 		"AbilityTooltip_shaker_r"						"Уничтожить всю поврежденную (красную) землю вокруг, оглушая врагов"
 
+		"AbilityTooltip_ember_q"						"Запустить наносящую урон волну<br>Враги на пути <font color=\"#FF6A00\"><b>Горят</b></font><br>Уже <font color=\"#FF6A00\"><b>Горящие</b></font> враги сильно замедлены"
+		"AbilityTooltip_ember_w"						"Бросить связывающую сеть<br>Связанный враг <font color=\"#FF6A00\"><b>Горит</b></font><br>Уже <font color=\"#FF6A00\"><b>Горящие</b></font> враги оглушаются"
+		"AbilityTooltip_ember_e"						"Короткий рывок<br>Враги на пути <font color=\"#FF6A00\"><b>Горят</b></font><br>Уже <font color=\"#FF6A00\"><b>Горящие</b></font> враги получают урон"
+		"AbilityTooltip_ember_r"						"Создать копию себя в точке<br/>Копия повторяет все способности за героем"
+
 		"ModifierTooltip_modifier_charges"						"Заряды способности"
 		"ModifierTooltip_modifier_stunned_lua"					"Оглушен"
 		"ModifierTooltip_modifier_knockback_lua"				"Отброшен"
@@ -302,6 +307,11 @@
 		"ModifierTooltip_modifier_ogre_r"						"Делает смеси без остановки"
 
 		"ModifierTooltip_modifier_shaker_e"						"Трехочковый"
+
+		"ModifierTooltip_modifier_ember_burning"				"<font color=\"#FF6A00\"><b>Горит</b></font>"
+		"ModifierTooltip_modifier_ember_q"						"Замедлен"
+		"ModifierTooltip_modifier_ember_w"						"Связан"
+		"ModifierTooltip_modifier_ember_e"						"Огненный шарик"
 	}
 }
 

@@ -1879,17 +1879,59 @@
 		"ScriptFile" "abilities/ember/ember_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "ember_spirit_sleight_of_fist"
-		"AbilityCooldown" "4.5"
-		"AbilityCastPoint" "0.3"
+		"AbilityCooldown" "3.0"
+		"AbilityCastPoint" "0.15"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE_EMBER"
+			"MinLength" "1300"
+			"MaxLength" "1300"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1300"
+		}
+
+		"precache"
+		{
+			"particle" "particles/ember_q/ember_q.vpcf"
+			"particle" "particles/units/heroes/hero_invoker/invoker_chaos_meteor_burn_debuff.vpcf"
+			"particle" "particles/units/heroes/hero_huskar/huskar_burning_spear_debuff.vpcf"
+			"particle" "particles/status_fx/status_effect_burn.vpcf"
+		}
 	}
 
 	"ember_w"
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/ember/ember_w"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "ember_spirit_searing_chains"
 		"AbilityCooldown" "5.5"
+		"AbilityCastPoint" "0.15"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE_EMBER"
+			"MinLength" "1050"
+			"MaxLength" "1050"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1050"
+		}
+
+		"precache"
+		{
+			"particle" "particles/ember_w/ember_w.vpcf"
+			"particle" "particles/units/heroes/hero_ember_spirit/ember_spirit_searing_chains_debuff.vpcf"
+			"particle" "particles/status_fx/status_effect_burn.vpcf"
+		}
 	}
 
 	"ember_e"
@@ -1898,7 +1940,25 @@
 		"ScriptFile" "abilities/ember/ember_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "ember_spirit_activate_fire_remnant"
-		"AbilityCooldown" "6.5"
+		"AbilityCooldown" "2.7"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE_EMBER"
+			"MinLength" "400"
+			"MaxLength" "400"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "400"
+		}
+
+		"precache"
+		{
+			"particle" "particles/ember_e/ember_e.vpcf"
+		}
 	}
 
 	"ember_r"
@@ -1906,9 +1966,28 @@
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/ember/ember_r"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "ember_spirit_fire_remnant"
-		"AbilityCooldown" "18.0"
-		"AbilityCastPoint" "0.35"
+		"AbilityCooldown" "14.0"
+		"AbilityCastPoint" "0.3"
+
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "600"
+			"MaxLength" "600"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "600"
+		}
+
+		"precache"
+		{
+			"particle" "particles/ember_r/ember_r.vpcf"
+		}
 	}
 }

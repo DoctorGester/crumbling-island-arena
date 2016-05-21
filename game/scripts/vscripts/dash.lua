@@ -85,7 +85,7 @@ function Dash:Update()
             return not self.hitGroup[target]
         end
 
-        params.filter = Filters.And(Filters.Line(origin, result, self.hero:GetRad()), groupFilter)
+        params.filter = Filters.Line(origin, result, self.hero:GetRad()) + Filters.WrapFilter(groupFilter)
         params.filterProjectiles = true
 
         local hurt = self.hero:AreaEffect(params)

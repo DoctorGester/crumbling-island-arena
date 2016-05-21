@@ -1,5 +1,13 @@
 UnitEntity = UnitEntity or class({}, nil, DynamicEntity)
 
+local meta = getmetatable(UnitEntity)
+local oldCall = meta.__call
+meta.__call = function(object, f)
+    if object.unit and IsValidEntity(object.unit) then
+        return oldCall(object, f)
+    end
+end
+
 function UnitEntity:constructor(round, unitName, pos, team)
 	getbase(UnitEntity).constructor(self, round)
 
@@ -50,7 +58,9 @@ function UnitEntity:EmitSound(sound, location)
 end
 
 function UnitEntity:StopSound(sound)
-	self.unit:StopSound(sound)
+    if IsValidEntity(self.unit) then
+    	self.unit:StopSound(sound)
+    end
 end
 
 function UnitEntity:SetFacing(facing)

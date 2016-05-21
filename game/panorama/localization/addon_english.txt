@@ -228,6 +228,11 @@
 		"AbilityTooltip_shaker_e"						"Jump to a target area, stunning enemies on landing"
 		"AbilityTooltip_shaker_r"						"Destroy all damaged (red) ground around you, stunning all enemies caught"
 
+		"AbilityTooltip_ember_q"						"Launch a damaging wave<br>Enemies hit are <font color=\"#FF6A00\"><b>Burnt</b></font><br>Already <font color=\"#FF6A00\"><b>Burnt</b></font> enemies are greatly slowed"
+		"AbilityTooltip_ember_w"						"Throw a rooting bola<br>Enemies hit are <font color=\"#FF6A00\"><b>Burnt</b></font><br>Already <font color=\"#FF6A00\"><b>Burnt</b></font> enemies are stunned"
+		"AbilityTooltip_ember_e"						"Short dash<br>Enemies on the way are <font color=\"#FF6A00\"><b>Burnt</b></font><br>Already <font color=\"#FF6A00\"><b>Burnt</b></font> enemies take damage"
+		"AbilityTooltip_ember_r"						"Create a clone of yourself at the target point<br/>Clone copies every ability you cast"
+
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
 		"ModifierTooltip_modifier_knockback_lua"				"Knocked back"
@@ -305,6 +310,11 @@
 		"ModifierTooltip_modifier_ogre_r"						"Mixing concoctions non-stop"
 
 		"ModifierTooltip_modifier_shaker_e"						"Dunking"
+
+		"ModifierTooltip_modifier_ember_burning"				"<font color=\"#FF6A00\"><b>Burning</b></font>"
+		"ModifierTooltip_modifier_ember_q"						"Slowed"
+		"ModifierTooltip_modifier_ember_w"						"Rooted"
+		"ModifierTooltip_modifier_ember_e"						"Fireballin"
 	}
 }
 

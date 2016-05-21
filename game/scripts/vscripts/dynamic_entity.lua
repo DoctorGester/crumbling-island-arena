@@ -56,6 +56,10 @@ function DynamicEntity:SetInvulnerable(value)
     self.invulnerable = value
 end
 
+function DynamicEntity:IsInvulnerable(value)
+    return self.invulnerable
+end
+
 function DynamicEntity:Update()
     if self.falling then
         self.fallingSpeed = self.fallingSpeed + 10
