@@ -8,7 +8,7 @@ function EntityStormQ:constructor(round, owner, position, facing)
     self.invulnerable = true
 
     self:AddNewModifier(self, nil, "modifier_storm_spirit_remnant", {})
-    self:EmitSound("Hero_StormSpirit.StaticRemnantPlant")
+    self:EmitSound("Arena.Storm.HitQ")
     self:SetFacing(facing)
 
     self.rangeIndicator = ParticleManager:CreateParticle("particles/aoe_marker.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetUnit())
@@ -26,7 +26,7 @@ function EntityStormQ:Update()
 end
 
 function EntityStormQ:Remove()
-    self:EmitSound("Hero_StormSpirit.StaticRemnantExplode")
+    self:EmitSound("Arena.Storm.EndQ")
     self.hero:RemoveRemnant(self)
 
     ParticleManager:DestroyParticle(self.rangeIndicator, false)

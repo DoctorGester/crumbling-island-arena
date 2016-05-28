@@ -7,12 +7,12 @@ function storm_spirit_e:OnSpellStart()
     local remnant = hero:FindClosestRemnant(target)
 
     if remnant then
-        hero:EmitSound("Hero_StormSpirit.BallLightning")
+        hero:EmitSound("Arena.Storm.CastE")
 
         Dash(hero, remnant:GetPos(), 1200, {
             modifier = { name = "modifier_storm_spirit_e", ability = self },
             forceFacing = true,
-            loopingSound = "Hero_StormSpirit.BallLightning.Loop",
+            loopingSound = "Arena.Storm.LoopE",
             arrivalFunction = function(dash) remnant:Destroy() end
         })
     end

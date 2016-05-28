@@ -62,7 +62,7 @@ function EarthSpiritRemnant:SetTarget(target)
     self.target = target
     self.collisionType = COLLISION_TYPE_INFLICTOR
 
-    self.unit:EmitSound("Hero_EarthSpirit.RollingBoulder.Loop")
+    self.unit:EmitSound("Arena.Earth.CastW.Loop")
 end
 
 function EarthSpiritRemnant:RemoveTarget()
@@ -70,7 +70,8 @@ function EarthSpiritRemnant:RemoveTarget()
     self.speed = 0
     self.collisionType = COLLISION_TYPE_RECEIVER
 
-    self.unit:StopSound("Hero_EarthSpirit.RollingBoulder.Loop")
+    self.unit:StopSound("Arena.Earth.CastW.Loop")
+    self.unit:EmitSound("Arena.Earth.EndW")
 
     self:AreaEffect({
         filter = Filters.Area(self:GetPos(), 256),
@@ -89,6 +90,7 @@ function EarthSpiritRemnant:CollideWith(target)
         self.enemiesHit[target] = 30
 
         target:Damage(self)
+        target:EmitSound("Arena.Earth.HitW")
     end
 end
 
@@ -190,7 +192,7 @@ end
 
 function EarthSpiritRemnant:Remove()
     if self.unit then
-        self.unit:StopSound("Hero_EarthSpirit.RollingBoulder.Loop")
+        self.unit:StopSound("Arena.Earth.CastW.Loop")
         self.unit:RemoveSelf()
     end
 

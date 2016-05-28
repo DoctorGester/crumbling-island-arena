@@ -6,7 +6,7 @@ function zeus_r:OnSpellStart()
     local target = self:GetCursorPosition()
     local ability = self
 
-    hero:EmitSound("Hero_Zuus.GodsWrath.PreCast")
+    hero:EmitSound("Arena.Zeus.CastR")
 
     Timers:CreateTimer(1.6,
         function()
@@ -43,7 +43,7 @@ function zeus_r:OnSpellStart()
                 ScreenShake(target, 5, 150, 0.35, 4000, 0, true)
             end
 
-            EmitSoundOnLocationWithCaster(target, "Hero_Zuus.GodsWrath.Target", nil)
+            EmitSoundOnLocationWithCaster(target, "Arena.Zeus.HitR", nil)
         end
     )
 end
