@@ -46,7 +46,7 @@
             AddChatLine("#ChatRandomed", {
                 name: Players.GetPlayerName(args.player),
                 color: LuaColor(args.color),
-                hero: $.Localize("HeroName_" + args.hero)
+                hero: $.Localize("HeroName_npc_dota_" + args.hero)
             });
         }
 

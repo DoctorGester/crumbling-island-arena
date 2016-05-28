@@ -4,14 +4,6 @@ function modifier_hero:IsHidden()
     return true
 end
 
-if IsClient() then
-    function modifier_hero:OnCreated()
-        SendToConsole("dota_combine_models 1")
-    end
-
-    return
-end
-
 function modifier_hero:IsForwardEmpty()
     local parent = self:GetParent()
     local forward = parent:GetForwardVector() * parent:GetBaseMoveSpeed() / 5 + parent:GetAbsOrigin()

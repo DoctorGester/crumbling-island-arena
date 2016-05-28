@@ -27,7 +27,7 @@ function Hero:SetOwner(owner)
 end
 
 function Hero:GetName()
-    return self.unit:GetName()
+    return self.unit:GetUnitName()
 end
 
 function Hero:GetPos()
@@ -43,7 +43,7 @@ function Hero:GetHealth()
 end
 
 function Hero:Alive()
-    return self.unit:IsAlive()
+    return IsValidEntity(self.unit) and self.unit:IsAlive()
 end
 
 function Hero:SetPos(pos)
@@ -120,6 +120,10 @@ end
 function Hero:CanFall()
     local airborne = false
 
+    if not IsValidEntity(self.unit) then
+        return false
+    end
+
     for _, modifier in pairs(self.unit:FindAllModifiers()) do
         if modifier.Airborne and modifier:Airborne() then
             airborne = true
@@ -136,7 +140,7 @@ function Hero:Update()
     if self.owner and self.unit and self.owner:IsConnected() and PlayerResource:GetPlayer(self.owner.id) then
         local assigned = PlayerResource:GetPlayer(self.owner.id):GetAssignedHero()
 
-        if assigned then
+        if IsValidEntity(self.unit) and assigned then
             assigned:SetAbsOrigin(self:GetPos())
         end
     end
@@ -144,7 +148,7 @@ end
 
 function Hero:Setup()
     self:AddNewModifier(self, nil, "modifier_hero", {})
-    self.unit:SetAbilityPoints(0)
+    --self.unit:SetAbilityPoints(0)
 
     local count = self.unit:GetAbilityCount() - 1
     for i = 0, count do

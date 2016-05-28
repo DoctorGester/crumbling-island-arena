@@ -28,7 +28,7 @@ function AddChatLine(hero, playerName, color, message) {
 
     img.AddClass("GameChatImage");
     img.heroimagestyle = "icon";
-    img.heroname = hero;
+    img.heroname = "npc_dota_" + hero;
 
     var label = $.CreatePanel("Label", line, "");
     label.SetDialogVariable("name", playerName);
@@ -66,7 +66,7 @@ function OnKillLogEntry(args) {
     var img = $.CreatePanel("DOTAHeroImage", entry, "");
 
     img.heroimagestyle = "icon";
-    img.heroname = args.killer;
+    img.heroname = "npc_dota_" + args.killer;
     img.SetScaling("stretch-to-fit-y-preserve-aspect");
 
     img = $.CreatePanel("Image", entry, "");
@@ -83,7 +83,7 @@ function OnKillLogEntry(args) {
         img = $.CreatePanel("DOTAHeroImage", entry, "");
 
         img.heroimagestyle = "icon";
-        img.heroname = args.victim;
+        img.heroname = "npc_dota_" + args.victim;
         img.SetScaling("stretch-to-fit-y-preserve-aspect");
     }
 }
@@ -119,8 +119,8 @@ function GetLocalHero(){
 }
 
 function LoadHeroUI(heroId){
-    $("#HeroPortrait").heroname = Entities.GetUnitName(heroId);
-    $("#HeroNameLabel").text = $.Localize("#HeroName_" + Entities.GetUnitName(heroId));
+    $("#HeroPortrait").heroname = "npc_dota_" + Entities.GetUnitName(heroId);
+    $("#HeroNameLabel").text = $.Localize("#HeroName_npc_dota_" + Entities.GetUnitName(heroId));
 
     if (abilityBar == null) {
         abilityBar = new AbilityBar("#AbilityPanel");
@@ -206,7 +206,7 @@ function FillDebugPanel(){
 
     AddDebugButton("Add Test Hero", null).SetPanelEvent("onactivate", function(){
         GameEvents.SendCustomGameEventToServer("debug_create_test_hero", {
-            name: "npc_dota_hero_" + heroText.text.trim()
+            name: "hero_" + heroText.text.trim()
         });
     });
 

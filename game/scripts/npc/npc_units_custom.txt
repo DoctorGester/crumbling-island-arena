@@ -147,4 +147,817 @@
 	        }
 	    }
 	}
+
+	"hero_phantom_assassin"
+	{										
+		"Model"	"models/heroes/phantom_assassin/phantom_assassin.vmdl"
+		"Class" "heroes/pa:PA"
+
+		"Ability1" "pa_q"
+		"Ability2" "pa_w"
+		"Ability3" "pa_e"
+		"Ability4" "pa_q_sub"
+		"Ability5" "pa_w_sub"
+		"Ability6" "pa_e_sub"
+		"Ability7" "pa_r"
+
+		"ModelScale"		"0.86"
+		"HealthBarOffset"		"180"
+
+		"Difficulty" "hard"
+
+		"CustomIcons"
+		{
+			"pa_q" "pa_q.png"
+			"pa_w" "pa_w.png"
+			"pa_e" "pa_e.png"
+			"pa_q_sub" "pa_q_sub.png"
+			"pa_w_sub" "pa_w_sub.png"
+			"pa_e_sub" "pa_e.png"
+		}
+
+		"Creature"
+	    {
+			"AttachWearables" // Default npc_dota_hero_phantom_assassin
+	        {
+	            "1" { "ItemDef" "138" } // Phantom Assassin's Shoulder Pads
+	            "2" { "ItemDef" "140" } // Phantom Assassin's Weapon
+	            "3" { "ItemDef" "137" } // Phantom Assassin's Helmet
+	            "4" { "ItemDef" "141" } // Phantom Assassin's Daggers
+	            "5" { "ItemDef" "139" } // Phantom Assassin's Cape
+	        }
+        }
+
+        "MovementSpeed"				"350"
+		"ConsideredHero"			"1"
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementTurnRate"			"10.0"
+
+		"StatusHealth"				"5"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0.0"
+	}
+
+
+	"hero_zuus"
+	{
+		"Model"	"models/heroes/zeus/zeus.vmdl"
+		"Class" "heroes/zeus:Zeus"
+		
+		"Difficulty" "easy"
+		
+		"Ability1" "zeus_q"
+		"Ability2" "zeus_w"
+		"Ability3" "zeus_e"
+		"Ability4" "zeus_r"
+
+		"CustomIcons"
+		{
+			"zeus_q" "zeus_q.png"
+			"zeus_w" "zeus_w.png"
+			"zeus_e" "zeus_e.png"
+			"zeus_r" "zeus_r.png"
+		}
+
+		"Creature"
+	    {
+			"AttachWearables" // Default npc_dota_hero_zuus
+	        {
+	            "1" { "ItemDef" "589" } // Zeus' Arms
+	            "2" { "ItemDef" "593" } // Zeus' Weapon
+	            "3" { "ItemDef" "604" } // Zeus' Head
+	            "4" { "ItemDef" "605" } // Zeus Ambient Effects
+	            "5" { "ItemDef" "606" } // Zeus' Belt
+	            "6" { "ItemDef" "607" } // Zeus' Back
+	        }
+        }
+
+        "HealthBarOffset"			"130"
+		"MovementSpeed"				"350"
+		"ConsideredHero"			"1"
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementTurnRate"			"10.0"
+
+		"StatusHealth"				"5"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0.0"
+	}
+
+	"hero_storm_spirit"
+	{
+		"Model"	"models/heroes/storm_spirit/storm_spirit.vmdl"
+		"Class" "heroes/storm_spirit:StormSpirit"
+
+		"Difficulty" "hard"
+
+		"Ability1" "storm_spirit_q"
+		"Ability2" "storm_spirit_w"
+		"Ability3" "storm_spirit_e"
+		"Ability4" "storm_spirit_r"
+
+		"Creature"
+	    {
+	        "AttachWearables" // Default npc_dota_hero_storm_spirit
+	        {
+	            "1" { "ItemDef" "310" } // Storm Spirit's Armor
+	            "2" { "ItemDef" "308" } // Storm Spirit's Hat
+	            "3" { "ItemDef" "309" } // Storm Spirit's Shoulder
+	        }
+	    }
+
+	    "ModelScale"				"1.15"
+		"HealthBarOffset"			"170"
+		"MovementSpeed"				"350"
+		"ConsideredHero"			"1"
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementTurnRate"			"10.0"
+
+		"StatusHealth"				"5"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0.0"
+	}
+
+	"hero_earth_spirit"
+	{
+		"Model"	"models/heroes/earth_spirit/earth_spirit.vmdl"
+		"Class" "heroes/earth_spirit:EarthSpirit"
+		"Difficulty" "hard"
+
+		"Ability1" "earth_spirit_q"
+		"Ability2" "earth_spirit_w"
+		"Ability3" "earth_spirit_e"
+		"Ability4" ""
+		"Ability5" ""
+		"Ability6" "earth_spirit_r"
+
+		"Creature"
+	    {
+	        "AttachWearables" // Default npc_dota_hero_earth_spirit
+	        {
+	            "1" { "ItemDef" "475" } // Earth Spirit's Staff
+	            "2" { "ItemDef" "480" } // Earth Spirit's Neck
+	            "3" { "ItemDef" "481" } // Earth Spirit's Arms
+	            "4" { "ItemDef" "526" } // Earth Spirit's Ambient Effects
+	            "5" { "ItemDef" "482" } // Earth Spirit's Head
+	            "6" { "ItemDef" "479" } // Earth Spirit's Belt
+	            "7" { "ItemDef" "477" } // Earth Spirit's Head Accessory
+	            "8" { "ItemDef" "8654" } // Earth Spirit's Stone Remnant
+	        }
+	    }
+
+		"ModelScale"				"0.95"
+		"HealthBarOffset"			"200"
+		"MovementSpeed"				"350"
+		"ConsideredHero"			"1"
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementTurnRate"			"10.0"
+
+		"StatusHealth"				"5"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0.0"
+	}
+
+	"hero_crystal_maiden"
+	{
+		"Model"	"models/heroes/crystal_maiden/crystal_maiden.vmdl"
+		"Class" "heroes/cm:CM"
+		"Difficulty" "hard"
+		
+		"Ability1" "cm_q"
+		"Ability2" "cm_w"
+		"Ability3" "cm_e"
+		"Ability4" "cm_e_sub"
+		"Ability5" "cm_r"
+
+		"Creature"
+	    {
+	        "AttachWearables" // Default npc_dota_hero_crystal_maiden
+	        {
+	            "1" { "ItemDef" "41" } // Crystal Maiden's Cuffs
+	            "2" { "ItemDef" "311" } // Crystal Maiden's Headdress
+	            "3" { "ItemDef" "39" } // Crystal Maiden's Shoulder Pads
+	            "4" { "ItemDef" "502" } // Crystal Maiden's Ambient Effects
+	            "5" { "ItemDef" "38" } // Crystal Maiden's Cape
+	            "6" { "ItemDef" "40" } // Crystal Maiden's Weapon
+	        }
+	    }
+
+		"ModelScale"				"0.81"
+		"HealthBarOffset"			"135"
+		"MovementSpeed"				"300"
+		"ConsideredHero"			"1"
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementTurnRate"			"10.0"
+
+		"StatusHealth"				"5"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0.0"
+	}
+
+	"hero_sven"
+	{
+		"Model"	"models/heroes/sven/sven.vmdl"
+		"Class" "heroes/sven:Sven"
+		"Difficulty" "easy"
+		
+		"Ability1" "sven_q"
+		"Ability2" "sven_w"
+		"Ability3" "sven_e"
+		"Ability4" "sven_r"
+
+		"Creature"
+	    {
+	        "AttachWearables" // Default npc_dota_hero_sven
+	        {
+	            "1" { "ItemDef" "16" } // Sven's Mask
+	            "2" { "ItemDef" "8366" } // All Heroes' Default Pet
+	            "3" { "ItemDef" "20" } // Sven's Shoulder
+	            "4" { "ItemDef" "18" } // Sven's Belt
+	            "5" { "ItemDef" "581" } // Sven's Back
+	            "6" { "ItemDef" "19" } // Sven's Gauntlet
+	            "7" { "ItemDef" "17" } // Sven's Sword
+	        }
+	    }
+
+		"ModelScale"				"0.84"
+		"HealthBarOffset"			"150"
+		"MovementSpeed"				"350"
+		"ConsideredHero"			"1"
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementTurnRate"			"10.0"
+
+		"StatusHealth"				"5"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0.0"
+	}
+
+	"hero_sniper"
+	{
+		"Model"	"models/heroes/sniper/sniper.vmdl"
+		"Difficulty" "easy"
+		
+		"Ability1" "sniper_q"
+		"Ability2" "sniper_w"
+		"Ability3" "sniper_e"
+		"Ability4" "sniper_r"
+
+		"CustomIcons"
+		{
+			"sniper_e" "sniper_e.png"
+		}
+
+		"Creature"
+	    {
+	        "AttachWearables" // Default npc_dota_hero_sniper
+	        {
+	            "1" { "ItemDef" "281" } // Sniper's Weapon
+	            "2" { "ItemDef" "282" } // Sniper's Cape
+	            "3" { "ItemDef" "283" } // Sniper's Head Gear
+	            "4" { "ItemDef" "284" } // Sniper's Shoulder Armor
+	            "5" { "ItemDef" "285" } // Sniper's Bracers
+	        }
+	    }
+
+		"ModelScale"				"0.84"
+		"HealthBarOffset"			"110"
+		"MovementSpeed"				"300"
+		"ConsideredHero"			"1"
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementTurnRate"			"10.0"
+
+		"StatusHealth"				"5"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0.0"
+	}
+
+	"hero_sand_king"
+	{
+		"Model"	"models/heroes/sand_king/sand_king.vmdl"
+		"Difficulty" "easy"
+		
+		"Ability1" "sk_q"
+		"Ability2" "sk_w"
+		"Ability3" "sk_e"
+		"Ability4" "sk_r"
+
+		"Creature"
+	    {
+	        "AttachWearables" // Default npc_dota_hero_sand_king
+	        {
+	            "1" { "ItemDef" "180" } // Sand King's Head
+	            "2" { "ItemDef" "201" } // Sand King's Tail
+	            "3" { "ItemDef" "198" } // Sand King's Shoulders
+	            "4" { "ItemDef" "200" } // Sand King's Legs
+	            "5" { "ItemDef" "199" } // Sand King's Claws
+	        }
+	    }
+
+		"ModelScale"				"0.84"
+		"HealthBarOffset"			"130"
+		"MovementSpeed"				"350"
+		"ConsideredHero"			"1"
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementTurnRate"			"10.0"
+
+		"StatusHealth"				"5"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0.0"
+	}
+
+	"hero_legion_commander"
+	{
+		"Model"	"models/heroes/legion_commander/legion_commander.vmdl"
+		"Class" "heroes/lc:LC"
+		"Difficulty" "easy"
+		
+		"Ability1" "lc_q"
+		"Ability2" "lc_w"
+		"Ability3" "lc_e"
+		"Ability4" "lc_r"
+
+		"CustomIcons"
+		{
+			"lc_e" "lc_e.png"
+		}
+
+		"Creature"
+	    {
+	        "AttachWearables" // Default npc_dota_hero_legion_commander
+	        {
+	            "1" { "ItemDef" "433" } // Legion Commander's Banners
+	            "2" { "ItemDef" "431" } // Legion Commander's Helmet
+	            "3" { "ItemDef" "8366" } // All Heroes' Default Pet
+	            "4" { "ItemDef" "435" } // Legion Commander's Bracers
+	            "5" { "ItemDef" "434" } // Legion Commander's Sword
+	            "6" { "ItemDef" "432" } // Legion Commander's Shoulder Armor
+	        }
+	    }
+
+		"ModelScale"				"1.025"
+		"HealthBarOffset"			"200"
+		"MovementSpeed"				"350"
+		"ConsideredHero"			"1"
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementTurnRate"			"10.0"
+
+		"StatusHealth"				"5"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0.0"
+	}
+
+	"hero_lycan"
+	{
+		"Model"	"models/heroes/lycan/lycan.vmdl"
+		"Class" "heroes/lycan:Lycan"
+		"Difficulty" "easy"
+		
+		"Ability1" "lycan_q"
+		"Ability2" "lycan_w"
+		"Ability3" "lycan_e"
+		"Ability4" "lycan_r"
+
+		"Creature"
+	    {
+	        "AttachWearables" // Default npc_dota_hero_lycan
+	        {
+	            "1" { "ItemDef" "8660" } // Lycan's Head Accessory
+	            "2" { "ItemDef" "208" } // Lycan's Armor
+	            "3" { "ItemDef" "209" } // Lycan's Fur
+	            "4" { "ItemDef" "210" } // Lycan's Belt
+	            "5" { "ItemDef" "8649" } // Lycan's Shapeshift
+	            "6" { "ItemDef" "8369" } // Lycan's Wolves
+	            "7" { "ItemDef" "206" } // Lycan's Blades
+	            "8" { "ItemDef" "207" } // Lycan's Head
+	        }
+	    }
+
+		"ModelScale"				"0.85"
+		"HealthBarOffset"			"220"
+		"MovementSpeed"				"350"
+		"ConsideredHero"			"1"
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementTurnRate"			"10.0"
+
+		"StatusHealth"				"5"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0.0"
+	}
+
+	"hero_pugna"
+	{
+		"Model"	"models/heroes/pugna/pugna.vmdl"
+		"Class" "heroes/pugna:Pugna"
+		"Difficulty" "hard"
+		
+		"Ability1" "pugna_q"
+		"Ability2" "pugna_w"
+		"Ability3" "pugna_e"
+		"Ability4" "pugna_r"
+
+		"Ultimate" "pugna_r"
+
+		"CustomIcons"
+		{
+			"pugna_q" "pugna_q.png"
+			"pugna_w" "pugna_w.png"
+			"pugna_e" "pugna_e.png"
+			"pugna_r" "pugna_r.png"
+		}
+
+		"Creature"
+	    {
+	        "AttachWearables" // Default npc_dota_hero_pugna
+	        {
+	            "1" { "ItemDef" "8628" } // Pugna's Nether Ward
+	            "2" { "ItemDef" "157" } // Pugna's Belt
+	            "3" { "ItemDef" "153" } // Pugna's Head
+	            "4" { "ItemDef" "511" } // Pugna's Ambient Effects
+	            "5" { "ItemDef" "156" } // Pugna's Weapon
+	            "6" { "ItemDef" "155" } // Pugna's Bracers
+	            "7" { "ItemDef" "154" } // Pugna's Cape
+	            "8" { "ItemDef" "167" } // Pugna's Shoulder
+	        }
+	    }
+
+		"ModelScale"				"0.74"
+		"HealthBarOffset"			"140"
+		"MovementSpeed"				"350"
+		"ConsideredHero"			"1"
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementTurnRate"			"10.0"
+
+		"StatusHealth"				"5"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0.0"
+	}
+
+	"hero_phoenix"
+	{
+		"Model"	"models/heroes/phoenix/phoenix_bird.vmdl"
+		"Class" "heroes/phoenix:Phoenix"
+		"Difficulty" "hard"
+		
+		"Ability1" "phoenix_q"
+		"Ability2" "phoenix_w"
+		"Ability3" "phoenix_e"
+		"Ability4" "phoenix_r"
+		"Ability5" ""
+		"Ability6" ""
+
+		"Creature"
+	    {
+	        "AttachWearables" // Default npc_dota_hero_phoenix
+	        {
+	            "1" { "ItemDef" "535" } // Phoenix's Ambient Effects
+	        }
+	    }
+
+		"ModelScale"				"0.95"
+		"HealthBarOffset"			"240"
+		"MovementSpeed"				"350"
+		"ConsideredHero"			"1"
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementTurnRate"			"10.0"
+
+		"StatusHealth"				"5"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0.0"
+	}
+
+	"hero_templar_assassin"
+	{
+		"Model"	"models/heroes/lanaya/lanaya.vmdl"
+		"Class" "heroes/ta:TA"
+		"Difficulty" "easy"
+		
+		"Ability1" "ta_q"
+		"Ability2" "ta_w"
+		"Ability3" "ta_e"
+		"Ability4" "ta_r"
+		"Ability5" ""
+		"Ability6" ""
+
+		"ModelScale"				"0.88"
+		"HealthBarOffset"			"180"
+		"MovementSpeed"				"350"
+		"ConsideredHero"			"1"
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementTurnRate"			"10.0"
+
+		"StatusHealth"				"5"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0.0"
+	}
+
+	"hero_tiny"
+	{
+		"Model"	"models/heroes/tiny_01/tiny_01.vmdl"
+		"Difficulty" "easy"
+		
+		"Ability1" "tiny_q"
+		"Ability2" "tiny_w"
+		"Ability3" "tiny_e"
+		"Ability4" "tiny_r"
+
+		"Creature"
+	    {
+	        "AttachWearables" // Default npc_dota_hero_tiny
+	        {
+	            "2" { "ItemDef" "516" } // Tiny's Ambient Effects
+	            "3" { "ItemDef" "495" } // Tiny's Left Arm
+	            "4" { "ItemDef" "496" } // Tiny's Right Arm
+	            "5" { "ItemDef" "494" } // Tiny's Body
+	            "6" { "ItemDef" "493" } // Tiny's Head
+	        }
+	    }
+
+		"ModelScale"				"0.93"
+		"HealthBarOffset"			"165"
+		"MovementSpeed"				"350"
+		"ConsideredHero"			"1"
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementTurnRate"			"10.0"
+
+		"StatusHealth"				"5"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0.0"
+	}
+
+	"hero_vengefulspirit"
+	{
+		"Model"	"models/heroes/vengeful/vengeful.vmdl"
+		"Difficulty" "easy"
+		
+		"Ability1" "venge_q"
+		"Ability2" "venge_w"
+		"Ability3" "venge_e"
+		"Ability4" "venge_r"
+
+		"Creature"
+	    {
+	        "AttachWearables" // Default npc_dota_hero_vengefulspirit
+	        {
+	            "1" { "ItemDef" "445" } // Vengeful Spirit's Upper Armor
+	            "2" { "ItemDef" "447" } // Vengeful Spirit's Legs
+	            "3" { "ItemDef" "441" } // Vengeful Spirit's Hair
+	            "4" { "ItemDef" "442" } // Vengeful Spirit's Weapon
+	            "5" { "ItemDef" "517" } // Vengeful Spirit's Ambient Effects
+	        }
+	    }
+		
+		"ModelScale"				"0.98"
+		"HealthBarOffset"			"170"
+		"MovementSpeed"				"350"
+		"ConsideredHero"			"1"
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementTurnRate"			"10.0"
+
+		"StatusHealth"				"5"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0.0"
+	}
+
+	"hero_drow_ranger"
+	{
+		"Model"	"models/heroes/drow/drow.vmdl"
+		"Difficulty" "easy"
+		
+		"Ability1" "drow_q"
+		"Ability2" "drow_w"
+		"Ability3" "drow_e"
+		"Ability4" "drow_r"
+
+		"Creature"
+	    {
+	        "AttachWearables" // Default npc_dota_hero_drow_ranger
+	        {
+	            "1" { "ItemDef" "78" } // Drow's Leg Armor
+	            "2" { "ItemDef" "77" } // Drow's Bow
+	            "3" { "ItemDef" "76" } // Drow's Cape
+	            "4" { "ItemDef" "75" } // Drow's Bracers
+	            "5" { "ItemDef" "80" } // Drow's Shoulder Armor
+	            "6" { "ItemDef" "267" } // Drow's Headwear
+	            "7" { "ItemDef" "79" } // Drow's Quiver
+	        }
+	    }
+
+		"ModelScale"				"0.97"
+		"HealthBarOffset"			"130"
+		"MovementSpeed"				"350"
+		"ConsideredHero"			"1"
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementTurnRate"			"10.0"
+
+		"StatusHealth"				"5"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0.0"
+	}
+
+	"hero_skeleton_king"
+	{
+		"Model"	"models/heroes/wraith_king/wraith_king.vmdl"
+		"Difficulty" "easy"
+		
+		"Ability1" "wk_q"
+		"Ability2" "wk_w"
+		"Ability3" "wk_e"
+		"Ability4" "wk_r"
+
+		"CustomIcons"
+		{
+			"wk_q" "wk_q.png"
+			"wk_w" "wk_w.png"
+		}
+
+		"Creature"
+	    {
+	        "AttachWearables" // Default npc_dota_hero_skeleton_king
+	        {
+	            "1" { "ItemDef" "483" } // Wraith King's Ambient Effects
+	            "2" { "ItemDef" "151" } // Wraith King's Gauntlet
+	            "3" { "ItemDef" "150" } // Wraith King's Shoulder
+	            "4" { "ItemDef" "148" } // Wraith King's Head
+	            "5" { "ItemDef" "152" } // Wraith King's Cape
+	            "6" { "ItemDef" "149" } // Wraith King's Weapon
+	            "7" { "ItemDef" "500" } // Wraith King's Chest
+	        }
+	    }
+
+		"ModelScale"				"0.94"
+		"HealthBarOffset"			"190"
+		"MovementSpeed"				"350"
+		"ConsideredHero"			"1"
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementTurnRate"			"10.0"
+
+		"StatusHealth"				"5"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0.0"
+	}
+
+	"hero_ogre_magi"
+	{
+		"Model"	"models/heroes/ogre_magi/ogre_magi.vmdl"
+		"Class" "heroes/ogre:Ogre"
+		"Difficulty" "hard"
+		
+		"Ability1" "ogre_q"
+		"Ability2" "ogre_w"
+		"Ability3" "ogre_e"
+		"Ability4" "ogre_r"
+
+		"Creature"
+	    {
+	        "AttachWearables" // Default npc_dota_hero_ogre_magi
+	        {
+	            "1" { "ItemDef" "136" } // Ogre Magi's Belt
+	            "2" { "ItemDef" "135" } // Ogre Magi's Hats
+	            "3" { "ItemDef" "534" } // Ogre Magi's Ambient Effects
+	            "4" { "ItemDef" "105" } // Ogre Magi's Weapon
+	            "5" { "ItemDef" "134" } // Ogre Magi's Bracers
+	            "6" { "ItemDef" "133" } // Ogre Magi's Cape
+	        }
+	    }
+		
+		"ModelScale"				"0.93"
+		"HealthBarOffset"			"180"
+		"MovementSpeed"				"350"
+		"ConsideredHero"			"1"
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementTurnRate"			"10.0"
+
+		"StatusHealth"				"5"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0.0"
+	}
+
+	"hero_earthshaker"
+	{
+		"Model"	"models/heroes/earthshaker/earthshaker.vmdl"
+		"Difficulty" "easy"
+		
+		"Ability1" "shaker_q"
+		"Ability2" "shaker_w"
+		"Ability3" "shaker_e"
+		"Ability4" "shaker_r"
+
+		"Creature"
+	    {
+	        "AttachWearables" // Default npc_dota_hero_earthshaker
+	        {
+	            "1" { "ItemDef" "8655" } // Earthshaker's Uncoiffed Head
+	            "2" { "ItemDef" "8366" } // All Heroes' Default Pet
+	            "3" { "ItemDef" "460" } // Earthshaker's Bracers
+	            "4" { "ItemDef" "461" } // Earthshaker's Belt
+	            "5" { "ItemDef" "459" } // Earthshaker's Totem
+	        }
+	    }
+		
+		"ModelScale"				"0.93"
+		"HealthBarOffset"			"155"
+		"MovementSpeed"				"300"
+		"ConsideredHero"			"1"
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementTurnRate"			"10.0"
+
+		"StatusHealth"				"5"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0.0"
+	}
+
+	"hero_ember_spirit"
+	{
+		"Model"	"models/heroes/ember_spirit/ember_spirit.vmdl"
+		"Class" "heroes/ember:Ember"
+		"Difficulty" "easy"
+		
+		"Ability1" "ember_q"
+		"Ability2" "ember_w"
+		"Ability3" "ember_e"
+		"Ability4" "ember_r"
+
+		"Creature"
+	    {
+	        "AttachWearables" // Default npc_dota_hero_ember_spirit
+	        {
+	            "1" { "ItemDef" "474" } // Ember Spirit's Arms
+	            "2" { "ItemDef" "473" } // Ember Spirit's Offhand Weapon
+	            "3" { "ItemDef" "462" } // Ember Spirit's Head Item
+	            "4" { "ItemDef" "472" } // Ember Spirit's Main Weapon
+	            "5" { "ItemDef" "471" } // Ember Spirit's Belt Item
+	            "6" { "ItemDef" "469" } // Ember Spirit's Shoulders
+	        }
+	    }
+
+		"ModelScale"				"1.2"
+		"HealthBarOffset"			"200"
+		"MovementSpeed"				"300"
+		"ConsideredHero"			"1"
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementTurnRate"			"10.0"
+
+		"StatusHealth"				"5"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0.0"
+	}
 }

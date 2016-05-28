@@ -5,7 +5,7 @@ function UpdateHeroDetector(){
     $.Schedule(1 / 120, UpdateHeroDetector);
 
     var mainPanel = $("#MainPanel");
-    var all = Entities.GetAllHeroEntities();
+    var all = Entities.GetAllEntitiesByClassname("npc_dota_creature");
     var notOnScreen = _
         .chain(all)
         .reject(function(entity) {
@@ -46,7 +46,7 @@ function UpdateHeroDetector(){
                 }
             } else {
                 var panel = $.CreatePanel("DOTAHeroImage", mainPanel, "");
-                panel.heroname = Entities.GetUnitName(entity.id);
+                panel.heroname = "npc_dota_" + Entities.GetUnitName(entity.id);
                 panel.heroimagestyle = "icon";
                 panel.hittest = false;
 
