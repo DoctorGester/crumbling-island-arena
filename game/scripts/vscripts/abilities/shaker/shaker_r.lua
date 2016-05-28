@@ -40,7 +40,7 @@ function shaker_r:OnSpellStart()
                 for _, part in ipairs(pieces) do
                     if offsets[part] then
                         part.offsetZ = part.offsetZ - offsets[part]
-                        Level.UpdatePartPosition(part)
+                        Level:UpdatePartPosition(part)
                     end
                 end
             end
@@ -54,7 +54,7 @@ function shaker_r:OnSpellStart()
             local working = false
 
             for _, part in ipairs(pieces) do
-                if part.z >= -8 then
+                if part.z >= part.defaultZ - 8 then
                     local distance = (start - Vector(part.x, part.y, 0)):Length2D()
 
                     if distance > currentLen and distance <= currentLen + speed then

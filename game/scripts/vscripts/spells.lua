@@ -7,18 +7,24 @@ function Spells:constructor()
     self.dashes = {}
 end
 
-function Spells.TestPoint(point, unit)
-    local ground = point * Vector(1, 1, 0) - Vector(0, 0, 1)
-    
-    local trace = {
-        startpos = ground,
-        endpos = ground - Vector(0, 0, 10),
-        ignore = unit
-    }
+if GetMapName() == "arena_6" then
+    function Spells.TestPoint(point, unit)
+        local ground = point * Vector(1, 1, 0) - Vector(0, 0, 1)
+        
+        local trace = {
+            startpos = ground,
+            endpos = ground - Vector(0, 0, 10),
+            ignore = unit
+        }
 
-    TraceLine(trace)
+        TraceLine(trace)
 
-    return trace.enthit
+        return trace.enthit
+    end
+else
+    function Spells.TestPoint(point)
+        return GameRules.GameMode.level:GetPartAt(point.x, point.y)
+    end
 end
 
 function Spells:Update()

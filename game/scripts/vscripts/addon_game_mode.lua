@@ -63,8 +63,6 @@ function Precache(context)
     PrecacheResource("soundfile", "soundevents/custom_sounds.vsndevts", context)
     PrecacheResource("soundfile", "soundevents/voscripts/game_sounds_vo_announcer.vsndevts", context)
 
-    PrecacheUnitByNameSync("npc_dota_dark_troll_warlord_skeleton_warrior", context)
-    PrecacheUnitByNameSync("npc_dota_unit_undying_zombie", context)
     PrecacheUnitByNameSync("wk_skeleton", context)
     PrecacheUnitByNameSync("wk_zombie", context)
     PrecacheUnitByNameSync("wk_archer", context)
@@ -709,6 +707,15 @@ function GameMode:OnGameInProgress()
     self.GameItems = nil--LoadKeyValues("scripts/items/items_game.txt").items
 
     self.level = Level()
+
+    if GetMapName() == "arena" then
+        require("levels/polygon")
+        require("levels/level_lua")
+        self.level:LoadPolygons()
+        self.level:Clusterize()
+        self.level:AssociatePieces()
+    end
+
     self.heroSelection = HeroSelection(self.Players, self.AvailableHeroes, self.TeamColors, self.chat)
 
     self:RegisterThinker(1,

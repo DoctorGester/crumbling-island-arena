@@ -38,6 +38,7 @@ function Level:BuildIndex()
         part.x = position.x
         part.y = position.y
         part.z = position.z
+        part.defaultZ = part.z
         part.velocity = 0
         part.angles = part:GetAnglesAsVector()
         part.angleVel = Vector(0, 0, 0)
@@ -87,17 +88,14 @@ function Level:DamageGround(part, damage)
         table.insert(self.shakingParts, part)
     end
 
-    if part.health <= 20 and part.z >= -8 then
-        part.z = (part.health / 20 - 1) * 8
+    if part.health <= 20 and part.z >= part.defaultZ - 8 then
+        part.z = part.defaultZ + (part.health / 20 - 1) * 8
         part:SetAbsOrigin(Vector(part.x, part.y, part.z))
     end
 
     if part.health <= 0 then
         self:LaunchPart(part)
     end
-end
-
-function Level:GroundAction()
 end
 
 function Level:Reset()
@@ -109,11 +107,11 @@ function Level:Reset()
     self.pulseDirection = 1
 
     for _, part in ipairs(self.parts) do
-        part:SetAbsOrigin(Vector(part.x, part.y, 0))
+        part:SetAbsOrigin(Vector(part.x, part.y, part.defaultZ))
         part:SetAngles(0, 0, 0)
         part.velocity = 0
         part.health = 100
-        part.z = 0
+        part.z = part.defaultZ
         part.offsetX = 0
         part.offsetY = 0
         part.offsetZ = 0
@@ -225,14 +223,20 @@ end
 
 function Level:GroundAction(action)
     for _, part in ipairs(self.parts) do
-        if part.z >= -8 then
+        if part.z >= part.defaultZ - 8 then
             action(part)
         end
     end
 end
 
-function Level.UpdatePartPosition(part)
+function Level:UpdatePartPosition(part)
     part:SetAbsOrigin(Vector(part.x + part.offsetX, part.y + part.offsetY, part.z + part.offsetZ))
+end
+
+function Level:SetPartOffset(part, offsetX, offsetY)
+    part.offsetX = offsetX
+    part.offsetY = offsetY
+    self:UpdatePartPosition(part)
 end
 
 function Level.CreateCreep(name, spawn, team, goal)

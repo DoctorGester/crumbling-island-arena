@@ -90,10 +90,7 @@ function wk_r:OnChannelFinish(interrupted)
                 offset = -offset
             end
 
-            part.offsetX = part.offsetX + offset.x
-            part.offsetY = part.offsetY + offset.y
-
-            Level.UpdatePartPosition(part)
+            GameRules.GameMode.level:SetPartOffset(part, part.offsetX + offset.x, part.offsetY + offset.y)
         end
     )
 

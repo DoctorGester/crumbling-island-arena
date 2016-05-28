@@ -57,7 +57,7 @@ function shaker_q:OnSpellStart()
             local working = false
 
             for _, part in ipairs(pieces) do
-                if part.z >= -8 then
+                if part.z >= part.defaultZ - 8 then
                     local closest = ClosestPointToSegment(start, target, Vector(part.x, part.y, 0))
                     local distance = (start - closest):Length2D()
 
@@ -65,7 +65,7 @@ function shaker_q:OnSpellStart()
                         offsets[part] = 15 + currentLen / len * 15
 
                         part.offsetZ = part.offsetZ + offsets[part]
-                        Level.UpdatePartPosition(part)
+                        Level:UpdatePartPosition(part)
                     end
 
                     if distance < currentLen - 350 and offsets[part] then
