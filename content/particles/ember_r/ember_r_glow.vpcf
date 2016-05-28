@@ -48,10 +48,12 @@
 				3.000000,
 				3.000000,
 			]
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_OP_BasicMovement"
 			m_fDrag = 0.050000
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_OP_InterpolateRadius"

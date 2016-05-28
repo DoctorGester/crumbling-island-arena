@@ -101,9 +101,6 @@
 			]
 			m_bOffset = true
 		},
-		{
-			_class = "C_OP_PositionLock"
-		},
 	]
 	m_Initializers =
 	[
