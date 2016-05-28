@@ -43,7 +43,7 @@ function shaker_q:OnSpellStart()
                 for _, part in ipairs(pieces) do
                     if offsets[part] then
                         part.offsetZ = part.offsetZ - offsets[part]
-                        Level.UpdatePartPosition(part)
+                        GameRules.GameMode.level:UpdatePartPosition(part)
                     end
                 end
             end
@@ -65,13 +65,13 @@ function shaker_q:OnSpellStart()
                         offsets[part] = 15 + currentLen / len * 15
 
                         part.offsetZ = part.offsetZ + offsets[part]
-                        Level:UpdatePartPosition(part)
+                        GameRules.GameMode.level:UpdatePartPosition(part)
                     end
 
                     if distance < currentLen - 350 and offsets[part] then
                         part.offsetZ = part.offsetZ - offsets[part]
                         offsets[part] = nil
-                        Level.UpdatePartPosition(part)
+                        GameRules.GameMode.level:UpdatePartPosition(part)
                     end
 
                     if distance > currentLen and distance < currentLen + 500 then
