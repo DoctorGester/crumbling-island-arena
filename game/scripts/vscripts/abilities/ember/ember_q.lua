@@ -11,7 +11,7 @@ function ember_q:OnSpellStart()
         to = target,
         speed = 1250,
         graphics = "particles/ember_q/ember_q.vpcf",
-        distance = 1300,
+        distance = 1100,
         hitSound = "Arena.Ember.HitQ",
         continueOnHit = true,
         hitFunction = function(projectile, target)

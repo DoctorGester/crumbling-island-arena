@@ -1879,20 +1879,20 @@
 		"ScriptFile" "abilities/ember/ember_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "ember_spirit_sleight_of_fist"
-		"AbilityCooldown" "3.0"
+		"AbilityCooldown" "4.0"
 		"AbilityCastPoint" "0.15"
 
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_LINE_EMBER"
-			"MinLength" "1300"
-			"MaxLength" "1300"
+			"MinLength" "1100"
+			"MaxLength" "1100"
 		}
 
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "1300"
+			"Radius" "1100"
 		}
 
 		"precache"
