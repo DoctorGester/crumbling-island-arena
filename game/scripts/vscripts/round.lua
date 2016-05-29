@@ -117,11 +117,17 @@ function Round:CreateHeroes(spawnPoints)
             local unit = CreateUnitByName(player.selectedHero, spawnPoints[self:GetTeamInverted(player.team) + 1] + RandomVector(150), true, nil, nil, player.team)
             hero:SetUnit(unit)
 
-            local ultimate = self.availableHeroes[hero:GetName()].ultimate
             hero:Setup()
             hero:SetOwner(player)
 
-            unit:FindAbilityByName(ultimate):StartCooldown(ULTS_TIME)
+            local count = unit:GetAbilityCount() - 1
+            for i = 0, count do
+                local ability = unit:GetAbilityByIndex(i)
+
+                if ability ~= nil and string.ends(ability:GetName(), "_r") then
+                    ability:StartCooldown(ULTS_TIME)
+                end
+            end
 
             hero:Activate()
 

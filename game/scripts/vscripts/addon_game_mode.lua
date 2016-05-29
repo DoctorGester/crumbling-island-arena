@@ -73,6 +73,14 @@ function Precache(context)
         PrecacheUnitByNameSync(data.override_hero, context)
     end
 
+    local units = LoadKeyValues("scripts/npc/npc_units_custom.txt")
+
+    for key, _ in pairs(units) do
+        if not string.starts(key, "hero_") then
+            PrecacheUnitByNameSync(key, context)
+        end
+    end
+
     VectorTarget:Precache(context)
 end
 

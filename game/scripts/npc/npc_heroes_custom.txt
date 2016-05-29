@@ -659,4 +659,41 @@
 
 		"Ultimate" "ember_r"
 	}
+
+	"npc_dota_hero_juggernaut"
+	{
+		"override_hero"	"npc_dota_hero_juggernaut"
+		"Class" "heroes/jugger:Jugger"
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
+		"BountyXP"	"0"
+		"MovementSpeed"	"350"
+		"MovementTurnRate"	"10"
+		"StatusHealth"	"5"
+		"StatusHealthRegen"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"AttributeBaseStrength"	"0"
+		"AttributeBaseIntelligence" "0"
+		"VisionDaytimeRange" "0"
+		"VisionNighttimeRange" "0"
+		"Difficulty" "hard"
+
+		"CustomIcons"
+		{
+			"jugger_e" "jugger_e.png"
+			"jugger_e_sub" "jugger_e_sub.png"
+		}
+		
+		"Ability1" "jugger_q"
+		"Ability2" "jugger_w"
+		"Ability3" "jugger_e"
+		"Ability4" "jugger_e_sub"
+		"Ability5" "jugger_r"
+		"Ability6" ""
+
+		"Ultimate" "jugger_r"
+	}
 }

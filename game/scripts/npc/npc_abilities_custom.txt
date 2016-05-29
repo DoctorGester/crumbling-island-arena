@@ -2015,7 +2015,7 @@
 		"ScriptFile" "abilities/jugger/jugger_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "juggernaut_healing_ward"
-		"AbilityCooldown" "5.5"
+		"AbilityCooldown" "8.5"
 		"AbilityCastPoint" "0.15"
 
 		"TargetingIndicator"
