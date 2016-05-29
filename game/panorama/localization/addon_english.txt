@@ -68,6 +68,9 @@
 		"HeroTips_npc_dota_hero_ember_spirit"			"All abilities apply <font color=\"#FF6A00\"><b>Burn</b></font><br/><font color='gold'>Q</font>: Damaging wave<br/><font color='gold'>W</font>: Rooting projectile<br/><font color='gold'>E</font>: Short dash<br/><font color='gold'>R</font>: Create a copy of yourself"
 		"Available_on_npc_dota_hero_ember_spirit"		"Available on May 21!"
 
+		"HeroName_npc_dota_hero_juggernaut"				"Scabbard"
+		"HeroTips_npc_dota_hero_juggernaut"				"Collect <font color=\"#FF6A00\"><b>Swords</b></font> to get stronger<br/><font color='gold'>Q</font>: Attack in a line<br/><font color='gold'>W</font>: AOE slow + heal<br/><font color='gold'>E</font>: Invis + blink<br/><font color='gold'>R</font>: Expend your swords without cooldown"
+
 		"PlayerHeader" "player"
 		"SelectionHeader" "selection"
 		"ScoreHeader" "score"
@@ -233,6 +236,12 @@
 		"AbilityTooltip_ember_e"						"Short dash<br>Enemies on the way are <font color=\"#FF6A00\"><b>Burnt</b></font><br>Already <font color=\"#FF6A00\"><b>Burnt</b></font> enemies take damage"
 		"AbilityTooltip_ember_r"						"Create a clone of yourself at the target point<br/>Clone copies every ability you cast"
 
+		"AbilityTooltip_jugger_q"						"Attack in a line<br/><br/>Find a <font color=\"#FF6A00\"><b>Sword</b></font> to improve range"
+		"AbilityTooltip_jugger_w"						"Create a ward, slowing enemies in the AOE<br/>Receive a heal when it dies"
+		"AbilityTooltip_jugger_e"						"Receive a short invisibility<br/><br/>Reactivate to teleport"
+		"AbilityTooltip_jugger_e_sub"					"Short blink"
+		"AbilityTooltip_jugger_r"						"Your attacks have no cooldown but spend a sword when used"
+
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
 		"ModifierTooltip_modifier_knockback_lua"				"Knocked back"
@@ -315,6 +324,11 @@
 		"ModifierTooltip_modifier_ember_q"						"Slowed"
 		"ModifierTooltip_modifier_ember_w"						"Rooted"
 		"ModifierTooltip_modifier_ember_e"						"Fireballin"
+
+		"ModifierTooltip_modifier_jugger_sword"					"Collect <font color=\"#FF6A00\"><b>Swords</b></font> around the map to get stronger"
+		"ModifierTooltip_modifier_jugger_e"						"Invisible"
+		"ModifierTooltip_modifier_jugger_w_target"				"Slowed"
+		"ModifierTooltip_modifier_jugger_r"						"Attacks have no cooldown but spend swords"
 	}
 }
 

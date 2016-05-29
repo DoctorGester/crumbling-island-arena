@@ -68,6 +68,9 @@
 		"HeroTips_npc_dota_hero_ember_spirit"			"Все способности накладывают <font color=\"#FF6A00\"><b>Горение</b></font><br/><font color='gold'>Q</font>: Волна урона<br/><font color='gold'>W</font>: Связывающий снаряд<br/><font color='gold'>E</font>: Короткий рывок<br/><font color='gold'>R</font>: Создать копию себя"
 		"Available_on_npc_dota_hero_ember_spirit"		"Доступно с 21 мая!"
 
+		"HeroName_npc_dota_hero_juggernaut"				"Ножны"
+		"HeroTips_npc_dota_hero_juggernaut"				"Собирай <font color=\"#FF6A00\"><b>Клинки</b></font> чтобы стать сильнее<br/><font color='gold'>Q</font>: Атака по линии<br/><font color='gold'>W</font>: Замедление в области + лечение<br/><font color='gold'>E</font>: Невидимость + телепорт<br/><font color='gold'>R</font>: Использование мечей без перезарядки"
+
 		"PlayerHeader" "игрок"
 		"SelectionHeader" "выбор"
 		"ScoreHeader" "счет"
@@ -229,6 +232,12 @@
 		"AbilityTooltip_ember_w"						"Бросить связывающую сеть<br>Связанный враг <font color=\"#FF6A00\"><b>Горит</b></font><br>Уже <font color=\"#FF6A00\"><b>Горящие</b></font> враги оглушаются"
 		"AbilityTooltip_ember_e"						"Короткий рывок<br>Враги на пути <font color=\"#FF6A00\"><b>Горят</b></font><br>Уже <font color=\"#FF6A00\"><b>Горящие</b></font> враги получают урон"
 		"AbilityTooltip_ember_r"						"Создать копию себя в точке<br/>Копия повторяет все способности за героем"
+		
+		"AbilityTooltip_jugger_q"						"Атака по линии<br/><br/>Найди <font color=\"#FF6A00\"><b>Клинок</b></font> чтобы увеличить дальность"
+		"AbilityTooltip_jugger_w"						"Создать вард, замедляющий врагов в области<br/>Когда вард умрет, герой восстановит здоровье"
+		"AbilityTooltip_jugger_e"						"Короткая невидимость<br/><br/>Нажми еще раз, чтобы телепортироваться"
+		"AbilityTooltip_jugger_e_sub"					"Короткая телепортация"
+		"AbilityTooltip_jugger_r"						"Твои атаки не имеют перезарядки, но каждая атака тратит клинок"
 
 		"ModifierTooltip_modifier_charges"						"Заряды способности"
 		"ModifierTooltip_modifier_stunned_lua"					"Оглушен"
@@ -312,6 +321,11 @@
 		"ModifierTooltip_modifier_ember_q"						"Замедлен"
 		"ModifierTooltip_modifier_ember_w"						"Связан"
 		"ModifierTooltip_modifier_ember_e"						"Огненный шарик"
+
+		"ModifierTooltip_modifier_jugger_sword"					"Ищи <font color=\"#FF6A00\"><b>Клинки</b></font> на карте и становись сильнее"
+		"ModifierTooltip_modifier_jugger_e"						"Невидим"
+		"ModifierTooltip_modifier_jugger_w_target"				"Замедлен"
+		"ModifierTooltip_modifier_jugger_r"						"Атакует без перезарядки, тратя мечи"
 	}
 }
 
