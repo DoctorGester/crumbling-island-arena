@@ -683,6 +683,18 @@
 		"Ability5" ""
 		"Ability6" ""
 
+		"Creature"
+	    {
+	        "AttachWearables" // Default npc_dota_hero_templar_assassin
+	        {
+	            "1" { "ItemDef" "175" } // Templar Assassin's Armor
+	            "2" { "ItemDef" "174" } // Templar Assassin's Shoulders
+	            "3" { "ItemDef" "173" } // Templar Assassin's Hair
+	            "4" { "ItemDef" "603" } // Templar Assassin's Weapon
+	            "5" { "ItemDef" "514" } // Templar Assassin's Ambient Effects
+	        }
+	    }
+
 		"ModelScale"				"0.88"
 		"HealthBarOffset"			"180"
 		"MovementSpeed"				"350"
