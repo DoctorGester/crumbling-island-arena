@@ -107,7 +107,7 @@ function ShowHeroPreview(heroName) {
     var previewStyle = "width: 100%; height: 100%; opacity-mask: url(\"s2r://panorama/images/masks/softedge_box_png.vtex\");"
     var preview = $("#HeroPreview");
     preview.SetHasClass("NotAvailableHero", allHeroes[heroName].disabled);
-    preview.LoadLayoutFromStringAsync("<root><Panel><DOTAScenePanel style='" + previewStyle + "' unit='npc_dota_" + heroName + "'/></Panel></root>", false, false);
+    preview.LoadLayoutFromStringAsync("<root><Panel><DOTAScenePanel style='" + previewStyle + "' unit='" + heroName + "'/></Panel></root>", false, false);
 }
 
 function ShowHeroDetails(heroName) {
@@ -118,8 +118,8 @@ function ShowHeroDetails(heroName) {
     abilityBar.SetProvider(new TableAbilityDataProvider(heroData));
     abilityBar.RegisterEvents(false);
     $("#HeroAbilities").visible = true;
-    $("#HeroName").text = $.Localize("#HeroName_npc_dota_" + heroData.name);
-    $("#HeroTips").text = $.Localize("#HeroTips_npc_dota_" + heroData.name);
+    $("#HeroName").text = $.Localize("#HeroName_" + heroData.name);
+    $("#HeroTips").text = $.Localize("#HeroTips_" + heroData.name);
 
     $("#HeroAbilities").SetHasClass("NotAvailableHero", notAvailable);
     $("#HeroName").SetHasClass("NotAvailableHero", notAvailable);
@@ -297,7 +297,7 @@ function CreateHeroList(heroList, heroes){
             button.AddClass("HeroButton");
             button.SetHasClass("NotAvailableHeroButton", notAvailable);
             button.SetScaling("stretch-to-fit-y-preserve-aspect");
-            button.heroname = "npc_dota_" + heroes[j];
+            button.heroname = heroes[j];
             button.heroimagestyle = "landscape";
 
             if (notAvailable) {
@@ -315,7 +315,7 @@ function SelectionHoverClient(args){
     var hero = args.hero;
     var selectionImage = $("#SelectionImage" + args["player"]);
 
-    selectionImage.heroname = "npc_dota_" + hero;
+    selectionImage.heroname = hero;
     selectionImage.SetHasClass("AnimationImageHover", hero != "null")
 }
 
@@ -417,7 +417,7 @@ function HeroSelectionUpdated(data){
         if (hero == "null"){
             selectionImage.RemoveClass("AnimationSelectedHero");
         } else {
-            selectionImage.heroname = "npc_dota_" + hero;
+            selectionImage.heroname = hero;
             selectionImage.RemoveClass("AnimationImageHover");
             selectionImage.AddClass("AnimationSelectedHero");
             selectionImage.style.boxShadow = LuaColor(playerColors[id]) + " -2px -2px 4px 4px";

@@ -103,7 +103,7 @@ function AddPlayerRow(scoreboard, player, stats, winner, runnerUp) {
 
                 img.AddClass("TableIconMini");
                 img.heroimagestyle = "icon";
-                img.heroname = "npc_dota_" + hero[0];
+                img.heroname = hero[0];
             });
         } else {
             var icon = $.CreatePanel("Panel", icons, "");

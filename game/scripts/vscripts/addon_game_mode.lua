@@ -63,10 +63,14 @@ function Precache(context)
     PrecacheResource("soundfile", "soundevents/custom_sounds.vsndevts", context)
     PrecacheResource("soundfile", "soundevents/voscripts/game_sounds_vo_announcer.vsndevts", context)
 
-    local heroes = LoadKeyValues("scripts/npc/npc_units_custom.txt")
+    PrecacheUnitByNameSync("wk_skeleton", context)
+    PrecacheUnitByNameSync("wk_zombie", context)
+    PrecacheUnitByNameSync("wk_archer", context)
 
-    for name, data in pairs(heroes) do
-        PrecacheUnitByNameSync(name, context)
+    local heroes = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
+
+    for _, data in pairs(heroes) do
+        PrecacheUnitByNameSync(data.override_hero, context)
     end
 
     VectorTarget:Precache(context)
@@ -259,8 +263,6 @@ function GameMode:InitSettings()
 
     mode:SetExecuteOrderFilter(Dynamic_Wrap(GameMode, "FilterExecuteOrder"), self)
 
-    SendToServerConsole("dota_combine_models 1")
-
     if IsInToolsMode() then
         SendToServerConsole("dota_surrender_on_disconnect 0")
     end
@@ -414,8 +416,8 @@ function GameMode:OnDamageDealt(hero, source)
 
     if not hero:Alive() and hero.owner then
          CustomGameEventManager:Send_ServerToAllClients("kill_log_entry", {
-            killer = source.owner.hero.unit:GetUnitName(),
-            victim = hero.unit:GetUnitName(),
+            killer = source.owner.hero.unit:GetName(),
+            victim = hero.unit:GetName(),
             color = self.TeamColors[source.owner.team],
             fell = false
         })
@@ -537,7 +539,7 @@ end
 function GameMode:OnEntityKilled(event)
     local entity = EntIndexToHScript(event.entindex_killed)
 
-    if entity.hero and instanceof(entity.hero, Hero) then
+    if entity:IsHero() and entity.hero then
         entity.hero.round.entityDied = true
 
         if entity:GetAbsOrigin().z <= -MAP_HEIGHT then
@@ -604,7 +606,7 @@ function GameMode:SubmitRoundInfo(round, winner, gameOver)
         local playerData = {}
 
         if player.selectedHero then
-            playerData.hero = string.gsub(player.selectedHero, "hero_", "")
+            playerData.hero = string.gsub(player.selectedHero, "npc_dota_hero_", "")
         else
             playerData.hero = ""
         end
@@ -650,7 +652,7 @@ end
 function GameMode:LoadCustomHeroes()
     self.AvailableHeroes = {}
 
-    local customHeroes = LoadKeyValues("scripts/npc/npc_units_custom.txt")
+    local customHeroes = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
     local customAbilities = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
 
     local enableForDebug = IsInToolsMode() and PlayerResource:GetPlayerCount() == 1
@@ -658,8 +660,9 @@ function GameMode:LoadCustomHeroes()
     print("Enable for dbg", enableForDebug, PlayerResource:GetPlayerCount())
 
     for customName, data in pairs(customHeroes) do
-        if string.starts(customName, "hero_") then
-            self.AvailableHeroes[customName] = {
+        if data.override_hero ~= DUMMY_HERO then
+            self.AvailableHeroes[data.override_hero] = {
+                ultimate = data.Ultimate,
                 class = data.Class,
                 customIcons = data.CustomIcons,
                 difficulty = data.Difficulty or "easy",
@@ -678,7 +681,7 @@ function GameMode:LoadCustomHeroes()
                 end
             end
 
-            self.AvailableHeroes[customName].abilities = abilities
+            self.AvailableHeroes[data.override_hero].abilities = abilities
         end
     end
 end

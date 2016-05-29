@@ -1,7 +1,7 @@
 EmberRemnant = class({}, nil, UnitEntity)
 
 function EmberRemnant:constructor(round, owner, target, ability)
-    getbase(EmberRemnant).constructor(self, round, "hero_ember_spirit", owner:GetPos(), owner.unit:GetTeamNumber())
+    getbase(EmberRemnant).constructor(self, round, "npc_dota_hero_ember_spirit", owner:GetPos(), owner.unit:GetTeamNumber())
 
     self.owner = owner.owner
     self.hero = owner

@@ -1,7 +1,7 @@
 Vengeance = class({}, nil, UnitEntity)
 
 function Vengeance:constructor(round, owner, target, facing, ability)
-    getbase(Vengeance).constructor(self, round, "hero_vengefulspirit", target, owner.unit:GetTeamNumber())
+    getbase(Vengeance).constructor(self, round, "npc_dota_hero_vengefulspirit", target, owner.unit:GetTeamNumber())
 
     self.owner = owner.owner
     self.hero = owner

@@ -44,7 +44,7 @@ function PlayersUpdated(players) {
             playerPanel.AddClass("ScoreboardPlayer")
 
             var hero = $.CreatePanel("DOTAHeroImage", playerPanel, "");
-            hero.heroname = "npc_dota_" + player.heroes[index];
+            hero.heroname = player.heroes[index];
             hero.heroimagestyle = "icon";
             hero.AddClass("ScoreboardPlayerHero")
             hero.SetScaling("stretch-to-fit-y-preserve-aspect");
