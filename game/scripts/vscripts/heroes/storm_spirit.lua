@@ -42,7 +42,7 @@ function StormSpirit:HasRemnants()
 end
 
 function StormSpirit:Remove()
-    self:StopSound("Hero_StormSpirit.BallLightning.Loop")
+    self:StopSound("Arena.Storm.LoopE")
 
     getbase(StormSpirit).Remove(self)
 end
