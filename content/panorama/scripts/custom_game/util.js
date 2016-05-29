@@ -157,3 +157,13 @@ function HasModifier(unit, modifier) {
 
     return false;
 }
+
+function GetStackCount(unit, modifier) {
+    for (var i = 0; i < Entities.GetNumBuffs(unit); i++) {
+        if (Buffs.GetName(unit, Entities.GetBuff(unit, i)) == modifier){
+            return Buffs.GetStackCount(unit, Entities.GetBuff(unit, i));
+        }
+    }
+
+    return 0;
+}

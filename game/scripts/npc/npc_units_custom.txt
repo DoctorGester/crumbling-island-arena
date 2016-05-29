@@ -148,6 +148,16 @@
 	    }
 	}
 
+	"jugger_ward"
+	{
+	    "BaseClass"     "npc_dota_creature"
+	    "Model"         "models/heroes/juggernaut/jugg_healing_ward.vmdl"
+	    "ModelScale"    "1.0"
+	    "MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+	    "BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
+	}
+
+
 	"hero_phantom_assassin"
 	{										
 		"Model"	"models/heroes/phantom_assassin/phantom_assassin.vmdl"
@@ -948,7 +958,52 @@
 
 		"ModelScale"				"1.2"
 		"HealthBarOffset"			"200"
-		"MovementSpeed"				"300"
+		"MovementSpeed"				"350"
+		"ConsideredHero"			"1"
+		"BaseClass"					"npc_dota_creature"
+		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+		"MovementTurnRate"			"10.0"
+
+		"StatusHealth"				"5"
+		"StatusHealthRegen"			"0"
+		"StatusMana"				"0"
+		"StatusManaRegen"			"0.0"
+	}
+
+	"hero_juggernaut"
+	{
+		"Model"	"models/heroes/juggernaut/juggernaut.vmdl"
+		"Class" "heroes/jugger:Jugger"
+		"Difficulty" "hard"
+		
+		"Ability1" "jugger_q"
+		"Ability2" "jugger_w"
+		"Ability3" "jugger_e"
+		"Ability4" "jugger_e_sub"
+		"Ability5" "jugger_r"
+
+		"CustomIcons"
+		{
+			"jugger_e" "jugger_e.png"
+			"jugger_e_sub" "jugger_e_sub.png"
+		}
+
+	    "Creature"
+	    {
+	        "AttachWearables" // Default npc_dota_hero_juggernaut
+	        {
+	            "1" { "ItemDef" "62" } // Juggernaut's Legs
+	            "2" { "ItemDef" "7" } // Juggernaut's Weapon
+	            "3" { "ItemDef" "9" } // Juggernaut's Bracers
+	            "4" { "ItemDef" "6" } // Juggernaut's Mask
+	            "5" { "ItemDef" "8" } // Juggernaut's Cape
+	        }
+	    }
+
+		"ModelScale"				"0.85"
+		"HealthBarOffset"			"170"
+		"MovementSpeed"				"350"
 		"ConsideredHero"			"1"
 		"BaseClass"					"npc_dota_creature"
 		"AttackCapabilities"		"DOTA_UNIT_CAP_NO_ATTACK"
