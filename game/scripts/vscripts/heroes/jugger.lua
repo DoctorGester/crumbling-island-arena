@@ -85,6 +85,10 @@ end
 function Jugger:Update()
     getbase(Jugger).Update(self)
 
+    if not self:Alive() then
+        return
+    end 
+
     local ulti = self:FindAbility("jugger_r")
     ulti:SetActivated(self.swordLevel > 0 or not ulti:IsCooldownReady())
 

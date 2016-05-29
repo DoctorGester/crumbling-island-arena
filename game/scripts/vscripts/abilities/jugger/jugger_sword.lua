@@ -20,7 +20,9 @@ end
 function JuggerSword:Remove()
     getbase(JuggerSword).Remove(self)
 
-    self.hero:StartSwordTimer()
+    if self.hero:Alive() then
+        self.hero:StartSwordTimer()
+    end
 
     ParticleManager:DestroyParticle(self.particle, false)
     ParticleManager:ReleaseParticleIndex(self.particle)

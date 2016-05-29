@@ -112,9 +112,11 @@ function Hero:EnableUltimate(ultimate)
 end
 
 function Hero:Hide()
-    self.unit:SetAbsOrigin(Vector(0, 0, 10000))
-    self.unit:AddNoDraw()
-    self:AddNewModifier(self, nil, "modifier_hidden", {})
+    if IsValidEntity(self.unit) then
+        self.unit:SetAbsOrigin(Vector(0, 0, 10000))
+        self.unit:AddNoDraw()
+        self:AddNewModifier(self, nil, "modifier_hidden", {})
+    end
 end
 
 function Hero:CanFall()
