@@ -5999,6 +5999,42 @@
     }
 }
 
+"Arena.Jugger.PickVoice"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/vo/juggernaut/jugg_equipping_01.vsnd"
+                              "value1"        "sounds/vo/juggernaut/jugg_equipping_02.vsnd"
+                              "value2"        "sounds/vo/juggernaut/jugg_equipping_03.vsnd"
+                              "value3"        "sounds/vo/juggernaut/jugg_equipping_04.vsnd"
+                              "value4"        "sounds/vo/juggernaut/jugg_equipping_05.vsnd"
+                              "value5"        "sounds/vo/juggernaut/jugg_equipping_06.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "100.00000" }
+                    "distance_max"      {   "value"     "4000.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
 "Arena.Jugger.SwordAppear"
 {
     "operator_stacks"
@@ -6211,6 +6247,40 @@
                         "value"
                         {
                               "value0"        "sounds/weapons/hero/juggernaut/healing_ward_stop.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "100.00000" }
+                    "distance_max"      {   "value"     "4000.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Jugger.HitW"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/items/mek_target01.vsnd"
+                              "value1"        "sounds/items/mek_target02.vsnd"
+                              "value2"        "sounds/items/mek_target03.vsnd"
                         }
                     }
                     "volume"            {   "value"     "1.00000"  }

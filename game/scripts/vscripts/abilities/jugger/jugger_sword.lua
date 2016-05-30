@@ -21,11 +21,21 @@ function JuggerSword:Remove()
     getbase(JuggerSword).Remove(self)
 
     if self.hero:Alive() then
+        self.hero:SwordOnLevelDestroyed()
         self.hero:StartSwordTimer()
     end
 
     ParticleManager:DestroyParticle(self.particle, false)
     ParticleManager:ReleaseParticleIndex(self.particle)
+end
+
+function JuggerSword:SetParticle(particle)
+    if self.particle then
+        ParticleManager:DestroyParticle(self.particle, true)
+        ParticleManager:ReleaseParticleIndex(self.particle)
+    end
+
+    self.particle = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, self.unit)
 end
 
 function JuggerSword:Damage(source)
@@ -45,5 +55,5 @@ function JuggerSword:CollideWith(target)
 end
 
 function JuggerSword:CanFall(source)
-    return false
+    return true
 end

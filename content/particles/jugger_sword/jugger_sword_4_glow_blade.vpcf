@@ -7,8 +7,8 @@
 	m_flConstantRadius = 25.000000
 	m_ConstantColor =
 	[
-		255,
-		85,
+		170,
+		0,
 		0,
 		255,
 	]
@@ -26,6 +26,7 @@
 			m_bAdditive = true
 			m_hTexture = resource:"materials/particle/lava_pool_glow.vtex"
 			m_flOverbrightFactor = 3.000000
+			m_nOrientationType = 2
 		},
 	]
 	m_Operators =
@@ -35,21 +36,26 @@
 		},
 		{
 			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.050000
 		},
 		{
 			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.050000
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
 			m_flEndScale = 3.000000
+		},
+		{
+			_class = "C_OP_PositionLock"
 		},
 	]
 	m_Initializers =
 	[
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMax = 1.000000
-			m_fLifetimeMin = 1.000000
+			m_fLifetimeMax = 0.400000
+			m_fLifetimeMin = 0.400000
 		},
 		{
 			_class = "C_INIT_RandomAlpha"
@@ -71,27 +77,22 @@
 			m_OffsetMin =
 			[
 				0.000000,
+				-30.000000,
 				0.000000,
-				230.000000,
 			]
 			m_OffsetMax =
 			[
 				0.000000,
+				80.000000,
 				0.000000,
-				100.000000,
 			]
+			m_bLocalCoords = true
 		},
 	]
 	m_Emitters =
 	[
 		{
 			_class = "C_OP_ContinuousEmitter"
-		},
-	]
-	m_Children =
-	[
-		{
-			m_ChildRef = resource:"particles/jugger_sword/jugger_sword_1.vpcf"
 		},
 	]
 }

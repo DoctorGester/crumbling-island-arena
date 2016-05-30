@@ -36,6 +36,7 @@ end
 function JuggerWard:Remove()
     self:StopSound("Arena.Jugger.LoopW")
     self:EmitSound("Arena.Jugger.EndW")
+    self.hero:EmitSound("Arena.Jugger.HitW")
 
     getbase(JuggerWard).Remove(self)
 

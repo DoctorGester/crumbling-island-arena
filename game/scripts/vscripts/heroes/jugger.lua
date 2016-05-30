@@ -3,11 +3,43 @@ Jugger = class({}, {}, Hero)
 LinkLuaModifier("modifier_jugger_sword", "abilities/jugger/modifier_jugger_sword", LUA_MODIFIER_MOTION_NONE)
 
 Jugger.Swords = {
-    [0] = { range = 250, model = "models/heroes/juggernaut/jugg_sword.vmdl" },
-    [1] = { range = 500, model = "models/items/juggernaut/generic_wep_broadsword.vmdl", particle = "particles/jugger_sword/jugger_sword_1_glow.vpcf" },
-    [2] = { range = 800, model = "models/items/juggernaut/generic_wep_solidsword.vmdl", particle = "particles/jugger_sword/jugger_sword_2_glow.vpcf" },
-    [3] = { range = 1300, model = "models/items/juggernaut/generic_sword_nodachi.vmdl", particle = "particles/jugger_sword/jugger_sword_3_glow.vpcf" },
-    [4] = { range = 1600, model = "models/items/juggernaut/dragon_sword.vmdl", particle = "particles/jugger_sword/jugger_sword_4_glow.vpcf" }
+    [0] = {
+        range = 250,
+        model = "models/heroes/juggernaut/jugg_sword.vmdl",
+        attackParticle = "particles/jugger_q/jugger_q.vpcf"
+    },
+
+    [1] = {
+        range = 500,
+        model = "models/items/juggernaut/generic_wep_broadsword.vmdl",
+        particle = "particles/jugger_sword/jugger_sword_1_glow.vpcf",
+        swordParticle = "particles/jugger_sword/jugger_sword_1_glow_blade.vpcf",
+        attackParticle = "particles/jugger_q/jugger_q_sword_1.vpcf"
+    },
+
+    [2] = { 
+        range = 800,
+        model = "models/items/juggernaut/generic_wep_solidsword.vmdl",
+        particle = "particles/jugger_sword/jugger_sword_2_glow.vpcf",
+        swordParticle = "particles/jugger_sword/jugger_sword_2_glow_blade.vpcf",
+        attackParticle = "particles/jugger_q/jugger_q_sword_2.vpcf"
+    },
+
+    [3] = {
+        range = 1300,
+        model = "models/items/juggernaut/generic_sword_nodachi.vmdl",
+        particle = "particles/jugger_sword/jugger_sword_3_glow.vpcf",
+        swordParticle = "particles/jugger_sword/jugger_sword_3_glow_blade.vpcf",
+        attackParticle = "particles/jugger_q/jugger_q_sword_3.vpcf"
+    },
+
+    [4] = {
+        range = 1600,
+        model = "models/items/juggernaut/dragon_sword.vmdl",
+        particle = "particles/jugger_sword/jugger_sword_4_glow.vpcf",
+        swordParticle = "particles/jugger_sword/jugger_sword_4_glow_blade.vpcf",
+        attackParticle = "particles/jugger_q/jugger_q_sword_4.vpcf"
+    }
 }
 
 function Jugger:SetUnit(unit)
@@ -19,13 +51,23 @@ function Jugger:SetUnit(unit)
     self:StartSwordTimer()
 
     self.swordOnLevel = nil
+    self.swordParticle = nil
+end
+
+function Jugger:SwordOnLevelDestroyed()
+    self.swordOnLevel = nil
 end
 
 function Jugger:SwordPickedUp()
     self.swordOnLevel = nil
     self.swordLevel = self.swordLevel + 1
     self:UpdateSwordLevel()
+    self:EmitSound("Arena.Jugger.PickVoice")
     ImmediateEffect("particles/econ/events/ti6/hero_levelup_ti6.vpcf", PATTACH_ABSORIGIN_FOLLOW, self)
+end
+
+function Jugger:GetAttackParticle()
+    return Jugger.Swords[self.swordLevel].attackParticle
 end
 
 function Jugger:UseUltiCharge()
@@ -35,6 +77,10 @@ function Jugger:UseUltiCharge()
 
     if self.swordLevel == 0 then
         self:FindModifier("modifier_jugger_r"):Destroy()
+    end
+
+    if self.swordOnLevel ~= nil then
+        self.swordOnLevel:SetParticle(Jugger.Swords[self.swordLevel + 1].particle)
     end
 end
 
@@ -46,11 +92,21 @@ function Jugger:UpdateSwordLevel()
         if wearable:GetClassname() == "dota_item_wearable" then
             if string.find(wearable:GetModelName(), "sword") then
                 wearable:SetModel(Jugger.Swords[self.swordLevel].model)
-                return
+                break
             end
         end
 
         wearable = wearable:NextMovePeer()
+    end
+
+    if self.swordParticle then
+        ParticleManager:DestroyParticle(self.swordParticle, false)
+        ParticleManager:ReleaseParticleIndex(self.swordParticle)
+    end
+
+    if self.swordLevel > 0 then
+        self.swordParticle = ParticleManager:CreateParticle(Jugger.Swords[self.swordLevel].swordParticle, PATTACH_POINT_FOLLOW, self:GetUnit())
+        ParticleManager:SetParticleControlEnt(self.swordParticle, 0, self:GetUnit(), PATTACH_POINT_FOLLOW, "blade_attachment", self:GetUnit():GetAbsOrigin(), true)
     end
 end
 
@@ -59,7 +115,7 @@ function Jugger:GetSwordRange()
 end
 
 function Jugger:StartSwordTimer()
-    self:FindModifier("modifier_jugger_sword"):SetDuration(16, true)
+    self:FindModifier("modifier_jugger_sword"):SetDuration(12, true)
 end
 
 function Jugger:FindSpaceToSpawn()

@@ -52,9 +52,9 @@
 			_class = "C_OP_ColorInterpolate"
 			m_ColorFade =
 			[
-				72,
-				32,
-				0,
+				85,
+				170,
+				255,
 				255,
 			]
 			m_flFadeEndTime = 0.600000
@@ -75,16 +75,16 @@
 			_class = "C_INIT_RandomColor"
 			m_ColorMax =
 			[
+				85,
 				255,
-				213,
-				141,
+				255,
 				255,
 			]
 			m_ColorMin =
 			[
+				170,
 				255,
-				216,
-				141,
+				255,
 				255,
 			]
 		},
@@ -130,7 +130,7 @@
 	m_Children =
 	[
 		{
-			m_ChildRef = resource:"particles/jugger_q/jugger_q_flash.vpcf"
+			m_ChildRef = resource:"particles/jugger_q/jugger_q_sword_3_flash.vpcf"
 		},
 	]
 }

@@ -14,7 +14,7 @@ function jugger_q:OnSpellStart()
     Wrappers.DirectionalAbility(self, range, range)
 
     local target = self:GetCursorPosition()
-    local effect = ImmediateEffect("particles/jugger_q/jugger_q.vpcf", PATTACH_ABSORIGIN, hero)
+    local effect = ImmediateEffect(hero:GetAttackParticle(), PATTACH_ABSORIGIN, hero)
     ParticleManager:SetParticleControl(effect, 2, hero:GetPos() + Vector(0, 0, 64))
     ParticleManager:SetParticleControl(effect, 3, target + Vector(0, 0, 64))
     ParticleManager:ReleaseParticleIndex(effect)
