@@ -550,6 +550,8 @@ function GameMode:OnEntityKilled(event)
     if entity:IsHero() and entity.hero then
         entity.hero.round.entityDied = true
 
+        PlayerResource:SetOverrideSelectionEntity(entity.hero.owner.id, nil)
+
         if entity:GetAbsOrigin().z <= -MAP_HEIGHT then
             local name = entity:GetName()
 
