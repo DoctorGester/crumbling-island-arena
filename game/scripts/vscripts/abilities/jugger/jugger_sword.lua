@@ -39,11 +39,10 @@ function JuggerSword:SetParticle(particle)
 end
 
 function JuggerSword:Damage(source)
-    self:Destroy()
 end
 
 function JuggerSword:CollidesWith(source)
-    return true
+    return source == self.hero
 end
 
 function JuggerSword:CollideWith(target)
