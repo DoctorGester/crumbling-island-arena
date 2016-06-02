@@ -71,6 +71,10 @@
 		"HeroName_npc_dota_hero_juggernaut"				"Ножны"
 		"HeroTips_npc_dota_hero_juggernaut"				"Собирай <font color=\"#FF6A00\"><b>Клинки</b></font> чтобы стать сильнее<br/><font color='gold'>Q</font>: Атака по линии<br/><font color='gold'>W</font>: Замедление в области + лечение<br/><font color='gold'>E</font>: Невидимость + телепорт<br/><font color='gold'>R</font>: Использование мечей без перезарядки"
 
+		"HeroName_npc_dota_hero_lone_druid"				"Маска"
+		"HeroTips_npc_dota_hero_lone_druid"				"?????"
+		"Available_on_npc_dota_hero_lone_druid"			"Доступно с 4 июня!"
+
 		"PlayerHeader" "игрок"
 		"SelectionHeader" "выбор"
 		"ScoreHeader" "счет"

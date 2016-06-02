@@ -1997,7 +1997,7 @@
 		"ScriptFile" "abilities/jugger/jugger_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "juggernaut_blade_dance"
-		"AbilityCooldown" "3.5"
+		"AbilityCooldown" "3.0"
 		"AbilityCastPoint" "0.15"
 
 		"TargetingIndicator"
@@ -2068,6 +2068,46 @@
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "juggernaut_omni_slash"
+		"AbilityCooldown" "16.0"
+	}
+
+	"ld_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/jugger/jugger_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "lone_druid_rabid"
+		"AbilityCooldown" "16.0"
+	}
+
+	"ld_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/jugger/jugger_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "lone_druid_spirit_bear_entangle"
+		"AbilityCooldown" "16.0"
+	}
+
+	"ld_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/jugger/jugger_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "lone_druid_spirit_bear"
+		"AbilityCooldown" "16.0"
+	}
+
+	"ld_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/jugger/jugger_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "lone_druid_true_form"
 		"AbilityCooldown" "16.0"
 	}
 }

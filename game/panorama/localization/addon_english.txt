@@ -71,6 +71,10 @@
 		"HeroName_npc_dota_hero_juggernaut"				"Scabbard"
 		"HeroTips_npc_dota_hero_juggernaut"				"Collect <font color=\"#FF6A00\"><b>Swords</b></font> to get stronger<br/><font color='gold'>Q</font>: Attack in a line<br/><font color='gold'>W</font>: AOE slow + heal<br/><font color='gold'>E</font>: Invis + blink<br/><font color='gold'>R</font>: Expend your swords without cooldown"
 
+		"HeroName_npc_dota_hero_lone_druid"				"Mask"
+		"HeroTips_npc_dota_hero_lone_druid"				"?????"
+		"Available_on_npc_dota_hero_lone_druid"			"Available on June 4!"
+
 		"PlayerHeader" "player"
 		"SelectionHeader" "selection"
 		"ScoreHeader" "score"
