@@ -155,8 +155,8 @@ indicatorTypes["TARGETING_INDICATOR_LINE_EMBER"] = function(data, unit) {
     this.particle = Particles.CreateParticle("particles/targeting/line.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN_FOLLOW, unit);
 
     this.FindRemnant = function(){
-        for (var unit of Entities.GetAllEntitiesByClassname("npc_dota_creature")) {
-            if (unit != this.unit && Entities.GetUnitName(this.unit) == Entities.GetUnitName(unit) && Entities.IsCommandRestricted(unit)) {
+        for (var unit of Entities.GetAllEntitiesByName(Entities.GetUnitName(this.unit))) {
+            if (unit != this.unit && Entities.IsCommandRestricted(unit)) {
                 return unit;
             }
         }
