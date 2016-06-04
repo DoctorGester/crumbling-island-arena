@@ -16,11 +16,6 @@
             <Panel id="HeroSelectionTopGradient" hittest="false"/>
             <Panel class="ExitGameOverlay" hittest="false"/>
 
-            <Panel id="LeftSideHeroes">
-                <Label id="HeroName" class="YellowLabel"></Label>
-                <Panel id="HeroAbilities" class="AbilityPanel"></Panel>
-            </Panel>
-
             <Panel id="HeroList">
                 <Label class="BlueLabel" text="#HeroListHeader"></Label>
                 <Panel id="DifficultyList">
@@ -29,7 +24,12 @@
                 </Panel>
                 <Label id="TimerText"></Label>
             </Panel>
-            
+
+            <Panel id="LeftSideHeroes">
+                <Label id="HeroName" class="YellowLabel"></Label>
+                <Panel id="HeroAbilities" class="AbilityPanel"></Panel>
+            </Panel>
+
             <Panel id="RightSide">
                 <Label id="PlayersLabel" text="Players" class="YellowLabel"/>
                 <Panel id="PlayersContent"/>
