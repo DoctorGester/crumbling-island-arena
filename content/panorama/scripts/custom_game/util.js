@@ -167,3 +167,40 @@ function GetStackCount(unit, modifier) {
 
     return 0;
 }
+
+function CreateScoreboardFromData(players, callback) {
+    for (var key in players) {
+        players[key].ids = [ players[key].id ];
+        players[key].heroes = [ players[key].hero ];
+        players[key].names = [ Players.GetPlayerName(players[key].id) ];
+    }
+
+    var teams = _(players).groupBy(function(player) { return player.team });
+
+    for (var key in teams){
+        var team = teams[key];
+
+        var player = _.reduce(team, function(p1, p2){
+            return {
+                color: p2.color,
+                ids: p1.ids.concat(p2.ids),
+                names: p1.names.concat(p2.names),
+                heroes: p1.heroes.concat(p2.heroes),
+                score: p1.score + p2.score
+            };
+        }, {
+            ids: [],
+            heroes: [],
+            names: [],
+            score: 0
+        });
+
+        var data = [];
+
+        for (var index in player.names) {
+            data.push({ hero: player.heroes[index], name: player.names[index], id: player.ids[index] });
+        }
+
+        callback(LuaColor(player.color), player.score, data);
+    }
+}

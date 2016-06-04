@@ -4,7 +4,9 @@ var playerColors = {};
 var selectedHeroes = {};
 var abilityBar = new AbilityBar("#HeroAbilities");
 var previewSchedule = 0;
+var hidingCurrentPreview = null;
 var playerConnectionStates = {};
+var heroPreviews = {};
 
 function TableAbilityDataProvider(heroData) {
     this.heroData = heroData;
@@ -103,14 +105,35 @@ function DeleteHeroPreview() {
     }
 }
 
+function PreloadHeroPreviews(heroes) {
+    var previewStyle = "width: 100%; height: 100%; margin-top: -100px; opacity-mask: url(\"s2r://panorama/images/masks/softedge_box_png.vtex\");";
+    for (var hero of heroes) {
+        var preview = $.CreatePanel("Panel", $("#LeftSideHeroes"), "");
+        preview.AddClass("HeroPreview");
+        $("#LeftSideHeroes").MoveChildAfter(preview, $("#HeroAbilities"));
+
+        preview.style.visibility = "collapse";
+        preview.SetHasClass("NotAvailableHero", allHeroes[hero].disabled);
+        preview.LoadLayoutFromStringAsync("<root><Panel><DOTAScenePanel style='" + previewStyle + "' unit='" + hero + "'/></Panel></root>", false, false);
+
+        heroPreviews[hero] = preview;
+    }
+}
+
 function ShowHeroPreview(heroName) {
-    var previewStyle = "width: 100%; height: 100%; opacity-mask: url(\"s2r://panorama/images/masks/softedge_box_png.vtex\");"
+    var previewStyle = "width: 100%; height: 100%; margin-top: -100px; opacity-mask: url(\"s2r://panorama/images/masks/softedge_box_png.vtex\");"
     var preview = $("#HeroPreview");
     preview.SetHasClass("NotAvailableHero", allHeroes[heroName].disabled);
-    preview.LoadLayoutFromStringAsync("<root><Panel><DOTAScenePanel style='" + previewStyle + "' unit='" + heroName + "'/></Panel></root>", false, false);
+    preview.LoadLayoutFromStringAsync("<root><Panel><DOTAScenePanel style='" + previewStyle + "' camera='def_cam' map='heroes/" + heroName + "'/></Panel></root>", false, false);
 }
 
 function ShowHeroDetails(heroName) {
+    var selected = selectedHeroes[Game.GetLocalPlayerID()];
+
+    if (selected && selected != "null" && selected != heroName) {
+        return;
+    }
+
     var abilityPanel = $("#HeroAbilities");
     var heroData = allHeroes[heroName];
     var notAvailable = allHeroes[heroName].disabled;
@@ -119,36 +142,36 @@ function ShowHeroDetails(heroName) {
     abilityBar.RegisterEvents(false);
     $("#HeroAbilities").visible = true;
     $("#HeroName").text = $.Localize("#HeroName_" + heroData.name);
-    $("#HeroTips").text = $.Localize("#HeroTips_" + heroData.name);
 
     $("#HeroAbilities").SetHasClass("NotAvailableHero", notAvailable);
     $("#HeroName").SetHasClass("NotAvailableHero", notAvailable);
-    $("#HeroTips").SetHasClass("NotAvailableHero", notAvailable);
+
+    heroPreviews[heroName].style.visibility = "visible";
+    heroPreviews[heroName].AddClass("HeroPreviewIn");
 
     if (previewSchedule != 0) {
         $.CancelScheduled(previewSchedule);
-    }
-
-    DeleteHeroPreview();
-    var preview = $.CreatePanel("Panel", $("#HeroList"), "HeroPreview");
-    $("#HeroList").MoveChildAfter(preview, $("#HeroName"));
-
-    previewSchedule = $.Schedule(0.3, function() {
+        heroPreviews[hiddingCurrentPreview].style.visibility = "collapse";
         previewSchedule = 0;
-        ShowHeroPreview(heroName);
-    });
+    }
 }
 
-function HideHeroDetails() {
+function HideHeroDetails(heroName) {
     var selected = selectedHeroes[Game.GetLocalPlayerID()];
 
     if (!selected || selected == "null") {
-        abilityBar.SetProvider(new EmptyAbilityDataProvider());
-        $("#HeroAbilities").visible = false;
-        $("#HeroName").text = "";
-        $("#HeroTips").text = "";
+        heroPreviews[heroName].RemoveClass("HeroPreviewIn");
+        hiddingCurrentPreview = heroName;
 
-        DeleteHeroPreview();
+        previewSchedule = $.Schedule(0.1, function() {
+            abilityBar.SetProvider(new EmptyAbilityDataProvider());
+
+            $("#HeroAbilities").visible = false;
+            $("#HeroName").text = "";
+
+            heroPreviews[heroName].style.visibility = "collapse";
+            previewSchedule = 0;
+        });
     } else {
         ShowHeroDetails(selected);
     }
@@ -161,8 +184,14 @@ function AddHoverHeroDetails(element, heroName){
         }
     } (heroName));
 
+    var mouseOut = (function(heroName) {
+        return function() {
+            HideHeroDetails(heroName);
+        }
+    } (heroName));
+
     element.SetPanelEvent("onmouseover", mouseOver);
-    element.SetPanelEvent("onmouseout", HideHeroDetails);
+    element.SetPanelEvent("onmouseout", mouseOut);
 }
 
 function PickRandomHero(){
@@ -213,7 +242,7 @@ function CreatePlayerList(players){
     for (var i = 0; i < players.length; i++) {
         var selection = $.CreatePanel("DOTAHeroImage", selectionList, "SelectionImage" + players[i].id);
         selection.AddClass("SelectionImage");
-        selection.SetScaling("stretch-to-fit-y-preserve-aspect");
+        //selection.SetScaling("stretch-to-fit-y-preserve-aspect");
         selection.heroimagestyle = "landscape";
         selection.heroname = "";
     }
@@ -260,7 +289,7 @@ function AddButtonEvents(button, name) {
     button.SetPanelEvent("onmouseout", function(){
         GameEvents.SendCustomGameEventToServer("selection_hero_hover", { "hero": "null" });
 
-        HideHeroDetails();
+        HideHeroDetails(name);
     });
 }
 
@@ -274,40 +303,59 @@ function AddDisabledButtonEvents(button, name) {
     button.SetPanelEvent("onmouseout", function(){
         $.DispatchEvent("DOTAHideTextTooltip");
 
-        HideHeroDetails();
+        HideHeroDetails(name);
     });
 }
 
-function CreateHeroList(heroList, heroes){
+function CreateHeroList(heroList, heroes, rows, randomButtonRow){
     DeleteChildrenWithClass(heroList, "HeroButtonContainer");
 
     heroes = _(heroes).sortBy(function(hero) { return allHeroes[hero].disabled });
 
-    for (var i = 0; i < heroes.length; i += 4) {
+    var heroesInRow = rows[0];
+    var randomAdded = false;
+
+    for (var i = 0, currentRow = 0; i < heroes.length; currentRow++, i += heroesInRow, heroesInRow = rows[currentRow]) {
         var row = $.CreatePanel("Panel", heroList, "");
         row.AddClass("HeroButtonRow");
 
-        for (var j = i; j < heroes.length && j < i + 4; j++) {
+        for (var j = i; j < heroes.length && j < i + heroesInRow; j++) {
+            $.Msg(j);
             var notAvailable = allHeroes[heroes[j]].disabled;
 
             var container = $.CreatePanel("Panel", row, "");
             container.AddClass("HeroButtonContainer");
 
-            var button = $.CreatePanel("DOTAHeroImage", container, "");
-            button.AddClass("HeroButton");
-            button.SetHasClass("NotAvailableHeroButton", notAvailable);
-            button.SetScaling("stretch-to-fit-y-preserve-aspect");
-            button.heroname = heroes[j];
-            button.heroimagestyle = "landscape";
+            if (currentRow == randomButtonRow - 1 && (j - i) == Math.floor(heroesInRow / 2) && !randomAdded) {
+                j--;
+                randomAdded = true;
 
-            if (notAvailable) {
-                AddDisabledButtonEvents(button, heroes[j])
+                var button = $.CreatePanel("Panel", container, "");
+                button.AddClass("RandomButton");
+
+                container.SetPanelEvent("onactivate", PickRandomHero);
+
+                var text = $.CreatePanel("Label", button, "");
+                text.text = "?";
             } else {
-                AddButtonEvents(button, heroes[j]);
-            }
+                var button = $.CreatePanel("DOTAHeroImage", container, "");
+                button.AddClass("HeroButton");
+                button.SetHasClass("NotAvailableHeroButton", notAvailable);
+                button.SetScaling("stretch-to-fit-x-preserve-aspect");
+                button.heroname = heroes[j];
+                button.heroimagestyle = "portrait";
 
-            heroButtons[heroes[j]] = container;
+                if (notAvailable) {
+                    AddDisabledButtonEvents(container, heroes[j])
+                } else {
+                    AddButtonEvents(container, heroes[j]);
+                }
+
+                heroButtons[heroes[j]] = container;
+            }
         }
+
+
     }
 }
 
@@ -335,13 +383,19 @@ function GameStateChanged(data){
         SwitchClass(bg, "AnimationBackgroundInvisible", "AnimationBackgroundVisible")
         Game.EmitSound("UI.SelectionStart")
 
+        $("#HeroAbilities").visible = false;
+        $("#HeroName").text = "";
+
         for (var key in heroButtons) {
             heroButtons[key].style.boxShadow = null;
             heroButtons[key].RemoveClass("HeroButtonSaturated");
         }
 
         selectedHeroes = {};
-        HideHeroDetails();
+
+        for (var preview in heroPreviews) {
+            heroPreviews[preview].style.visibility = "collapse";
+        }
     } else {
         SwitchClass(bg, "AnimationBackgroundVisible", "AnimationBackgroundInvisible")
     }
@@ -370,61 +424,69 @@ function HeroesUpdated(data){
         }
     }
 
+    PreloadHeroPreviews(heroes);
+
     var easy = FilterDifficulty(heroes, data, "easy");
     var hard = FilterDifficulty(heroes, data, "hard");
 
-    CreateHeroList($("#EasyHeroes"), easy);
-    CreateHeroList($("#HardHeroes"), hard);
+    CreateHeroList($("#EasyHeroes"), easy, [ 4, 6, 4] , 3);
+    CreateHeroList($("#HardHeroes"), hard, [ 4, 4 ]);
 }
 
 function PlayersUpdated(data){
-    var players = [];
+    var playersPanel = $("#PlayersContent");
+    DeleteChildrenWithClass(playersPanel, "TeamPanel");
 
-    for (var key in data){
-        var player = data[key];
-        var info = Game.GetPlayerInfo(player.id) || {};
+    CreateScoreboardFromData(data, function(color, score, team) {
+        var panel = $.CreatePanel("Panel", playersPanel, "");
+        panel.AddClass("TeamPanel");
 
-        var result = {
-            id: player.id,
-            score: player.score,
-            steamId: info.player_steamid,
-            name: Players.GetPlayerName(player.id),
-            color: LuaColor(player.color),
-            team: player.team
-        };
+        var scorePanel = $.CreatePanel("Label", panel, "");
+        scorePanel.AddClass("TeamScore");
+        scorePanel.text = score.toString();
 
-        players.push(result);
+        var players = $.CreatePanel("Panel", panel, "");
+        players.AddClass("TeamPanelPlayers");
+        players.style.color = color;
 
-        playerColors[player.id] = player.color;
-    }
+        for (var player of team) {
+            var playerPanel = $.CreatePanel("Panel", players, "");
+            playerPanel.AddClass("TeamPlayer");
 
-    players = _(players).sortBy(function(player) { return player.team });
+            var playerHero = $.CreatePanel("DOTAHeroImage", playerPanel, "SelectionImage" + player.id);
+            playerHero.AddClass("SelectionImage");
+            playerHero.heroimagestyle = "landscape";
+            playerHero.heroname = "";
 
-    CreatePlayerList(players);
-    CreateScoreColumn(players);
+            var playerName = $.CreatePanel("Label", playerPanel, "");
+            playerName.text = player.name;
+
+            playerColors[player.id] = color;
+        }
+    });
 }
 
 function HeroSelectionUpdated(data){
     selectedHeroes = data || {};
 
-    $("#RandomHero").enabled = selectedHeroes[Game.GetLocalPlayerID()] == "null";
-
     for (var key in data){
         var hero = data[key];
         var selectionImage = $("#SelectionImage" + key);
         var id = parseInt(key);
-        
+
         if (hero == "null"){
             selectionImage.RemoveClass("AnimationSelectedHero");
         } else {
+            if (id == Game.GetLocalPlayerID()) {
+                ShowHeroDetails(hero);
+            }
+
             selectionImage.heroname = hero;
             selectionImage.RemoveClass("AnimationImageHover");
             selectionImage.AddClass("AnimationSelectedHero");
-            selectionImage.style.boxShadow = LuaColor(playerColors[id]) + " -2px -2px 4px 4px";
             AddHoverHeroDetails(selectionImage, hero);
 
-            heroButtons[hero].style.boxShadow = LuaColor(playerColors[id]) + " -2px -2px 4px 4px";
-            //heroButtons[hero].style.saturation = "1.0";
+            heroButtons[hero].style.boxShadow = playerColors[id] + " -2px -2px 4px 4px";
             heroButtons[hero].AddClass("HeroButtonSaturated");
         }
     }

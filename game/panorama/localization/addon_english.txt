@@ -78,7 +78,7 @@
 		"PlayerHeader" "player"
 		"SelectionHeader" "selection"
 		"ScoreHeader" "score"
-		"HeroListHeader" "click to select your hero"
+		"HeroListHeader" "select your hero"
 		"RandomHero" "random hero"
 		"LockedHeroes" "Not available for the first 3 rounds"
 		"GameGoal" "Goal: {d:goal}"

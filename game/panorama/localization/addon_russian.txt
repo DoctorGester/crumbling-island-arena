@@ -78,7 +78,7 @@
 		"PlayerHeader" "игрок"
 		"SelectionHeader" "выбор"
 		"ScoreHeader" "счет"
-		"HeroListHeader" "кликните, чтобы выбрать героя"
+		"HeroListHeader" "выбери героя"
 		"RandomHero" "случайный выбор"
 		"LockedHeroes" "Недоступны первые 3 раунда"
 		"GameGoal" "Цель: {d:goal}"

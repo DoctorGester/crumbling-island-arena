@@ -95,7 +95,7 @@ function GameMode:OnThink()
         return THINK_PERIOD
     end
 
-    local now = GameRules:GetGameTime()
+    local now = Time()
     if GameRules:State_Get() >= DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
         for _, thinker in ipairs(self.Thinkers) do
             

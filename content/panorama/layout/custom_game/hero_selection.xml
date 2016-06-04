@@ -15,36 +15,26 @@
             <DOTAScenePanel hittest="false" id="HeroSelectionBackgroundScene" map="backgrounds/dashboard_parallax_test" camera="shot_cameraC"/>
             <Panel id="HeroSelectionTopGradient" hittest="false"/>
             <Panel class="ExitGameOverlay" hittest="false"/>
-            
-            <Panel id="NameColumn">
-                <Label class="HeaderLabel NameColumnHeader" text="#PlayerHeader"></Label>
+
+            <Panel id="LeftSideHeroes">
+                <Label id="HeroName" class="YellowLabel"></Label>
+                <Panel id="HeroAbilities" class="AbilityPanel"></Panel>
             </Panel>
-            <Panel id="SelectionColumn">
-                <Label class="HeaderLabel SelectionColumnHeader" text="#SelectionHeader"></Label>
-            </Panel>
-            <Panel id="ScoreColumn">
-                <Label class="HeaderLabel HeroListHeader" text="#ScoreHeader"></Label>
-            </Panel>
+
             <Panel id="HeroList">
-                <Label class="HeaderLabel HeroListHeader" text="#HeroListHeader"></Label>
+                <Label class="BlueLabel" text="#HeroListHeader"></Label>
                 <Panel id="DifficultyList">
                     <Panel id="EasyHeroes" class="HeroButtons"/>
                     <Panel id="HardHeroes" class="HeroButtons"/>
                 </Panel>
-                <Button id="RandomHero" onactivate="PickRandomHero()">
-                    <Label text="#RandomHero"/>
-                </Button>
-                <Panel style="height:5%;"/>
-                <Label id="HeroName" class="HeaderLabel HeroListHeader"></Label>
-                <Panel id="HeroAbilities" class="AbilityPanel"></Panel>
-                <Label id="HeroTips" html="true"></Label>
-            </Panel>
-            <Panel id="TimerColumn">
-                <Label class="HeaderLabel HeroListHeader" text="#GameInfoHeader"></Label>
-                <Label class="TimerColumnLabel" text="#GameInfoTimer"></Label>
                 <Label id="TimerText"></Label>
-                <Label class="TimerColumnLabel TimerColumnText" html="true" text="#GameInfoText"></Label>
             </Panel>
+            
+            <Panel id="RightSide">
+                <Label id="PlayersLabel" text="Players" class="YellowLabel"/>
+                <Panel id="PlayersContent"/>
+            </Panel>
+
             <Panel id="HeroSelectionChat"/>
             <Panel id="PauseOverlay">
                 <Label text="#GamePaused"/>
