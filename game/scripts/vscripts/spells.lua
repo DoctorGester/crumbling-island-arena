@@ -229,7 +229,7 @@ function Wrappers.DirectionalAbility(ability, optionalRange, optionalMinRange)
         local direction = (target - casterPos):Normalized() * Vector(1, 1, 0)
 
         if direction:Length2D() == 0 then
-            direction = hero:GetFacing()
+            direction = self:GetCaster():GetForwardVector()
         end
 
         return direction
