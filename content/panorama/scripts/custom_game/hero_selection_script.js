@@ -320,7 +320,6 @@ function CreateHeroList(heroList, heroes, rows, randomButtonRow){
         row.AddClass("HeroButtonRow");
 
         for (var j = i; j < heroes.length && j < i + heroesInRow; j++) {
-            $.Msg(j);
             var notAvailable = allHeroes[heroes[j]].disabled;
 
             var container = $.CreatePanel("Panel", row, "");
@@ -354,8 +353,6 @@ function CreateHeroList(heroList, heroes, rows, randomButtonRow){
                 heroButtons[heroes[j]] = container;
             }
         }
-
-
     }
 }
 
@@ -423,6 +420,8 @@ function HeroesUpdated(data){
             }
         }
     }
+
+    heroes = _(heroes).sortBy(function(hero) { return data[hero].order });
 
     PreloadHeroPreviews(heroes);
 

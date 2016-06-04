@@ -79,7 +79,7 @@
     font-size: 38px;
     font-weight: bold;
     font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
-    margin: 6px;
+    margin: 4px;
     margin-left: 40px;
     color: white;
     text-shadow: skyblue 0px 0px 4px 4px;
@@ -90,13 +90,14 @@
     flow-children: down;
     width: 70%;
     horizontal-align: right;
+
     margin-right: 30px;
 }
 
 .TeamPlayer
 {
     flow-children: right;
-    height: 52px;
+    height: 60px;
     horizontal-align: right;
 }
 

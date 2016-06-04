@@ -669,6 +669,8 @@ function GameMode:LoadCustomHeroes()
 
     print("Enable for dbg", enableForDebug, PlayerResource:GetPlayerCount())
 
+    local order = 0
+
     for customName, data in pairs(customHeroes) do
         if data.override_hero ~= DUMMY_HERO then
             self.AvailableHeroes[data.override_hero] = {
@@ -676,6 +678,7 @@ function GameMode:LoadCustomHeroes()
                 class = data.Class,
                 customIcons = data.CustomIcons,
                 difficulty = data.Difficulty or "easy",
+                order = data.Order or math.huge,
                 disabled = (data.Disabled and data.Disabled == "true" and not enableForDebug) or false
             }
 
