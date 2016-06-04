@@ -50,6 +50,16 @@
     width: 30%;
 }
 
+.AspectRatio5x4 #LeftSideHeroes
+{
+    margin-left: 0px;
+}
+
+.AspectRatio4x3 #LeftSideHeroes
+{
+    margin-left: 0px;
+}
+
 #RightSide
 {
     align: right top;
