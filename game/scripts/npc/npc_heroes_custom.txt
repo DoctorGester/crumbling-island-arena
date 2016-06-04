@@ -803,7 +803,6 @@
 	"npc_dota_hero_lone_druid"
 	{
 		"override_hero"	"npc_dota_hero_lone_druid"
-		"Class" "heroes/jugger:Jugger"
 		"ArmorPhysical"	"0"
 		"MagicalResistance"	"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
@@ -824,15 +823,21 @@
 		"GameSoundsFile" ""
 		"VoiceFile"	""
 		"Difficulty" "easy"
-		"Disabled" "true"
 		"Order" "21"
+		"UltiCooldown" "3"
+
+		"CustomIcons"
+		{
+			"ld_r" "ld_r.png"
+		}
 
 		"Ability1" "ld_q"
 		"Ability2" "ld_w"
 		"Ability3" "ld_e"
-		"Ability4" "ld_r"
-		"Ability5" ""
-		"Ability6" ""
+		"Ability4" "ld_q_sub"
+		"Ability5" "ld_w_sub"
+		"Ability6" "ld_e_sub"
+		"Ability7" "ld_r"
 
 		"Ultimate" "ld_r"
 	}

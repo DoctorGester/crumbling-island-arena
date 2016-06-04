@@ -148,6 +148,14 @@
 	    }
 	}
 
+	"ld_bear"
+	{
+	    "BaseClass"     "npc_dota_creature"
+	    "Model"         "models/heroes/lone_druid/spirit_bear.vmdl"
+	    "ModelScale"    "0.85"
+	    "MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+	}
+
 	"jugger_ward"
 	{
 	    "BaseClass"     "npc_dota_creature"

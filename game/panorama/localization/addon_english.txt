@@ -71,7 +71,7 @@
 		"HeroName_npc_dota_hero_juggernaut"				"Scabbard"
 		"HeroTips_npc_dota_hero_juggernaut"				"Collect <font color=\"#FF6A00\"><b>Swords</b></font> to get stronger<br/><font color='gold'>Q</font>: Attack in a line<br/><font color='gold'>W</font>: AOE slow + heal<br/><font color='gold'>E</font>: Invis + blink<br/><font color='gold'>R</font>: Expend your swords without cooldown"
 
-		"HeroName_npc_dota_hero_lone_druid"				"Mask"
+		"HeroName_npc_dota_hero_lone_druid"				"The Mask"
 		"HeroTips_npc_dota_hero_lone_druid"				"?????"
 		"Available_on_npc_dota_hero_lone_druid"			"Available on June 4!"
 
@@ -246,6 +246,14 @@
 		"AbilityTooltip_jugger_e_sub"					"Short blink"
 		"AbilityTooltip_jugger_r"						"Your attacks have no cooldown but spend a sword when used"
 
+		"AbilityTooltip_ld_q"							"Launch a slowing projectile<br/>Only damages <font color=\"#3A9B00\"><b>Rooted</b></font> enemies"
+		"AbilityTooltip_ld_w"							"After a short delay, <font color=\"#3A9B00\"><b>Root</b></font> enemies in a line"
+		"AbilityTooltip_ld_e"							"Summon a spirit bear, which <font color=\"#3A9B00\"><b>Roots</b></font> and damages enemies on impact"
+		"AbilityTooltip_ld_r"							"Transform, gaining a new set of abilities"
+		"AbilityTooltip_ld_q_sub"						"Attack enemies in front of you"
+		"AbilityTooltip_ld_w_sub"						"Greatly slow enemies around you"
+		"AbilityTooltip_ld_e_sub"						"Gain a boost of speed<br/><br/>Attacking in this state <font color=\"#3A9B00\"><b>Roots</b></font> enemies"
+
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
 		"ModifierTooltip_modifier_knockback_lua"				"Knocked back"
@@ -333,6 +341,12 @@
 		"ModifierTooltip_modifier_jugger_e"						"Invisible"
 		"ModifierTooltip_modifier_jugger_w_target"				"Slowed"
 		"ModifierTooltip_modifier_jugger_r"						"Attacks have no cooldown but spend swords"
+
+		"ModifierTooltip_modifier_ld_root"						"<font color=\"#3A9B00\"><b>Rooted</b></font>"
+		"ModifierTooltip_modifier_ld_q"							"Slowed"
+		"ModifierTooltip_modifier_ld_r"							"Transformed"
+		"ModifierTooltip_modifier_ld_w_sub"						"Slowed"
+		"ModifierTooltip_modifier_ld_e_sub"						"Sped up"
 	}
 }
 

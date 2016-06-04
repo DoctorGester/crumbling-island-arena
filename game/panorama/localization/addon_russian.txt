@@ -243,6 +243,14 @@
 		"AbilityTooltip_jugger_e_sub"					"Короткая телепортация"
 		"AbilityTooltip_jugger_r"						"Твои атаки не имеют перезарядки, но каждая атака тратит клинок"
 
+		"AbilityTooltip_ld_q"							"Запустить замедляющий снаряд<br/>Наносит урон только <font color=\"#3A9B00\"><b>Связанным</b></font> противникам"
+		"AbilityTooltip_ld_w"							"После короткой задержки, <font color=\"#3A9B00\"><b>Связать</b></font> всех противников на линии"
+		"AbilityTooltip_ld_e"							"Вызвать медведя, который <font color=\"#3A9B00\"><b>Связывает</b></font> и наносит урон при столкновении"
+		"AbilityTooltip_ld_r"							"Превратиться, получая новый набор способностей"
+		"AbilityTooltip_ld_q_sub"						"Атаковать врагов впереди"
+		"AbilityTooltip_ld_w_sub"						"Сильно замедлить врагов вокруг"
+		"AbilityTooltip_ld_e_sub"						"Получить бонус скорости<br/><br/>Атака в этом состоянии <font color=\"#3A9B00\"><b>Связывает</b></font> врагов"
+
 		"ModifierTooltip_modifier_charges"						"Заряды способности"
 		"ModifierTooltip_modifier_stunned_lua"					"Оглушен"
 		"ModifierTooltip_modifier_knockback_lua"				"Отброшен"
@@ -330,6 +338,12 @@
 		"ModifierTooltip_modifier_jugger_e"						"Невидим"
 		"ModifierTooltip_modifier_jugger_w_target"				"Замедлен"
 		"ModifierTooltip_modifier_jugger_r"						"Атакует без перезарядки, тратя мечи"
+
+		"ModifierTooltip_modifier_ld_root"						"<font color=\"#3A9B00\"><b>Связан</b></font>"
+		"ModifierTooltip_modifier_ld_q"							"Замедлен"
+		"ModifierTooltip_modifier_ld_r"							"Превратился"
+		"ModifierTooltip_modifier_ld_w_sub"						"Замедлен"
+		"ModifierTooltip_modifier_ld_e_sub"						"Ускорен"
 	}
 }
 

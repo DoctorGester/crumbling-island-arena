@@ -266,7 +266,6 @@ function GameMode:InitSettings()
     mode:SetTopBarTeamValuesOverride (true)
     mode:SetUseCustomHeroLevels(true)
     mode:SetAnnouncerDisabled(true)
-    mode:SetCustomHeroMaxLevel(1)
     mode:SetFogOfWarDisabled(true)
 
     mode:SetExecuteOrderFilter(Dynamic_Wrap(GameMode, "FilterExecuteOrder"), self)
@@ -679,7 +678,8 @@ function GameMode:LoadCustomHeroes()
                 customIcons = data.CustomIcons,
                 difficulty = data.Difficulty or "easy",
                 order = data.Order or math.huge,
-                disabled = (data.Disabled and data.Disabled == "true" and not enableForDebug) or false
+                disabled = (data.Disabled and data.Disabled == "true" and not enableForDebug) or false,
+                initialCD = data.UltiCooldown
             }
 
             local abilities = {}

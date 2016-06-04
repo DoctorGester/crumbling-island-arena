@@ -2074,40 +2074,135 @@
 	"ld_q"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/jugger/jugger_r"
+		"ScriptFile" "abilities/ld/ld_q"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "lone_druid_rabid"
-		"AbilityCooldown" "16.0"
+		"AbilityCooldown" "4.0"
+		"AbilityCastPoint" "0.15"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "950"
+			"MaxLength" "950"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "950"
+		}
 	}
 
 	"ld_w"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/jugger/jugger_r"
+		"ScriptFile" "abilities/ld/ld_w"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "lone_druid_spirit_bear_entangle"
-		"AbilityCooldown" "16.0"
+		"AbilityCooldown" "8.0"
+		"AbilityCastPoint" "0.15"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_THICK_LINE"
+			"MaxLength" "1100"
+			"MinLength" "1100"
+			"Width" "128"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1100"
+		}
 	}
 
 	"ld_e"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/jugger/jugger_r"
+		"ScriptFile" "abilities/ld/ld_e"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "lone_druid_spirit_bear"
+		"AbilityCooldown" "8.0"
+		"AbilityCastPoint" "0.15"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_THICK_LINE"
+			"MaxLength" "1700"
+			"MinLength" "1700"
+			"Width" "128"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1700"
+		}
+	}
+
+	"ld_q_sub"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ld/ld_q_sub"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "lone_druid_spirit_bear_demolish"
+		"AbilityCooldown" "2.5"
+		"AbilityCastPoint" "0.15"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "300"
+		}
+	}
+
+	"ld_w_sub"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ld/ld_w_sub"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "lone_druid_savage_roar"
+		"AbilityCooldown" "7.0"
+		"AbilityCastPoint" "0.15"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "350"
+		}
+	}
+
+	"ld_e_sub"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ld/ld_e_sub"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityTextureName" "lone_druid_spirit_bear"
-		"AbilityCooldown" "16.0"
+		"AbilityTextureName" "lone_druid_true_form"
+		"AbilityCooldown" "9.0"
 	}
 
 	"ld_r"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/jugger/jugger_r"
+		"ScriptFile" "abilities/ld/ld_r"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityTextureName" "lone_druid_true_form"
-		"AbilityCooldown" "16.0"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "lone_druid_synergy"
+		"AbilityCooldown" "3.0"
 	}
+
 }

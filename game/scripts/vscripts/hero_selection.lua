@@ -86,7 +86,7 @@ function HeroSelection:OnClick(args)
     local table = {}
     local player = self.Players[args.PlayerID]
     local hero = args.hero
-
+self:UpdateSelectedHeroes()
     if not player:IsConnected() then
         return
     end
