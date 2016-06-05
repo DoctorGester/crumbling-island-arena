@@ -32,7 +32,7 @@
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
-			m_flEndScale = 1.200000
+			m_flEndScale = 0.900000
 			m_flStartScale = 0.300000
 		},
 		{
@@ -50,8 +50,8 @@
 	[
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMax = 0.700000
-			m_fLifetimeMin = 0.200000
+			m_fLifetimeMax = 0.900000
+			m_fLifetimeMin = 0.400000
 		},
 		{
 			_class = "C_INIT_CreateWithinSphere"
