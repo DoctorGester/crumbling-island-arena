@@ -1,4 +1,4 @@
-JuggerWard = class({}, nil, UnitEntity)
+JuggerWard = JuggerWard or class({}, nil, UnitEntity)
 
 function JuggerWard:constructor(round, owner, target, ability)
     getbase(JuggerWard).constructor(self, round, "jugger_ward", target, owner.unit:GetTeamNumber())
@@ -34,9 +34,15 @@ function JuggerWard:CreateParticles()
 end
 
 function JuggerWard:Remove()
+    if (self:GetPos() - self.hero:GetPos()):Length2D() <= 400 then
+        self.hero:EmitSound("Arena.Jugger.HitW")
+        local particle = ParticleManager:CreateParticle("particles/jugger_w/jugger_w_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.hero:GetUnit())
+        ParticleManager:ReleaseParticleIndex(particle)
+        self.hero:Heal()
+    end
+
     self:StopSound("Arena.Jugger.LoopW")
     self:EmitSound("Arena.Jugger.EndW")
-    self.hero:EmitSound("Arena.Jugger.HitW")
 
     getbase(JuggerWard).Remove(self)
 
@@ -45,10 +51,6 @@ function JuggerWard:Remove()
 
     ParticleManager:DestroyParticle(self.flameParticle, false)
     ParticleManager:ReleaseParticleIndex(self.flameParticle)
-
-    local particle = ParticleManager:CreateParticle("particles/jugger_w/jugger_w_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.hero:GetUnit())
-    ParticleManager:ReleaseParticleIndex(particle)
-    self.hero:Heal()
 end
 
 function JuggerWard:Damage(source)
