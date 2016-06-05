@@ -33,6 +33,7 @@ function Stats.SubmitRoundInfo(players, roundNumber, roundWinner, statistics)
         playerData.projectilesFired = stats.projectilesFired or 0
         playerData.score = player.score
         playerData.hero = player.selectedHero
+        playerData.connectionState = PlayerResource:GetConnectionState(player.id)
 
         table.insert(data.players, playerData)
     end
@@ -51,7 +52,7 @@ function Stats.SendData(url, data)
 
     req:SetHTTPRequestGetOrPostParameter('data', encoded)
     req:Send(function(res)
-        if res.StatusCode ~= 200 or not res.Body then
+        if res.StatusCode ~= 200 then
             print("Server connection failure")
             return
         end
