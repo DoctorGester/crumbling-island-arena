@@ -303,7 +303,6 @@
     background-image: url('file://{images}/custom_game/icon_disconnect.png');
     background-position: right;
     background-repeat: no-repeat;
-    background-color: gradient(linear, 0% 0%, 100% 0%, from(#444444), to(#00000000));
     z-index: 1;
 }
 
@@ -312,11 +311,10 @@
     background-image: url('file://{images}/custom_game/icon_disconnect.png');
     background-position: right;
     background-repeat: no-repeat;
-    background-color: gradient(linear, 0% 0%, 100% 0%, from(#444444), to(#00000000));
     z-index: 1;
 }
 
-.ConnectionStateAbandonedName .NameLabel
+.ConnectionStateAbandonedName
 {
     text-decoration: line-through;
     wash-color: gray;

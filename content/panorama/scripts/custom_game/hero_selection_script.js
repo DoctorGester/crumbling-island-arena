@@ -154,53 +154,6 @@ function PickRandomHero(){
     }
 }
 
-function CreatePlayerList(players){
-    var playerList = $("#NameColumn");
-    DeleteChildrenWithClass(playerList, "NamePanel");
-    playerConnectionStates = {};
-
-    for (var i = 0; i < players.length; i++) {
-        var player = players[i];
-
-        var panel = $.CreatePanel("Panel", playerList, "");
-        panel.AddClass("NamePanel");
-
-        var mouseOver = (function(element, id) {
-            return function() {
-                $.DispatchEvent("DOTAShowProfileCardTooltip", element, id, false);
-            }
-        } (panel, player.steamId || 0));
-
-        var mouseOut = function(){
-            $.DispatchEvent("DOTAHideProfileCardTooltip");
-        }
-
-        panel.SetPanelEvent("onmouseover", mouseOver);
-        panel.SetPanelEvent("onmouseout", mouseOut);
-
-        var connectionStatePanel = $.CreatePanel("Panel", panel, "");
-        connectionStatePanel.AddClass("ConnectionStatePanel");
-
-        playerConnectionStates[player.id] = connectionStatePanel;
-
-        var name = $.CreatePanel("Label", panel, "");
-        name.AddClass("NameLabel");
-        name.text = player["name"];
-        name.style.color = player["color"];
-    }
-
-    var selectionList = $("#SelectionColumn");
-    DeleteChildrenWithClass(selectionList, "SelectionImage");
-
-    for (var i = 0; i < players.length; i++) {
-        var selection = $.CreatePanel("DOTAHeroImage", selectionList, "SelectionImage" + players[i].id);
-        selection.AddClass("SelectionImage");
-        //selection.SetScaling("stretch-to-fit-y-preserve-aspect");
-        selection.heroimagestyle = "landscape";
-        selection.heroname = "";
-    }
-}
-
 function AddButtonEvents(button, name) {
     button.SetPanelEvent("onactivate", function() {
         var heroSelected = _.contains(_.values(selectedHeroes), name);
@@ -387,6 +340,11 @@ function PlayersUpdated(data){
 
             var playerName = $.CreatePanel("Label", playerPanel, "");
             playerName.text = player.name;
+
+            var connectionStatePanel = $.CreatePanel("Panel", playerName, "");
+            connectionStatePanel.AddClass("ConnectionStatePanel");
+
+            playerConnectionStates[player.id] = connectionStatePanel;
 
             playerColors[player.id] = color;
         }
