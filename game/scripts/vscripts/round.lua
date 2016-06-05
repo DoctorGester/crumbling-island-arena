@@ -112,7 +112,7 @@ function Round:CreateHeroes(spawnPoints)
     Shuffle(spawnPoints)
 
     for i, player in pairs(self.players) do
-        if player:IsConnected() then
+        if player:IsConnected() and player.selectionLocked and player.selectedHero ~= nil then
             local hero = self:LoadHeroClass(player.selectedHero)
             local unit = CreateUnitByName(player.selectedHero, spawnPoints[self:GetTeamInverted(player.team) + 1] + RandomVector(150), true, nil, nil, player.team)
             hero:SetUnit(unit)
