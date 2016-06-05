@@ -2078,7 +2078,7 @@
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "lone_druid_rabid"
-		"AbilityCooldown" "4.0"
+		"AbilityCooldown" "3.0"
 		"AbilityCastPoint" "0.15"
 
 		"TargetingIndicator"
@@ -2152,7 +2152,7 @@
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "lone_druid_spirit_bear_demolish"
-		"AbilityCooldown" "2.5"
+		"AbilityCooldown" "2.2"
 		"AbilityCastPoint" "0.15"
 
 		"HoverIndicator"
@@ -2192,7 +2192,7 @@
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "lone_druid_true_form"
-		"AbilityCooldown" "9.0"
+		"AbilityCooldown" "8.0"
 	}
 
 	"ld_r"

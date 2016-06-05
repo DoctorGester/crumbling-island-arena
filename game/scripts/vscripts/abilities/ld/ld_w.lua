@@ -9,7 +9,7 @@ function ld_w:OnSpellStart()
     local target = self:GetCursorPosition()
     local start = hero:GetPos()
     local direction = self:GetDirection()
-    local offset = Vector(direction.y, -direction.x, 0) * 64
+    local offset = Vector(direction.y, -direction.x, 0) * 128
     local color = Vector(0, 120, 0)
 
     CreateLineMarker(hero, start + offset, target + offset, 0.8, color)
