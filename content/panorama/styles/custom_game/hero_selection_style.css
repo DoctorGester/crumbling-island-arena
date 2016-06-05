@@ -257,8 +257,6 @@
     margin: 6px;
     box-shadow: #000000ff -2px -2px 4px 4px;
     border-radius: 50%;
-    transition-property: saturation, box-shadow;
-    transition-duration: 0.1s;
 }
 
 .HeroButtonSaturated
@@ -275,7 +273,7 @@
 .HeroButtonContainer:hover
 {
     saturation: 1.0;
-    box-shadow: skyblue -2px -2px 4px 4px;
+    box-shadow: skyblue -2px -2px 0px 4px;
 }
 
 .RandomButton
