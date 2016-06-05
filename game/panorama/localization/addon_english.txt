@@ -4,76 +4,144 @@
 	"Tokens"
 	{
 		"HeroName_npc_dota_hero_phantom_assassin"		"The Moon"
-		"HeroTips_npc_dota_hero_phantom_assassin"		"<font color='gold'>Q</font>: Short ranged boomerang<br/><font color='gold'>W</font>: Melee AOE attack<br/><font color='gold'>E</font>: Short jump<br/><font color='gold'>R</font>: Invisibility"
-
 		"HeroName_npc_dota_hero_crystal_maiden"			"The Magician"
-		"HeroTips_npc_dota_hero_crystal_maiden"			"If <font color=\"skyblue\"><b>Frozen</b></font> enemy gets <font color=\"skyblue\"><b>Frozen</b></font>, receive damage<br/><font color='gold'>Q</font>: Freezing projectile<br/><font color='gold'>W</font>: Freeze in a line<br/><font color='gold'>E</font>: Freezing wave, reactivate to relocate<br/><font color='gold'>R</font>: AOE slow + freeze"
-
 		"HeroName_npc_dota_hero_storm_spirit"			"Temperance"
-		"HeroTips_npc_dota_hero_storm_spirit"			"<font color='gold'>Q</font>: Wave, creates remnant<br/><font color='gold'>W</font>: Explode a remnant<br/><font color='gold'>E</font>: Dash to a remnant<br/><font color='gold'>R</font>: Revive 3 dead remnants"
-
 		"HeroName_npc_dota_hero_zuus"					"Judgement"
-		"HeroTips_npc_dota_hero_zuus"					"<font color='gold'>Q</font>: Short ranged projectile<br/><font color='gold'>W</font>: Wall. Speeds up projectiles and hero<br/><font color='gold'>E</font>: Blink<br/><font color='gold'>R</font>: Global. Delayed AOE damage"
-
 		"HeroName_npc_dota_hero_earth_spirit"			"The Emperor"
-		"HeroTips_npc_dota_hero_earth_spirit"			"<font color='gold'>Q</font>: Delayed remnant drop. AOE damage<br/><font color='gold'>W</font>: Drag a remnant. Line damage<br/><font color='gold'>E</font>: Short jump. Can jump on remnants<br/><font color='gold'>R</font>: Swap health and position with remnant"
-
 		"HeroName_npc_dota_hero_sven"					"The Devil"
-		"HeroTips_npc_dota_hero_sven"					"<font color='gold'>Q</font>: Melee attack<br/><font color='gold'>W</font>: Slow and silence in a cone<br/><font color='gold'>E</font>: Dash + knockback + damage<br/><font color='gold'>R</font>: Reset cooldowns. Power up"
-
 		"HeroName_npc_dota_hero_sniper"					"The Hermit"
-		"HeroTips_npc_dota_hero_sniper"					"<font color='gold'>Q</font>: Global projectile<br/><font color='gold'>W</font>: Rooting trap<br/><font color='gold'>E</font>: Speed boost<br/><font color='gold'>R</font>: Invisibility when no enemies nearby"
-
 		"HeroName_npc_dota_hero_sand_king"				"The High Priestess"
-		"HeroTips_npc_dota_hero_sand_king"				"<font color='gold'>Q</font>: AOE damage + slow after a delay<br/><font color='gold'>W</font>: Damage in thick line<br/><font color='gold'>E</font>: Dash + damage<br/><font color='gold'>R</font>: Area with invisibility"
-
 		"HeroName_npc_dota_hero_legion_commander"		"Strength"
-		"HeroTips_npc_dota_hero_legion_commander"		"<font color='gold'>Q</font>: Melee slowing attack<br/><font color='gold'>W</font>: 1 damage shield, speed boost<br/><font color='gold'>E</font>: Dash + short stun<br/><font color='gold'>R</font>: AOE buff, immortality + reduced cooldowns"
-
 		"HeroName_npc_dota_hero_lycan"					"Death"
-		"HeroTips_npc_dota_hero_lycan"					"<font color='gold'>Q</font>: 2 wolves run to the target point<br/><font color='gold'>W</font>: Melee attack<br/><font color='gold'>E</font>: AOE fear<br/><font color='gold'>R</font>: Transform. Speed bonus. Power up"
-
 		"HeroName_npc_dota_hero_phoenix"				"The Sun"
-		"HeroTips_npc_dota_hero_phoenix"				"Turns into an egg on death<br/><font color='gold'>Q</font>: Dash + damage + slow<br/><font color='gold'>W</font>: AOE slow + damage<br/><font color='gold'>E</font>: Channeling. Heal<br/><font color='gold'>R</font>: Channeling. AOE damage"
-
 		"HeroName_npc_dota_hero_templar_assassin"		"The Empress"
-		"HeroTips_npc_dota_hero_templar_assassin"		"<font color='gold'>Q</font>: Damage in a line<br/><font color='gold'>W</font>: Cone slow<br/><font color='gold'>E</font>: Blink. Resets on damage<br/><font color='gold'>R</font>: Delayed heal after taking damage"
-
 		"HeroName_npc_dota_hero_tiny"					"The Tower"
-		"HeroTips_npc_dota_hero_tiny"					"<font color='gold'>Q</font>: Throw a stone. Pick up to reset CD<br/><font color='gold'>W</font>: AOE stun and damage with delay<br/><font color='gold'>E</font>: Restrict movement in a circle<br/><font color='gold'>R</font>: Empower next ability cast"
-		
 		"HeroName_npc_dota_hero_pugna"					"The Star"
-		"HeroTips_npc_dota_hero_pugna"					"<font color='gold'>Q</font>: Take damage. Fire projectile. Heal if it hits<br/><font color='gold'>W</font>: Healing trap<br/><font color='gold'>E</font>: Swap healing and damage<br/><font color='gold'>R</font>: Lock HP for the duration"
-
 		"HeroName_npc_dota_hero_vengefulspirit"			"Justice"
-		"HeroTips_npc_dota_hero_vengefulspirit"			"<font color='gold'>Q</font>: Stunning projectile<br/><font color='gold'>W</font>: Long range slow wave<br/><font color='gold'>E</font>: Swapping projectile<br/><font color='gold'>R</font>: Summon spirit guardian"
-
 		"HeroName_npc_dota_hero_drow_ranger"			"The Hierophant"
-		"HeroTips_npc_dota_hero_drow_ranger"			"<font color='gold'>Q</font>: Slowing projectile<br/><font color='gold'>W</font>: Knockback + silence wave<br/><font color='gold'>E</font>: Dash + slow<br/><font color='gold'>R</font>: Channeling, knockbacking arrow"
-		"Available_on_npc_dota_hero_drow_ranger"		"Available on April 23!"
-
 		"HeroName_npc_dota_hero_skeleton_king"			"The Chariot"
-		"HeroTips_npc_dota_hero_skeleton_king"			"<font color='gold'>Q</font>: Raise skeleton swordsmen<br/><font color='gold'>W</font>: Raise skeleton archers<br/><font color='gold'>E</font>: Raise zombie defenders<br/><font color='gold'>R</font>: Strike in a long wide line"
-		"Available_on_npc_dota_hero_skeleton_king"		"Available on April 30!"
-
 		"HeroName_npc_dota_hero_ogre_magi"				"Wheel of Fortune"
-		"HeroTips_npc_dota_hero_ogre_magi"				"<font color='gold'>Q</font>: Throw a concoction<br/><font color='gold'>W</font>: Use a concoction on yourself<br/><font color='gold'>E</font>: Mix a random concoction<br/><font color='gold'>R</font>: Use concoctions without mixing"
-		"Available_on_npc_dota_hero_ogre_magi"			"Available on May 7!"
-
 		"HeroName_npc_dota_hero_earthshaker"			"The Hand"
-		"HeroTips_npc_dota_hero_earthshaker"			"<font color='gold'>Q</font>: Damage in a line + knockback<br/><font color='gold'>W</font>: Damage + knockback around you<br/><font color='gold'>E</font>: Jump + stun in area<br/><font color='gold'>R</font>: Stun + destroy damaged ground"
-		"Available_on_npc_dota_hero_earthshaker"		"Available on May 14!"
-
 		"HeroName_npc_dota_hero_ember_spirit"			"The Lovers"
-		"HeroTips_npc_dota_hero_ember_spirit"			"All abilities apply <font color=\"#FF6A00\"><b>Burn</b></font><br/><font color='gold'>Q</font>: Damaging wave<br/><font color='gold'>W</font>: Rooting projectile<br/><font color='gold'>E</font>: Short dash<br/><font color='gold'>R</font>: Create a copy of yourself"
-		"Available_on_npc_dota_hero_ember_spirit"		"Available on May 21!"
-
 		"HeroName_npc_dota_hero_juggernaut"				"Scabbard"
-		"HeroTips_npc_dota_hero_juggernaut"				"Collect <font color=\"#FF6A00\"><b>Swords</b></font> to get stronger<br/><font color='gold'>Q</font>: Attack in a line<br/><font color='gold'>W</font>: AOE slow + heal<br/><font color='gold'>E</font>: Invis + blink<br/><font color='gold'>R</font>: Expend your swords without cooldown"
-
 		"HeroName_npc_dota_hero_lone_druid"				"The Mask"
-		"HeroTips_npc_dota_hero_lone_druid"				"?????"
+
+		"Available_on_npc_dota_hero_drow_ranger"		"Available on April 23!"
+		"Available_on_npc_dota_hero_skeleton_king"		"Available on April 30!"
+		"Available_on_npc_dota_hero_ogre_magi"			"Available on May 7!"
+		"Available_on_npc_dota_hero_earthshaker"		"Available on May 14!"
+		"Available_on_npc_dota_hero_ember_spirit"		"Available on May 21!"
 		"Available_on_npc_dota_hero_lone_druid"			"Available on June 4!"
+
+		"phantom_assassin_DescQ" "Short ranged boomerang"
+		"phantom_assassin_DescW" "Melee AOE attack"
+		"phantom_assassin_DescE" "Short jump"
+		"phantom_assassin_DescR" "Invisibility"
+
+		"crystal_maiden_DescQ" "Freezing projectile"
+		"crystal_maiden_DescW" "Freeze in a line"
+		"crystal_maiden_DescE" "Freezing wave, reactivate to relocate"
+		"crystal_maiden_DescR" "AOE slow + freeze"
+
+		"storm_spirit_DescQ" "Wave, creates remnant"
+		"storm_spirit_DescW" "Explode a remnant"
+		"storm_spirit_DescE" "Dash to a remnant"
+		"storm_spirit_DescR" "Revive 3 dead remnants"
+
+		"zuus_DescQ" "Short ranged projectile"
+		"zuus_DescW" "Wall. Speeds up projectiles and hero"
+		"zuus_DescE" "Blink"
+		"zuus_DescR" "Global. Delayed AOE damage"
+
+		"earth_spirit_DescQ" "Delayed remnant drop. AOE damage"
+		"earth_spirit_DescW" "Drag a remnant. Line damage"
+		"earth_spirit_DescE" "Short jump. Can jump on remnants"
+		"earth_spirit_DescR" "Swap health and position with remnant"
+
+		"sven_DescQ" "Melee attack"
+		"sven_DescW" "Slow and silence in a cone"
+		"sven_DescE" "Dash + knockback + damage"
+		"sven_DescR" "Reset cooldowns. Power up"
+
+		"sniper_DescQ" "Global projectile"
+		"sniper_DescW" "Rooting trap"
+		"sniper_DescE" "Speed boost"
+		"sniper_DescR" "Invisibility when no enemies nearby"
+
+		"sand_king_DescQ" "AOE damage + slow after a delay"
+		"sand_king_DescW" "Damage in thick line"
+		"sand_king_DescE" "Dash + damage"
+		"sand_king_DescR" "Area with invisibility"
+
+		"legion_commander_DescQ" "Melee slowing attack"
+		"legion_commander_DescW" "1 damage shield, speed boost"
+		"legion_commander_DescE" "Dash + short stun"
+		"legion_commander_DescR" "AOE buff, immortality + reduced cooldowns"
+
+		"lycan_DescQ" "2 wolves run to the target point"
+		"lycan_DescW" "Melee attack"
+		"lycan_DescE" "AOE fear"
+		"lycan_DescR" "Transform. Speed bonus. Power up"
+
+		"phoenix_DescQ" "Dash + damage + slow"
+		"phoenix_DescW" "AOE slow + damage"
+		"phoenix_DescE" "Channeling. Heal"
+		"phoenix_DescR" "Channeling. AOE damage"
+
+		"templar_assassin_DescQ" "Damage in a line"
+		"templar_assassin_DescW" "Cone slow"
+		"templar_assassin_DescE" "Blink. Resets on damage"
+		"templar_assassin_DescR" "Delayed heal after taking damage"
+
+		"tiny_DescQ" "Throw a stone. Pick up to reset CD"
+		"tiny_DescW" "AOE stun and damage with delay"
+		"tiny_DescE" "Restrict movement in a circle"
+		"tiny_DescR" "Empower next ability cast"
+
+		"pugna_DescQ" "Take damage. Fire projectile. Heal if it hits"
+		"pugna_DescW" "Healing trap"
+		"pugna_DescE" "Swap healing and damage"
+		"pugna_DescR" "Lock HP for the duration"
+
+		"vengefulspirit_DescQ" "Stunning projectile"
+		"vengefulspirit_DescW" "Long range slow wave"
+		"vengefulspirit_DescE" "Swapping projectile"
+		"vengefulspirit_DescR" "Summon spirit guardian"
+
+		"drow_ranger_DescQ" "Slowing projectile"
+		"drow_ranger_DescW" "Knockback + silence wave"
+		"drow_ranger_DescE" "Dash + slow"
+		"drow_ranger_DescR" "Channeling, knockbacking arrow"
+
+		"skeleton_king_DescQ" "Raise skeleton swordsmen"
+		"skeleton_king_DescW" "Raise skeleton archers"
+		"skeleton_king_DescE" "Raise zombie defenders"
+		"skeleton_king_DescR" "Strike in a long wide line"
+
+		"ogre_magi_DescQ" "Throw a concoction"
+		"ogre_magi_DescW" "Use a concoction on yourself"
+		"ogre_magi_DescE" "Mix a random concoction"
+		"ogre_magi_DescR" "Use concoctions without mixing"
+
+		"earthshaker_DescQ" "Damage in a line + knockback"
+		"earthshaker_DescW" "Damage + knockback around you"
+		"earthshaker_DescE" "Jump + stun in area"
+		"earthshaker_DescR" "Stun + destroy damaged ground"
+
+		"ember_spirit_DescQ" "Damaging wave"
+		"ember_spirit_DescW" "Rooting projectile"
+		"ember_spirit_DescE" "Short dash"
+		"ember_spirit_DescR" "Create a copy of yourself"
+
+		"juggernaut_DescQ" "Attack in a line"
+		"juggernaut_DescW" "AOE slow + heal"
+		"juggernaut_DescE" "Invis + blink"
+		"juggernaut_DescR" "Expend your swords without cooldown"
+
+		"lone_druid_DescQ" "Slowing projectile"
+		"lone_druid_DescW" "Root in a line"
+		"lone_druid_DescE" "Summon a bear"
+		"lone_druid_DescR" "Transform. Available immediately"
 
 		"PlayerHeader" "player"
 		"SelectionHeader" "selection"

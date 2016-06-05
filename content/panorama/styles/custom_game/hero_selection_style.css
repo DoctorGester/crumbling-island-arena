@@ -41,6 +41,48 @@
     background-color: gradient( linear, 0% 0%, 0% 100%, from( #000000 ), to( #00000000 ) );
 }
 
+.PreviewAbilityPanel
+{
+    flow-children: down;
+    align: left bottom;
+    margin-left: 50px;
+    margin-bottom: 100px;
+    opacity: 0.8;
+}
+
+.AbilityRow
+{
+    flow-children: right;
+}
+
+.AbilityRow Image
+{
+    width: 48px;
+    height: 48px;
+    margin: 4px;
+    border-radius: 3px;
+    background-color: black;
+    tooltip-position: right;
+    tooltip-body-position: 100% 50%;
+
+    transition-property: transform, saturation;
+    transition-duration: 0.1s;
+}
+
+.AbilityRow Label
+{
+    vertical-align: center;
+    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+    margin-left: 8px;
+    font-size: 14px;
+    color: white;
+    text-shadow: skyblue 0px 0px 4px 4px;
+}
+
+.AbilityButtonEnabled {
+    box-shadow: none;
+}
+
 #LeftSideHeroes
 {
     align: left center;
@@ -373,9 +415,9 @@
 
 #HeroSelectionChat
 {
-    align: left bottom;
+    align: center bottom;
     width: 25%;
-    height: 30%;
+    height: 15%;
 }
 
 .AnimationSelectedHero

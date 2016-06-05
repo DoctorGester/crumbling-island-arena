@@ -4,76 +4,144 @@
 	"Tokens"
 	{
 		"HeroName_npc_dota_hero_phantom_assassin"		"Луна"
-		"HeroTips_npc_dota_hero_phantom_assassin"		"<font color='gold'>Q</font>: Бумеранг<br/><font color='gold'>W</font>: Атака вокруг себя<br/><font color='gold'>E</font>: Прыжок<br/><font color='gold'>R</font>: Невидимость"
-
 		"HeroName_npc_dota_hero_crystal_maiden"			"Маг"
-		"HeroTips_npc_dota_hero_crystal_maiden"			"Если <font color=\"skyblue\"><b>Замороженного</b></font> врага <font color=\"skyblue\"><b>Заморозить</b></font>, он получит урон<br/><font color='gold'>Q</font>: Замораживающий снежок<br/><font color='gold'>W</font>: Заморозка по линии<br/><font color='gold'>E</font>: Замораживающая волна, примени еще раз, чтобы переместиться в неё<br/><font color='gold'>R</font>: Заморозка и замедление в области"
-
 		"HeroName_npc_dota_hero_storm_spirit"			"Умеренность"
-		"HeroTips_npc_dota_hero_storm_spirit"			"<font color='gold'>Q</font>: Волна, создаёт копию<br/><font color='gold'>W</font>: Взорвать копию<br/><font color='gold'>E</font>: Прыгнуть в копию<br/><font color='gold'>R</font>: Возродить 3 копии"
-
 		"HeroName_npc_dota_hero_zuus"					"Суд"
-		"HeroTips_npc_dota_hero_zuus"					"<font color='gold'>Q</font>: Слабый снаряд<br/><font color='gold'>W</font>: Стена, ускоряет героя и снаряды<br/><font color='gold'>E</font>: Телепортация<br/><font color='gold'>R</font>: Глобальная. Урон и замедление с задержкой"
-
 		"HeroName_npc_dota_hero_earth_spirit"			"Император"
-		"HeroTips_npc_dota_hero_earth_spirit"			"<font color='gold'>Q</font>: Копия и урон в области с задержкой<br/><font color='gold'>W</font>: Перетянуть копию, урон по линии<br/><font color='gold'>E</font>: Прыжок. Можно забираться на копии<br/><font color='gold'>R</font>: Поменяться местами и здоровьем с копией"
-
 		"HeroName_npc_dota_hero_sven"					"Дьявол"
-		"HeroTips_npc_dota_hero_sven"					"<font color='gold'>Q</font>: Атака перед собой<br/><font color='gold'>W</font>: Безмолвие и замедление в конусе<br/><font color='gold'>E</font>: Рывок, отталкивание, урон<br/><font color='gold'>R</font>: Перезарядить способности и улучшить их"
-
 		"HeroName_npc_dota_hero_sniper"					"Отшельник"
-		"HeroTips_npc_dota_hero_sniper"					"<font color='gold'>Q</font>: Дальнобойный выстрел<br/><font color='gold'>W</font>: Связывающая ловушка<br/><font color='gold'>E</font>: Ускорение<br/><font color='gold'>R</font>: Невидимость, когда рядом нет врагов"
-
 		"HeroName_npc_dota_hero_sand_king"				"Верховная Жрица"
-		"HeroTips_npc_dota_hero_sand_king"				"<font color='gold'>Q</font>: Урон в области и замедление после задержки<br/><font color='gold'>W</font>: Волна урона<br/><font color='gold'>E</font>: Рывок, урон<br/><font color='gold'>R</font>: Область, дающая невидимость"
-
 		"HeroName_npc_dota_hero_legion_commander"		"Сила"
-		"HeroTips_npc_dota_hero_legion_commander"		"<font color='gold'>Q</font>: Замедляющая атака перед собой<br/><font color='gold'>W</font>: Щит, ускорение<br/><font color='gold'>E</font>: Рывок, оглушение<br/><font color='gold'>R</font>: Бессмертие и уменьшенная перезарядка в области"
-
 		"HeroName_npc_dota_hero_lycan"					"Смерть"
-		"HeroTips_npc_dota_hero_lycan"					"<font color='gold'>Q</font>: Запустить 2 волков к цели<br/><font color='gold'>W</font>: Атака перед собой<br/><font color='gold'>E</font>: Страх в области<br/><font color='gold'>R</font>: Трансформация, скорость, улучшенные способности"
-
 		"HeroName_npc_dota_hero_phoenix"				"Солнце"
-		"HeroTips_npc_dota_hero_phoenix"				"Превращается в яйцо после смерти<br/><font color='gold'>Q</font>: Рывок, урон, замедление<br/><font color='gold'>W</font>: Замедление в области, урон<br/><font color='gold'>E</font>: Прерываемое. Лечение<br/><font color='gold'>R</font>: Прерываемое. Большой урон в области"
-
 		"HeroName_npc_dota_hero_templar_assassin"		"Императрица"
-		"HeroTips_npc_dota_hero_templar_assassin"		"<font color='gold'>Q</font>: Урон по линии<br/><font color='gold'>W</font>: Замедление в конусе<br/><font color='gold'>E</font>: Телепортация. Перезаряжается от урона<br/><font color='gold'>R</font>: Лечение с задержкой после получения урона"
-
 		"HeroName_npc_dota_hero_tiny"					"Башня"
-		"HeroTips_npc_dota_hero_tiny"					"<font color='gold'>Q</font>: Бросок камня. Можно подобрать CD<br/><font color='gold'>W</font>: Оглушение в области с задержкой<br/><font color='gold'>E</font>: Запереть всех в кругу<br/><font color='gold'>R</font>: Улучшение следующей примененной способности"
-		
 		"HeroName_npc_dota_hero_pugna"					"Звезда"
-		"HeroTips_npc_dota_hero_pugna"					"<font color='gold'>Q</font>: Получить урон, запустить снаряд, лечение, если попал<br/><font color='gold'>W</font>: Лечащая ловушка<br/><font color='gold'>E</font>: Поменять лечение и урон местами<br/><font color='gold'>R</font>: Заблокировать здоровье на время"
-
 		"HeroName_npc_dota_hero_vengefulspirit"			"Справедливость"
-		"HeroTips_npc_dota_hero_vengefulspirit"			"<font color='gold'>Q</font>: Оглушающий снаряд<br/><font color='gold'>W</font>: Дальнобойная замедляющая волна<br/><font color='gold'>E</font>: Меняющий местами снаряд<br/><font color='gold'>R</font>: Вызов духа-защитника"
-
 		"HeroName_npc_dota_hero_drow_ranger"			"Первосвященник"
-		"HeroTips_npc_dota_hero_drow_ranger"			"<font color='gold'>Q</font>: Замедляющая стрела<br/><font color='gold'>W</font>: Волна отбрасывания и безмолвия<br/><font color='gold'>E</font>: Рывок + замедление<br/><font color='gold'>R</font>: Прерываемое, отбрасывающая стрела"
-		"Available_on_npc_dota_hero_drow_ranger"		"Доступено с 23 апреля!"
-
 		"HeroName_npc_dota_hero_skeleton_king"			"Колесница"
-		"HeroTips_npc_dota_hero_skeleton_king"			"<font color='gold'>Q</font>: Вызов скелетов мечников<br/><font color='gold'>W</font>: Вызов скелетов лучников<br/><font color='gold'>E</font>: Вызов зомби защитников<br/><font color='gold'>R</font>: Удар по широкой длинной линии"
-		"Available_on_npc_dota_hero_skeleton_king"		"Доступено с 30 апреля!"
-
 		"HeroName_npc_dota_hero_ogre_magi"				"Колесо Фортуны"
-		"HeroTips_npc_dota_hero_ogre_magi"				"<font color='gold'>Q</font>: Бросить смесь<br/><font color='gold'>W</font>: Использовать смесь на себя<br/><font color='gold'>E</font>: Замешать случайную смесь<br/><font color='gold'>R</font>: Использовать смеси не замешивая"
-		"Available_on_npc_dota_hero_ogre_magi"			"Доступно с 7 мая!"
-
 		"HeroName_npc_dota_hero_earthshaker"			"Рука"
-		"HeroTips_npc_dota_hero_earthshaker"			"<font color='gold'>Q</font>: Урон по линии + отбрасывание<br/><font color='gold'>W</font>: Урон и отбрасывание вокруг героя<br/><font color='gold'>E</font>: Прыжок + оглушение в области<br/><font color='gold'>R</font>: Оглушение + уничтожить поврежденную землю"
-		"Available_on_npc_dota_hero_earthshaker"		"Доступно с 14 мая!"
-
 		"HeroName_npc_dota_hero_ember_spirit"			"Влюбленный"
-		"HeroTips_npc_dota_hero_ember_spirit"			"Все способности накладывают <font color=\"#FF6A00\"><b>Горение</b></font><br/><font color='gold'>Q</font>: Волна урона<br/><font color='gold'>W</font>: Связывающий снаряд<br/><font color='gold'>E</font>: Короткий рывок<br/><font color='gold'>R</font>: Создать копию себя"
+		"HeroName_npc_dota_hero_juggernaut"				"Ножны"
+		"HeroName_npc_dota_hero_lone_druid"				"Маска"
+
+		"Available_on_npc_dota_hero_lone_druid"			"Доступно с 4 июня!"
+		"Available_on_npc_dota_hero_drow_ranger"		"Доступено с 23 апреля!"
+		"Available_on_npc_dota_hero_skeleton_king"		"Доступено с 30 апреля!"
+		"Available_on_npc_dota_hero_ogre_magi"			"Доступно с 7 мая!"
+		"Available_on_npc_dota_hero_earthshaker"		"Доступно с 14 мая!"
 		"Available_on_npc_dota_hero_ember_spirit"		"Доступно с 21 мая!"
 
-		"HeroName_npc_dota_hero_juggernaut"				"Ножны"
-		"HeroTips_npc_dota_hero_juggernaut"				"Собирай <font color=\"#FF6A00\"><b>Клинки</b></font> чтобы стать сильнее<br/><font color='gold'>Q</font>: Атака по линии<br/><font color='gold'>W</font>: Замедление в области + лечение<br/><font color='gold'>E</font>: Невидимость + телепорт<br/><font color='gold'>R</font>: Использование мечей без перезарядки"
+		"phantom_assassin_DescQ" "Бумеранг"
+		"phantom_assassin_DescW" "Атака вокруг себя"
+		"phantom_assassin_DescE" "Прыжок"
+		"phantom_assassin_DescR" "Невидимость"
 
-		"HeroName_npc_dota_hero_lone_druid"				"Маска"
-		"HeroTips_npc_dota_hero_lone_druid"				"?????"
-		"Available_on_npc_dota_hero_lone_druid"			"Доступно с 4 июня!"
+		"crystal_maiden_DescQ" "Замораживающий снежок"
+		"crystal_maiden_DescW" "Заморозка по линии"
+		"crystal_maiden_DescE" "Замораживающая волна, примени еще раз, чтобы переместиться в неё"
+		"crystal_maiden_DescR" "Заморозка и замедление в области"
+
+		"storm_spirit_DescQ" "Волна, создаёт копию"
+		"storm_spirit_DescW" "Взорвать копию"
+		"storm_spirit_DescE" "Прыгнуть в копию"
+		"storm_spirit_DescR" "Возродить 3 копии"
+
+		"zuus_DescQ" "Слабый снаряд"
+		"zuus_DescW" "Стена, ускоряет героя и снаряды"
+		"zuus_DescE" "Телепортация"
+		"zuus_DescR" "Глобальная. Урон и замедление с задержкой"
+
+		"earth_spirit_DescQ" "Копия и урон в области с задержкой"
+		"earth_spirit_DescW" "Перетянуть копию, урон по линии"
+		"earth_spirit_DescE" "Прыжок. Можно забираться на копии"
+		"earth_spirit_DescR" "Поменяться местами и здоровьем с копией"
+
+		"sven_DescQ" "Атака перед собой"
+		"sven_DescW" "Безмолвие и замедление в конусе"
+		"sven_DescE" "Рывок, отталкивание, урон"
+		"sven_DescR" "Перезарядить способности и улучшить их"
+
+		"sniper_DescQ" "Дальнобойный выстрел"
+		"sniper_DescW" "Связывающая ловушка"
+		"sniper_DescE" "Ускорение"
+		"sniper_DescR" "Невидимость, когда рядом нет врагов"
+
+		"sand_king_DescQ" "Урон в области и замедление после задержки"
+		"sand_king_DescW" "Волна урона"
+		"sand_king_DescE" "Рывок, урон"
+		"sand_king_DescR" "Область, дающая невидимость"
+
+		"legion_commander_DescQ" "Замедляющая атака перед собой"
+		"legion_commander_DescW" "Щит, ускорение"
+		"legion_commander_DescE" "Рывок, оглушение"
+		"legion_commander_DescR" "Бессмертие и уменьшенная перезарядка в области"
+
+		"lycan_DescQ" "Запустить 2 волков к цели"
+		"lycan_DescW" "Атака перед собой"
+		"lycan_DescE" "Страх в области"
+		"lycan_DescR" "Трансформация, скорость, улучшенные способности"
+
+		"phoenix_DescQ" "Рывок, урон, замедление"
+		"phoenix_DescW" "Замедление в области, урон"
+		"phoenix_DescE" "Прерываемое. Лечение"
+		"phoenix_DescR" "Прерываемое. Большой урон в области"
+
+		"templar_assassin_DescQ" "Урон по линии"
+		"templar_assassin_DescW" "Замедление в конусе"
+		"templar_assassin_DescE" "Телепортация. Перезаряжается от урона"
+		"templar_assassin_DescR" "Лечение с задержкой после получения урона"
+
+		"tiny_DescQ" "Бросок камня. Можно подобрать CD"
+		"tiny_DescW" "Оглушение в области с задержкой"
+		"tiny_DescE" "Запереть всех в кругу"
+		"tiny_DescR" "Улучшение следующей примененной способности"
+
+		"pugna_DescQ" "Получить урон, запустить снаряд, лечение, если попал"
+		"pugna_DescW" "Лечащая ловушка"
+		"pugna_DescE" "Поменять лечение и урон местами"
+		"pugna_DescR" "Заблокировать здоровье на время"
+
+		"vengefulspirit_DescQ" "Оглушающий снаряд"
+		"vengefulspirit_DescW" "Дальнобойная замедляющая волна"
+		"vengefulspirit_DescE" "Меняющий местами снаряд"
+		"vengefulspirit_DescR" "Вызов духа-защитника"
+
+		"drow_ranger_DescQ" "Замедляющая стрела"
+		"drow_ranger_DescW" "Волна отбрасывания и безмолвия"
+		"drow_ranger_DescE" "Рывок + замедление"
+		"drow_ranger_DescR" "Прерываемое, отбрасывающая стрела"
+
+		"skeleton_king_DescQ" "Вызов скелетов мечников"
+		"skeleton_king_DescW" "Вызов скелетов лучников"
+		"skeleton_king_DescE" "Вызов зомби защитников"
+		"skeleton_king_DescR" "Удар по широкой длинной линии"
+
+		"ogre_magi_DescQ" "Бросить смесь"
+		"ogre_magi_DescW" "Использовать смесь на себя"
+		"ogre_magi_DescE" "Замешать случайную смесь"
+		"ogre_magi_DescR" "Использовать смеси не замешивая"
+
+		"earthshaker_DescQ" "Урон по линии + отбрасывание"
+		"earthshaker_DescW" "Урон и отбрасывание вокруг героя"
+		"earthshaker_DescE" "Прыжок + оглушение в области"
+		"earthshaker_DescR" "Оглушение + уничтожить поврежденную землю"
+
+		"ember_spirit_DescQ" "Волна урона"
+		"ember_spirit_DescW" "Связывающий снаряд"
+		"ember_spirit_DescE" "Короткий рывок"
+		"ember_spirit_DescR" "Создать копию себя"
+
+		"juggernaut_DescQ" "Атака по линии"
+		"juggernaut_DescW" "Замедление в области + лечение"
+		"juggernaut_DescE" "Невидимость + телепорт"
+		"juggernaut_DescR" "Использование мечей без перезарядки"
+
+		"lone_druid_DescQ" "Замедляющий снаряд"
+		"lone_druid_DescW" "Связывание по линии"
+		"lone_druid_DescE" "Призыв медведя"
+		"lone_druid_DescR" "Превращение. Доступно с начала игры"
 
 		"PlayerHeader" "игрок"
 		"SelectionHeader" "выбор"

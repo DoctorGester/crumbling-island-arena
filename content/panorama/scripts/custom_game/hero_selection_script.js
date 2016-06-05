@@ -2,69 +2,10 @@ var allHeroes = {};
 var heroButtons = {};
 var playerColors = {};
 var selectedHeroes = {};
-var abilityBar = new AbilityBar("#HeroAbilities");
 var previewSchedule = 0;
 var hidingCurrentPreview = null;
 var playerConnectionStates = {};
 var heroPreviews = {};
-
-function TableAbilityDataProvider(heroData) {
-    this.heroData = heroData;
-
-    this.FilterAbility = function(ability) {
-        return ability.name.indexOf("sub") == -1 && ability.name != "tiny_grow"; // Thanks Valve
-    }
-
-    this.FilterAbilities = function() {
-        var abilities = [];
-
-        for (key in this.heroData.abilities) {
-            var ability = this.heroData.abilities[key];
-
-            if (this.FilterAbility(ability)) {
-                abilities.push(ability);
-            }
-        }
-
-        return abilities;
-    }
-
-    this.GetAbilityData = function(slot) {
-        var data = {};
-        var ability = this.FilterAbilities()[slot];
-
-        data.key = "";
-        data.name = ability.name;
-        data.texture = ability.texture;
-        data.cooldown = 0;
-        data.ready = true;
-        data.remaining = 0;
-        data.activated = true;
-        data.enabled = true;
-        data.beingCast = false;
-        data.toggled = false;
-
-        return data
-    }
-
-    this.GetAbilityCount = function() {
-        var len = 0;
-
-        for (key in this.heroData.abilities) {
-            len++;
-        }
-
-        return this.FilterAbilities().length;
-    }
-
-    this.ShowTooltip = function(element, data) {
-        $.DispatchEvent("DOTAShowTextTooltip", element, $.Localize("AbilityTooltip_" + data.name))
-    }
-
-    this.HideTooltip = function() {
-        $.DispatchEvent("DOTAHideTextTooltip");
-    }
-}
 
 function CreateDifficultyLock() {
     // Dis gon be ugly
@@ -96,15 +37,6 @@ function CreateDifficultyLock() {
     text.text = $.Localize("LockedHeroes");
 }
 
-function DeleteHeroPreview() {
-    var preview = $("#HeroPreview");
-
-    if (preview) {
-        preview.visible = false;
-        preview.DeleteAsync(1);
-    }
-}
-
 function PreloadHeroPreviews(heroes) {
     var previewStyle = "width: 100%; height: 100%; margin-top: -100px; opacity-mask: url(\"s2r://panorama/images/masks/softedge_box_png.vtex\");";
     for (var hero of heroes) {
@@ -120,11 +52,52 @@ function PreloadHeroPreviews(heroes) {
     }
 }
 
-function ShowHeroPreview(heroName) {
-    var previewStyle = "width: 100%; height: 100%; margin-top: -100px; opacity-mask: url(\"s2r://panorama/images/masks/softedge_box_png.vtex\");"
-    var preview = $("#HeroPreview");
-    preview.SetHasClass("NotAvailableHero", allHeroes[heroName].disabled);
-    preview.LoadLayoutFromStringAsync("<root><Panel><DOTAScenePanel style='" + previewStyle + "' camera='def_cam' map='heroes/" + heroName + "'/></Panel></root>", false, false);
+function SetAbilityButtonTooltipEvents(button, name) {
+    button.SetPanelEvent("onmouseover", function() {
+        $.DispatchEvent("DOTAShowTextTooltip", button, $.Localize("AbilityTooltip_" + name));
+    });
+
+    button.SetPanelEvent("onmouseout", function() {
+        $.DispatchEvent("DOTAHideTextTooltip");
+    });
+}
+
+function ShowHeroAbilities(heroName) {
+    var hero = allHeroes[heroName];
+    var customIcons = {};
+
+    if (hero.customIcons) {
+        for (ability in hero.customIcons) {
+            customIcons[ability] = hero.customIcons[ability];
+        }
+    }
+
+    var abilitiesToShow = ["Q", "W", "E", "R"];
+
+    for (var ability of abilitiesToShow) {
+        var found = 
+            _(hero.abilities)
+                .chain()
+                .filter(function(a) {
+                    return EndsWith(a.name, ability.toLowerCase());
+                })
+                .first()
+                .value();
+
+        var row = $("#AbilityRow" + ability);
+
+        if (row && found) {
+            var image = row.Children()[0];
+            var label = row.Children()[1];
+
+            var icon = GetTexture(found, hero.customIcons);
+            image.SetImage(icon);
+
+            SetAbilityButtonTooltipEvents(image, found.name);
+
+            label.text = hero.name.substring("npc_dota_hero_".length) + "_Desc" + ability;
+        }
+    }
 }
 
 function ShowHeroDetails(heroName) {
@@ -138,8 +111,7 @@ function ShowHeroDetails(heroName) {
     var heroData = allHeroes[heroName];
     var notAvailable = allHeroes[heroName].disabled;
 
-    abilityBar.SetProvider(new TableAbilityDataProvider(heroData));
-    abilityBar.RegisterEvents(false);
+    ShowHeroAbilities(heroName);
     $("#HeroAbilities").visible = true;
     $("#HeroName").text = $.Localize("#HeroName_" + heroData.name);
 
@@ -164,8 +136,6 @@ function HideHeroDetails(heroName) {
         hiddingCurrentPreview = heroName;
 
         previewSchedule = $.Schedule(0.1, function() {
-            abilityBar.SetProvider(new EmptyAbilityDataProvider());
-
             $("#HeroAbilities").visible = false;
             $("#HeroName").text = "";
 
@@ -175,23 +145,6 @@ function HideHeroDetails(heroName) {
     } else {
         ShowHeroDetails(selected);
     }
-}
-
-function AddHoverHeroDetails(element, heroName){
-    var mouseOver = (function(heroName) {
-        return function() {
-            ShowHeroDetails(heroName);
-        }
-    } (heroName));
-
-    var mouseOut = (function(heroName) {
-        return function() {
-            HideHeroDetails(heroName);
-        }
-    } (heroName));
-
-    element.SetPanelEvent("onmouseover", mouseOver);
-    element.SetPanelEvent("onmouseout", mouseOut);
 }
 
 function PickRandomHero(){
@@ -245,23 +198,6 @@ function CreatePlayerList(players){
         //selection.SetScaling("stretch-to-fit-y-preserve-aspect");
         selection.heroimagestyle = "landscape";
         selection.heroname = "";
-    }
-}
-
-function CreateScoreColumn(players){
-    var scoreColumn = $("#ScoreColumn");
-
-    DeleteChildrenWithClass(scoreColumn, "ScorePanel");
-
-    for (var i = 0; i < players.length; i++) {
-        var player = players[i];
-
-        var panel = $.CreatePanel("Panel", scoreColumn, "");
-        panel.AddClass("ScorePanel");
-
-        var label = $.CreatePanel("Label", panel, "");
-        label.AddClass("ScoreText");
-        label.text = player.score.toString();
     }
 }
 
@@ -407,19 +343,7 @@ function FilterDifficulty(heroes, data, difficulty) {
 function HeroesUpdated(data){
     allHeroes = data;
 
-    var heroes = [];
-
-    for (var key in data){
-        heroes.push(key);
-
-        var hero = data[key];
-
-        if (hero.customIcons) {
-            for (ability in hero.customIcons) {
-                abilityBar.AddCustomIcon(ability, hero.customIcons[ability]);
-            }
-        }
-    }
+    var heroes = Object.keys(data);
 
     heroes = _(heroes).sortBy(function(hero) { return data[hero].order });
 
@@ -483,7 +407,6 @@ function HeroSelectionUpdated(data){
             selectionImage.heroname = hero;
             selectionImage.RemoveClass("AnimationImageHover");
             selectionImage.AddClass("AnimationSelectedHero");
-            AddHoverHeroDetails(selectionImage, hero);
 
             heroButtons[hero].style.boxShadow = playerColors[id] + " -2px -2px 4px 4px";
             heroButtons[hero].AddClass("HeroButtonSaturated");

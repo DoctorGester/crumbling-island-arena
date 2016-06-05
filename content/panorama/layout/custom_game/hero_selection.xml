@@ -7,7 +7,6 @@
     <scripts>
         <include src="file://{resources}/scripts/custom_game/underscore-min.js" />
         <include src="file://{resources}/scripts/custom_game/util.js" />
-        <include src="file://{resources}/scripts/custom_game/ability_bar.js" />
         <include src="file://{resources}/scripts/custom_game/hero_selection_script.js" />
     </scripts>
     <Panel class="MainPanel" hittest="false">
@@ -27,7 +26,13 @@
 
             <Panel id="LeftSideHeroes">
                 <Label id="HeroName" class="YellowLabel"></Label>
-                <Panel id="HeroAbilities" class="AbilityPanel"></Panel>
+            </Panel>
+
+            <Panel id="HeroAbilities">
+                <Panel id="AbilityRowQ" class="AbilityRow"><Image/><Label html="true"/></Panel>
+                <Panel id="AbilityRowW" class="AbilityRow"><Image/><Label html="true"/></Panel>
+                <Panel id="AbilityRowE" class="AbilityRow"><Image/><Label html="true"/></Panel>
+                <Panel id="AbilityRowR" class="AbilityRow"><Image/><Label html="true"/></Panel>
             </Panel>
 
             <Panel id="RightSide">

@@ -58,14 +58,13 @@
     color: white;
     font-size: 16px;
     text-shadow: 2px 2px 2px #7b612b;
-    /*background-color: gradient(linear, 0% 0%, 0% 100%, from(#c88423), color-stop(0.25, #c88423), color-stop(0.5, #fffb84), color-stop(0.75, #c88423), to(#9a6717));*/
     margin:5px;
     border-radius: 5px;
     background-color: black;
     tooltip-position: top;
     tooltip-body-position: 50% 100%;
 
-    transition-property: transform, saturation, wash-color, box-shadow;
+    transition-property: transform, saturation, wash-color, box-shadow, position;
     transition-duration: 0.1s;
 }
 
@@ -93,11 +92,6 @@
     opacity: 0.0;
     transition-property: opacity;
     transition-duration: 0.25s;
-}
-
-.AbilityButtonEnabled
-{
-    box-shadow: 0px 0px 5px 0px #0094FF;
 }
 
 .AbilityButtonDeactivated

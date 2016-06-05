@@ -23,7 +23,7 @@ function GetTexture(data, customIcons) {
     var icon = "file://{images}/spellicons/" + (data.texture || data) + ".png";
     var name = data.name;
 
-    if (customIcons[name]){
+    if (customIcons && customIcons[name]){
         icon = "file://{images}/custom_game/" + customIcons[name];
     }
 
@@ -146,6 +146,10 @@ function PrintPanelKeys(panel) {
     }
 
     $.Msg(keys);
+}
+
+function EndsWith(str, suffix) {
+    return str.indexOf(suffix, str.length - suffix.length) !== -1;
 }
 
 function HasModifier(unit, modifier) {
