@@ -41,7 +41,7 @@
     background-color: gradient( linear, 0% 0%, 0% 100%, from( #000000 ), to( #00000000 ) );
 }
 
-.PreviewAbilityPanel
+#HeroAbilities
 {
     flow-children: down;
     align: left bottom;
@@ -231,11 +231,6 @@
 {
     flow-children: right;
     horizontal-align: center;
-}
-
-#HeroAbilities
-{
-    margin-top: 20px;
 }
 
 #HeroTips

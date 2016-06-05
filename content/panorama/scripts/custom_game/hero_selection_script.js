@@ -341,6 +341,10 @@ function FilterDifficulty(heroes, data, difficulty) {
 }
 
 function HeroesUpdated(data){
+    if (!data) {
+        return;
+    }
+
     allHeroes = data;
 
     var heroes = Object.keys(data);
