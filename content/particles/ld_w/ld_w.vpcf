@@ -116,7 +116,8 @@
 	[
 		{
 			_class = "C_OP_InstantaneousEmitter"
-			m_nParticlesToEmit = 700
+			m_nParticlesToEmit = 1400
 		},
 	]
+	m_nMaxParticles = 1400
 }
