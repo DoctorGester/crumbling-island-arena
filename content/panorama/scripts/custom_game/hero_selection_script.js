@@ -222,9 +222,6 @@ function CreateHeroList(heroList, heroes, rows, randomButtonRow){
                 button.AddClass("RandomButton");
 
                 container.SetPanelEvent("onactivate", PickRandomHero);
-
-                var text = $.CreatePanel("Label", button, "");
-                text.text = "?";
             } else {
                 var button = $.CreatePanel("DOTAHeroImage", container, "");
                 button.AddClass("HeroButton");
