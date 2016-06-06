@@ -2075,7 +2075,6 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/ld/ld_q"
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "lone_druid_rabid"
 		"AbilityCooldown" "3.0"
@@ -2099,7 +2098,6 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/ld/ld_w"
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "lone_druid_spirit_bear_entangle"
 		"AbilityCooldown" "8.0"
@@ -2124,7 +2122,6 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/ld/ld_e"
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "lone_druid_spirit_bear"
 		"AbilityCooldown" "8.0"
@@ -2149,7 +2146,6 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/ld/ld_q_sub"
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "lone_druid_spirit_bear_demolish"
 		"AbilityCooldown" "2.2"
@@ -2172,7 +2168,6 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/ld/ld_w_sub"
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName" "lone_druid_savage_roar"
 		"AbilityCooldown" "7.0"
@@ -2189,7 +2184,6 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/ld/ld_e_sub"
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "lone_druid_true_form"
 		"AbilityCooldown" "8.0"
