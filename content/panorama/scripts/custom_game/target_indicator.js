@@ -156,7 +156,8 @@ indicatorTypes["TARGETING_INDICATOR_LINE_EMBER"] = function(data, unit) {
 
     this.FindRemnant = function(){
         for (var unit of Entities.GetAllEntitiesByName(Entities.GetUnitName(this.unit))) {
-            if (unit != this.unit && Entities.IsCommandRestricted(unit)) {
+            // There is no Entities.GetOwnerPlayer. Sad.
+            if (unit != this.unit && Entities.IsCommandRestricted(unit) && Entities.GetTeamNumber(unit) == Players.GetTeam(Players.GetLocalPlayer())) {
                 return unit;
             }
         }

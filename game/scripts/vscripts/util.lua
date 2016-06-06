@@ -182,19 +182,6 @@ function CreateLineMarker(owner, point, target, duration, color)
     ParticleManager:ReleaseParticleIndex(particle)
 end
 
-function MoveCameraToUnit(playerId, unit)
-    Timers:CreateTimer(
-        function()
-            PlayerResource:SetCameraTarget(playerId, unit)
-            Timers:CreateTimer(0.1,
-                function()
-                    PlayerResource:SetCameraTarget(playerId, nil)
-                end
-            )
-        end
-    )
-end
-
 --[[
 Declares a general lua modifier
 definition is {

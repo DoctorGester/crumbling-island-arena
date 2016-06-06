@@ -131,8 +131,6 @@ function Round:CreateHeroes(spawnPoints)
 
             hero:Activate()
 
-            MoveCameraToUnit(player.id, unit)
-
             player.hero = hero
         else
             player.hero = nil

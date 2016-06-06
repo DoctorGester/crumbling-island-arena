@@ -118,6 +118,16 @@ function GetLocalHero(){
     return Players.GetLocalPlayerPortraitUnit();
 }
 
+function GetLocalPlayedHero(){
+    return _
+        .chain(Entities.GetAllHeroEntities())
+        .filter(function(entity) {
+            return !Entities.IsUnselectable(entity) && Entities.IsControllableByPlayer(entity, Players.GetLocalPlayer());
+        })
+        .first()
+        .value();
+}
+
 function LoadHeroUI(heroId){
     $("#HeroPortrait").heroname = Entities.GetUnitName(heroId);
     $("#HeroNameLabel").text = $.Localize("#HeroName_" + Entities.GetUnitName(heroId));
@@ -179,8 +189,8 @@ function UpdateUI(){
     }
 }
 
-function CenterCamera(){
-    GameUI.SetCameraTarget(GetLocalHero());
+function CenterCamera(on){
+    GameUI.SetCameraTarget(on || GetLocalHero());
     $.Schedule(0.025, function() {
         GameUI.SetCameraTarget(-1);
     })
@@ -244,7 +254,11 @@ function GameStateChanged(data){
             $("#RoundMessageBottom").RemoveClass("RoundMessageBottomAnimation");
         });
 
-        Game.EmitSound("UI.RoundStart")
+        Game.EmitSound("UI.RoundStart");
+
+        $.Schedule(0.1, function() {
+            CenterCamera(GetLocalPlayedHero());
+        });
     } else {
         $("#HeroPanel").AddClass("AnimationHeroHudHidden");
         $("#HeroDetails").AddClass("AnimationHeroDetailsHidden");
