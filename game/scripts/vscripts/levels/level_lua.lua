@@ -33,14 +33,6 @@ function Level:Clusterize()
         self:AddPolyPointToCluster(polygon, bounds.maxX, bounds.minY)
         self:AddPolyPointToCluster(polygon, bounds.minX, bounds.maxY)
     end
-
-    --[[
-    for y, row in pairs(self.clusters) do
-        for x, column in pairs(row) do
-            print(x, y, #column)
-        end
-    end
-    ]]
 end
 
 function Level:AddPolyPointToCluster(polygon, x, y)

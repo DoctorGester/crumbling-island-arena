@@ -6,45 +6,20 @@ function PlayersUpdated(players) {
 
     scoreboardConnectionStates = {};
 
-    for (var key in players) {
-        players[key].ids = [ players[key].id ];
-        players[key].heroes = [ players[key].hero ];
-        players[key].names = [ Players.GetPlayerName(players[key].id) ];
-    }
-
-    var teams = _(players).groupBy(function(player) { return player.team });
-
-    for (var key in teams){
-        var team = teams[key];
-
-        var player = _.reduce(team, function(p1, p2){
-            return {
-                color: p2.color,
-                ids: p1.ids.concat(p2.ids),
-                names: p1.names.concat(p2.names),
-                heroes: p1.heroes.concat(p2.heroes),
-                score: p1.score + p2.score
-            };
-        }, {
-            ids: [],
-            heroes: [],
-            names: [],
-            score: 0
-        });
-
+    CreateScoreboardFromData(players, function(color, score, team) {
         var panel = $.CreatePanel("Panel", scoreboard, "");
         panel.AddClass("ScoreboardTeam");
-        panel.style.backgroundColor = LuaColor(player.color);
+        panel.style.backgroundColor = color;
 
         var playersPanel = $.CreatePanel("Panel", panel, "");
         playersPanel.AddClass("ScoreboardPlayers");
 
-        for (var index in player.names) {
+        for (var player of team) {
             var playerPanel = $.CreatePanel("Panel", playersPanel, "");
             playerPanel.AddClass("ScoreboardPlayer")
 
             var hero = $.CreatePanel("DOTAHeroImage", playerPanel, "");
-            hero.heroname = player.heroes[index];
+            hero.heroname = player.hero;
             hero.heroimagestyle = "icon";
             hero.AddClass("ScoreboardPlayerHero")
             hero.SetScaling("stretch-to-fit-y-preserve-aspect");
@@ -52,7 +27,7 @@ function PlayersUpdated(players) {
             var namePanel = $.CreatePanel("Panel", playerPanel, "");
             namePanel.AddClass("ScoreboardPlayerNameContainer");
 
-            var playerName = player.names[index];
+            var playerName = player.name;
             var name = $.CreatePanel("Label", namePanel, "");
             name.AddClass("ScoreboardPlayerName");
             name.text = playerName;
@@ -60,13 +35,13 @@ function PlayersUpdated(players) {
             var connectionStatePanel = $.CreatePanel("Panel", namePanel, "");
             connectionStatePanel.AddClass("ConnectionStatePanel")
 
-            scoreboardConnectionStates[player.ids[index]] = connectionStatePanel;
+            scoreboardConnectionStates[player.id] = connectionStatePanel;
         }
 
-        var score = $.CreatePanel("Label", panel, "");
-        score.AddClass("ScoreboardTeamScore");
-        score.text = player.score.toString();
-    }
+        var scorePanel = $.CreatePanel("Label", panel, "");
+        scorePanel.AddClass("ScoreboardTeamScore");
+        scorePanel.text = score.toString();
+    });
 
     UpdateScoreboardConnectionStates();
 }
