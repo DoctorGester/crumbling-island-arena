@@ -2,7 +2,7 @@ modifier_falling = class({})
 
 if IsServer() then
     function modifier_falling:OnCreated()
-        self:StartIntervalThink(.066)
+        self:StartIntervalThink(.15)
     end
 
     function modifier_falling:OnIntervalThink()

@@ -124,7 +124,7 @@ function Dash:IsStunned()
         if modifier ~= self.modifierHandle then
             if modifier.IsStunDebuff and modifier:IsStunDebuff() then
                 if self.modifierHandle then
-                    return modifier:GetCaster() ~= self.modifierHandle:GetCaster()
+                    return modifier:GetCaster() ~= self.modifierHandle:GetCaster() or modifier:GetName() == "modifier_falling"
                 end
 
                 return true

@@ -69,7 +69,13 @@ end
 
 function UnitEntity:AddNewModifier(source, ability, modifier, params)
 	if not self.modifierImmune then
-	    return self.unit:AddNewModifier(source.unit or source, ability, modifier, params)
+        local from = source
+
+        if source and source.unit then
+            from = source.unit
+        end
+
+	    return self.unit:AddNewModifier(from, ability, modifier, params)
 	end
 end
 
