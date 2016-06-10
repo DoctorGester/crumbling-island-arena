@@ -150,7 +150,7 @@
 		"pudge_DescE" "?????"
 		"pudge_DescR" "?????"
 
-		"PlayerHeader" "player"
+		"PlayerHeader" "Players"
 		"SelectionHeader" "selection"
 		"ScoreHeader" "score"
 		"HeroListHeader" "select your hero"

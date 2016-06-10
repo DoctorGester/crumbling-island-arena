@@ -65,6 +65,10 @@ function GameSetup:GetSpawnPoints()
     return self.modes[self.selectedMode].spawns
 end
 
+function GameSetup:GetPlayersInTeam()
+    return self.modes[self.selectedMode].playersInTeam
+end
+
 function GameSetup:UpdateNetworkState()
     local result = {}
     result.stage = self.stage

@@ -311,16 +311,22 @@ function HeroesUpdated(data){
 }
 
 function PlayersUpdated(data){
+    if (!data) {
+        return;
+    }
+
+    $("#GameGoal").text = data.goal.toString();
+
     var playersPanel = $("#PlayersContent");
     DeleteChildrenWithClass(playersPanel, "TeamPanel");
 
-    CreateScoreboardFromData(data, function(color, score, team) {
+    CreateScoreboardFromData(data.players, function(color, score, team) {
         var panel = $.CreatePanel("Panel", playersPanel, "");
         panel.AddClass("TeamPanel");
 
         var scorePanel = $.CreatePanel("Label", panel, "");
         scorePanel.AddClass("TeamScore");
-        scorePanel.text = score.toString();
+        scorePanel.text = Math.min(score, data.goal).toString();
 
         var players = $.CreatePanel("Panel", panel, "");
         players.AddClass("TeamPanelPlayers");

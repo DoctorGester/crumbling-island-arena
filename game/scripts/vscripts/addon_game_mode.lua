@@ -588,7 +588,7 @@ function GameMode:UpdatePlayerTable()
         table.insert(players, playerData)
     end
 
-    CustomNetTables:SetTableValue("main", "players", players)
+    CustomNetTables:SetTableValue("main", "players", { players = players, goal = self.gameGoal })
 end
 
 function GameMode:UpdateAvailableHeroesTable()
@@ -764,7 +764,7 @@ function GameMode:OnGameInProgress()
         end
     )
 
-    self.gameGoal = PlayerResource:GetPlayerCount() * 6
+    self.gameGoal = PlayerResource:GetPlayerCount() * 6 * self.gameSetup:GetPlayersInTeam()
     self:UpdatePlayerTable()
     self:UpdateGameInfo()
 

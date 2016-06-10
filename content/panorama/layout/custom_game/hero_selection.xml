@@ -36,8 +36,10 @@
             </Panel>
 
             <Panel id="RightSide">
-                <Label id="PlayersLabel" text="Players" class="YellowLabel"/>
+                <Label id="PlayersLabel" text="#PlayerHeader" class="YellowLabel"/>
                 <Panel id="PlayersContent"/>
+                <Label id="GameGoal" class="BlueLabel"/>
+                <Label id="GameGoalText" text="#PointsToWin" class="BlueLabel"/>
             </Panel>
 
             <Panel id="HeroSelectionChat"/>

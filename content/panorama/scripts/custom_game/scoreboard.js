@@ -1,12 +1,16 @@
 var scoreboardConnectionStates = {};
 
-function PlayersUpdated(players) {
+function PlayersUpdated(data) {
+    if (!data) {
+        return;
+    }
+    
     var scoreboard = $("#Scoreboard");
     DeleteChildrenWithClass(scoreboard, "ScoreboardTeam");
 
     scoreboardConnectionStates = {};
 
-    CreateScoreboardFromData(players, function(color, score, team) {
+    CreateScoreboardFromData(data.players, function(color, score, team) {
         var panel = $.CreatePanel("Panel", scoreboard, "");
         panel.AddClass("ScoreboardTeam");
         panel.style.backgroundColor = color;
@@ -40,7 +44,7 @@ function PlayersUpdated(players) {
 
         var scorePanel = $.CreatePanel("Label", panel, "");
         scorePanel.AddClass("ScoreboardTeamScore");
-        scorePanel.text = score.toString();
+        scorePanel.text = Math.min(data.goal, score).toString();
     });
 
     UpdateScoreboardConnectionStates();

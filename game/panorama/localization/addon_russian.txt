@@ -143,7 +143,7 @@
 		"lone_druid_DescE" "Призыв медведя"
 		"lone_druid_DescR" "Превращение. Доступно с начала игры"
 
-		"PlayerHeader" "игрок"
+		"PlayerHeader" "Игроки"
 		"SelectionHeader" "выбор"
 		"ScoreHeader" "счет"
 		"HeroListHeader" "выбери героя"

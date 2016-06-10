@@ -34,6 +34,13 @@
     transition-timing-function: ease-in;
 }
 
+#GameGoal
+{
+    font-size: 80px;
+    margin-bottom: 0px;
+    margin-top: 40px;
+}
+
 #HeroSelectionTopGradient
 {
     width: 100%;
