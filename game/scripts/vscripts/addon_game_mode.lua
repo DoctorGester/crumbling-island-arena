@@ -491,7 +491,7 @@ function GameMode:OnRoundEnd(round)
 
     for _, player in pairs(self.Players) do
         if player.hero then
-            playerData = {}
+            local playerData = {}
             playerData.id = player.id
             playerData.team = player.team
             playerData.color = self.TeamColors[player.team]
