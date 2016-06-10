@@ -475,12 +475,12 @@ function GameMode:OnRoundEnd(round)
     end
 
     for _, player in pairs(self.Players) do
-        if not player.hero or player.hero:Alive() then
+        if player:IsConnected() and player.hero and player.hero:Alive() then
             self.scoreEarned[player] = self.currentScoreAddition
             self.currentScoreAddition = self.currentScoreAddition + 1
         end
 
-        if player.team == winner then
+        if player:IsConnected() and player.team == winner then
             self.scoreEarned[player] = (self.scoreEarned[player] or 0) + 1
         end
     end
@@ -490,18 +490,22 @@ function GameMode:OnRoundEnd(round)
     end
 
     for _, player in pairs(self.Players) do
-        playerData = {}
-        playerData.id = player.id
-        playerData.team = player.team
-        playerData.color = self.TeamColors[player.team]
-        playerData.earned = self.scoreEarned[player]
-        playerData.score = player.score
-        playerData.hero = player.selectedHero
-        playerData.winner = player.team == winner
+        if player.hero then
+            playerData = {}
+            playerData.id = player.id
+            playerData.team = player.team
+            playerData.color = self.TeamColors[player.team]
+            playerData.earned = self.scoreEarned[player]
+            playerData.score = player.score
+            playerData.hero = player.selectedHero
+            playerData.winner = player.team == winner
 
-        round.statistics:IncreaseRoundsWon(player)
+            table.insert(roundData, playerData)
+        end
 
-        table.insert(roundData, playerData)
+        if playerData.winn then
+            round.statistics:IncreaseRoundsWon(player)
+        end
     end
 
     self:UpdatePlayerTable()
