@@ -256,7 +256,7 @@ function GameStateChanged(data){
 
         Game.EmitSound("UI.RoundStart");
 
-        $.Schedule(0.1, function() {
+        $.Schedule(0.2, function() {
             CenterCamera(GetLocalPlayedHero());
         });
     } else {

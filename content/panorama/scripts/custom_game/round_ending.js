@@ -64,13 +64,13 @@ function RoundStateChanged(data){
         for (var team of teamsGrouped) {
             var won = false;
             var shownScore = Math.min(team.score, goal);
+            
+            if (team.score - team.earned >= goal) {
+                won = team.winner;
+            }
 
             if (team.score > goal) {
                 team.earned = Math.max(0, goal - (team.score - team.earned));
-            }
-
-            if (team.score - team.earned >= goal) {
-                won = team.winner;
             }
 
             var name = team.players[0].name;
