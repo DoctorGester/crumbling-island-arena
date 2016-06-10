@@ -31,7 +31,7 @@ STATE_ROUND_IN_PROGRESS = 3
 STATE_ROUND_ENDED = 4
 STATE_GAME_OVER = 5
 
-ROUND_ENDING_TIME = 5
+ROUND_ENDING_TIME = 8
 FIXED_DAY_TIME = 0.27
 
 THINK_PERIOD = 0.01
@@ -221,9 +221,9 @@ function GameMode:OnGameSetup()
     end
 
     local modes = {
-        ["ffa"] = { playersInTeam = 1, goal = 75, announce = "announcer_ann_custom_mode_06", spawns = roundSpawnPointsBig },
-        ["2v2"] = { playersInTeam = 2, goal = 150, announce = "announcer_ann_custom_mode_07", spawns = roundSpawnPoints },
-        ["3v3"] = { playersInTeam = 3, goal = 225, announce = "announcer_ann_custom_mode_07", spawns = teamSpawnPoints }
+        ["ffa"] = { playersInTeam = 1, announce = "announcer_ann_custom_mode_06", spawns = roundSpawnPointsBig },
+        ["2v2"] = { playersInTeam = 2, announce = "announcer_ann_custom_mode_07", spawns = roundSpawnPoints },
+        ["3v3"] = { playersInTeam = 3, announce = "announcer_ann_custom_mode_07", spawns = teamSpawnPoints }
     }
 
     self.gameSetup = GameSetup(modes, self.Players, self.Teams)
@@ -395,27 +395,8 @@ function GameMode:GetTeamScore(team)
     return score
 end
 
-function GameMode:IncreaseScore(player, amount)
-    local team = player.team
-
-    player.score = player.score + amount
-    self:UpdatePlayerTable()
-
-    local totalScore = self:GetTeamScore(team)
-
-    if totalScore >= self.gameGoal then
-        if not self.winner then
-            self.winner = team
-        elseif team ~= self.winner and GetIndex(self.runnerUps, team) == nil then
-            table.insert(self.runnerUps, team)
-        end
-    end
-end
-
 function GameMode:OnDamageDealt(hero, source)
     if hero ~= source and source and source.owner and hero.owner and source.owner.team ~= hero.owner.team then
-        self:IncreaseScore(source.owner, 1)
-
         if self.round then
             self.round.statistics:IncreaseDamageDealt(source.owner)
         end
@@ -481,30 +462,54 @@ end
 
 function GameMode:OnRoundEnd(round)
     local winner = round.winner
+    local roundData = {}
 
-    winnerData = {}
-
-    if winner ~= nil then
-        for _, player in pairs(self.Players) do
-            if player.team == winner then
-                playerData = {}
-                playerData.id = player.id
-                playerData.team = player.team
-                playerData.color = self.TeamColors[winner]
-                self:IncreaseScore(player, 3)
-
-                round.statistics:IncreaseRoundsWon(player)
-
-                table.insert(winnerData, playerData)
+    for _, player in pairs(self.Players) do
+        if player.team == winner then
+            if self:GetTeamScore(player.team) >= self.gameGoal then
+                self.winner = player.team
             end
+        end
+
+        round.statistics:IncreaseRoundsWon(player)
+    end
+
+    for _, player in pairs(self.Players) do
+        if not player.hero or player.hero:Alive() then
+            self.scoreEarned[player] = self.currentScoreAddition
+            self.currentScoreAddition = self.currentScoreAddition + 1
+        end
+
+        if player.team == winner then
+            self.scoreEarned[player] = (self.scoreEarned[player] or 0) + 1
         end
     end
 
+    for player, earned in pairs(self.scoreEarned) do
+        player.score = player.score + earned
+    end
+
+    for _, player in pairs(self.Players) do
+        playerData = {}
+        playerData.id = player.id
+        playerData.team = player.team
+        playerData.color = self.TeamColors[player.team]
+        playerData.earned = self.scoreEarned[player]
+        playerData.score = player.score
+        playerData.hero = player.selectedHero
+        playerData.winner = player.team == winner
+
+        round.statistics:IncreaseRoundsWon(player)
+
+        table.insert(roundData, playerData)
+    end
+
+    self:UpdatePlayerTable()
     self.generalStatistics:Add(round.statistics)
     self:SubmitRoundInfo(round, winner, self.winner ~= nil)
     Stats.SubmitRoundInfo(self.Players, self.roundNumber - 2, winner, round.statistics)
 
-    CustomNetTables:SetTableValue("main", "roundState", { roundWinner = winnerData })
+    CustomNetTables:SetTableValue("main", "roundState", { roundData = roundData, goal = self.gameGoal })
 
     self:SetState(STATE_ROUND_ENDED)
 
@@ -528,6 +533,8 @@ function GameMode:OnRoundEnd(round)
 end
 
 function GameMode:OnHeroSelectionEnd()
+    self.currentScoreAddition = 1
+    self.scoreEarned = {}
     self.roundNumber = self.roundNumber + 1
     self.round = Round(self.Players, self.Teams, self.AvailableHeroes, function(round) self:OnRoundEnd(round) end)
     self.round:CreateHeroes(self.gameSetup:GetSpawnPoints())
@@ -550,6 +557,9 @@ function GameMode:OnEntityKilled(event)
         entity.hero.round.entityDied = true
 
         PlayerResource:SetOverrideSelectionEntity(entity.hero.owner.id, nil)
+
+        self.scoreEarned[entity.hero.owner] = self.currentScoreAddition
+        self.currentScoreAddition = self.currentScoreAddition + 1
 
         if entity:GetAbsOrigin().z <= -MAP_HEIGHT then
             local name = entity:GetName()
@@ -652,7 +662,6 @@ function GameMode:UpdateGameInfo()
         hardHeroesLocked = self.heroSelection.HardHeroesLocked,
         winner = self.winner,
         roundNumber = self.roundNumber,
-        runnerUps = self.runnerUps,
         statistics = self.generalStatistics.stats,
         players = players
     })
@@ -713,7 +722,6 @@ function GameMode:OnGameInProgress()
 
     self.roundNumber = 1
     self.winner = nil
-    self.runnerUps = {}
 
     self.generalStatistics = Statistics(self.Players)
 
@@ -756,7 +764,7 @@ function GameMode:OnGameInProgress()
         end
     )
 
-    self.gameGoal = self.gameSetup:GetGameGoal()
+    self.gameGoal = PlayerResource:GetPlayerCount() * 6
     self:UpdatePlayerTable()
     self:UpdateGameInfo()
 

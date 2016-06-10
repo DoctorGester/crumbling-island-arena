@@ -150,6 +150,8 @@
 		"RandomHero" "случайный выбор"
 		"LockedHeroes" "Недоступны первые 3 раунда"
 		"GameGoal" "Цель: {d:goal}"
+		"PointsToWin" "очков для победы"
+		"SurviveToWin" "Выживи и победишь!"
 
 		"ChatLine" "<b><font color='{s:color}'>{s:name}</font></b>: {s:message}"
 		"ChatRandomed" "<b><font color='{s:color}'>{s:name}</font></b> случайно выбрал <font color='gold'>{s:hero}</font>"

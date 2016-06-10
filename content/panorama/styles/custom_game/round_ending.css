@@ -14,14 +14,147 @@
     opacity: 0.0;
 }
 
-#ResultMessage
+Label
 {
-    font-family: Goudy Trajan Medium, FZKai-Z03, TH Sarabun New;
-    font-size: 80;
-    horizontal-align: center;
-    vertical-align: middle;
-    text-shadow: -1px 1px 2px 2.0 #000000;
-    color: #CCB966;
+    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+    color: white;
+}
+
+#RoundResults
+{
+    align: center center;
+    flow-children: right;
     transition-property: opacity;
-    transition-duration: 0.5s;
+    transition-duration: 0.1s;
+}
+
+#TeamScores
+{
+    flow-children: down;
+    vertical-align: center;
+}
+
+#GameGoal
+{
+    flow-children: right;
+    margin-left: 120px;
+    vertical-align: center;
+}
+
+#GameGoalNumber
+{
+    font-size: 120px;
+    font-weight: bold;
+    text-shadow: 0px 0px 8px 4.0 skyblue;
+    letter-spacing: 6px;
+    align: center center;
+    text-align: center;
+}
+
+#GameGoalText
+{
+    font-size: 32px;
+    vertical-align: center;
+    text-shadow: 0px 0px 8px 2.0 skyblue;
+}
+
+.TeamPanel
+{
+    flow-children: right;
+}
+
+.TeamNameAndHeroes
+{
+    flow-children: right;
+    vertical-align: center;
+}
+
+.TeamHeroes
+{
+    flow-children: right;
+    vertical-align: center;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.TeamHeroes DOTAHeroImage
+{
+    margin: 6px;
+}
+
+.TeamScore
+{
+    align: center center;
+    font-size: 48px;
+    margin-left: 12px;
+    text-shadow: 0px 0px 8px 2.0 skyblue;
+}
+
+.TeamEarned
+{
+    align: center center;
+    font-size: 56px;
+    margin-left: 24px;
+    animation-duration: 0.3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-name: PointsAnimation;
+}
+
+.TeamEarnedGoingToWin
+{
+    text-shadow: 0px 0px 8px 2.0 red;
+}
+
+.TeamEarnedWon
+{
+    text-shadow: 0px 0px 8px 2.0 #00FF21;
+}
+
+.SurviveToWin
+{
+    font-size: 24px;
+    text-align: center;
+    margin-left: 30px;
+    vertical-align: center;
+    text-shadow: 0px 0px 8px 2.0 black;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-name: PointsAnimation;
+}
+
+.TeamName
+{
+    width: 300px;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.TeamName Label
+{
+    color: white;
+    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+    font-size: 36px;
+    text-shadow: -1px 1px 2px 2.0 #000000;
+    white-space: nowrap;
+    align: right center;
+}
+
+@keyframes 'PointsAnimation'
+{
+    0%
+    {
+        transform: translateX(-2px) rotateZ(-3deg);
+    }
+
+    50%
+    {
+        transform: translateX(2px) rotateZ(3deg);
+    }
+    
+    100%
+    {
+        transform: translateX(-2px) rotateZ(-3deg);
+    }
 }

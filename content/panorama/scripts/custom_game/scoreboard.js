@@ -71,7 +71,8 @@ function GameInfoUpdated(gameInfo) {
     }
 }
 
-SubscribeToNetTableKey("main", "players", true, PlayersUpdated);
 SubscribeToNetTableKey("main", "gameInfo", true, GameInfoUpdated);
+SubscribeToNetTableKey("main", "players", true, PlayersUpdated);
+
 
 ScheduleScoreboardUpdateConnectionStates();

@@ -9,7 +9,6 @@ function GameSetup:constructor(modes, players, teams)
     self.teams = teams
     self.stage = GAME_SETUP_STAGE_MODE
     self.selectedMode = nil
-    self.gameGoal = 0
     self.modes = modes
     self.teamNumber = 0
 
@@ -60,10 +59,6 @@ function GameSetup:AddPlayer(player)
 
     self:UpdateNetworkState()
     self:UpdateModes()
-end
-
-function GameSetup:GetGameGoal()
-    return self.modes[self.selectedMode].goal or 0
 end
 
 function GameSetup:GetSpawnPoints()
