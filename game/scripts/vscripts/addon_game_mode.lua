@@ -503,7 +503,7 @@ function GameMode:OnRoundEnd(round)
             table.insert(roundData, playerData)
         end
 
-        if playerData.winner then
+        if playerData and playerData.winner then
             round.statistics:IncreaseRoundsWon(player)
         end
     end
