@@ -25,6 +25,7 @@
 		"HeroName_npc_dota_hero_ember_spirit"			"The Lovers"
 		"HeroName_npc_dota_hero_juggernaut"				"Scabbard"
 		"HeroName_npc_dota_hero_lone_druid"				"The Mask"
+		"HeroName_npc_dota_hero_pudge"					"Gluttony"
 
 		"Available_on_npc_dota_hero_drow_ranger"		"Available on April 23!"
 		"Available_on_npc_dota_hero_skeleton_king"		"Available on April 30!"
@@ -32,6 +33,7 @@
 		"Available_on_npc_dota_hero_earthshaker"		"Available on May 14!"
 		"Available_on_npc_dota_hero_ember_spirit"		"Available on May 21!"
 		"Available_on_npc_dota_hero_lone_druid"			"Available on June 4!"
+		"Available_on_npc_dota_hero_pudge"				"Available on June 11!"
 
 		"phantom_assassin_DescQ" "Short ranged boomerang"
 		"phantom_assassin_DescW" "Melee AOE attack"
@@ -142,6 +144,11 @@
 		"lone_druid_DescW" "Root in a line"
 		"lone_druid_DescE" "Summon a bear"
 		"lone_druid_DescR" "Transform. Available immediately"
+
+		"pudge_DescQ" "?????"
+		"pudge_DescW" "?????"
+		"pudge_DescE" "?????"
+		"pudge_DescR" "?????"
 
 		"PlayerHeader" "player"
 		"SelectionHeader" "selection"

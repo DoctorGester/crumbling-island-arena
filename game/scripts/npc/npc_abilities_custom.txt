@@ -2199,4 +2199,43 @@
 		"AbilityCooldown" "3.0"
 	}
 
+	"pudge_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pudge/pudge_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "pudge_meat_hook"
+		"AbilityCooldown" "4.0"
+		"AbilityCastPoint" "0.15"
+	}
+
+	"pudge_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pudge/pudge_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "pudge_dismember"
+		"AbilityCooldown" "5.5"
+		"AbilityCastPoint" "0.15"
+	}
+
+	"pudge_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pudge/pudge_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "pudge/scavenger_dragon_ability/pudge_flesh_heap"
+		"AbilityCooldown" "2.7"
+	}
+
+	"pudge_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pudge/pudge_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "pudge_rot"
+		"AbilityCooldown" "14.0"
+		"AbilityCastPoint" "0.3"
+	}
 }
