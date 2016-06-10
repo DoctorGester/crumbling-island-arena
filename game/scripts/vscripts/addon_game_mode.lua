@@ -31,7 +31,7 @@ STATE_ROUND_IN_PROGRESS = 3
 STATE_ROUND_ENDED = 4
 STATE_GAME_OVER = 5
 
-ROUND_ENDING_TIME = 8
+ROUND_ENDING_TIME = 6
 FIXED_DAY_TIME = 0.27
 
 THINK_PERIOD = 0.01
@@ -503,7 +503,7 @@ function GameMode:OnRoundEnd(round)
             table.insert(roundData, playerData)
         end
 
-        if playerData.winn then
+        if playerData.winner then
             round.statistics:IncreaseRoundsWon(player)
         end
     end
