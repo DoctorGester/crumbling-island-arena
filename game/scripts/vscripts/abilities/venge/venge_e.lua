@@ -32,6 +32,9 @@ function venge_e:OnSpellStart()
             target:SetPos(pos)
             
             target:EmitSound("Arena.Venge.HitE")
+
+            hero.round.spells:InterruptDashes(hero)
+            target.round.spells:InterruptDashes(target)
         end,
         hitCondition = function(projectile, target)
             return target ~= hero
