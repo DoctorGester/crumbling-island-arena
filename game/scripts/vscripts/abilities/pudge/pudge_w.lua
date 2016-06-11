@@ -20,10 +20,12 @@ function pudge_w:OnSpellStart()
             ParticleManager:SetParticleControlEnt(blood, 0, target.unit, PATTACH_POINT_FOLLOW, "attach_hitloc", effectPos, true)
             ParticleManager:SetParticleControl(blood, 2, direction)
 
-            local meatDir = (target:GetPos() - hero:GetPos()):Normalized()
-            local meat = PudgeMeat(hero.round, hero, target:GetPos() + meatDir * 128):Activate()
+            if instanceof(target, Hero) then
+                local meatDir = (target:GetPos() - hero:GetPos()):Normalized()
+                local meat = PudgeMeat(hero.round, hero, target:GetPos() + meatDir * 128):Activate()
 
-            Knockback(meat, self, meatDir, 400, 1500, DashParabola(250))
+                Knockback(meat, self, meatDir, 400, 1500, DashParabola(250))
+            end
         end
     })
 
