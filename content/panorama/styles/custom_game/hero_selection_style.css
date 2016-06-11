@@ -141,7 +141,38 @@
     margin: 4px;
     margin-left: 40px;
     color: white;
+}
+
+.TeamScoreNormal
+{
     text-shadow: skyblue 0px 0px 4px 4px;
+}
+
+.TeamScoreSurvive
+{
+    text-shadow: red 0px 0px 8px 8px;
+}
+
+.TeamSurvive
+{
+    width: 80px;
+    height: 100%;
+}
+
+.TeamSurvive Label
+{
+    text-align: center;
+    align: center center;
+    color: white;
+
+    font-size: 18px;
+    text-align: center;
+    vertical-align: center;
+    text-shadow: 0px 0px 8px 2.0 black;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-name: PointsAnimation;
 }
 
 .TeamPanelPlayers
@@ -432,6 +463,24 @@
     color: red;
     text-transform: uppercase;
     font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+}
+
+@keyframes 'PointsAnimation'
+{
+    0%
+    {
+        transform: translateX(-2px) rotateZ(-3deg);
+    }
+
+    50%
+    {
+        transform: translateX(2px) rotateZ(3deg);
+    }
+    
+    100%
+    {
+        transform: translateX(-2px) rotateZ(-3deg);
+    }
 }
 
 .PauseBackground

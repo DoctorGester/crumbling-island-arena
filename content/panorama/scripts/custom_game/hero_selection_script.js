@@ -324,9 +324,23 @@ function PlayersUpdated(data){
         var panel = $.CreatePanel("Panel", playersPanel, "");
         panel.AddClass("TeamPanel");
 
+        var displayScore = Math.min(score, data.goal)
+
         var scorePanel = $.CreatePanel("Label", panel, "");
         scorePanel.AddClass("TeamScore");
-        scorePanel.text = Math.min(score, data.goal).toString();
+        scorePanel.text = displayScore.toString();
+
+        if (displayScore == data.goal) {
+            scorePanel.AddClass("TeamScoreSurvive");
+
+            var survivePanel = $.CreatePanel("Panel", panel, "");
+            survivePanel.AddClass("TeamSurvive");
+
+            var surviveLabel = $.CreatePanel("Label", survivePanel, "");
+            surviveLabel.text = $.Localize("#Survive");
+        } else {
+            scorePanel.AddClass("TeamScoreNormal");
+        }
 
         var players = $.CreatePanel("Panel", panel, "");
         players.AddClass("TeamPanelPlayers");

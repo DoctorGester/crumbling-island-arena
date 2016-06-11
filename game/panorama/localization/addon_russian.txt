@@ -158,6 +158,7 @@
 		"GameGoal" "Цель: {d:goal}"
 		"PointsToWin" "максимум очков"
 		"SurviveToWin" "Выживи и победишь!"
+		"Survive" "Выживи!"
 
 		"ChatLine" "<b><font color='{s:color}'>{s:name}</font></b>: {s:message}"
 		"ChatRandomed" "<b><font color='{s:color}'>{s:name}</font></b> случайно выбрал <font color='gold'>{s:hero}</font>"
