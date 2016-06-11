@@ -159,8 +159,7 @@ function Projectile:Remove()
     end
 
     if self.particle then
-        ParticleManager:DestroyParticle(self.particle, false)
-        ParticleManager:ReleaseParticleIndex(self.particle)
+        self:SetGraphics(nil)
     end
 
     getbase(Projectile).Remove(self)

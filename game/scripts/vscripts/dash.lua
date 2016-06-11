@@ -62,41 +62,39 @@ function Dash:SetModifierHandle(modifier)
     self.modifierHandle = modifier
 end
 
+function Dash:HasEnded()
+    return (self.to - self.hero:GetPos()):Length2D() <= self.velocity
+end
+
 function Dash:Update()
-    if self.hero.destroyed then
-        if self.loopingSound then
-            self.hero:StopSound(self.loopingSound)
-        end
+    local result = nil
+    if self.hero:Alive() then
+        local origin = self.hero:GetPos()
+        result = self:PositionFunction(origin)
 
-        self.destroyed = true
-        return
-    end
+        result.z = self.zStart + self:HeightFunction(origin)
+        self.hero:SetPos(result)
 
-    local origin = self.hero:GetPos()
-    local result = self:PositionFunction(origin)
+        if self.hitParams then
+            local params = vlua.clone(self.hitParams)
 
-    result.z = self.zStart + self:HeightFunction(origin)
-    self.hero:SetPos(result)
+            local function groupFilter(target)
+                return not self.hitGroup[target]
+            end
 
-    if self.hitParams then
-        local params = vlua.clone(self.hitParams)
+            params.filter = Filters.Line(origin, result, self.hero:GetRad()) + Filters.WrapFilter(groupFilter)
+            params.filterProjectiles = true
 
-        local function groupFilter(target)
-            return not self.hitGroup[target]
-        end
+            local hurt = self.hero:AreaEffect(params)
 
-        params.filter = Filters.Line(origin, result, self.hero:GetRad()) + Filters.WrapFilter(groupFilter)
-        params.filterProjectiles = true
-
-        local hurt = self.hero:AreaEffect(params)
-
-        for _, target in ipairs(hurt or {}) do
-            self.hitGroup[target] = true
+            for _, target in ipairs(hurt or {}) do
+                self.hitGroup[target] = true
+            end
         end
     end
 
-    local interrupted = self:IsStunned() or not self.hero:Alive()
-    if (self.to - origin):Length2D() <= self.velocity or interrupted then
+    local interrupted = not self.hero:Alive() or self:IsStunned()
+    if self:HasEnded() or interrupted then
         self:End(self.hero:GetPos(), not interrupted)
     end
 
@@ -104,11 +102,13 @@ function Dash:Update()
 end
 
 function Dash:End(at, reachedDestination)
-    if self.findClearSpace then
-        GridNav:DestroyTreesAroundPoint(at, self.radius, true)
-        self.hero:FindClearSpace(at, false)
-    else
-        self.hero:SetPos(at)
+    if self.hero:Alive() then
+        if self.findClearSpace then
+            GridNav:DestroyTreesAroundPoint(at, self.radius, true)
+            self.hero:FindClearSpace(at, false)
+        else
+            self.hero:SetPos(at)
+        end
     end
 
     self:OnArrival(reachedDestination)
@@ -149,7 +149,9 @@ function Dash:HeightFunction(current)
 end
 
 function Dash:OnArrival(reachedDestination)
-    self:SetModifierHandle(nil)
+    if self.hero:Alive() then
+        self:SetModifierHandle(nil)
+    end
 
     if self.arrivalSound then
         self.hero:EmitSound(self.arrivalSound)
@@ -166,11 +168,11 @@ end
 
 -- Knockback utility method
 
-function Knockback(hero, ability, direction, distance, speed, heightFunction)
+function Knockback(hero, ability, direction, distance, speed, heightFunction, modifier)
     hero.round.spells:InterruptDashes(hero)
 
     Dash(hero, hero:GetPos() + direction:Normalized() * distance, speed, {
-        modifier = { name = "modifier_knockback_lua", ability = ability, source = ability:GetCaster() },
+        modifier = { name = modifier or "modifier_knockback_lua", ability = ability, source = ability:GetCaster() },
         heightFunction = heightFunction
     })
 end

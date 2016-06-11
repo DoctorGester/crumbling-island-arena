@@ -25,6 +25,7 @@
 		"HeroName_npc_dota_hero_ember_spirit"			"Влюбленный"
 		"HeroName_npc_dota_hero_juggernaut"				"Ножны"
 		"HeroName_npc_dota_hero_lone_druid"				"Маска"
+		"HeroName_npc_dota_hero_pudge"					"Обжорство"
 
 		"Available_on_npc_dota_hero_lone_druid"			"Доступно с 4 июня!"
 		"Available_on_npc_dota_hero_drow_ranger"		"Доступено с 23 апреля!"
@@ -142,6 +143,11 @@
 		"lone_druid_DescW" "Связывание по линии"
 		"lone_druid_DescE" "Призыв медведя"
 		"lone_druid_DescR" "Превращение. Доступно с начала игры"
+
+		"pudge_DescQ" "Притянуть врага"
+		"pudge_DescW" "Атака перед собой"
+		"pudge_DescE" "Рывок + отбрасывание"
+		"pudge_DescR" "Замедление в области"
 
 		"PlayerHeader" "Игроки"
 		"SelectionHeader" "выбор"
@@ -321,6 +327,11 @@
 		"AbilityTooltip_ld_w_sub"						"Сильно замедлить врагов вокруг"
 		"AbilityTooltip_ld_e_sub"						"Получить бонус скорости<br/><br/>Атака в этом состоянии <font color=\"#3A9B00\"><b>Связывает</b></font> врагов"
 
+		"AbilityTooltip_pudge_q"						"Запустить крюк, притягивающий и наносящий урон первому врагу на пути<br/><br/>Оставляет вкусный кусочек мяса"
+		"AbilityTooltip_pudge_w"						"Атаковать врагов перед собой<br/><br/>Оставляет вкусный кусочек мяса"
+		"AbilityTooltip_pudge_e"						"Рвануться к цели, останавливаясь встречая первого врага на пути, отбрасывая его назад"
+		"AbilityTooltip_pudge_r"						"Замедлить всех врагов вокруг себя на 5 секунд"
+
 		"ModifierTooltip_modifier_charges"						"Заряды способности"
 		"ModifierTooltip_modifier_stunned_lua"					"Оглушен"
 		"ModifierTooltip_modifier_knockback_lua"				"Отброшен"
@@ -414,6 +425,9 @@
 		"ModifierTooltip_modifier_ld_r"							"Превратился"
 		"ModifierTooltip_modifier_ld_w_sub"						"Замедлен"
 		"ModifierTooltip_modifier_ld_e_sub"						"Ускорен"
+
+		"ModifierTooltip_modifier_pudge_r"						"Замедлен"
+		"ModifierTooltip_modifier_pudge_r_aura"					"Гниёт"
 	}
 }
 

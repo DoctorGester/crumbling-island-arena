@@ -145,10 +145,10 @@
 		"lone_druid_DescE" "Summon a bear"
 		"lone_druid_DescR" "Transform. Available immediately"
 
-		"pudge_DescQ" "?????"
-		"pudge_DescW" "?????"
-		"pudge_DescE" "?????"
-		"pudge_DescR" "?????"
+		"pudge_DescQ" "Hook an enemy"
+		"pudge_DescW" "Melee attack"
+		"pudge_DescE" "Dash + knockback"
+		"pudge_DescR" "AOE slow"
 
 		"PlayerHeader" "Players"
 		"SelectionHeader" "selection"
@@ -331,6 +331,11 @@
 		"AbilityTooltip_ld_w_sub"						"Greatly slow enemies around you"
 		"AbilityTooltip_ld_e_sub"						"Gain a boost of speed<br/><br/>Attacking in this state <font color=\"#3A9B00\"><b>Roots</b></font> enemies"
 
+		"AbilityTooltip_pudge_q"						"Launch a hook, which damages and pulls first enemy hit to you<br/><br/>Leaves a tasty piece of meat"
+		"AbilityTooltip_pudge_w"						"Attack enemies in front of you<br/><br/>Drops a tasty piece of meat"
+		"AbilityTooltip_pudge_e"						"Dash to the target point, stop after encountering an enemy and knock him back"
+		"AbilityTooltip_pudge_r"						"Slow enemies around you for 5 seconds"
+
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
 		"ModifierTooltip_modifier_knockback_lua"				"Knocked back"
@@ -424,6 +429,9 @@
 		"ModifierTooltip_modifier_ld_r"							"Transformed"
 		"ModifierTooltip_modifier_ld_w_sub"						"Slowed"
 		"ModifierTooltip_modifier_ld_e_sub"						"Sped up"
+
+		"ModifierTooltip_modifier_pudge_r"						"Slowed"
+		"ModifierTooltip_modifier_pudge_r_aura"					"Rotten"
 	}
 }
 

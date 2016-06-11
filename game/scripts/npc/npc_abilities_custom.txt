@@ -2205,8 +2205,21 @@
 		"ScriptFile" "abilities/pudge/pudge_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "pudge_meat_hook"
-		"AbilityCooldown" "4.0"
+		"AbilityCooldown" "7.0"
 		"AbilityCastPoint" "0.15"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "1300"
+			"MaxLength" "1300"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1300"
+		}
 	}
 
 	"pudge_w"
@@ -2215,8 +2228,20 @@
 		"ScriptFile" "abilities/pudge/pudge_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "pudge_dismember"
-		"AbilityCooldown" "5.5"
+		"AbilityCooldown" "3.0"
 		"AbilityCastPoint" "0.15"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "300"
+		}
 	}
 
 	"pudge_e"
@@ -2225,7 +2250,20 @@
 		"ScriptFile" "abilities/pudge/pudge_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "pudge/scavenger_dragon_ability/pudge_flesh_heap"
-		"AbilityCooldown" "2.7"
+		"AbilityCooldown" "8.0"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_THICK_LINE"
+			"MaxLength" "650"
+			"Width" "128"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "650"
+		}
 	}
 
 	"pudge_r"
@@ -2233,9 +2271,14 @@
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/pudge/pudge_r"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "pudge_rot"
 		"AbilityCooldown" "14.0"
-		"AbilityCastPoint" "0.3"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "800"
+		}
 	}
 }
