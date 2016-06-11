@@ -2,6 +2,12 @@ function dec2hex(i) {
    return (i+0x10000).toString(16).substr(-4).toUpperCase();
 }
 
+function DelayAnimation(delay, panel, from, to) {
+    $.Schedule(delay, function() {
+        AnimateScoreTo(panel, from, to);
+    });
+}
+
 function AnimateScoreTo(panel, from, to) {
     panel.text = from.toString();
 
@@ -109,7 +115,7 @@ function RoundStateChanged(data){
             earned.AddClass("TeamEarned");
 
             if (!won) {
-                AnimateScoreTo(score, (shownScore - team.earned), shownScore);
+                DelayAnimation(1.5, score, (shownScore - team.earned), shownScore);
 
                 if (shownScore == goal) {
                     earned.AddClass("TeamEarnedGoingToWin");
@@ -135,6 +141,10 @@ function GameStateChanged(data){
         label.style.visibility = "visible";
         SwitchClass(label, "AnimationMessageInvisible", "AnimationMessageVisible");
         Game.EmitSound("UI.RoundOver")
+
+        $.Schedule(1.5, function() {
+            Game.EmitSound("UI.RoundScores");
+        });
     } else {
         SwitchClass(label, "AnimationMessageVisible", "AnimationMessageInvisible");
     }
