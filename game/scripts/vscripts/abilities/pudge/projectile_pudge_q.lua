@@ -11,12 +11,17 @@ function ProjectilePudgeQ:constructor(round, hero, target, ability)
             if projectile.hitSomething then
                 projectile:RetractHook()
             else
-                ParticleManager:DestroyParticle(self.particle, true)
-                ParticleManager:ReleaseParticleIndex(self.particle)
+                ParticleManager:DestroyParticle(projectile.particle, true)
+                ParticleManager:ReleaseParticleIndex(projectile.particle)
 
+                projectile.hero:RemoveModifier("modifier_pudge_hook_self")
                 projectile.hero:StopSound("Arena.Pudge.CastQ")
                 projectile.hero:EmitSound("Arena.Pudge.EndQ")
                 projectile.hero:EmitSound("Arena.Pudge.MissQ.Voice")
+
+                if projectile.hero:Alive() then
+                    projectile.hero:GetUnit():RemoveGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
+                end
             end
         end,
         disablePrediction = true
@@ -57,7 +62,7 @@ function ProjectilePudgeQ:CollideWith(target)
         end
     else
         self.hero:RemoveModifier("modifier_pudge_hook_self")
-        self.hero:GetUnit():RemoveGesture(ACT_DOTA_OVERRIDE_ABILITY_1);
+        self.hero:GetUnit():RemoveGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
     end
 
     self:Destroy()
@@ -86,8 +91,8 @@ function ProjectilePudgeQ:RetractHook()
     self.hero:RemoveModifier("modifier_pudge_hook_self")
 
     if self.hero:Alive() then
-        self.hero:GetUnit():RemoveGesture(ACT_DOTA_OVERRIDE_ABILITY_1);
-        self.hero:GetUnit():StartGesture(ACT_DOTA_CHANNEL_ABILITY_1);
+        self.hero:GetUnit():RemoveGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
+        self.hero:GetUnit():StartGesture(ACT_DOTA_CHANNEL_ABILITY_1)
     end
 end
 
