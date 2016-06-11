@@ -156,7 +156,7 @@
 		"RandomHero" "случайный выбор"
 		"LockedHeroes" "Недоступны первые 3 раунда"
 		"GameGoal" "Цель: {d:goal}"
-		"PointsToWin" "очков для победы"
+		"PointsToWin" "максимум очков"
 		"SurviveToWin" "Выживи и победишь!"
 
 		"ChatLine" "<b><font color='{s:color}'>{s:name}</font></b>: {s:message}"

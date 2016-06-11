@@ -157,7 +157,7 @@
 		"RandomHero" "random hero"
 		"LockedHeroes" "Not available for the first 3 rounds"
 		"GameGoal" "Goal: {d:goal}"
-		"PointsToWin" "points to win"
+		"PointsToWin" "point limit"
 		"SurviveToWin" "Survive to win!"
 
 		"ChatLine" "<b><font color='{s:color}'>{s:name}</font></b>: {s:message}"
