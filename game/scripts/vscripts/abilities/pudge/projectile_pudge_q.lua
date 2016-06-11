@@ -30,7 +30,11 @@ function ProjectilePudgeQ:constructor(round, hero, target, ability)
 end
 
 function ProjectilePudgeQ:CollideWith(target)
-    target:Damage(self)
+    local ally = target.owner.team == self.hero.owner.team
+
+    if not ally then
+        target:Damage(self)
+    end
 
     if not instanceof(target, Projectile) then
         self.hitSomething = true
@@ -40,7 +44,7 @@ function ProjectilePudgeQ:CollideWith(target)
 
         target:EmitSound("Arena.Pudge.HitQ")
 
-        if instanceof(target, Hero) then
+        if instanceof(target, Hero) and not ally then
             local blood = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_meathook_impact.vpcf", PATTACH_ABSORIGIN_FOLLOW , target:GetUnit())
             ParticleManager:SetParticleControlEnt(blood, 0, target:GetUnit(), PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetPos(), true)
 

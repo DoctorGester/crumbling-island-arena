@@ -7146,7 +7146,7 @@
                               "value2"        "sounds/weapons/hero/pudge/dismember_swing3.vsnd"
                         }
                     }
-                    "volume"            {   "value"     "0.70000"  }
+                    "volume"            {   "value"     "0.50000"  }
                     "pitch_rand_min"    {   "value"     "-0.05000"  }
                     "pitch_rand_max"    {   "value"     "0.050000"  }
                     "pitch"             {   "value"     "1.000000"  }
