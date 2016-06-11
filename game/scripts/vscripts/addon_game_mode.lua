@@ -22,7 +22,7 @@ require('statistics')
 require('chat')
 require('debug_util')
 
-_G.GAME_VERSION = "1.2"
+_G.GAME_VERSION = "1.3"
 
 STATE_NONE = 0
 STATE_GAME_SETUP = 1
