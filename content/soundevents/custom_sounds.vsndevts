@@ -7185,6 +7185,7 @@
                     "soundlevel"        {   "value"     "100.00000" }
                     "distance_max"      {   "value"     "4000.000"  }
                     "event_type"        {   "value"     "1.000000"  }
+                    "limiter_on"        {   "value"     "0.000000"  }
                 }
             }
         }

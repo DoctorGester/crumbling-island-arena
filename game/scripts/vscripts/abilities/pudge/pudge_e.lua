@@ -3,13 +3,13 @@ pudge_e = class({})
 LinkLuaModifier("modifier_pudge_e_animation", "abilities/pudge/modifier_pudge_e_animation", LUA_MODIFIER_MOTION_NONE)
 
 function pudge_e:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 650)
+    Wrappers.DirectionalAbility(self, 1000)
 
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
     local direction = self:GetDirection()
 
-    local dash = Dash(hero, target, 1200, {
+    local dash = Dash(hero, target, 800, {
         modifier = { name = "modifier_pudge_e_animation", ability = self }
     })
 

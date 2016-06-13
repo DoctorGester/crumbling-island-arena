@@ -31,7 +31,7 @@ function pudge_w:OnSpellStart()
 
     local times = 0
     Timers:CreateTimer(0, function()
-        hero:EmitSound("Arena.Pudge.CastW", pos)
+        hero:EmitSound("Arena.Pudge.CastW")
 
         if times == 2 then
             return

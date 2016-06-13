@@ -2255,14 +2255,14 @@
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_THICK_LINE"
-			"MaxLength" "650"
+			"MaxLength" "1000"
 			"Width" "128"
 		}
 
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "650"
+			"Radius" "1000"
 		}
 	}
 
