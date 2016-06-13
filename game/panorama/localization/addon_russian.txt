@@ -429,6 +429,7 @@
 
 		"ModifierTooltip_modifier_pudge_r"						"Замедлен"
 		"ModifierTooltip_modifier_pudge_r_aura"					"Гниёт"
+		"ModifierTooltip_modifier_pudge_meat"					"Съешь больше мяса и восстанови здоровье!"
 	}
 }
 

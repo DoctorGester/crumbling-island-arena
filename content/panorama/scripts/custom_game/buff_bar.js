@@ -1,6 +1,7 @@
 var modifiersWithStacks = [
     "modifier_charges",
-    "modifier_wk_q"
+    "modifier_wk_q",
+    "modifier_pudge_meat"
 ];
 
 function ShowBuffTooltip(element, entityId, buffId) {

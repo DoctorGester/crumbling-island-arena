@@ -1,5 +1,7 @@
 PudgeMeat = PudgeMeat or class({}, nil, UnitEntity)
 
+PudgeMeat.USE_PARTICLE = "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok.vpcf"
+
 function PudgeMeat:constructor(round, owner, target)
     getbase(PudgeMeat).constructor(self, round, DUMMY_UNIT, target, owner.unit:GetTeamNumber())
 
@@ -33,13 +35,31 @@ end
 
 function PudgeMeat:CollideWith(target)
     if target == self.hero then
-        local particle = ParticleManager:CreateParticle("particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok.vpcf", PATTACH_ABSORIGIN_FOLLOW, target:GetUnit())
-        ParticleManager:SetParticleControl(particle, 1, target:GetPos())
-        ParticleManager:ReleaseParticleIndex(particle)
+        local modifier = target:FindModifier("modifier_pudge_meat")
 
-        target:EmitSound("Arena.Pudge.Meat")
+        if not modifier then
+            modifier = target:AddNewModifier(target, nil, "modifier_pudge_meat", {})
+
+            if modifier then
+                modifier:SetStackCount(1)
+            end
+        else
+            if modifier:GetStackCount() >= 2 then
+                 -- Don't really want to step into the modifier:Destroy() territory
+                target:RemoveModifier("modifier_pudge_meat")
+                target:EmitSound("Arena.Pudge.Meat")
+                target:Heal()
+
+                local particle = ParticleManager:CreateParticle(PudgeMeat.USE_PARTICLE, PATTACH_ABSORIGIN_FOLLOW, target:GetUnit())
+                ParticleManager:SetParticleControl(particle, 1, target:GetPos())
+                ParticleManager:ReleaseParticleIndex(particle)
+            else
+                modifier:IncrementStackCount()
+            end
+        end
+        
+        target:EmitSound("Arena.Pudge.MeatEat")
         target:EmitSound("Arena.Pudge.Meat.Voice")
-        target:Heal()
         self:Destroy()
     end
 end

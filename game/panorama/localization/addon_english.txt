@@ -433,6 +433,7 @@
 
 		"ModifierTooltip_modifier_pudge_r"						"Slowed"
 		"ModifierTooltip_modifier_pudge_r_aura"					"Rotten"
+		"ModifierTooltip_modifier_pudge_meat"					"Eat more meat to restore health"
 	}
 }
 
