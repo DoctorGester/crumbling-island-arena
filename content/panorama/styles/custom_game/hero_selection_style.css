@@ -117,6 +117,16 @@
     margin-top: 100px;
 }
 
+.AspectRatio5x4 #RightSide
+{
+    width: 30%;
+}
+
+.AspectRatio4x3 #RightSide
+{
+    width: 30%;
+}
+
 #PlayersContent
 {
     margin-top: 30px;
@@ -132,31 +142,37 @@
     margin-bottom: 4px;
 }
 
+.TeamScoreContainer
+{
+    width: 120px;
+    height: 100%;
+    margin: 4px;
+}
+
 .TeamScore
 {
-    vertical-align: center;
-    font-size: 38px;
+    align: center center;
+    
     font-weight: bold;
     font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
-    margin: 4px;
-    margin-left: 40px;
     color: white;
 }
 
 .TeamScoreNormal
-{
+{   
+    font-size: 38px;
     text-shadow: skyblue 0px 0px 4px 4px;
 }
 
 .TeamScoreSurvive
 {
-    text-shadow: red 0px 0px 8px 8px;
-}
+    text-shadow: red 0px 0px 4px 4px;
+    font-size: 22px;
 
-.TeamSurvive
-{
-    width: 80px;
-    height: 100%;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-name: PointsAnimation;
 }
 
 .TeamSurvive Label

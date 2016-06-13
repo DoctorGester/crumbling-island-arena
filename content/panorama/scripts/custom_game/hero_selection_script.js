@@ -324,21 +324,20 @@ function PlayersUpdated(data){
         var panel = $.CreatePanel("Panel", playersPanel, "");
         panel.AddClass("TeamPanel");
 
-        var displayScore = Math.min(score, data.goal)
+        var displayScore = Math.min(score, data.goal);
 
-        var scorePanel = $.CreatePanel("Label", panel, "");
+        var scoreContainer = $.CreatePanel("Panel", panel, "");
+        scoreContainer.AddClass("TeamScoreContainer");
+
+        var scorePanel = $.CreatePanel("Label", scoreContainer, "");
         scorePanel.AddClass("TeamScore");
-        scorePanel.text = displayScore.toString();
 
         if (displayScore == data.goal) {
             scorePanel.AddClass("TeamScoreSurvive");
 
-            var survivePanel = $.CreatePanel("Panel", panel, "");
-            survivePanel.AddClass("TeamSurvive");
-
-            var surviveLabel = $.CreatePanel("Label", survivePanel, "");
-            surviveLabel.text = $.Localize("#Survive");
+            scorePanel.text = $.Localize("#Survive");
         } else {
+            scorePanel.text = displayScore.toString();
             scorePanel.AddClass("TeamScoreNormal");
         }
 
@@ -370,7 +369,7 @@ function PlayersUpdated(data){
 
 function HeroSelectionUpdated(data){
     selectedHeroes = data || {};
-
+    
     for (var key in data){
         var hero = data[key];
         var selectionImage = $("#SelectionImage" + key);
