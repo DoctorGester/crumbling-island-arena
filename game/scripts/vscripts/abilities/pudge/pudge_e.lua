@@ -10,7 +10,8 @@ function pudge_e:OnSpellStart()
     local direction = self:GetDirection()
 
     local dash = Dash(hero, target, 800, {
-        modifier = { name = "modifier_pudge_e_animation", ability = self }
+        modifier = { name = "modifier_pudge_e_animation", ability = self },
+        forceFacing = true
     })
 
     dash.hitParams = {

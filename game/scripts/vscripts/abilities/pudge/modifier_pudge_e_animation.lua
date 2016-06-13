@@ -7,6 +7,14 @@ function modifier_pudge_e_animation:EmitDust()
     self:AddParticle(index, false, false, 1, false, false)
 end
 
+function modifier_pudge_e_animation:CheckState()
+    local state = {
+        [MODIFIER_STATE_STUNNED] = true
+    }
+
+    return state
+end
+
 function modifier_pudge_e_animation:OnCreated(kv)
     if IsServer() then
         self:EmitDust()
