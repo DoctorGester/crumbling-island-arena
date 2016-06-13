@@ -2205,7 +2205,7 @@
 		"ScriptFile" "abilities/pudge/pudge_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "pudge_meat_hook"
-		"AbilityCooldown" "8.0"
+		"AbilityCooldown" "7.0"
 		"AbilityCastPoint" "0.15"
 
 		"TargetingIndicator"
@@ -2228,7 +2228,7 @@
 		"ScriptFile" "abilities/pudge/pudge_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "pudge_dismember"
-		"AbilityCooldown" "4.0"
+		"AbilityCooldown" "3.5"
 		"AbilityCastPoint" "0.15"
 
 		"HoverIndicator"
