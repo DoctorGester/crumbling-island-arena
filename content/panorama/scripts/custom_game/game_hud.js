@@ -64,7 +64,6 @@ function OnKillLogEntry(args) {
     }
 
     var img = $.CreatePanel("DOTAHeroImage", entry, "");
-
     img.heroimagestyle = "icon";
     img.heroname = args.killer;
     img.SetScaling("stretch-to-fit-y-preserve-aspect");
@@ -79,13 +78,11 @@ function OnKillLogEntry(args) {
 
     img.SetScaling("stretch-to-fit-y-preserve-aspect");
 
-    if (!args.fell) {
-        img = $.CreatePanel("DOTAHeroImage", entry, "");
-
-        img.heroimagestyle = "icon";
-        img.heroname = args.victim;
-        img.SetScaling("stretch-to-fit-y-preserve-aspect");
-    }
+    img = $.CreatePanel("DOTAHeroImage", entry, "");
+    
+    img.heroimagestyle = "icon";
+    img.heroname = args.victim;
+    img.SetScaling("stretch-to-fit-y-preserve-aspect");
 }
 
 function SetupUI(){

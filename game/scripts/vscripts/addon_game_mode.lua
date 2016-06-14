@@ -565,9 +565,15 @@ function GameMode:OnEntityKilled(event)
 
         if entity:GetAbsOrigin().z <= -MAP_HEIGHT then
             local name = entity:GetName()
+            local lastKnockbackCaster = entity.hero.lastKnockbackCaster
+            local killerName = name
+
+            if lastKnockbackCaster then
+                killerName = lastKnockbackCaster:GetName()
+            end
 
             CustomGameEventManager:Send_ServerToAllClients("kill_log_entry", {
-                killer = name,
+                killer = killerName,
                 victim = name,
                 color = self.TeamColors[entity.hero.owner.team],
                 fell = true

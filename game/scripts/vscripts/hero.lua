@@ -132,6 +132,16 @@ function Hero:CanFall()
     return not airborne
 end
 
+function Hero:MakeFall()
+    getbase(Hero).MakeFall(self)
+
+    local modifier = self:FindModifier("modifier_knockback_lua")
+
+    if modifier then
+        self.lastKnockbackCaster = modifier:GetCaster().hero
+    end
+end
+
 function Hero:Update()
     getbase(Hero).Update(self)
 
