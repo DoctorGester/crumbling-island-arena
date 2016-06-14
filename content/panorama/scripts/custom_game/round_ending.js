@@ -44,7 +44,7 @@ function RoundStateChanged(data){
                     ids: p1.ids.concat(p2.ids),
                     names: p1.names.concat(p2.names),
                     heroes: p1.heroes.concat(p2.heroes),
-                    earned: p1.earned + p2.earned,
+                    earned: (p1.earned || 0) + (p2.earned || 0),
                     score: p1.score + p2.score,
                     winner: p2.winner
                 };

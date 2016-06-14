@@ -461,6 +461,7 @@ function GameMode:CheckEveryoneAbandoned()
 end
 
 function GameMode:OnRoundEnd(round)
+    local playersInTeam = self.gameSetup:GetPlayersInTeam()
     local winner = round.winner
     local roundData = {}
 
@@ -480,8 +481,24 @@ function GameMode:OnRoundEnd(round)
             self.currentScoreAddition = self.currentScoreAddition + 1
         end
 
-        if player:IsConnected() and player.team == winner then
+        if player:IsConnected() and player.hero and player.team == winner then
             self.scoreEarned[player] = (self.scoreEarned[player] or 0) + 1
+        end
+    end
+
+    local connectedCounts = {}
+
+    for _, player in pairs(self.Players) do
+        if player:IsConnected() then
+            connectedCounts[player.team] = (connectedCounts[player.team] or 0) + 1
+        end
+    end
+
+    for team, count in pairs(connectedCounts) do
+        for _, player in pairs(self.Players) do
+            if player.team == team and player:IsConnected() and player.hero then
+                self.scoreEarned[player] = math.ceil(self.scoreEarned[player] * (playersInTeam / count))
+            end
         end
     end
 

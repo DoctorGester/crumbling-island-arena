@@ -23,5 +23,6 @@ function Player:SetTeam(i)
 end
 
 function Player:IsConnected()
-    return PlayerResource:GetConnectionState(self.id) == DOTA_CONNECTION_STATE_CONNECTED or IsInToolsMode()
+    local state = PlayerResource:GetConnectionState(self.id)
+    return state == DOTA_CONNECTION_STATE_CONNECTED or (IsInToolsMode() and state == DOTA_CONNECTION_STATE_NOT_YET_CONNECTED)
 end
