@@ -80,6 +80,8 @@ Label
 .TeamHeroes DOTAHeroImage
 {
     margin: 6px;
+    width: 32px;
+    height: 32px;
 }
 
 .TeamScore

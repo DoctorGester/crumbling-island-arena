@@ -490,20 +490,18 @@ function GameMode:OnRoundEnd(round)
     end
 
     for _, player in pairs(self.Players) do
-        if player.hero then
-            local playerData = {}
-            playerData.id = player.id
-            playerData.team = player.team
-            playerData.color = self.TeamColors[player.team]
-            playerData.earned = self.scoreEarned[player]
-            playerData.score = player.score
-            playerData.hero = player.selectedHero
-            playerData.winner = player.team == winner
+        local playerData = {}
+        playerData.id = player.id
+        playerData.team = player.team
+        playerData.color = self.TeamColors[player.team]
+        playerData.earned = self.scoreEarned[player]
+        playerData.score = player.score
+        playerData.hero = player.selectedHero
+        playerData.winner = player.team == winner
 
-            table.insert(roundData, playerData)
-        end
+        table.insert(roundData, playerData)
 
-        if playerData and playerData.winner then
+        if playerData.winner then
             round.statistics:IncreaseRoundsWon(player)
         end
     end
