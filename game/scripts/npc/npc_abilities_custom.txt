@@ -2281,4 +2281,43 @@
 			"Radius" "800"
 		}
 	}
+
+	"ursa_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ursa/ursa_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "ursa_overpower"
+		"AbilityCooldown" "7.0"
+		"AbilityCastPoint" "0.15"
+	}
+
+	"ursa_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ursa/ursa_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "ursa_earthshock"
+		"AbilityCooldown" "3.5"
+		"AbilityCastPoint" "0.15"
+	}
+
+	"ursa_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ursa/ursa_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "ursa_fury_swipes"
+		"AbilityCooldown" "9.0"
+	}
+
+	"ursa_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ursa/ursa_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "ursa_enrage"
+		"AbilityCooldown" "14.0"
+	}
 }

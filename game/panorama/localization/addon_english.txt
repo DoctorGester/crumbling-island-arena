@@ -26,6 +26,7 @@
 		"HeroName_npc_dota_hero_juggernaut"				"Scabbard"
 		"HeroName_npc_dota_hero_lone_druid"				"The Mask"
 		"HeroName_npc_dota_hero_pudge"					"Gluttony"
+		"HeroName_npc_dota_hero_ursa"					"Wrath"
 
 		"Available_on_npc_dota_hero_drow_ranger"		"Available on April 23!"
 		"Available_on_npc_dota_hero_skeleton_king"		"Available on April 30!"
@@ -34,6 +35,7 @@
 		"Available_on_npc_dota_hero_ember_spirit"		"Available on May 21!"
 		"Available_on_npc_dota_hero_lone_druid"			"Available on June 4!"
 		"Available_on_npc_dota_hero_pudge"				"Available on June 11!"
+		"Available_on_npc_dota_hero_ursa"				"Available on June 18!"
 
 		"phantom_assassin_DescQ" "Short ranged boomerang"
 		"phantom_assassin_DescW" "Melee AOE attack"
@@ -149,6 +151,11 @@
 		"pudge_DescW" "Melee attack"
 		"pudge_DescE" "Dash + knockback"
 		"pudge_DescR" "AOE slow"
+
+		"ursa_DescQ" "?????"
+		"ursa_DescW" "?????"
+		"ursa_DescE" "?????"
+		"ursa_DescR" "?????"
 
 		"PlayerHeader" "Players"
 		"SelectionHeader" "selection"

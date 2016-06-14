@@ -26,6 +26,7 @@
 		"HeroName_npc_dota_hero_juggernaut"				"Ножны"
 		"HeroName_npc_dota_hero_lone_druid"				"Маска"
 		"HeroName_npc_dota_hero_pudge"					"Обжорство"
+		"HeroName_npc_dota_hero_ursa"					"Гнев"
 
 		"Available_on_npc_dota_hero_lone_druid"			"Доступно с 4 июня!"
 		"Available_on_npc_dota_hero_drow_ranger"		"Доступено с 23 апреля!"
@@ -33,6 +34,9 @@
 		"Available_on_npc_dota_hero_ogre_magi"			"Доступно с 7 мая!"
 		"Available_on_npc_dota_hero_earthshaker"		"Доступно с 14 мая!"
 		"Available_on_npc_dota_hero_ember_spirit"		"Доступно с 21 мая!"
+		"Available_on_npc_dota_hero_lone_druid"			"Доступно с 4 июня!"
+		"Available_on_npc_dota_hero_pudge"				"Доступно с 11 июня!"
+		"Available_on_npc_dota_hero_ursa"				"Доступно с 18 июня!"
 
 		"phantom_assassin_DescQ" "Бумеранг"
 		"phantom_assassin_DescW" "Атака вокруг себя"

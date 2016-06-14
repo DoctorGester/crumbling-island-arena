@@ -306,8 +306,8 @@ function HeroesUpdated(data){
     var easy = FilterDifficulty(heroes, data, "easy");
     var hard = FilterDifficulty(heroes, data, "hard");
 
-    CreateHeroList($("#EasyHeroes"), easy, [ 5, 6, 4 ] , 3);
-    CreateHeroList($("#HardHeroes"), hard, [ 4, 4 ]);
+    CreateHeroList($("#EasyHeroes"), easy, [ 3, 4, 5, 5 ] , 4);
+    CreateHeroList($("#HardHeroes"), hard, [ 5, 3 ]);
 }
 
 function PlayersUpdated(data){
