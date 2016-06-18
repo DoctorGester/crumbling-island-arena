@@ -153,6 +153,11 @@
 		"pudge_DescE" "Рывок + отбрасывание"
 		"pudge_DescR" "Замедление в области"
 
+		"ursa_DescQ" "Атака перед собой"
+		"ursa_DescW" "Оглушение в области"
+		"ursa_DescE" "Быстрые атаки, лечение при ударе, ускорение"
+		"ursa_DescR" "Неуязвимость"
+
 		"PlayerHeader" "Игроки"
 		"SelectionHeader" "выбор"
 		"ScoreHeader" "счет"
@@ -163,6 +168,7 @@
 		"PointsToWin" "максимум очков"
 		"SurviveToWin" "Выживи и победишь!"
 		"Survive" "Выживи!"
+		"Round" "Раунд"
 
 		"ChatLine" "<b><font color='{s:color}'>{s:name}</font></b>: {s:message}"
 		"ChatRandomed" "<b><font color='{s:color}'>{s:name}</font></b> случайно выбрал <font color='gold'>{s:hero}</font>"
@@ -337,6 +343,11 @@
 		"AbilityTooltip_pudge_e"						"Рвануться к цели, останавливаясь встречая первого врага на пути, отбрасывая его назад"
 		"AbilityTooltip_pudge_r"						"Замедлить всех врагов вокруг себя на 5 секунд"
 
+		"AbilityTooltip_ursa_q"							"Атаковать врагов перед собой"
+		"AbilityTooltip_ursa_w"							"Оглушить врагов вокруг себя"
+		"AbilityTooltip_ursa_e"							"Получить бонус скорости<br/>Атаки перезаряжаются быстрее<br/>Атаки восстанавливают здоровье"
+		"AbilityTooltip_ursa_r"							"Стать неуязвимым к урону и магии"
+
 		"ModifierTooltip_modifier_charges"						"Заряды способности"
 		"ModifierTooltip_modifier_stunned_lua"					"Оглушен"
 		"ModifierTooltip_modifier_knockback_lua"				"Отброшен"
@@ -434,6 +445,9 @@
 		"ModifierTooltip_modifier_pudge_r"						"Замедлен"
 		"ModifierTooltip_modifier_pudge_r_aura"					"Гниёт"
 		"ModifierTooltip_modifier_pudge_meat"					"Съешь больше мяса и восстанови здоровье!"
+
+		"ModifierTooltip_modifier_ursa_e"						"Форсаж"
+		"ModifierTooltip_modifier_ursa_r"						"Неуязвим"
 	}
 }
 

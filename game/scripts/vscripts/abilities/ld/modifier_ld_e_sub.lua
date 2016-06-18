@@ -10,10 +10,6 @@ function modifier_ld_e_sub:DeclareFunctions()
     return funcs
 end
 
-function modifier_ld_e_sub:IsDebuff()
-    return true
-end
-
 function modifier_ld_e_sub:GetModifierMoveSpeedBonus_Percentage(params)
     return 50
 end

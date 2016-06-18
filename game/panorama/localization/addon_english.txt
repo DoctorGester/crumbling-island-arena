@@ -152,10 +152,10 @@
 		"pudge_DescE" "Dash + knockback"
 		"pudge_DescR" "AOE slow"
 
-		"ursa_DescQ" "?????"
-		"ursa_DescW" "?????"
-		"ursa_DescE" "?????"
-		"ursa_DescR" "?????"
+		"ursa_DescQ" "Melee attack"
+		"ursa_DescW" "AOE stun"
+		"ursa_DescE" "Faster attacks, heal on hit, speed boost"
+		"ursa_DescR" "Invulnerability"
 
 		"PlayerHeader" "Players"
 		"SelectionHeader" "selection"
@@ -167,6 +167,7 @@
 		"PointsToWin" "point limit"
 		"SurviveToWin" "Survive to win!"
 		"Survive" "Survive!"
+		"Round" "Round"
 
 		"ChatLine" "<b><font color='{s:color}'>{s:name}</font></b>: {s:message}"
 		"ChatRandomed" "<b><font color='{s:color}'>{s:name}</font></b> has randomed <font color='gold'>{s:hero}</font>"
@@ -344,6 +345,11 @@
 		"AbilityTooltip_pudge_e"						"Dash to the target point, stop after encountering an enemy and knock him back"
 		"AbilityTooltip_pudge_r"						"Slow enemies around you for 5 seconds"
 
+		"AbilityTooltip_ursa_q"							"Attack enemies in front of you"
+		"AbilityTooltip_ursa_w"							"Stun enemies around you"
+		"AbilityTooltip_ursa_e"							"Gain a speed boost<br/>Attacks have lower cooldown<br/>Heal on hit"
+		"AbilityTooltip_ursa_r"							"Become invulnerable to all damage and magic"
+
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
 		"ModifierTooltip_modifier_knockback_lua"				"Knocked back"
@@ -441,6 +447,9 @@
 		"ModifierTooltip_modifier_pudge_r"						"Slowed"
 		"ModifierTooltip_modifier_pudge_r_aura"					"Rotten"
 		"ModifierTooltip_modifier_pudge_meat"					"Eat more meat to restore health"
+
+		"ModifierTooltip_modifier_ursa_e"						"Fast and furious"
+		"ModifierTooltip_modifier_ursa_r"						"Invulnerable"
 	}
 }
 

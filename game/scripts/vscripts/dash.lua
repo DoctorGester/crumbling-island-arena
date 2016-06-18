@@ -43,6 +43,10 @@ function Dash:constructor(hero, to, speed, params)
     if self.modifier then
         self.modifierHandle
             = self.hero:AddNewModifier(self.modifier.source or self.hero, self.modifier.ability, self.modifier.name, {})
+
+        if self.modifierHandle == nil then
+            self.cantStart = true
+        end
     end
 
     hero.round.spells:AddDash(self)
@@ -93,7 +97,7 @@ function Dash:Update()
         end
     end
 
-    local interrupted = not self.hero:Alive() or self:IsStunned()
+    local interrupted = not self.hero:Alive() or self:IsStunned() or self.hero:FindModifier(self.modifier.name) ~= self.modifierHandle or self.cantStart
     if self:HasEnded() or interrupted then
         self:End(self.hero:GetPos(), not interrupted)
     end

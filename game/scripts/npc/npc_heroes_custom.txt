@@ -878,6 +878,7 @@
 	"npc_dota_hero_ursa"
 	{
 		"override_hero"	"npc_dota_hero_ursa"
+		"Class" "heroes/ursa:Ursa"
 		"ArmorPhysical"	"0"
 		"MagicalResistance"	"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
@@ -899,12 +900,12 @@
 		"VoiceFile"	""
 		"Difficulty" "easy"
 		"Order" "23"
-		"Disabled" "true"
 
 		"Ability1" "ursa_q"
 		"Ability2" "ursa_w"
 		"Ability3" "ursa_e"
 		"Ability4" "ursa_r"
+		"Ability6" ""
 
 		"Ultimate" "ursa_r"
 	}

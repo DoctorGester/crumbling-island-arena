@@ -1807,7 +1807,7 @@
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/shaker/shaker_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName" "ursa_earthshock"
+		"AbilityTextureName" "earthshaker_aftershock"
 		"AbilityCooldown" "5.5"
 		"AbilityCastPoint" "0.35"
 
@@ -2288,27 +2288,45 @@
 		"ScriptFile" "abilities/ursa/ursa_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "ursa_overpower"
-		"AbilityCooldown" "7.0"
+		"AbilityCooldown" "4.0"
 		"AbilityCastPoint" "0.15"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "250"
+		}
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "250"
+		}
 	}
 
 	"ursa_w"
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/ursa/ursa_w"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName" "ursa_earthshock"
-		"AbilityCooldown" "3.5"
+		"AbilityCooldown" "7.0"
 		"AbilityCastPoint" "0.15"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
 	}
 
 	"ursa_e"
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/ursa/ursa_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "ursa_fury_swipes"
-		"AbilityCooldown" "9.0"
+		"AbilityCooldown" "6.0"
 	}
 
 	"ursa_r"
