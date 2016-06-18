@@ -97,7 +97,8 @@ function Dash:Update()
         end
     end
 
-    local interrupted = not self.hero:Alive() or self:IsStunned() or self.hero:FindModifier(self.modifier.name) ~= self.modifierHandle or self.cantStart
+    local modifierRemoved = self.modifier and self.hero:FindModifier(self.modifier.name) ~= self.modifierHandle or self.cantStart
+    local interrupted = not self.hero:Alive() or self:IsStunned() or modifierRemoved or self.cantStart
     if self:HasEnded() or interrupted then
         self:End(self.hero:GetPos(), not interrupted)
     end
