@@ -53,7 +53,7 @@
                 <Panel id="GameChatContent" class="Hidden" hittest="false"/>
                 <Panel id="GameChatEntryContainer"/>
             </Panel>
-            <Label id="RoundMessageTop" class="RoundMessage" text="ROUND" hittest="false"/>
+            <Label id="RoundMessageTop" class="RoundMessage" text="#Round" hittest="false"/>
             <Label id="RoundMessageBottom" class="RoundMessage" hittest="false"/>
         </Panel>
     </Panel>
