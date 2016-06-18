@@ -3,7 +3,7 @@ modifier_pudge_r_aura = class({})
 function modifier_pudge_r_aura:OnCreated(kv)
     if IsServer() then
         local parent = self:GetParent()
-        local index = ParticleManager:CreateParticle("particles/units/heroes/hero_pudge/pudge_rot.vpcf", PATTACH_ABSORIGIN_FOLLOW, parent)
+        local index = ParticleManager:CreateParticle("particles/pudge_r/pudge_r.vpcf", PATTACH_ABSORIGIN_FOLLOW, parent)
         ParticleManager:SetParticleControl(index, 1, Vector(800, 0, 0))
         self:AddParticle(index, false, false, 1, false, false)
 

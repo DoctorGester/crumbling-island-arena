@@ -84,15 +84,17 @@ function shaker_q:OnSpellStart()
                 hero:EmitSound("Arena.Shaker.HitQ")
             end
 
+            if tick % 4 == 0 then
+                local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_eruption_dust.vpcf", PATTACH_WORLDORIGIN, hero:GetUnit())
+                ParticleManager:SetParticleControl(particle, 0, start + direction * currentLen)
+            end
+
             tick = tick + 1
 
             if not working then
                 finish()
                 return
             end
-
-            local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_eruption_dust.vpcf", PATTACH_WORLDORIGIN, hero:GetUnit())
-            ParticleManager:SetParticleControl(particle, 0, start + direction * currentLen)
 
             local groupFilter = Filters.WrapFilter(
                 function(target)
