@@ -18,5 +18,5 @@ function Ursa:AddNewModifier(source, ability, modifier, params)
         return
     end
 
-    Hero.AddNewModifier(self, source, ability, modifier, params)
+    return Hero.AddNewModifier(self, source, ability, modifier, params)
 end
