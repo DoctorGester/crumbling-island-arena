@@ -2294,13 +2294,13 @@
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "250"
+			"Radius" "300"
 		}
 
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
-			"Radius" "250"
+			"Radius" "300"
 		}
 	}
 

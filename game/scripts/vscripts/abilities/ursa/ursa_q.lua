@@ -1,7 +1,7 @@
 ursa_q = class({})
 
 function ursa_q:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 250)
+    Wrappers.DirectionalAbility(self, 300)
 
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
@@ -9,7 +9,7 @@ function ursa_q:OnSpellStart()
     local overpower = hero:HasModifier("modifier_ursa_e")
 
     local hit = hero:AreaEffect({
-        filter = Filters.Cone(hero:GetPos(), 250, direction, math.pi),
+        filter = Filters.Cone(hero:GetPos(), 300, direction, math.pi),
         sound = "Arena.Ursa.HitQ",
         damage = true
     })
