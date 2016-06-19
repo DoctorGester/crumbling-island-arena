@@ -15,7 +15,7 @@ function shaker_r:OnSpellStart()
     local target = self:GetCursorPosition()
     local start = hero:GetPos()
     local len = 1200
-    local speed = 40
+    local speed = 60
     local currentLen = 0
 
     -- TODO add totem effect
@@ -61,7 +61,7 @@ function shaker_r:OnSpellStart()
                         if part.health <= 50 then
                             GameRules.GameMode.level:LaunchPart(part)
                         else 
-                            offsets[part] = 15 + currentLen / len * 15
+                            offsets[part] = 7 + currentLen / len * RandomFloat(7, 25)
 
                             part.offsetZ = part.offsetZ + offsets[part]
                             GameRules.GameMode.level:UpdatePartPosition(part)
