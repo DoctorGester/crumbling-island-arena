@@ -56,13 +56,13 @@ function RoundStateChanged(data){
                 score: 0
             });
 
-            var data = [];
+            var teamData = [];
 
             for (var index in player.names) {
-                data.push({ hero: player.heroes[index], name: player.names[index], id: player.ids[index] });
+                teamData.push({ hero: player.heroes[index], name: player.names[index], id: player.ids[index] });
             }
 
-            teamsGrouped.push({ color: LuaColor(player.color), score: player.score, earned: player.earned, winner: player.winner, id: key, players: data });
+            teamsGrouped.push({ color: LuaColor(player.color), score: player.score, earned: player.earned, winner: player.winner, id: key, players: teamData });
         }
 
         teamsGrouped = _(teamsGrouped).sortBy(function(t) { return -t.earned * (t.winner + 1) });
@@ -130,6 +130,54 @@ function RoundStateChanged(data){
                 earned.AddClass("TeamEarnedWon");
                 earned.text = "Win!";
             }
+        }
+
+        if (data.firstBlood) {
+            var fbPanel = $.CreatePanel("Panel", parent, "");
+            fbPanel.AddClass("Award");
+
+            $.CreatePanel("Panel", fbPanel, "").AddClass("FirstBloodIcon");
+
+            var fbText = $.CreatePanel("Label", fbPanel, "");
+            fbText.html = true;
+            fbText.AddClass("AwardText");
+
+            fbText.SetDialogVariable("name", Players.GetPlayerName(data.firstBlood.id));
+            fbText.SetDialogVariable("color", LuaColor(data.firstBlood.color));
+            fbText.text = $.Localize("FirstBlood", fbText);
+
+            var fbHero = $.CreatePanel("DOTAHeroImage", fbPanel, "");
+            fbHero.heroname = data.firstBlood.hero;
+            fbHero.heroimagestyle = "icon";
+            fbHero.AddClass("AwardHero");
+
+            var fbScore = $.CreatePanel("Label", fbPanel, "");
+            fbScore.AddClass("TeamEarned");
+            fbScore.text = "+1";
+        }
+
+        if (data.mvp) {
+            var fbPanel = $.CreatePanel("Panel", parent, "");
+            fbPanel.AddClass("Award");
+
+            $.CreatePanel("Panel", fbPanel, "").AddClass("MvpIcon");
+
+            var fbText = $.CreatePanel("Label", fbPanel, "");
+            fbText.html = true;
+            fbText.AddClass("AwardText");
+
+            fbText.SetDialogVariable("name", Players.GetPlayerName(data.firstBlood.id));
+            fbText.SetDialogVariable("color", LuaColor(data.firstBlood.color));
+            fbText.text = $.Localize("MVP", fbText);
+
+            var fbHero = $.CreatePanel("DOTAHeroImage", fbPanel, "");
+            fbHero.heroname = data.firstBlood.hero;
+            fbHero.heroimagestyle = "icon";
+            fbHero.AddClass("AwardHero");
+
+            var fbScore = $.CreatePanel("Label", fbPanel, "");
+            fbScore.AddClass("TeamEarned");
+            fbScore.text = "+1";
         }
     }
 }

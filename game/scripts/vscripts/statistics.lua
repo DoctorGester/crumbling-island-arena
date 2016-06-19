@@ -36,6 +36,18 @@ function Statistics:IncreaseProjectilesFired(player)
 	self:IncreaseValue(player, "projectilesFired", 1)
 end
 
+function Statistics:IncreaseFBs(player)
+	self:IncreaseValue(player, "firstBloods", 1)
+end
+
+function Statistics:IncreaseMVPs(player)
+	self:IncreaseValue(player, "mvps", 1)
+end
+
+function Statistics:IncreaseKills(player)
+	self:IncreaseValue(player, "kills", 1)
+end
+
 function Statistics:AddPlayedHero(player, heroName)
 	if not player then
 		return

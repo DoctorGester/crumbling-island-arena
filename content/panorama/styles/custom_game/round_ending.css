@@ -126,6 +126,48 @@ Label
     animation-name: PointsAnimation;
 }
 
+.Award
+{
+    margin-top: 10px;
+    horizontal-align: right;
+    flow-children: right;
+}
+
+.FirstBloodIcon
+{
+    background-image: url('file://{images}/custom_game/drop.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
+    vertical-align: center;
+    margin-right: 5px;
+}
+
+.MvpIcon
+{
+    background-image: url('file://{images}/custom_game/round-star.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
+    vertical-align: center;
+    margin-right: 5px;
+}
+
+.AwardHero
+{
+    vertical-align: center;
+    margin-left: 10px;
+}
+
+.AwardText
+{
+    font-size: 32px;
+    text-shadow: 0px 1px 2px 2.0 #000000;
+    vertical-align: center;
+}
+
 .TeamName
 {
     width: 300px;
@@ -138,7 +180,7 @@ Label
     color: white;
     font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
     font-size: 36px;
-    text-shadow: -1px 1px 2px 2.0 #000000;
+    text-shadow: 0px 1px 2px 2.0 #000000;
     white-space: nowrap;
     align: right center;
 }

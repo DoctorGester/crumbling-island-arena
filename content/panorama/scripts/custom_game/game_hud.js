@@ -79,7 +79,6 @@ function OnKillLogEntry(args) {
     img.SetScaling("stretch-to-fit-y-preserve-aspect");
 
     img = $.CreatePanel("DOTAHeroImage", entry, "");
-    
     img.heroimagestyle = "icon";
     img.heroname = args.victim;
     img.SetScaling("stretch-to-fit-y-preserve-aspect");

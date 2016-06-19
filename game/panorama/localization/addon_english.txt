@@ -168,6 +168,8 @@
 		"SurviveToWin" "Survive to win!"
 		"Survive" "Survive!"
 		"Round" "Round"
+		"FirstBlood" "<b><font color='red'>First blood</font></b> by <b><font color='{s:color}'>{s:name}</font></b>"
+		"MVP" "<b><font color='gold'>MVP</font></b> is <b><font color='{s:color}'>{s:name}</font></b>"
 
 		"ChatLine" "<b><font color='{s:color}'>{s:name}</font></b>: {s:message}"
 		"ChatRandomed" "<b><font color='{s:color}'>{s:name}</font></b> has randomed <font color='gold'>{s:hero}</font>"

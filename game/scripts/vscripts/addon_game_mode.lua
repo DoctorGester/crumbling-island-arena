@@ -395,6 +395,24 @@ function GameMode:GetTeamScore(team)
     return score
 end
 
+function GameMode:RecordKill(victim, source, fell)
+    if victim ~= source then
+        self.round.statistics:IncreaseKills(source.owner)
+
+        if not self.firstBloodBy then
+            self.firstBloodBy = source
+            self.round.statistics:IncreaseFBs(source.owner)
+        end
+    end
+
+     CustomGameEventManager:Send_ServerToAllClients("kill_log_entry", {
+        killer = source.owner.hero:GetName(),
+        victim = victim:GetName(),
+        color = self.TeamColors[source.owner.team],
+        fell = fell
+    })
+end
+
 function GameMode:OnDamageDealt(hero, source)
     if hero ~= source and source and source.owner and hero.owner and source.owner.team ~= hero.owner.team then
         if self.round then
@@ -403,12 +421,7 @@ function GameMode:OnDamageDealt(hero, source)
     end
 
     if not hero:Alive() and hero.owner then
-         CustomGameEventManager:Send_ServerToAllClients("kill_log_entry", {
-            killer = source.owner.hero.unit:GetName(),
-            victim = hero.unit:GetName(),
-            color = self.TeamColors[source.owner.team],
-            fell = false
-        })
+        self:RecordKill(hero, source, false)
     end
 end
 
@@ -464,6 +477,8 @@ function GameMode:OnRoundEnd(round)
     local playersInTeam = self.gameSetup:GetPlayersInTeam()
     local winner = round.winner
     local roundData = {}
+    local firstBloodData = nil
+    local mvpData = nil
 
     for _, player in pairs(self.Players) do
         if player.team == winner then
@@ -471,8 +486,6 @@ function GameMode:OnRoundEnd(round)
                 self.winner = player.team
             end
         end
-
-        round.statistics:IncreaseRoundsWon(player)
     end
 
     for _, player in pairs(self.Players) do
@@ -487,9 +500,11 @@ function GameMode:OnRoundEnd(round)
     end
 
     local connectedCounts = {}
+    local totalConnected = 0
 
     for _, player in pairs(self.Players) do
-        if player:IsConnected() then
+        if player:IsConnected() and player.hero then
+            totalConnected = totalConnected + 1
             connectedCounts[player.team] = (connectedCounts[player.team] or 0) + 1
         end
     end
@@ -499,6 +514,45 @@ function GameMode:OnRoundEnd(round)
             if player.team == team and player:IsConnected() and player.hero then
                 self.scoreEarned[player] = math.ceil(self.scoreEarned[player] * (playersInTeam / count))
             end
+        end
+    end
+
+    if totalConnected > 3 then
+        if self.firstBloodBy then
+            local firstBloodPlayer = self.firstBloodBy.owner
+
+            firstBloodData = {}
+            firstBloodData.id = firstBloodPlayer.id
+            firstBloodData.color = self.TeamColors[firstBloodPlayer.team]
+            firstBloodData.hero = firstBloodPlayer.selectedHero
+
+            self.scoreEarned[firstBloodPlayer] = (self.scoreEarned[firstBloodPlayer] or 0) + 1
+        end
+
+        local mvp = nil
+        local maxScore = -math.huge
+
+        for _, player in pairs(self.Players) do
+            if player.hero then
+                local stats = round.statistics.stats[player.id]
+                local mvpScore = (stats.damageDealt or 0) + (stats.kills or 0) * 3
+
+                if mvpScore > maxScore then
+                    maxScore = mvpScore
+                    mvp = player
+                end
+            end
+        end
+
+        if mvp then
+            mvpData = {}
+            mvpData.id = mvp.id
+            mvpData.color = self.TeamColors[mvp.team]
+            mvpData.hero = mvp.selectedHero
+
+            round.statistics:IncreaseMVPs(mvp)
+
+            self.scoreEarned[mvp] = (self.scoreEarned[mvp] or 0) + 1
         end
     end
 
@@ -528,7 +582,7 @@ function GameMode:OnRoundEnd(round)
     self:SubmitRoundInfo(round, winner, self.winner ~= nil)
     Stats.SubmitRoundInfo(self.Players, self.roundNumber - 2, winner, round.statistics)
 
-    CustomNetTables:SetTableValue("main", "roundState", { roundData = roundData, goal = self.gameGoal })
+    CustomNetTables:SetTableValue("main", "roundState", { roundData = roundData, goal = self.gameGoal, firstBlood = firstBloodData, mvp = mvpData })
 
     self:SetState(STATE_ROUND_ENDED)
 
@@ -557,6 +611,7 @@ function GameMode:OnHeroSelectionEnd()
     self.roundNumber = self.roundNumber + 1
     self.round = Round(self.Players, self.Teams, self.AvailableHeroes, function(round) self:OnRoundEnd(round) end)
     self.round:CreateHeroes(self.gameSetup:GetSpawnPoints())
+    self.firstBloodBy = nil
     self:SetState(STATE_ROUND_IN_PROGRESS)
     self:UpdateGameInfo()
     self:UpdatePlayerTable()
@@ -581,20 +636,9 @@ function GameMode:OnEntityKilled(event)
         self.currentScoreAddition = self.currentScoreAddition + 1
 
         if entity:GetAbsOrigin().z <= -MAP_HEIGHT then
-            local name = entity:GetName()
             local lastKnockbackCaster = entity.hero.lastKnockbackCaster
-            local killerName = name
 
-            if lastKnockbackCaster then
-                killerName = lastKnockbackCaster:GetName()
-            end
-
-            CustomGameEventManager:Send_ServerToAllClients("kill_log_entry", {
-                killer = killerName,
-                victim = name,
-                color = self.TeamColors[entity.hero.owner.team],
-                fell = true
-            })
+            self:RecordKill(entity.hero, lastKnockbackCaster or entity.hero, true)
         end
     end
 end
