@@ -157,27 +157,27 @@ function RoundStateChanged(data){
         }
 
         if (data.mvp) {
-            var fbPanel = $.CreatePanel("Panel", parent, "");
-            fbPanel.AddClass("Award");
+            var mvpPanel = $.CreatePanel("Panel", parent, "");
+            mvpPanel.AddClass("Award");
 
-            $.CreatePanel("Panel", fbPanel, "").AddClass("MvpIcon");
+            $.CreatePanel("Panel", mvpPanel, "").AddClass("MvpIcon");
 
-            var fbText = $.CreatePanel("Label", fbPanel, "");
-            fbText.html = true;
-            fbText.AddClass("AwardText");
+            var mvpText = $.CreatePanel("Label", mvpPanel, "");
+            mvpText.html = true;
+            mvpText.AddClass("AwardText");
 
-            fbText.SetDialogVariable("name", Players.GetPlayerName(data.firstBlood.id));
-            fbText.SetDialogVariable("color", LuaColor(data.firstBlood.color));
-            fbText.text = $.Localize("MVP", fbText);
+            mvpText.SetDialogVariable("name", Players.GetPlayerName(data.mvp.id));
+            mvpText.SetDialogVariable("color", LuaColor(data.mvp.color));
+            mvpText.text = $.Localize("MVP", mvpText);
 
-            var fbHero = $.CreatePanel("DOTAHeroImage", fbPanel, "");
-            fbHero.heroname = data.firstBlood.hero;
-            fbHero.heroimagestyle = "icon";
-            fbHero.AddClass("AwardHero");
+            var mvpHero = $.CreatePanel("DOTAHeroImage", mvpPanel, "");
+            mvpHero.heroname = data.mvp.hero;
+            mvpHero.heroimagestyle = "icon";
+            mvpHero.AddClass("AwardHero");
 
-            var fbScore = $.CreatePanel("Label", fbPanel, "");
-            fbScore.AddClass("TeamEarned");
-            fbScore.text = "+1";
+            var mvpScore = $.CreatePanel("Label", mvpPanel, "");
+            mvpScore.AddClass("TeamEarned");
+            mvpScore.text = "+1";
         }
     }
 }
