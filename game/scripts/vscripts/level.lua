@@ -247,8 +247,14 @@ function Level.CreateCreep(name, spawn, team, goal)
 end
 
 function Level:SetupBackground()
+    local ancient = Entities:FindByName(nil, "ancient_effect")
+
+    if not ancient then
+        return
+    end
+    
     local effect = ParticleManager:CreateParticle("particles/dire_fx/bad_ancient_ambient.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity())
-    ParticleManager:SetParticleControl(effect, 0, Entities:FindByName(nil, "ancient_effect"):GetAbsOrigin())
+    ParticleManager:SetParticleControl(effect, 0, ancient:GetAbsOrigin())
     ParticleManager:ReleaseParticleIndex(effect)
 
     for _, ent in pairs(Entities:FindAllByClassname("npc_dota_tower")) do
