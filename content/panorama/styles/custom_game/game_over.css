@@ -19,6 +19,7 @@
     horizontal-align: center;
     vertical-align: center;
     flow-children: down;
+    width: 90%;
 }
 
 #GameOverChat
@@ -38,11 +39,12 @@
 .TableRow
 {
     flow-children: right;
+    width: 100%;
 }
 
 .TableCell
 {
-    width: 170px;
+    width: fill-parent-flow(1.0);
     height: 80px;
     border-radius: 3px;
     background-color: black;
@@ -55,7 +57,7 @@
 
 .TableColumnHeader
 {
-    width: 170px;
+    width: fill-parent-flow(1.0);
     height: 30px;
     border-radius: 3px;
 }

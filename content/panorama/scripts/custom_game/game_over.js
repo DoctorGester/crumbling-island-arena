@@ -88,9 +88,11 @@ function AddPlayerRow(scoreboard, player, stats, winner, runnerUp) {
         });
     }
 
-    AddNumberCell(row, color, player.score);
     AddNumberCell(row, color, stats.damageDealt);
-    AddNumberCell(row, color, stats.roundsWon);
+    AddNumberCell(row, color, stats.firstBloods);
+    AddNumberCell(row, color, stats.kills);
+    AddNumberCell(row, color, stats.mvps);
+    AddNumberCell(row, color, stats.healingReceived);
     AddNumberCell(row, color, stats.projectilesFired);
     AddNumberCell(row, color, amountPlayed);
     AddTableCell(row, color, function(panel) {
@@ -124,7 +126,7 @@ function AddHeaders(scoreboard) {
     var row = $.CreatePanel("Panel", scoreboard, "");
     row.AddClass("TableRow");
     AddTableHeaders(row, "TableColumnHeaderWide", "SbName");
-    AddTableHeaders(row, "TableColumnHeader", "SbScore", "SbDamage", "SbRounds", "SbProj", "SbAmountPlayed", "SbMostPlayed");
+    AddTableHeaders(row, "TableColumnHeader", "SbDamage", "SbFirstBloods", "SbKills", "SbMvps", "SbHealing", "SbProj", "SbAmountPlayed", "SbMostPlayed");
 }
 
 function AddFooter(scoreboard) {
@@ -166,7 +168,7 @@ function GameInfoUpdated(gameInfo) {
 
     var playerIds = _(players).map(function(k, v) { return parseInt(v) });
     var nonWinners = _(playerIds).without.apply(_(playerIds), winners);
-    nonWinners = _(nonWinners).sortBy(function(id) { return players[id].score }).reverse();
+    nonWinners = _(nonWinners).sortBy(function(id) { return -players[id].score });
     nonWinners = _(nonWinners).map(function(id) { return players[id] });
 
     winners = _(winners).flatten();
