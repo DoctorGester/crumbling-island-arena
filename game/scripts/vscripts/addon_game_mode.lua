@@ -124,6 +124,12 @@ function GameMode:EventPlayerConnected(args)
     if id == -1 then
         return
     end
+
+    if GameRules:State_Get() >= DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
+        if string.len(PlayerResource:GetSelectedHeroName(id)) == 0 then
+            CreateHeroForPlayer(DUMMY_HERO, playerEntity)
+        end
+    end
     
     local userID = args.userid
 
