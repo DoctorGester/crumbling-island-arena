@@ -1938,7 +1938,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/ember/ember_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "ember_spirit_activate_fire_remnant"
 		"AbilityCooldown" "2.7"
 
@@ -2045,7 +2045,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/jugger/jugger_e_sub"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "ember_spirit_activate_fire_remnant"
 
 		"TargetingIndicator"
@@ -2248,7 +2248,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/pudge/pudge_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "pudge/scavenger_dragon_ability/pudge_flesh_heap"
 		"AbilityCooldown" "9.0"
 
@@ -2336,6 +2336,123 @@
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "ursa_enrage"
+		"AbilityCooldown" "14.0"
+	}
+
+	"brew_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/brew/brew_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "brewmaster_drunken_brawler"
+		"AbilityCooldown" "4.0"
+		"AbilityCastPoint" "0.15"
+	}
+
+	"brew_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/brew/brew_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "dragon_knight_breathe_fire"
+		"AbilityCooldown" "7.0"
+		"AbilityCastPoint" "0.15"
+	}
+
+	"brew_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/brew/brew_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "brewmaster_storm_dispel_magic"
+		"AbilityCooldown" "6.0"
+	}
+
+	"brew_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/brew/brew_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "brewmaster_drunken_haze"
+		"AbilityCooldown" "14.0"
+	}
+
+	"invoker_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/invoker/invoker_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "invoker_sun_strike"
+		"AbilityCooldown" "4.0"
+		"AbilityCastPoint" "0.15"
+	}
+
+	"invoker_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/invoker/invoker_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "invoker_cold_snap"
+		"AbilityCooldown" "7.0"
+		"AbilityCastPoint" "0.15"
+	}
+
+	"invoker_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/invoker/invoker_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "invoker_emp"
+		"AbilityCooldown" "6.0"
+	}
+
+	"invoker_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/invoker/invoker_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "invoker_chaos_meteor"
+		"AbilityCooldown" "14.0"
+	}
+
+	"tinker_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tinker/tinker_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "tinker_laser"
+		"AbilityCooldown" "4.0"
+		"AbilityCastPoint" "0.15"
+	}
+
+	"tinker_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tinker/tinker_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "tinker_heat_seeking_missile"
+		"AbilityCooldown" "7.0"
+		"AbilityCastPoint" "0.15"
+	}
+
+	"tinker_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tinker/tinker_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "tinker_march_of_the_machines"
+		"AbilityCooldown" "6.0"
+	}
+
+	"tinker_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tinker/tinker_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "tinker_rearm"
 		"AbilityCooldown" "14.0"
 	}
 }

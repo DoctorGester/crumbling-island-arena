@@ -27,6 +27,9 @@
 		"HeroName_npc_dota_hero_lone_druid"				"The Mask"
 		"HeroName_npc_dota_hero_pudge"					"Gluttony"
 		"HeroName_npc_dota_hero_ursa"					"Wrath"
+		"HeroName_npc_dota_hero_brewmaster"				"Bacchus"
+		"HeroName_npc_dota_hero_invoker"				"Pride"
+		"HeroName_npc_dota_hero_tinker"					"The Fool"
 
 		"Available_on_npc_dota_hero_drow_ranger"		"Available on April 23!"
 		"Available_on_npc_dota_hero_skeleton_king"		"Available on April 30!"
@@ -36,6 +39,9 @@
 		"Available_on_npc_dota_hero_lone_druid"			"Available on June 4!"
 		"Available_on_npc_dota_hero_pudge"				"Available on June 11!"
 		"Available_on_npc_dota_hero_ursa"				"Available on June 18!"
+		"Available_on_npc_dota_hero_brewmaster"			"Available on June 25!"
+		"Available_on_npc_dota_hero_invoker"			"Available on July 2!"
+		"Available_on_npc_dota_hero_tinker"				"Available on July 9!"
 
 		"phantom_assassin_DescQ" "Short ranged boomerang"
 		"phantom_assassin_DescW" "Melee AOE attack"
@@ -156,6 +162,21 @@
 		"ursa_DescW" "AOE stun"
 		"ursa_DescE" "Faster attacks, heal on hit, speed boost"
 		"ursa_DescR" "Invulnerability"
+
+		"brewmaster_DescQ" "?????"
+		"brewmaster_DescW" "?????"
+		"brewmaster_DescE" "?????"
+		"brewmaster_DescR" "?????"
+
+		"invoker_DescQ" "?????"
+		"invoker_DescW" "?????"
+		"invoker_DescE" "?????"
+		"invoker_DescR" "?????"
+
+		"tinker_DescQ" "?????"
+		"tinker_DescW" "?????"
+		"tinker_DescE" "?????"
+		"tinker_DescR" "?????"
 
 		"PlayerHeader" "Players"
 		"SelectionHeader" "selection"

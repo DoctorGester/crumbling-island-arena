@@ -27,6 +27,9 @@
 		"HeroName_npc_dota_hero_lone_druid"				"Маска"
 		"HeroName_npc_dota_hero_pudge"					"Обжорство"
 		"HeroName_npc_dota_hero_ursa"					"Гнев"
+		"HeroName_npc_dota_hero_brewmaster"				"Бахус"
+		"HeroName_npc_dota_hero_invoker"				"Гордыня"
+		"HeroName_npc_dota_hero_tinker"					"Дурак"
 
 		"Available_on_npc_dota_hero_lone_druid"			"Доступно с 4 июня!"
 		"Available_on_npc_dota_hero_drow_ranger"		"Доступено с 23 апреля!"
@@ -37,6 +40,9 @@
 		"Available_on_npc_dota_hero_lone_druid"			"Доступно с 4 июня!"
 		"Available_on_npc_dota_hero_pudge"				"Доступно с 11 июня!"
 		"Available_on_npc_dota_hero_ursa"				"Доступно с 18 июня!"
+		"Available_on_npc_dota_hero_brewmaster"			"Доступно с 25 июня!"
+		"Available_on_npc_dota_hero_invoker"			"Доступно с 2 июля!"
+		"Available_on_npc_dota_hero_tinker"				"Доступно с 9 июля!"
 
 		"phantom_assassin_DescQ" "Бумеранг"
 		"phantom_assassin_DescW" "Атака вокруг себя"

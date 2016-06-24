@@ -909,4 +909,119 @@
 
 		"Ultimate" "ursa_r"
 	}
+
+	"npc_dota_hero_brewmaster"
+	{
+		"override_hero"	"npc_dota_hero_brewmaster"
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
+		"BountyXP"	"0"
+		"MovementSpeed"	"350"
+		"MovementTurnRate"	"10"
+		"StatusHealth"	"5"
+		"StatusHealthRegen"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"AttributeBaseStrength"	"0"
+		"AttributeBaseIntelligence" "0"
+		"VisionDaytimeRange" "0"
+		"VisionNighttimeRange" "0"
+		"Portrait"	""
+		"SoundSet"	""
+		"GameSoundsFile" ""
+		"VoiceFile"	""
+		"Difficulty" "easy"
+		"Disabled" "true"
+		"Order" "24"
+
+		"Ability1" "brew_q"
+		"Ability2" "brew_w"
+		"Ability3" "brew_e"
+		"Ability4" "brew_r"
+		"Ability6" ""
+
+		"Ultimate" "brew_r"
+	}
+
+	"npc_dota_hero_invoker"
+	{
+		"override_hero"	"npc_dota_hero_invoker"
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
+		"BountyXP"	"0"
+		"MovementSpeed"	"350"
+		"MovementTurnRate"	"10"
+		"StatusHealth"	"5"
+		"StatusHealthRegen"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"AttributeBaseStrength"	"0"
+		"AttributeBaseIntelligence" "0"
+		"VisionDaytimeRange" "0"
+		"VisionNighttimeRange" "0"
+		"Portrait"	""
+		"SoundSet"	""
+		"GameSoundsFile" ""
+		"VoiceFile"	""
+		"Difficulty" "easy"
+		"Disabled" "true"
+		"Order" "25"
+
+		"Ability1" "invoker_q"
+		"Ability2" "invoker_w"
+		"Ability3" "invoker_e"
+		"Ability4" "invoker_r"
+		"Ability6" ""
+
+		"CustomIcons"
+		{
+			"invoker_w" "invoker_w.png"
+		}
+
+		"Ultimate" "invoker_r"
+	}
+
+	"npc_dota_hero_tinker"
+	{
+		"override_hero"	"npc_dota_hero_tinker"
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
+		"BountyXP"	"0"
+		"MovementSpeed"	"350"
+		"MovementTurnRate"	"10"
+		"StatusHealth"	"5"
+		"StatusHealthRegen"	"0"
+		"StatusManaRegen"	"0"
+		"StatusStartingMana"	"0"
+		"AttributeBaseStrength"	"0"
+		"AttributeBaseIntelligence" "0"
+		"VisionDaytimeRange" "0"
+		"VisionNighttimeRange" "0"
+		"Portrait"	""
+		"SoundSet"	""
+		"GameSoundsFile" ""
+		"VoiceFile"	""
+		"Difficulty" "hard"
+		"Disabled" "true"
+		"Order" "26"
+
+		"Ability1" "tinker_q"
+		"Ability2" "tinker_w"
+		"Ability3" "tinker_e"
+		"Ability4" "tinker_r"
+		"Ability6" ""
+
+		"CustomIcons"
+		{
+			"tinker_e" "tinker_e.png"
+		}
+
+		"Ultimate" "tinker_r"
+	}
 }
