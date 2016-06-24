@@ -2077,7 +2077,7 @@
 		"ScriptFile" "abilities/ld/ld_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "lone_druid_rabid"
-		"AbilityCooldown" "3.0"
+		"AbilityCooldown" "2.0"
 		"AbilityCastPoint" "0.15"
 
 		"TargetingIndicator"
