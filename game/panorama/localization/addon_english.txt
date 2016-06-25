@@ -163,10 +163,10 @@
 		"ursa_DescE" "Faster attacks, heal on hit, speed boost"
 		"ursa_DescR" "Invulnerability"
 
-		"brewmaster_DescQ" "?????"
-		"brewmaster_DescW" "?????"
-		"brewmaster_DescE" "?????"
-		"brewmaster_DescR" "?????"
+		"brewmaster_DescQ" "Slowing projectile"
+		"brewmaster_DescW" "Damage in a line"
+		"brewmaster_DescE" "Purge debuffs + heal"
+		"brewmaster_DescR" "Knockback and damage in AOE"
 
 		"invoker_DescQ" "?????"
 		"invoker_DescW" "?????"
@@ -377,6 +377,11 @@
 		"AbilityTooltip_ursa_e"							"Gain a speed boost<br/>Attacks have lower cooldown<br/>Heal on hit"
 		"AbilityTooltip_ursa_r"							"Become invulnerable to all damage and magic"
 
+		"AbilityTooltip_brew_q"							"Receive a <font color=\"#AF9200\"><b>Beer</b></font> debuff<br/>Throw a beer to the target area, applying stacking <font color=\"#AF9200\"><b>Beer</b></font> debuff to every enemy hit"
+		"AbilityTooltip_brew_w"							"Unleash a damaging wave<br/>Wave range and thickness scale from your current <font color=\"#AF9200\"><b>Beer</b></font> stacks<br/>Enemies hit are stunned up to 3 seconds depending on their <font color=\"#AF9200\"><b>Beer</b></font> stacks"
+		"AbilityTooltip_brew_e"							"Heal and purge debuffs"
+		"AbilityTooltip_brew_r"							"Throw a bottle into the target area, knocking back and damaging enemies and applying 2 stacks of <font color=\"#AF9200\"><b>Beer</b></font> to everyone hit"
+
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
 		"ModifierTooltip_modifier_knockback_lua"				"Knocked back"
@@ -477,6 +482,8 @@
 
 		"ModifierTooltip_modifier_ursa_e"						"Fast and furious"
 		"ModifierTooltip_modifier_ursa_r"						"Invulnerable"
+
+		"ModifierTooltip_modifier_brew_beer"					"Slowed"
 	}
 }
 

@@ -50,6 +50,7 @@ function WKArcher:Update()
             speed = 1800,
             parabola = 600,
             graphics = "particles/wk_w/wk_w.vpcf",
+            invulnerable = true,
             hitCondition = 
                 function(self, target)
                     return false

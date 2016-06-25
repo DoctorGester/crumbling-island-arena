@@ -164,6 +164,11 @@
 		"ursa_DescE" "Быстрые атаки, лечение при ударе, ускорение"
 		"ursa_DescR" "Неуязвимость"
 
+		"brewmaster_DescQ" "Замедляющий снаряд"
+		"brewmaster_DescW" "Урон по линии"
+		"brewmaster_DescE" "Снять негативные баффы + лечение"
+		"brewmaster_DescR" "Отбрасывание и урон в области"
+
 		"PlayerHeader" "Игроки"
 		"SelectionHeader" "выбор"
 		"ScoreHeader" "счет"
@@ -360,6 +365,11 @@
 		"AbilityTooltip_ursa_e"							"Получить бонус скорости<br/>Атаки перезаряжаются быстрее<br/>Атаки восстанавливают здоровье"
 		"AbilityTooltip_ursa_r"							"Стать неуязвимым к урону и магии"
 
+		"AbilityTooltip_brew_q"							"Получить заряд <font color=\"#AF9200\"><b>Пива</b></font><br/>Бросить пиво в область, прибавляя всем врагам заряд <font color=\"#AF9200\"><b>Пива</b></font>"
+		"AbilityTooltip_brew_w"							"Выпустить волну огня, наносящую урон<br/>Дальность и ширина волны зависят от зарядов <font color=\"#AF9200\"><b>Пива</b></font><br/>Оглушает врагов до 3 секунд, в зависимости от их зарядов <font color=\"#AF9200\"><b>Пива</b></font>"
+		"AbilityTooltip_brew_e"							"Восстановить здоровье и сбросить негативные баффы"
+		"AbilityTooltip_brew_r"							"Бросить бутыль в область, отбрасывая и нанося урон всем противникам<br/>Все в области получают два заряда <font color=\"#AF9200\"><b>Пива</b></font>"
+
 		"ModifierTooltip_modifier_charges"						"Заряды способности"
 		"ModifierTooltip_modifier_stunned_lua"					"Оглушен"
 		"ModifierTooltip_modifier_knockback_lua"				"Отброшен"
@@ -460,6 +470,8 @@
 
 		"ModifierTooltip_modifier_ursa_e"						"Форсаж"
 		"ModifierTooltip_modifier_ursa_r"						"Неуязвим"
+
+		"ModifierTooltip_modifier_brew_beer"					"Замедлен"
 	}
 }
 

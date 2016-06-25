@@ -46,6 +46,10 @@ function Projectile:CanFall()
     return false
 end
 
+function Projectile:GetRad()
+    return self.radius
+end
+
 function Projectile:SetPos(pos)
     self.position = pos
 
@@ -144,7 +148,7 @@ end
 
 function Projectile:SetGraphics(graphics)
     if self.particle then
-        ParticleManager:DestroyParticle(self.particle, true)
+        ParticleManager:DestroyParticle(self.particle, false)
         ParticleManager:ReleaseParticleIndex(self.particle)
     end
 
