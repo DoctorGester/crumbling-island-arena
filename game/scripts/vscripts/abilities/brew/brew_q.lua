@@ -11,7 +11,10 @@ function brew_q:AddBeerModifier(target)
     end
 
     local new = target:AddNewModifier(self:GetCaster().hero, self, "modifier_brew_beer", { duration = 5 })
-    new:SetStackCount(math.min(stacks + 1, 6))
+
+    if new then
+        new:SetStackCount(math.min(stacks + 1, 6))
+    end
 end
 
 function brew_q:OnSpellStart()
@@ -36,6 +39,7 @@ function brew_q:OnSpellStart()
                 local hit = hero:AreaEffect({
                     filter = Filters.Area(target, 200),
                     filterProjectiles = true,
+                    onlyHeroes = true,
                     action = function(victim)
                         self:AddBeerModifier(victim)
                     end

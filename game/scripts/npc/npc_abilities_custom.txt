@@ -2345,7 +2345,7 @@
 		"ScriptFile" "abilities/brew/brew_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "brewmaster_drunken_brawler"
-		"AbilityCooldown" "2.0"
+		"AbilityCooldown" "2.5"
 		"AbilityCastPoint" "0.15"
 
 		"TargetingIndicator"
