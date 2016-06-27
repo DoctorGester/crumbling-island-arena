@@ -7,8 +7,6 @@ function EarthSpiritRemnant:constructor(round, owner)
     self.hero = owner
     self.health = 1
     self.fell = false
-    self.target = nil
-    self.speed = 0
     self.collisionType = COLLISION_TYPE_RECEIVER
     self.enemiesHit = {}
     self.invulnerable = true
@@ -59,18 +57,14 @@ function EarthSpiritRemnant:SetUnit(unit, fall)
 end
 
 function EarthSpiritRemnant:SetTarget(target)
-    self.target = target
     self.collisionType = COLLISION_TYPE_INFLICTOR
 
-    self.unit:EmitSound("Arena.Earth.CastW.Loop")
+    EarthSpiritRemnantDash(self, target)
 end
 
 function EarthSpiritRemnant:RemoveTarget()
-    self.target = nil
-    self.speed = 0
     self.collisionType = COLLISION_TYPE_RECEIVER
 
-    self.unit:StopSound("Arena.Earth.CastW.Loop")
     self.unit:EmitSound("Arena.Earth.EndW")
 
     self:AreaEffect({
@@ -163,31 +157,6 @@ function EarthSpiritRemnant:Update()
     for target, time in pairs(self.enemiesHit) do
         self.enemiesHit[target] = time - 1
     end
-
-    if self.target then
-        if self.target.destroyed then
-            self:RemoveTarget()
-        else
-            self:Cracks()
-
-            local pos = self:GetPos()
-            local diff = (self.target:GetPos() - pos) * Vector(1, 1, 0)
-            if diff:Length2D() <= self:GetRad() + self.target:GetRad() then
-
-                if instanceof(self.target, EarthSpiritRemnant) then
-                    self.target:Destroy()
-                end
-
-                self:RemoveTarget()
-            else
-                local velocity = diff:Normalized() * self.speed
-                local result = pos + velocity
-
-                self.speed = self.speed + 3
-                self:SetPos(result)
-            end
-        end
-    end
 end
 
 function EarthSpiritRemnant:Remove()
@@ -224,4 +193,39 @@ function EarthSpiritRemnant:Damage(source)
         self.unit:EmitSound("Arena.Earth.EndQ")
         self:Destroy()
     end
+end
+
+
+EarthSpiritRemnantDash = EarthSpiritRemnantDash or class({}, nil, Dash)
+
+function EarthSpiritRemnantDash:constructor(remnant, target)
+    getbase(EarthSpiritRemnantDash).constructor(self, remnant, target:GetPos(), 0, {
+        loopingSound = "Arena.Earth.CastW.Loop"
+    })
+
+    self.target = target
+end
+
+function EarthSpiritRemnantDash:HasEnded()
+    local minDistance = self.velocity
+
+    if instanceof(self.target, Hero) then
+        minDistance = minDistance * 3
+    end
+
+    return (self.to - self.hero:GetPos()):Length2D() <= minDistance or self.target.destroyed
+end
+
+function EarthSpiritRemnantDash:Update()
+    getbase(EarthSpiritRemnantDash).Update(self)
+
+    self.hero:Cracks()
+    self.velocity = self.velocity + 3
+    self.to = self.target:GetPos()
+end
+
+function EarthSpiritRemnantDash:End(...)
+    getbase(EarthSpiritRemnantDash).End(self, ...)
+
+    self.hero:RemoveTarget()
 end
