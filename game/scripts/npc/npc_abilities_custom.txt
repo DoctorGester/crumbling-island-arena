@@ -349,7 +349,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/earth_spirit/earth_spirit_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "earth_spirit_magnetize"
 		"AbilityCooldown" "4.0"
 
@@ -993,7 +993,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/phoenix/phoenix_q"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "phoenix_icarus_dive"
 		"AbilityCooldown" "5.5"
 
