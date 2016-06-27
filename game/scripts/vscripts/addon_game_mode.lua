@@ -536,7 +536,7 @@ function GameMode:OnRoundEnd(round)
         end
 
         local mvp = nil
-        local maxScore = -math.huge
+        local maxScore = 3
 
         for _, player in pairs(self.Players) do
             if player.hero then
