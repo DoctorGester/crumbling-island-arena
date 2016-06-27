@@ -402,7 +402,7 @@ function GameMode:GetTeamScore(team)
 end
 
 function GameMode:RecordKill(victim, source, fell)
-    if victim ~= source then
+    if victim.owner.team ~= source.owner.team then
         self.round.statistics:IncreaseKills(source.owner)
 
         if not self.firstBloodBy then
