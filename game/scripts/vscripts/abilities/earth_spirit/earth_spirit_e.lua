@@ -3,6 +3,14 @@ earth_spirit_e = class({})
 LinkLuaModifier("modifier_earth_spirit_e", "abilities/earth_spirit/modifier_earth_spirit_e", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_earth_spirit_e_animation", "abilities/earth_spirit/modifier_earth_spirit_e", LUA_MODIFIER_MOTION_NONE)
 
+function earth_spirit_e:GetBehavior()
+    if self:GetCaster():HasModifier("modifier_earth_spirit_stand") then
+        return DOTA_ABILITY_BEHAVIOR_POINT
+    end
+
+    return bit.bor(DOTA_ABILITY_BEHAVIOR_POINT, DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES)
+end
+
 function earth_spirit_e:OnSpellStart()
     Wrappers.DirectionalAbility(self, 600)
 
