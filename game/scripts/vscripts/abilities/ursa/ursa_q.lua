@@ -8,22 +8,23 @@ function ursa_q:OnSpellStart()
     local direction = self:GetDirection()
     local overpower = hero:HasModifier("modifier_ursa_e")
 
-    local hit = hero:AreaEffect({
+    hero:AreaEffect({
         filter = Filters.Cone(hero:GetPos(), 300, direction, math.pi),
         sound = "Arena.Ursa.HitQ",
-        damage = true
+        damage = true,
+        action = function(victim)
+            if overpower and instanceof(victim, Hero) then
+                hero:Heal()
+
+                local index = ParticleManager:CreateParticle("particles/generic_gameplay/generic_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero:GetUnit())
+                ParticleManager:ReleaseParticleIndex(index)
+            end
+        end
     })
 
     if overpower then
         self:EndCooldown()
         self:StartCooldown(0.35)
-
-        if hit then
-            hero:Heal()
-
-            local index = ParticleManager:CreateParticle("particles/generic_gameplay/generic_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero:GetUnit())
-            ParticleManager:ReleaseParticleIndex(index)
-        end
     end
 end
 
