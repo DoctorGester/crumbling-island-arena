@@ -12,14 +12,4 @@
     {
                     "MaxPlayers"                    "6"
     }
-
-    "Default_Keys"
-    {
-        "01"
-        {
-            "Key" "enter"
-            "Command" "+EnterPressed"
-            "Name" "Chat"
-        }
-    }
 }

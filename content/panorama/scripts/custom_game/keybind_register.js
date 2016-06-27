@@ -4,5 +4,5 @@ function WrapFunction(name) {
     };
 }
 
-Game.AddCommand("+EnterPressed", WrapFunction("OnEnterPressed"), "", 0);
-Game.AddCommand("-EnterPressed", function() {}, "", 0);
+//Game.AddCommand("+EnterPressed", WrapFunction("OnEnterPressed"), "", 0);
+//Game.AddCommand("-EnterPressed", function() {}, "", 0);
