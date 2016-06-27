@@ -197,7 +197,7 @@
 		"ChatPlaceholder" "Type here..."
 
 		"GameName" "Crumbling Island Arena"
-		"GameTips" "New hero every Saturday<br/>You can destroy terrain with your abilities<br/>To play 3v3, select the 'arena_6' map in menu<br/>The default chat is back until Valve fixes a bug with text fields"
+		"GameTips" "New hero every Saturday<br/>You can destroy terrain with your abilities<br/>To play 3v3, select the 'arena_6' map in menu<br/>You can use twitch emotes in chat (after game mode and teams are selected)"
 		"GameSetupModeSelect" "Select a game mode"
 		"GameSetupFFA" "Free for all"
 		"GameSetup2v2" "2 vs 2"
