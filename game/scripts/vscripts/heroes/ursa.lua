@@ -14,7 +14,7 @@ function Ursa:Damage(source)
 end
 
 function Ursa:AddNewModifier(source, ability, modifier, params)
-    if self:HasModifier("modifier_ursa_r") and modifier ~= "modifier_ursa_e" then
+    if self:HasModifier("modifier_ursa_r") and modifier ~= "modifier_ursa_e" and modifier ~= "modifier_falling" then
         return
     end
 
