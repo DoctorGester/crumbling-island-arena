@@ -1,5 +1,4 @@
 drow_w = class({})
-LinkLuaModifier("modifier_drow_w", "abilities/drow/modifier_drow_w", LUA_MODIFIER_MOTION_NONE)
 
 function drow_w:OnSpellStart()
     local hero = self:GetCaster().hero
@@ -21,7 +20,7 @@ function drow_w:OnSpellStart()
         radius = 256,
         continueOnHit = true,
         invulnerable = true,
-        hitModifier = { name = "modifier_drow_w", duration = 2.0, ability = self },
+        hitModifier = { name = "modifier_silence_lua", duration = 2.0, ability = self },
         hitCondition = function(projectile, target)
             return projectile.owner.team ~= target.owner.team and not instanceof(target, Projectile)
         end,

@@ -168,10 +168,10 @@
 		"brewmaster_DescE" "Purge debuffs + heal"
 		"brewmaster_DescR" "Knockback and damage in AOE"
 
-		"invoker_DescQ" "?????"
-		"invoker_DescW" "?????"
-		"invoker_DescE" "?????"
-		"invoker_DescR" "?????"
+		"invoker_DescQ" "Global delayed damage in AOE"
+		"invoker_DescW" "Slowing projectile"
+		"invoker_DescE" "Delayed silence in AOE"
+		"invoker_DescR" "Global delayed ground damage"
 
 		"tinker_DescQ" "?????"
 		"tinker_DescW" "?????"
@@ -382,8 +382,14 @@
 		"AbilityTooltip_brew_e"							"Heal and purge debuffs"
 		"AbilityTooltip_brew_r"							"Throw a bottle into the target area, knocking back and damaging enemies and applying 2 stacks of <font color=\"#AF9200\"><b>Beer</b></font> to everyone hit"
 
+		"AbilityTooltip_invoker_q"						"Deal damage in an AOE after a 1.1 second delay"
+		"AbilityTooltip_invoker_w"						"Launch a slowing projectile<br/><br/>Enemies affected take double damage from your <font color=\"gold\"><b>Q</b></font>"
+		"AbilityTooltip_invoker_e"						"Set up an area which explodes after 4 seconds and silences nearby enemies<br/><br/>Explodes prematurely if an enemy uses a spell while in the area"
+		"AbilityTooltip_invoker_r"						"Launch a meteor, dealing <font color=\"gold\"><b>MASSIVE</b></font> damage to the ground"
+
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
+		"ModifierTooltip_modifier_silence_lua"					"Silenced"
 		"ModifierTooltip_modifier_knockback_lua"				"Knocked back"
 
 		"ModifierTooltip_modifier_zeus_w"						"Sped up"
@@ -443,7 +449,6 @@
 		"ModifierTooltip_modifier_venge_r_target"				"Slowed and revealed"
 
 		"ModifierTooltip_modifier_drow_q"						"Slowed"
-		"ModifierTooltip_modifier_drow_w"						"Silenced"
 		"ModifierTooltip_modifier_drow_e"						"Shadowsteppin"
 		"ModifierTooltip_modifier_drow_e_slow"					"Slowed"
 
@@ -484,6 +489,8 @@
 		"ModifierTooltip_modifier_ursa_r"						"Invulnerable"
 
 		"ModifierTooltip_modifier_brew_beer"					"Slowed"
+
+		"ModifierTooltip_modifier_invoker_w"					"Slowed"
 	}
 }
 

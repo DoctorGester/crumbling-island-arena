@@ -2426,27 +2426,60 @@
 		"ScriptFile" "abilities/invoker/invoker_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "invoker_sun_strike"
-		"AbilityCooldown" "4.0"
+		"AbilityCooldown" "3.5"
 		"AbilityCastPoint" "0.15"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "200"
+			"DisplayRange" "1"
+		}
 	}
 
 	"invoker_w"
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/invoker/invoker_w"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "invoker_cold_snap"
 		"AbilityCooldown" "7.0"
 		"AbilityCastPoint" "0.15"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "1000"
+			"MaxLength" "1000"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1000"
+		}
 	}
 
 	"invoker_e"
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/invoker/invoker_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "invoker_emp"
 		"AbilityCooldown" "6.0"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "400"
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "800"
+		}
 	}
 
 	"invoker_r"
@@ -2454,9 +2487,16 @@
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/invoker/invoker_r"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "invoker_chaos_meteor"
 		"AbilityCooldown" "14.0"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "350"
+			"DisplayRange" "1"
+		}
 	}
 
 	"tinker_q"

@@ -334,6 +334,7 @@ end
 
 function GameMode:InitModifiers()
     LinkLuaModifier("modifier_stunned_lua", "abilities/modifier_stunned", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_silence_lua", "abilities/modifier_silence_lua", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_knockback_lua", "abilities/modifier_knockback", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_charges", "abilities/modifier_charges", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_hidden", "abilities/modifier_hidden", LUA_MODIFIER_MOTION_NONE)

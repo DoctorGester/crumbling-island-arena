@@ -237,12 +237,12 @@ function Wrappers.DirectionalAbility(ability, optionalRange, optionalMinRange)
 
     function ability:GetCursorPosition()
         local target = getCursorPosition(ability)
-        local realRange = optionalRange or self.BaseClass.GetCastRange(self)
+        local realRange = optionalRange or self.BaseClass.GetCastRange(self, target, nil)
         local minRange = optionalMinRange or 0
         local casterPos = self:GetCaster():GetAbsOrigin()
         local direction = self:GetDirection()
 
-        if (target - casterPos):Length2D() > realRange then
+        if realRange > 0 and (target - casterPos):Length2D() > realRange then
             target = casterPos + direction * realRange
         end
 
