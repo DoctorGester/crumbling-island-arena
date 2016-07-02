@@ -23,6 +23,11 @@ function Dash:constructor(hero, to, speed, params)
     self.arrivalFunction = params.arrivalFunction
     self.hitParams = params.hitParams
     self.hitGroup = {}
+    self.interruptedByStuns = params.interruptedByStuns
+
+    if self.interruptedByStuns == nil then
+       self.interruptedByStuns = true 
+    end
 
     self.destroyed = false
 
@@ -125,19 +130,23 @@ function Dash:Interrupt()
 end
 
 function Dash:IsStunned()
-    for _, modifier in pairs(self.hero:AllModifiers()) do
-        if modifier ~= self.modifierHandle then
-            if modifier.IsStunDebuff and modifier:IsStunDebuff() then
-                if self.modifierHandle then
-                    return modifier:GetCaster() ~= self.modifierHandle:GetCaster() or modifier:GetName() == "modifier_falling"
-                end
+    if self.interruptedByStuns then
+        for _, modifier in pairs(self.hero:AllModifiers()) do
+            if modifier ~= self.modifierHandle then
+                if modifier.IsStunDebuff and modifier:IsStunDebuff() then
+                    if self.modifierHandle then
+                        return modifier:GetCaster() ~= self.modifierHandle:GetCaster() or modifier:GetName() == "modifier_falling"
+                    end
 
-                return true
+                    return true
+                end
             end
         end
-    end
 
-    return false
+        return false
+    else
+        return self.hero:HasModifier("modifier_falling")
+    end
 end
 
 function Dash:PositionFunction(current)
@@ -178,6 +187,7 @@ function Knockback(hero, ability, direction, distance, speed, heightFunction, mo
 
     Dash(hero, hero:GetPos() + direction:Normalized() * distance, speed, {
         modifier = { name = modifier or "modifier_knockback_lua", ability = ability, source = ability:GetCaster() },
-        heightFunction = heightFunction
+        heightFunction = heightFunction,
+        interruptedByStuns = false
     })
 end

@@ -129,7 +129,8 @@ DashPudgeQ = DashPudgeQ or class({}, nil, Dash)
 function DashPudgeQ:constructor(hero, target, ability, particle)
     getbase(DashPudgeQ).constructor(self, target, nil, 1600, {
         modifier = { name = "modifier_knockback_lua", ability = ability, source = ability:GetCaster() },
-        heightFunction = heightFunction
+        heightFunction = heightFunction,
+        interruptedByStuns = false
     })
 
     self.pudge = hero
