@@ -41,7 +41,7 @@ function ogre_q:OnSpellStart()
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 32) + Vector(-direction.y, direction.x) * 96,
         to = target,
-        speed = 2000,
+        speed = 2500,
         parabola = 600,
         disablePrediction = true,
         invulnerable = true,
