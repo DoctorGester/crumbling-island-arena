@@ -19,7 +19,7 @@ function EntitySniperW:CollidesWith(target)
 end
 
 function EntitySniperW:CollideWith(target)
-    target:AddNewModifier(self.hero, self.ability, "modifier_sniper_w", { duration = 1.7 })
+    target:AddNewModifier(self.hero, self.ability, "modifier_sniper_w", { duration = 2.5 })
     target:EmitSound("Arena.Sniper.HitW")
     ImmediateEffectPoint("particles/units/heroes/hero_techies/techies_stasis_trap_explode.vpcf", PATTACH_ABSORIGIN, self.unit, self.unit:GetAbsOrigin())
 
