@@ -445,6 +445,7 @@
 		"ModifierTooltip_modifier_ta_r_heal"					"Will be healed"
 
 		"ModifierTooltip_modifier_tiny_q"						"Slowed"
+		"ModifierTooltip_modifier_tiny_q_speed"					"Moving faster while not carrying a stone"
 		"ModifierTooltip_modifier_tiny_r"						"Next ability you use will be empowered"
 
 		"ModifierTooltip_modifier_pugna_e"						"Healing and damage is swapped"

@@ -438,6 +438,7 @@
 		"ModifierTooltip_modifier_ta_r_heal"					"Получит лечение"
 
 		"ModifierTooltip_modifier_tiny_q"						"Замедлен"
+		"ModifierTooltip_modifier_tiny_q_speed"					"Движется быстрее, пока не носит камень"
 		"ModifierTooltip_modifier_tiny_r"						"Следующая использованная способность будет сильнее"
 
 		"ModifierTooltip_modifier_pugna_e"						"Урон вместо лечения, лечение вместо урона"

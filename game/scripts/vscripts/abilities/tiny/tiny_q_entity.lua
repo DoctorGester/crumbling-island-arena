@@ -129,6 +129,12 @@ function TinyQ:Remove()
         self.hero:EmitSound("Arena.Tiny.EndQ", self:GetPos())
     end
 
+    local speed = self.hero:FindModifier("modifier_tiny_q_speed")
+
+    if speed then
+        speed:SetStackCount(0)
+    end
+
     self:RemoveGroundEffect()
     self:RemoveSmoke()
     
