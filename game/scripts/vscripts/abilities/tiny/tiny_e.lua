@@ -5,7 +5,7 @@ function tiny_e:OnSpellStart()
     local target = self:GetCursorPosition()
     local radius = 250
     local duration = 4
-    local delay = 1.0
+    local delay = 0.75
     local mod = hero:FindModifier("modifier_tiny_r")
 
     if mod and not mod.used then
