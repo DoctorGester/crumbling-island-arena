@@ -227,6 +227,10 @@
 		"SbRunnerUp" "Второе место"
 		"SbTooManyHeroes" "Слишком много героев"
 
+		"RanksLoading" "Загрузка рангов"
+		"RankUpdated" "Новый ранг"
+		"RankClose" "Нажми, чтобы закрыть"
+
 		"GameInfoHeader" "информация"
 		"GameInfoTimer"	"Выберите героя, пока время не вышло!"
 		"GameInfoText" "У всех героев лишь <font color='#3A9B00'>5</font> здоровья<br>Автоатаки <font color='red'>выключены</font><br><font color='red'>Никаких</font> стандартных способностей<br>Ультимейты разблокируются в течение раунда<br>Выживи, чтобы победить!<br>Земля <font color='gold'>сужается</font> и <font color='gold'>рушится</font>"

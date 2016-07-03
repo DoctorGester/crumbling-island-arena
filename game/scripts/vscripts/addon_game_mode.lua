@@ -278,6 +278,7 @@ function GameMode:InitSettings()
 
     if IsInToolsMode() then
         SendToServerConsole("dota_surrender_on_disconnect 0")
+        SendToServerConsole("dota_auto_surrender_all_disconnected_timeout 10000")
     end
 end
 
@@ -434,7 +435,7 @@ end
 
 function GameMode:EndGame()
     if self.winner then
-        Stats.SubmitMatchWinner(self.winner)
+        Stats.SubmitMatchWinner(self.winner, function(...) self:OnRankUpdatesReceived(...) end)
     end
 
     EmitAnnouncerSound("announcer_ann_custom_end_08")
@@ -740,6 +741,32 @@ function GameMode:UpdateGameInfo()
         roundNumber = self.roundNumber,
         statistics = self.generalStatistics.stats,
         players = players
+    })
+end
+
+function GameMode:ParseSteamId64Table(data)
+    local result = {}
+
+    for _, player in pairs(self.Players) do
+        for id, value in pairs(data) do
+            if tostring(PlayerResource:GetSteamID(player.id)) == tostring(id) then
+                result[player.id] = value
+            end
+        end
+    end
+
+    return result
+end
+
+function GameMode:OnRanksReceived(ranks)
+    CustomNetTables:SetTableValue("ranks", "current", self:ParseSteamId64Table(ranks))
+end
+
+function GameMode:OnRankUpdatesReceived(ranks)
+    PrintTable(ranks)
+    CustomNetTables:SetTableValue("ranks", "update", {
+        previous = self:ParseSteamId64Table(ranks.previous),
+        updated = self:ParseSteamId64Table(ranks.updated)
     })
 end
 

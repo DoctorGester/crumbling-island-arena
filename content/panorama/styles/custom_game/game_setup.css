@@ -62,7 +62,6 @@
 {
     background-color: rgba(29, 39, 46, 240);
     width: 70%;
-    height: 40%;
     border-radius: 3px;
     box-shadow: -4px -4px 8px 8px black;
     align: center center;
@@ -182,6 +181,45 @@
 .PlayerVoteTeam2 {
     hue-rotation: 165deg;
     opacity: 1.0;
+}
+
+.PlayerRanks
+{
+    align: center center;
+    flow-children: right;
+    margin-bottom: 20px;
+}
+
+.PlayerRanks Label
+{
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    vertical-align: center;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    letter-spacing: 1px;
+}
+
+.PlayerRank
+{
+    width: 64px;
+    height: 64px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 50%;
+    tooltip-position: bottom;
+    tooltip-body-position: 50% 100%;
+    background-color: rgba(0, 255, 255, 5);
+}
+
+.PlayerRank Label
+{
+    align: center bottom;
+    margin-bottom: -6px;
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: none;
+    text-shadow: skyblue 0px 0px 2px 2px;
 }
 
 #FFAButton

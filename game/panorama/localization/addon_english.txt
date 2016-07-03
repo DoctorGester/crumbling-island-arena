@@ -232,6 +232,10 @@
 		"SbRunnerUp" "Runner up"
 		"SbTooManyHeroes" "Too many heroes to display"
 
+		"RanksLoading" "Loading rank information"
+		"RankUpdated" "Rank updated"
+		"RankClose" "Click to close"
+
 		"GameInfoHeader" "game info"
 		"GameInfoTimer"	"Select your hero before time runs out!"
 		"GameInfoText" "Every player has <font color='#3A9B00'>5</font> health points<br>Autoattacks are <font color='red'>disabled</font><br><font color='red'>No</font> standard dota abilities<br>Ultimates are unlocked over time<br>Last man standing wins<br>The arena <font color='gold'>shrinks</font> and <font color='gold'>crumbles</font>"

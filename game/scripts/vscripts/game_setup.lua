@@ -110,6 +110,10 @@ function GameSetup:SetupSelectedMode()
     if params.playersInTeam > 1 then
         self.stage = GAME_SETUP_STAGE_TEAM
 
+        -- Pre-team match registration
+        local gameMode = GameRules.GameMode
+        Stats.SubmitMatchInfo(gameMode.Players, self.selectedMode, GAME_VERSION, function(...) gameMode:OnRanksReceived(...) end)
+
         if self.timer < 15 then
             self.timer = 15
         end
@@ -324,10 +328,18 @@ end
 function GameSetup:Start()
     print("Starting game setup", self:GetPlayerCount())
 
-    if self:GetPlayerCount() <= 2 then
-        self.selectedMode = "ffa"
-        self:DistinctTeams()
-        self:End()
+    if self:GetPlayerCount() <= 2 and not IsInToolsMode() then
+        if IsInToolsMode() then
+            Timers:CreateTimer(3, function()
+                self.selectedMode = "ffa"
+                self:DistinctTeams()
+                self:End()
+            end)
+        else
+            self.selectedMode = "ffa"
+            self:DistinctTeams()
+            self:End()
+        end
     else
         self:SendTimeToPlayers()
 

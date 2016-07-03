@@ -20,6 +20,9 @@
             <Label class="VotingTimer" text="30"/>
             <Panel class="VotingButtons"/>
             <Panel class="PlayerVotes"/>
+            <Panel class="PlayerRanks">
+                <Label text="#RanksLoading"/>
+            </Panel>
         </Panel>
         <!--<Panel id="GameSetupChat"/>-->
     </Panel>

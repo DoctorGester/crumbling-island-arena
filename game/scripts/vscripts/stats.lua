@@ -1,8 +1,22 @@
 Stats = Stats or {}
 
-Stats.host = "http://127.0.0.1:5141/"
+Stats.host = "http://127.0.0.1:3637/"
 
-function Stats.SubmitMatchInfo(players, mode, version)
+if IsInToolsMode() then
+    local oldGetter = CDOTA_PlayerResource.GetSteamID
+
+    CDOTA_PlayerResource.GetSteamID = function(self, playerId)
+        local steamId = oldGetter(self, playerId)
+
+        if tostring(steamId) == "0" then
+            return playerId
+        end
+
+        return steamId
+    end
+end
+
+function Stats.SubmitMatchInfo(players, mode, version, callback)
     local data = {}
     data.mode = mode
     data.version = version
@@ -16,7 +30,7 @@ function Stats.SubmitMatchInfo(players, mode, version)
         table.insert(data.players, playerData)
     end
 
-    Stats.SendData(string.format("match/%s", GameRules:GetMatchID()), data)
+    Stats.SendData(string.format("match/%s", GameRules:GetMatchID()), data, callback)
 end
 
 function Stats.SubmitRoundInfo(players, roundNumber, roundWinner, statistics)
@@ -41,11 +55,11 @@ function Stats.SubmitRoundInfo(players, roundNumber, roundWinner, statistics)
     Stats.SendData(string.format("match/%s/%s", GameRules:GetMatchID(), roundNumber), data)
 end
 
-function Stats.SubmitMatchWinner(winner)
-    Stats.SendData(string.format("winner/%s", GameRules:GetMatchID(), roundNumber), { winner = winner })
+function Stats.SubmitMatchWinner(winner, callback)
+    Stats.SendData(string.format("winner/%s", GameRules:GetMatchID(), roundNumber), { winnerTeam = winner }, callback)
 end
 
-function Stats.SendData(url, data)
+function Stats.SendData(url, data, callback)
     local req = CreateHTTPRequest("POST", Stats.host..url)
     local encoded = json.encode(data)
     print(encoded)
@@ -57,7 +71,9 @@ function Stats.SendData(url, data)
             return
         end
 
-        --local obj, pos, err = json.decode(res.Body, 1, nil)
-        --callback(err, obj)
+        if callback then
+            local obj, pos, err = json.decode(res.Body)
+            callback(obj)
+        end
     end)
 end

@@ -8,9 +8,24 @@
         <include src="file://{resources}/scripts/custom_game/game_over.js" />
     </scripts>
     <Panel class="GameOverBackground" hittest="false">
-        <Image id="GameOverBackground" src="file://{images}/custom_game/loadscreen.png"/>
-        <Panel hittest="false" id="GameOverScoreboard">
+        <Panel id="GameOverBlur">
+            <Image id="GameOverBackground" src="file://{images}/custom_game/loadscreen.png"/>
+            <Panel hittest="false" id="GameOverScoreboard">
+            </Panel>
+            <Panel id="GameOverChat"/>
         </Panel>
-        <Panel id="GameOverChat"/>
+        <Panel id="RankUpdate" class="Hidden">
+            <Panel id="RankElements">
+                <Label id="RankUpdatedLabel" text="#RankUpdated"/>
+                <Image id="Rank">
+                    <Label id="RankLabel"/>
+                </Image>
+                <Image id="RankNew">
+                    <Label id="RankLabelNew"/>
+                </Image>
+                <Label id="ClickToClose" text="#RankClose"/>
+            </Panel>
+        </Panel>
     </Panel>
+
 </root>

@@ -205,10 +205,65 @@ function UpdateGameOverConnectionStates() {
     }
 }
 
+function RanksUpdated(ranks) {
+    if (!ranks) {
+        return;
+    }
+
+    var previous = ranks.previous[Players.GetLocalPlayer()];
+    var updated = ranks.updated[Players.GetLocalPlayer()];
+
+    if (!previous || !updated) {
+        return;
+    }
+
+    var topPanel = $("#RankUpdate");
+    var rankPanel = $("#Rank");
+    var newRankPanel = $("#RankNew");
+
+    $("#GameOverBlur").AddClass("Blurred");
+    rankPanel.SetImage("file://{images}/profile_badges/level_" + (99 - previous.rank) + ".png");
+    $("#RankLabel").text = previous.rank;
+
+    topPanel.SetHasClass("Hidden", false);
+    rankPanel.SetHasClass("Hidden", false);
+    
+    newRankPanel.SetImage("file://{images}/profile_badges/level_" + (99 - updated.rank) + ".png");
+    $("#RankLabelNew").text = updated.rank;
+    newRankPanel.SetHasClass("Hidden", true);
+
+    $.Schedule(1.8, function() {
+        rankPanel.RemoveClass("RankEndAnimationClass");
+        rankPanel.AddClass("RankEndAnimationClass");
+    });
+
+    $.Schedule(2, function() {
+        if (updated.rank > 20) {
+            Game.EmitSound("UI.RankLow");
+        } else if (updated.rank > 10) {
+            Game.EmitSound("UI.RankMedium");
+        } else {
+            Game.EmitSound("UI.RankHigh");
+        }
+        
+        newRankPanel.SetHasClass("Hidden", false);
+        rankPanel.SetHasClass("Hidden", true);
+        newRankPanel.RemoveClass("RankAnimationClass");
+        newRankPanel.AddClass("RankAnimationClass");
+
+
+        topPanel.SetPanelEvent("onactivate", function() {
+            topPanel.SetHasClass("Hidden", true);
+            $("#GameOverBlur").RemoveClass("Blurred");
+        });
+    });
+}
+
 $.GetContextPanel().AddClass("GameOverScoreboardVisible");
 $("#GameOverChat").BLoadLayout("file://{resources}/layout/custom_game/simple_chat.xml", false, false);
 $("#GameOverChat").RegisterListener("GameOverEnter");
 
 SubscribeToNetTableKey("main", "gameInfo", true, GameInfoUpdated);
+SubscribeToNetTableKey("ranks", "update", true, RanksUpdated);
 
 UpdateGameOverConnectionStates();

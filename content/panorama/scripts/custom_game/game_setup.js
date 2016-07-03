@@ -141,11 +141,32 @@ function GameTeamsChanges(data) {
     }
 }
 
+function RanksChanged(ranks) {
+    if (!ranks) {
+        return;
+    }
+
+    var panel = $("#TeamSelectDialog").FindChildrenWithClassTraverse("PlayerRanks")[0];
+    var votes = $("#TeamSelectDialog").FindChildrenWithClassTraverse("PlayerVotes")[0];
+
+    panel.RemoveAndDeleteChildren();
+
+    for (var id in votes.playerVotes) {
+        var rank = $.CreatePanel("Image", panel, "");
+        rank.AddClass("PlayerRank");
+        rank.SetImage("file://{images}/profile_badges/level_" + (99 - ranks[id].rank) + ".png");
+
+        var rankNumber = $.CreatePanel("Label", rank, "");
+        rankNumber.text = ranks[id].rank;
+    }
+}
+
 (function () {
     SubscribeToNetTableKey("main", "gameState", true, GameStateChanged);
     SubscribeToNetTableKey("gameSetup", "modes", true, GameModesChanges);
     SubscribeToNetTableKey("gameSetup", "teams", true, GameTeamsChanges);
     SubscribeToNetTableKey("gameSetup", "state", true, GameSetupChanged);
+    SubscribeToNetTableKey("ranks", "current", true, RanksChanged);
     GameEvents.Subscribe("setup_timer_tick", OnTimerTick);
 
     //$("#GameSetupChat").BLoadLayout("file://{resources}/layout/custom_game/simple_chat.xml", false, false);
