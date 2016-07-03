@@ -70,12 +70,12 @@
 		},
 		{
 			_class = "C_INIT_RemapScalar"
-			m_flInputMax = 1.1
+			m_flInputMax = 0.7
 			m_flOutputMax = 60.0
 		},
 		{
 			_class = "C_INIT_RemapScalar"
-			m_flInputMax = 1.1
+			m_flInputMax = 0.7
 			m_nFieldOutput = 7
 			m_flOutputMax = 0.2
 		},
@@ -85,7 +85,7 @@
 		{
 			_class = "C_OP_ContinuousEmitter"
 			m_flEmitRate = 16.0
-			m_flEmissionDuration = 1.1
+			m_flEmissionDuration = 0.7
 		},
 	]
 	m_Children = 

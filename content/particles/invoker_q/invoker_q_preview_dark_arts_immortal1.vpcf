@@ -76,7 +76,7 @@
 		{
 			_class = "C_INIT_RandomLifeTime"
 			m_fLifetimeMin = 1.0
-			m_fLifetimeMax = 1.1
+			m_fLifetimeMax = 0.7
 		},
 		{
 			_class = "C_INIT_RandomSequence"
@@ -104,7 +104,7 @@
 		{
 			_class = "C_INIT_RemapScalar"
 			m_flOutputMax = 4.0
-			m_flInputMax = 1.1
+			m_flInputMax = 0.7
 		},
 	]
 	m_Emitters = 

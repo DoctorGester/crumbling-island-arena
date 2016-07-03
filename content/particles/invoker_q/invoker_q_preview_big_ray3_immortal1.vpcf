@@ -87,8 +87,8 @@
 	[
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMax = 1.1
-			m_fLifetimeMin = 1.1
+			m_fLifetimeMax = 0.7
+			m_fLifetimeMin = 0.7
 		},
 		{
 			_class = "C_INIT_RandomAlpha"

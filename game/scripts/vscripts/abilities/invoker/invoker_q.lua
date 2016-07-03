@@ -14,7 +14,7 @@ function invoker_q:OnSpellStart()
     ParticleManager:SetParticleControl(particle, 0, realTarget)
     ParticleManager:ReleaseParticleIndex(particle)
 
-    Timers:CreateTimer(1.1, function()
+    Timers:CreateTimer(0.7, function()
         blank = not Spells.TestPoint(target)
 
         hero:StopSound("Arena.Invoker.CastQ")

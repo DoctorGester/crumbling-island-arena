@@ -59,8 +59,8 @@
 			_class = "C_OP_BasicMovement"
 			m_bDisableOperator = true
 			m_Gravity = [ 0.0, 0.0, -6000.0 ]
-			m_flOpEndFadeInTime = 1.1
-			m_flOpStartFadeInTime = 1.1
+			m_flOpEndFadeInTime = 0.7
+			m_flOpStartFadeInTime = 0.7
 		},
 	]
 	m_Initializers = 
@@ -98,18 +98,18 @@
 		{
 			_class = "C_INIT_RemapScalar"
 			m_nFieldOutput = 10
-			m_flInputMax = 1.1
+			m_flInputMax = 0.7
 			m_flOutputMax = 0.5
 		},
 		{
 			_class = "C_INIT_RemapScalar"
-			m_flInputMax = 1.1
+			m_flInputMax = 0.7
 			m_nFieldOutput = 7
 		},
 		{
 			_class = "C_INIT_RemapScalar"
 			m_flOutputMax = 8.0
-			m_flInputMax = 1.1
+			m_flInputMax = 0.7
 		},
 		{
 			_class = "C_INIT_RandomColor"
