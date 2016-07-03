@@ -15,6 +15,7 @@
             <Panel id="GameOverChat"/>
         </Panel>
         <Panel id="RankUpdate" class="Hidden">
+            <DOTAScenePanel id="RankEffect" class="Hidden" map="maps/scenes/badge_level_up.vmap"/>
             <Panel id="RankElements">
                 <Label id="RankUpdatedLabel" text="#RankUpdated"/>
                 <Image id="Rank">

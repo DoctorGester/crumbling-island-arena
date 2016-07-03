@@ -221,6 +221,17 @@ function RanksUpdated(ranks) {
     var rankPanel = $("#Rank");
     var newRankPanel = $("#RankNew");
 
+    var elements = $("#RankElements");
+
+    elements.SetHasClass("Hidden", true);
+
+    $.Schedule(0.4, function() {
+        Game.EmitSound("UI.RankAppear");
+        elements.SetHasClass("Hidden", false);
+        elements.RemoveClass("RankOpenAnimationClass");
+        elements.AddClass("RankOpenAnimationClass");
+    });
+
     $("#GameOverBlur").AddClass("Blurred");
     rankPanel.SetImage("file://{images}/profile_badges/level_" + (99 - previous.rank) + ".png");
     $("#RankLabel").text = previous.rank;
@@ -250,10 +261,11 @@ function RanksUpdated(ranks) {
         rankPanel.SetHasClass("Hidden", true);
         newRankPanel.RemoveClass("RankAnimationClass");
         newRankPanel.AddClass("RankAnimationClass");
-
+        $("#RankEffect").SetHasClass("Hidden", false);
 
         topPanel.SetPanelEvent("onactivate", function() {
             topPanel.SetHasClass("Hidden", true);
+            Game.EmitSound("UI.RankClose");
             $("#GameOverBlur").RemoveClass("Blurred");
         });
     });

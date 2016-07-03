@@ -300,6 +300,21 @@
     text-shadow: skyblue 0px 0px 4px 4px;
 }
 
+#RankEffect
+{
+    width:100%;
+    height:100%;
+    margin-top: 300px;
+}
+
+.RankOpenAnimationClass
+{
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    animation-name: RankOpen;
+}
+
 .RankEndAnimationClass
 {
     animation-duration: 0.2s;
@@ -319,6 +334,24 @@
 .Hidden
 {
     visibility: collapse;
+}
+
+@keyframes 'RankOpen'
+{
+    0%
+    {
+        transform: scale3d(0.1, 0.1, 0.1);
+    }
+
+    65%
+    {
+        transform: scale3d(1.4, 1.4, 1.4);
+    }
+    
+    100%
+    {
+        transform: scale3d(1, 1, 1);
+    }
 }
 
 @keyframes 'RankEnd'
