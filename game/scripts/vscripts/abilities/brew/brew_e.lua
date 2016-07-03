@@ -1,5 +1,11 @@
 brew_e = class({})
 
+function brew_e:GetCooldown(level)
+    local beer = self:GetCaster():GetModifierStackCount("modifier_brew_beer", self:GetCaster())
+
+    return self.BaseClass.GetCooldown(self, level) - beer
+end
+
 function brew_e:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
