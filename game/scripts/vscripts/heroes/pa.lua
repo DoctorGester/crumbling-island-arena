@@ -35,6 +35,7 @@ end
 function PA:WeaponRetrieved()
 	self:SwapAbilities("pa_q_sub", "pa_q")
 	self:SwapAbilities("pa_w_sub", "pa_w")
+    self:FindAbility("pa_q"):StartCooldown(1.4)
 	self:SetWeaponVisible(true)
 	self.weapon = nil
 end
