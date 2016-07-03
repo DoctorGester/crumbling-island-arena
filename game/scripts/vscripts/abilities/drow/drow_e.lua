@@ -3,7 +3,7 @@ LinkLuaModifier("modifier_drow_e", "abilities/drow/modifier_drow_e", LUA_MODIFIE
 LinkLuaModifier("modifier_drow_e_slow", "abilities/drow/modifier_drow_e_slow", LUA_MODIFIER_MOTION_NONE)
 
 function drow_e:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 900)
+    Wrappers.DirectionalAbility(self, 700)
 
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
