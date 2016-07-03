@@ -2,7 +2,7 @@ invoker_w = class({})
 LinkLuaModifier("modifier_invoker_w", "abilities/invoker/modifier_invoker_w", LUA_MODIFIER_MOTION_NONE)
 
 function invoker_w:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 1000)
+    Wrappers.DirectionalAbility(self, 1200)
 
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
@@ -11,12 +11,13 @@ function invoker_w:OnSpellStart()
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 128),
         to = target + Vector(0, 0, 128),
-        speed = 1200,
+        speed = 1400,
         graphics = "particles/invoker_w/invoker_w.vpcf",
-        distance = 1000,
+        distance = 1200,
         hitSound = "Arena.Invoker.HitW",
         hitModifier = { name = "modifier_invoker_w", duration = 1.8, ability = self },
-        hitFunction = function() end
+        hitFunction = function() end,
+        destroyOnDamage = false
     }):Activate()
 
     hero:EmitSound("Arena.Invoker.CastW")

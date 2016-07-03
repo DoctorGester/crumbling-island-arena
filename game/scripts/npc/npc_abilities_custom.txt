@@ -2455,14 +2455,14 @@
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_LINE"
-			"MinLength" "1000"
-			"MaxLength" "1000"
+			"MinLength" "1200"
+			"MaxLength" "1200"
 		}
 
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "1000"
+			"Radius" "1200"
 		}
 	}
 
