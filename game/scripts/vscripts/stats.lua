@@ -1,6 +1,6 @@
 Stats = Stats or {}
 
-Stats.host = "http://127.0.0.1:3637/"
+Stats.host = "http://178.63.238.188:3637/"
 
 if IsInToolsMode() then
     local oldGetter = CDOTA_PlayerResource.GetSteamID
