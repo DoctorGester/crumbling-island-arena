@@ -27,9 +27,11 @@ function modifier_hero:DeclareFunctions()
     return funcs
 end
 
-function modifier_hero:GetModifierMoveSpeed_Limit()
-    if self:IsForwardEmpty() then
-        return 20
+if IsServer() then
+    function modifier_hero:GetModifierMoveSpeed_Limit()
+        if self:IsForwardEmpty() then
+            return 20
+        end
     end
 end
 
