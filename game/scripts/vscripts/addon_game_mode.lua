@@ -763,7 +763,10 @@ function GameMode:OnRanksReceived(ranks)
 end
 
 function GameMode:OnRankUpdatesReceived(ranks)
-    PrintTable(ranks)
+    if not ranks or not ranks.previous or not ranks.updated then
+        return
+    end
+
     CustomNetTables:SetTableValue("ranks", "update", {
         previous = self:ParseSteamId64Table(ranks.previous),
         updated = self:ParseSteamId64Table(ranks.updated)
