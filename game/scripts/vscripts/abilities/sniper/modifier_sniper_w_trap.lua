@@ -20,5 +20,5 @@ function modifier_sniper_w_trap:DeclareFunctions()
 end
 
 function modifier_sniper_w_trap:GetModifierInvisibilityLevel(params)
-    return math.min(self:GetElapsedTime() / 3, 3)
+    return math.min(self:GetElapsedTime() / 3, 1)
 end
