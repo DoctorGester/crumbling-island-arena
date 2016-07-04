@@ -233,13 +233,13 @@ function RanksUpdated(ranks) {
     });
 
     $("#GameOverBlur").AddClass("Blurred");
-    rankPanel.SetImage("file://{images}/profile_badges/level_" + (99 - previous.rank) + ".png");
+    rankPanel.SetImage("file://{images}/profile_badges/level_" + (100 - previous.rank) + ".png");
     $("#RankLabel").text = previous.rank;
 
     topPanel.SetHasClass("Hidden", false);
     rankPanel.SetHasClass("Hidden", false);
     
-    newRankPanel.SetImage("file://{images}/profile_badges/level_" + (99 - updated.rank) + ".png");
+    newRankPanel.SetImage("file://{images}/profile_badges/level_" + (100 - updated.rank) + ".png");
     $("#RankLabelNew").text = updated.rank;
     newRankPanel.SetHasClass("Hidden", true);
 

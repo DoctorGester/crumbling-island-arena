@@ -154,7 +154,7 @@ function RanksChanged(ranks) {
     for (var id in votes.playerVotes) {
         var rank = $.CreatePanel("Image", panel, "");
         rank.AddClass("PlayerRank");
-        rank.SetImage("file://{images}/profile_badges/level_" + (99 - ranks[id].rank) + ".png");
+        rank.SetImage("file://{images}/profile_badges/level_" + (100 - ranks[id].rank) + ".png");
 
         var rankNumber = $.CreatePanel("Label", rank, "");
         rankNumber.text = ranks[id].rank;
