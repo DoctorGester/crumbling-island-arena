@@ -46,8 +46,14 @@ function Dash:constructor(hero, to, speed, params)
     end
 
     if self.modifier then
+        local duration = nil
+
+        if self.to then
+            duration = (self.to - self.hero:GetPos()):Length2D() / speed
+        end
+
         self.modifierHandle
-            = self.hero:AddNewModifier(self.modifier.source or self.hero, self.modifier.ability, self.modifier.name, {})
+            = self.hero:AddNewModifier(self.modifier.source or self.hero, self.modifier.ability, self.modifier.name, { duration = duration })
 
         if self.modifierHandle == nil then
             self.cantStart = true
