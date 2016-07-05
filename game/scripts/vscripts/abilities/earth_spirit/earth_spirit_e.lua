@@ -32,6 +32,7 @@ function earth_spirit_e:OnSpellStart()
         loopingSound = "Arena.Earth.CastE.Loop",
         modifier = { name = "modifier_earth_spirit_e", ability = self },
         forceFacing = true,
+        noFixedDuration = true,
         arrivalFunction = function()
             if targetRemnant and not targetRemnant.destroyed then
                 hero:SetRemnantStand(targetRemnant)

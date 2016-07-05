@@ -48,7 +48,7 @@ function Dash:constructor(hero, to, speed, params)
     if self.modifier then
         local duration = nil
 
-        if self.to then
+        if self.to and not params.noFixedDuration then
             duration = (self.to - self.hero:GetPos()):Length2D() / speed
         end
 
