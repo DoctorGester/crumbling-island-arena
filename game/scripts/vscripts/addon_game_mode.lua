@@ -454,7 +454,9 @@ function GameMode:CheckEveryoneAbandoned()
     local playerCount = 0
     
     for _, player in pairs(self.Players) do
-        if PlayerResource:GetConnectionState(player.id) ~= DOTA_CONNECTION_STATE_ABANDONED then
+        local con = PlayerResource:GetConnectionState(player.id)
+
+        if con ~= DOTA_CONNECTION_STATE_ABANDONED and con ~= DOTA_CONNECTION_STATE_DISCONNECTED then
             teams[player.team] = true
         end
 
