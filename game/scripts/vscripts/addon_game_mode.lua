@@ -88,6 +88,7 @@ function Activate()
     GameRules.GameMode = GameMode()
     GameRules.GameMode:SetupMode()
     VectorTarget:Init({ noOrderFilter = true })
+    SendToServerConsole("dota_create_fake_clients 1")
 end
 
 function GameMode:OnThink()
@@ -98,9 +99,8 @@ function GameMode:OnThink()
     local now = Time()
     if GameRules:State_Get() >= DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
         for _, thinker in ipairs(self.Thinkers) do
-            
             if now >= thinker.next then
-                thinker.next = thinker.next + thinker.period
+                thinker.next = math.max(thinker.next + thinker.period, now)
                 thinker.callback()
             end
         end
@@ -472,14 +472,20 @@ function GameMode:CheckEveryoneAbandoned()
     end
 
     if playerCount > 1 and connectedTeamCount == 1 then
-        self.winner = connectedTeam
-        self:EndGame()
+        self.abandonTimer = (self.abandonTimer or 0) + 1
 
-        if self.State == STATE_ROUND_IN_PROGRESS and self.round then
-            self:SubmitRoundInfo(self.round, self.winner, true)
-        else
-            self:SubmitRoundInfo({ statistics = Statistics(self.Players) }, self.winner, true)
+        if self.abandonTimer > 20 then
+            self.winner = connectedTeam
+            self:EndGame()
+
+            if self.State == STATE_ROUND_IN_PROGRESS and self.round then
+                self:SubmitRoundInfo(self.round, self.winner, true)
+            else
+                self:SubmitRoundInfo({ statistics = Statistics(self.Players) }, self.winner, true)
+            end
         end
+    else
+        self.abandonTimer = 0
     end
 end
 
