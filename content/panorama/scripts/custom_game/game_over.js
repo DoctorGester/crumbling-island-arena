@@ -227,6 +227,8 @@ function RanksUpdated(ranks) {
         return;
     }
 
+    var lostStreak = (updated.streak && previous.streak && updated.streak.current < previous.streak.current);
+
     var topPanel = $("#RankUpdate");
     var rankPanel = $("#Rank");
     var newRankPanel = $("#RankNew");
@@ -262,7 +264,7 @@ function RanksUpdated(ranks) {
     });
 
     $.Schedule(2, function() {
-        if (updated.rank > previous.rank) {
+        if (updated.rank > previous.rank || lostStreak) {
             Game.EmitSound("UI.RankDecrease");
         } else if (updated.rank > 20) {
             Game.EmitSound("UI.RankLow");
@@ -277,7 +279,7 @@ function RanksUpdated(ranks) {
         newRankPanel.RemoveClass("RankAnimationClass");
         newRankPanel.AddClass("RankAnimationClass");
 
-        if (updated.rank <= previous.rank){
+        if (updated.rank <= previous.rank && !lostStreak){
             $("#RankEffect").SetHasClass("Hidden", false);
         }
 
@@ -286,7 +288,6 @@ function RanksUpdated(ranks) {
             Game.EmitSound("UI.RankClose");
             $("#GameOverBlur").RemoveClass("Blurred");
         });
-
 
         if (updated.rank == 1 && updated.streak) {
             var label = $("#EliteRankText");
