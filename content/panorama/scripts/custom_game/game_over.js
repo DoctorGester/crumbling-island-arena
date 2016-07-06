@@ -249,7 +249,9 @@ function RanksUpdated(ranks) {
     });
 
     $.Schedule(2, function() {
-        if (updated.rank > 20) {
+        if (updated.rank > previous.rank) {
+            Game.EmitSound("UI.RankDecrease");
+        } else if (updated.rank > 20) {
             Game.EmitSound("UI.RankLow");
         } else if (updated.rank > 10) {
             Game.EmitSound("UI.RankMedium");
@@ -261,7 +263,10 @@ function RanksUpdated(ranks) {
         rankPanel.SetHasClass("Hidden", true);
         newRankPanel.RemoveClass("RankAnimationClass");
         newRankPanel.AddClass("RankAnimationClass");
-        $("#RankEffect").SetHasClass("Hidden", false);
+
+        if (updated.rank <= previous.rank){
+            $("#RankEffect").SetHasClass("Hidden", false);
+        }
 
         topPanel.SetPanelEvent("onactivate", function() {
             topPanel.SetHasClass("Hidden", true);
