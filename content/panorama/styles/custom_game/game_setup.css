@@ -61,16 +61,11 @@
 .GameSetupDialog
 {
     background-color: rgba(29, 39, 46, 240);
-    width: 70%;
+    width: 50%;
     border-radius: 3px;
     box-shadow: -4px -4px 8px 8px black;
     align: center center;
     flow-children: down;
-}
-
-.AspectRatio5x4 .GameSetupDialog, .AspectRatio4x3 .GameSetupDialog
-{
-    width: 90%;
 }
 
 @keyframes 'panelStateAnimation'
@@ -117,8 +112,9 @@
 
 .VotingButtons
 {
-    flow-children: right;
+    flow-children: down;
     width: 100%;
+    margin-bottom: 20px;
 }
 
 .PlayerVotes
@@ -303,7 +299,7 @@
 {
     width: fill-parent-flow(1.0);
     height: 64px;
-    margin: 20px;
+    margin: 10px 40px 0 40px;
 
     border-style: solid;
     border-width: 1px;

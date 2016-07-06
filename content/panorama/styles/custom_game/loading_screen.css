@@ -5,7 +5,7 @@ Label
 
 #MapName
 {
-    font-size: 96;
+    font-size: 96px;
     letter-spacing: 6px;
     vertical-align: bottom;
     text-transform: uppercase;
@@ -17,21 +17,20 @@ Label
 
 #GameTips
 {
-    font-size: 24px;
-    margin-bottom: 180px;
-    margin-left: 40px;
+    font-size: 22px;
+    margin-right: 40px;
     line-height: 30px;
     letter-spacing: 1px;
     color: white;
     opacity: 0.8;
-    vertical-align: bottom;
+    align: right center;
+    text-align: right;
 }
 
 #HallOfFame
 {
-    align: left top;
+    align: left center;
     margin-left: 30px;
-    margin-top: 100px;
     flow-children: down;
 }
 
@@ -48,6 +47,19 @@ Label
 #HallOfFamePlayers
 {
     flow-children: down;
+}
+
+.HallOfFameModePlayers
+{
+    flow-children: down;
+    border-left: 1px solid #3399cc33;
+    padding-left: 10px;
+    margin-bottom: 30px;
+}
+
+.HallOfFameMode
+{
+    flow-children: right;
 }
 
 .HallOfFamePlayer
@@ -73,6 +85,8 @@ Label
     height: 48px;
     align: center center;
     border-radius: 50%;
+    tooltip-position: top;
+    tooltip-body-position: 50% 100%;
 }
 
 .HallOfFameRank
@@ -80,8 +94,8 @@ Label
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    tooltip-position: left;
-    tooltip-body-position: 100% 50%;
+    tooltip-position: top;
+    tooltip-body-position: 50% 100%;
     background-color: rgba(0, 255, 255, 5);
 }
 
@@ -94,12 +108,13 @@ Label
     width: 300px;
 }
 
-.HallOfFameMode
+.HallOfFameModeName
 {
-    color: #AAAAAA;
+    color: #BBBBBB;
     vertical-align: center;
     margin-right: 10px;
     font-size: 24px;
     width: 80px;
     text-align: center;
+    font-weight: bold;
 }

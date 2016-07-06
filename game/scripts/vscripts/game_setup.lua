@@ -174,8 +174,8 @@ function GameSetup:UpdateTeamSelection()
     end
 
     if count == players then
-        if self.timer > 3 then
-            self.timer = 3
+        if self.timer > 5 then
+            self.timer = 5
             self:SendTimeToPlayers()
         end
     end

@@ -197,7 +197,7 @@
 		"ChatPlaceholder" "Type here..."
 
 		"GameName" "Crumbling Island Arena"
-		"GameTips" "New hero every Saturday<br/>You can destroy terrain with your abilities<br/>To play 3v3, select the 'arena_6' map in menu<br/>You can use twitch emotes in chat (after game mode and teams are selected)<br/><br/>Ranked rules:<br/>Start from rank 30 every month<br/>One victory/defeat = one rank<br/>Abandon = defeat<br/>Not playing in 2 rounds = defeat<br/>Good luck!"
+		"GameTips" "New hero every Saturday<br/>You can destroy terrain with your abilities<br/>To play 3v3, select the 'arena_6' map<br/>You can use twitch emotes in chat<br/>(after game mode and teams are selected)<br/><br/>Ranked rules:<br/>Start from rank 30 every month<br/>One victory/defeat = one rank<br/>Abandon = defeat<br/>Not playing in 2 rounds = defeat<br/>Good luck!"
 		"GameSetupModeSelect" "Select a game mode"
 		"GameSetupFFA" "Free for all"
 		"GameSetup2v2" "2 vs 2"
