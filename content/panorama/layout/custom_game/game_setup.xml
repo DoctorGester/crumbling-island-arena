@@ -21,7 +21,7 @@
             <Panel class="VotingButtons"/>
             <Panel class="PlayerVotes"/>
             <Panel class="PlayerRanks">
-                <Label text="#RanksLoading"/>
+                <Label class="RankLoadingLabel" text="#RanksLoading"/>
             </Panel>
         </Panel>
         <!--<Panel id="GameSetupChat"/>-->

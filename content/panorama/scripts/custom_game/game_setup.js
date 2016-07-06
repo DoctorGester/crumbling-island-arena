@@ -141,16 +141,6 @@ function GameTeamsChanges(data) {
     }
 }
 
-function AddRankTooltip(rank) {
-    rank.SetPanelEvent("onmouseover", function() {
-        $.DispatchEvent("DOTAShowTextTooltip", rank, $.Localize("RankTip"));
-    });
-
-    rank.SetPanelEvent("onmouseout", function() {
-        $.DispatchEvent("DOTAHideTextTooltip");
-    });
-}
-
 function RanksChanged(ranks) {
     if (!ranks) {
         return;
@@ -162,13 +152,7 @@ function RanksChanged(ranks) {
     panel.RemoveAndDeleteChildren();
 
     for (var id in votes.playerVotes) {
-        var rank = $.CreatePanel("Image", panel, "");
-        rank.AddClass("PlayerRank");
-        rank.SetImage("file://{images}/profile_badges/level_" + (100 - ranks[id].rank) + ".png");
-        AddRankTooltip(rank);
-
-        var rankNumber = $.CreatePanel("Label", rank, "");
-        rankNumber.text = ranks[id].rank;
+        CreateRankPanelSmall(panel, ranks[id], "PlayerRank");
     }
 }
 

@@ -328,7 +328,7 @@ end
 function GameSetup:Start()
     print("Starting game setup", self:GetPlayerCount())
 
-    if self:GetPlayerCount() <= 2 and not IsInToolsMode() then
+    if self:GetPlayerCount() <= 2 then
         if IsInToolsMode() then
             Timers:CreateTimer(3, function()
                 self.selectedMode = "ffa"

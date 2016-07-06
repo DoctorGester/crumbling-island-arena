@@ -183,23 +183,6 @@
     opacity: 1.0;
 }
 
-.PlayerRanks
-{
-    align: center center;
-    flow-children: right;
-    margin-bottom: 20px;
-}
-
-.PlayerRanks Label
-{
-    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
-    vertical-align: center;
-    text-align: center;
-    color: white;
-    font-size: 24px;
-    letter-spacing: 1px;
-}
-
 .PlayerRank
 {
     width: 64px;
@@ -212,14 +195,21 @@
     background-color: rgba(0, 255, 255, 5);
 }
 
-.PlayerRank Label
+.PlayerRanks
 {
-    align: center bottom;
-    margin-bottom: -6px;
-    font-size: 32px;
-    font-weight: bold;
-    letter-spacing: none;
-    text-shadow: skyblue 0px 0px 2px 2px;
+    align: center center;
+    flow-children: right;
+    margin-bottom: 20px;
+}
+
+.RankLoadingLabel
+{
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    vertical-align: center;
+    text-align: center;
+    color: white;
+    font-size: 24px;
+    letter-spacing: 1px;
 }
 
 #FFAButton

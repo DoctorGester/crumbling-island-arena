@@ -19,6 +19,18 @@ function AddEnterListener(name, callback) {
     Game.enterListeners[name] = callback;
 }
 
+function TryFetchSteamId(id, avatar) {
+    var info = Game.GetPlayerInfo(Number(id));
+
+    if (!info) {
+        $.Schedule(0.1, function() {
+            TryFetchSteamId(id, avatar);
+        });
+    } else {
+        avatar.steamid = info.player_steamid;
+    }
+}
+
 function GetTexture(data, customIcons) {
     var icon = "file://{images}/spellicons/" + (data.texture || data) + ".png";
     var name = data.name;
@@ -28,6 +40,43 @@ function GetTexture(data, customIcons) {
     }
 
     return icon;
+}
+
+function CreateRankPanelSmall(parent, rankData, style) {
+    var rank = $.CreatePanel("Image", parent, "");
+    rank.AddClass(style);
+    rank.SetImage("file://{images}/profile_badges/level_" + (100 - rankData.rank) + ".png");
+
+    if (rankData.rank == 1 && rankData.streak) {
+        rank.BCreateChildren("<DOTAScenePanel class='EliteEffect' map='maps/scenes/shining_default.vmap'/>");
+    }
+
+    var rankNumber = $.CreatePanel("Label", rank, "");
+    rankNumber.AddClass("RankLabel");
+
+    if (rankData.rank == 1 && rankData.streak) {
+        rankNumber.text = rankData.streak.max;
+        rankNumber.AddClass("EliteText");
+    } else {
+        rankNumber.text = rankData.rank;
+        rankNumber.AddClass("NormalText");
+    }
+
+    rank.SetPanelEvent("onmouseover", function() {
+        var text = $.Localize("RankTip");
+
+        if (rankData.rank == 1 && rankData.streak) {
+            text = $.Localize("RankEliteTip");
+        }
+
+        $.DispatchEvent("DOTAShowTextTooltip", rank, text);
+    });
+
+    rank.SetPanelEvent("onmouseout", function() {
+        $.DispatchEvent("DOTAHideTextTooltip");
+    });
+
+    return rank;
 }
 
 function UUID(){

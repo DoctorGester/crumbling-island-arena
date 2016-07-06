@@ -197,7 +197,7 @@
 		"ChatPlaceholder" "Type here..."
 
 		"GameName" "Crumbling Island Arena"
-		"GameTips" "New hero every Saturday<br/>You can destroy terrain with your abilities<br/>To play 3v3, select the 'arena_6' map in menu<br/>You can use twitch emotes in chat (after game mode and teams are selected)<br/><br/>Ranked season 1 has started!<br/>Currently supported ranked modes:<br/>1v1, 2v2 + 3v3 (sharing the same rank)<br/><br/>Ranked rules:<br/>Start from rank 30 every month<br/>One victory/defeat = one rank<br/>Abandon = defeat<br/>Not playing in 2 rounds = defeat<br/>Good luck!"
+		"GameTips" "New hero every Saturday<br/>You can destroy terrain with your abilities<br/>To play 3v3, select the 'arena_6' map in menu<br/>You can use twitch emotes in chat (after game mode and teams are selected)<br/><br/>Ranked rules:<br/>Start from rank 30 every month<br/>One victory/defeat = one rank<br/>Abandon = defeat<br/>Not playing in 2 rounds = defeat<br/>Good luck!"
 		"GameSetupModeSelect" "Select a game mode"
 		"GameSetupFFA" "Free for all"
 		"GameSetup2v2" "2 vs 2"
@@ -233,9 +233,14 @@
 		"SbTooManyHeroes" "Too many heroes to display"
 
 		"RankTip" "Player rank<br/>Lower number - better rank"
+		"RankTopPlayers" "Top Ranked Players"
+		"RankEliteTip" "This player has achieved the <font color='gold'><b>Elite</b></font> rank!<br/>Displayed value indicates maximum win-streak<br/>This rank can't be lost"
+		"RankStreak" "Current streak displayed, max streak: <b>{s:max}</b>"
 		"RanksLoading" "Loading rank information"
 		"RankUpdated" "Rank updated"
 		"RankClose" "Click to close"
+		"RankMode_DUEL" "1v1"
+		"RankMode_TWO_TEAMS" "Teams"
 
 		"GameInfoHeader" "game info"
 		"GameInfoTimer"	"Select your hero before time runs out!"

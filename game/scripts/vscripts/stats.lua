@@ -3,6 +3,8 @@ Stats = Stats or {}
 Stats.host = "http://178.63.238.188:3637/"
 
 if IsInToolsMode() then
+    Stats.host = "http://127.0.0.1:5141/"
+
     local oldGetter = CDOTA_PlayerResource.GetSteamID
 
     CDOTA_PlayerResource.GetSteamID = function(self, playerId)
@@ -57,6 +59,25 @@ end
 
 function Stats.SubmitMatchWinner(winner, callback)
     Stats.SendData(string.format("winner/%s", GameRules:GetMatchID(), roundNumber), { winnerTeam = winner }, callback)
+end
+
+function Stats.RequestTopPlayers(callback)
+    Stats.RequestData("ranks/top", callback)
+end
+
+function Stats.RequestData(url, callback)
+    local req = CreateHTTPRequest("GET", Stats.host..url)
+    req:Send(function(res)
+        if res.StatusCode ~= 200 then
+            print("Server connection failure")
+            return
+        end
+
+        if callback then
+            local obj, pos, err = json.decode(res.Body)
+            callback(obj)
+        end
+    end)
 end
 
 function Stats.SendData(url, data, callback)

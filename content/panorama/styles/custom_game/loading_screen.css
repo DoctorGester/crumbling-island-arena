@@ -1,3 +1,8 @@
+Label
+{
+    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+}
+
 #MapName
 {
     font-size: 96;
@@ -20,5 +25,81 @@
     color: white;
     opacity: 0.8;
     vertical-align: bottom;
-    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+}
+
+#HallOfFame
+{
+    align: left top;
+    margin-left: 30px;
+    margin-top: 100px;
+    flow-children: down;
+}
+
+#HallOfFameHeader
+{
+    margin-left: 40px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #CCCCCC;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+#HallOfFamePlayers
+{
+    flow-children: down;
+}
+
+.HallOfFamePlayer
+{
+    flow-children: right;
+    horizontal-align: left;
+    margin-bottom: 20px;
+}
+
+.HallOfFameAvatarContainer
+{
+    width: 64px;
+    height: 64px;
+    vertical-align: center;
+    background-color: rgba(0, 255, 255, 5);
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.HallOfFameAvatar
+{
+    width: 48px;
+    height: 48px;
+    align: center center;
+    border-radius: 50%;
+}
+
+.HallOfFameRank
+{
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    tooltip-position: left;
+    tooltip-body-position: 100% 50%;
+    background-color: rgba(0, 255, 255, 5);
+}
+
+.HallOfFameName
+{
+    color: #AAAAAA;
+    vertical-align: center;
+    margin-left: 10px;
+    font-size: 24px;
+    width: 300px;
+}
+
+.HallOfFameMode
+{
+    color: #AAAAAA;
+    vertical-align: center;
+    margin-right: 10px;
+    font-size: 24px;
+    width: 80px;
+    text-align: center;
 }

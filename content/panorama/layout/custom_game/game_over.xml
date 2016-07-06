@@ -24,6 +24,7 @@
                 <Image id="RankNew">
                     <Label id="RankLabelNew"/>
                 </Image>
+                <Label id="EliteRankText" html="true"/>
                 <Label id="ClickToClose" text="#RankClose"/>
             </Panel>
         </Panel>

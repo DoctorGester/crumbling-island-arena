@@ -205,6 +205,16 @@ function UpdateGameOverConnectionStates() {
     }
 }
 
+function UpdateLabelFromRank(label, rankData) {
+    if (rankData.rank == 1 && rankData.streak) {
+        label.AddClass("EliteText");
+        label.text = "+" + rankData.streak.current;
+    } else {
+        label.AddClass("NormalText");
+        label.text = rankData.rank;
+    }
+}
+
 function RanksUpdated(ranks) {
     if (!ranks) {
         return;
@@ -234,14 +244,17 @@ function RanksUpdated(ranks) {
 
     $("#GameOverBlur").AddClass("Blurred");
     rankPanel.SetImage("file://{images}/profile_badges/level_" + (100 - previous.rank) + ".png");
-    $("#RankLabel").text = previous.rank;
 
     topPanel.SetHasClass("Hidden", false);
     rankPanel.SetHasClass("Hidden", false);
     
     newRankPanel.SetImage("file://{images}/profile_badges/level_" + (100 - updated.rank) + ".png");
-    $("#RankLabelNew").text = updated.rank;
     newRankPanel.SetHasClass("Hidden", true);
+
+    UpdateLabelFromRank($("#RankLabel"), previous);
+    UpdateLabelFromRank($("#RankLabelNew"), updated);
+
+    $("#EliteRankText").text = "";
 
     $.Schedule(1.8, function() {
         rankPanel.RemoveClass("RankEndAnimationClass");
@@ -273,6 +286,14 @@ function RanksUpdated(ranks) {
             Game.EmitSound("UI.RankClose");
             $("#GameOverBlur").RemoveClass("Blurred");
         });
+
+
+        if (updated.rank == 1 && updated.streak) {
+            var label = $("#EliteRankText");
+
+            label.SetDialogVariable("max", updated.streak.max);
+            label.text = $.Localize("RankStreak", label);
+        }
     });
 }
 

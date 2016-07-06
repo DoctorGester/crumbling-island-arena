@@ -14,3 +14,32 @@ b
     wash-color: #444a55;
     transform: rotatez(180deg);
 }
+
+.RankLabel
+{
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    align: center bottom;
+    font-weight: bold;
+    color: white;
+}
+
+.NormalText
+{
+    text-shadow: skyblue 0px 0px 2px 2px;
+    font-size: 32px;
+    margin-bottom: -6px;
+}
+
+.EliteText
+{
+    text-shadow: gold 0px 0px 4px 4px;
+    font-size: 36px;
+    margin-bottom: -8px;
+}
+
+.EliteEffect
+{
+    width: 100%;
+    height: 100%;
+    y: -10%;
+}
