@@ -54,12 +54,12 @@ Label
     flow-children: down;
     border-left: 1px solid #3399cc33;
     padding-left: 10px;
-    margin-bottom: 30px;
 }
 
 .HallOfFameMode
 {
     flow-children: right;
+    margin-bottom: 30px;
 }
 
 .HallOfFamePlayer
