@@ -328,7 +328,7 @@ function GameMode:InitEvents()
     ListenToGameEvent('player_reconnected', Dynamic_Wrap(self, 'EventPlayerReconnected'), self)
     ListenToGameEvent('player_disconnect', Dynamic_Wrap(self, 'EventPlayerDisconnected'), self)
     ListenToGameEvent('game_rules_state_change', Dynamic_Wrap(self, 'EventStateChanged'), self)
-    ListenToGameEvent('dota_player_pick_hero', Dynamic_Wrap(self, 'OnPlayerPickHero'), self)
+    ListenToGameEvent('npc_spawned', Dynamic_Wrap(self, 'OnNpcSpawned'), self)
     ListenToGameEvent('entity_killed', Dynamic_Wrap(self, 'OnEntityKilled'), self)
 end
 
@@ -887,11 +887,11 @@ function GameMode:OnGameInProgress()
     self.heroSelection:Start(function() self:OnHeroSelectionEnd() end)
 end
 
-function GameMode:OnPlayerPickHero(keys)
-    if keys.hero == DUMMY_HERO then
-        local hero = EntIndexToHScript(keys.heroindex)
+function GameMode:OnNpcSpawned(keys)
+    local npc = EntIndexToHScript(keys.entindex)
 
-        hero:AddNoDraw()
-        hero:AddNewModifier(hero, nil, "modifier_hidden", {})
+    if npc:IsRealHero() and npc:GetName() == DUMMY_HERO then
+        npc:AddNoDraw()
+        npc:AddNewModifier(hero, nil, "modifier_hidden", {})
     end
 end
