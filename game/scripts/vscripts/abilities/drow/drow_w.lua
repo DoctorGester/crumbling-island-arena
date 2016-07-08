@@ -17,7 +17,7 @@ function drow_w:OnSpellStart()
         to = target ,
         speed = 2000,
         distance = 1500,
-        radius = 256,
+        radius = 128,
         continueOnHit = true,
         invulnerable = true,
         hitModifier = { name = "modifier_silence_lua", duration = 2.0, ability = self },
