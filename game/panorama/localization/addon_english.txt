@@ -377,7 +377,7 @@
 		"AbilityTooltip_ld_w_sub"						"Greatly slow enemies around you"
 		"AbilityTooltip_ld_e_sub"						"Gain a boost of speed<br/><br/>Attacking in this state <font color=\"#3A9B00\"><b>Roots</b></font> enemies"
 
-		"AbilityTooltip_pudge_q"						"Launch a hook, which damages and pulls first enemy hit to you<br/><br/>Leaves a tasty piece of meat"
+		"AbilityTooltip_pudge_q"						"Launch a hook, which damages and pulls first enemy hit to you"
 		"AbilityTooltip_pudge_w"						"Attack enemies in front of you<br/><br/>Drops a tasty piece of meat"
 		"AbilityTooltip_pudge_e"						"Dash to the target point, stop after encountering an enemy and knock him back"
 		"AbilityTooltip_pudge_r"						"Slow enemies around you for 5 seconds"
@@ -494,7 +494,6 @@
 
 		"ModifierTooltip_modifier_pudge_r"						"Slowed"
 		"ModifierTooltip_modifier_pudge_r_aura"					"Rotten"
-		"ModifierTooltip_modifier_pudge_meat"					"Eat more meat to restore health"
 
 		"ModifierTooltip_modifier_ursa_e"						"Fast and furious"
 		"ModifierTooltip_modifier_ursa_r"						"Invulnerable"

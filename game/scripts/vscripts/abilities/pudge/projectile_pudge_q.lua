@@ -56,8 +56,6 @@ function ProjectilePudgeQ:CollideWith(target)
             ParticleManager:DestroyParticle(blood, false)
             ParticleManager:ReleaseParticleIndex(blood)
 
-            PudgeMeat(self.round, self.hero, target:GetPos()):Activate()
-
             target:EmitSound("Arena.Pudge.HitQ.Voice")
         end
     else

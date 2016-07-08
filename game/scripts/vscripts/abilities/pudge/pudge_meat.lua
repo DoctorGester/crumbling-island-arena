@@ -34,31 +34,13 @@ end
 
 function PudgeMeat:CollideWith(target)
     if target == self.hero then
-        local modifier = target:FindModifier("modifier_pudge_meat")
+        local particle = ParticleManager:CreateParticle(PudgeMeat.USE_PARTICLE, PATTACH_ABSORIGIN_FOLLOW, target:GetUnit())
+        ParticleManager:SetParticleControl(particle, 1, target:GetPos())
+        ParticleManager:ReleaseParticleIndex(particle)
 
-        if not modifier then
-            modifier = target:AddNewModifier(target, nil, "modifier_pudge_meat", {})
-
-            if modifier then
-                modifier:SetStackCount(1)
-            end
-        else
-            if modifier:GetStackCount() >= 2 then
-                 -- Don't really want to step into the modifier:Destroy() territory
-                target:RemoveModifier("modifier_pudge_meat")
-                target:EmitSound("Arena.Pudge.Meat")
-                target:Heal()
-
-                local particle = ParticleManager:CreateParticle(PudgeMeat.USE_PARTICLE, PATTACH_ABSORIGIN_FOLLOW, target:GetUnit())
-                ParticleManager:SetParticleControl(particle, 1, target:GetPos())
-                ParticleManager:ReleaseParticleIndex(particle)
-            else
-                modifier:IncrementStackCount()
-            end
-        end
-        
-        target:EmitSound("Arena.Pudge.MeatEat")
         target:EmitSound("Arena.Pudge.Meat.Voice")
+        target:EmitSound("Arena.Pudge.Meat")
+        target:Heal()
         self:Destroy()
     end
 end

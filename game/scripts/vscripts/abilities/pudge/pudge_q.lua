@@ -1,7 +1,6 @@
 pudge_q = class({})
 
 LinkLuaModifier("modifier_pudge_hook_self", "abilities/pudge/modifier_pudge_hook_self", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_pudge_meat", "abilities/pudge/modifier_pudge_meat", LUA_MODIFIER_MOTION_NONE)
 
 require("abilities/pudge/pudge_meat")
 require("abilities/pudge/projectile_pudge_q")

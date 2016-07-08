@@ -370,7 +370,7 @@
 		"AbilityTooltip_ld_w_sub"						"Сильно замедлить врагов вокруг"
 		"AbilityTooltip_ld_e_sub"						"Получить бонус скорости<br/><br/>Атака в этом состоянии <font color=\"#3A9B00\"><b>Связывает</b></font> врагов"
 
-		"AbilityTooltip_pudge_q"						"Запустить крюк, притягивающий и наносящий урон первому врагу на пути<br/><br/>Оставляет вкусный кусочек мяса"
+		"AbilityTooltip_pudge_q"						"Запустить крюк, притягивающий и наносящий урон первому врагу на пути"
 		"AbilityTooltip_pudge_w"						"Атаковать врагов перед собой<br/><br/>Оставляет вкусный кусочек мяса"
 		"AbilityTooltip_pudge_e"						"Рвануться к цели, останавливаясь встречая первого врага на пути, отбрасывая его назад"
 		"AbilityTooltip_pudge_r"						"Замедлить всех врагов вокруг себя на 5 секунд"
@@ -487,7 +487,6 @@
 
 		"ModifierTooltip_modifier_pudge_r"						"Замедлен"
 		"ModifierTooltip_modifier_pudge_r_aura"					"Гниёт"
-		"ModifierTooltip_modifier_pudge_meat"					"Съешь больше мяса и восстанови здоровье!"
 
 		"ModifierTooltip_modifier_ursa_e"						"Форсаж"
 		"ModifierTooltip_modifier_ursa_r"						"Неуязвим"
