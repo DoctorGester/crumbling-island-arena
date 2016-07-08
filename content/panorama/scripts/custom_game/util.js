@@ -55,7 +55,7 @@ function CreateRankPanelSmall(parent, rankData, style) {
     rankNumber.AddClass("RankLabel");
 
     if (rankData.rank == 1 && rankData.streak) {
-        rankNumber.text = rankData.streak.max;
+        rankNumber.text = "+" + rankData.streak.max;
         rankNumber.AddClass("EliteText");
     } else {
         rankNumber.text = rankData.rank;

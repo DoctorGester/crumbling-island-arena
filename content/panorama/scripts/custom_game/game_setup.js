@@ -17,18 +17,6 @@ function OnTimerTick(args){
     }
 }
 
-function TryFetchSteamId(id, avatar) {
-    var info = Game.GetPlayerInfo(Number(id));
-
-    if (!info) {
-        $.Schedule(0.1, function() {
-            TryFetchSteamId(id, avatar);
-        });
-    } else {
-        avatar.steamid = info.player_steamid;
-    }
-}
-
 function UpdatePlayerVotes(panel, players, key, cl) {
     var votes = panel.FindChildrenWithClassTraverse("PlayerVotes")[0];
 
