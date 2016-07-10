@@ -16,8 +16,8 @@ function Projectile:constructor(round, params)
         self.vel = self.hero:GetFacing()
     end
 
-    self:SetFacing(self.to - self.from)
     self:GetUnit():SetNeverMoveToClearSpace(true)
+    self:SetFacing(self.to - self.from)
     self:SetGraphics(params.graphics)
 
     self.hitModifier = params.hitModifier -- { name, duration, ability }
@@ -58,6 +58,16 @@ function Projectile:SetPos(pos)
     else
         self:GetUnit():SetAbsOrigin(self:GetNextPosition(self:GetNextPosition(pos)))
     end
+end
+
+function Projectile:FindClearSpace(position, force)
+    self.position = position
+
+    self:GetUnit():SetNeverMoveToClearSpace(false)
+    FindClearSpaceForUnit(self.unit, position, force)
+    self:GetUnit():SetNeverMoveToClearSpace(true)
+
+    self.skipSetPosition = 5
 end
 
 function Projectile:Update()
@@ -110,7 +120,7 @@ function Projectile:CollideWith(target)
 
     if self.continueOnHit then
         self.hitGroup[target] = self.gracePeriod
-    elseif not instanceof(target, Projectile) then
+    elseif not instanceof(target, Projectile) and not target:IsInvulnerable() then
         self:Destroy()
     end
 end

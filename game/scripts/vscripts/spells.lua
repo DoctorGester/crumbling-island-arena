@@ -63,8 +63,13 @@ function Spells:Update()
                     local radSum = first:GetRad() + second:GetRad()
 
                     if (first:GetPos() - second:GetPos()):Length2D() <= radSum then
-                        first:CollideWith(second)
-                        second:CollideWith(first)
+                        if not second:IsInvulnerable() then
+                            first:CollideWith(second)
+                        end
+
+                        if not first:IsInvulnerable() then
+                            second:CollideWith(first)
+                        end
                     end
                 end
             end

@@ -173,10 +173,10 @@
 		"invoker_DescE" "Delayed silence in AOE"
 		"invoker_DescR" "Global delayed ground damage"
 
-		"tinker_DescQ" "?????"
-		"tinker_DescW" "?????"
-		"tinker_DescE" "?????"
-		"tinker_DescR" "?????"
+		"tinker_DescQ" "Damage in a line"
+		"tinker_DescW" "Homing missile"
+		"tinker_DescE" "Create two portals"
+		"tinker_DescR" "Refresh abilities when in AOE"
 
 		"PlayerHeader" "Players"
 		"SelectionHeader" "selection"
@@ -396,6 +396,12 @@
 		"AbilityTooltip_invoker_w"						"Launch a slowing projectile<br/><br/>Enemies affected take double damage from your <font color=\"gold\"><b>Q</b></font>"
 		"AbilityTooltip_invoker_e"						"Set up an area which explodes after 4 seconds and silences nearby enemies<br/><br/>Explodes prematurely if an enemy uses a spell while in the area"
 		"AbilityTooltip_invoker_r"						"Launch a meteor, dealing <font color=\"gold\"><b>MASSIVE</b></font> damage to the ground"
+
+		"AbilityTooltip_tinker_q"						"Deal damage in a line<br/><br/>Can go through portals"
+		"AbilityTooltip_tinker_w"						"Launch homing missiles towards every hero in the target area"
+		"AbilityTooltip_tinker_e"						"Create a blue portal"
+		"AbilityTooltip_tinker_e_sub"					"Create an orange portal"
+		"AbilityTooltip_tinker_r"						"Create a device which refreshes cooldowns of your basic abilities every 4 seconds, if you stay in the area"
 
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"

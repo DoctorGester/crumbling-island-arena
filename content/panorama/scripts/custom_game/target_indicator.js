@@ -194,6 +194,26 @@ indicatorTypes["TARGETING_INDICATOR_LINE_EMBER"] = function(data, unit) {
     }
 };
 
+indicatorTypes["TARGETING_INDICATOR_TINKER_LASER"] = function(data, unit) {
+    this.data = data;
+    this.unit = unit;
+    this.particle = Particles.CreateParticle("particles/targeting/thick_line.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN, unit);
+
+    this.Update = function(cursor){
+        UpdateLine(this.particle, this.unit, this.data, cursor);
+
+        var pos = Vector.FromArray(Entities.GetAbsOrigin(unit));
+        var forward = Vector.FromArray(Entities.GetForward(unit));
+
+        Particles.SetParticleControl(this.particle, 0, pos.add(new Vector(forward.y, -forward.x, 0).scale(96)))
+        Particles.SetParticleControl(this.particle, 2, [ GetNumber(data.Width, 0, this.unit), 0, 0 ]);
+    }
+
+    this.Delete = function(){
+        Particles.DestroyParticleEffect(this.particle, false);
+        Particles.ReleaseParticleIndex(this.particle);
+    }
+};
 
 function UpdateLine(particle, unit, data, cursor) {
     var pos = Vector.FromArray(Entities.GetAbsOrigin(unit));

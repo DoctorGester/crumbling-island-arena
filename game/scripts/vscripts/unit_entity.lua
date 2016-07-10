@@ -100,7 +100,8 @@ function UnitEntity:GetGroundHeight(position)
 end
 
 function UnitEntity:FindClearSpace(position, force)
-    self:SetPos(position)
+    getbase(UnitEntity).SetPos(self, position)
+
     FindClearSpaceForUnit(self.unit, position, force)
 end
 

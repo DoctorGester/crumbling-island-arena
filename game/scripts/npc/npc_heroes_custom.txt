@@ -999,12 +999,13 @@
 	"npc_dota_hero_tinker"
 	{
 		"override_hero"	"npc_dota_hero_tinker"
+		"Class" "heroes/tinker:Tinker"
 		"ArmorPhysical"	"0"
 		"MagicalResistance"	"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
 		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
 		"BountyXP"	"0"
-		"MovementSpeed"	"350"
+		"MovementSpeed"	"320"
 		"MovementTurnRate"	"10"
 		"StatusHealth"	"5"
 		"StatusHealthRegen"	"0"
@@ -1019,18 +1020,18 @@
 		"GameSoundsFile" ""
 		"VoiceFile"	""
 		"Difficulty" "hard"
-		"Disabled" "true"
 		"Order" "26"
 
 		"Ability1" "tinker_q"
 		"Ability2" "tinker_w"
 		"Ability3" "tinker_e"
-		"Ability4" "tinker_r"
-		"Ability6" ""
+		"Ability4" "tinker_e_sub"
+		"Ability5" "tinker_r"
 
 		"CustomIcons"
 		{
 			"tinker_e" "tinker_e.png"
+			"tinker_e_sub" "tinker_e_sub.png"
 		}
 
 		"Ultimate" "tinker_r"

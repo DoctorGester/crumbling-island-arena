@@ -174,6 +174,11 @@
 		"invoker_DescE" "Безмолвие в области после задержки"
 		"invoker_DescR" "Урон по земле после задержки"
 
+		"tinker_DescQ" "Урон по линии"
+		"tinker_DescW" "Самонаводящаяся ракета"
+		"tinker_DescE" "Создать два портала"
+		"tinker_DescR" "Перезарядка способностей"
+
 		"PlayerHeader" "Игроки"
 		"SelectionHeader" "выбор"
 		"ScoreHeader" "счет"
@@ -389,6 +394,12 @@
 		"AbilityTooltip_invoker_w"						"Замедляющий снаряд<br/><br/>Враги под действием замедления получают двойной урон от <font color=\"gold\"><b>Q</b></font>"
 		"AbilityTooltip_invoker_e"						"Установить область, которая взорвется через 4 секунды, накладывая безмолвие на врагов вокруг<br/><br/>Взорвется раньше, если враг использует способность внутри области"
 		"AbilityTooltip_invoker_r"						"Запустить метеор, наносящий <font color=\"gold\"><b>ОГРОМНЫЙ</b></font> урон земле"
+
+		"AbilityTooltip_tinker_q"						"Нанести урон по линии<br/><br/>Проходит сквозь порталы"
+		"AbilityTooltip_tinker_w"						"Запустить ракеты в каждого героя в области"
+		"AbilityTooltip_tinker_e"						"Создать голубой портал"
+		"AbilityTooltip_tinker_e_sub"					"Создать оранжевый портал"
+		"AbilityTooltip_tinker_r"						"Создать устройство, которое перезаряжает твои базовые способности каждые 4 секунды, если находиться вблизи него"
 
 		"ModifierTooltip_modifier_charges"						"Заряды способности"
 		"ModifierTooltip_modifier_stunned_lua"					"Оглушен"
