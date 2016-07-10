@@ -2,9 +2,25 @@ tinker_e = class({})
 
 require("abilities/tinker/entity_tinker_e")
 
+function tinker_e:RemoveParticle()
+    if self.preParticle then
+        ParticleManager:DestroyParticle(self.preParticle, false)
+        ParticleManager:ReleaseParticleIndex(self.preParticle)
+    end
+end
+
 function tinker_e:OnAbilityPhaseStart()
+    self:RemoveParticle()
+
+    self.preParticle = ParticleManager:CreateParticle("particles/econ/items/tinker/boots_of_travel/teleport_start_bots.vpcf", PATTACH_WORLDORIGIN, self:GetCaster())
+    ParticleManager:SetParticleControl(self.preParticle, 0, self:GetCursorPosition())
+
     self:GetCaster():EmitSound("Arena.Tinker.PreE")
     return true
+end
+
+function tinker_e:OnAbilityPhaseInterrupted()
+    self:RemoveParticle()
 end
 
 function tinker_e:CastFilterResultLocation(location)
@@ -38,6 +54,8 @@ function tinker_e:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
     local first = hero:GetFirstPortal()
+
+    self:RemoveParticle()
 
     hero:EmitSound("Arena.Tinker.CastE")
 

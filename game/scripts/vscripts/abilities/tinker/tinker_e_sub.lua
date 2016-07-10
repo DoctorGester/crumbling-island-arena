@@ -1,6 +1,22 @@
 tinker_e_sub = class({})
 
+function tinker_e_sub:RemoveParticle()
+    if self.preParticle then
+        ParticleManager:DestroyParticle(self.preParticle, false)
+        ParticleManager:ReleaseParticleIndex(self.preParticle)
+    end
+end
+
+function tinker_e_sub:OnAbilityPhaseInterrupted()
+    self:RemoveParticle()
+end
+
 function tinker_e_sub:OnAbilityPhaseStart()
+    self:RemoveParticle()
+
+    self.preParticle = ParticleManager:CreateParticle("particles/tinker_e/tinker_e_second_pre.vpcf", PATTACH_WORLDORIGIN, self:GetCaster())
+    ParticleManager:SetParticleControl(self.preParticle, 0, self:GetCursorPosition())
+
     self:GetCaster():EmitSound("Arena.Tinker.PreE")
     return true
 end
@@ -37,6 +53,8 @@ function tinker_e_sub:OnSpellStart()
     local target = self:GetCursorPosition()
     local second = hero:GetSecondPortal()
 
+    self:RemoveParticle()
+    
     hero:EmitSound("Arena.Tinker.CastE")
 
     if second then
