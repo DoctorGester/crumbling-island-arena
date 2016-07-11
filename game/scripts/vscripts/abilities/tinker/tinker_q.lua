@@ -39,8 +39,8 @@ function tinker_q:OnSpellStart()
         local portalEnd = portalStart + remaining * dir
 
         effect = ImmediateEffect("particles/units/heroes/hero_tinker/tinker_laser.vpcf", PATTACH_ABSORIGIN, hero)
-        ParticleManager:SetParticleControl(effect, 9, portalStart + height)
-        ParticleManager:SetParticleControl(effect, 1, portalEnd + height)
+        ParticleManager:SetParticleControl(effect, 9, portalStart + height / 2)
+        ParticleManager:SetParticleControl(effect, 1, portalEnd + height / 2)
 
         hero:AreaEffect({
             filter = Filters.Line(from, intersection, 64),
