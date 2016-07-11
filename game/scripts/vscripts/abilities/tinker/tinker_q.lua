@@ -11,20 +11,23 @@ function tinker_q:OnSpellStart()
 
     local interPortal = hero:GetFirstPortal()
     local nextPortal = hero:GetSecondPortal()
-    local intersection = self:GetPortalIntersection(hero:GetFirstPortal(), from, target)
 
-    if intersection then
-        local secondIntersection = self:GetPortalIntersection(hero:GetSecondPortal(), from, target)
+    if interPortal and nextPortal then
+        local intersection = self:GetPortalIntersection(hero:GetFirstPortal(), from, target)
 
-        if secondIntersection and (intersection - from):Length2D() > (secondIntersection - from):Length2D() then
-            intersection = nil
+        if intersection then
+            local secondIntersection = self:GetPortalIntersection(hero:GetSecondPortal(), from, target)
+
+            if secondIntersection and (intersection - from):Length2D() > (secondIntersection - from):Length2D() then
+                intersection = nil
+            end
         end
-    end
 
-    if not intersection then
-        intersection = self:GetPortalIntersection(hero:GetSecondPortal(), from, target)
-        nextPortal = hero:GetFirstPortal()
-        interPortal = hero:GetSecondPortal()
+        if not intersection then
+            intersection = self:GetPortalIntersection(hero:GetSecondPortal(), from, target)
+            nextPortal = hero:GetFirstPortal()
+            interPortal = hero:GetSecondPortal()
+        end
     end
 
     if intersection then
