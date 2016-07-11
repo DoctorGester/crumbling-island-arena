@@ -30,7 +30,7 @@ function EntityTinkerE:LinkTo(target)
 end
 
 function EntityTinkerE:CollideWith(target)
-    if self.link and not self.arrived[target] then
+    if self.link and self.link:Alive() and not self.arrived[target] then
         local old = target:GetPos()
         local diff = old - self:GetPos()
 
