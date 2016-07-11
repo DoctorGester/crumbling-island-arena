@@ -397,7 +397,7 @@
 		"AbilityTooltip_invoker_e"						"Set up an area which explodes after 4 seconds and silences nearby enemies<br/><br/>Explodes prematurely if an enemy uses a spell while in the area"
 		"AbilityTooltip_invoker_r"						"Launch a meteor, dealing <font color=\"gold\"><b>MASSIVE</b></font> damage to the ground"
 
-		"AbilityTooltip_tinker_q"						"Deal damage in a line<br/><br/>Can go through portals"
+		"AbilityTooltip_tinker_q"						"Deal damage in a line<br/><br/>Can travel through portals"
 		"AbilityTooltip_tinker_w"						"Launch homing missiles towards every hero in the target area"
 		"AbilityTooltip_tinker_e"						"Create a blue portal"
 		"AbilityTooltip_tinker_e_sub"					"Create an orange portal"
