@@ -28,7 +28,7 @@ function modifier_ursa_e:GetActivityTranslationModifiers()
 end
 
 function modifier_ursa_e:GetModifierMoveSpeedBonus_Percentage(params)
-    return self:GetElapsedTime() / self:GetDuration() * 100
+    return 20 + self:GetElapsedTime() / self:GetDuration() * 80
 end
 
 function modifier_ursa_e:GetEffectName()
