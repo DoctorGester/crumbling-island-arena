@@ -93,5 +93,5 @@ function tinker_e_sub:GetCastAnimation()
 end
 
 function tinker_e_sub:GetPlaybackRateOverride()
-    return 1.0
+    return 2.0
 end
