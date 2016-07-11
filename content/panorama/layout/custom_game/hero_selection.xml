@@ -13,7 +13,6 @@
         <Panel id="HeroSelectionBackground" hittest="false">
             <DOTAScenePanel hittest="false" id="HeroSelectionBackgroundScene" map="backgrounds/dashboard_parallax_test" camera="shot_cameraC"/>
             <Panel id="HeroSelectionTopGradient" hittest="false"/>
-            <Panel class="ExitGameOverlay" hittest="false"/>
 
             <Panel id="HeroList">
                 <Label class="BlueLabel" text="#HeroListHeader"></Label>
@@ -44,8 +43,13 @@
 
             <Panel id="HeroSelectionChat"/>
             <Panel id="PauseOverlay">
-                <Label text="#GamePaused"/>
+                <Panel>
+                    <Label id="PauseText" text="#GamePaused"/>
+                    <Label id="PauseTip" text="#PauseTip"/>
+                </Panel>
             </Panel>
+
+            <Panel class="ExitGameOverlay" hittest="false"/>
         </Panel>
     </Panel>
 </root>

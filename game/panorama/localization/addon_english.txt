@@ -211,6 +211,7 @@
 		"GameSetupTeam3" "Team 3"
 
 		"GamePaused" "Game paused"
+		"PauseTip" "Click on top of the screen if unpause isn't working"
 
 		"DOTA_GoodGuys" "Team 1"
 		"DOTA_BadGuys" "Team 2"

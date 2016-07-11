@@ -211,6 +211,7 @@
 		"GameSetupTeam3" "Команда 3"
 
 		"GamePaused" "Пауза"
+		"PauseTip" "Кликните вверху экрана, если паузу не получается снять"
 
 		"DOTA_GoodGuys" "Команда 1"
 		"DOTA_BadGuys" "Команда 2"
