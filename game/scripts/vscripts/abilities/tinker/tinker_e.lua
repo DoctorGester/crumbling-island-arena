@@ -26,6 +26,10 @@ end
 function tinker_e:CastFilterResultLocation(location)
     if not IsServer() then return UF_SUCCESS end
 
+    if not Spells.TestPoint(location) then
+        return UF_FAIL_CUSTOM
+    end
+
     local portal = self:GetCaster().hero:GetSecondPortal()
 
     if not portal then
@@ -41,6 +45,10 @@ function tinker_e:CastFilterResultLocation(location)
 end
 
 function tinker_e:GetCustomCastErrorLocation(location)
+    if not Spells.TestPoint(location) then
+        return "#dota_hud_error_tinker_portal_outside"
+    end
+
     local result = self:CastFilterResultLocation(location)
 
     if result == UF_FAIL_CUSTOM then

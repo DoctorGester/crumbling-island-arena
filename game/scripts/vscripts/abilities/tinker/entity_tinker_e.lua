@@ -76,8 +76,12 @@ function EntityTinkerE:Update()
     end
 end
 
+function EntityTinkerE:MakeFall()
+    self:Destroy()
+end
+
 function EntityTinkerE:CanFall()
-    return false
+    return true
 end
 
 function EntityTinkerE:Remove()

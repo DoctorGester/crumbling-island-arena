@@ -8,10 +8,18 @@ function Tinker:SetSecondPortal(second)
     self.secondPortal = second
 end
 
-function Tinker:GetFirstPortal(first)
+function Tinker:GetFirstPortal()
+    if self.firstPortal and not self.firstPortal:Alive() then
+        return nil
+    end
+
     return self.firstPortal
 end
 
-function Tinker:GetSecondPortal(second)
+function Tinker:GetSecondPortal()
+    if self.secondPortal and not self.secondPortal:Alive() then
+        return nil
+    end
+
     return self.secondPortal
 end
