@@ -10,6 +10,7 @@ function EarthSpiritRemnant:constructor(round, owner)
     self.collisionType = COLLISION_TYPE_RECEIVER
     self.enemiesHit = {}
     self.invulnerable = true
+    self.targetRemoved = 0
 end
 
 function EarthSpiritRemnant:CreateCounter()
@@ -63,7 +64,7 @@ function EarthSpiritRemnant:SetTarget(target)
 end
 
 function EarthSpiritRemnant:RemoveTarget()
-    self.collisionType = COLLISION_TYPE_RECEIVER
+    self.targetRemoved = 2
 
     self.unit:EmitSound("Arena.Earth.EndW")
 
@@ -138,6 +139,14 @@ end
 function EarthSpiritRemnant:Update()
     getbase(EarthSpiritRemnant).Update(self)
 
+    if self.targetRemoved > 0 then
+        self.targetRemoved = self.targetRemoved - 1
+
+        if self.targetRemoved == 0 then
+            self.collisionType = COLLISION_TYPE_RECEIVER
+        end
+    end
+
     if self.falling then
         return
     end
@@ -207,10 +216,10 @@ function EarthSpiritRemnantDash:constructor(remnant, target)
 end
 
 function EarthSpiritRemnantDash:HasEnded()
-    local minDistance = self.velocity
+    local minDistance = 32
 
     if instanceof(self.target, Hero) then
-        minDistance = minDistance * 3
+        minDistance = self.velocity * 3
     end
 
     return (self.to - self.hero:GetPos()):Length2D() <= minDistance or self.target.destroyed
