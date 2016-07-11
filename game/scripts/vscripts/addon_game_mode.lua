@@ -615,12 +615,12 @@ function GameMode:OnRoundEnd(round)
 
             self:SetState(STATE_HERO_SELECTION)
             self.heroSelection:Start(function() self:OnHeroSelectionEnd() end)
-            self.level:Reset()
         end
     end)
 end
 
 function GameMode:OnHeroSelectionEnd()
+    self.level:Reset()
     self.currentScoreAddition = 1
     self.scoreEarned = {}
     self.roundNumber = self.roundNumber + 1

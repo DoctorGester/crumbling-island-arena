@@ -26,9 +26,11 @@ function invoker_r:OnSpellStart()
 
         ScreenShake(target, 5, 150, 0.5, 4000, 0, true)
 
-        local particle = ParticleManager:CreateParticle("particles/econ/items/clockwerk/clockwerk_paraflare/clockwerk_para_rocket_flare_explosion.vpcf", PATTACH_ABSORIGIN, self:GetCaster())
-        ParticleManager:SetParticleControl(particle, 3, target)
-        ParticleManager:ReleaseParticleIndex(particle)
+        if IsValidEntity(self) then
+            local particle = ParticleManager:CreateParticle("particles/econ/items/clockwerk/clockwerk_paraflare/clockwerk_para_rocket_flare_explosion.vpcf", PATTACH_ABSORIGIN, self:GetCaster())
+            ParticleManager:SetParticleControl(particle, 3, target)
+            ParticleManager:ReleaseParticleIndex(particle)
+        end
     end)
 end
 
