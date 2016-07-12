@@ -35,7 +35,7 @@ function ProjectileTinkerW:constructor(round, hero, target, pos)
         from = pos + Vector(0, 0, 64),
         heightOffset = 64,
         target = target,
-        speed = 800,
+        speed = 3800,
         graphics = "particles/tinker_w/tinker_w_rocket.vpcf",
         disablePrediction = true,
         hitSound = "Arena.Tinker.HitW"
@@ -71,11 +71,14 @@ function ProjectileTinkerW:GetNextPosition(pos)
         end
 
         if closest and fdistance + sdistance < distance then
-            return pos + ((closest:GetPos() + Vector(0, 0, self.heightOffset) - pos):Normalized() * (self:GetSpeed() / 30))
+            tpos = closest:GetPos()
         end
     end
 
-    return pos + ((tpos + Vector(0, 0, self.heightOffset) - pos):Normalized() * (self:GetSpeed() / 30))
+    local v = self:GetSpeed() * (tpos - pos):Normalized()
+    self.vel = 0.98 * self.vel + 0.02 * v
+
+    return pos + self.vel / 30
 end
 
 function ProjectileTinkerW:Remove()
