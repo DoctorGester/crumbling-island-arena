@@ -173,3 +173,11 @@ function Hero:Setup()
         end
     end
 end
+
+function Hero:Remove()
+    for _, modifier in pairs(self:AllModifiers()) do
+        modifier:Destroy()
+    end
+    
+    getbase(Hero).Remove(self)
+end
