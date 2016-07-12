@@ -8,11 +8,15 @@ meta.__call = function(object, f)
     end
 end
 
-function UnitEntity:constructor(round, unitName, pos, team)
+function UnitEntity:constructor(round, unitName, pos, team, findSpace)
 	getbase(UnitEntity).constructor(self, round)
 
+    if findSpace == nil then
+        findSpace = false
+    end
+    
 	if unitName then
-		self.unit = CreateUnitByName(unitName, pos, false, nil, nil, team or DOTA_TEAM_NOTEAM)
+		self.unit = CreateUnitByName(unitName, pos, findSpace, nil, nil, team or DOTA_TEAM_NOTEAM)
 	end
 
 	self.removeOnDeath = true
