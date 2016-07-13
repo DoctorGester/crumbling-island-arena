@@ -1,6 +1,11 @@
 Stats = Stats or {}
 
 Stats.host = "http://178.63.238.188:3637/"
+Stats.maps = {
+    ranked_2v2 = "RANKED_4",
+    ranked_3v3 = "RANKED_6",
+    unranked = "UNRANKED"
+}
 
 if IsInToolsMode() then
     Stats.host = "http://127.0.0.1:5141/"
@@ -23,6 +28,7 @@ function Stats.SubmitMatchInfo(players, mode, version, callback)
     data.mode = mode
     data.version = version
     data.players = {}
+    data.map = Stats.maps[GetMapName()]
 
     for _, player in pairs(players) do
         local playerData = {}
