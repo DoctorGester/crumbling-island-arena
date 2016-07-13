@@ -176,8 +176,10 @@ end
 
 function Hero:Remove()
     for _, modifier in pairs(self:AllModifiers()) do
-        modifier:Destroy()
+        if modifier.GetName and not modifier:GetName() == "modifier_falling" then
+            modifier:Destroy()
+        end
     end
-    
+
     getbase(Hero).Remove(self)
 end
