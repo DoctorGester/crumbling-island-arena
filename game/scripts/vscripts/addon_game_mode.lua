@@ -842,7 +842,7 @@ function GameMode:OnGameInProgress()
 
     self.level = Level()
 
-    if GetMapName() == "arena" then
+    if GetMapName() == "ranked_2v2" then
         require("levels/polygon")
         require("levels/level_lua")
         self.level:LoadPolygons()

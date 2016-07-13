@@ -7,7 +7,11 @@ function Spells:constructor()
     self.dashes = {}
 end
 
-if GetMapName() == "arena_6" then
+if GetMapName() == "ranked_2v2" then
+    function Spells.TestPoint(point)
+        return GameRules.GameMode.level:GetPartAt(point.x, point.y)
+    end
+else
     function Spells.TestPoint(point, unit)
         local ground = point * Vector(1, 1, 0) - Vector(0, 0, 1)
         
@@ -20,10 +24,6 @@ if GetMapName() == "arena_6" then
         TraceLine(trace)
 
         return trace.enthit
-    end
-else
-    function Spells.TestPoint(point)
-        return GameRules.GameMode.level:GetPartAt(point.x, point.y)
     end
 end
 

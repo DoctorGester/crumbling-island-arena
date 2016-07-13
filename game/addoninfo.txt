@@ -1,14 +1,19 @@
 "AddonInfo"
 {
-	maps			"arena arena_6"
+	maps			"unranked ranked_2v2 ranked_3v3"
 	"IsPlayable"	"1"
     
-    "arena"
+    "unranked"
+    {
+                    "MaxPlayers"                    "6"
+    }
+
+    "ranked_2v2"
     {
                     "MaxPlayers"                    "4"
     }
 
-    "arena_6"
+    "ranked_3v3"
     {
                     "MaxPlayers"                    "6"
     }
