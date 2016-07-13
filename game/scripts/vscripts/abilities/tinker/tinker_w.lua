@@ -33,6 +33,7 @@ function ProjectileTinkerW:constructor(round, hero, target, pos)
     getbase(ProjectileTinkerW).constructor(self, round, {
         owner = hero,
         from = pos + Vector(0, 0, 64),
+        radius = 32,
         heightOffset = 64,
         target = target,
         speed = 3800,
@@ -40,6 +41,8 @@ function ProjectileTinkerW:constructor(round, hero, target, pos)
         disablePrediction = true,
         hitSound = "Arena.Tinker.HitW"
     })
+
+    self.distanceToPass = 5000
 end
 
 function ProjectileTinkerW:Update()
@@ -48,6 +51,12 @@ function ProjectileTinkerW:Update()
     getbase(ProjectileTinkerW).Update(self)
 
     self:SetFacing(self:GetPos() - old)
+    self.distanceToPass = self.distanceToPass - (self:GetPos() - old):Length2D()
+
+    if self.distanceToPass <= 0 then
+        self:EmitSound(self.hitSound)
+        self:Destroy()
+    end
 end
 
 function ProjectileTinkerW:GetNextPosition(pos)
