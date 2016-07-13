@@ -57,7 +57,7 @@ $.AsyncWebRequest("http://178.63.238.188:3637/ranks/top", { type: "GET",
     }
 });
 
-var hittestBlocker = $.GetContextPanel().GetParent().FindChild("LoadingScreenTournamentContainer");
+var hittestBlocker = $.GetContextPanel().GetParent().FindChild("SidebarAndBattleCupLayoutContainer");
 
 if (hittestBlocker) {
     hittestBlocker.hittest = false;
