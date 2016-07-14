@@ -11,6 +11,7 @@ function Projectile:constructor(round, params)
     self.to = params.to
     self.vel = (self.to - self.from):Normalized()
     self.radius = params.radius or 64
+    self.removeOnDeath = false
 
     if self.vel:Length2D() == 0 then
         self.vel = self.hero:GetFacing()
