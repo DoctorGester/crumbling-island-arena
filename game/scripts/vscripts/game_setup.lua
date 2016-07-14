@@ -22,6 +22,11 @@ function GameSetup:constructor(modes, players, teams)
     end
 end
 
+function GameSetup:ForceMode(mode)
+    self.selectedMode = mode
+    self:SetupSelectedMode()
+end
+
 function GameSetup:UpdateModes()
     local result = {}
 
@@ -115,7 +120,7 @@ function GameSetup:SetupSelectedMode()
         Stats.SubmitMatchInfo(gameMode.Players, self.selectedMode, GAME_VERSION, function(...) gameMode:OnRanksReceived(...) end)
 
         if self.timer < 15 then
-            self.timer = 15
+            self.timer = 15000
         end
 
         CustomNetTables:SetTableValue("gameSetup", "teams", { teamNumber = self.teamNumber })
@@ -325,7 +330,7 @@ function GameSetup:SelectRandomOptions()
     end
 end
 
-function GameSetup:Start()
+function GameSetup:Start(muteSound)
     print("Starting game setup", self:GetPlayerCount())
 
     if self:GetPlayerCount() <= 2 then
@@ -343,7 +348,9 @@ function GameSetup:Start()
     else
         self:SendTimeToPlayers()
 
-        EmitAnnouncerSound("announcer_ann_custom_vote_begun")
+        if not muteSound then
+            EmitAnnouncerSound("announcer_ann_custom_vote_begun")
+        end
 
         self.modeListener = CustomGameEventManager:RegisterListener("setup_mode_select", function(id, ...) Dynamic_Wrap(self, "OnModeSelect")(self, ...) end)
         self.teamListener = CustomGameEventManager:RegisterListener("setup_team_select", function(id, ...) Dynamic_Wrap(self, "OnTeamSelect")(self, ...) end)

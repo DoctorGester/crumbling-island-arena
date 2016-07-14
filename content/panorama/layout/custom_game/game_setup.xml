@@ -10,12 +10,14 @@
     </scripts>
     <Panel class="GameSetupBackground" hittest="false">
         <Panel id="ModeVoteDialog" class="GameSetupDialog">
+            <Label class="MatchModeHeader" text="#Unranked"/>
             <Label id="ModeSelectHeader" class="VotingHeader" text="#GameSetupModeSelect"/>
             <Label class="VotingTimer" text="30"/>
             <Panel class="VotingButtons"/>
             <Panel class="PlayerVotes"/>
         </Panel>
         <Panel id="TeamSelectDialog" class="GameSetupDialog VotingPanelHidden" hittest="false">
+            <Label class="MatchModeHeader" text="#Unranked"/>
             <Label class="VotingHeader" text="#GameSetupTeamSelect"/>
             <Label class="VotingTimer" text="30"/>
             <Panel class="VotingButtons"/>

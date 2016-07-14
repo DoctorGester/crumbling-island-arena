@@ -23,12 +23,26 @@
     opacity: 0.0;
 }
 
+.MatchModeHeader
+{
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    color: white;
+    text-shadow: 0px 0px 2px 2.0 deepskyblue;
+    font-size: 36px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
 .VotingHeader
 {
     text-align: center;
     width: 100%;
     margin: 5px;
-    margin-top: 20px;
+    margin-top: 5px;
     font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
     color: white;
     font-size: 48px;

@@ -233,6 +233,8 @@
 		"SbRunnerUp" "Runner up"
 		"SbTooManyHeroes" "Too many heroes to display"
 
+		"Unranked" "Unranked game"
+		"Ranked" "Ranked game"
 		"RankTip" "Player rank<br/>Lower number - better rank"
 		"RankTopPlayers" "Top Ranked Players"
 		"RankEliteTip" "This player has achieved the <font color='gold'><b>Elite</b></font> rank!<br/>Displayed value indicates maximum win-streak<br/>This rank can't be lost"

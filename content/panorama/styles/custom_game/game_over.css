@@ -351,11 +351,6 @@
     animation-name: RankAnimation;
 }
 
-.Hidden
-{
-    visibility: collapse;
-}
-
 @keyframes 'RankOpen'
 {
     0%

@@ -140,7 +140,26 @@ function RanksChanged(ranks) {
     panel.RemoveAndDeleteChildren();
 
     for (var id in votes.playerVotes) {
-        CreateRankPanelSmall(panel, ranks[id], "PlayerRank");
+        if (ranks[id]) {
+            CreateRankPanelSmall(panel, ranks[id], "PlayerRank");
+        }
+    }
+}
+
+function MiscInfoChanged(data) {
+    if (!data) {
+        return;
+    }
+
+    var panel = $("#TeamSelectDialog").FindChildrenWithClassTraverse("PlayerRanks")[0];
+    panel.SetHasClass("Hidden", data.rankedMode == null);
+
+    var labels = $.GetContextPanel().FindChildrenWithClassTraverse("MatchModeHeader");
+
+    if (data.rankedMode != null){
+        for (var label of labels) {
+            label.text = $.Localize("#Ranked");
+        }
     }
 }
 
@@ -149,6 +168,7 @@ function RanksChanged(ranks) {
     SubscribeToNetTableKey("gameSetup", "modes", true, GameModesChanges);
     SubscribeToNetTableKey("gameSetup", "teams", true, GameTeamsChanges);
     SubscribeToNetTableKey("gameSetup", "state", true, GameSetupChanged);
+    SubscribeToNetTableKey("gameSetup", "misc", true, MiscInfoChanged);
     SubscribeToNetTableKey("ranks", "current", true, RanksChanged);
     GameEvents.Subscribe("setup_timer_tick", OnTimerTick);
 

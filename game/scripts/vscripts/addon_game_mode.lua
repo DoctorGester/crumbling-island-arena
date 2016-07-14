@@ -187,7 +187,12 @@ end
 function GameMode:OnGameSetup()
     print("Setting players up")
 
+    local amount = 0
     local i = 0
+
+    if IsInToolsMode() then
+        amount = 1
+    end
 
     for id = 0, DOTA_MAX_PLAYERS do
         if PlayerResource:IsValidPlayer(id) then
@@ -196,6 +201,7 @@ function GameMode:OnGameSetup()
             self.Players[player.id] = player
 
             i = i + 1
+            amount = amount + 1
         end
     end
 
@@ -231,10 +237,32 @@ function GameMode:OnGameSetup()
         ["3v3"] = { playersInTeam = 3, announce = "announcer_ann_custom_mode_07", spawns = teamSpawnPoints }
     }
 
+    local forcedMode = nil
+
+    if GetMapName() == "ranked_2v2" and amount == 4 then
+        forcedMode = "2v2"
+    end
+
+    if GetMapName() == "ranked_3v3" then
+        if amount == 4 then
+            forcedMode = "2v2"
+        end
+
+        if amount == 6 then
+            forcedMode = "3v3"
+        end
+    end
+
     self.gameSetup = GameSetup(modes, self.Players, self.Teams)
 
+    if forcedMode then
+        self.gameSetup:ForceMode(forcedMode)
+    end
+
     self:SetState(STATE_GAME_SETUP)
-    self.gameSetup:Start()
+    self.gameSetup:Start(forcedMode ~= nil)
+
+    CustomNetTables:SetTableValue("gameSetup", "misc", { rankedMode = self:GetRankedMode() })
 
     self:RegisterThinker(1,
         function()
@@ -684,6 +712,38 @@ function GameMode:UpdateAvailableHeroesTable()
     end
 
     CustomNetTables:SetTableValue("main", "heroes", self.AvailableHeroes)
+end
+
+-- A replica of server-side function
+function GameMode:GetRankedMode()
+    local players = 0
+    local mode = self.gameSetup.selectedMode
+
+    if IsInToolsMode() then
+        players = 1
+    end
+
+    for _, player in pairs(self.Players) do
+        players = players + 1
+    end
+
+    if GetMapName() == "unranked" then
+        return nil
+    end
+
+    if mode == "2v2" and players == 4 then
+        return "teams"
+    end
+
+    if mode == "3v3" and players == 6 then
+        return "teams"
+    end
+
+    if mode == "ffa" and players == 2 then
+        return "duel"
+    end
+
+    return nil
 end
 
 function GameMode:SetState(state)

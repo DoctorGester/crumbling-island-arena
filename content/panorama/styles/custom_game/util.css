@@ -43,3 +43,8 @@ b
     height: 100%;
     y: -10%;
 }
+
+.Hidden
+{
+    visibility: collapse;
+}
