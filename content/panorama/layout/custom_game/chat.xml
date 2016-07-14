@@ -5,7 +5,7 @@
     <script>
         function HideGameChat() {
             if (GameUI.GameChat) {
-                GameUI.GameChat.AddClass("Hidden");
+                GameUI.GameChat.AddClass("ChatHidden");
             }
             
             $("#GameChatEntry").DeleteAsync(0);

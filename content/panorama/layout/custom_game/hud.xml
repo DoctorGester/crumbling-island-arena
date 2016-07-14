@@ -50,7 +50,7 @@
             </Panel>
             <Panel id="KillLog" hittest="false"/>
             <Panel id="GameChat" hittestchildren="false" hittest="false">
-                <Panel id="GameChatContent" class="Hidden" hittest="false"/>
+                <Panel id="GameChatContent" class="ChatHidden" hittest="false"/>
                 <Panel id="GameChatEntryContainer"/>
             </Panel>
             <Label id="RoundMessageTop" class="RoundMessage" text="#Round" hittest="false"/>

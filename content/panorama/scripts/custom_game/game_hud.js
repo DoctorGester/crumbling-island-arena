@@ -299,7 +299,7 @@ SetupUI();
         if ($("#HeroPanel").BCanSeeInParentScroll()) {
             $("#GameChatEntryContainer").BLoadLayout("file://{resources}/layout/custom_game/chat.xml", true, true);
             $("#GameChatEntry").SetFocus();
-            $("#GameChat").RemoveClass("Hidden");
+            $("#GameChat").RemoveClass("ChatHidden");
         }
     });
 })();
