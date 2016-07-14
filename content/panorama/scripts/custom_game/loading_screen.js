@@ -61,4 +61,5 @@ var hittestBlocker = $.GetContextPanel().GetParent().FindChild("SidebarAndBattle
 
 if (hittestBlocker) {
     hittestBlocker.hittest = false;
+    hittestBlocker.hittestchildren = false;
 }
