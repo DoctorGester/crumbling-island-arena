@@ -1,6 +1,7 @@
 ﻿<root>
     <styles>
         <include src="file://{resources}/styles/custom_game/game_over.css" />
+        <include src="file://{resources}/styles/custom_game/util.css" />
     </styles>
     <scripts>
         <include src="file://{resources}/scripts/custom_game/underscore-min.js" />
