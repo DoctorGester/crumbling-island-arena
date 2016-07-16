@@ -36,7 +36,7 @@ function ProjectileTinkerW:constructor(round, hero, target, pos)
         radius = 32,
         heightOffset = 64,
         target = target,
-        speed = 3800,
+        speed = 2800,
         graphics = "particles/tinker_w/tinker_w_rocket.vpcf",
         disablePrediction = true,
         hitSound = "Arena.Tinker.HitW"
