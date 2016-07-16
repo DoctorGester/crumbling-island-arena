@@ -30,6 +30,7 @@
 		"HeroName_npc_dota_hero_brewmaster"				"Bacchus"
 		"HeroName_npc_dota_hero_invoker"				"Pride"
 		"HeroName_npc_dota_hero_tinker"					"The Fool"
+		"HeroName_npc_dota_hero_slark"					"The Hanged Man"
 
 		"Available_on_npc_dota_hero_drow_ranger"		"Available on April 23!"
 		"Available_on_npc_dota_hero_skeleton_king"		"Available on April 30!"
@@ -177,6 +178,11 @@
 		"tinker_DescW" "Homing missile"
 		"tinker_DescE" "Create two portals"
 		"tinker_DescR" "Refresh abilities when in AOE"
+
+		"slark_DescQ" "Melee attack + heal"
+		"slark_DescW" "Purge debuffs + self damage + damage in AOE"
+		"slark_DescE" "Jump forward and leash enemy"
+		"slark_DescR" "Purge debuffs + speed + regenerate health"
 
 		"PlayerHeader" "Players"
 		"SelectionHeader" "selection"
@@ -406,6 +412,11 @@
 		"AbilityTooltip_tinker_e_sub"					"Create an orange portal"
 		"AbilityTooltip_tinker_r"						"Create a device which refreshes cooldowns of your basic abilities every 4 seconds, if you stay in the area"
 
+		"AbilityTooltip_slark_q"						"Attack enemies in front of you, damaging them<br/><br/>If your health is lower than 5, steal one health instead of damaging and return it in 6 seconds"
+		"AbilityTooltip_slark_w"						"After a delay, purge debuffs from you, dealing damage to yourself and enemies around"
+		"AbilityTooltip_slark_e"						"Jump forward, leashing the first enemy encountered to the ground"
+		"AbilityTooltip_slark_r"						"Purge debuffs, gain speed boost, regenerate 1 health per second<br/><br/>Lasts <font color=\"gold\"><b>3</b></font> seconds"
+
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
 		"ModifierTooltip_modifier_silence_lua"					"Silenced"
@@ -510,6 +521,12 @@
 		"ModifierTooltip_modifier_brew_beer"					"Slowed"
 
 		"ModifierTooltip_modifier_invoker_w"					"Slowed"
+
+		"ModifierTooltip_modifier_slark_q"						"Will return stolen health"
+		"ModifierTooltip_modifier_slark_e"						"Nabbing"
+		"ModifierTooltip_modifier_slark_e_leash"				"You are bound!"
+		"ModifierTooltip_modifier_slark_r"						"Sped up and regenerating health"
+
 	}
 }
 

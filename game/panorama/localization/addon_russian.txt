@@ -30,6 +30,7 @@
 		"HeroName_npc_dota_hero_brewmaster"				"Бахус"
 		"HeroName_npc_dota_hero_invoker"				"Гордыня"
 		"HeroName_npc_dota_hero_tinker"					"Дурак"
+		"HeroName_npc_dota_hero_slark"					"Повешенный"
 
 		"Available_on_npc_dota_hero_lone_druid"			"Доступно с 4 июня!"
 		"Available_on_npc_dota_hero_drow_ranger"		"Доступено с 23 апреля!"
@@ -178,6 +179,11 @@
 		"tinker_DescW" "Самонаводящаяся ракета"
 		"tinker_DescE" "Создать два портала"
 		"tinker_DescR" "Перезарядка способностей"
+
+		"slark_DescQ" "Атака перед собой + лечение"
+		"slark_DescW" "Снять дебаффы + урон себе и врагам вокруг"
+		"slark_DescE" "Прыжок вперед + привязать врага"
+		"slark_DescR" "Снять дебаффы + скорость + регенерация"
 
 		"PlayerHeader" "Игроки"
 		"SelectionHeader" "выбор"
@@ -404,6 +410,11 @@
 		"AbilityTooltip_tinker_e_sub"					"Создать оранжевый портал"
 		"AbilityTooltip_tinker_r"						"Создать устройство, которое перезаряжает твои базовые способности каждые 4 секунды, если находиться вблизи него"
 
+		"AbilityTooltip_slark_q"						"Атаковать врагов перед собой, нанося урон<br/><br/>Если твоё здоровье меньше 5, украсть здоровье вместо урона и вернуть его через 6 секунд"
+		"AbilityTooltip_slark_w"						"Нанести урон себе и врагам вокруг и снять дебаффы с себя после задержки"
+		"AbilityTooltip_slark_e"						"Прыгнуть вперед, привязывая первого врага на пути к земле"
+		"AbilityTooltip_slark_r"						"Снять дебаффы, получить бонус скорости, восстанавливать 1 здоровья в секунду<br/><br/>Длится <font color=\"gold\"><b>3</b></font> секунды"
+
 		"ModifierTooltip_modifier_charges"						"Заряды способности"
 		"ModifierTooltip_modifier_stunned_lua"					"Оглушен"
 		"ModifierTooltip_modifier_silence_lua"					"Безмолвие"
@@ -508,6 +519,11 @@
 		"ModifierTooltip_modifier_brew_beer"					"Замедлен"
 
 		"ModifierTooltip_modifier_invoker_w"					"Замедлен"
+
+		"ModifierTooltip_modifier_slark_q"						"Вернет украденное здоровье"
+		"ModifierTooltip_modifier_slark_e"						"Прыгает"
+		"ModifierTooltip_modifier_slark_e_leash"				"Вы арестованы!"
+		"ModifierTooltip_modifier_slark_r"						"Ускорен и восстанавливает здоровье"
 	}
 }
 

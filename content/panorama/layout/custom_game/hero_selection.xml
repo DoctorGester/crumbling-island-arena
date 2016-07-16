@@ -14,15 +14,6 @@
             <DOTAScenePanel hittest="false" id="HeroSelectionBackgroundScene" map="backgrounds/dashboard_parallax_test" camera="shot_cameraC"/>
             <Panel id="HeroSelectionTopGradient" hittest="false"/>
 
-            <Panel id="HeroList">
-                <Label class="BlueLabel" text="#HeroListHeader"></Label>
-                <Panel id="DifficultyList">
-                    <Panel id="EasyHeroes" class="HeroButtons"/>
-                    <Panel id="HardHeroes" class="HeroButtons"/>
-                </Panel>
-                <Label id="TimerText"></Label>
-            </Panel>
-
             <Panel id="LeftSideHeroes">
                 <Label id="HeroName" class="YellowLabel"></Label>
             </Panel>
@@ -39,6 +30,15 @@
                 <Panel id="PlayersContent"/>
                 <Label id="GameGoal" class="BlueLabel"/>
                 <Label id="GameGoalText" text="#PointsToWin" class="BlueLabel"/>
+            </Panel>
+
+            <Panel id="HeroList">
+                <Label class="BlueLabel" text="#HeroListHeader"></Label>
+                <Panel id="DifficultyList">
+                    <Panel id="EasyHeroes" class="HeroButtons"/>
+                    <Panel id="HardHeroes" class="HeroButtons"/>
+                </Panel>
+                <Label id="TimerText"></Label>
             </Panel>
 
             <Panel id="HeroSelectionChat"/>

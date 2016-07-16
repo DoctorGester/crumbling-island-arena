@@ -2620,4 +2620,137 @@
 			"Radius" "300"
 		}
 	}
+
+	"slark_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/slark/slark_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "slark_essence_shift"
+		"AbilityCooldown" "2.5"
+		"AbilityCastPoint" "0.15"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "300"
+		}
+	}
+
+	"slark_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/slark/slark_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "slark_dark_pact"
+		"AbilityCooldown" "5.0"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
+	}
+
+	"slark_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/slark/slark_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "slark_pounce"
+		"AbilityCooldown" "6.0"
+	}
+
+	"slark_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/slark/slark_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "slark_shadow_dance"
+		"AbilityCooldown" "16.0"
+	}
+
+	"qop_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/qop/qop_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "queenofpain_shadow_strike"
+		"AbilityCooldown" "4.0"
+		"AbilityCastPoint" "0.15"
+	}
+
+	"qop_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/qop/qop_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "queenofpain_sonic_wave"
+		"AbilityCooldown" "7.0"
+	}
+
+	"qop_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/qop/qop_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "queenofpain_blink"
+		"AbilityCooldown" "6.0"
+	}
+
+	"qop_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/qop/qop_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "queenofpain_scream_of_pain"
+		"AbilityCooldown" "14.0"
+	}
+
+	"tusk_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tusk/tusk_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "tusk_walrus_punch"
+		"AbilityCooldown" "4.0"
+		"AbilityCastPoint" "0.15"
+	}
+
+	"tusk_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tusk/tusk_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "tusk_frozen_sigil"
+		"AbilityCooldown" "7.0"
+	}
+
+	"tusk_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tusk/tusk_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "tusk/glaciomarine_ability_icons/tusk_snowball"
+		"AbilityCooldown" "6.0"
+	}
+
+	"tusk_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tusk/tusk_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "crystal_maiden_crystal_nova"
+		"AbilityCooldown" "14.0"
+	}
+
 }
