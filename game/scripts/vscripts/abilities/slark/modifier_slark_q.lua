@@ -12,7 +12,11 @@ if IsServer() then
 
         local color = Vector(161, 127, 255)
         local hero = self:GetParent().hero
-        hero:Damage(hero)
+        
+        if hero:GetHealth() > 1 then
+            hero:Damage(hero)
+        end
+
         self.target:Heal()
 
         hero:EmitSound("Arena.Slark.EndQ")
