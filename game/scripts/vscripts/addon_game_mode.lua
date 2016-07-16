@@ -208,7 +208,7 @@ function GameMode:OnGameSetup()
 
     local circleSize = 1200
 
-    if GetMapName() == "arena_6" then
+    if GetMapName() ~= "ranked_2v2" then
         circleSize = 1550
     end
 

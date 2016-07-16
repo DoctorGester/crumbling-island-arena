@@ -25,7 +25,7 @@ function Level:constructor()
 end
 
 function Level:GetStartingDistance()
-    if GetMapName() == "arena" then
+    if GetMapName() == "ranked_2v2" then
         return 2300
     end
 
