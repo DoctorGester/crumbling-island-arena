@@ -12,6 +12,7 @@ require('hero')
 require('player')
 require('level')
 require('game_setup')
+require('teambuilder')
 require('hero_selection')
 require('round')
 

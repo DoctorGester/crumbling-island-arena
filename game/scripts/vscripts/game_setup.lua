@@ -11,6 +11,7 @@ function GameSetup:constructor(modes, players, teams)
     self.selectedMode = nil
     self.modes = modes
     self.teamNumber = 0
+    self.teamBuilder = nil
 
     self.playerState = {}
 
@@ -120,8 +121,10 @@ function GameSetup:SetupSelectedMode()
         Stats.SubmitMatchInfo(gameMode.Players, self.selectedMode, GAME_VERSION, function(...) gameMode:OnRanksReceived(...) end)
 
         if self.timer < 15 then
-            self.timer = 15000
+            self.timer = 15
         end
+
+        self.teamBuilder = TeamBuilder(self.players, self.teamNumber)
 
         CustomNetTables:SetTableValue("gameSetup", "teams", { teamNumber = self.teamNumber })
     else
