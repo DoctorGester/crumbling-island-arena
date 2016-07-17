@@ -1495,7 +1495,7 @@
 		"ScriptFile" "abilities/drow/drow_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "drow_ranger_frost_arrows"
-		"AbilityCooldown" "2.0"
+		"AbilityCooldown" "3.0"
 		"AbilityCastPoint" "0.2"
 
 		"TargetingIndicator"
@@ -1524,7 +1524,7 @@
 		"ScriptFile" "abilities/drow/drow_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "drow_ranger_silence"
-		"AbilityCooldown" "8.0"
+		"AbilityCooldown" "9.0"
 		"AbilityCastPoint" "0.2"
 
 		"TargetingIndicator"
@@ -1553,7 +1553,7 @@
 		"ScriptFile" "abilities/drow/drow_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "drow_ranger_trueshot"
-		"AbilityCooldown" "6.0"
+		"AbilityCooldown" "8.0"
 
 		"TargetingIndicator"
 		{

@@ -10,6 +10,7 @@ function drow_q:OnSpellStart()
         from = hero:GetPos() + Vector(0, 0, 64),
         to = target + Vector(0, 0, 64),
         speed = 1450,
+        radius = 48,
         graphics = "particles/drow_q/drow_q.vpcf",
         distance = 1200,
         hitModifier = { name = "modifier_drow_q", duration = 1.5, ability = self },

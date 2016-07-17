@@ -3,7 +3,7 @@ drow_r = class({})
 function drow_r:OnChannelThink(interval)
     self.channelingTime = (self.channelingTime or 0) + interval
 
-    if not self.soundPlayed and self.channelingTime >= 0.35 then
+    if not self.soundPlayed and self.channelingTime >= 0.25 then
         self:GetCaster().hero:EmitSound("Arena.Drow.PreR")
         self.soundPlayed = true
     end
@@ -54,7 +54,7 @@ function drow_r:OnChannelFinish(interrupted)
 end
 
 function drow_r:GetChannelTime()
-    return 1.0
+    return 0.7
 end
 
 function drow_r:GetCastAnimation()
@@ -62,5 +62,5 @@ function drow_r:GetCastAnimation()
 end
 
 function drow_r:GetPlaybackRateOverride()
-    return 0.7
+    return 1.0
 end

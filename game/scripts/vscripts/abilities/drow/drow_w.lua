@@ -20,7 +20,7 @@ function drow_w:OnSpellStart()
         radius = 128,
         continueOnHit = true,
         invulnerable = true,
-        hitModifier = { name = "modifier_silence_lua", duration = 2.0, ability = self },
+        hitModifier = { name = "modifier_silence_lua", duration = 1.5, ability = self },
         hitCondition = function(projectile, target)
             return projectile.owner.team ~= target.owner.team and not instanceof(target, Projectile)
         end,
