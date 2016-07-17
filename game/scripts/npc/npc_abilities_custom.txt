@@ -766,7 +766,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "sandking_burrowstrike"
 		"AbilityCooldown" "7.0"
-		"AbilityCastPoint" "0.4"
+		"AbilityCastPoint" "0.2"
 
 		"TargetingIndicator"
 		{
