@@ -26,7 +26,7 @@ function brew_q:OnSpellStart()
         owner = hero,
         from = hero:GetPos(),
         to = target,
-        speed = 2000,
+        speed = 2400,
         parabola = 600,
         graphics = "particles/brew_q/brew_q.vpcf",
         invulnerable = true,
