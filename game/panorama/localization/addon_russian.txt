@@ -31,6 +31,8 @@
 		"HeroName_npc_dota_hero_invoker"				"Гордыня"
 		"HeroName_npc_dota_hero_tinker"					"Дурак"
 		"HeroName_npc_dota_hero_slark"					"Повешенный"
+		"HeroName_npc_dota_hero_queenofpain"			"Похоть"
+		"HeroName_npc_dota_hero_tusk"					"?????"
 
 		"Available_on_npc_dota_hero_lone_druid"			"Доступно с 4 июня!"
 		"Available_on_npc_dota_hero_drow_ranger"		"Доступено с 23 апреля!"
@@ -44,6 +46,9 @@
 		"Available_on_npc_dota_hero_brewmaster"			"Доступно с 25 июня!"
 		"Available_on_npc_dota_hero_invoker"			"Доступно с 2 июля!"
 		"Available_on_npc_dota_hero_tinker"				"Доступно с 9 июля!"
+		"Available_on_npc_dota_hero_slark"				"Доступно с 16 июля!"
+		"Available_on_npc_dota_hero_queenofpain"		"Доступно с 23 июля!"
+		"Available_on_npc_dota_hero_tusk"				"Доступно с 30 июля!"
 
 		"phantom_assassin_DescQ" "Бумеранг"
 		"phantom_assassin_DescW" "Атака вокруг себя"

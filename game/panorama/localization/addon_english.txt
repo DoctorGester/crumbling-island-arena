@@ -31,6 +31,8 @@
 		"HeroName_npc_dota_hero_invoker"				"Pride"
 		"HeroName_npc_dota_hero_tinker"					"The Fool"
 		"HeroName_npc_dota_hero_slark"					"The Hanged Man"
+		"HeroName_npc_dota_hero_queenofpain"			"Lust"
+		"HeroName_npc_dota_hero_tusk"					"?????"
 
 		"Available_on_npc_dota_hero_drow_ranger"		"Available on April 23!"
 		"Available_on_npc_dota_hero_skeleton_king"		"Available on April 30!"
@@ -43,6 +45,9 @@
 		"Available_on_npc_dota_hero_brewmaster"			"Available on June 25!"
 		"Available_on_npc_dota_hero_invoker"			"Available on July 2!"
 		"Available_on_npc_dota_hero_tinker"				"Available on July 9!"
+		"Available_on_npc_dota_hero_slark"				"Available on July 16!"
+		"Available_on_npc_dota_hero_queenofpain"		"Available on July 23!"
+		"Available_on_npc_dota_hero_tusk"				"Available on July 30!"
 
 		"phantom_assassin_DescQ" "Short ranged boomerang"
 		"phantom_assassin_DescW" "Melee AOE attack"
@@ -183,6 +188,16 @@
 		"slark_DescW" "Purge debuffs + self damage + damage in AOE"
 		"slark_DescE" "Jump forward and leash enemy"
 		"slark_DescR" "Purge debuffs + speed + regenerate health"
+
+		"queenofpain_DescQ" "?????"
+		"queenofpain_DescW" "?????"
+		"queenofpain_DescE" "?????"
+		"queenofpain_DescR" "?????"
+
+		"tusk_DescQ" "?????"
+		"tusk_DescW" "?????"
+		"tusk_DescE" "?????"
+		"tusk_DescR" "?????"
 
 		"PlayerHeader" "Players"
 		"SelectionHeader" "selection"
