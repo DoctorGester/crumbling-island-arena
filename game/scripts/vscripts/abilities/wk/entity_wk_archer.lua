@@ -47,7 +47,7 @@ function WKArcher:Update()
             owner = self.hero,
             from = self:GetPos() + Vector(0, 0, 128),
             to = self.target,
-            speed = 1800,
+            speed = 3200,
             parabola = 600,
             graphics = "particles/wk_w/wk_w.vpcf",
             invulnerable = true,
