@@ -9,7 +9,7 @@ function modifier_tiny_q_speed:DeclareFunctions()
 end
 
 function modifier_tiny_q_speed:GetModifierMoveSpeedBonus_Percentage(params)
-    return self:GetStackCount() * 50
+    return self:GetStackCount() * 40
 end
 
 function modifier_tiny_q_speed:IsHidden()

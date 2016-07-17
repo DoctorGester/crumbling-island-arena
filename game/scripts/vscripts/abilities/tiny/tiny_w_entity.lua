@@ -11,7 +11,7 @@ function TinyW:constructor(round, owner, ability, target, bounces, height)
     self.startTime = GameRules:GetGameTime()
     self.bounces = bounces
     self.height = height
-    self.travelTime = 1.2
+    self.travelTime = 0.85
     self.effectRadius = 200
     self.fallingDirection = nil
 
