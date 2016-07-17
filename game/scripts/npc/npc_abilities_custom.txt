@@ -649,7 +649,7 @@
 		"ScriptFile" "abilities/sniper/sniper_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "techies_stasis_trap"
-		"AbilityCooldown" "7.0"
+		"AbilityCooldown" "4.5"
 		"AbilityCastRange" "300"
 		"AbilityCastPoint" "0.3"
 
