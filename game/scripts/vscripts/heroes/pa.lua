@@ -32,10 +32,14 @@ function PA:WeaponLaunched(projectile)
     self:FindAbility("pa_q_sub"):SetActivated(true)
 end
 
-function PA:WeaponRetrieved()
+function PA:WeaponRetrieved(wasDestroyed)
 	self:SwapAbilities("pa_q_sub", "pa_q")
 	self:SwapAbilities("pa_w_sub", "pa_w")
-    self:FindAbility("pa_q"):StartCooldown(1.4)
+
+    if not wasDestroyed then
+        self:FindAbility("pa_q"):StartCooldown(1.4)
+    end
+
 	self:SetWeaponVisible(true)
 	self.weapon = nil
 end
@@ -49,7 +53,7 @@ function PA:WeaponDestroyed()
 	self.weapon = nil
 
 	Timers:CreateTimer(3, function()
-		self:WeaponRetrieved()
+		self:WeaponRetrieved(true)
 	end)
 end
 
