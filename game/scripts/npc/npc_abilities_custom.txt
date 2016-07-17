@@ -2191,7 +2191,7 @@
 		"ScriptFile" "abilities/ld/ld_e_sub"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "lone_druid_true_form"
-		"AbilityCooldown" "8.0"
+		"AbilityCooldown" "7.0"
 	}
 
 	"ld_r"
@@ -2201,7 +2201,7 @@
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName" "lone_druid_synergy"
-		"AbilityCooldown" "3.0"
+		"AbilityCooldown" "2.0"
 	}
 
 	"pudge_q"

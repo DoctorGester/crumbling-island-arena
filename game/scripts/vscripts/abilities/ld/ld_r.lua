@@ -3,7 +3,7 @@ ld_r = class({})
 LinkLuaModifier("modifier_ld_r", "abilities/ld/modifier_ld_r", LUA_MODIFIER_MOTION_NONE)
 
 function ld_r:GetPlaybackRateOverride()
-    return 2.5
+    return 5.0
 end
 
 function ld_r:GetChannelAnimation()
@@ -15,7 +15,7 @@ function ld_r:GetChannelAnimation()
 end
 
 function ld_r:GetChannelTime()
-    return 0.7
+    return 0.3
 end
 
 function ld_r:OnSpellStart()

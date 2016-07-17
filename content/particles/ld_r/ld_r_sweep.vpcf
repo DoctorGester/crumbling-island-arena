@@ -3,15 +3,9 @@
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 256
-	m_ConstantColor =
-	[
-		194,
-		250,
-		255,
-		100,
-	]
+	m_ConstantColor = [ 194, 250, 255, 100 ]
 	m_nConstantSequenceNumber = 1
-	m_Renderers =
+	m_Renderers = 
 	[
 		{
 			_class = "C_OP_RenderSprites"
@@ -19,89 +13,73 @@
 			m_bAdditive = true
 			m_hTexture = resource:"materials/particle/particle_flares/anam_white_half.vtex"
 			m_nOrientationType = 1
-			m_flAnimationRate = 1.000000
+			m_flAnimationRate = 1.0
 		},
 	]
-	m_Operators =
+	m_Operators = 
 	[
 		{
 			_class = "C_OP_Decay"
 		},
 		{
 			_class = "C_OP_FadeOutSimple"
-			m_flFadeOutTime = 0.100000
+			m_flFadeOutTime = 0.1
 		},
 		{
 			_class = "C_OP_SpinUpdate"
 		},
 		{
 			_class = "C_OP_ColorInterpolate"
-			m_ColorFade =
-			[
-				9,
-				54,
-				157,
-				255,
-			]
+			m_ColorFade = [ 9, 54, 157, 255 ]
 		},
 		{
 			_class = "C_OP_PositionLock"
 		},
 	]
-	m_Initializers =
+	m_Initializers = 
 	[
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMax = 400.000000
-			m_flRadiusMin = 400.000000
+			m_flRadiusMax = 400.0
+			m_flRadiusMin = 400.0
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMin = 0.700000
-			m_fLifetimeMax = 0.700000
+			m_fLifetimeMin = 0.3
+			m_fLifetimeMax = 0.3
 		},
 		{
 			_class = "C_INIT_RandomRotation"
 			m_bRandomlyFlipDirection = false
-			m_flDegrees = 90.000000
-			m_flDegreesMax = 0.000000
+			m_flDegrees = 90.0
+			m_flDegreesMax = 0.0
 		},
 		{
 			_class = "C_INIT_RingWave"
-			m_flInitialRadius = 100.000000
+			m_flInitialRadius = 100.0
 			m_bEvenDistribution = true
-			m_flParticlesPerOrbit = 150.000000
+			m_flParticlesPerOrbit = 150.0
 		},
 		{
 			_class = "C_INIT_RemapScalar"
-			m_flInputMax = 2.000000
+			m_flInputMax = 2.0
 			m_nFieldOutput = 16
-			m_flOutputMin = 1.000000
-			m_flOutputMax = 0.000000
+			m_flOutputMin = 1.0
+			m_flOutputMax = 0.0
 			m_bScaleInitialRange = true
 		},
 		{
 			_class = "C_INIT_PositionOffset"
-			m_OffsetMin =
-			[
-				0.000000,
-				0.000000,
-				300.000000,
-			]
-			m_OffsetMax =
-			[
-				0.000000,
-				0.000000,
-				300.000000,
-			]
+			m_OffsetMin = [ 0.0, 0.0, 300.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 300.0 ]
 		},
 	]
-	m_Emitters =
+	m_Emitters = 
 	[
 		{
 			_class = "C_OP_ContinuousEmitter"
-			m_flEmitRate = 450.000000
-			m_flEmissionDuration = 0.700000
+			m_flEmitRate = 450.0
+			m_flEmissionDuration = 0.7
 		},
 	]
 }

@@ -3,84 +3,62 @@
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 1
-	m_ConstantColor =
-	[
-		194,
-		250,
-		255,
-		255,
-	]
+	m_ConstantColor = [ 194, 250, 255, 255 ]
 	m_nConstantSequenceNumber = 1
-	m_Renderers =
+	m_Renderers = 
 	[
 		{
 			_class = "C_OP_RenderSprites"
 			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
 			m_bAdditive = true
 			m_hTexture = resource:"materials/particle/lone_druid/lone_druid_rune.vtex"
-			m_flAnimationRate = 1.000000
+			m_flAnimationRate = 1.0
 			m_nOrientationType = 2
 		},
 	]
-	m_Operators =
+	m_Operators = 
 	[
 		{
 			_class = "C_OP_Decay"
 		},
 		{
 			_class = "C_OP_FadeOutSimple"
-			m_flFadeOutTime = 0.100000
+			m_flFadeOutTime = 0.1
 		},
 		{
 			_class = "C_OP_SpinUpdate"
 		},
 		{
 			_class = "C_OP_ColorInterpolate"
-			m_ColorFade =
-			[
-				9,
-				54,
-				157,
-				255,
-			]
+			m_ColorFade = [ 9, 54, 157, 255 ]
 		},
 		{
 			_class = "C_OP_PositionLock"
 		},
 	]
-	m_Initializers =
+	m_Initializers = 
 	[
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 100.000000
-			m_flRadiusMax = 100.000000
+			m_flRadiusMin = 100.0
+			m_flRadiusMax = 100.0
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMax = 0.800000
-			m_fLifetimeMin = 0.800000
+			m_fLifetimeMax = 0.4
+			m_fLifetimeMin = 0.4
 		},
 		{
 			_class = "C_INIT_CreateWithinSphere"
 		},
 		{
 			_class = "C_INIT_PositionOffset"
-			m_OffsetMax =
-			[
-				0.000000,
-				0.000000,
-				5.000000,
-			]
-			m_OffsetMin =
-			[
-				0.000000,
-				0.000000,
-				5.000000,
-			]
+			m_OffsetMax = [ 0.0, 0.0, 5.0 ]
+			m_OffsetMin = [ 0.0, 0.0, 5.0 ]
 			m_nControlPointNumber = 3
 		},
 	]
-	m_Emitters =
+	m_Emitters = 
 	[
 		{
 			_class = "C_OP_InstantaneousEmitter"
