@@ -186,10 +186,7 @@ function UpdateUI(){
 }
 
 function CenterCamera(on){
-    GameUI.SetCameraTarget(on || GetLocalHero());
-    $.Schedule(0.025, function() {
-        GameUI.SetCameraTarget(-1);
-    })
+    GameUI.SetCameraTargetPosition(Entities.GetAbsOrigin(on || GetLocalHero()), 1.0);
 }
 
 function AddDebugButton(text, eventName){
