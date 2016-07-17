@@ -6,7 +6,7 @@ function modifier_lycan_e:OnCreated()
 
         local unit = self:GetParent()
         local direction = unit:GetAbsOrigin() - self:GetCaster():GetAbsOrigin()
-        local position = unit:GetAbsOrigin() + direction:Normalized() * 400
+        local position = unit:GetAbsOrigin() + direction:Normalized() * 2000
 
         ExecuteOrderFromTable({ UnitIndex = unit:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_MOVE_TO_DIRECTION, Position = position })
     end
@@ -50,5 +50,5 @@ end
 
 
 function modifier_lycan_e:GetModifierMoveSpeedBonus_Percentage(params)
-    return -30
+    return 20
 end
