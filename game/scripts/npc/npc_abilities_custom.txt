@@ -1104,7 +1104,7 @@
 		"ScriptFile" "abilities/ta/ta_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "templar_assassin_psi_blades"
-		"AbilityCooldown" "2.0"
+		"AbilityCooldown" "3.0"
 		"AbilityCastPoint" "0.2"
 
 		"TargetingIndicator"
