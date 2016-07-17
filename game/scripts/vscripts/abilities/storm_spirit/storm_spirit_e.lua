@@ -9,7 +9,7 @@ function storm_spirit_e:OnSpellStart()
     if remnant then
         hero:EmitSound("Arena.Storm.CastE")
 
-        Dash(hero, remnant:GetPos(), 1200, {
+        Dash(hero, remnant:GetPos(), 2000, {
             modifier = { name = "modifier_storm_spirit_e", ability = self },
             forceFacing = true,
             loopingSound = "Arena.Storm.LoopE",
