@@ -7,4 +7,5 @@ function jugger_r:OnSpellStart()
     hero:AddNewModifier(hero, self, "modifier_jugger_r", { duration = 4 })
     hero:EmitSound("Arena.Jugger.CastR")
     hero:EmitSound("Arena.Jugger.CastR2")
+    hero:FindAbility("jugger_q"):EndCooldown()
 end
