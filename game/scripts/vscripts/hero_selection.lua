@@ -1,6 +1,6 @@
 HeroSelection = HeroSelection or class({})
 
-function HeroSelection:constructor(players, availableHeroes, teamColors, chat)
+function HeroSelection:constructor(players, availableHeroes, teamColors, chat, ranked)
     self.SelectionTimer = 0
     self.SelectionTimerTime = 20
     self.PreGameTimer = 0
@@ -8,7 +8,7 @@ function HeroSelection:constructor(players, availableHeroes, teamColors, chat)
     self.Players = players
     self.TeamColors = teamColors
     self.AvailableHeroes = availableHeroes
-    self.HardHeroesLocked = true
+    self.HardHeroesLocked = not ranked
     self.PreviousRandomed = {}
     self.Chat = chat
 end

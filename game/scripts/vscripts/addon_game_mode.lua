@@ -848,9 +848,6 @@ function GameMode:LoadCustomHeroes()
     local customAbilities = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
 
     local enableForDebug = IsInToolsMode() and PlayerResource:GetPlayerCount() == 1
-
-    print("Enable for dbg", enableForDebug, PlayerResource:GetPlayerCount())
-
     local order = 0
 
     for customName, data in pairs(customHeroes) do
@@ -911,7 +908,7 @@ function GameMode:OnGameInProgress()
         self.level:AssociatePieces()
     end
 
-    self.heroSelection = HeroSelection(self.Players, self.AvailableHeroes, self.TeamColors, self.chat)
+    self.heroSelection = HeroSelection(self.Players, self.AvailableHeroes, self.TeamColors, self.chat, self:GetRankedMode() ~= nil)
 
     self:RegisterThinker(1,
         function()
