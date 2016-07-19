@@ -27,6 +27,8 @@ function ProjectilePudgeQ:constructor(round, hero, target, ability)
         disablePrediction = true
     })
 
+    hero:SetHookVisible(false)
+
     self.ability = ability
     self.hitSomething = false
     self.goingBack = false
@@ -122,6 +124,14 @@ function ProjectilePudgeQ:GetNextPosition(pos)
     end
 end
 
+function ProjectilePudgeQ:Remove()
+    getbase(ProjectilePudgeQ).Remove(self)
+
+    if not self.hitSomething then
+        self.hero:SetHookVisible(true)
+    end
+end
+
 DashPudgeQ = DashPudgeQ or class({}, nil, Dash)
 
 function DashPudgeQ:constructor(hero, target, ability, particle)
@@ -154,4 +164,5 @@ function DashPudgeQ:End(...)
 
     self.pudge:StopSound("Arena.Pudge.CastQ")
     self.pudge:EmitSound("Arena.Pudge.EndQ")
+    self.pudge:SetHookVisible(true)
 end
