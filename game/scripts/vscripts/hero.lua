@@ -183,3 +183,10 @@ function Hero:Remove()
 
     getbase(Hero).Remove(self)
 end
+
+function Hero:AttachWearable(modelPath)
+    local wearable = SpawnEntityFromTableSynchronous("prop_dynamic", { model = modelPath })
+    wearable:FollowEntity(self:GetUnit(), true)
+
+    return wearable
+end

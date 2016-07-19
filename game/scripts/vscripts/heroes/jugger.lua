@@ -45,6 +45,12 @@ Jugger.Swords = {
 function Jugger:SetUnit(unit)
     getbase(Jugger).SetUnit(self, unit)
 
+    for _, part in pairs({ "ernaut_pants", "_bracers", "_cape", "_mask" }) do
+        self:AttachWearable("models/heroes/juggernaut/jugg"..part..".vmdl")
+    end
+
+    self.swordModel = self:AttachWearable("models/heroes/juggernaut/jugg_sword.vmdl")
+
     self.swordLevel = 0
     self:AddNewModifier(self, nil, "modifier_jugger_sword", {})
     self:UpdateSwordLevel()
@@ -87,18 +93,8 @@ end
 function Jugger:UpdateSwordLevel()
     self:FindModifier("modifier_jugger_sword"):SetStackCount(Jugger.Swords[self.swordLevel].range)
 
-    local wearable = self:GetUnit():FirstMoveChild()
-    while wearable ~= nil do
-        if wearable:GetClassname() == "dota_item_wearable" then
-            if string.find(wearable:GetModelName(), "sword") then
-                wearable:SetModel(Jugger.Swords[self.swordLevel].model)
-                break
-            end
-        end
-
-        wearable = wearable:NextMovePeer()
-    end
-
+    self.swordModel:SetModel(Jugger.Swords[self.swordLevel].model)
+    
     if self.swordParticle then
         ParticleManager:DestroyParticle(self.swordParticle, false)
         ParticleManager:ReleaseParticleIndex(self.swordParticle)
