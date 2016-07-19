@@ -83,6 +83,17 @@ function Precache(context)
     end
 
     VectorTarget:Precache(context)
+
+    local mapParts = { unranked = 663, ranked_2v2 = 579, ranked_3v3 = 663 }
+    local amount = mapParts[GetMapName()]
+
+    print("Precaching", amount, "map pieces")
+
+    for i = 0, amount do
+        PrecacheModel("maps/"..GetMapName().."/entities/map_part_"..tostring(i)..".vmdl", context)
+    end
+
+    print("Done")
 end
 
 function Activate()
