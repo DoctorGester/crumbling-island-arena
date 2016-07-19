@@ -35,6 +35,8 @@ function CreateDifficultyLock() {
     var text = $.CreatePanel("Label", lock, "");
     
     text.text = $.Localize("LockedHeroes");
+
+    $("#HeroSelectionBackground").MoveChildBefore(lock, $("#PauseOverlay"));
 }
 
 function PreloadHeroPreviews(heroes) {
