@@ -28,7 +28,6 @@ function TryFetchSteamId(id, avatar) {
         });
     } else {
         avatar.steamid = info.player_steamid;
-        avatar.SetPanelEvent("onmouseover", function() {});
     }
 }
 
