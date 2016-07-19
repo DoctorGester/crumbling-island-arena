@@ -2627,7 +2627,7 @@
 		"ScriptFile" "abilities/slark/slark_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "slark_essence_shift"
-		"AbilityCooldown" "2.5"
+		"AbilityCooldown" "2.0"
 		"AbilityCastPoint" "0.15"
 
 		"HoverIndicator"
@@ -2649,7 +2649,7 @@
 		"ScriptFile" "abilities/slark/slark_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "slark_dark_pact"
-		"AbilityCooldown" "5.0"
+		"AbilityCooldown" "4.0"
 
 		"HoverIndicator"
 		{
@@ -2662,9 +2662,9 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/slark/slark_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "slark_pounce"
-		"AbilityCooldown" "6.0"
+		"AbilityCooldown" "5.0"
 	}
 
 	"slark_r"
