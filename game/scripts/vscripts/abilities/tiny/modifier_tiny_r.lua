@@ -7,11 +7,9 @@ function modifier_tiny_r:ChangeModelLevel(previous, level)
     previous = tostring(previous)
 
     while model ~= nil do
-        if model:GetClassname() == "dota_item_wearable" then
-            if not string.match(model:GetModelName(), "tree") then
-                local newName = string.gsub(model:GetModelName(), previous, level)
-                model:SetModel(newName)
-            end
+        if model:GetClassname() == "prop_dynamic" then
+            local newName = string.gsub(model:GetModelName(), previous, level)
+            model:SetModel(newName)
         end
         model = model:NextMovePeer()
     end
@@ -26,28 +24,20 @@ if IsServer() then
     function modifier_tiny_r:OnCreated(kv)
         self.used = false
 
-        Timers:CreateTimer(
-            function()
-                self:GetParent():FindAbilityByName("tiny_grow"):SetLevel(3)
-                --self:GetParent():NotifyWearablesOfModelChange(true)
-                --self:ChangeModelLevel(1, 4)
-            end
-        )
+        self:ChangeModelLevel(1, 4)
     end
 
     function modifier_tiny_r:OnDestroy(kv)
-        self:GetParent():FindAbilityByName("tiny_grow"):SetLevel(0)
-        --self:GetParent():NotifyWearablesOfModelChange(true)
-        --self:ChangeModelLevel(4, 1)
+        self:ChangeModelLevel(4, 1)
 
-        --ImmediateEffect("particles/units/heroes/hero_tiny/tiny_transform.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
+        ImmediateEffect("particles/units/heroes/hero_tiny/tiny_transform.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
     end
 end
 
 function modifier_tiny_r:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-        --MODIFIER_PROPERTY_MODEL_CHANGE,
+        MODIFIER_PROPERTY_MODEL_CHANGE,
     }
 
     return funcs
