@@ -1,25 +1,24 @@
 PA = class({}, {}, Hero)
 
+function PA:SetUnit(unit)
+    getbase(PA).SetUnit(self, unit)
+
+    for _, part in pairs({ "cape", "daggers", "helmet", "shoulders" }) do
+        self:AttachWearable("models/heroes/phantom_assassin/phantom_assassin_"..part..".vmdl")
+    end
+
+    self.weaponModel = self:AttachWearable("models/heroes/phantom_assassin/phantom_assassin_weapon.vmdl")
+end
+
 function PA:GetSpeedMultiplier()
     return self:HasModifier("modifier_pa_r") and 2 or 1
 end
 
 function PA:SetWeaponVisible(visible)
-	local wearable = self:GetUnit():FirstMoveChild()
-    while wearable ~= nil do
-        if wearable:GetClassname() == "dota_item_wearable" then
-            if string.find(wearable:GetModelName(), "weapon") then
-            	if visible then
-            		wearable:RemoveEffects(EF_NODRAW)
-            	else
-            		wearable:AddEffects(EF_NODRAW)
-            	end
-
-                return
-            end
-        end
-
-        wearable = wearable:NextMovePeer()
+    if visible then
+        self.weaponModel:RemoveEffects(EF_NODRAW)
+    else
+        self.weaponModel:AddEffects(EF_NODRAW)
     end
 end
 
