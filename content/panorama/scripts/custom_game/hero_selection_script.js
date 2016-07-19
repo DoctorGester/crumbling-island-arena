@@ -125,7 +125,11 @@ function ShowHeroDetails(heroName) {
 
     if (previewSchedule != 0) {
         $.CancelScheduled(previewSchedule);
-        heroPreviews[hiddingCurrentPreview].style.visibility = "collapse";
+
+        if (hiddingCurrentPreview != heroName) {
+            heroPreviews[hiddingCurrentPreview].style.visibility = "collapse";
+        }
+
         previewSchedule = 0;
     }
 }
