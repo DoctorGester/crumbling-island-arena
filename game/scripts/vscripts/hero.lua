@@ -9,6 +9,8 @@ function Hero:constructor(round)
     self.modifierImmune = false
     self.removeOnDeath = false
     self.collisionType = COLLISION_TYPE_RECEIVER
+
+    self.wearables = {}
 end
 
 function Hero:SetUnit(unit)
@@ -152,6 +154,22 @@ function Hero:Update()
             assigned:SetAbsOrigin(self:GetPos())
         end
     end
+
+    local invisLevel = 0.0
+
+    for _, modifier in pairs(self:AllModifiers()) do
+        if modifier.GetModifierInvisibilityLevel then
+            invisLevel = modifier:GetModifierInvisibilityLevel()
+        end
+    end
+
+    for _, wearable in pairs(self.wearables) do
+        local visuals = wearable:FindModifierByName("modifier_wearable_visuals")
+
+        if visuals then
+            visuals:SetStackCount(invisLevel * 100)
+        end
+    end
 end
 
 function Hero:Setup()
@@ -185,8 +203,20 @@ function Hero:Remove()
 end
 
 function Hero:AttachWearable(modelPath)
-    local wearable = SpawnEntityFromTableSynchronous("prop_dynamic", { model = modelPath })
+    local wearable = CreateUnitByName("wearable_model", Vector(0, 0, 0), false, nil, nil, DOTA_TEAM_NOTEAM)
+
+    local oldSet = wearable.SetModel
+
+    wearable.SetModel = function(self, model)
+        oldSet(self, model)
+        self:SetOriginalModel(model)
+    end
+
+    wearable:SetModel(modelPath)
     wearable:FollowEntity(self:GetUnit(), true)
+    wearable:AddNewModifier(wearable, nil, "modifier_wearable_visuals", {})
+
+    table.insert(self.wearables, wearable)
 
     return wearable
 end

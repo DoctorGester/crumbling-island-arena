@@ -112,6 +112,11 @@
 		"VisionNighttimeRange"		"0"		// Range of vision at night time.
 	}
 
+	"wearable_model"
+	{
+		"BaseClass"     "npc_dota_creature"
+	}
+
 	"wk_zombie"
 	{
 	    "BaseClass"     "npc_dota_creature"
@@ -134,7 +139,7 @@
 	    "Model"         "models/heroes/clinkz/clinkz.vmdl"
 	    "ModelScale"    "0.7"
 	    "DrawParticlesWhileHidden" "1"
-	    
+
 	    "Creature"
 	    {
 	        "AttachWearables"

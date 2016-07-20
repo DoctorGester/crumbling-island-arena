@@ -7,7 +7,7 @@ function modifier_tiny_r:ChangeModelLevel(previous, level)
     previous = tostring(previous)
 
     while model ~= nil do
-        if model:GetClassname() == "prop_dynamic" then
+        if model:GetClassname() == "npc_dota_creature" then
             local newName = string.gsub(model:GetModelName(), previous, level)
             model:SetModel(newName)
         end
