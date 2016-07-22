@@ -85,16 +85,6 @@ function Precache(context)
     end
 
     VectorTarget:Precache(context)
-
-    local amount = MAPS[GetMapName()].pieces
-
-    print("Precaching", amount, "map pieces")
-
-    for i = 0, amount do
-        PrecacheModel("maps/prefabs/"..MAPS[GetMapName()].prefab.."/entities/map_part_"..tostring(i)..".vmdl", context)
-    end
-
-    print("Done")
 end
 
 function Activate()
