@@ -163,15 +163,6 @@ function MiscInfoChanged(data) {
     }
 }
 
-function OnLoadingProgress(args) {
-    var label = $("#LoadingProgress");
-
-    if (args.progress) {
-        label.SetDialogVariable("progress", (args.progress * 100).toFixed(1).toString());
-        label.text = $.Localize("GameLoading", label);
-    }
-}
-
 (function () {
     SubscribeToNetTableKey("main", "gameState", true, GameStateChanged);
     SubscribeToNetTableKey("gameSetup", "modes", true, GameModesChanges);
@@ -180,7 +171,6 @@ function OnLoadingProgress(args) {
     SubscribeToNetTableKey("gameSetup", "misc", true, MiscInfoChanged);
     SubscribeToNetTableKey("ranks", "current", true, RanksChanged);
     GameEvents.Subscribe("setup_timer_tick", OnTimerTick);
-    GameEvents.Subscribe("setup_level_loading", OnLoadingProgress);
 
     //$("#GameSetupChat").BLoadLayout("file://{resources}/layout/custom_game/simple_chat.xml", false, false);
     //$("#GameSetupChat").RegisterListener("GameSetupEnter");

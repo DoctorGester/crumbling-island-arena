@@ -213,8 +213,6 @@ function GameMode:EventStateChanged(args)
 
     if newState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
         self:OnGameSetup()
-
-        Level.LoadMap(GetMapName())
     end
      
     if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
@@ -335,7 +333,6 @@ function GameMode:InitSettings()
     mode:SetCustomBuybackCooldownEnabled(true)
     mode:SetBuybackEnabled(false)
     mode:SetTopBarTeamValuesOverride (true)
-    mode:SetUseCustomHeroLevels(true)
     mode:SetAnnouncerDisabled(true)
     mode:SetFogOfWarDisabled(true)
 

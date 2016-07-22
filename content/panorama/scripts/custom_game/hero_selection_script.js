@@ -39,29 +39,23 @@ function CreateDifficultyLock() {
     $("#HeroSelectionBackground").MoveChildBefore(lock, $("#PauseOverlay"));
 }
 
-function PreloadHeroPreview(delay, hero) {
-    $.Schedule(delay, function() {
-        var previewStyle = "width: 100%; height: 100%; margin-top: -100px; opacity-mask: url(\"s2r://panorama/images/masks/softedge_box_png.vtex\");";
-        var preview = $.CreatePanel("Panel", $("#LeftSideHeroes"), "");
-        preview.AddClass("HeroPreview");
+function PreloadHeroPreview(hero) {
+    var previewStyle = "width: 100%; height: 100%; margin-top: -100px; opacity-mask: url(\"s2r://panorama/images/masks/softedge_box_png.vtex\");";
+    var preview = $.CreatePanel("Panel", $("#LeftSideHeroes"), "");
+    preview.AddClass("HeroPreview");
 
-        $("#LeftSideHeroes").MoveChildAfter(preview, $("#HeroAbilities"));
+    $("#LeftSideHeroes").MoveChildAfter(preview, $("#HeroAbilities"));
 
-        preview.style.visibility = "collapse";
-        preview.SetHasClass("NotAvailableHero", allHeroes[hero].disabled);
-        preview.BCreateChildren("<DOTAScenePanel style='" + previewStyle + "' unit='" + hero + "'/>");
+    preview.style.visibility = "collapse";
+    preview.SetHasClass("NotAvailableHero", allHeroes[hero].disabled);
+    preview.BCreateChildren("<DOTAScenePanel style='" + previewStyle + "' unit='" + hero + "'/>");
 
-        heroPreviews[hero] = preview;
-    });
+    heroPreviews[hero] = preview;
 }
 
 function PreloadHeroPreviews(heroes) {
-    var i = 0;
-
     for (var hero of heroes) {
-        PreloadHeroPreview(0.03 * i, hero);
-
-        i++;
+        PreloadHeroPreview(hero);
     }
 }
 

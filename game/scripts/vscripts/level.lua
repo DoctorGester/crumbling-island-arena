@@ -64,8 +64,12 @@ function Level.LoadMap(map)
             local n = LoadNext()
 
             if n == nil then
-                SpawnEntityListFromTableAsynchronous(list, function() ReportProgress(list) end)
-                return LoadingFinished()
+                SpawnEntityListFromTableAsynchronous(list, function()
+                    ReportProgress(list)
+                    LoadingFinished()
+                end)
+                
+                return 
             end
 
             table.insert(list, n)

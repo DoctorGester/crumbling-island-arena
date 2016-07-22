@@ -385,7 +385,7 @@ function GameSetup:Update()
         self:SelectRandomOptions()
     end
 
-    if self.timer == -1 and self.levelLoaded then
+    if self.timer == -1 then
         self:End()
     end
 end
