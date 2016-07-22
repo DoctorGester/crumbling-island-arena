@@ -4,8 +4,77 @@ THIRD_STAGE_OBSTRUCTOR = "Layer3Obstructor"
 MAP_HEIGHT = 3500
 FINISHING_DISTANCE = 900
 
+local function bigTransformer(x, y)
+    return x, -y
+end
+
+local function smallTransformer(x, y)
+    return y, x
+end
+
+MAPS = {
+    ["unranked"] = { pieces = 919, prefab = "arena_big", transformer = bigTransformer },
+    ["ranked_3v3"] = { pieces = 919, prefab = "arena_big", transformer = bigTransformer },
+    ["ranked_2v2"] = { pieces = 579, prefab = "arena_small", transformer = smallTransformer },
+}
+
 if Level == nil then
     Level = class({})
+end
+
+function Level.LoadMap(map)
+    local prefab = MAPS[map].prefab
+    local pieces = require("levels/prefabs/"..prefab)
+    local currentIndex = nil
+    local loaded = 0
+
+    local function LoadNext()
+        local key, value = next(pieces, currentIndex)
+
+        if key == nil then
+            return nil
+        end
+
+        currentIndex = key
+
+        return {
+            classname = "prop_dynamic",
+            model = "maps/prefabs/"..prefab.."/entities/"..key,
+            origin = value - Vector(0, 0, 32),
+            targetname = "map_part",
+            name = "map_part",
+            target = "map_part"
+        }
+    end
+
+    local function ReportProgress(list)
+        loaded = loaded + #list
+
+        CustomGameEventManager:Send_ServerToAllClients("setup_level_loading", { progress = loaded / MAPS[map].pieces })
+    end
+
+    local function LoadingFinished()
+        GameRules.GameMode.gameSetup.levelLoaded = true
+    end
+
+    Timers:CreateTimer(function()
+        local list = {}
+
+        for i = 1, 30 do
+            local n = LoadNext()
+
+            if n == nil then
+                SpawnEntityListFromTableAsynchronous(list, function() ReportProgress(list) end)
+                return LoadingFinished()
+            end
+
+            table.insert(list, n)
+        end
+
+        SpawnEntityListFromTableAsynchronous(list, function() ReportProgress(list) end)
+
+        return 0.35
+    end)
 end
 
 function Level:constructor()

@@ -217,6 +217,7 @@
 		"ChatRandomed" "<b><font color='{s:color}'>{s:name}</font></b> has randomed <font color='gold'>{s:hero}</font>"
 		"ChatPlaceholder" "Type here..."
 
+		"GameLoading" "Loading level: {s:progress}%"
 		"GameName" "Crumbling Island Arena"
 		"GameTips" "New hero every Saturday<br/>You can destroy terrain with your abilities<br/>There are 2 ranked and 1 unranked map<br/>You can use twitch emotes in chat<br/>(after game mode and teams are selected)<br/><br/>Ranked rules:<br/>Start from rank 30 every month<br/>One victory/defeat = one rank<br/>Abandon = defeat<br/>Not playing in 2 rounds = defeat<br/>Good luck!"
 		"GameSetupModeSelect" "Select a game mode"

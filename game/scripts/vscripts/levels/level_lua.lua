@@ -1,5 +1,5 @@
 function Level:LoadPolygons()
-    self.polygons = require("levels/arena_small")
+    self.polygons = require("levels/"..MAPS[GetMapName()].prefab)
 end
 
 function Level:Clusterize()

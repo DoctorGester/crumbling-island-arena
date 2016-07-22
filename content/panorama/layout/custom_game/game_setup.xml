@@ -26,6 +26,7 @@
                 <Label class="RankLoadingLabel" text="#RanksLoading"/>
             </Panel>
         </Panel>
+        <Label id="LoadingProgress"/>
         <!--<Panel id="GameSetupChat"/>-->
     </Panel>
 </root>

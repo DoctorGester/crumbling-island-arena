@@ -341,12 +341,12 @@ function GameSetup:Start(muteSound)
             Timers:CreateTimer(3, function()
                 self.selectedMode = "ffa"
                 self:DistinctTeams()
-                self:End()
+                self.timer = -1
             end)
         else
             self.selectedMode = "ffa"
             self:DistinctTeams()
-            self:End()
+            self.timer = -1
         end
     else
         self:SendTimeToPlayers()
@@ -385,7 +385,7 @@ function GameSetup:Update()
         self:SelectRandomOptions()
     end
 
-    if self.timer == -1 then
+    if self.timer == -1 and self.levelLoaded then
         self:End()
     end
 end

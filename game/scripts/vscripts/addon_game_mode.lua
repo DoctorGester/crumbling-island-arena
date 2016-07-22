@@ -11,6 +11,8 @@ require('unit_entity')
 require('hero')
 require('player')
 require('level')
+require("levels/polygon")
+require("levels/level_lua")
 require('game_setup')
 require('teambuilder')
 require('hero_selection')
@@ -84,22 +86,45 @@ function Precache(context)
 
     VectorTarget:Precache(context)
 
-    local mapParts = { unranked = 663, ranked_2v2 = 579, ranked_3v3 = 663 }
-    local amount = mapParts[GetMapName()]
+    local amount = MAPS[GetMapName()].pieces
 
     print("Precaching", amount, "map pieces")
 
     for i = 0, amount do
-        PrecacheModel("maps/"..GetMapName().."/entities/map_part_"..tostring(i)..".vmdl", context)
+        PrecacheModel("maps/prefabs/"..MAPS[GetMapName()].prefab.."/entities/map_part_"..tostring(i)..".vmdl", context)
     end
 
     print("Done")
 end
 
 function Activate()
+    if IsInToolsMode() and GetMapName():starts("prefabs") then
+        return WritePrefab()
+    end
+
     GameRules.GameMode = GameMode()
     GameRules.GameMode:SetupMode()
     VectorTarget:Init({ noOrderFilter = true })
+    SendToServerConsole("dota_create_fake_clients 5")
+end
+
+function WritePrefab()
+    local name = string.gsub(GetMapName(), ".*\\(.*)", "%1")..".lua"
+    local pieces = Entities:FindAllByName("map_part")
+    local file = io.open(name, "w")
+
+    file:write("local pieces = {}\n")
+
+    for _, piece in pairs(pieces) do
+        local m = piece:GetModelName():gsub(".*entities/(.*)", "%1")
+        local p = piece:GetAbsOrigin()
+
+        file:write(("pieces[%q] = Vector(%f, %f, %f)\n"):format(m, p.x, p.y, p.z))
+    end
+
+    file:write("return pieces")
+
+    file:close()
 end
 
 function GameMode:OnThink()
@@ -189,6 +214,8 @@ function GameMode:EventStateChanged(args)
 
     if newState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
         self:OnGameSetup()
+
+        Level.LoadMap(GetMapName())
     end
      
     if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
@@ -911,14 +938,9 @@ function GameMode:OnGameInProgress()
     self.GameItems = nil--LoadKeyValues("scripts/items/items_game.txt").items
 
     self.level = Level()
-
-    if GetMapName() == "ranked_2v2" then
-        require("levels/polygon")
-        require("levels/level_lua")
-        self.level:LoadPolygons()
-        self.level:Clusterize()
-        self.level:AssociatePieces()
-    end
+    self.level:LoadPolygons()
+    self.level:Clusterize()
+    self.level:AssociatePieces()
 
     self.heroSelection = HeroSelection(self.Players, self.AvailableHeroes, self.TeamColors, self.chat, self:GetRankedMode() ~= nil)
 

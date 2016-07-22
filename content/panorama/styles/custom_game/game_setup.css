@@ -367,3 +367,13 @@
     wash-color: #777777;
     saturation: 0;
 }
+
+#LoadingProgress
+{
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    align: center bottom;
+    color: #DDDDDD;
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 210px;
+}

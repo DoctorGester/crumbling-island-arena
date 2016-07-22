@@ -7,16 +7,21 @@ function Polygon:constructor()
     self.originY = 0
     self.ox = 0
     self.oy = 0
+    self.transformer = MAPS[GetMapName()].transformer
 end
 
 function Polygon:setOrigin(x, y)
-    self.originX = y
-    self.originY = x
+    x, y = self.transformer(x, y)
+
+    self.originX = x
+    self.originY = y
 end
 
 function Polygon:addPoint(x, y)
-    table.insert(self.x, y)
-    table.insert(self.y, x)
+    x, y = self.transformer(x, y)
+
+    table.insert(self.x, x)
+    table.insert(self.y, y)
 end
 
 function Polygon:setOffset(x, y)

@@ -7,24 +7,8 @@ function Spells:constructor()
     self.dashes = {}
 end
 
-if GetMapName() == "ranked_2v2" then
-    function Spells.TestPoint(point)
-        return GameRules.GameMode.level:GetPartAt(point.x, point.y)
-    end
-else
-    function Spells.TestPoint(point, unit)
-        local ground = point * Vector(1, 1, 0) - Vector(0, 0, 1)
-        
-        local trace = {
-            startpos = ground,
-            endpos = ground - Vector(0, 0, 10),
-            ignore = unit
-        }
-
-        TraceLine(trace)
-
-        return trace.enthit
-    end
+function Spells.TestPoint(point)
+    return GameRules.GameMode.level:GetPartAt(point.x, point.y)
 end
 
 function Spells:Update()
