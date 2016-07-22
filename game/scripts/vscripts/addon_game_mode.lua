@@ -105,7 +105,6 @@ function Activate()
     GameRules.GameMode = GameMode()
     GameRules.GameMode:SetupMode()
     VectorTarget:Init({ noOrderFilter = true })
-    SendToServerConsole("dota_create_fake_clients 5")
 end
 
 function WritePrefab()

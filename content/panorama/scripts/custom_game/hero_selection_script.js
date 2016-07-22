@@ -60,7 +60,7 @@ function PreloadHeroPreviews(heroes) {
 
     for (var hero of heroes) {
         PreloadHeroPreview(0.03 * i, hero);
-        
+
         i++;
     }
 }
@@ -161,6 +161,16 @@ function HideHeroDetails(heroName) {
         });
     } else {
         ShowHeroDetails(selected);
+    }
+}
+
+function HideAll() {
+    $("#HeroAbilities").visible = false;
+    $("#HeroName").text = "";
+
+    for (var hero in heroPreviews) {
+        heroPreviews[hero].RemoveClass("HeroPreviewIn");
+        heroPreviews[hero].style.visibility = "collapse";
     }
 }
 
@@ -396,6 +406,7 @@ function HeroSelectionUpdated(data){
             selectionImage.RemoveClass("AnimationSelectedHero");
         } else {
             if (id == Game.GetLocalPlayerID()) {
+                HideAll();
                 ShowHeroDetails(hero);
             }
 
