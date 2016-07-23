@@ -1,14 +1,22 @@
 modifier_lycan_e = class({})
 
-function modifier_lycan_e:OnCreated()
-    if IsServer() then
+if IsServer() then
+    function modifier_lycan_e:OnCreated()
         self.bleedingOccured = self:GetCaster().hero:IsBleeding(self:GetParent().hero)
 
         local unit = self:GetParent()
-        local direction = unit:GetAbsOrigin() - self:GetCaster():GetAbsOrigin()
-        local position = unit:GetAbsOrigin() + direction:Normalized() * 2000
 
-        ExecuteOrderFromTable({ UnitIndex = unit:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_MOVE_TO_DIRECTION, Position = position })
+        unit:Interrupt()
+        self.direction = (unit:GetAbsOrigin() - self:GetCaster():GetAbsOrigin()):Normalized()
+        self:StartIntervalThink(0.1)
+        self:OnIntervalThink()
+    end
+
+    function modifier_lycan_e:OnIntervalThink()
+        local unit = self:GetParent()
+        local position = unit:GetAbsOrigin() + self.direction * 500
+
+        unit:MoveToPosition(position)
     end
 end
 
