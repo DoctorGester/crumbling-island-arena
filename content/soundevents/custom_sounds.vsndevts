@@ -9024,3 +9024,267 @@
         }
     }
 }
+
+"Arena.QOP.CastQ"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/queenofpain/queenofpain_attack1.vsnd"
+                              "value1"        "sounds/weapons/hero/queenofpain/queenofpain_attack2.vsnd"
+                              "value2"        "sounds/weapons/hero/queenofpain/queenofpain_attack3.vsnd"
+                              "value3"        "sounds/weapons/hero/queenofpain/queenofpain_attack4.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.000000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "100.00000" }
+                    "distance_max"      {   "value"     "2000.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.QOP.HitQ"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/queenofpain/queenofpain_shadowstrike.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.000000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "100.00000" }
+                    "distance_max"      {   "value"     "2000.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.QOP.CastW"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/windrunner/taunt_kiss.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.000000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "100.00000" }
+                    "distance_max"      {   "value"     "2000.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.QOP.CastE"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/queenofpain/blink_out.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.000000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "100.00000" }
+                    "distance_max"      {   "value"     "2000.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.QOP.EndE"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/queenofpain/blink_in.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.000000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "100.00000" }
+                    "distance_max"      {   "value"     "2000.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.QOP.CastR"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/queenofpain/queenofpain_screamofpain.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.000000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "100.00000" }
+                    "distance_max"      {   "value"     "2000.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.QOP.CastR.Voice"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/vo/queenofpain/pain_laugh_01.vsnd"
+                              "value1"        "sounds/vo/queenofpain/pain_laugh_02.vsnd"
+                              "value2"        "sounds/vo/queenofpain/pain_laugh_03.vsnd"
+                              "value3"        "sounds/vo/queenofpain/pain_laugh_04.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.300000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "100.00000" }
+                    "distance_max"      {   "value"     "2000.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.QOP.CastR.Heal"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/vo/queenofpain/pain_happy_01.vsnd"
+                              "value1"        "sounds/vo/queenofpain/pain_happy_02.vsnd"
+                              "value2"        "sounds/vo/queenofpain/pain_happy_03.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.300000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "100.00000" }
+                    "distance_max"      {   "value"     "2000.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}

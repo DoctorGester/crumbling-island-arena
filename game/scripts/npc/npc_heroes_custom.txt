@@ -1099,7 +1099,6 @@
 		"GameSoundsFile" ""
 		"VoiceFile"	""
 		"Difficulty" "easy"
-		"Disabled" "true"
 		"Order" "28"
 
 		"Ability1" "qop_q"

@@ -189,10 +189,10 @@
 		"slark_DescE" "Jump forward and leash enemy"
 		"slark_DescR" "Purge debuffs + speed + regenerate health"
 
-		"queenofpain_DescQ" "?????"
-		"queenofpain_DescW" "?????"
-		"queenofpain_DescE" "?????"
-		"queenofpain_DescR" "?????"
+		"queenofpain_DescQ" "Slowing projectile, delayed damage"
+		"queenofpain_DescW" "Blink"
+		"queenofpain_DescE" "Attract enemies facing you"
+		"queenofpain_DescR" "Spells cost health, but have low cooldown"
 
 		"tusk_DescQ" "?????"
 		"tusk_DescW" "?????"
@@ -433,6 +433,11 @@
 		"AbilityTooltip_slark_e"						"Jump forward, leashing the first enemy encountered to the ground"
 		"AbilityTooltip_slark_r"						"Purge debuffs, gain speed boost, regenerate 1 health per second<br/><br/>Lasts <font color=\"gold\"><b>3</b></font> seconds"
 
+		"AbilityTooltip_qop_q"							"Fire a slowing projectile, which deals damage after the slow ends<br/><br/>If fired while ult is active, heals after dealing damage"
+		"AbilityTooltip_qop_w"							"Slow and attract all enemies facing you"
+		"AbilityTooltip_qop_e"							"Teleport to a target point"
+		"AbilityTooltip_qop_r"							"Your spells have 0.5 second cooldowns, but cost health<br/>Each spell can be used up to 3 times<br/><br/>Lasts <font color=\"gold\"><b>6</b></font> seconds"
+
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
 		"ModifierTooltip_modifier_silence_lua"					"Silenced"
@@ -543,6 +548,9 @@
 		"ModifierTooltip_modifier_slark_e_leash"				"You are bound!"
 		"ModifierTooltip_modifier_slark_r"						"Sped up and regenerating health"
 
+		"ModifierTooltip_modifier_qop_q"						"Slowed and will take damage"
+		"ModifierTooltip_modifier_qop_w"						"Attracted by pure beauty"
+		"ModifierTooltip_modifier_qop_r"						"Will pay health when casting this spell"
 	}
 }
 
