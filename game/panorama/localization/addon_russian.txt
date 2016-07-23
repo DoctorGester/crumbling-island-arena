@@ -339,7 +339,7 @@
 		"AbilityTooltip_tiny_q"							"Бросить камень<br/>Можно подобрать, чтобы перезарядить"
 		"AbilityTooltip_tiny_w"							"Бросить камень, оглущающий и наносящий урон в области"
 		"AbilityTooltip_tiny_e"							"После задержки создать непроходимый каменный круг"
-		"AbilityTooltip_tiny_r"							"Empower next your next used ability<br><br><font color=\"gold\"><b>Q</b></font> Applies a stun<br><font color=\"gold\"><b>W</b></font> Bounces 2 times<br><font color=\"gold\"><b>E</b></font> Has no delay on cast"
+		"AbilityTooltip_tiny_r"							"Усилить следующую использованную способность<br><br><font color=\"gold\"><b>Q</b></font> Оглушает<br><font color=\"gold\"><b>W</b></font> Отскакивает дважды<br><font color=\"gold\"><b>E</b></font> Не имеет задержки применения"
 
 		"AbilityTooltip_pugna_q"						"Получить урон<br/>Запустить снаряд<br/>Если попадёт, запустить обратно лечащий снаряд"
 		"AbilityTooltip_pugna_w"						"Поставить лечащую ловушку, активирующуюся через 1.5 секунды"
@@ -355,11 +355,6 @@
 		"AbilityTooltip_drow_w"							"Запустить волну безмолвия, отбрасывающую противников"
 		"AbilityTooltip_drow_e"							"Рвануться к указанной точке, замедляя врагов на пути"
 		"AbilityTooltip_drow_r"							"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>Запустить дальнобойную стрелу, наносяющую урон и отбрасывающую противника, в которого попадет"
-
-		"AbilityTooltip_drow_q"							"Fire a slowing projectile"
-		"AbilityTooltip_drow_w"							"Launch a silencing and knocking back wave"
-		"AbilityTooltip_drow_e"							"Quickly dash to the target point slowing enemies on the way"
-		"AbilityTooltip_drow_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Fire a global arrow which damages and knocks back first enemy hit"
 
 		"AbilityTooltip_wk_q"							"Призвать отряд скелетов мечников<br/>Скелеты атакуют первого врага на пути<br/>Каждая атака накладывает замедление"
 		"AbilityTooltip_wk_w"							"Призвать трех скелетов-лучников, атакующих указанную область, замедляя противников при попадании"
