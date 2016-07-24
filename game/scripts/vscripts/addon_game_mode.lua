@@ -288,7 +288,8 @@ function GameMode:OnGameSetup()
     self:SetState(STATE_GAME_SETUP)
     self.gameSetup:Start(forcedMode ~= nil)
 
-    CustomNetTables:SetTableValue("gameSetup", "misc", { rankedMode = self:GetRankedMode() })
+    self.rankedMode = self:GetRankedMode()
+    CustomNetTables:SetTableValue("gameSetup", "misc", { rankedMode = self.rankedMode })
 
     self:RegisterThinker(1,
         function()
@@ -833,7 +834,8 @@ function GameMode:UpdateGameInfo()
         winner = self.winner,
         roundNumber = self.roundNumber,
         statistics = self.generalStatistics.stats,
-        players = players
+        players = players,
+        rankedMode = self.rankedMode
     })
 end
 
@@ -928,7 +930,7 @@ function GameMode:OnGameInProgress()
     self.level:Clusterize()
     self.level:AssociatePieces()
 
-    self.heroSelection = HeroSelection(self.Players, self.AvailableHeroes, self.TeamColors, self.chat, self:GetRankedMode() ~= nil)
+    self.heroSelection = HeroSelection(self.Players, self.AvailableHeroes, self.TeamColors, self.chat, self.rankedMode ~= nil)
 
     self:RegisterThinker(1,
         function()

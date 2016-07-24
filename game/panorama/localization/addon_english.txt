@@ -244,7 +244,7 @@
 		"SbDamage" "Damage dealt"
 		"SbRounds" "Rounds won"
 		"SbMvps" "Times MVP"
-		"SbHealing" "Healing received"
+		"SbRank" "Rank"
 		"SbKills" "Kills"
 		"SbFirstBloods" "First bloods"
 		"SbProj" "Missiles fired"

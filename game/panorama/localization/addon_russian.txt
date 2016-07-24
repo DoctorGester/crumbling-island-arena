@@ -239,7 +239,7 @@
 		"SbDamage" "Урон"
 		"SbRounds" "Побед в раундах"
 		"SbMvps" "Игрок раунда"
-		"SbHealing" "Получил лечения"
+		"SbRank" "Ранг"
 		"SbKills" "Убийств"
 		"SbFirstBloods" "Первая кровь"
 		"SbProj" "Выпущено снарядов"

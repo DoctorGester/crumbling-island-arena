@@ -20,7 +20,7 @@
     blur: gaussian( 2, 2, 2 );
 }
 
-.GameOverBackground Image
+#GameOverBackgroundImage
 {
     saturation: 0.0;
 }
@@ -149,6 +149,22 @@
     height: 32px;
     background-image: url('file://{images}/hud/ancient.png');
     background-size: 100% 100%;
+}
+
+.RankUpdateParent
+{
+    align: center center;
+    flow-children: right;
+}
+
+.GameOverRank
+{
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    tooltip-position: top;
+    tooltip-body-position: 50% 100%;
+    background-color: rgba(0, 255, 255, 5);
 }
 
 .TableFooter

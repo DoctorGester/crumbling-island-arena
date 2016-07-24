@@ -10,7 +10,7 @@
     </scripts>
     <Panel class="GameOverBackground" hittest="false">
         <Panel id="GameOverBlur">
-            <Image id="GameOverBackground" src="file://{images}/custom_game/loadscreen.png"/>
+            <Image id="GameOverBackgroundImage" src="file://{images}/custom_game/loadscreen.png"/>
             <Panel hittest="false" id="GameOverScoreboard">
             </Panel>
             <Panel id="GameOverChat"/>

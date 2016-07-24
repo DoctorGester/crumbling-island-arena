@@ -2,12 +2,14 @@ var scoreboardPlayerStates = {};
 
 function AddTableHeaders(row, cl) {
     _(arguments).chain().rest(2).each(function(header) {
-        var panel = $.CreatePanel("Panel", row, "");
-        panel.AddClass(cl);
+        if (header) {
+            var panel = $.CreatePanel("Panel", row, "");
+            panel.AddClass(cl);
 
-        var label = $.CreatePanel("Label", panel, "");
-        label.AddClass("TableColumnHeaderText");
-        label.text = $.Localize(header);
+            var label = $.CreatePanel("Label", panel, "");
+            label.AddClass("TableColumnHeaderText");
+            label.text = $.Localize(header);
+        }
     });
 }
 
@@ -33,7 +35,7 @@ function AddNumberCell(row, color, number) {
     AddTextCell(row, color, (number ? number : 0).toString()).AddClass("TableCellNumber");
 }
 
-function AddPlayerRow(scoreboard, player, stats, winner, runnerUp) {
+function AddPlayerRow(scoreboard, player, stats, winner, runnerUp, mvps, rankedMode) {
     var row = $.CreatePanel("Panel", scoreboard, "");
     row.AddClass("TableRow");
     var color = player.color;
@@ -91,8 +93,11 @@ function AddPlayerRow(scoreboard, player, stats, winner, runnerUp) {
     AddNumberCell(row, color, stats.damageDealt);
     AddNumberCell(row, color, stats.firstBloods);
     AddNumberCell(row, color, stats.kills);
-    AddNumberCell(row, color, stats.mvps);
-    AddNumberCell(row, color, stats.healingReceived);
+    
+    if (mvps) {
+        AddNumberCell(row, color, stats.mvps);
+    }
+    
     AddNumberCell(row, color, stats.projectilesFired);
     AddNumberCell(row, color, amountPlayed);
     AddTableCell(row, color, function(panel) {
@@ -120,13 +125,39 @@ function AddPlayerRow(scoreboard, player, stats, winner, runnerUp) {
             });
         }
     });
+
+    if (rankedMode) {
+        AddTableCell(row, color, function(panel) {
+            SubscribeToNetTableKey("ranks", "update", true, function(ranks) {
+                if (!ranks) {
+                    return;
+                }
+
+                var previous = ranks.previous[player.id];
+                var updated = ranks.updated[player.id];
+
+                if (!updated) {
+                    updated = previous;
+
+                    if (!updated) {
+                        return;
+                    }
+                }
+
+                var parent = $.CreatePanel("Panel", panel, "");
+                parent.AddClass("RankUpdateParent");
+
+                CreateRankPanelSmall(parent, updated, "GameOverRank");
+            });
+        });
+    }
 }
 
-function AddHeaders(scoreboard) {
+function AddHeaders(scoreboard, mvps, rankedMode) {
     var row = $.CreatePanel("Panel", scoreboard, "");
     row.AddClass("TableRow");
     AddTableHeaders(row, "TableColumnHeaderWide", "SbName");
-    AddTableHeaders(row, "TableColumnHeader", "SbDamage", "SbFirstBloods", "SbKills", "SbMvps", "SbHealing", "SbProj", "SbAmountPlayed", "SbMostPlayed");
+    AddTableHeaders(row, "TableColumnHeader", "SbDamage", "SbFirstBloods", "SbKills", mvps ? "SbMvps" : null, "SbProj", "SbAmountPlayed", "SbMostPlayed", rankedMode ? "SbRank" : null);
 }
 
 function AddFooter(scoreboard) {
@@ -156,6 +187,14 @@ function GameInfoUpdated(gameInfo) {
     var players = gameInfo.players;
     var stats = gameInfo.statistics;
 
+    var totalMvps = 0;
+
+    for (var id in stats) {
+        if (stats[id].mvps) {
+            totalMvps += stats[id].mvps;
+        }
+    }
+
     var winners =
         _(gameInfo.runnerUps)
         .chain()
@@ -181,13 +220,13 @@ function GameInfoUpdated(gameInfo) {
 
     winners.push.apply(winners, nonWinners); // All players combined and sorted
 
-    AddHeaders(scoreboard);
+    AddHeaders(scoreboard, totalMvps > 0, gameInfo.rankedMode);
 
     _(winners).each(function(player) {
         var winner = player.team == gameInfo.winner;
         var runnerUp = _(gameInfo.runnerUps).values().indexOf(player.team) != -1;
 
-        AddPlayerRow(scoreboard, players[player.id.toString()], stats[player.id.toString()], winner, runnerUp);
+        AddPlayerRow(scoreboard, players[player.id.toString()], stats[player.id.toString()], winner, runnerUp, totalMvps > 0, gameInfo.rankedMode);
     });
 
     AddFooter(scoreboard);
