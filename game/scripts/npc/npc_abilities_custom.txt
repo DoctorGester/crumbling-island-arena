@@ -1389,6 +1389,12 @@
 			"MinLength" "950"
 		}
 
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "950"
+		}
+
 		"precache"
 		{
 			"particle" "particles/venge_q/venge_q.vpcf"
@@ -1409,6 +1415,12 @@
 			"Type" "TARGETING_INDICATOR_LINE"
 			"MaxLength" "1400"
 			"MinLength" "1400"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1400"
 		}
 
 		"precache"
@@ -1433,6 +1445,12 @@
 			"Type" "TARGETING_INDICATOR_LINE"
 			"MaxLength" "950"
 			"MinLength" "950"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "950"
 		}
 
 		"precache"
