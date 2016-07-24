@@ -27,7 +27,8 @@ function modifier_pa_r:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
         MODIFIER_EVENT_ON_ABILITY_EXECUTED,
-        MODIFIER_PROPERTY_INVISIBILITY_LEVEL
+        MODIFIER_PROPERTY_INVISIBILITY_LEVEL,
+        MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
     }
 
     return funcs
@@ -53,4 +54,8 @@ end
 
 function modifier_pa_r:GetModifierMoveSpeedBonus_Percentage(params)
     return 100
+end
+
+function modifier_pa_r:GetActivityTranslationModifiers()
+    return "haste"
 end
