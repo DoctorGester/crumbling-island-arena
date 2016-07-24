@@ -8,7 +8,7 @@ function ProjectilePAQ:constructor(round, hero, target)
 	getbase(ProjectilePAQ).constructor(self, round, {
         owner = hero,
         from = hero:GetPos() * Vector(1, 1, 0) + Vector(0, 0, 100),
-        to = target + Vector(0, 0, 100),
+        to = target * Vector(1, 1, 0) + Vector(0, 0, 100),
         speed = 1300,
         graphics = "particles/pa_q/pa_q.vpcf",
         continueOnHit = true,
