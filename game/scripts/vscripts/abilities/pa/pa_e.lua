@@ -10,7 +10,7 @@ function pa_e:OnSpellStart()
     Timers:CreateTimer(0.15,
         function()
             self:GetCaster():Interrupt()
-            Dash(hero, hero:GetPos() + hero:GetFacing() * 400, 1000, {
+            Dash(hero, hero:GetPos() + hero:GetFacing() * 500, 1250, {
                 heightFunction = function(dash, current)
                     local d = (dash.from - dash.to):Length2D()
                     local x = (dash.from - current):Length2D()
