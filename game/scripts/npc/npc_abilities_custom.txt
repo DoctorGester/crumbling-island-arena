@@ -888,13 +888,13 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "legion_commander_duel"
 		"AbilityCooldown" "14.0"
-		"AbilityCastPoint" "0.4"
+		"AbilityCastPoint" "0.2"
 		"AbilityCastRange" "500"
 
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_AOE"
-			"Radius" "400"
+			"Radius" "450"
 			"DisplayRange" "1"
 		}
 

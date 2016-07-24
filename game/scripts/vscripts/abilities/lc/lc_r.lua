@@ -13,3 +13,7 @@ end
 function lc_r:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_4
 end
+
+function lc_r:GetPlaybackRateOverride()
+    return 2
+end

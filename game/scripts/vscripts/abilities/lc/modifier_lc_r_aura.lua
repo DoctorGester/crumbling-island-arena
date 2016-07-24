@@ -6,7 +6,7 @@ function modifier_lc_r_aura:OnCreated(kv)
         local index = ParticleManager:CreateParticle("particles/lc_r/lc_r.vpcf", PATTACH_ABSORIGIN, parent)
         ParticleManager:SetParticleControl(index, 0, parent:GetAbsOrigin())
         ParticleManager:SetParticleControl(index, 7, parent:GetAbsOrigin())
-        ParticleManager:SetParticleControl(index, 8, Vector(400, 1, 1))
+        ParticleManager:SetParticleControl(index, 8, Vector(450, 1, 1))
         self:AddParticle(index, false, false, 1, false, false)
 
         parent:EmitSound("Arena.LC.CastR")
@@ -19,7 +19,7 @@ function modifier_lc_r_aura:IsAura()
 end
 
 function modifier_lc_r_aura:GetAuraRadius()
-    return 400
+    return 450
 end
 
 function modifier_lc_r_aura:GetModifierAura()
