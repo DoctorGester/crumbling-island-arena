@@ -217,6 +217,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName" "juggernaut_blade_fury"
 		"AbilityCooldown" "4"
+		"AbilityCastPoint" "0.15"
 
 		"HoverIndicator"
 		{
