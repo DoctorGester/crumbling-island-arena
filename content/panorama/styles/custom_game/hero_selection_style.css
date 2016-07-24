@@ -384,7 +384,7 @@
     width: 100%;
     color: white;
     font-weight: bold;
-    text-shadow: 0px 0px 8px 2.0 skyblue;
+    text-shadow: 0px 0px 4px 1.0 skyblue;
     letter-spacing: 6px;
     font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
     horizontal-align: center;
@@ -398,7 +398,7 @@
     width: 100%;
     color: white;
     font-weight: bold;
-    text-shadow: 0px 0px 8px 2.0 gold;
+    text-shadow: 0px 0px 4px 1.0 gold;
     letter-spacing: 6px;
     font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
     horizontal-align: center;
@@ -444,7 +444,7 @@
     horizontal-align: center;
     color: white;
     font-weight: bold;
-    text-shadow: 0px 0px 8px 2.0 red;
+    text-shadow: 0px 0px 4px 1.0 red;
     letter-spacing: 6px;
     font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
     text-align: center;
