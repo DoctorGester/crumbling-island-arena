@@ -190,8 +190,8 @@
 		"slark_DescR" "Purge debuffs + speed + regenerate health"
 
 		"queenofpain_DescQ" "Slowing projectile, delayed damage"
-		"queenofpain_DescW" "Blink"
-		"queenofpain_DescE" "Attract enemies facing you"
+		"queenofpain_DescW" "Attract enemies facing you"
+		"queenofpain_DescE" "Blink"
 		"queenofpain_DescR" "Spells cost health, but have low cooldown"
 
 		"tusk_DescQ" "?????"

@@ -191,8 +191,8 @@
 		"slark_DescR" "Снять дебаффы + скорость + регенерация"
 
 		"queenofpain_DescQ" "Замедляющий снаряд, урон после задержки"
-		"queenofpain_DescW" "Телепортация"
-		"queenofpain_DescE" "Привлечь врагов, смотрящих на героя"
+		"queenofpain_DescW" "Привлечь врагов, смотрящих на героя"
+		"queenofpain_DescE" "Телепортация"
 		"queenofpain_DescR" "Способности расходуют здоровье + короткая перезарядка"
 
 		"PlayerHeader" "Игроки"
