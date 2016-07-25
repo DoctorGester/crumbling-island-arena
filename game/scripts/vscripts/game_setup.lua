@@ -211,7 +211,7 @@ function GameSetup:CountProperty(property, mode)
     local count = 0
 
     for id, player in pairs(self.playerState) do
-        if self.players[id]:IsConnected() and player[property] == mode then
+        if player[property] == mode then
             count = count + 1
         end
     end
@@ -308,7 +308,7 @@ end
 function GameSetup:SelectRandomOptions()
     if self.stage == GAME_SETUP_STAGE_MODE and self.selectedMode == nil then
         for id, player in pairs(self.playerState) do
-            if self.players[id]:IsConnected() and player.selectedMode == nil then
+            if player.selectedMode == nil then
                 player.selectedMode = "ffa"
             end
         end
