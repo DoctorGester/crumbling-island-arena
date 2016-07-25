@@ -55,6 +55,7 @@ end
 function EarthSpiritRemnant:SetUnit(unit, fall)
     self.unit = unit
     self.fell = not fall
+    self.unit.hero = self
 end
 
 function EarthSpiritRemnant:SetTarget(target)
