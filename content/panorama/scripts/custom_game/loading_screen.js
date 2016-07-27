@@ -9,6 +9,8 @@ function HallOfFameChanged(data) {
         return;
     }
 
+    $("#HallOfFameLoading").AddClass("Hidden");
+
     var parent = $("#HallOfFamePlayers");
 
     for (var mode in data) {
@@ -56,6 +58,7 @@ $.AsyncWebRequest("http://178.63.238.188:3637/ranks/top", { type: "GET",
         HallOfFameChanged(info);
     }
 });
+
 
 var hittestBlocker = $.GetContextPanel().GetParent().FindChild("SidebarAndBattleCupLayoutContainer");
 

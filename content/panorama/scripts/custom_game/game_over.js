@@ -93,7 +93,7 @@ function AddPlayerRow(scoreboard, player, stats, winner, runnerUp, mvps, rankedM
     AddNumberCell(row, color, stats.damageDealt);
     AddNumberCell(row, color, stats.firstBloods);
     AddNumberCell(row, color, stats.kills);
-    
+
     if (mvps) {
         AddNumberCell(row, color, stats.mvps);
     }
@@ -128,10 +128,16 @@ function AddPlayerRow(scoreboard, player, stats, winner, runnerUp, mvps, rankedM
 
     if (rankedMode) {
         AddTableCell(row, color, function(panel) {
+            var loading = $.CreatePanel("Panel", panel, "");
+            loading.AddClass("LoadingImage");
+            loading.AddClass("RankLoading")
+
             SubscribeToNetTableKey("ranks", "update", true, function(ranks) {
                 if (!ranks) {
                     return;
                 }
+
+                loading.DeleteAsync(0);
 
                 var previous = ranks.previous[player.id];
                 var updated = ranks.updated[player.id];

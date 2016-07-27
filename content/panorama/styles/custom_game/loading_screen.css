@@ -34,6 +34,11 @@ Label
     flow-children: down;
 }
 
+#HallOfFameLoading
+{
+    horizontal-align: center;
+}
+
 #HallOfFameHeader
 {
     margin-left: 40px;

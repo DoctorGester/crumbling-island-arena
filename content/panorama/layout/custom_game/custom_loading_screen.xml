@@ -15,6 +15,7 @@
         <Panel id="HallOfFame">
             <Label id="HallOfFameHeader" text="RankTopPlayers"/>
             <Panel id="HallOfFamePlayers"/>
+            <Panel id="HallOfFameLoading" class="LoadingImage"/>
         </Panel>
     </Panel>
 </root>

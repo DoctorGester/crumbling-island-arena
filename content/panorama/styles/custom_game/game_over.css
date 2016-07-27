@@ -167,6 +167,11 @@
     background-color: rgba(0, 255, 255, 5);
 }
 
+.RankLoading
+{
+    align: center center;
+}
+
 .TableFooter
 {
     margin-top: 40px;

@@ -48,3 +48,37 @@ b
 {
     visibility: collapse;
 }
+
+.LoadingImage
+{
+    width: 29px;
+    height: 29px;
+
+    animation-name: LoadingImageRotate;
+    animation-duration: 1.0s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+    background-image: url("file://{images}/status_icons/loadingthrobber_round.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+}
+
+@keyframes 'LoadingImageRotate'
+{
+    0%
+    {
+        transform: rotateZ( 360deg );
+    }
+
+    50%
+    {
+        transform: rotateZ( 180deg );
+    }
+    
+    100%
+    {
+        transform: rotateZ( 0deg );
+    }
+}
