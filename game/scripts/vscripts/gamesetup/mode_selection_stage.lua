@@ -17,6 +17,22 @@ function ModeSelectionStage:CountTeams(mode)
     end
 end
 
+function ModeSelectionStage:FindMostVotedMode()
+    local count = -1
+    local mostVoted = nil
+
+    for mode, _ in pairs(self.modes) do
+        local votes = self:CountInput(mode)
+
+        if votes > count then
+            count = votes
+            mostVoted = mode
+        end
+    end
+
+    return mostVoted
+end
+
 function ModeSelectionStage:UpdateModes()
     local result = {}
 
@@ -69,6 +85,14 @@ end
 
 function ModeSelectionStage:GetInputResults()
     local mode = self:FindSelectedMode()
+
+    if mode == nil then
+        mode = self:FindMostVotedMode()
+    end
+
+    if mode == nil then
+        mode = self:GetDefaultPlayerInput()
+    end
 
     return {
         selectedMode = mode,
