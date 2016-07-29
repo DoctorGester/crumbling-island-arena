@@ -9,9 +9,9 @@ function invoker_e:OnSpellStart()
     local target = self:GetCursorPosition()
 
     local holder = CreateUnitByName(DUMMY_UNIT, target, false, hero.unit, hero.unit, hero.unit:GetTeam())
+    holder.hero = hero
     holder:AddNewModifier(holder, self, "modifier_invoker_e", { duration = 4 })
     holder:EmitSound("Arena.CM.CastR")
-    holder.hero = hero
 end
 
 function invoker_e:GetCastAnimation()
