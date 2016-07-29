@@ -82,3 +82,89 @@ b
         transform: rotateZ( 0deg );
     }
 }
+
+ToggleButton
+{
+    flow-children: right;
+    padding: 1px 4px;
+    color: white;
+
+    transition-property: background-color, box-shadow, color;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+}
+
+ToggleButton .TickBox
+{
+    width: 24px;
+    height: 24px;
+    vertical-align: center;
+    background-color: black;
+    border: 2px solid #5e686966;
+    box-shadow: #00000055 -2px -2px 1px 4px;
+    
+    transition-property: background-color, box-shadow, color, border, background-image, wash-color, pre-transform-scale2d;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+    
+}
+
+ToggleButton:selected .TickBox
+{
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #e7f6f5 ), to( #a0d6d7 ) );
+    border: 3px solid #000000;
+    box-shadow: #5b62bf77 -4px -4px 8px 8px;
+
+}
+
+ToggleButton:hover .TickBox
+{
+    //background-color: gradient( linear, 0% 0%, 0% 100%, from( #e7f6f5 ), to( #a0d6d7 ) );
+    border: 2px solid #697879;
+}
+
+ToggleButton Label
+{
+    margin-top: 4px;
+    font-size: 16px;
+    margin-left: 8px;
+    color: baseText;
+
+    transition-property: color;
+    transition-duration: 0.2s;
+    transition-timing-function: linear;
+}
+
+ToggleButton:enabled:hover Label
+{
+    color: #d2d6d1; 
+}
+
+ToggleButton:selected Label
+{
+    color: white;
+}
+
+ToggleButton:disabled Label
+{
+    color: #333333;
+}
+
+ToggleButton:disabled .TickBox
+{
+    border-color: #333333;
+}
+
+ToggleButton:disabled:selected .TickBox
+{
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #222222 ), to( #333333 ) );
+    border: 3px solid #000000;
+    box-shadow: #33333377 -4px -4px 8px 8px;
+}
+
+
+ToggleButton.ExpandCollapseToggleButton
+{
+    margin: 0px;
+    padding: 0px;
+}

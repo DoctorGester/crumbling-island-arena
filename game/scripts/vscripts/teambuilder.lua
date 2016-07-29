@@ -32,7 +32,7 @@ function PlayerBatch:Relations()
 end
 
 function PlayerBatch:Contains(player)
-    return vlua.find(self.players, player)
+    return vlua.find(self.players, player) ~= nil
 end
 
 function PlayerBatch:Merge(batch)
@@ -194,9 +194,9 @@ if IsInToolsMode() then
     local iterations = 1000
 
     for i = 1, iterations do
-        local players = { "A", "B", "C", "D" }
+        local players = { "A", "B", "C", "D", "E", "F" }
 
-        local tb = TeamBuilder(players, 2)
+        local tb = TeamBuilder(players, 3)
 
         for j = 1, RandomInt(1, 12) do
             local from = RandomInt(1, #players)

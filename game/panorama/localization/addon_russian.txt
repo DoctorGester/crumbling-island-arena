@@ -222,7 +222,7 @@
 		"GameSetupHeader_ffa" "Каждый за себя выбран!"
 		"GameSetupHeader_2v2" "2 на 2 выбран!"
 		"GameSetupHeader_3v3" "3 на 3 выбран!"
-		"GameSetupTeamSelect" "Выберите команду"
+		"GameSetupTeamSelect" "Я хочу играть с..."
 		"GameSetupTeam1" "Команда 1"
 		"GameSetupTeam2" "Команда 2"
 		"GameSetupTeam3" "Команда 3"

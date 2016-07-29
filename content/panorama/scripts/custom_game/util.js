@@ -144,12 +144,20 @@ function UnwrapString(table){
 function SubscribeToNetTableKey(table, key, loadNow, callback){
     CustomNetTables.SubscribeNetTableListener(table, function(table, tableKey, data){
         if (key == tableKey){
+            if (!data) {
+                return;
+            }
+
             callback(data);
         }
     });
 
     if (loadNow){
-        callback(CustomNetTables.GetTableValue(table, key));
+        var data = CustomNetTables.GetTableValue(table, key);
+
+        if (data) {
+            callback(data);
+        }
     }
 }
 

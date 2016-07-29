@@ -1,8 +1,5 @@
-function Vote(event, key, value) {
-    var ev = {};
-    ev[key] = value;
-    GameEvents.SendCustomGameEventToServer(event, ev);
-}
+var playerToggles = {};
+var playerRanks = {};
 
 function OnTimerTick(args){
     var timers = $.GetContextPanel().FindChildrenWithClassTraverse("VotingTimer");
@@ -17,11 +14,16 @@ function OnTimerTick(args){
     }
 }
 
-function UpdatePlayerVotes(panel, players, key, cl) {
+function ModeVotesChanged(players) {
+    players = players.inputs;
+
+    var panel = $("#ModeVoteDialog");
+
     var votes = panel.FindChildrenWithClassTraverse("PlayerVotes")[0];
 
-    for (var id in players) {
-        var player = players[id];
+    for (var index in players) {
+        var player = players[index];
+        var id = player.id;
         var playerVotes = votes.playerVotes;
 
         if (!playerVotes) {
@@ -39,29 +41,24 @@ function UpdatePlayerVotes(panel, players, key, cl) {
             playerVotes[id].front.AddClass("PlayerVoteFront");
         }
 
-        if (player[key] != null) {
-            playerVotes[id].front.SetHasClass(cl + player[key], true);
+        if (player.input != null) {
+            playerVotes[id].front.SetHasClass("PlayerVote" + player.input, true);
         }
     }
 }
 
 function GameSetupChanged(data){
-    if (!data) {
-        return;
-    }
-
-    UpdatePlayerVotes($("#ModeVoteDialog"), data.players, "selectedMode", "PlayerVote");
-    UpdatePlayerVotes($("#TeamSelectDialog"), data.players, "selectedTeam", "PlayerVoteTeam");
-
-    if (data.stage == 1) {
+    if (data.stage == "stage_team") {
         $("#ModeVoteDialog").SetHasClass("HideVotingPanel", true);
         $("#TeamSelectDialog").SetHasClass("VotingPanelHidden", false);
         $("#TeamSelectDialog").SetHasClass("ShowVotingPanel", true);
     }
 
-    if (data.selectedMode) {
+    var stageMode = data.outputs.stage_mode;
+
+    if (stageMode && stageMode.selectedMode) {
         Game.EmitSound("UI.Whoosh");
-        $("#ModeSelectHeader").text = $.Localize("GameSetupHeader_" + data.selectedMode);
+        $("#ModeSelectHeader").text = $.Localize("GameSetupHeader_" + stageMode.selectedMode);
     }
 }
 
@@ -82,13 +79,7 @@ function GameStateChanged(data){
 
 function AddModeSelectionEvent(button, mode) {
     button.SetPanelEvent("onactivate", function() {
-        Vote("setup_mode_select", "mode", mode);
-    });
-}
-
-function AddTeamSelectionEvent(button, team) {
-    button.SetPanelEvent("onactivate", function() {
-        Vote("setup_team_select", "team", team);
+        GameEvents.SendCustomGameEventToServer("stage_mode", { input: mode });
     });
 }
 
@@ -109,56 +100,119 @@ function GameModesChanges(data) {
     }
 }
 
-function GameTeamsChanges(data) {
-    if (!data) {
-        return;
+function AddTeammateSelectionEvent(toggle) {
+    toggle.SetPanelEvent("onactivate", function() {
+        var selectedPlayers = [];
+
+        for (var id in playerToggles) {
+            if (playerToggles[id].checked) {
+                selectedPlayers.push(id);
+            }
+        }
+
+        GameEvents.SendCustomGameEventToServer("stage_team", { input: selectedPlayers });
+    });
+}
+
+function TeamsChanged(data) {
+    data = data.inputs;
+
+    var buttonParent = $("#TeamSelectionButtons");
+
+    for (var key in data) {
+        var player = data[key];
+
+        if (player.id != Game.GetLocalPlayerID()) {
+            if (!playerToggles[player.id]) {
+                var parent = $.CreatePanel("Panel", buttonParent, "");
+                parent.AddClass("TeamSelectionPanel");
+
+                var rank = $.CreatePanel("Panel", parent, "");
+                rank.AddClass("TeamSelectionRankContainer");
+
+                playerRanks[player.id] = rank;
+
+                var avatar = $.CreatePanel("DOTAAvatarImage", parent, "");
+                avatar.AddClass("TeamSelectionAvatar");
+
+                TryFetchSteamId(player.id, avatar);
+
+                var name = $.CreatePanel("Label", parent, "");
+                name.AddClass("TeamSelectionName");
+                name.text = Players.GetPlayerName(player.id);
+
+                var toggle = $.CreatePanel("ToggleButton", parent, "");
+
+                playerToggles[player.id] = toggle;
+
+                AddTeammateSelectionEvent(toggle);
+            } else {
+                playerToggles[player.id].checked = false;
+            }
+        }
     }
 
-    var teamsPanel = $("#TeamSelectDialog");
-    var buttons = teamsPanel.FindChildrenWithClassTraverse("VotingButtons")[0];
-    var teamNumber = data.teamNumber;
+    var checked = 0;
 
-    for (var i = 0; i < teamNumber; i++) {
-        var button = $.CreatePanel("Button", buttons, "Team" + (i + 1) + "Button");
-        button.AddClass("VotingButton");
+    for (var key in data) {
+        var player = data[key];
 
-        var label = $.CreatePanel("Label", button, "");
-        label.text = $.Localize("#GameSetupTeam" + (i + 1));
+        if (player.id == Game.GetLocalPlayerID()) {
+            if (player.input) {
+                for (var index in player.input) {
+                    var id = player.input[index];
 
-        AddTeamSelectionEvent(button, i);
+                    if (playerToggles[id]) {
+                        playerToggles[id].checked = true;
+                        checked++;
+                    }
+                }
+            }
+        }
+    }
+
+    var state = CustomNetTables.GetTableValue("gameSetup", "state");
+
+    if (state && state.outputs.stage_mode) {
+        for (var k in playerToggles) {
+            var toggle = playerToggles[k];
+
+            if (checked + 1 >= state.outputs.stage_mode.playersInTeam) {
+                toggle.enabled = toggle.checked
+            } else {
+                toggle.enabled = true;
+            }
+        }
     }
 }
 
 function RanksChanged(ranks) {
-    if (!ranks) {
-        return;
-    }
+    for (var k in playerRanks) {
+        if (ranks[k]) {
+            playerRanks[k].RemoveAndDeleteChildren();
 
-    var panel = $("#TeamSelectDialog").FindChildrenWithClassTraverse("PlayerRanks")[0];
-    var votes = $("#TeamSelectDialog").FindChildrenWithClassTraverse("PlayerVotes")[0];
-
-    panel.RemoveAndDeleteChildren();
-
-    for (var id in votes.playerVotes) {
-        if (ranks[id]) {
-            CreateRankPanelSmall(panel, ranks[id], "PlayerRank");
+            CreateRankPanelSmall(playerRanks[k], ranks[k], "PlayerRank");
         }
     }
 }
 
 function MiscInfoChanged(data) {
-    if (!data) {
-        return;
-    }
-
-    var panel = $("#TeamSelectDialog").FindChildrenWithClassTraverse("PlayerRanks")[0];
-    panel.SetHasClass("Hidden", data.rankedMode == null);
-
     var labels = $.GetContextPanel().FindChildrenWithClassTraverse("MatchModeHeader");
 
     if (data.rankedMode != null){
         for (var label of labels) {
             label.text = $.Localize("#Ranked");
+        }
+
+        for (var k in playerRanks) {
+            if (playerRanks[k].Children().length == 0) {
+                var loading = $.CreatePanel("Panel", playerRanks[k], "");
+                loading.AddClass("LoadingImage");
+            }
+        }
+    } else {
+        for (var k in playerRanks) {
+            playerRanks[k].AddClass("Hidden");
         }
     }
 }
@@ -166,12 +220,14 @@ function MiscInfoChanged(data) {
 (function () {
     SubscribeToNetTableKey("main", "gameState", true, GameStateChanged);
     SubscribeToNetTableKey("gameSetup", "modes", true, GameModesChanges);
-    SubscribeToNetTableKey("gameSetup", "teams", true, GameTeamsChanges);
+    SubscribeToNetTableKey("gameSetup", "stage_mode", true, ModeVotesChanged);
+    SubscribeToNetTableKey("gameSetup", "stage_team", true, TeamsChanged);
+
     SubscribeToNetTableKey("gameSetup", "state", true, GameSetupChanged);
     SubscribeToNetTableKey("gameSetup", "misc", true, MiscInfoChanged);
     SubscribeToNetTableKey("ranks", "current", true, RanksChanged);
-    GameEvents.Subscribe("setup_timer_tick", OnTimerTick);
 
+    GameEvents.Subscribe("setup_timer_tick", OnTimerTick);
     //$("#GameSetupChat").BLoadLayout("file://{resources}/layout/custom_game/simple_chat.xml", false, false);
     //$("#GameSetupChat").RegisterListener("GameSetupEnter");
 })();

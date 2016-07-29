@@ -227,7 +227,7 @@
 		"GameSetupHeader_ffa" "Free For All Selected!"
 		"GameSetupHeader_2v2" "2 VS 2 Selected!"
 		"GameSetupHeader_3v3" "3 VS 3 Selected!"
-		"GameSetupTeamSelect" "Select your team"
+		"GameSetupTeamSelect" "I want to play with..."
 		"GameSetupTeam1" "Team 1"
 		"GameSetupTeam2" "Team 2"
 		"GameSetupTeam3" "Team 3"

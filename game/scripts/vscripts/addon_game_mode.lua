@@ -13,7 +13,7 @@ require('player')
 require('level')
 require("levels/polygon")
 require("levels/level_lua")
-require('game_setup')
+require('gamesetup/game_setup')
 require('teambuilder')
 require('hero_selection')
 require('round')
@@ -25,7 +25,7 @@ require('statistics')
 require('chat')
 require('debug_util')
 
-_G.GAME_VERSION = "1.4"
+_G.GAME_VERSION = "1.5"
 
 STATE_NONE = 0
 STATE_GAME_SETUP = 1
@@ -279,11 +279,11 @@ function GameMode:OnGameSetup()
         end
     end
 
-    self.gameSetup = GameSetup(modes, self.Players, self.Teams)
-
-    if forcedMode then
-        self.gameSetup:ForceMode(forcedMode)
+    if amount <= 2 then
+        forcedMode = "ffa"
     end
+
+    self.gameSetup = GameSetup(modes, self.Players, self.Teams, forcedMode)
 
     self:SetState(STATE_GAME_SETUP)
     self.gameSetup:Start(forcedMode ~= nil)
@@ -744,7 +744,7 @@ end
 -- A replica of server-side function
 function GameMode:GetRankedMode()
     local players = 0
-    local mode = self.gameSetup.selectedMode
+    local mode = self.gameSetup:GetSelectedMode()
 
     if IsInToolsMode() then
         players = 1
@@ -914,7 +914,7 @@ function GameMode:OnGameInProgress()
         statCollection:sendStage2()
     end
 
-    Stats.SubmitMatchInfo(self.Players, self.gameSetup.selectedMode, GAME_VERSION)
+    Stats.SubmitMatchInfo(self.Players, self.gameSetup:GetSelectedMode(), GAME_VERSION)
 
     self.chat = Chat(self.Players, self.Users, self.TeamColors)
 

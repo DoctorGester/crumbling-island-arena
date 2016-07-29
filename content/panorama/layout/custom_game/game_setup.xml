@@ -12,19 +12,15 @@
         <Panel id="ModeVoteDialog" class="GameSetupDialog">
             <Label class="MatchModeHeader" text="#Unranked"/>
             <Label id="ModeSelectHeader" class="VotingHeader" text="#GameSetupModeSelect"/>
-            <Label class="VotingTimer" text="30"/>
             <Panel class="VotingButtons"/>
             <Panel class="PlayerVotes"/>
+            <Label class="VotingTimer" text="30"/>
         </Panel>
         <Panel id="TeamSelectDialog" class="GameSetupDialog VotingPanelHidden" hittest="false">
             <Label class="MatchModeHeader" text="#Unranked"/>
             <Label class="VotingHeader" text="#GameSetupTeamSelect"/>
+            <Panel id="TeamSelectionButtons"/>
             <Label class="VotingTimer" text="30"/>
-            <Panel class="VotingButtons"/>
-            <Panel class="PlayerVotes"/>
-            <Panel class="PlayerRanks">
-                <Label class="RankLoadingLabel" text="#RanksLoading"/>
-            </Panel>
         </Panel>
         <!--<Panel id="GameSetupChat"/>-->
     </Panel>
