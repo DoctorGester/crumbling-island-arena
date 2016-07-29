@@ -122,7 +122,7 @@ function TeamBuilder:ResolveRelation(predicate)
         if batch:Size() < self.maxBatchSize then
             for to, _ in pairs(batch:Relations()) do
                 to = self:FindPlayerBatch(to.players[1])
-                if to:Size() < self.maxBatchSize then
+                if to:Size() + batch:Size() <= self.maxBatchSize then
                     if predicate(batch, to) then
                         batch:Unrelate(to)
                         to:Unrelate(batch)
@@ -131,6 +131,8 @@ function TeamBuilder:ResolveRelation(predicate)
                         toRemove = index
                         break
                     end
+                else
+                    batch:Unrelate(to)
                 end
             end
         end
@@ -155,7 +157,7 @@ function TeamBuilder:ResolveRandomRelation()
     for index, batch in pairs(self.batches) do
         if batch:Size() < self.maxBatchSize then
             for _, to in pairs(self.batches) do
-                if to ~= batch and to:Size() < self.maxBatchSize then
+                if to ~= batch and to:Size() + batch:Size() <= self.maxBatchSize then
                     to:Merge(batch)
                     
                     toRemove = index
@@ -194,9 +196,9 @@ if IsInToolsMode() then
     local iterations = 1000
 
     for i = 1, iterations do
-        local players = { "A", "B", "C", "D", "E", "F" }
+        local players = { "A", "B", "C", "D", "E", "F", "J", "K" }
 
-        local tb = TeamBuilder(players, 3)
+        local tb = TeamBuilder(players, 4)
 
         for j = 1, RandomInt(1, 12) do
             local from = RandomInt(1, #players)
@@ -214,4 +216,13 @@ if IsInToolsMode() then
     end
 
     print("[TEAM BUILDER] test score", totalScore / iterations)
+
+    tb = TeamBuilder({ "A", "B", "C", "D", "E", "F" }, 3)
+    tb:SetTeamPreference("A", "B")
+    tb:SetTeamPreference("B", "A")
+    tb:SetTeamPreference("C", "D")
+    tb:SetTeamPreference("D", "C")
+    tb:SetTeamPreference("B", "C")
+
+    tb:ResolveTeams()
 end
