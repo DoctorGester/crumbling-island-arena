@@ -538,14 +538,19 @@ function PrintSchema(gameArray, playerArray)
     print("-------------------------------------")
 end
 
---[[if not IsClient() then
+if not IsClient() then
     if not CBaseEntity.stopOverriden then
         local oldStop = CBaseEntity.StopSound
 
         CBaseEntity.StopSound = function(self, sound)
-            Timers:CreateTimer(0.01, function() oldStop(self, sound) end)
+            oldStop(self, sound)
+            Timers:CreateTimer(0.01, function()
+                if IsValidEntity(self) then
+                    oldStop(self, sound)
+                end
+            end)
         end
 
         CBaseEntity.stopOverriden = true
     end
-end]]--
+end
