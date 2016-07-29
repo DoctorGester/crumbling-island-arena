@@ -537,3 +537,13 @@ function PrintSchema(gameArray, playerArray)
     DeepPrintTable(playerArray)
     print("-------------------------------------")
 end
+
+if not CBaseEntity.stopOverriden then
+    local oldStop = CBaseEntity.StopSound
+
+    CBaseEntity.StopSound = function(self, sound)
+        Timers:CreateTimer(0.01, function() oldStop(self, sound) end)
+    end
+
+    CBaseEntity.stopOverriden = true
+end
