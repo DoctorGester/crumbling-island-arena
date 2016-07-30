@@ -199,6 +199,7 @@
 		"tusk_DescE" "?????"
 		"tusk_DescR" "?????"
 
+		"HeroBanned" "This hero is banned"
 		"PlayerHeader" "Players"
 		"SelectionHeader" "selection"
 		"ScoreHeader" "score"
@@ -231,6 +232,7 @@
 		"GameSetupTeam1" "Team 1"
 		"GameSetupTeam2" "Team 2"
 		"GameSetupTeam3" "Team 3"
+		"GameSetupBans" "Ban a hero"
 
 		"GamePaused" "Game paused"
 		"PauseTip" "Click on top of the screen if unpause isn't working"

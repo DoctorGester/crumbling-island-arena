@@ -283,6 +283,9 @@ function GameMode:OnGameSetup()
         forcedMode = "ffa"
     end
 
+    self:LoadCustomHeroes()
+    self:UpdateAvailableHeroesTable()
+
     self.gameSetup = GameSetup(modes, self.Players, self.Teams, forcedMode)
 
     self:SetState(STATE_GAME_SETUP)
@@ -906,10 +909,19 @@ function GameMode:LoadCustomHeroes()
     end
 end
 
-function GameMode:OnGameInProgress()
-    self:LoadCustomHeroes()
-    self:UpdateAvailableHeroesTable()
+function GameMode:AssignBannedHeroes()
+    local banned = self.gameSetup:GetBannedHeroes()
 
+    if banned == nil then
+        return
+    end
+
+    for _, hero in pairs(banned) do
+        self.AvailableHeroes[hero].banned = true
+    end
+end
+
+function GameMode:OnGameInProgress()
     if not statCollection.sentStage2 and statCollection.sentStage1 then
         statCollection:sendStage2()
     end
@@ -929,6 +941,9 @@ function GameMode:OnGameInProgress()
     self.level:LoadPolygons()
     self.level:Clusterize()
     self.level:AssociatePieces()
+
+    self:AssignBannedHeroes()
+    self:UpdateAvailableHeroesTable()
 
     self.heroSelection = HeroSelection(self.Players, self.AvailableHeroes, self.TeamColors, self.chat, self.rankedMode ~= nil)
 

@@ -1,5 +1,14 @@
 var playerToggles = {};
 var playerRanks = {};
+var banButtons = {};
+
+var stagePanels = {
+    stage_mode: "ModeVoteDialog",
+    stage_team: "TeamSelectDialog",
+    stage_bans: "BansDialog"
+};
+
+var lastStage = "stage_mode";
 
 function OnTimerTick(args){
     var timers = $.GetContextPanel().FindChildrenWithClassTraverse("VotingTimer");
@@ -48,16 +57,23 @@ function ModeVotesChanged(players) {
 }
 
 function GameSetupChanged(data){
-    if (data.stage == "stage_team") {
-        $("#ModeVoteDialog").SetHasClass("HideVotingPanel", true);
-        $("#TeamSelectDialog").SetHasClass("VotingPanelHidden", false);
-        $("#TeamSelectDialog").SetHasClass("ShowVotingPanel", true);
+    var newStage = data.stage;
+
+    if (newStage != lastStage && newStage) {
+        $.Msg(lastStage + "->" + newStage);
+        $("#" + stagePanels[lastStage]).SetHasClass("ShowVotingPanel", false);
+        $("#" + stagePanels[lastStage]).SetHasClass("HideVotingPanel", true);
+        $("#" + stagePanels[newStage]).SetHasClass("VotingPanelHidden", false);
+        $("#" + stagePanels[newStage]).SetHasClass("ShowVotingPanel", true);
+
+        lastStage = newStage;
+
+        Game.EmitSound("UI.Whoosh");
     }
 
     var stageMode = data.outputs.stage_mode;
 
     if (stageMode && stageMode.selectedMode) {
-        Game.EmitSound("UI.Whoosh");
         $("#ModeSelectHeader").text = $.Localize("GameSetupHeader_" + stageMode.selectedMode);
     }
 }
@@ -217,11 +233,59 @@ function MiscInfoChanged(data) {
     }
 }
 
+function AddBanEvent(button, ban) {
+    button.SetPanelEvent("onactivate", function() {
+        GameEvents.SendCustomGameEventToServer("stage_bans", { input: ban });
+    });
+}
+
+function HeroesChanged(heroes) {
+    var panel = $("#BanButtons");
+    var heroNames = Object.keys(heroes);
+
+    heroNames = _(heroNames).sortBy(function(hero) { return heroes[hero].order });
+
+    for (var hero of heroNames) {
+        var data = heroes[hero];
+
+        if (data.disabled) {
+            continue;
+        }
+
+        var button = $.CreatePanel("DOTAHeroImage", panel, "");
+        button.heroname = hero;
+        button.AddClass("BanButton");
+        button.SetScaling("stretch-to-fit-x-preserve-aspect");
+
+        AddBanEvent(button, hero);
+
+        banButtons[hero] = button;
+    }
+}
+
+function BansChanged(bans) {
+    bans = bans.inputs;
+
+    var localTeam = Game.GetPlayerInfo(Game.GetLocalPlayerID()).player_team_id;
+
+    for (var index in bans) {
+        var player = bans[index];
+        var team = Game.GetPlayerInfo(player.id).player_team_id;
+
+        if (player.input && team == localTeam) {
+            banButtons[player.input].enabled = false;
+        }
+    }
+}
+
 (function () {
+    SubscribeToNetTableKey("main", "heroes", true, HeroesChanged);
+
     SubscribeToNetTableKey("main", "gameState", true, GameStateChanged);
     SubscribeToNetTableKey("gameSetup", "modes", true, GameModesChanges);
     SubscribeToNetTableKey("gameSetup", "stage_mode", true, ModeVotesChanged);
     SubscribeToNetTableKey("gameSetup", "stage_team", true, TeamsChanged);
+    SubscribeToNetTableKey("gameSetup", "stage_bans", true, BansChanged);
 
     SubscribeToNetTableKey("gameSetup", "state", true, GameSetupChanged);
     SubscribeToNetTableKey("gameSetup", "misc", true, MiscInfoChanged);

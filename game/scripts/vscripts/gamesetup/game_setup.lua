@@ -1,6 +1,7 @@
 require('gamesetup/setup_stage')
 require('gamesetup/mode_selection_stage')
 require('gamesetup/team_selection_stage')
+require('gamesetup/ban_stage')
 
 GameSetup = GameSetup or class({})
 
@@ -43,6 +44,23 @@ function GameSetup:GetNextStageAndTime()
 
         return TeamSelectionStage("stage_team", self.players, self:GetPlayersInTeam()), IsInToolsMode() and 10 or 15
     end
+
+    if self.currentStage:Is("stage_team") then
+        local teams = self.outputs.stage_team.teamBuilderTeams
+        local currentTeam = 0
+
+        for _, team in pairs(teams) do
+            for _, playerId in pairs(team) do
+                self.players[playerId]:SetTeam(self.teams[currentTeam])
+            end
+
+            currentTeam = currentTeam + 1
+        end
+    end
+
+    if self.currentStage:Is("stage_team") and self:GetSelectedMode() == "3v3" then
+        return BanStage("stage_bans", self.players, 1), IsInToolsMode() and 5 or 15
+    end
 end
 
 function GameSetup:StageAdvance()
@@ -78,24 +96,14 @@ function GameSetup:UpdateNetworkState()
 end
 
 function GameSetup:End()
-    local teams = self.outputs.stage_team and self.outputs.stage_team.teamBuilderTeams or nil
-
-    if not teams then
-        teams = {}
+    if not self.outputs.stage_team then
+        local currentTeam = 0
 
         for _, player in pairs(self.players) do
-            table.insert(teams, { player.id })
+            self.players[player.id]:SetTeam(self.teams[currentTeam])
+
+            currentTeam = currentTeam + 1
         end
-    end
-
-    local currentTeam = 0
-
-    for _, team in pairs(teams) do
-        for _, playerId in pairs(team) do
-            self.players[playerId]:SetTeam(self.teams[currentTeam])
-        end
-
-        currentTeam = currentTeam + 1
     end
 
     statCollection:setFlags({ version = GAME_VERSION, mode = self:GetSelectedMode() })
@@ -135,4 +143,12 @@ end
 
 function GameSetup:GetSpawnPoints()
     return self.modes[self:GetSelectedMode()].spawns
+end
+
+function GameSetup:GetBannedHeroes()
+    if self.outputs.stage_bans == nil then
+        return nil
+    end
+
+    return self.outputs.stage_bans.bannedHeroes
 end

@@ -195,6 +195,7 @@
 		"queenofpain_DescE" "Телепортация"
 		"queenofpain_DescR" "Способности расходуют здоровье + короткая перезарядка"
 
+		"HeroBanned" "Этот герой забанен"
 		"PlayerHeader" "Игроки"
 		"SelectionHeader" "выбор"
 		"ScoreHeader" "счет"
@@ -226,6 +227,7 @@
 		"GameSetupTeam1" "Команда 1"
 		"GameSetupTeam2" "Команда 2"
 		"GameSetupTeam3" "Команда 3"
+		"GameSetupBans" "Забаньте героя"
 
 		"GamePaused" "Пауза"
 		"PauseTip" "Кликните вверху экрана, если паузу не получается снять"

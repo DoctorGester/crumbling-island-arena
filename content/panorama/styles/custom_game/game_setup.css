@@ -281,6 +281,38 @@
     vertical-align: center;
 }
 
+#BanButtons
+{
+    flow-children: right-wrap;
+    padding-left: 80px;
+    padding-right: 80px;
+    margin: 20px;
+}
+
+.BanButton
+{
+    margin: 4px;
+    height: 48px;
+    width: 96px;
+    border-radius: 3px;
+    border: 2px solid #111111;
+}
+
+.BanButton:hover
+{
+    wash-color: rgb(200, 20, 20);
+}
+
+.BanButton:active
+{
+    wash-color: rgb(110, 20, 20);
+}
+
+.BanButton:disabled
+{
+    wash-color: rgb(110, 20, 20);
+}
+
 #FFAButton
 {
     background-color: #e74c3c;
@@ -313,57 +345,6 @@
 }
 
 #3v3Button:active
-{
-    border-bottom: 0;
-}
-
-#Team1Button
-{
-    background-color: rgb(61, 210, 150);
-    border: 0;
-    border-bottom: 4px solid rgb(51, 180, 130);
-}
-
-#Team1Button Label
-{
-    text-shadow: 1px 1px 4px 4.0 #11111150;
-}
-
-#Team1Button:active
-{
-    border-bottom: 0;
-}
-
-#Team2Button
-{
-    background-color: rgb(243, 201, 9);
-    border: 0;
-    border-bottom: 4px solid rgb(213, 171, 9);
-}
-
-#Team2Button Label
-{
-    text-shadow: 1px 1px 4px 4.0 #11111150;
-}
-
-#Team2Button:active
-{
-    border-bottom: 0;
-}
-
-#Team3Button
-{
-    background-color: rgb(197, 77, 168);
-    border: 0;
-    border-bottom: 4px solid rgb(175, 55, 158);
-}
-
-#Team3Button Label
-{
-    text-shadow: 1px 1px 4px 4.0 #11111150;
-}
-
-#Team3Button:active
 {
     border-bottom: 0;
 }

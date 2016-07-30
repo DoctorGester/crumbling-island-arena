@@ -28,7 +28,7 @@ end
 function HeroSelection:CanBeSelected(hero)
     local entry = self.AvailableHeroes[hero]
 
-    if entry and entry.disabled then
+    if entry and (entry.disabled or entry.banned) then
         return false
     end
 

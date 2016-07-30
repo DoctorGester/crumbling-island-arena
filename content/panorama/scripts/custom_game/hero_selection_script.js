@@ -217,6 +217,20 @@ function AddDisabledButtonEvents(button, name) {
     });
 }
 
+function AddBannedButtonEvents(button, name) {
+    button.SetPanelEvent("onmouseover", function() {
+        $.DispatchEvent("DOTAShowTextTooltip", button, $.Localize("#HeroBanned"))
+
+        ShowHeroDetails(name);
+    });
+
+    button.SetPanelEvent("onmouseout", function(){
+        $.DispatchEvent("DOTAHideTextTooltip");
+
+        HideHeroDetails(name);
+    });
+}
+
 function CreateHeroList(heroList, heroes, rows, randomButtonRow){
     DeleteChildrenWithClass(heroList, "HeroButtonContainer");
 
@@ -231,6 +245,7 @@ function CreateHeroList(heroList, heroes, rows, randomButtonRow){
 
         for (var j = i; j < heroes.length && j < i + heroesInRow; j++) {
             var notAvailable = allHeroes[heroes[j]].disabled;
+            var banned = allHeroes[heroes[j]].banned;
 
             var container = $.CreatePanel("Panel", row, "");
             container.AddClass("HeroButtonContainer");
@@ -246,13 +261,16 @@ function CreateHeroList(heroList, heroes, rows, randomButtonRow){
             } else {
                 var button = $.CreatePanel("DOTAHeroImage", container, "");
                 button.AddClass("HeroButton");
-                button.SetHasClass("NotAvailableHeroButton", notAvailable);
+                button.SetHasClass("NotAvailableHeroButton", notAvailable || banned);
                 button.SetScaling("stretch-to-fit-x-preserve-aspect");
                 button.heroname = heroes[j];
                 button.heroimagestyle = "portrait";
 
+
                 if (notAvailable) {
-                    AddDisabledButtonEvents(container, heroes[j])
+                    AddDisabledButtonEvents(container, heroes[j]);
+                } else if (banned) {
+                    AddBannedButtonEvents(container, heroes[j])
                 } else {
                     AddButtonEvents(container, heroes[j]);
                 }
