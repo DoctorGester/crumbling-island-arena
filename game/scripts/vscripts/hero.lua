@@ -194,7 +194,7 @@ end
 
 function Hero:Remove()
     for _, modifier in pairs(self:AllModifiers()) do
-        if modifier.GetName and not modifier:GetName() == "modifier_falling" then
+        if modifier.GetName and modifier:GetName() ~= "modifier_falling" then
             modifier:Destroy()
         end
     end
