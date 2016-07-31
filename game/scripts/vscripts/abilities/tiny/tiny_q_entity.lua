@@ -3,9 +3,11 @@ TinyQ = TinyQ or class({}, nil, Projectile)
 function TinyQ:constructor(round, owner, ability, target, stun)
     local modifierName = (stun and "modifier_stunned_lua" or "modifier_tiny_q")
 
+    self.groundHeight = GetGroundHeight(target, nil)
+
     getbase(TinyQ).constructor(self, round, {
         owner = owner,
-        from = owner:GetPos() * Vector(1, 1, 0) + Vector(0, 0, 64),
+        from = owner:GetPos() * Vector(1, 1, 0) + Vector(0, 0, 64) + self.groundHeight,
         to = target,
         hitModifier = { name = modifierName, duration = 1.5, ability = ability },
         hitSound = "Arena.Tiny.HitQ",
@@ -59,7 +61,7 @@ function TinyQ:Damage(source) end
 function TinyQ:GetNextPosition(pos)
     local position = getbase(TinyQ).GetNextPosition(self, pos)
 
-    position.z = math.max(position.z + self.heightVel, 0)
+    position.z = math.max(position.z + self.heightVel, self.groundHeight)
 
     return position
 end
@@ -77,7 +79,7 @@ function TinyQ:Update()
     if speed > 0 then
         local decay = 30
 
-        if self:GetPos().z == 0 then
+        if self:GetPos().z == self.groundHeight then
             decay = 90
 
             if not self.fell then
