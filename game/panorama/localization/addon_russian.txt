@@ -32,7 +32,7 @@
 		"HeroName_npc_dota_hero_tinker"					"Дурак"
 		"HeroName_npc_dota_hero_slark"					"Повешенный"
 		"HeroName_npc_dota_hero_queenofpain"			"Похоть"
-		"HeroName_npc_dota_hero_tusk"					"?????"
+		"HeroName_npc_dota_hero_tusk"					"Мир"
 
 		"Available_on_npc_dota_hero_lone_druid"			"Доступно с 4 июня!"
 		"Available_on_npc_dota_hero_drow_ranger"		"Доступено с 23 апреля!"

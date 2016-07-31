@@ -141,6 +141,7 @@ end
 function Round:Destroy()
     for _, player in pairs(self.players) do
         if player.hero then
+            self.spells:InterruptDashes(player.hero)
             player.hero:Hide()
         end
     end

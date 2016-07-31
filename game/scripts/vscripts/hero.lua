@@ -45,7 +45,7 @@ function Hero:GetHealth()
 end
 
 function Hero:Alive()
-    return self.unit:IsAlive()
+    return IsValidEntity(self.unit) and self.unit:IsAlive()
 end
 
 function Hero:SetPos(pos)
