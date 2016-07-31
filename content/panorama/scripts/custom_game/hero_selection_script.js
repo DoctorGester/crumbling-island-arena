@@ -48,7 +48,7 @@ function PreloadHeroPreview(hero) {
 
     preview.style.visibility = "collapse";
     preview.SetHasClass("NotAvailableHero", allHeroes[hero].disabled);
-    preview.BCreateChildren("<DOTAScenePanel style='" + previewStyle + "' unit='" + hero + "'/>");
+    preview.BCreateChildren("<DelayLoadPanel style='width:100%;height:100%;'><DOTAScenePanel style='" + previewStyle + "' unit='" + hero + "'/></DelayLoadPanel>");
 
     heroPreviews[hero] = preview;
 }
@@ -259,13 +259,14 @@ function CreateHeroList(heroList, heroes, rows, randomButtonRow){
 
                 container.SetPanelEvent("onactivate", PickRandomHero);
             } else {
-                var button = $.CreatePanel("DOTAHeroImage", container, "");
+                var delay = $.CreatePanel("DelayLoadPanel", container, "");
+                delay.AddClass("HeroButton")
+                var button = $.CreatePanel("DOTAHeroImage", delay, "");
                 button.AddClass("HeroButton");
                 button.SetHasClass("NotAvailableHeroButton", notAvailable || banned);
                 button.SetScaling("stretch-to-fit-x-preserve-aspect");
                 button.heroname = heroes[j];
                 button.heroimagestyle = "portrait";
-
 
                 if (notAvailable) {
                     AddDisabledButtonEvents(container, heroes[j]);
