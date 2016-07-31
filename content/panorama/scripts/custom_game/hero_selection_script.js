@@ -244,8 +244,8 @@ function CreateHeroList(heroList, heroes, rows, randomButtonRow){
         row.AddClass("HeroButtonRow");
 
         for (var j = i; j < heroes.length && j < i + heroesInRow; j++) {
-            var notAvailable = allHeroes[heroes[j]].disabled;
-            var banned = allHeroes[heroes[j]].banned;
+            var notAvailable = !!allHeroes[heroes[j]].disabled;
+            var banned = !!allHeroes[heroes[j]].banned;
 
             var container = $.CreatePanel("Panel", row, "");
             container.AddClass("HeroButtonContainer");
