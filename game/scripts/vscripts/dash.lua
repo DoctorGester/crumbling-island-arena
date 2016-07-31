@@ -191,7 +191,15 @@ end
 function Knockback(hero, ability, direction, distance, speed, heightFunction, modifier)
     hero.round.spells:InterruptDashes(hero)
 
-    Dash(hero, hero:GetPos() + direction:Normalized() * distance, speed, {
+    local multipler = 1
+
+    for _, modifier in pairs(hero:AllModifiers()) do
+        if modifier.GetKnockbackMultiplier then
+            multipler = multipler * modifier:GetKnockbackMultiplier()
+        end
+    end
+
+    Dash(hero, hero:GetPos() + direction:Normalized() * distance * multipler, speed, {
         modifier = { name = modifier or "modifier_knockback_lua", ability = ability, source = ability:GetCaster() },
         heightFunction = heightFunction,
         interruptedByStuns = false

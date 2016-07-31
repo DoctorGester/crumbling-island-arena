@@ -329,6 +329,7 @@ function GameMode:InitSettings()
     mode:SetTopBarTeamValuesOverride (true)
     mode:SetAnnouncerDisabled(true)
     mode:SetFogOfWarDisabled(true)
+    mode:SetWeatherEffectsDisabled(true)
 
     mode:SetExecuteOrderFilter(Dynamic_Wrap(GameMode, "FilterExecuteOrder"), self)
 

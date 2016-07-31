@@ -195,6 +195,11 @@
 		"queenofpain_DescE" "Телепортация"
 		"queenofpain_DescR" "Способности расходуют здоровье + короткая перезарядка"
 
+		"tusk_DescQ" "Атака перед собой + отбрасывание"
+		"tusk_DescW" "Замедлить врагов и снаряды"
+		"tusk_DescE" "Рывок + оглушение"
+		"tusk_DescR" "Усилить ВСЕ отбрасывания"
+
 		"HeroBanned" "Этот герой забанен"
 		"PlayerHeader" "Игроки"
 		"SelectionHeader" "выбор"
@@ -428,6 +433,11 @@
 		"AbilityTooltip_qop_e"							"Телепортироваться в указанную точку"
 		"AbilityTooltip_qop_r"							"Способности имеют 0.5 секунд перезарядки, но расходуют здоровье<br/>Каждую способность можно использовать трижды<br/><br/>Длится <font color=\"gold\"><b>6</b></font> секунд"
 
+		"AbilityTooltip_tusk_q"							"Атаковать врагов перед собой, отбрасывая их"
+		"AbilityTooltip_tusk_w"							"Получить бафф, замедляющий всех врагов и вражеские снаряды вокруг"
+		"AbilityTooltip_tusk_e"							"Получить неуязвимость и перекатиться к указанной точке, оглушая врагов на пути"
+		"AbilityTooltip_tusk_r"							"<font color=\"gold\"><b>ВСЕ</b></font> отбрасывания в 2 раза сильнее<br/>Твоя <font color=\"gold\"><b>E</b></font> в 2 раза быстрее<br/><br/>Длится <font color=\"gold\"><b>10</b></font> секунд"
+
 		"ModifierTooltip_modifier_charges"						"Заряды способности"
 		"ModifierTooltip_modifier_stunned_lua"					"Оглушен"
 		"ModifierTooltip_modifier_silence_lua"					"Безмолвие"
@@ -541,6 +551,12 @@
 		"ModifierTooltip_modifier_qop_q"						"Замедлен и получит урон"
 		"ModifierTooltip_modifier_qop_w"						"Привлечен красотой"
 		"ModifierTooltip_modifier_qop_r"						"Заплатит здоровье за применение этой способности"
+
+		"ModifierTooltip_modifier_tusk_w"						"Замедлен"
+		"ModifierTooltip_modifier_tusk_w_aura"					"Замедляет врагов и вражеские снаряды"
+		"ModifierTooltip_modifier_tusk_e"						"They hatin"
+		"ModifierTooltip_modifier_tusk_r_aura"					"Мир заморожен! Все отбрасывания в два раза сильнее"
+		"ModifierTooltip_modifier_tusk_r"						"Будет отброшен в два раза сильнее"
 	}
 }
 

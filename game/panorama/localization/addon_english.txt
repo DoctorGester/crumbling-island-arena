@@ -32,7 +32,7 @@
 		"HeroName_npc_dota_hero_tinker"					"The Fool"
 		"HeroName_npc_dota_hero_slark"					"The Hanged Man"
 		"HeroName_npc_dota_hero_queenofpain"			"Lust"
-		"HeroName_npc_dota_hero_tusk"					"?????"
+		"HeroName_npc_dota_hero_tusk"					"The World"
 
 		"Available_on_npc_dota_hero_drow_ranger"		"Available on April 23!"
 		"Available_on_npc_dota_hero_skeleton_king"		"Available on April 30!"
@@ -194,10 +194,10 @@
 		"queenofpain_DescE" "Blink"
 		"queenofpain_DescR" "Spells cost health, but have low cooldown"
 
-		"tusk_DescQ" "?????"
-		"tusk_DescW" "?????"
-		"tusk_DescE" "?????"
-		"tusk_DescR" "?????"
+		"tusk_DescQ" "Melee attack + knockback"
+		"tusk_DescW" "Slow enemies and projectiles"
+		"tusk_DescE" "Long range dash + stun"
+		"tusk_DescR" "Empower ALL knockbacks"
 
 		"HeroBanned" "This hero is banned"
 		"PlayerHeader" "Players"
@@ -438,7 +438,12 @@
 		"AbilityTooltip_qop_q"							"Fire a slowing projectile, which deals damage after the slow ends<br/><br/>If fired while ult is active, heals after dealing damage"
 		"AbilityTooltip_qop_w"							"Slow and attract all enemies facing you"
 		"AbilityTooltip_qop_e"							"Teleport to a target point"
-		"AbilityTooltip_qop_r"							"Your spells have 0.5 second cooldowns, but cost health<br/>Each spell can be used up to 3 times<br/><br/>Lasts <font color=\"gold\"><b>6</b></font> seconds"
+		"AbilityTooltip_qop_r"							"Your spells have 0.5 second cooldowns, but cost health<br/>Each spell can be used up to 3 times<br/><br/>Lasts for <font color=\"gold\"><b>6</b></font> seconds"
+
+		"AbilityTooltip_tusk_q"							"Attack enemies in front of you, knocking them back"
+		"AbilityTooltip_tusk_w"							"Gain a buff slowing all enemies and enemy projectiles around you"
+		"AbilityTooltip_tusk_e"							"Gain invulnerability and roll to the target point, stunning enemies on your way"
+		"AbilityTooltip_tusk_r"							"<font color=\"gold\"><b>ALL</b></font> knockbacks are 2x stronger<br/>Your <font color=\"gold\"><b>E</b></font> is 2x faster<br/><br/>Lasts for <font color=\"gold\"><b>10</b></font> seconds"
 
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
@@ -553,6 +558,12 @@
 		"ModifierTooltip_modifier_qop_q"						"Slowed and will take damage"
 		"ModifierTooltip_modifier_qop_w"						"Attracted by pure beauty"
 		"ModifierTooltip_modifier_qop_r"						"Will pay health when casting this spell"
+
+		"ModifierTooltip_modifier_tusk_w"						"Slowed"
+		"ModifierTooltip_modifier_tusk_w_aura"					"Slowing all enemies and enemy projectiles"
+		"ModifierTooltip_modifier_tusk_e"						"They see me rolling"
+		"ModifierTooltip_modifier_tusk_r_aura"					"The world is frozen! All knockbacks are two times stronger"
+		"ModifierTooltip_modifier_tusk_r"						"Knocked back two times stronger"
 	}
 }
 

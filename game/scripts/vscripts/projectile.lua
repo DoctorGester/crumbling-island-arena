@@ -17,6 +17,8 @@ function Projectile:constructor(round, params)
         self.vel = self.hero:GetFacing()
     end
 
+    self.currentMultiplier = 1.0
+
     self:GetUnit():SetNeverMoveToClearSpace(true)
     self:SetFacing(self.to - self.from)
     self:SetGraphics(params.graphics)
@@ -150,7 +152,21 @@ function Projectile:Damage(source)
 end
 
 function Projectile:GetSpeed()
-    return self.speed
+    local multiplier = 1
+
+    for _, modifier in pairs(self:AllModifiers()) do
+        if modifier.GetProjectileSpeedModifier then
+            multiplier = multiplier * modifier:GetProjectileSpeedModifier()
+        end
+    end
+
+    if self.currentMultiplier < multiplier then
+        self.currentMultiplier = math.min(self.currentMultiplier + 0.05, multiplier)
+    else
+        self.currentMultiplier = math.max(self.currentMultiplier - 0.05, multiplier)
+    end
+
+    return self.speed * self.currentMultiplier
 end
 
 function Projectile:SetSpeed(speed)

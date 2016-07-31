@@ -2670,6 +2670,13 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "slark_pounce"
 		"AbilityCooldown" "5.0"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "600"
+			"MaxLength" "600"
+		}
 	}
 
 	"slark_r"
@@ -2757,26 +2764,58 @@
 		"ScriptFile" "abilities/tusk/tusk_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "tusk_walrus_punch"
-		"AbilityCooldown" "4.0"
+		"AbilityCooldown" "3.2"
 		"AbilityCastPoint" "0.15"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "300"
+		}
 	}
 
 	"tusk_w"
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/tusk/tusk_w"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName" "tusk_frozen_sigil"
 		"AbilityCooldown" "7.0"
+		"AbilityCastPoint" "0.15"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "500"
+		}
 	}
 
 	"tusk_e"
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/tusk/tusk_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "tusk/glaciomarine_ability_icons/tusk_snowball"
 		"AbilityCooldown" "6.0"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE_EMBER"
+			"MinLength" "1200"
+			"MaxLength" "1200"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1200"
+		}
 	}
 
 	"tusk_r"
@@ -2784,9 +2823,10 @@
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/tusk/tusk_r"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName" "crystal_maiden_crystal_nova"
-		"AbilityCooldown" "14.0"
+		"AbilityCooldown" "20.0"
+		"AbilityCastPoint" "0.15"
 	}
 
 }
