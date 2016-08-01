@@ -11,11 +11,18 @@ function Hero:constructor(round)
     self.collisionType = COLLISION_TYPE_RECEIVER
 
     self.wearables = {}
+    self.soundsStarted = {}
 end
 
 function Hero:SetUnit(unit)
     getbase(Hero).SetUnit(self, unit)
     unit.hero = self
+end
+
+function Hero:StopSound(sound)
+    getbase(Hero).StopSound(self, sound)
+
+    table.insert(self.soundsStarted, sound)
 end
 
 function Hero:SetOwner(owner)
@@ -28,7 +35,7 @@ function Hero:SetOwner(owner)
     PlayerResource:SetOverrideSelectionEntity(owner.id, self.unit)
 
     local season = self:GetAwardSeason()
-    
+
     if season ~= nil then
         self.awardEnabled = GameRules.GameMode:IsAwardedForSeason(owner.id, season)
     end
@@ -240,6 +247,10 @@ function Hero:Remove()
 
     for _, part in pairs(self.wearables) do
         part:RemoveSelf()
+    end
+
+    for _, sound in pairs(self.soundsStarted) do
+        getbase(Hero).StopSound(self, sound)
     end
 
     self.wearables = {}
