@@ -178,7 +178,7 @@ function Hero:Update()
 
     for _, modifier in pairs(self:AllModifiers()) do
         if modifier.GetModifierInvisibilityLevel then
-            invisLevel = math.max(invisLevel, modifier:GetModifierInvisibilityLevel())
+            invisLevel = math.max(invisLevel, math.min(modifier:GetModifierInvisibilityLevel(), 1.0))
         end
     end
 
