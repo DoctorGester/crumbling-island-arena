@@ -206,7 +206,7 @@
 		"HeroListHeader" "select your hero"
 		"RandomHero" "random hero"
 		"LockedHeroes" "Not available for the first 3 rounds"
-		"RankAward" "Rank 1 award (Season {d:season})"
+		"RankAward" "Rank 1 reward (Season {d:season})"
 		"GameGoal" "Goal: {d:goal}"
 		"PointsToWin" "point limit"
 		"SurviveToWin" "Survive to win!"
