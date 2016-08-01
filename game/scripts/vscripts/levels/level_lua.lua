@@ -28,6 +28,7 @@ function Level:Clusterize()
 
         local bounds = polygon:getBounds()
 
+        self:AddPolyPointToCluster(polygon, polygon.originX, polygon.originY)
         self:AddPolyPointToCluster(polygon, bounds.minX, bounds.minY)
         self:AddPolyPointToCluster(polygon, bounds.maxX, bounds.maxY)
         self:AddPolyPointToCluster(polygon, bounds.maxX, bounds.minY)
@@ -136,13 +137,35 @@ function Level:GetClosestPolygonAt(x, y, checkContains)
 end 
 
 function Level:DebugPolygon(poly, time)
+    local h = GetGroundHeight(Vector(0, 0, 0), nil)
     local len = #poly.x
 
     for i = 2, len do
-        DebugDrawLine(Vector(poly.x[i]+poly.ox, poly.y[i]+poly.oy, 0), Vector(poly.x[i - 1]+poly.ox, poly.y[i - 1]+poly.oy, 0), 255, 0, 0, false, time or 6000)
+        DebugDrawLine(Vector(poly.x[i]+poly.ox, poly.y[i]+poly.oy, h), Vector(poly.x[i - 1]+poly.ox, poly.y[i - 1]+poly.oy, h), 255, 0, 0, false, time or 6000)
     end
 
-    DebugDrawLine(Vector(poly.x[len]+poly.ox, poly.y[len]+poly.oy, 0), Vector(poly.x[1]+poly.ox, poly.y[1]+poly.oy, 0), 255, 0, 0, false, time or 6000)
+    DebugDrawLine(Vector(poly.x[len]+poly.ox, poly.y[len]+poly.oy, h), Vector(poly.x[1]+poly.ox, poly.y[1]+poly.oy, h), 255, 0, 0, false, time or 6000)
+end
+
+function Level:DebugBounds(bounds, time)
+    local h = GetGroundHeight(Vector(0, 0, 0), nil)
+    local t = time or 6000
+
+    DebugDrawLine(Vector(bounds.minX, bounds.minY, h), Vector(bounds.minX, bounds.maxY, h), 100, 255, 0, false, t)
+    DebugDrawLine(Vector(bounds.minX, bounds.maxY, h), Vector(bounds.maxX, bounds.maxY, h), 100, 255, 0, false, t)
+    DebugDrawLine(Vector(bounds.maxX, bounds.maxY, h), Vector(bounds.maxX, bounds.minY, h), 100, 255, 0, false, t)
+    DebugDrawLine(Vector(bounds.maxX, bounds.minY, h), Vector(bounds.minX, bounds.minY, h), 100, 255, 0, false, t)
+end
+
+function Level:DebugCluster(clusterX, clusterY, time)
+    local bounds = {
+        minX = clusterX * self.cellSize,
+        minY = clusterY * self.cellSize,
+        maxX = (clusterX + 1) * self.cellSize,
+        maxY = (clusterY + 1) * self.cellSize,
+    }
+
+    self:DebugBounds(bounds, time)
 end
 
 function Level:GetPolygonAt(x, y)
@@ -176,10 +199,13 @@ function Level:SetPartOffset(part, offsetX, offsetY)
 
     if part.poly then
         local polygon = part.poly
+        local oldOX = polygon.originX + polygon.ox
+        local oldOY = polygon.originY + polygon.oy
         local boundsOld = vlua.clone(polygon:getBounds())
         polygon:setOffset(offsetX, offsetY)
         local bounds = polygon:getBounds()
 
+        self:UpdatePolyPointCluster(polygon, oldOX, oldOY, polygon.originX + offsetX, polygon.originY + offsetY)
         self:UpdatePolyPointCluster(polygon, boundsOld.minX, boundsOld.minY, bounds.minX, bounds.minY)
         self:UpdatePolyPointCluster(polygon, boundsOld.maxX, boundsOld.maxY, bounds.maxX, bounds.maxY)
         self:UpdatePolyPointCluster(polygon, boundsOld.maxX, boundsOld.minY, bounds.maxX, bounds.minY)
