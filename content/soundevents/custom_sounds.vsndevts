@@ -9401,7 +9401,7 @@
                     {
                         "value"
                         {
-                              "value0"        "sounds/weapons/hero/tusk/ice_shards_projectile.vsnd"
+                              "value0"        "sounds/weapons/hero/lich/chain_frost_loop.vsnd"
                         }
                     }
                     "volume"            {   "value"     "1.300000"  }
