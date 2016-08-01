@@ -35,5 +35,9 @@ function modifier_lycan_r:GetModifierMoveSpeedOverride(params)
 end
 
 function modifier_lycan_r:GetModifierModelChange()
-    return "models/heroes/lycan/lycan_wolf.vmdl"
+    if self:GetParent():GetParentEntity():IsAwardEnabled() then
+        return "models/items/lycan/ultimate/hunter_kings_trueform/hunter_kings_trueform.vmdl"
+    else
+        return "models/heroes/lycan/lycan_wolf.vmdl"
+    end
 end

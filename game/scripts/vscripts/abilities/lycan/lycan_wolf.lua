@@ -21,6 +21,13 @@ function LycanWolf:constructor(round, owner, target, offsetModifier)
     self:SetFacing(target - self.start)
     self:AddNewModifier(self.hero, nil, "modifier_lycan_q", { duration = 3 })
 
+    if owner:IsAwardEnabled() then
+        local awardModel = "models/items/lycan/wolves/hunter_kings_wolves/hunter_kings_wolves.vmdl"
+        
+        self:GetUnit():SetModel(awardModel)
+        self:GetUnit():SetOriginalModel(awardModel)
+    end
+
     ImmediateEffect("particles/units/heroes/hero_lycan/lycan_summon_wolves_spawn.vpcf", PATTACH_ABSORIGIN, self.unit)
 end
 

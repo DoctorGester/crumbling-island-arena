@@ -9,10 +9,14 @@ function Lycan:SetUnit(unit)
     self:AddNewModifier(self, nil, "modifier_lycan_instinct")
 end
 
+function Lycan:GetAwardSeason()
+    return 0
+end
+
 function Lycan:SetOwner(owner)
     getbase(Lycan).SetOwner(self, owner)
 
-    if GameRules.GameMode:IsAwardedForSeason(owner.id, 0) then
+    if self:IsAwardEnabled() then
         for _, part in pairs({ "armor", "belt", "weapon", "shoulder", "head" }) do
             self:AttachWearable("models/items/lycan/hunter_kings_"..part.."/hunter_kings_"..part..".vmdl")
         end

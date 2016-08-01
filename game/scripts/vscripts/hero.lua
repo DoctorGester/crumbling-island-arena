@@ -26,6 +26,20 @@ function Hero:SetOwner(owner)
     self.unit:SetControllableByPlayer(owner.id, true)
     self.unit:SetCustomHealthLabel(name, c[1], c[2], c[3])
     PlayerResource:SetOverrideSelectionEntity(owner.id, self.unit)
+
+    local season = self:GetAwardSeason()
+    
+    if season ~= nil then
+        self.awardEnabled = GameRules.GameMode:IsAwardedForSeason(owner.id, season)
+    end
+end
+
+function Hero:GetAwardSeason()
+    return nil
+end
+
+function Hero:IsAwardEnabled()
+    return self.awardEnabled
 end
 
 function Hero:GetName()

@@ -52,6 +52,12 @@ function InjectFreeSelection()
         self.owner = owner
         self.unit:SetControllableByPlayer(owner.id, true)
         self.unit:SetCustomHealthLabel(name, c[1], c[2], c[3])
+
+        local season = self:GetAwardSeason()
+
+        if season ~= nil then
+            self.awardEnabled = GameRules.GameMode:IsAwardedForSeason(owner.id, season)
+        end
     end
 end
 
