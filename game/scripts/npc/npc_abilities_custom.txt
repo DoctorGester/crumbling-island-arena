@@ -966,7 +966,7 @@
 		"AbilityCooldown" "8.0"
 		"AbilityCastPoint" "0.3"
 
-		"TargetingIndicator"
+		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
 			"Radius" "350"
