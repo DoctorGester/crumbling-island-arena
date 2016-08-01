@@ -7,7 +7,7 @@ function tusk_q:OnSpellStart()
     local direction = self:GetDirection()
     local pos = hero:GetPos()
 
-    hero:AreaEffect({
+    if hero:AreaEffect({
         filter = Filters.Cone(pos, 300, direction, math.pi),
         sound = "Arena.Tusk.HitQ",
         damage = true,
@@ -19,7 +19,9 @@ function tusk_q:OnSpellStart()
 
             Knockback(target, self, target:GetPos() - hero:GetPos(), 300, 1000)
         end
-    })
+    }) then
+        ScreenShake(pos, 5, 150, 0.45, 3000, 0, true)
+    end
 
     hero:EmitSound("Arena.Tusk.CastQ")
 end
