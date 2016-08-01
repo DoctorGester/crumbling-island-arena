@@ -2763,7 +2763,7 @@
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/tusk/tusk_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName" "tusk_walrus_punch"
+		"AbilityTextureName" "tusk_walrus_kick"
 		"AbilityCooldown" "3.2"
 		"AbilityCastPoint" "0.15"
 
