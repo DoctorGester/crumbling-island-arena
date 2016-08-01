@@ -10,7 +10,8 @@ function modifier_earth_spirit_remnant:CheckState()
         [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
         [MODIFIER_STATE_NOT_ON_MINIMAP] = true,
         [MODIFIER_STATE_UNSELECTABLE] = true,
-        [MODIFIER_STATE_COMMAND_RESTRICTED] = true
+        [MODIFIER_STATE_COMMAND_RESTRICTED] = true,
+        [MODIFIER_STATE_STUNNED] = true
     }
 
     return state

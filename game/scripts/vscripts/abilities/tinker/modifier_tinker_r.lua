@@ -3,7 +3,8 @@ modifier_tinker_r = class({})
 function modifier_tinker_r:CheckState()
     local state = {
         [MODIFIER_STATE_NO_HEALTH_BAR] = true,
-        [MODIFIER_STATE_UNSELECTABLE] = true
+        [MODIFIER_STATE_UNSELECTABLE] = true,
+        [MODIFIER_STATE_ROOTED] = true
     }
 
     return state
