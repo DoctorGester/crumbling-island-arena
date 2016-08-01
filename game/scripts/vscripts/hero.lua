@@ -224,6 +224,12 @@ function Hero:Remove()
         end
     end
 
+    for _, part in pairs(self.wearables) do
+        part:RemoveSelf()
+    end
+
+    self.wearables = {}
+
     getbase(Hero).Remove(self)
 end
 
