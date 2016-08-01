@@ -2807,7 +2807,6 @@
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_LINE_EMBER"
-			"MinLength" "1200"
 			"MaxLength" "1200"
 		}
 
