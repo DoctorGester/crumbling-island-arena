@@ -40,7 +40,11 @@ function GameSetup:GetNextStageAndTime()
         end
 
         local gameMode = GameRules.GameMode
-        Stats.SubmitMatchInfo(gameMode.Players, self:GetSelectedMode(), GAME_VERSION, function(...) gameMode:OnRanksReceived(...) end)
+        Stats.SubmitMatchInfo(gameMode.Players, self:GetSelectedMode(), GAME_VERSION, function(data)
+            if data.ranks then
+                gameMode:OnRanksReceived(data.ranks)
+            end
+        end)
 
         return TeamSelectionStage("stage_team", self.players, self:GetPlayersInTeam()), IsInToolsMode() and 10 or 15
     end
