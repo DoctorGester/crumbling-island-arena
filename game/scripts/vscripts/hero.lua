@@ -14,7 +14,7 @@ function Hero:constructor(round)
 end
 
 function Hero:SetUnit(unit)
-    self.unit = unit
+    getbase(Hero).SetUnit(self, unit)
     unit.hero = self
 end
 

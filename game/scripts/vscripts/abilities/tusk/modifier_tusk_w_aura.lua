@@ -37,6 +37,14 @@ function modifier_tusk_w_aura:GetModifierAura()
     return "modifier_tusk_w"
 end
 
+function modifier_tusk_w_aura:GetAuraEntityReject(entity)
+    if entity.GetParentEntity and entity:GetParentEntity().owner.team == self:GetParent():GetParentEntity().owner.team then
+        return true
+    end
+
+    return false
+end
+
 function modifier_tusk_w_aura:GetAuraSearchTeam()
     return DOTA_UNIT_TARGET_TEAM_ENEMY
 end

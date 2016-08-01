@@ -16,7 +16,7 @@ function UnitEntity:constructor(round, unitName, pos, team, findSpace)
     end
     
 	if unitName then
-		self.unit = CreateUnitByName(unitName, pos, findSpace, nil, nil, team or DOTA_TEAM_NOTEAM)
+		self:SetUnit(CreateUnitByName(unitName, pos, findSpace, nil, nil, team or DOTA_TEAM_NOTEAM))
 	end
 
 	self.removeOnDeath = true
@@ -39,6 +39,10 @@ end
 
 function UnitEntity:SetUnit(unit)
 	self.unit = unit
+
+    self.unit.GetParentEntity = function(unit)
+        return self
+    end
 end
 
 function UnitEntity:SetPos(pos)
