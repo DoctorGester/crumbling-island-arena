@@ -144,6 +144,24 @@ function Hero:MakeFall()
     end
 end
 
+function Hero:HasModelChanged()
+    for _, modifier in pairs(self:AllModifiers()) do
+        if modifier.DeclareFunctions then
+            local funcs = modifier:DeclareFunctions()
+
+            if vlua.find(funcs, MODIFIER_PROPERTY_MODEL_CHANGE) ~= nil then
+                if modifier.GetModifierModelChange then
+                    if modifier:GetModifierModelChange() then
+                        return true
+                    end
+                end
+            end
+        end
+    end
+
+    return false
+end
+
 function Hero:Update()
     getbase(Hero).Update(self)
 
@@ -156,10 +174,11 @@ function Hero:Update()
     end
 
     local invisLevel = 0.0
+    local modelChanged = self:HasModelChanged()
 
     for _, modifier in pairs(self:AllModifiers()) do
         if modifier.GetModifierInvisibilityLevel then
-            invisLevel = modifier:GetModifierInvisibilityLevel()
+            invisLevel = math.max(invisLevel, modifier:GetModifierInvisibilityLevel())
         end
     end
 
@@ -167,7 +186,13 @@ function Hero:Update()
         local visuals = wearable:FindModifierByName("modifier_wearable_visuals")
 
         if visuals then
-            visuals:SetStackCount(invisLevel * 100)
+            local count = invisLevel * 100
+
+            if modelChanged then
+                count = count + 101
+            end
+
+            visuals:SetStackCount(count)
         end
     end
 end

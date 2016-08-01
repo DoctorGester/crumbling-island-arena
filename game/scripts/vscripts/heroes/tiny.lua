@@ -24,3 +24,7 @@ function Tiny:Damage(...)
         ParticleManager:ReleaseParticleIndex(index)
     end
 end
+
+function Tiny:HasModelChanged()
+    return self:GetUnit():GetModelName() ~= "models/heroes/tiny_04/tiny_04.vmdl" and getbase(Tiny).HasModelChanged(self)
+end

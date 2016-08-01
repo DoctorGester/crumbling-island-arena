@@ -6,6 +6,11 @@ var previewSchedule = 0;
 var hidingCurrentPreview = null;
 var playerConnectionStates = {};
 var heroPreviews = {};
+var heroAwards = {};
+
+var seasonAwards = {
+    0: "npc_dota_hero_lycan"
+};
 
 function CreateDifficultyLock() {
     // Dis gon be ugly
@@ -39,8 +44,7 @@ function CreateDifficultyLock() {
     $("#HeroSelectionBackground").MoveChildBefore(lock, $("#PauseOverlay"));
 }
 
-function PreloadHeroPreview(hero) {
-    var previewStyle = "width: 100%; height: 100%; margin-top: -100px; opacity-mask: url(\"s2r://panorama/images/masks/softedge_box_png.vtex\");";
+function PreloadPreview(hero, value) {
     var preview = $.CreatePanel("Panel", $("#LeftSideHeroes"), "");
     preview.AddClass("HeroPreview");
 
@@ -48,15 +52,26 @@ function PreloadHeroPreview(hero) {
 
     preview.style.visibility = "collapse";
     preview.SetHasClass("NotAvailableHero", allHeroes[hero].disabled);
-    preview.BCreateChildren("<DelayLoadPanel style='width:100%;height:100%;'><DOTAScenePanel style='" + previewStyle + "' unit='" + hero + "'/></DelayLoadPanel>");
+    preview.BCreateChildren("<DelayLoadPanel style='width:100%;height:100%;'>" + value + "</DelayLoadPanel>");
 
-    heroPreviews[hero] = preview;
+    return preview;
+}
+
+function PreloadHeroPreview(hero) {
+    heroPreviews[hero] = PreloadPreview(hero, "<DOTAScenePanel class='HeroPreviewScene' unit='" + hero + "'/>");
 }
 
 function PreloadHeroPreviews(heroes) {
     for (var hero of heroes) {
-        PreloadHeroPreview(hero);
+        if (!heroAwards[hero]) {
+            PreloadHeroPreview(hero);
+        }
     }
+}
+
+function PreloadAwardPreview(hero) {
+    heroAwards[hero] = PreloadPreview(hero, "<DOTAScenePanel antialias='true' class='HeroPreviewScene' light='light' camera='default' map='maps/rewards/" + hero + "'/>");
+    heroPreviews[hero] = heroAwards[hero];
 }
 
 function SetAbilityButtonTooltipEvents(button, name) {
@@ -78,6 +93,12 @@ function ShowHeroAbilities(heroName) {
             customIcons[ability] = hero.customIcons[ability];
         }
     }
+
+    if (!!heroAwards[heroName]) {
+        $("#RankAwardText").SetDialogVariableInt("season", parseInt(_.invert(seasonAwards)[heroName]) + 1);
+    }
+    
+    $("#AchievementRow").SetHasClass("Hidden", !heroAwards[heroName])
 
     var abilitiesToShow = ["Q", "W", "E", "R"];
 
@@ -331,10 +352,6 @@ function FilterDifficulty(heroes, data, difficulty) {
 }
 
 function HeroesUpdated(data){
-    if (!data) {
-        return;
-    }
-
     allHeroes = data;
 
     var heroes = Object.keys(data);
@@ -351,10 +368,6 @@ function HeroesUpdated(data){
 }
 
 function PlayersUpdated(data){
-    if (!data) {
-        return;
-    }
-
     $("#GameGoal").text = data.goal.toString();
 
     var playersPanel = $("#PlayersContent");
@@ -410,6 +423,8 @@ function PlayersUpdated(data){
 function HeroSelectionUpdated(data){
     selectedHeroes = data || {};
     
+    var localHeroSelected = false;
+
     for (var key in data){
         var hero = data[key];
         var selectionImage = $("#SelectionImage" + key);
@@ -421,6 +436,7 @@ function HeroSelectionUpdated(data){
             if (id == Game.GetLocalPlayerID()) {
                 HideAll();
                 ShowHeroDetails(hero);
+                localHeroSelected = true;
             }
 
             selectionImage.heroname = hero;
@@ -429,6 +445,21 @@ function HeroSelectionUpdated(data){
 
             heroButtons[hero].style.boxShadow = playerColors[id] + " -2px -2px 4px 4px";
             heroButtons[hero].AddClass("HeroButtonSaturated");
+        }
+    }
+
+    $("#HeroSelectionBackgroundScene").SetHasClass("HeroSelectionBackgroundSceneHeroSelected", localHeroSelected);
+    $("#HeroSelectedRays").SetHasClass("Hidden", !localHeroSelected);
+}
+
+function AchievementsUpdated(achievements) {
+    var achievement = achievements[Game.GetLocalPlayerID()];
+    
+    if (achievement) {
+        if (achievement.achievedSeasons) {
+            for (var season of _.values(achievement.achievedSeasons)) {
+                PreloadAwardPreview(seasonAwards[season]);
+            }
         }
     }
 }
@@ -477,6 +508,8 @@ function CheckConnectionState() {
     SubscribeToNetTableKey("main", "gameState", true, GameStateChanged);
     SubscribeToNetTableKey("main", "gameInfo", true, GameInfoChanged);
     SubscribeToNetTableKey("main", "selectedHeroes", true, HeroSelectionUpdated);
+
+    SubscribeToNetTableKey("ranks", "achievements", true, AchievementsUpdated);
 
     $("#HeroSelectionChat").BLoadLayout("file://{resources}/layout/custom_game/simple_chat.xml", false, false);
     $("#HeroSelectionChat").RegisterListener("HeroSelectionEnter");

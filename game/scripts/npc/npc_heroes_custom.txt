@@ -381,6 +381,7 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "true"
 		"Difficulty" "easy"
 		"Order" "9"
 		

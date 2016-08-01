@@ -118,7 +118,11 @@ function GameSetup:SetupSelectedMode()
 
         -- Pre-team match registration
         local gameMode = GameRules.GameMode
-        Stats.SubmitMatchInfo(gameMode.Players, self.selectedMode, GAME_VERSION, function(...) gameMode:OnRanksReceived(...) end)
+        Stats.SubmitMatchInfo(gameMode.Players, self.selectedMode, GAME_VERSION, function(data)
+            if data.ranks then
+                gameMode:OnRanksReceived(data.ranks)
+            end
+        end)
 
         if self.timer < 15 then
             self.timer = 15

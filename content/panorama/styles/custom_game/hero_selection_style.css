@@ -28,10 +28,15 @@
     background-color: rgb(29, 39, 46);
 
     transform: none;
-    transition-property: transform, blur, opacity;
+    transition-property: transform, blur, opacity, wash-color;
     transition-duration: 0.45s;
     transition-delay: 0.0s;
     transition-timing-function: ease-in;
+}
+
+.HeroSelectionBackgroundSceneHeroSelected
+{
+    wash-color: #999999;
 }
 
 #GameGoal
@@ -50,7 +55,7 @@
 
 #HeroAbilities
 {
-    flow-children: down;
+    flow-children: up;
     align: left bottom;
     margin-left: 50px;
     margin-bottom: 100px;
@@ -90,6 +95,18 @@
     box-shadow: none;
 }
 
+#AchievementRow Image
+{
+    background-image: url("file://{images}/custom_game/achieved.png");
+    background-size: 130% 130%;
+    box-shadow: gold 0px 0px 4px 0px;
+}
+
+#AchievementRow Label
+{
+    text-shadow: gold 0px 0px 5px 4px;
+}
+
 #LeftSideHeroes
 {
     align: left center;
@@ -97,6 +114,15 @@
     margin-top: 100px;
     margin-left: 100px;
     width: 30%;
+}
+
+#HeroSelectedRays
+{
+    align: left center;
+    //margin-top: 100px;
+    margin-left: 100px;
+    width: 30%;
+    height: 100%;
 }
 
 .AspectRatio5x4 #LeftSideHeroes
@@ -414,6 +440,14 @@
     opacity: 0.0;
     transition-property: opacity, transform;
     transition-duration: 0.1s;
+}
+
+.HeroPreviewScene
+{
+    width: 100%;
+    height: 100%;
+    margin-top: -100px;
+    opacity-mask: url("s2r://panorama/images/masks/softedge_box_png.vtex");
 }
 
 .HeroPreviewIn

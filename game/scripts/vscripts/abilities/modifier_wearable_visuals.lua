@@ -1,5 +1,26 @@
 modifier_wearable_visuals = class({})
 
+if IsServer() then
+    function modifier_wearable_visuals:OnCreated()
+        self:StartIntervalThink(1 / 30)
+        self.notDrawing = false
+    end
+
+    function modifier_wearable_visuals:OnIntervalThink( ... )
+        if self:GetStackCount() > 100 then
+            if not self.notDrawing then
+                self:GetParent():AddNoDraw()
+                self.notDrawing = true
+            end
+        else
+            if self.notDrawing then
+                self:GetParent():RemoveNoDraw()
+                self.notDrawing = false
+            end
+        end
+    end
+end
+
 function modifier_wearable_visuals:CheckState()
     local state = {
         [MODIFIER_STATE_COMMAND_RESTRICTED] = true,
@@ -26,6 +47,12 @@ end
 
 if IsClient() then
     function modifier_wearable_visuals:GetModifierInvisibilityLevel(params)
-        return self:GetStackCount() / 100
+        local stacks = self:GetStackCount()
+
+        if (stacks > 100) then
+            return (stacks - 101) / 100
+        end
+
+        return stacks / 100
     end
 end

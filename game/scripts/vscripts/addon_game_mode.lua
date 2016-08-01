@@ -861,6 +861,30 @@ function GameMode:OnRanksReceived(ranks)
     CustomNetTables:SetTableValue("ranks", "current", self:ParseSteamId64Table(ranks))
 end
 
+function GameMode:OnAchievementsReceived(achievements)
+    self.achievements = self:ParseSteamId64Table(achievements)
+
+    CustomNetTables:SetTableValue("ranks", "achievements", self.achievements)
+end
+
+function GameMode:IsAwardedForSeason(playerId, season)
+    if self.achievements == nil then
+        return false
+    end
+
+    local achievement = self.achievements[playerId]
+
+    if not achievement then
+        return false
+    end
+
+    if achievement.achievedSeasons then
+        return vlua.find(achievement.achievedSeasons, season) ~= nil
+    end
+
+    return false
+end
+
 function GameMode:OnRankUpdatesReceived(ranks)
     if not ranks or not ranks.previous or not ranks.updated then
         return
@@ -927,7 +951,13 @@ function GameMode:OnGameInProgress()
         statCollection:sendStage2()
     end
 
-    Stats.SubmitMatchInfo(self.Players, self.gameSetup:GetSelectedMode(), GAME_VERSION)
+    Stats.SubmitMatchInfo(self.Players, self.gameSetup:GetSelectedMode(), GAME_VERSION,
+        function(data)
+            if data.achievements then
+                self:OnAchievementsReceived(data.achievements)
+            end
+        end
+    )
 
     self.chat = Chat(self.Players, self.Users, self.TeamColors)
 
