@@ -222,7 +222,7 @@
 		"ChatPlaceholder" "Введите Ваше сообщение..."
 
 		"InfoRankReward" "Награда за 1 ранг в<br/>{d:season} сезоне"
-		"InfoRankSeason" "Рейтинговый сезон {d:season} закончится"
+		"InfoRankSeason" "Конец {d:season} рейтингового сезона"
 		"InfoPreviousTop" "Лучшие игроки прошлого сезона"
 		"Info" "информация"
 		"GameTip" "Подсказка: {s:tip}"
