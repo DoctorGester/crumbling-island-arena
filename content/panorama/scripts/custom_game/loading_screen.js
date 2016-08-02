@@ -52,13 +52,59 @@ function HallOfFameChanged(data) {
     }
 }
 
-$.AsyncWebRequest("http://178.63.238.188:3637/ranks/top", { type: "GET", 
+function UpdateTime(label, seasonEndTime) {
+    $.Schedule(1, function() {
+        UpdateTime(label, seasonEndTime);
+    });
+
+    label.text = moment.unix(seasonEndTime).locale($.Localize("locale")).fromNow();
+}
+
+function RankedInfoChanged(info) {
+    HallOfFameChanged(info.topPlayers);
+
+    var previousSeason = info.currentSeason - 1;
+
+    $("#RankedRewardImage").SetImage("file://{images}/custom_game/rewards/" + previousSeason + ".png");
+    $("#RankedRewardImage").SetScaling("stretch-to-fit-y-preserve-aspect");
+    $("#RankedRewardText").SetDialogVariableInt("season", previousSeason + 1);
+    $("#RankedSeasonEndHeader").SetDialogVariableInt("season", info.currentSeason + 1);
+
+    var parent = $("#RankedSeasonCongratulationsPlayers");
+
+    for (var mode in info.previousTopPlayers) {
+        var players = info.previousTopPlayers[mode];
+
+        if (hallOfFamePlayers[mode] == 0) {
+            continue;
+        }
+
+        for (var i = 0; i < hallOfFamePlayers[mode] && i < players.length; i++) {
+            var player = players[i];
+
+            var avatar = $.CreatePanel("DOTAAvatarImage", parent, "");
+            avatar.steamid = player.steamId64.toString();
+            avatar.AddClass("RankedSeasonCongratulationsPlayer");
+        }
+    }
+
+    UpdateTime($("#RankedSeasonEndText"), info.seasonEndTime);
+    $("#RankedInfoLoading").AddClass("Hidden");
+    $("#RankedInfoContainer").RemoveClass("Hidden");
+}
+
+$.AsyncWebRequest("http://178.63.238.188:3637/ranks/info", { type: "GET", 
     success: function( data ) {
         var info = JSON.parse(data);
-        HallOfFameChanged(info);
+        RankedInfoChanged(info);
     }
 });
 
+var tips = 3;
+var tip = Math.floor(Math.random() * (tips + 1));
+
+$("#GameTipText").SetDialogVariable("tip", $.Localize("GameTip" + tip));
+$("#GameTipText").text = $.Localize("GameTip", $("#GameTipText"));
 
 var hittestBlocker = $.GetContextPanel().GetParent().FindChild("SidebarAndBattleCupLayoutContainer");
 
@@ -66,3 +112,8 @@ if (hittestBlocker) {
     hittestBlocker.hittest = false;
     hittestBlocker.hittestchildren = false;
 }
+
+SubscribeToNetTableKey("main", "gameState", true, function(data) {
+    $("#RankedInfo").SetHasClass("Hidden", data.state == GAME_STATE_GAME_SETUP);
+    $("#GameTip").SetHasClass("Hidden", data.state == GAME_STATE_GAME_SETUP);
+});

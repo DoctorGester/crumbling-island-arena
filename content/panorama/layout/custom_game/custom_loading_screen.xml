@@ -4,18 +4,44 @@
         <include src="file://{resources}/styles/custom_game/util.css" />
     </styles>
     <scripts>
-        <include src="file://{resources}/scripts/custom_game/loading_screen.js" />
         <include src="file://{resources}/scripts/custom_game/util.js" />
+        <include src="file://{resources}/scripts/custom_game/moment.min.js" />
+        <include src="file://{resources}/scripts/custom_game/moment-ru.js" />
+        <include src="file://{resources}/scripts/custom_game/loading_screen.js" />
     </scripts>
     <Panel style="width:100%;height:100%;overflow:clip;background-color:black;">
         <Image src="file://{images}/custom_game/loadscreen.png"/>
         <Label id="MapName" text="#GameName"/>
-        <Label id="GameTips" html="true" text="#GameTips"></Label>
+        <Panel id="RankedInfo">
+            <Panel id="RankedInfoContainer" class="Hidden">
+                <Panel id="RankedReward">
+                    <Image id="RankedRewardImage"/>
+                    <Panel id="RankedRewardBottom">
+                        <Image id="RankedRewardIcon"/>
+                        <Label id="RankedRewardText" html="true" text="#InfoRankReward"/>
+                    </Panel>
+                </Panel>
+                <Panel id="RankedSeasonInfo">
+                    <Panel id="RankedSeasonCongratulations">
+                        <Label id="RankedSeasonCongratulationsLabel" text="#InfoPreviousTop"/>
+                        <Panel id="RankedSeasonCongratulationsPlayers"/>
+                    </Panel>
+                    <Label id="RankedSeasonEndHeader" text="#InfoRankSeason"/>
+                    <Label id="RankedSeasonEndText"/>
+                </Panel>
+            </Panel>
+            <Panel id="RankedInfoLoading" class="LoadingImage"/>
+            <Panel id="RankedInfoHeader">
+                <Label id="RankedInfoHeaderText" text="#Info"/>
+            </Panel>
+        </Panel>
 
         <Panel id="HallOfFame">
-            <Label id="HallOfFameHeader" text="RankTopPlayers"/>
+            <Label id="HallOfFameHeader" text="#RankTopPlayers"/>
             <Panel id="HallOfFamePlayers"/>
             <Panel id="HallOfFameLoading" class="LoadingImage"/>
         </Panel>
+
+        <Panel id="GameTip"><Label id="GameTipText"/></Panel>
     </Panel>
 </root>

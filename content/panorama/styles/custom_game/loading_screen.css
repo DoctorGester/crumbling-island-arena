@@ -27,6 +27,166 @@ Label
     text-align: right;
 }
 
+#GameTip
+{
+    align: center bottom;
+    margin-bottom: 180px;
+    height: 80px;
+    background-color: rgba(0, 0, 0, 130);
+    width: 100%;
+}
+
+#GameTip Label
+{
+    font-size: 24px;
+    color: #EEEEEE;
+    align: center center;
+}
+
+#RankedInfo
+{
+    width: 40%;
+    height: 40%;
+    border-radius: 3px;
+    //box-shadow: #111111 -2px -2px 4px 4px;
+    //border: 1px solid skyblue;
+    align: center center;
+    background-color: rgba(0, 0, 0, 190);
+}
+
+#RankedInfoContainer
+{
+    width: 100%;
+    height: 100%;
+    flow-children: right;
+    padding: 35px;
+    padding-top: 60px;
+}
+
+#RankedInfoHeader
+{
+    align: left top;
+    width: 120px;
+    height: 32px;
+    background-color: black;
+}
+
+#RankedInfoHeaderText
+{
+    align: center center;
+    text-transform: uppercase;
+    color: skyblue;
+    font-size: 16px;
+}
+
+#RankedReward
+{
+    height: 100%;
+    width: 30%;
+}
+
+#RankedRewardBottom
+{
+    margin-top: 14px;
+    flow-children: right;
+    height: fill-parent-flow(1.0);
+    width: 100%;
+}
+
+#RankedRewardImage
+{
+    border-radius: 3px;
+    border: 1px solid gold;
+    height: 80%;
+    width: 100%;
+}
+
+#RankedRewardText
+{
+    color: white;
+    margin-left: 16px;
+    font-size: 16px;
+    vertical-align: center;
+}
+
+#RankedRewardIcon
+{
+    background-image: url("file://{images}/custom_game/achieved.png");
+    background-size: 130% 130%;
+    border: 1px solid gold;
+    width: 48px;
+    height: 48px;
+    border-radius: 3px;
+    background-color: black;
+}
+
+#RankedSeasonInfo
+{
+    flow-children: down;
+    width: fill-parent-flow(1.0);
+    height: 100%;
+    margin-left: 100px;
+}
+
+#RankedSeasonCongratulations
+{
+    width: 100%;
+    flow-children: down;
+}
+
+#RankedSeasonCongratulationsLabel
+{
+    horizontal-align: center;
+    color: white;
+    text-transform: uppercase;
+    font-size: 24px;
+}
+
+#RankedSeasonCongratulationsPlayers
+{
+    flow-children: right;
+    horizontal-align: center;
+    margin-top: 20px;
+}
+
+.RankedSeasonCongratulationsPlayer
+{
+    width: 48px;
+    height: 48px;
+    border-radius: 3px;
+    border: 1px solid gold;
+    margin: 10px;
+    tooltip-position: bottom;
+    tooltip-body-position: 50% 100%;
+}
+
+#RankedSeasonEndHeader
+{
+    horizontal-align: center;
+    color: white;
+    text-transform: uppercase;
+    font-size: 24px;
+    margin-top: 40px;
+}
+
+#RankedSeasonEndText
+{
+    horizontal-align: center;
+    color: white;
+    font-size: 24px;
+    margin-top: 20px;
+}
+
+#RankedInfoLoading
+{
+    align: center center;
+}
+
+#RankedReward
+{
+    flow-children: down;
+}
+
 #HallOfFame
 {
     align: left center;
