@@ -63,11 +63,15 @@ function UpdateTime(label, seasonEndTime) {
 function RankedInfoChanged(info) {
     HallOfFameChanged(info.topPlayers);
 
-    var previousSeason = info.currentSeason - 1;
+    var seasonRewardToShow = info.currentSeason;
 
-    $("#RankedRewardImage").SetImage("file://{images}/custom_game/rewards/" + previousSeason + ".png");
+    if (moment().isBefore(moment.unix(info.seasonEndTime).subtract(20, "days"))) {
+        seasonRewardToShow--;
+    }
+
+    $("#RankedRewardImage").SetImage("file://{images}/custom_game/rewards/" + seasonRewardToShow + ".png");
     $("#RankedRewardImage").SetScaling("stretch-to-fit-y-preserve-aspect");
-    $("#RankedRewardText").SetDialogVariableInt("season", previousSeason + 1);
+    $("#RankedRewardText").SetDialogVariableInt("season", seasonRewardToShow + 1);
     $("#RankedSeasonEndHeader").SetDialogVariableInt("season", info.currentSeason + 1);
 
     var parent = $("#RankedSeasonCongratulationsPlayers");
