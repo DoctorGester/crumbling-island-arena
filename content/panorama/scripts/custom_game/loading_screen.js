@@ -113,7 +113,9 @@ if (hittestBlocker) {
     hittestBlocker.hittestchildren = false;
 }
 
-SubscribeToNetTableKey("main", "gameState", true, function(data) {
-    $("#RankedInfo").SetHasClass("Hidden", data.state == GAME_STATE_GAME_SETUP);
-    $("#GameTip").SetHasClass("Hidden", data.state == GAME_STATE_GAME_SETUP);
+GameEvents.Subscribe("game_rules_state_change", function(data) {
+    if (Game.GameStateIsAfter(DOTA_GameState.DOTA_GAMERULES_STATE_WAIT_FOR_PLAYERS_TO_LOAD)) {
+        $("#RankedInfo").SetHasClass("Hidden", true);
+        $("#GameTip").SetHasClass("Hidden", true);
+    }
 });
