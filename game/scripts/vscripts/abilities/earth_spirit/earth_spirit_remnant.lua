@@ -105,7 +105,7 @@ function EarthSpiritRemnant:EarthCollision()
 
         local allyHeroFilter =
             Filters.WrapFilter(function(target)
-                return not instanceof(target, Hero) or target.owner.team ~= self.owner.team
+                return instanceof(target, EarthSpiritRemnant) or target.owner.team ~= self.owner.team
             end)
 
         self:AreaEffect({
