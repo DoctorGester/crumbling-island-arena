@@ -16,7 +16,7 @@ if IsServer() then
     end
 
     function modifier_qop_q:OnIntervalThink()
-        self:GetParent().hero:Damage(self:GetCaster().hero)
+        self:GetParent():GetParentEntity():Damage(self:GetCaster().hero)
 
         if self.heals then
             self:GetCaster().hero:Heal()

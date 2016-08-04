@@ -53,7 +53,8 @@ function EarthSpiritRemnant:SetPos(pos)
 end
 
 function EarthSpiritRemnant:SetUnit(unit, fall)
-    self.unit = unit
+    getbase(EarthSpiritRemnant).SetUnit(self, unit)
+
     self.fell = not fall
     self.unit.hero = self
 end
