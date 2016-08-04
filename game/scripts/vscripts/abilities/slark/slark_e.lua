@@ -19,6 +19,7 @@ function slark_e:OnSpellStart()
     hero:EmitSound("Arena.Slark.CastE")
 
     dash.hitParams = {
+        onlyHeroes = true,
         modifier = { name = "modifier_slark_e_leash", ability = self, duration = 3.5 },
         action = function(target)
             ScreenShake(target:GetPos(), 5, 150, 0.45, 3000, 0, true)
