@@ -8,6 +8,9 @@ var playerConnectionStates = {};
 var heroPreviews = {};
 var heroAwards = {};
 
+var previewLoadingQueue = [];
+var buttonLoadingQueue = [];
+
 var seasonAwards = {
     0: "npc_dota_hero_lycan"
 };
@@ -52,7 +55,16 @@ function PreloadPreview(hero, value) {
 
     preview.style.visibility = "collapse";
     preview.SetHasClass("NotAvailableHero", allHeroes[hero].disabled);
-    preview.BCreateChildren("<DelayLoadPanel style='width:100%;height:100%;'>" + value + "</DelayLoadPanel>");
+    
+    var loading = $.CreatePanel("Panel", preview, "");
+    loading.AddClass("LoadingImage");
+    loading.AddClass("HeroPreviewLoading");
+
+    previewLoadingQueue.push({
+        container: preview,
+        children: value,
+        loadingImage: loading
+    });
 
     return preview;
 }
@@ -280,14 +292,17 @@ function CreateHeroList(heroList, heroes, rows, randomButtonRow){
 
                 container.SetPanelEvent("onactivate", PickRandomHero);
             } else {
-                var delay = $.CreatePanel("DelayLoadPanel", container, "");
-                delay.AddClass("HeroButton")
-                var button = $.CreatePanel("DOTAHeroImage", delay, "");
+                var button = $.CreatePanel("DOTAHeroImage", container, "");
                 button.AddClass("HeroButton");
                 button.SetHasClass("NotAvailableHeroButton", notAvailable || banned);
                 button.SetScaling("stretch-to-fit-x-preserve-aspect");
-                button.heroname = heroes[j];
                 button.heroimagestyle = "portrait";
+
+                var loading = $.CreatePanel("Panel", container, "");
+                loading.AddClass("LoadingImage");
+                loading.AddClass("HeroButtonLoading");
+
+                buttonLoadingQueue.push({ button: button, hero: heroes[j], loadingImage: loading })
 
                 if (notAvailable) {
                     AddDisabledButtonEvents(container, heroes[j]);
@@ -365,6 +380,8 @@ function HeroesUpdated(data){
 
     CreateHeroList($("#EasyHeroes"), easy, [ 4, 5, 6, 6, 5 ] , 4);
     CreateHeroList($("#HardHeroes"), hard, [ 5, 4 ]);
+
+    LoadHeroButton();
 }
 
 function PlayersUpdated(data){
@@ -486,6 +503,54 @@ function CheckPause() {
     $("#PauseOverlay").style.visibility = Game.IsGamePaused() ? "visible" : "collapse";
 }
 
+function CheckPreviews() {
+    $.Schedule(0.1, CheckPreviews);
+
+    var somethingIsLoading = false;
+    var notLoadedContainer = null;
+
+    for (var data of previewLoadingQueue) {
+        var container = data.container;
+        var children = container.Children();
+        var hasScene = false;
+
+        for (var child of children) {
+            if (child.paneltype == "DOTAScenePanel") {
+                hasScene = true;
+
+                if (!child.BHasClass("SceneLoaded")) {
+                    somethingIsLoading = true;
+                    break;
+                }
+            }
+        }
+
+        if (somethingIsLoading) {
+            break;
+        }
+
+        if (!hasScene && !notLoadedContainer) {
+            notLoadedContainer = data;
+        }
+    }
+
+    if (!somethingIsLoading && !!notLoadedContainer) {
+        notLoadedContainer.container.BCreateChildren(notLoadedContainer.children);
+        notLoadedContainer.loadingImage.DeleteAsync(0);
+    }
+}
+
+function LoadHeroButton() {
+    if (buttonLoadingQueue.length > 1) {
+        $.Schedule(0.15, LoadHeroButton);
+    }
+
+    var queueEl = buttonLoadingQueue.shift();
+
+    queueEl.button.heroname = queueEl.hero;
+    queueEl.loadingImage.DeleteAsync(0);
+}
+
 function CheckConnectionState() {
     $.Schedule(0.1, CheckConnectionState);
 
@@ -516,4 +581,5 @@ function CheckConnectionState() {
 
     CheckConnectionState();
     CheckPause();
+    CheckPreviews();
 })();

@@ -456,6 +456,17 @@
     opacity: 1.0;
 }
 
+.HeroPreviewLoading
+{
+    align: center center;
+    margin-bottom: 25%;
+}
+
+.HeroButtonLoading
+{
+    align: center center;
+}
+
 .SelectionImage
 {
     vertical-align: center;
