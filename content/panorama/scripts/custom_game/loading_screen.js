@@ -104,7 +104,7 @@ $.AsyncWebRequest("http://178.63.238.188:3637/ranks/info", { type: "GET",
     }
 });
 
-var tips = 3;
+var tips = 6;
 var tip = Math.floor(Math.random() * (tips + 1));
 
 $("#GameTipText").SetDialogVariable("tip", $.Localize("GameTip" + tip));
