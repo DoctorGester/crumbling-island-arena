@@ -87,6 +87,9 @@ function GameSetup:StageAdvance()
         self.currentStage:Activate()
         self.timer = time
         self:SendTimeToPlayers()
+    else
+        self.timer = 0
+        self:SendTimeToPlayers()
     end
 
     self:UpdateNetworkState()
@@ -121,6 +124,11 @@ end
 function GameSetup:Update()
     self.timer = math.max(self.timer - 1, -1)
     self:SendTimeToPlayers()
+
+    if self.currentStage ~= nil and self.currentStage:HasEnded() then
+        self:StageAdvance()
+        return
+    end
 
     if self.timer == 0 then
         self:StageAdvance()
