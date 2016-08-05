@@ -37,6 +37,11 @@ function GameSetup:GetNextStageAndTime()
 
     if (self:GetSelectedMode() ~= nil and self.currentStage == nil) or self.currentStage:Is("stage_mode") then
         if self:GetSelectedMode() == "ffa" then
+            if GameRules.GameMode.rankedMode ~= nil then
+                EmitAnnouncerSound("Announcer.BanMode")
+                return BanStage("stage_bans", self.players, 1), IsInToolsMode() and 5 or 15
+            end
+
             return nil
         end
 
@@ -63,7 +68,7 @@ function GameSetup:GetNextStageAndTime()
         end
     end
 
-    if self.currentStage:Is("stage_team") and self:GetSelectedMode() == "3v3" then
+    if self.currentStage:Is("stage_team") and GameRules.GameMode.rankedMode ~= nil then
         EmitAnnouncerSound("Announcer.BanMode")
         return BanStage("stage_bans", self.players, 1), IsInToolsMode() and 5 or 15
     end

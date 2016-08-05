@@ -287,11 +287,11 @@ function GameMode:OnGameSetup()
     self:UpdateAvailableHeroesTable()
 
     self.gameSetup = GameSetup(modes, self.Players, self.Teams, forcedMode)
+    self.rankedMode = self:GetRankedMode()
 
     self:SetState(STATE_GAME_SETUP)
-    self.gameSetup:Start(forcedMode ~= nil)
+    self.gameSetup:Start()
 
-    self.rankedMode = self:GetRankedMode()
     CustomNetTables:SetTableValue("gameSetup", "misc", { rankedMode = self.rankedMode })
 
     self:RegisterThinker(1,
