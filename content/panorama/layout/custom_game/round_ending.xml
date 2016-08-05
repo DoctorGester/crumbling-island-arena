@@ -9,7 +9,7 @@
         <include src="file://{resources}/scripts/custom_game/round_ending.js" />
     </scripts>
     <Panel class="RoundEndingBackground" hittest="false">
-        <Panel id="RoundResults" hittest="false" hittestchildren="false">
+        <Panel id="RoundResults" class="AnimationMessageInvisible" hittest="false" hittestchildren="false">
             <Panel id="TeamScores"/>
             <Panel id="GameGoal">
                 <Label id="GameGoalNumber"/>

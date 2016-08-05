@@ -275,7 +275,7 @@ function HeroesUpdate(data){
 
 SetupUI();
 
-(function () {
+DelayStateInit(GAME_STATE_ROUND_IN_PROGRESS, function () {
     SubscribeToNetTableKey("main", "debug", true, DebugUpdate)
     SubscribeToNetTableKey("main", "heroes", true, HeroesUpdate);
     SubscribeToNetTableKey("main", "gameState", true, GameStateChanged);
@@ -299,4 +299,4 @@ SetupUI();
             $("#GameChat").RemoveClass("ChatHidden");
         }
     });
-})();
+});

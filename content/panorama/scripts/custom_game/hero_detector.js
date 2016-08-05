@@ -65,4 +65,6 @@ function UpdateHeroDetector(){
     });
 }
 
-UpdateHeroDetector();
+DelayStateInit(GAME_STATE_ROUND_IN_PROGRESS, function () {
+    UpdateHeroDetector();
+});

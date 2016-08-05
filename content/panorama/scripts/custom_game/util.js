@@ -142,7 +142,7 @@ function UnwrapString(table){
 }
 
 function SubscribeToNetTableKey(table, key, loadNow, callback){
-    CustomNetTables.SubscribeNetTableListener(table, function(table, tableKey, data){
+    var listener = CustomNetTables.SubscribeNetTableListener(table, function(table, tableKey, data){
         if (key == tableKey){
             if (!data) {
                 return;
@@ -156,9 +156,23 @@ function SubscribeToNetTableKey(table, key, loadNow, callback){
         var data = CustomNetTables.GetTableValue(table, key);
 
         if (data) {
-            callback(data);
+            $.Schedule(0, function() {
+                callback(data);
+            });
         }
     }
+
+    return listener;
+}
+
+function DelayStateInit(state, callback) {
+    var listener = listener = SubscribeToNetTableKey("main", "gameState", true, function(data) {
+        if (data.state == state){
+            $.Msg("Delayed init triggered for state " + state);
+            CustomNetTables.UnsubscribeNetTableListener(listener);
+            callback();
+        }
+    });
 }
 
 function SwitchClass(element, class1, class2) {

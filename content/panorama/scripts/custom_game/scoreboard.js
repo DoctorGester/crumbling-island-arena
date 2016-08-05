@@ -1,10 +1,6 @@
 var scoreboardConnectionStates = {};
 
 function PlayersUpdated(data) {
-    if (!data) {
-        return;
-    }
-    
     var scoreboard = $("#Scoreboard");
     DeleteChildrenWithClass(scoreboard, "ScoreboardTeam");
 
@@ -77,6 +73,5 @@ function GameInfoUpdated(gameInfo) {
 
 SubscribeToNetTableKey("main", "gameInfo", true, GameInfoUpdated);
 SubscribeToNetTableKey("main", "players", true, PlayersUpdated);
-
 
 ScheduleScoreboardUpdateConnectionStates();

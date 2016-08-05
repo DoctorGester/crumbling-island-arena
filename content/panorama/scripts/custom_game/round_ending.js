@@ -206,6 +206,8 @@ function GameInfoUpdated(gameInfo) {
     }
 }
 
-SubscribeToNetTableKey("main", "gameInfo", true, GameInfoUpdated);
-SubscribeToNetTableKey("main", "gameState", true, GameStateChanged);
-SubscribeToNetTableKey("main", "roundState", true, RoundStateChanged);
+DelayStateInit(GAME_STATE_ROUND_ENDED, function () {
+    SubscribeToNetTableKey("main", "gameInfo", true, GameInfoUpdated);
+    SubscribeToNetTableKey("main", "gameState", true, GameStateChanged);
+    SubscribeToNetTableKey("main", "roundState", true, RoundStateChanged);
+});

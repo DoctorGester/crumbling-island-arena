@@ -564,7 +564,7 @@ function CheckConnectionState() {
     }
 }
 
-(function () {
+DelayStateInit(GAME_STATE_HERO_SELECTION, function () {
     GameEvents.Subscribe("selection_hero_hover_client", SelectionHoverClient);
     GameEvents.Subscribe("timer_tick", OnTimerTick);
 
@@ -582,4 +582,4 @@ function CheckConnectionState() {
     CheckConnectionState();
     CheckPause();
     CheckPreviews();
-})();
+});
