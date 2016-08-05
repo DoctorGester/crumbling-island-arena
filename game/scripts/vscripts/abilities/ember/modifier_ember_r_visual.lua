@@ -6,8 +6,7 @@ function modifier_ember_r_visual:CheckState()
         [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
         [MODIFIER_STATE_NOT_ON_MINIMAP] = true,
         [MODIFIER_STATE_UNSELECTABLE] = true,
-        [MODIFIER_STATE_COMMAND_RESTRICTED] = true,
-        [MODIFIER_STATE_ROOTED] = true
+        [MODIFIER_STATE_COMMAND_RESTRICTED] = true
     }
 
     return state
