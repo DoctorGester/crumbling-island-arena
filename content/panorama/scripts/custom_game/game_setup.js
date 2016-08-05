@@ -74,7 +74,11 @@ function GameSetupChanged(data){
 
         lastStage = newStage;
 
-        Game.EmitSound("UI.Whoosh");
+        if (!newStage) {
+            Game.EmitSound("UI.SetupEnd");
+        } else {
+            Game.EmitSound("UI.Whoosh");
+        }
     }
 
     var stageMode = data.outputs.stage_mode;
@@ -91,10 +95,6 @@ function GameStateChanged(data){
         gameSetup.style.visibility = "visible";
         SwitchClass(gameSetup, "AnimationGameSetupInvisible", "AnimationGameSetupVisible");
     } else {
-        if (gameSetup.BHasClass("AnimationGameSetupVisible")) {
-            Game.EmitSound("UI.SetupEnd");
-        }
-        
         SwitchClass(gameSetup, "AnimationGameSetupVisible", "AnimationGameSetupInvisible");
     }
 }
@@ -285,6 +285,10 @@ function BansChanged(bans) {
         var team = Game.GetPlayerInfo(player.id).player_team_id;
 
         if (player.input && team == localTeam) {
+            if (banButtons[player.input].enabled) {
+                Game.EmitSound("UI.HeroBanned");
+            }
+
             banButtons[player.input].enabled = false;
         }
     }
