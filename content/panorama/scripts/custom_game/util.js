@@ -148,7 +148,7 @@ function SubscribeToNetTableKey(table, key, loadNow, callback){
                 return;
             }
 
-            callback(data);
+            callback(data, false);
         }
     });
 
@@ -156,9 +156,7 @@ function SubscribeToNetTableKey(table, key, loadNow, callback){
         var data = CustomNetTables.GetTableValue(table, key);
 
         if (data) {
-            $.Schedule(0, function() {
-                callback(data);
-            });
+            callback(data, true);
         }
     }
 
@@ -166,10 +164,17 @@ function SubscribeToNetTableKey(table, key, loadNow, callback){
 }
 
 function DelayStateInit(state, callback) {
-    var listener = listener = SubscribeToNetTableKey("main", "gameState", true, function(data) {
+    var listener = SubscribeToNetTableKey("main", "gameState", true, function(data, immediate) {
         if (data.state == state){
             $.Msg("Delayed init triggered for state " + state);
-            CustomNetTables.UnsubscribeNetTableListener(listener);
+            if (immediate) {
+                $.Schedule(0, function() {
+                    CustomNetTables.UnsubscribeNetTableListener(listener);
+                });
+            } else {
+                CustomNetTables.UnsubscribeNetTableListener(listener);
+            }
+            
             callback();
         }
     });

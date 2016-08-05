@@ -71,7 +71,9 @@ function GameInfoUpdated(gameInfo) {
     }
 }
 
-SubscribeToNetTableKey("main", "gameInfo", true, GameInfoUpdated);
-SubscribeToNetTableKey("main", "players", true, PlayersUpdated);
+DelayStateInit(GAME_STATE_ROUND_IN_PROGRESS, function () {
+    SubscribeToNetTableKey("main", "gameInfo", true, GameInfoUpdated);
+    SubscribeToNetTableKey("main", "players", true, PlayersUpdated);
 
-ScheduleScoreboardUpdateConnectionStates();
+    ScheduleScoreboardUpdateConnectionStates();
+});
