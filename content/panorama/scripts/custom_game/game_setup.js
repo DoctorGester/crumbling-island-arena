@@ -8,7 +8,7 @@ var stagePanels = {
     stage_bans: "BansDialog"
 };
 
-var lastStage = "stage_mode";
+var lastStage = null;
 
 function OnTimerTick(args){
     var timers = $.GetContextPanel().FindChildrenWithClassTraverse("VotingTimer");
@@ -59,12 +59,18 @@ function ModeVotesChanged(players) {
 function GameSetupChanged(data){
     var newStage = data.stage;
 
-    if (newStage != lastStage && newStage) {
+    if (newStage != lastStage) {
         $.Msg(lastStage + "->" + newStage);
-        $("#" + stagePanels[lastStage]).SetHasClass("ShowVotingPanel", false);
-        $("#" + stagePanels[lastStage]).SetHasClass("HideVotingPanel", true);
-        $("#" + stagePanels[newStage]).SetHasClass("VotingPanelHidden", false);
-        $("#" + stagePanels[newStage]).SetHasClass("ShowVotingPanel", true);
+
+        if (!!lastStage) {
+            $("#" + stagePanels[lastStage]).SetHasClass("ShowVotingPanel", false);
+            $("#" + stagePanels[lastStage]).SetHasClass("HideVotingPanel", true);
+        }
+        
+        if (!!newStage) {
+            $("#" + stagePanels[newStage]).SetHasClass("VotingPanelHidden", false);
+            $("#" + stagePanels[newStage]).SetHasClass("ShowVotingPanel", true);
+        }
 
         lastStage = newStage;
 
@@ -266,7 +272,13 @@ function HeroesChanged(heroes) {
 function BansChanged(bans) {
     bans = bans.inputs;
 
-    var localTeam = Game.GetPlayerInfo(Game.GetLocalPlayerID()).player_team_id;
+    var info = Game.GetPlayerInfo(Game.GetLocalPlayerID());
+
+    if (!info) {
+        return;
+    }
+    
+    var localTeam = info.player_team_id;
 
     for (var index in bans) {
         var player = bans[index];

@@ -9,24 +9,24 @@
         <include src="file://{resources}/scripts/custom_game/game_setup.js" />
     </scripts>
     <Panel class="GameSetupBackground" hittest="false">
-        <Panel id="ModeVoteDialog" class="GameSetupDialog">
+        <Panel id="ModeVoteDialog" class="GameSetupDialog VotingPanelHidden">
             <Label class="MatchModeHeader" text="#Unranked"/>
             <Label id="ModeSelectHeader" class="VotingHeader" text="#GameSetupModeSelect"/>
             <Panel class="VotingButtons"/>
             <Panel class="PlayerVotes"/>
-            <Label class="VotingTimer"/>
+            <Label class="VotingTimer" text=" "/>
         </Panel>
         <Panel id="TeamSelectDialog" class="GameSetupDialog VotingPanelHidden" hittest="false">
             <Label class="MatchModeHeader" text="#Unranked"/>
             <Label class="VotingHeader" text="#GameSetupTeamSelect"/>
             <Panel id="TeamSelectionButtons"/>
-            <Label class="VotingTimer"/>
+            <Label class="VotingTimer" text=" "/>
         </Panel>
         <Panel id="BansDialog" class="GameSetupDialog VotingPanelHidden" hittest="false">
             <Label class="MatchModeHeader" text="#Unranked"/>
             <Label class="VotingHeader" text="#GameSetupBans"/>
             <Panel id="BanButtons"/>
-            <Label class="VotingTimer"/>
+            <Label class="VotingTimer" text=" "/>
         </Panel>
         <!--<Panel id="GameSetupChat"/>-->
     </Panel>
