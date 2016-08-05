@@ -279,7 +279,7 @@ function GameMode:OnGameSetup()
         end
     end
 
-    if amount <= 2 then
+    if amount <= 3 or amount == 5 then
         forcedMode = "ffa"
     end
 
