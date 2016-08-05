@@ -976,7 +976,14 @@ function GameMode:OnGameInProgress()
     self:AssignBannedHeroes()
     self:UpdateAvailableHeroesTable()
 
-    self.heroSelection = HeroSelection(self.Players, self.AvailableHeroes, self.TeamColors, self.chat, self.rankedMode ~= nil)
+    self.heroSelection = HeroSelection(
+        self.Players,
+        self.AvailableHeroes,
+        self.TeamColors, 
+        self.chat,
+        self.rankedMode ~= nil,
+        self.rankedMode == "duel"
+    )
 
     self:RegisterThinker(1,
         function()

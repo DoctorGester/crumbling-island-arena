@@ -1,6 +1,6 @@
 HeroSelection = HeroSelection or class({})
 
-function HeroSelection:constructor(players, availableHeroes, teamColors, chat, ranked)
+function HeroSelection:constructor(players, availableHeroes, teamColors, chat, ranked, allowSameHeroPicks)
     self.SelectionTimer = 0
     self.SelectionTimerTime = 20
     self.PreGameTimer = 0
@@ -11,6 +11,7 @@ function HeroSelection:constructor(players, availableHeroes, teamColors, chat, r
     self.HardHeroesLocked = not ranked
     self.PreviousRandomed = {}
     self.Chat = chat
+    self.AllowSameHeroPicks = allowSameHeroPicks
 end
 
 function HeroSelection:UpdateSelectedHeroes()
@@ -22,10 +23,10 @@ function HeroSelection:UpdateSelectedHeroes()
         end
     end
 
-    CustomNetTables:SetTableValue("main", "selectedHeroes", selected)
+    CustomNetTables:SetTableValue("main", "selectedHeroes", { selected = selected, allowSame = self.AllowSameHeroPicks, locked = self.SelectionTimer <= 0 })
 end
 
-function HeroSelection:CanBeSelected(hero)
+function HeroSelection:CanBeSelectedBy(hero, who)
     local entry = self.AvailableHeroes[hero]
 
     if entry and (entry.disabled or entry.banned) then
@@ -38,7 +39,13 @@ function HeroSelection:CanBeSelected(hero)
 
     for _, player in pairs(self.Players) do
         if player.selectedHero == hero then
-            return false
+            if self.AllowSameHeroPicks then
+                if who.team == player.team then
+                    return false
+                end
+            else
+                return false
+            end
         end
     end
 
@@ -72,14 +79,18 @@ function HeroSelection:OnHover(args)
         return
     end
 
-    if not self:CanBeSelected(hero) then
+    if not self:CanBeSelectedBy(hero, player) then
         return
     end
 
     table.player = args.PlayerID
     table.hero = hero
 
-    CustomGameEventManager:Send_ServerToAllClients("selection_hero_hover_client", table)
+    if self.AllowSameHeroPicks then
+        CustomGameEventManager:Send_ServerToTeam(player.team, "selection_hero_hover_client", table)
+    else
+        CustomGameEventManager:Send_ServerToAllClients("selection_hero_hover_client", table)
+    end
 end
 
 function HeroSelection:OnClick(args)
@@ -99,7 +110,7 @@ function HeroSelection:OnClick(args)
         return
     end
 
-    if not self:CanBeSelected(hero) then
+    if not self:CanBeSelectedBy(hero, player) then
         return
     end
 
@@ -129,7 +140,7 @@ function HeroSelection:AssignRandomHero(player)
     local index = 0
 
     for i, _ in pairs(self.AvailableHeroes) do
-        if self:CanBeSelected(i) and self.PreviousRandomed[player.id] ~= i then
+        if self:CanBeSelectedBy(i, player) and self.PreviousRandomed[player.id] ~= i then
             table[index] = i
             index = index + 1
         end
@@ -139,7 +150,7 @@ function HeroSelection:AssignRandomHero(player)
     player.selectedHero = table[RandomInt(0, index - 1)]
 
     self.PreviousRandomed[player.id] = player.selectedHero
-    self.Chat:PlayerRandomed(player.id, player.selectedHero)
+    self.Chat:PlayerRandomed(player.id, player.selectedHero, self.AllowSameHeroPicks and self.SelectionTimer > 0)
 end
 
 function HeroSelection:AssignRandomHeroes()

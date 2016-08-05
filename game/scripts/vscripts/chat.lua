@@ -27,10 +27,18 @@ function Chat:OnSay(args)
     })
 end
 
-function Chat:PlayerRandomed(id, hero)
-    CustomGameEventManager:Send_ServerToAllClients("custom_randomed_message", {
-        color = self.teamColors[self.players[id].team],
-        player = id,
-        hero = hero
-    })
+function Chat:PlayerRandomed(id, hero, teamLocal)
+    if teamLocal then
+        CustomGameEventManager:Send_ServerToTeam(self.players[id].team, "custom_randomed_message", {
+            color = self.teamColors[self.players[id].team],
+            player = id,
+            hero = hero
+        })
+    else
+        CustomGameEventManager:Send_ServerToAllClients("custom_randomed_message", {
+            color = self.teamColors[self.players[id].team],
+            player = id,
+            hero = hero
+        })
+    end
 end

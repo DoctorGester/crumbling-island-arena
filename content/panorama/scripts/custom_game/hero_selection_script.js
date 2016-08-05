@@ -441,12 +441,16 @@ function PlayersUpdated(data){
 }
 
 function HeroSelectionUpdated(data){
-    selectedHeroes = data || {};
+    selectedHeroes = data.selected || {};
     
     var localHeroSelected = false;
 
-    for (var key in data){
-        var hero = data[key];
+    var localInfo = Game.GetPlayerInfo(Game.GetLocalPlayerID()) || {};
+    var localTeam = localInfo.player_team_id || -1;
+    var spectator = localTeam == -1;
+
+    for (var key in selectedHeroes){
+        var hero = selectedHeroes[key];
         var selectionImage = $("#SelectionImage" + key);
         var id = parseInt(key);
 
@@ -457,6 +461,14 @@ function HeroSelectionUpdated(data){
                 HideAll();
                 ShowHeroDetails(hero);
                 localHeroSelected = true;
+            }
+
+            var selectedTeam = Game.GetPlayerInfo(id).player_team_id;
+
+            if (data.allowSame) {
+                if (!data.locked && selectedTeam != localTeam && !spectator) {
+                    continue;
+                }
             }
 
             selectionImage.heroname = hero;
