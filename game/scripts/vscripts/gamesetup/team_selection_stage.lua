@@ -37,7 +37,7 @@ function TeamSelectionStage:GetDefaultPlayerInput(player)
     return {}
 end
 
-function TeamSelectionStage:GetInputResults()
+function TeamSelectionStage:FinalizeResults()
     local players = {}
 
     for _, player in pairs(self.players) do

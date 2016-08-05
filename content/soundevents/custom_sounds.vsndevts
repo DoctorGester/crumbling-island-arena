@@ -479,6 +479,33 @@
     }
 }
 
+"Announcer.BanMode"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_update_vo_switch"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/vo/announcer/announcer_ability_ban_pick_01.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.0"  }
+                    "pitch"            {   "value"     "1.0"  }
+                }
+            }
+        }
+    }
+}
+
 "Arena.PA.Throw"
 {
 	"operator_stacks"

@@ -83,7 +83,7 @@ function ModeSelectionStage:GetDefaultPlayerInput(player)
     return "ffa"
 end
 
-function ModeSelectionStage:GetInputResults()
+function ModeSelectionStage:FinalizeResults()
     local mode = self:FindSelectedMode()
 
     if mode == nil then
@@ -93,6 +93,8 @@ function ModeSelectionStage:GetInputResults()
     if mode == nil then
         mode = self:GetDefaultPlayerInput()
     end
+
+    EmitAnnouncerSound(self.modes[mode].announce)
 
     return {
         selectedMode = mode,

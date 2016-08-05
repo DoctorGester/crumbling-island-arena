@@ -12,7 +12,7 @@ function BanStage:GetDefaultPlayerInput(player)
     return nil
 end
 
-function BanStage:GetInputResults()
+function BanStage:FinalizeResults()
     local set = {}
 
     for _, input in pairs(self.inputs) do

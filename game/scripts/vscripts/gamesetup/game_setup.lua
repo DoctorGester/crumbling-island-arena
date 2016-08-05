@@ -31,6 +31,7 @@ end
 
 function GameSetup:GetNextStageAndTime()
     if self.currentStage == nil and self:GetSelectedMode() == nil then
+        EmitAnnouncerSound("announcer_ann_custom_vote_begun")
         return ModeSelectionStage("stage_mode", self.players, self.modes), IsInToolsMode() and 5 or 15
     end
 
@@ -63,6 +64,7 @@ function GameSetup:GetNextStageAndTime()
     end
 
     if self.currentStage:Is("stage_team") and self:GetSelectedMode() == "3v3" then
+        EmitAnnouncerSound("Announcer.BanMode")
         return BanStage("stage_bans", self.players, 1), IsInToolsMode() and 5 or 15
     end
 end
@@ -72,7 +74,7 @@ function GameSetup:StageAdvance()
         self.currentStage:Deactivate()
         self.currentStage:AssignDefaultInputs()
 
-        local results = self.currentStage:GetInputResults()
+        local results = self.currentStage:FinalizeResults()
 
         print(self.currentStage:GetName(), "outputs")
         PrintTable(results)

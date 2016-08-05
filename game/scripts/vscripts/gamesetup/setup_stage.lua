@@ -114,6 +114,6 @@ function SetupStage:GetDefaultPlayerInput(player)
     return nil
 end
 
-function SetupStage:GetInputResults()
+function SetupStage:FinalizeResults()
     return {}
 end
