@@ -372,6 +372,9 @@ function HeroesUpdated(data){
     var heroes = Object.keys(data);
 
     heroes = _(heroes).sortBy(function(hero) { return data[hero].order });
+    
+    previewLoadingQueue = [];
+    buttonLoadingQueue = [];
 
     PreloadHeroPreviews(heroes);
 
@@ -543,6 +546,10 @@ function CheckPreviews() {
 function LoadHeroButton() {
     if (buttonLoadingQueue.length > 1) {
         $.Schedule(0.15, LoadHeroButton);
+    }
+
+    if (buttonLoadingQueue.length == 0) {
+        return;
     }
 
     var queueEl = buttonLoadingQueue.shift();
