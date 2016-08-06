@@ -519,7 +519,7 @@ function CheckPause() {
 }
 
 function CheckPreviews() {
-    $.Schedule(0.1, CheckPreviews);
+    $.Schedule(0.05, CheckPreviews);
 
     var somethingIsLoading = false;
     var notLoadedContainer = null;
@@ -557,7 +557,7 @@ function CheckPreviews() {
 
 function LoadHeroButton() {
     if (buttonLoadingQueue.length > 1) {
-        $.Schedule(0.15, LoadHeroButton);
+        $.Schedule(0.05, LoadHeroButton);
     }
 
     if (buttonLoadingQueue.length == 0) {

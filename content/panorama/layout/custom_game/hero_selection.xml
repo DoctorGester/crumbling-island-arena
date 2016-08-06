@@ -11,7 +11,7 @@
     </scripts>
     <Panel class="MainPanel" hittest="false">
         <Panel id="HeroSelectionBackground" hittest="false">
-            <DOTAScenePanel hittest="false" id="HeroSelectionBackgroundScene" map="backgrounds/dashboard_parallax_test" camera="shot_cameraC"/>
+            <DOTAScenePanel hittest="false" id="HeroSelectionBackgroundScene" map="maps/backgrounds/dashboard_test.vmap" camera="shot_cameraC"/>
             <Panel id="HeroSelectionTopGradient" hittest="false"/>
 
             <DOTAScenePanel id="HeroSelectedRays" class="Hidden" hittest="false" map="scenes/loadout_preview_rays" camera="camera_1"/>
