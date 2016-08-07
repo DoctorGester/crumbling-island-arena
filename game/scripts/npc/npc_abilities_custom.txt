@@ -2828,4 +2828,74 @@
 		"AbilityCastPoint" "0.15"
 	}
 
+	"undying_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/undying/undying_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "undying/pale_augur/undying_decay"
+		"AbilityCooldown" "3.2"
+		"AbilityCastPoint" "0.15"
+	}
+
+	"undying_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/undying/undying_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "undying_soul_rip"
+		"AbilityCooldown" "3.2"
+		"AbilityCastPoint" "0.15"
+	}
+
+	"undying_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/undying/undying_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "undying_tombstone"
+		"AbilityCooldown" "3.2"
+		"AbilityCastPoint" "0.15"
+	}
+
+	"undying_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/undying/undying_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE"
+		"AbilityTextureName" "undying_flesh_golem"
+		"AbilityCooldown" "3.2"
+		"AbilityCastPoint" "0.15"
+	}
+
+	"undying_q_sub"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/undying/undying_q_sub"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "tusk_walrus_kick"
+		"AbilityCooldown" "3.2"
+		"AbilityCastPoint" "0.15"
+	}
+
+	"undying_w_sub"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/undying/undying_w_sub"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "tusk_walrus_kick"
+		"AbilityCooldown" "3.2"
+		"AbilityCastPoint" "0.15"
+	}
+
+	"undying_e_sub"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/undying/undying_e_sub"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "tusk_walrus_kick"
+		"AbilityCooldown" "3.2"
+		"AbilityCastPoint" "0.15"
+	}
 }

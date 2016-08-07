@@ -34,6 +34,7 @@
 		"HeroName_npc_dota_hero_slark"					"The Hanged Man"
 		"HeroName_npc_dota_hero_queenofpain"			"Lust"
 		"HeroName_npc_dota_hero_tusk"					"The World"
+		"HeroName_npc_dota_hero_undying"				"?????"
 
 		"Available_on_npc_dota_hero_drow_ranger"		"Available on April 23!"
 		"Available_on_npc_dota_hero_skeleton_king"		"Available on April 30!"
@@ -49,6 +50,7 @@
 		"Available_on_npc_dota_hero_slark"				"Available on July 16!"
 		"Available_on_npc_dota_hero_queenofpain"		"Available on July 23!"
 		"Available_on_npc_dota_hero_tusk"				"Available on July 30!"
+		"Available_on_npc_dota_hero_undying"			"Available on August 7-8!"
 
 		"phantom_assassin_DescQ" "Short ranged boomerang"
 		"phantom_assassin_DescW" "Melee AOE attack"
@@ -199,6 +201,11 @@
 		"tusk_DescW" "Slow enemies and projectiles"
 		"tusk_DescE" "Long range dash + stun"
 		"tusk_DescR" "Empower ALL knockbacks"
+
+		"undying_DescQ" "?????"
+		"undying_DescW" "?????"
+		"undying_DescE" "?????"
+		"undying_DescR" "?????"
 
 		"HeroBanned" "This hero is banned"
 		"PlayerHeader" "Players"
