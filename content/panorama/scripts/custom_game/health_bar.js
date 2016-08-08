@@ -15,32 +15,37 @@ function HealthBar(elementId) {
     this.element = $(elementId);
     this.bars = [];
     this.currentHealth = 0;
+    this.maxHealth = 0;
     this.entityId = 0;
 
     this.SetEntity = function(entityId) {
         this.entityId = entityId;
 
-        var maxHealth = Entities.GetMaxHealth(entityId)
-
-        for (var i = this.bars.length; i < maxHealth; i++) {
-            var bar = new Bar(this.element);
-
-            this.bars.push(bar);
-        }
-
-        if (this.bars.length > maxHealth) {
-            var removed = this.bars.splice(maxHealth, this.bars.length - maxHealth);
-
-            for (var element of removed) {
-                element.Delete();
-            }
-        }
-
         this.Update();
     }
 
     this.Update = function(){
+        var maxHealth = Math.round(Entities.GetMaxHealth(this.entityId));
         var health = Math.round(Entities.GetHealth(this.entityId));
+
+        if (maxHealth != this.maxHealth) {
+            this.maxHealth = maxHealth;
+
+            for (var i = this.bars.length; i < maxHealth; i++) {
+                var bar = new Bar(this.element);
+
+                this.bars.push(bar);
+                bar.SetAlive(health > i);
+            }
+
+            if (this.bars.length > maxHealth) {
+                var removed = this.bars.splice(maxHealth, this.bars.length - maxHealth);
+
+                for (var element of removed) {
+                    element.Delete();
+                }
+            }
+        }
 
         if (health != this.currentHealth) {
             this.currentHealth = health;

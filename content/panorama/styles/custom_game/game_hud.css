@@ -73,12 +73,13 @@
     flow-children: right;
     horizontal-align: center;
     margin-bottom: 20px;
+    width: 600px;
 }
 
 .HealthBar
 {
-    width: 100px;
-    height: 20px;
+    width: fill-parent-flow(1.0);
+    height: 24px;
     background-color: #3A9B00;
     margin: 3px;
     border: 1px solid #333333;
@@ -126,14 +127,9 @@
     width: fill-parent-flow(1.0);
 }
 
-.AspectRatio5x4 .HealthBar
+.AspectRatio5x4 .HealthPanel, .AspectRatio4x3 .HealthPanel
 {
-    width: 80px;
-}
-
-.AspectRatio4x3 .HealthBar
-{
-    width: 80px;
+    width: 480px;
 }
 
 .HealthBarDead

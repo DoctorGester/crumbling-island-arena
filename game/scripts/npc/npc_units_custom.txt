@@ -176,6 +176,15 @@
 	    "BaseClass"     "npc_dota_creature"
 	    "Model"         "models/items/rattletrap/cog_tesla/cog_tesla.vmdl"
 	    "ModelScale"    "1.5"
-	    "MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+	    "MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+	}
+
+	"undying_tombstone"
+	{
+	    "BaseClass"     "npc_dota_creature"
+	    "Model"         "models/heroes/undying/undying_tower.vmdl"
+	    "ModelScale"    "1.0"
+	    "MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+	    "StatusHealth" "3"
 	}
 }

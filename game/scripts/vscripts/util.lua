@@ -28,6 +28,44 @@ function GetIndex(list, element)
     return nil
 end
 
+function FX(path, attach, parent, options)
+    if parent.GetUnit then
+        parent = parent:GetUnit()
+    end
+
+    local index = ParticleManager:CreateParticle(path, attach, parent)
+
+    for i = 0, 16 do
+        local cp = options["cp"..tostring(i)]
+
+        if cp then
+            -- Probably vector
+            if type(cp) == "userdata" then
+                ParticleManager:SetParticleControl(index, i, cp)
+            end
+
+            -- Entity
+            if type(cp) == "table" then
+                if cp.ent and cp.ent.GetUnit then
+                    cp.ent = cp.ent:GetUnit()
+                end
+
+                if not cp.attach then
+                    cp.attach = PATTACH_POINT_FOLLOW
+                end
+
+                ParticleManager:SetParticleControlEnt(index, i, cp.ent, cp.attach, cp.point, cp.ent:GetAbsOrigin(), true)
+            end
+        end
+    end
+
+    if options.release then
+        ParticleManager:ReleaseParticleIndex(index)
+    else
+        return index
+    end
+end
+
 function SplashEffect(point)
     local id = ParticleManager:CreateParticle("particles/econ/courier/courier_kunkka_parrot/courier_kunkka_parrot_splash.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity())
     ParticleManager:SetParticleControl(id, 0, Vector(point.x, point.y, -3500))

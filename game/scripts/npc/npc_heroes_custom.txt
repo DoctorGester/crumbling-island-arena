@@ -1172,7 +1172,7 @@
 		"GameSoundsFile" ""
 		"VoiceFile"	""
 		"Difficulty" "hard"
-		"Disabled" "true"
+		"Disabled" "false"
 		"Order" "30"
 
 		"Ability1" "undying_q"
@@ -1181,7 +1181,6 @@
 		"Ability4" "undying_r"
 		"Ability5" "undying_q_sub"
 		"Ability6" "undying_w_sub"
-		"Ability7" "undying_e_sub"
 
 		"Ultimate" "undying_r"
 	}

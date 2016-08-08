@@ -34,7 +34,7 @@
 		"HeroName_npc_dota_hero_slark"					"The Hanged Man"
 		"HeroName_npc_dota_hero_queenofpain"			"Lust"
 		"HeroName_npc_dota_hero_tusk"					"The World"
-		"HeroName_npc_dota_hero_undying"				"?????"
+		"HeroName_npc_dota_hero_undying"				"Sloth"
 
 		"Available_on_npc_dota_hero_drow_ranger"		"Available on April 23!"
 		"Available_on_npc_dota_hero_skeleton_king"		"Available on April 30!"
@@ -202,10 +202,10 @@
 		"tusk_DescE" "Long range dash + stun"
 		"tusk_DescR" "Empower ALL knockbacks"
 
-		"undying_DescQ" "?????"
-		"undying_DescW" "?????"
-		"undying_DescE" "?????"
-		"undying_DescR" "?????"
+		"undying_DescQ" "Slow, increase your health"
+		"undying_DescW" "Rooting wave"
+		"undying_DescE" "Tombstone, slow + damage in AOE"
+		"undying_DescR" "Permanently transform"
 
 		"HeroBanned" "This hero is banned"
 		"PlayerHeader" "Players"
@@ -401,7 +401,7 @@
 
 		"AbilityTooltip_shaker_q"						"Launch a wave of damage and knockback"
 		"AbilityTooltip_shaker_w"						"Damage and knockback enemies around you"
-		"AbilityTooltip_shaker_e"						"Jump to a target area, stunning enemies on landing"
+		"AbilityTooltip_shaker_e"						"Jump to the target area, stunning enemies on landing"
 		"AbilityTooltip_shaker_r"						"Destroy all damaged (red) ground around you, stunning all enemies caught"
 
 		"AbilityTooltip_ember_q"						"Launch a damaging wave<br>Enemies hit are <font color=\"#FF6A00\"><b>Burnt</b></font><br>Already <font color=\"#FF6A00\"><b>Burnt</b></font> enemies are greatly slowed"
@@ -463,6 +463,13 @@
 		"AbilityTooltip_tusk_w"							"Gain a buff slowing all enemies and enemy projectiles around you"
 		"AbilityTooltip_tusk_e"							"Gain invulnerability and roll to the target point, stunning enemies on your way"
 		"AbilityTooltip_tusk_r"							"<font color=\"gold\"><b>ALL</b></font> knockbacks are 2x stronger<br/>Your <font color=\"gold\"><b>E</b></font> is 2x faster<br/><br/>Lasts for <font color=\"gold\"><b>10</b></font> seconds"
+
+		"AbilityTooltip_undying_q"						"Slow enemies in the target area<br/>Increase your max health for each enemy hit"
+		"AbilityTooltip_undying_q_sub"					"Attack enemies in front of you"
+		"AbilityTooltip_undying_w"						"Launch a rooting and damaging wave"
+		"AbilityTooltip_undying_w_sub"					"Jump to the target area, stunning enemies on landing"
+		"AbilityTooltip_undying_e"						"Summon a Tombstone, which slows enemies and damages them for being in the area for 2 seconds"
+		"AbilityTooltip_undying_r"						"Permanently transform, losing all your abilities and gaining two new"
 
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
@@ -583,6 +590,13 @@
 		"ModifierTooltip_modifier_tusk_e"						"They see me rolling"
 		"ModifierTooltip_modifier_tusk_r_aura"					"The world is frozen! All knockbacks are two times stronger"
 		"ModifierTooltip_modifier_tusk_r"						"Knocked back two times stronger"
+
+		"ModifierTooltip_modifier_undying_q"					"Slowed"
+		"ModifierTooltip_modifier_undying_q_health"				"Maximum health increased"
+		"ModifierTooltip_modifier_undying_w"					"Rooted"
+		"ModifierTooltip_modifier_undying_w_sub"				"Jumping zombies?"
+		"ModifierTooltip_modifier_undying_e_target"				"Will take damage if stays near the Tombstone"
+		"ModifierTooltip_modifier_undying_r"					"Transformed"
 	}
 }
 
