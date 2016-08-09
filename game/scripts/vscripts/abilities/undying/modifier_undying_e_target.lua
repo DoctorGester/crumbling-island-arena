@@ -37,5 +37,5 @@ function self:IsDebuff()
 end
 
 function self:GetModifierMoveSpeedBonus_Percentage(params)
-    return -30
+    return -15
 end

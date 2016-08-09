@@ -185,6 +185,6 @@
 	    "Model"         "models/heroes/undying/undying_tower.vmdl"
 	    "ModelScale"    "1.0"
 	    "MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
-	    "StatusHealth" "3"
+	    "StatusHealth" "2"
 	}
 }
