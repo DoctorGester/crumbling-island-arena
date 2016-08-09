@@ -1,5 +1,7 @@
 lycan_w = class({})
 
+LinkLuaModifier("modifier_lycan_w", "abilities/lycan/modifier_lycan_w", LUA_MODIFIER_MOTION_NONE)
+
 function lycan_w:OnAbilityPhaseStart()
     self:GetCaster().hero:EmitSound("Arena.Lycan.CastW")
     return true
@@ -18,7 +20,7 @@ function lycan_w:OnSpellStart()
         damage = true,
         action = function(target)
             if hero:IsTransformed() and hero:IsBleeding(target) then
-                target:Damage(hero)
+                target:AddNewModifier(hero, self, "modifier_lycan_w", { duration = 2.5 })
             end
 
             hero:MakeBleed(target)

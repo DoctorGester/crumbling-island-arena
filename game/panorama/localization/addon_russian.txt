@@ -350,7 +350,7 @@
 		"AbilityTooltip_lycan_q"						"Вызвать двух волков, бегущих к цели<br><br>Укушенные враги начинают <font color=\"#D10000\"><b>Кровоточить</b></font>"
 		"AbilityTooltip_lycan_w"						"Ударить перед собой, заставляя поврежденных врагов <font color=\"#D10000\"><b>Кровоточить</b></font>"
 		"AbilityTooltip_lycan_e"						"Заставить врагов вокруг себя бежать в страхе"
-		"AbilityTooltip_lycan_r"						"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>Обратиться, получив огромный бонус к скорости<br><br><font color=\"gold\"><b>Q</b></font> Волки бегут быстрее<br><font color=\"gold\"><b>W</b></font> <font color=\"#D10000\"><b>Кровоточащие</b></font> враги получают двойной урон<br><font color=\"gold\"><b>E</b></font> Бегущие в страхе <font color=\"#D10000\"><b>Кровоточащие</b></font> враги обезмолвлены"
+		"AbilityTooltip_lycan_r"						"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>Обратиться, получив огромный бонус к скорости<br><br><font color=\"gold\"><b>Q</b></font> Волки бегут быстрее<br><font color=\"gold\"><b>W</b></font> <font color=\"#D10000\"><b>Кровоточащие</b></font> враги сильно замедлены<br><font color=\"gold\"><b>E</b></font> Бегущие в страхе <font color=\"#D10000\"><b>Кровоточащие</b></font> враги обезмолвлены"
 
 		"AbilityTooltip_phoenix_q"						"Рвануться вперед, нанося урон и замедляя противников на пути"
 		"AbilityTooltip_phoenix_w"						"<font color=\"#DAFF7F\"><b>С зарядами</b></font><br/>Запустить замедляющий и наносящий урон снаряд в область"
