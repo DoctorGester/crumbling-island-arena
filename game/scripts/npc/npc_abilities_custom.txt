@@ -2856,7 +2856,7 @@
 		"ScriptFile" "abilities/undying/undying_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "undying_soul_rip"
-		"AbilityCooldown" "4.0"
+		"AbilityCooldown" "5.0"
 		"AbilityCastPoint" "0.15"
 
 		"TargetingIndicator"
@@ -2864,7 +2864,7 @@
 			"Type" "TARGETING_INDICATOR_THICK_LINE"
 			"MinLength" "1500"
 			"MaxLength" "1500"
-			"Width" "300"
+			"Width" "200"
 		}
 
 		"HoverIndicator"
