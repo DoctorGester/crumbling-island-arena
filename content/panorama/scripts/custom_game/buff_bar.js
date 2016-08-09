@@ -2,7 +2,6 @@ var modifiersWithStacks = [
     "modifier_charges",
     "modifier_wk_q",
     "modifier_pudge_meat",
-    "modifier_brew_beer",
     "modifier_qop_r"
 ];
 

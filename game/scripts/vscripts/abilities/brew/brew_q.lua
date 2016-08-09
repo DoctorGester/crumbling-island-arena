@@ -3,17 +3,18 @@ brew_q = class({})
 LinkLuaModifier("modifier_brew_beer", "abilities/brew/modifier_brew_beer", LUA_MODIFIER_MOTION_NONE)
 
 function brew_q:AddBeerModifier(target)
-    local previous = target:FindModifier("modifier_brew_beer")
-    local stacks = 0
-
-    if previous then
-        stacks = previous:GetStackCount()
+    if self:CountBeer(target) < 6 then
+        target:AddNewModifier(self:GetCaster().hero, self, "modifier_brew_beer", { duration = 9.5 })
     end
+end
 
-    local new = target:AddNewModifier(self:GetCaster().hero, self, "modifier_brew_beer", { duration = 5 })
+function brew_q:CountBeer(target)
+    return #target:GetUnit():FindAllModifiersByName("modifier_brew_beer")
+end
 
-    if new then
-        new:SetStackCount(math.min(stacks + 1, 6))
+function brew_q:ClearBeer(target)
+    for _, modifier in pairs(target:GetUnit():FindAllModifiersByName("modifier_brew_beer")) do
+        modifier:Destroy()
     end
 end
 

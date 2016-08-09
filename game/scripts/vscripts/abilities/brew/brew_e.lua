@@ -1,9 +1,13 @@
 brew_e = class({})
 
 function brew_e:GetCooldown(level)
-    local beer = self:GetCaster():GetModifierStackCount("modifier_brew_beer", self:GetCaster())
+    if IsClient() then
+        return self.BaseClass.GetCooldown(self, level) - (self:GetCaster().beerStacks or 0)
+    end
 
-    return self.BaseClass.GetCooldown(self, level) - beer
+    local hero = self:GetCaster().hero
+
+    return self.BaseClass.GetCooldown(self, level) - hero:FindAbility("brew_q"):CountBeer(hero)
 end
 
 function brew_e:OnSpellStart()

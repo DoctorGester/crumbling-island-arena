@@ -1,5 +1,15 @@
 modifier_brew_beer = class({})
 
+if IsClient() then
+    function modifier_brew_beer:OnCreated()
+        self:GetParent().beerStacks = (self:GetParent().beerStacks or 0) + 1
+    end
+
+    function modifier_brew_beer:OnDestroy()
+        self:GetParent().beerStacks = math.max(0, (self:GetParent().beerStacks or 0) - 1)
+    end
+end
+
 function modifier_brew_beer:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
@@ -13,7 +23,7 @@ function modifier_brew_beer:IsDebuff()
 end
 
 function modifier_brew_beer:GetModifierMoveSpeedBonus_Percentage(params)
-    return -10 * self:GetStackCount()
+    return -7
 end
 
 function modifier_brew_beer:GetEffectName()
@@ -30,4 +40,8 @@ end
 
 function modifier_brew_beer:GetEffectAttachType()
     return PATTACH_ABSORIGIN_FOLLOW
+end
+
+function modifier_brew_beer:GetAttributes()
+    return MODIFIER_ATTRIBUTE_MULTIPLE
 end

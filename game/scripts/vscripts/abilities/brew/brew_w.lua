@@ -4,11 +4,7 @@ function brew_w:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
     local beer = hero:FindModifier("modifier_brew_beer")
-    local stacks = 0
-
-    if beer then
-        stacks = beer:GetStackCount()
-    end
+    local stacks = hero:FindAbility("brew_q"):CountBeer(hero)
 
     local projectile = DistanceCappedProjectile(hero.round, {
         owner = hero,
@@ -22,13 +18,13 @@ function brew_w:OnSpellStart()
         continueOnHit = true,
         hitFunction = function(projectile, target)
             target:Damage(hero)
-            local beer = target:FindModifier("modifier_brew_beer")
+            local stacks = hero:FindAbility("brew_q"):CountBeer(target)
 
-            if beer then
-                target:AddNewModifier(hero, self, "modifier_stunned_lua", { duration = beer:GetStackCount() * 0.5})
+            if stacks > 0 then
+                target:AddNewModifier(hero, self, "modifier_stunned_lua", { duration = stacks * 0.5 })
             end
 
-            target:RemoveModifier("modifier_brew_beer")
+            hero:FindAbility("brew_q"):ClearBeer(target)
         end
     }):Activate()
 
