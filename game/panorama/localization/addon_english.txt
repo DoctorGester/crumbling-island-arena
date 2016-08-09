@@ -410,7 +410,7 @@
 		"AbilityTooltip_ember_r"						"Create a clone of yourself at the target point<br/>Clone copies every ability you cast"
 
 		"AbilityTooltip_jugger_q"						"Attack in a line<br/><br/>Find a <font color=\"#FF6A00\"><b>Sword</b></font> to improve range"
-		"AbilityTooltip_jugger_w"						"Create a ward, slowing enemies in the AOE<br/><br/>Receive a heal if your hero is near it when it dies"
+		"AbilityTooltip_jugger_w"						"Create a ward, slowing enemies in the AOE<br/><br/>Receive a heal if your hero is near it when it expires"
 		"AbilityTooltip_jugger_e"						"Receive a short invisibility<br/><br/>Reactivate to teleport"
 		"AbilityTooltip_jugger_e_sub"					"Short blink"
 		"AbilityTooltip_jugger_r"						"Your attacks have no cooldown but spend a sword when used"

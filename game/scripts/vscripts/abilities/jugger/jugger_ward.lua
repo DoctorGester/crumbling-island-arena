@@ -7,13 +7,14 @@ function JuggerWard:constructor(round, owner, target, ability)
     self.hero = owner
     self.health = 1
     self.size = 64
+    self.removeOnDeath = false
     self.collisionType = COLLISION_TYPE_RECEIVER
 
     local unit = self:GetUnit()
     unit.hero = self
 
     self:CreateParticles()
-    self:AddNewModifier(self.hero, ability, "modifier_jugger_w", { duration = 4 })
+    self:AddNewModifier(self.hero, ability, "modifier_jugger_w", { duration = 2.8 })
     self:AddNewModifier(self.hero, ability, "modifier_jugger_w_visual", {})
     self:SetPos(target)
 
@@ -34,7 +35,7 @@ function JuggerWard:CreateParticles()
 end
 
 function JuggerWard:Remove()
-    if (self:GetPos() - self.hero:GetPos()):Length2D() <= 400 then
+    if not self.damaged and (self:GetPos() - self.hero:GetPos()):Length2D() <= 400 then
         self.hero:EmitSound("Arena.Jugger.HitW")
         local particle = ParticleManager:CreateParticle("particles/jugger_w/jugger_w_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.hero:GetUnit())
         ParticleManager:ReleaseParticleIndex(particle)
@@ -54,6 +55,7 @@ function JuggerWard:Remove()
 end
 
 function JuggerWard:Damage(source)
+    self.damaged = true
     self:Destroy()
 end
 
