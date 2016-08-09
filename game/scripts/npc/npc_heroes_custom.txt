@@ -828,7 +828,7 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
-		"Difficulty" "easy"
+		"Difficulty" "hard"
 		"Order" "21"
 		"UltiCooldown" "3"
 
@@ -1026,7 +1026,7 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
-		"Difficulty" "hard"
+		"Difficulty" "easy"
 		"Order" "26"
 
 		"Ability1" "tinker_q"
