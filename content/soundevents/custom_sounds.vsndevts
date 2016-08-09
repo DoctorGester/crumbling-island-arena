@@ -9861,7 +9861,7 @@
                               "value0"        "sounds/weapons/creep/neutral/troll_cast_raisedead.vsnd"
                         }
                     }
-                    "volume"            {   "value"     "1.000000"  }
+                    "volume"            {   "value"     "0.600000"  }
                     "pitch_rand_min"    {   "value"     "-0.25000"  }
                     "pitch_rand_max"    {   "value"     "0.250000"  }
                     "pitch"             {   "value"     "1.000000"  }
