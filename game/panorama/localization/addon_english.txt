@@ -469,7 +469,7 @@
 		"AbilityTooltip_undying_w"						"Launch a rooting and damaging wave"
 		"AbilityTooltip_undying_w_sub"					"Jump to the target area, stunning enemies on landing"
 		"AbilityTooltip_undying_e"						"Summon a Tombstone, which slows enemies and damages them for being in the area for 2.5 seconds"
-		"AbilityTooltip_undying_r"						"Permanently transform, losing all your abilities and gaining two new"
+		"AbilityTooltip_undying_r"						"Permanently transform, setting your health to 3, losing all abilities and gaining two new"
 
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
