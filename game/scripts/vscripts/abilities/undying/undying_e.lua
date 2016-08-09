@@ -7,7 +7,7 @@ LinkLuaModifier("modifier_undying_e_target", "abilities/undying/modifier_undying
 require("abilities/undying/entity_undying_e")
 
 function undying_e:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 1200)
+    Wrappers.DirectionalAbility(self, 500)
 
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()

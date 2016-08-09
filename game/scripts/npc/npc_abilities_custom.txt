@@ -2893,7 +2893,7 @@
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "1200"
+			"Radius" "500"
 		}
 	}
 
