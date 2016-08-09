@@ -163,13 +163,25 @@ Label
 
 .RankedSeasonCongratulationsPlayer
 {
+    flow-children: down;
+    margin: 10px;
+    margin-bottom: 0;
+}
+
+.RankedSeasonCongratulationsPlayerAvatar
+{
     width: 48px;
     height: 48px;
     border-radius: 3px;
     border: 1px solid gold;
-    margin: 10px;
+    margin-bottom: 16px;
     tooltip-position: bottom;
     tooltip-body-position: 50% 100%;
+}
+
+.RankedSeasonCongratulationsPlayerIcon
+{
+    horizontal-align: center;
 }
 
 #RankedSeasonEndHeader

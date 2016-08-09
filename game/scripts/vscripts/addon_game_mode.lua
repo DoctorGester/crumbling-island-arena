@@ -864,6 +864,10 @@ end
 function GameMode:OnAchievementsReceived(achievements)
     self.achievements = self:ParseSteamId64Table(achievements)
 
+    for playerId, achievement in pairs(self.achievements) do
+        self.Players[playerId].wasTopPlayer = achievement.wasTopPlayer
+    end
+
     CustomNetTables:SetTableValue("ranks", "achievements", self.achievements)
 end
 

@@ -86,9 +86,16 @@ function RankedInfoChanged(info) {
         for (var i = 0; i < hallOfFamePlayers[mode] && i < players.length; i++) {
             var player = players[i];
 
-            var avatar = $.CreatePanel("DOTAAvatarImage", parent, "");
+            var playerPanel = $.CreatePanel("Panel", parent, "");
+            playerPanel.AddClass("RankedSeasonCongratulationsPlayer");
+
+            var avatar = $.CreatePanel("DOTAAvatarImage", playerPanel, "");
             avatar.steamid = player.steamId64.toString();
-            avatar.AddClass("RankedSeasonCongratulationsPlayer");
+            avatar.AddClass("RankedSeasonCongratulationsPlayerAvatar");
+
+            var icon = $.CreatePanel("Panel", playerPanel, "");
+            icon.AddClass("TopPlayerIcon");
+            icon.AddClass("RankedSeasonCongratulationsPlayerIcon");
         }
     }
 

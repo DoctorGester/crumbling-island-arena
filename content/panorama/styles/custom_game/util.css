@@ -23,6 +23,15 @@ b
     color: white;
 }
 
+.TopPlayerIcon
+{
+    background-image: url("file://{images}/icon_trophy.psd");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+}
+
 .NormalText
 {
     text-shadow: skyblue 0px 0px 2px 2px;

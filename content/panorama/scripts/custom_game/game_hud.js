@@ -14,7 +14,7 @@ GameUI.SetCameraPitchMax(60);
 GameUI.SetCameraLookAtPositionHeightOffset(100);
 GameUI.GameChat = $("#GameChat");
 
-function AddChatLine(hero, playerName, color, message) {
+function AddChatLine(hero, playerName, color, message, wasTopPlayer) {
     var line = $.CreatePanel("Panel", $("#GameChatContent"), "");
     var last = $("#GameChatContent").GetChild(0);
     line.AddClass("GameChatLine");
@@ -30,6 +30,13 @@ function AddChatLine(hero, playerName, color, message) {
     img.heroimagestyle = "icon";
     img.heroname = hero;
 
+    if (wasTopPlayer) {
+        var trophy = $.CreatePanel("Panel", line, "");
+
+        trophy.AddClass("TopPlayerIcon");
+        trophy.AddClass("GameChatImage");
+    }
+    
     var label = $.CreatePanel("Label", line, "");
     label.SetDialogVariable("name", playerName);
     label.SetDialogVariable("color", color);
@@ -47,7 +54,7 @@ function AddChatLine(hero, playerName, color, message) {
 function OnCustomChatSay(args) {
     var color = LuaColor(args.color);
     
-    AddChatLine(args.hero, Players.GetPlayerName(args.player), color, args.message);
+    AddChatLine(args.hero, Players.GetPlayerName(args.player), color, args.message, args.wasTopPlayer);
 }
 
 function OnKillLogEntry(args) {

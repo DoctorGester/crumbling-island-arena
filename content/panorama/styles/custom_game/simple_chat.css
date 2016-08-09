@@ -28,14 +28,25 @@
     border-radius: 3px;
 }
 
+.ChatIcon
+{
+    margin-right: 5px;
+}
+
 .ChatLine
+{
+    flow-children: right;
+    transition-property: transform, position;
+    transition-duration: 0.2s;
+    transform: translateX(-100%) scaleY(-1.0);
+}
+
+.ChatLineText
 {
     font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
     color: white;
     font-size: 16px;
-    transition-property: transform, position;
-    transition-duration: 0.2s;
-    transform: translateX(-100%) scaleY(-1.0);
+    vertical-align: center;
 }
 
 .ChatLineAppear

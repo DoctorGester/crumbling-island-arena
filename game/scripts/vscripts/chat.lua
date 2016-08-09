@@ -23,7 +23,8 @@ function Chat:OnSay(args)
         hero = self.players[id].selectedHero,
         color = self.teamColors[self.players[id].team],
         player = id,
-        message = args.message
+        message = args.message,
+        wasTopPlayer = self.players[id].wasTopPlayer
     })
 end
 
@@ -32,13 +33,15 @@ function Chat:PlayerRandomed(id, hero, teamLocal)
         CustomGameEventManager:Send_ServerToTeam(self.players[id].team, "custom_randomed_message", {
             color = self.teamColors[self.players[id].team],
             player = id,
-            hero = hero
+            hero = hero,
+            wasTopPlayer = self.players[id].wasTopPlayer
         })
     else
         CustomGameEventManager:Send_ServerToAllClients("custom_randomed_message", {
             color = self.teamColors[self.players[id].team],
             player = id,
-            hero = hero
+            hero = hero,
+            wasTopPlayer = self.players[id].wasTopPlayer
         })
     end
 end

@@ -1,6 +1,7 @@
 <root>
     <styles>
         <include src="file://{resources}/styles/custom_game/simple_chat.css" />
+        <include src="file://{resources}/styles/custom_game/util.css" />
     </styles>
     <scripts>
         <include src="file://{resources}/scripts/custom_game/kappa.js" />
@@ -24,9 +25,20 @@
             $("#ChatEntry").text = "";
         }
 
-        function AddChatLine(token, vars) {
+        function AddChatLine(token, vars, wasTopPlayer) {
+            var lineParent = $.CreatePanel("Panel", $("#ChatContent"), "");
+            lineParent.AddClass("ChatLine");
+            lineParent.AddClass("ChatLineAppear");
+
+            if (wasTopPlayer) {
+                var trophy = $.CreatePanel("Panel", lineParent, "");
+
+                trophy.AddClass("TopPlayerIcon");
+                trophy.AddClass("ChatIcon");
+            }
+
             var last = $("#ChatContent").GetChild(0);
-            var line = $.CreatePanel("Label", $("#ChatContent"), "");
+            var line = $.CreatePanel("Label", lineParent, "");
 
             for (key in vars) {
                 line.SetDialogVariable(key, vars[key]);
@@ -34,11 +46,10 @@
 
             line.html = true;
             line.text = $.Localize(token, line);
-            line.AddClass("ChatLine");
-            line.AddClass("ChatLineAppear");
+            line.AddClass("ChatLineText");
 
             if (last != null) {
-                $("#ChatContent").MoveChildBefore(line, last);
+                $("#ChatContent").MoveChildBefore(lineParent, last);
             }
         }
 
@@ -47,7 +58,7 @@
                 name: Players.GetPlayerName(args.player),
                 color: LuaColor(args.color),
                 hero: $.Localize("HeroName_" + args.hero)
-            });
+            }, args.wasTopPlayer);
         }
 
         function OnChatSay(args) {
@@ -55,7 +66,7 @@
                 name: Players.GetPlayerName(args.player),
                 color:  LuaColor(args.color),
                 message: InsertEmotes(args.message)
-            });
+            }, args.wasTopPlayer);
         }
 
         GameEvents.Subscribe("custom_chat_say", OnChatSay);
