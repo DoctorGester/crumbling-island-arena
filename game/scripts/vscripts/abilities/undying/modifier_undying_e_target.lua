@@ -4,7 +4,7 @@ local self = modifier_undying_e_target
 if IsServer() then
     function self:OnCreated()
         self:CreateParticle()
-        self:StartIntervalThink(2)
+        self:StartIntervalThink(2.5)
     end
 
     function self:OnIntervalThink()

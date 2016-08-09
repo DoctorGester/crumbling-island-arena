@@ -5,7 +5,7 @@
 	[
 		{
 			_class = "C_OP_StopAfterCPDuration"
-			m_flDuration = 2.0
+			m_flDuration = 2.5
 		},
 		{
 			_class = "C_OP_Decay"
@@ -36,7 +36,7 @@
 	[
 		{
 			_class = "C_INIT_RingWave"
-			m_flParticlesPerOrbit = 99.0
+			m_flParticlesPerOrbit = 124.0
 			m_flInitialRadius = 96.0
 			m_bEvenDistribution = true
 		},
