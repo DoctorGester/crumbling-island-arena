@@ -11,30 +11,50 @@ function Spells.TestPoint(point)
     return GameRules.GameMode.level:GetPartAt(point.x, point.y)
 end
 
+function Spells.WrapException(callback, ...)
+    local status, err = pcall(callback, ...)
+
+    if not status then
+        print(err)
+    end
+end
+
 function Spells:Update()
     for i = #self.entities, 1, -1 do
         local entity = self.entities[i]
 
         if entity.destroyed then
-            entity:Remove()
-            table.remove(self.entities, i)
+            Spells.WrapException(
+                function(entity, i)
+                    entity:Remove()
+                    table.remove(self.entities, i)
+                end
+            , entity, i)
         end
     end
 
     for i = #self.dashes, 1, -1 do
         local dash = self.dashes[i]
 
-        if not dash.destroyed then
-            dash:Update()
-        else
-            table.remove(self.dashes, i)
-        end
+        Spells.WrapException(
+            function(dash, i)
+                if not dash.destroyed then
+                    dash:Update()
+                else
+                    table.remove(self.dashes, i)
+                end
+            end
+        , dash, i)
     end
 
     for _, entity in ipairs(self.entities) do
-        if not entity.destroyed then
-            entity:Update()
-        end
+        Spells.WrapException(
+            function(entity)
+                if not entity.destroyed then
+                    entity:Update()
+                end
+            end
+        , entity)
     end
 
     -- resolving collisions
@@ -43,19 +63,23 @@ function Spells:Update()
     for _, first in ipairs(self.entities) do
         if first:Alive() and first.collisionType == COLLISION_TYPE_INFLICTOR and not first.falling then
             for _, second in ipairs(self:GetValidTargets()) do
-                if first ~= second and not second.falling and first:Alive() and second:Alive() and second.collisionType ~= COLLISION_TYPE_NONE and first:CollidesWith(second) and second:CollidesWith(first) then
-                    local radSum = first:GetRad() + second:GetRad()
+                Spells.WrapException(
+                    function(first, second)
+                        if first ~= second and not second.falling and first:Alive() and second:Alive() and second.collisionType ~= COLLISION_TYPE_NONE and first:CollidesWith(second) and second:CollidesWith(first) then
+                            local radSum = first:GetRad() + second:GetRad()
 
-                    if (first:GetPos() - second:GetPos()):Length2D() <= radSum then
-                        if not second:IsInvulnerable() then
-                            first:CollideWith(second)
-                        end
+                            if (first:GetPos() - second:GetPos()):Length2D() <= radSum then
+                                if not second:IsInvulnerable() then
+                                    first:CollideWith(second)
+                                end
 
-                        if not first:IsInvulnerable() then
-                            second:CollideWith(first)
+                                if not first:IsInvulnerable() then
+                                    second:CollideWith(first)
+                                end
+                            end
                         end
                     end
-                end
+                , first, second)
             end
         end
     end
@@ -63,19 +87,23 @@ function Spells:Update()
     -- Resolving falling entities
     for _, entity in ipairs(self.entities) do
         if entity:CanFall() and not entity.falling then
-            local level = GameRules.GameMode.level
-            local hit = entity:TestFalling()
+            Spells.WrapException(
+                function(entity)
+                    local level = GameRules.GameMode.level
+                    local hit = entity:TestFalling()
 
-            if not hit then
-                entity:MakeFall()
-            end
+                    if not hit then
+                        entity:MakeFall()
+                    end
 
-            -- Doing damage to the pieces entity is standing on
-            if hit and not level.running and instanceof(entity, Hero) then
-                for enthit, _ in pairs(hit) do
-                    level:DamageGround(enthit, 0.35)
+                    -- Doing damage to the pieces entity is standing on
+                    if hit and not level.running and instanceof(entity, Hero) then
+                        for enthit, _ in pairs(hit) do
+                            level:DamageGround(enthit, 0.35)
+                        end
+                    end
                 end
-            end
+            , entity)
         end
     end
 end

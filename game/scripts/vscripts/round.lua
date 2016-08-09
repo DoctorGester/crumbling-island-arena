@@ -63,15 +63,7 @@ function Round:EndRound()
 end
 
 function Round:Update()
-    local status, err = pcall(
-        function(self)
-            self.spells:Update()
-        end
-    , self)
-
-    if not status then
-        print(err)
-    end
+    self.spells:Update()
 
     if self.entityDied then
         self.entityDied = false
