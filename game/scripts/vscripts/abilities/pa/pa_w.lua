@@ -2,7 +2,7 @@ pa_w = class({})
 
 function pa_w:OnSpellStart()
     local hero = self:GetCaster().hero
-    hero:EmitSound("DOTA_Item.Daedelus.Crit")
+    hero:EmitSound("Arena.PA.CastW")
 
     local particle = "particles/econ/items/axe/axe_weapon_bloodchaser/axe_attack_blur_counterhelix_bloodchaser_b.vpcf"
     ImmediateEffect(particle, PATTACH_ABSORIGIN_FOLLOW, hero)
@@ -17,7 +17,8 @@ function pa_w:OnSpellStart()
             ParticleManager:SetParticleControlEnt(blood, 0, victim:GetUnit(), PATTACH_POINT_FOLLOW, "attach_hitloc", victim:GetPos(), true)
             ParticleManager:SetParticleControlForward(blood, 0, direction)
             ParticleManager:SetParticleControl(blood, 2, direction * 1000)
-        end
+        end,
+        sound = "Arena.PA.HitQ"
     })
 
     GridNav:DestroyTreesAroundPoint(hero:GetPos(), 256, true)

@@ -14,11 +14,11 @@ function pa_w_sub:OnSpellStart()
         graphics = "particles/pa_w_sub/pa_w_sub.vpcf",
         distance = 1200,
         hitModifier = { name = "modifier_pa_w_sub", duration = 2.0, ability = self },
-        hitSound = "Arena.PA.HitW",
+        hitSound = "Arena.PA.HitW.Sub",
         hitFunction = function() end
     }):Activate()
 
-    hero:EmitSound("Arena.PA.CastW")
+    hero:EmitSound("Arena.PA.CastW.Sub")
 end
 
 function pa_w_sub:GetCastAnimation()

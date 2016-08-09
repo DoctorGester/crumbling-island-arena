@@ -24,7 +24,7 @@ function ProjectilePAQ:constructor(round, hero, target)
             target:EmitSound("Arena.PA.Catch")
             self:Destroy()
         else
-            target:EmitSound("DOTA_Item.BattleFury")
+            target:EmitSound("Arena.PA.HitQ")
             target:Damage(self)
 
             local direction = (target:GetPos() - self:GetPos()):Normalized()
