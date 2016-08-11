@@ -35,6 +35,11 @@ function venge_e:OnSpellStart()
 
             hero.round.spells:InterruptDashes(hero)
             target.round.spells:InterruptDashes(target)
+
+            -- Otherwise it gets destroyed anyway
+            if instanceof(target, Projectile) then
+                projectile:Destroy()
+            end
         end,
         hitCondition = function(projectile, target)
             return target ~= hero
