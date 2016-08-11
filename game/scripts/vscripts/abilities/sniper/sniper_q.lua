@@ -21,7 +21,7 @@ function sniper_q:OnSpellStart()
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 64),
         to = target + Vector(0, 0, 64),
-        speed = 2000,
+        speed = 2300,
         graphics = "particles/sniper_q/sniper_q.vpcf",
         radius = 48,
         hitSound = "Arena.Sniper.HitQ",
