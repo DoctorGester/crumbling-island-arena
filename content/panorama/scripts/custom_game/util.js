@@ -248,6 +248,16 @@ function GetStackCount(unit, modifier) {
     return 0;
 }
 
+function GetModifierCount(unit, modifier) {
+    for (var i = 0, j = 0; i < Entities.GetNumBuffs(unit); i++) {
+        if (Buffs.GetName(unit, Entities.GetBuff(unit, i)) == modifier){
+            j++;
+        }
+    }
+
+    return j;
+}
+
 function CreateScoreboardFromData(players, callback) {
     for (var key in players) {
         players[key].ids = [ players[key].id ];

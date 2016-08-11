@@ -2384,15 +2384,15 @@
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_THICK_LINE"
-			"MinLength" "500 + GetStackCount(unit, 'modifier_brew_beer') * 250"
-			"MaxLength" "500 + GetStackCount(unit, 'modifier_brew_beer') * 250"
-			"Width" "32 + GetStackCount(unit, 'modifier_brew_beer') * 32"
+			"MinLength" "500 + GetModifierCount(unit, 'modifier_brew_beer') * 250"
+			"MaxLength" "500 + GetModifierCount(unit, 'modifier_brew_beer') * 250"
+			"Width" "32 + GetModifierCount(unit, 'modifier_brew_beer') * 32"
 		}
 
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "500 + GetStackCount(unit, 'modifier_brew_beer') * 250"
+			"Radius" "500 + GetModifierCount(unit, 'modifier_brew_beer') * 250"
 		}
 	}
 
