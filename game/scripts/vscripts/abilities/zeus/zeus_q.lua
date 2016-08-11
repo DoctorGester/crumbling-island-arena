@@ -50,7 +50,7 @@ end
 
 function ZeusQProjectile:GetSpeed()
     if self.empowered then
-        return 3000
+        return 2500
     end
 
     return 1200
