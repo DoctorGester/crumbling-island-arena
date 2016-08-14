@@ -10,7 +10,7 @@ function ArcProjectile:constructor(round, params)
     self.from = params.from
     self.to = params.to
     self.vel = (self.to - self.from):Normalized()
-    self.radius = params.radius or 64
+    self.radius = params.radius or 16
     self.arc = params.arc
     self.removeOnDeath = false
 
@@ -32,6 +32,11 @@ function ArcProjectile:constructor(round, params)
     self.hitSound = params.hitSound
     self.hitScreenShake = params.hitScreenShake
     self.hitFunction = params.hitFunction
+    self.loopingSound = params.loopingSound
+
+    if self.loopingSound then
+        self:EmitSound(self.loopingSound)
+    end
 
     self:SetSpeed(params.speed or 600)
     self:SetPos(self.from)
@@ -84,8 +89,11 @@ function ArcProjectile:Update()
 
     self:SetPos(self:GetNextPosition(pos))
 
-    if (self.to - self:GetPos()):Length2D() <= self:GetRad() then
-        if not Spells.TestPoint(self:GetPos(), self:GetUnit()) then
+    local initialD = (self.to - prevPos):Length2D() -- Multi-projectile drifting
+    local resultD = (self.to - self:GetPos()):Length2D()
+
+    if (self.to - self:GetPos()):Length2D() <= self:GetSpeed() / 30 or resultD >= initialD then
+        if not self:TestFalling() then
             self.falling = true
             self.fallingDirection = self:GetPos() - prevPos
             return
@@ -116,7 +124,8 @@ function ArcProjectile:GetNextPosition(pos)
     local result = pos + ((self.to - pos):Normalized() * (self:GetSpeed() / 30))
     local d = (self.from - self.to):Length2D()
     local x = (self.from - result):Length2D()
-    result.z = ParabolaZ(self.arc, d, x)
+
+    result.z = ParabolaZ2(self.from.z, self.to.z, self.arc, d, x)
 
     self:SetFacing(result - pos)
 
@@ -157,6 +166,10 @@ function ArcProjectile:SetGraphics(graphics)
 end
 
 function ArcProjectile:Remove()
+    if self.loopingSound then
+        self:StopSound(self.loopingSound)
+    end
+
     if self.particle then
         self:SetGraphics(nil)
     end

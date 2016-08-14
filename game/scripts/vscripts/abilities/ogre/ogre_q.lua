@@ -37,45 +37,37 @@ function ogre_q:OnSpellStart()
     local target = self:GetCursorPosition()
     local direction = (target - hero:GetPos()):Normalized()
 
-    local projectile = PointTargetProjectile(self.round, {
+    local projectile = ArcProjectile(self.round, {
         owner = hero,
-        from = hero:GetPos() + Vector(0, 0, 32) + Vector(-direction.y, direction.x) * 96,
+        from = hero:GetPos() + Vector(0, 0, 128),
         to = target,
         speed = 2500,
-        parabola = 600,
-        disablePrediction = true,
-        invulnerable = true,
-        hitCondition = 
-            function(self, target)
-                return false
-            end,
-        targetReachedFunction =
-            function(projectile)
-                hero:AreaEffect({
-                    filter = Filters.Area(target, 300),
-                    filterProjectiles = true,
-                    damage = self.spell.damage,
-                    hitAllies = true,
-                    modifier = {
-                        name = self.spell.modifier,
-                        duration = self.spell.duration,
-                        ability = self
-                    },
-                    action = function(target)
-                        if not self.spell.damage then
-                            target:Heal()
-                        end
-                    end
-                })
-
-                if self.spell.explosion then
-                    hero:ExplosionEffect(self.spell, projectile:GetPos())
+        arc = 600,
+        hitParams = {
+            filter = Filters.Area(target, 300),
+            filterProjectiles = true,
+            damage = self.spell.damage,
+            hitAllies = true,
+            modifier = {
+                name = self.spell.modifier,
+                duration = self.spell.duration,
+                ability = self
+            },
+            action = function(target)
+                if not self.spell.damage then
+                    target:Heal()
                 end
-
-                ScreenShake(target, 5, 150, 0.25, 2000, 0, true)
-                hero:EmitSound("Arena.Ogre.HitQ", target)
-                hero:EmitSound(self.spell.sound, target)
             end
+        },
+        hitScreenShake = true,
+        hitFunction = function(projectile, hit)
+            if self.spell.explosion then
+                hero:ExplosionEffect(self.spell, projectile:GetPos())
+            end
+
+            projectile:EmitSound("Arena.Ogre.HitQ")
+            projectile:EmitSound(self.spell.sound)
+        end
     }):Activate()
 
     projectile.particle = self.particle

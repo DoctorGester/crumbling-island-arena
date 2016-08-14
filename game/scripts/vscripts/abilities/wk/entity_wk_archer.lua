@@ -43,35 +43,27 @@ function WKArcher:Update()
     if self:FindModifier("modifier_wk_skeleton"):GetRemainingTime() <= 0 then
         self:EmitSound("Arena.WK.CastW2")
 
-        PointTargetProjectile(self.round, {
+        ArcProjectile(self.round, {
             owner = self.hero,
             from = self:GetPos() + Vector(0, 0, 128),
             to = self.target,
             speed = 3200,
-            parabola = 600,
+            arc = 600,
             graphics = "particles/wk_w/wk_w.vpcf",
-            invulnerable = true,
-            hitCondition = 
-                function(self, target)
-                    return false
-                end,
-            targetReachedFunction =
-                function(projectile)
-                    local sound = "Arena.WK.HitW"
-                    local hit = self.hero:AreaEffect({
-                        filter = Filters.Area(self.target, 200),
-                        filterProjectiles = true,
-                        damage = true,
-                        modifier = { name = "modifier_wk_w", duration = 2.0, ability = self.ability }
-                    })
-
-                    if hit then
-                        sound = "Arena.WK.HitW2"
-                    end
-
-                    ScreenShake(self.target, 5, 150, 0.25, 2000, 0, true)
-                    self:EmitSound(sound)
+            hitParams = {
+                filter = Filters.Area(self.target, 200),
+                filterProjectiles = true,
+                damage = true,
+                modifier = { name = "modifier_wk_w", duration = 2.0, ability = self.ability }
+            },
+            hitScreenShake = true,
+            hitFunction = function(projectile, hit)
+                if hit then
+                    projectile:EmitSound("Arena.WK.HitW2")
+                else
+                    projectile:EmitSound("Arena.WK.HitW")
                 end
+            end
         }):Activate()
 
         self:Destroy()

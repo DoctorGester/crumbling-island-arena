@@ -52,13 +52,12 @@
 			m_flInputMax = 4000.0
 		},
 		{
-			_class = "C_OP_StopAfterCPDuration"
-			m_nCP = 2
-		},
-		{
 			_class = "C_OP_InterpolateRadius"
 			m_bDisableOperator = true
 			m_flStartScale = 0.0
+		},
+		{
+			_class = "C_OP_PositionLock"
 		},
 	]
 	m_Initializers = 
@@ -81,19 +80,6 @@
 			m_nParticlesToEmit = 1
 		},
 	]
-	m_Constraints = 
-	[
-		{
-			_class = "C_OP_ConstrainDistanceToPath"
-			m_flTravelTime = 2.0
-			m_flMaxDistance1 = 0.0
-			m_flMaxDistance0 = 0.0
-			m_PathParameters = 
-			{
-				m_nEndControlPointNumber = 1
-			}
-		},
-	]
 	m_Children = 
 	[
 		{
@@ -110,6 +96,7 @@
 		},
 		{
 			m_ChildRef = resource:"particles/units/heroes/hero_invoker/invoker_chaos_meteor_fly_smoke_b.vpcf"
+			m_bDisableChild = true
 		},
 		{
 			m_ChildRef = resource:"particles/units/heroes/hero_invoker/invoker_chaos_meteor_fly_sparks.vpcf"
