@@ -20,6 +20,7 @@ require('round')
 
 require('spells')
 require('projectile')
+require('arc_projectile')
 require('dash')
 require('statistics')
 require('chat')

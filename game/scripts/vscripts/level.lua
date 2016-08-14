@@ -352,3 +352,9 @@ function Level:SetupBackground()
         return 30
     end)
 end
+
+function Level.KillCreepsInRadius(target, radius)
+    for _, c in pairs(Entities:FindAllByClassnameWithin("npc_dota_creep_lane", target, radius)) do
+        c:ForceKill(false)
+    end
+end
