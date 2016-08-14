@@ -1,14 +1,15 @@
 template_q = class({})
+local self = template_q
 
-function template_q:OnSpellStart()
+function self:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
 end
 
-function template_q:GetCastAnimation()
+function self:GetCastAnimation()
     return ACT_DOTA_ATTACK2
 end
 
-function template_q:GetPlaybackRateOverride()
+function self:GetPlaybackRateOverride()
     return 1.33
 end
