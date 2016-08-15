@@ -8,7 +8,7 @@ end
 if IsServer() then
     function self:OnCreated()
         self:StartIntervalThink(0.1)
-        self.restored = false
+        self.restored = true
         self:GetParent():SetMana(0)
     end
 
