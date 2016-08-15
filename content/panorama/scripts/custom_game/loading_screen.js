@@ -66,6 +66,8 @@ function RankedInfoChanged(info) {
     var seasonRewardToShow = info.currentSeason;
 
     if (moment().isBefore(moment.unix(info.seasonEndTime).subtract(20, "days"))) {
+        $("#RankedRewardText").text = $.Localize("InfoRankRewardPrev");
+        
         seasonRewardToShow--;
     }
 

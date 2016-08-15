@@ -16,10 +16,7 @@
             <Panel id="RankedInfoContainer" class="Hidden">
                 <Panel id="RankedReward">
                     <Image id="RankedRewardImage"/>
-                    <Panel id="RankedRewardBottom">
-                        <Image id="RankedRewardIcon"/>
-                        <Label id="RankedRewardText" html="true" text="#InfoRankReward"/>
-                    </Panel>
+                    <Label id="RankedRewardText" html="true" text="#InfoRankReward"/>
                 </Panel>
                 <Panel id="RankedSeasonInfo">
                     <Panel id="RankedSeasonCongratulations">
