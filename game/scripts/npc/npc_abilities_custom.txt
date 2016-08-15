@@ -1205,7 +1205,7 @@
 		"ScriptFile" "abilities/tiny/tiny_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "tiny_toss"
-		"AbilityCooldown" "7.0"
+		"AbilityCooldown" "9.0"
 		"AbilityCastPoint" "0.15"
 
 		"TargetingIndicator"
