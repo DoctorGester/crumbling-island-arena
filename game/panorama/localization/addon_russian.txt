@@ -265,6 +265,7 @@
 		"DOTA_GoodGuys" "Команда 1"
 		"DOTA_BadGuys" "Команда 2"
 		"DOTA_BadGuys" "Команда 2"
+		"DOTA_Custom1" "Команда 3"
 		
 		"SbName" "Имя"
 		"SbScore" "Счет"
