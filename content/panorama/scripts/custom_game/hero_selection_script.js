@@ -210,16 +210,14 @@ function PickRandomHero(){
 
 function AddButtonEvents(button, name) {
     button.SetPanelEvent("onactivate", function() {
-        var heroSelected = _.contains(_.values(selectedHeroes), name);
         var lock = $("#DifficultyLock");
 
         if (heroButtons[name].GetParent().GetParent() == $("#HardHeroes") && lock) {
             return;
         }
 
-        if (selectedHeroes[Game.GetLocalPlayerID()] == "null" && !heroSelected) {
+        if (selectedHeroes[Game.GetLocalPlayerID()] == "null") {
             GameEvents.SendCustomGameEventToServer("selection_hero_click", { "hero": name });
-            Game.EmitSound("UI.SelectHeroLocal");
         }
     });
 
@@ -441,6 +439,7 @@ function PlayersUpdated(data){
 }
 
 function HeroSelectionUpdated(data){
+    var oldSelected = selectedHeroes || {};
     selectedHeroes = data.selected || {};
     
     var localHeroSelected = false;
@@ -457,9 +456,11 @@ function HeroSelectionUpdated(data){
         if (hero == "null"){
             selectionImage.RemoveClass("AnimationSelectedHero");
         } else {
-            if (id == Game.GetLocalPlayerID()) {
+            if (id == Game.GetLocalPlayerID() && (!oldSelected[key] || oldSelected[key] == "null")) {
                 HideAll();
                 ShowHeroDetails(hero);
+                Game.EmitSound("UI.SelectHeroLocal");
+                
                 localHeroSelected = true;
             }
 
