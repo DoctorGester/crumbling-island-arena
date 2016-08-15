@@ -2949,4 +2949,78 @@
 			"Radius" "400"
 		}
 	}
+
+	"dusa_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/dusa/dusa_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "medusa_split_shot"
+		"AbilityCooldown" "2.8"
+		"AbilityCastPoint" "0.15"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "250"
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1600"
+		}
+	}
+
+	"dusa_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/dusa/dusa_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "medusa_mystic_snake"
+		"AbilityCooldown" "5.0"
+		"AbilityCastPoint" "0.15"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_DUSA_SNAKE"
+			"MinLength" "2000"
+			"MaxLength" "2000"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1500"
+		}
+	}
+
+	"dusa_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/dusa/dusa_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "medusa_mana_shield"
+		"AbilityCooldown" "0.1"
+		"AbilityManaCost" "1"
+	}
+
+	"dusa_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/dusa/dusa_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "medusa_stone_gaze"
+		"AbilityCooldown" "14.0"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "600"
+		}
+
+	}
+
 }

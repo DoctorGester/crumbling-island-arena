@@ -92,6 +92,16 @@ function Hero:Damage(source)
         return
     end
 
+    for _, modifier in pairs(self:AllModifiers()) do
+        if modifier.OnDamageReceived then
+            local result = modifier:OnDamageReceived(source, self)
+
+            if result == false then -- == false so nil works
+                return
+            end
+        end
+    end
+
     local damageTable = {
         victim = self.unit,
         attacker = source.unit,
@@ -123,6 +133,19 @@ function Hero:Heal()
         ParticleManager:ReleaseParticleIndex(sign)
 
         self.round.statistics:IncreaseHealingReceived(self.owner)
+    end
+end
+
+function Hero:RestoreMana()
+    if self.unit:IsAlive() then
+        self.unit:SetMana(self.unit:GetMana() + 1)
+
+        local sign = ParticleManager:CreateParticle("particles/msg_fx/msg_mana_add.vpcf", PATTACH_CUSTOMORIGIN, mode)
+        ParticleManager:SetParticleControl(sign, 0, self:GetPos())
+        ParticleManager:SetParticleControl(sign, 1, Vector(10, 1, 0))
+        ParticleManager:SetParticleControl(sign, 2, Vector(2, 2, 0))
+        ParticleManager:SetParticleControl(sign, 3, Vector(0, 248, 255))
+        ParticleManager:ReleaseParticleIndex(sign)
     end
 end
 

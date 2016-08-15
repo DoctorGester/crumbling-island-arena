@@ -35,6 +35,7 @@
 		"HeroName_npc_dota_hero_queenofpain"			"Lust"
 		"HeroName_npc_dota_hero_tusk"					"The World"
 		"HeroName_npc_dota_hero_undying"				"Sloth"
+		"HeroName_npc_dota_hero_medusa"					"Greed"
 
 		"Available_on_npc_dota_hero_drow_ranger"		"Available on April 23!"
 		"Available_on_npc_dota_hero_skeleton_king"		"Available on April 30!"
@@ -206,6 +207,11 @@
 		"undying_DescW" "Rooting wave"
 		"undying_DescE" "Tombstone, slow + damage in AOE"
 		"undying_DescR" "Permanently transform"
+
+		"medusa_DescQ" "Damage in an AOE"
+		"medusa_DescW" "Mana restoring projectile"
+		"medusa_DescE" "Spend mana to gain a shield"
+		"medusa_DescR" "Disable ALL heroes in front of you"
 
 		"HeroBanned" "This hero is banned"
 		"PlayerHeader" "Players"
@@ -471,6 +477,11 @@
 		"AbilityTooltip_undying_e"						"Summon a Tombstone, which slows enemies and damages them for being in the area for 2.5 seconds"
 		"AbilityTooltip_undying_r"						"Permanently transform, setting your health to 3, losing all abilities and gaining two new"
 
+		"AbilityTooltip_dusa_q"							"Launch a barrage of arrows, damaging all enemies in the target area"
+		"AbilityTooltip_dusa_w"							"Launch a projectile damaging every enemy on it's way and restoring mana for each enemy hit"
+		"AbilityTooltip_dusa_e"							"Spend <font color=\"skyblue\">mana</font> to gain a shield<br/><br/><font color=\"skyblue\">Mana</font> is restored every 10 seconds<br/>The more <font color=\"skyblue\">mana</font> you have, the faster you move"
+		"AbilityTooltip_dusa_r"							"Gain a powerful buff, disabling <font color=\"gold\"><b>ALL</b></font> heroes in front of you after looking at them for 1 second"
+
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
 		"ModifierTooltip_modifier_silence_lua"					"Silenced"
@@ -597,6 +608,12 @@
 		"ModifierTooltip_modifier_undying_w_sub"				"Jumping zombies?"
 		"ModifierTooltip_modifier_undying_e_target"				"Will take damage if stays near the Tombstone"
 		"ModifierTooltip_modifier_undying_r"					"Transformed"
+
+		"ModifierTooltip_modifier_dusa_mana"					"<font color=\"skyblue\">Mana</font> is restored every 10 seconds<br/>Moves faster depending on current amount of <font color=\"skyblue\">mana</font>"
+		"ModifierTooltip_modifier_dusa_e"						"Shielded from the next damage instance"
+		"ModifierTooltip_modifier_dusa_r_aura"					"Turning everyone in front of her into stone"
+		"ModifierTooltip_modifier_dusa_r_target"				"Will turn into stone soon"
+		"ModifierTooltip_modifier_dusa_r"						"Stunned"
 	}
 }
 

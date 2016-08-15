@@ -18,6 +18,8 @@ function ArcProjectile:constructor(round, params)
         self.vel = self.hero:GetFacing()
     end
 
+    self.arc = self.arc * math.min((self.to - self.from):Length2D() / 900, 1.0)
+
     self.currentMultiplier = 1.0
 
     self:GetUnit():SetNeverMoveToClearSpace(true)
@@ -71,10 +73,13 @@ function ArcProjectile:FindClearSpace(position, force)
 end
 
 function ArcProjectile:Update()
+    local prevFallingPos = self:GetPos()
+
     getbase(Projectile).Update(self)
 
     if self.falling then
         self:SetPos(self:GetPos() + self.fallingDirection)
+        self:SetFacing(self:GetPos() - prevFallingPos)
         return
     end
 
@@ -92,7 +97,7 @@ function ArcProjectile:Update()
     local initialD = (self.to - prevPos):Length2D() -- Multi-projectile drifting
     local resultD = (self.to - self:GetPos()):Length2D()
 
-    if (self.to - self:GetPos()):Length2D() <= self:GetSpeed() / 30 or resultD >= initialD then
+    if (self.to - self:GetPos()):Length() <= self:GetSpeed() / 30 or resultD >= initialD then
         if not self:TestFalling() then
             self.falling = true
             self.fallingDirection = self:GetPos() - prevPos
@@ -107,6 +112,10 @@ end
 function ArcProjectile:TargetReached()
     local hit = false
 
+    if self.hitSound then
+        self:EmitSound(self.hitSound)
+    end
+    
     if self.hitParams then
         hit = self.hero:AreaEffect(self.hitParams)
     end

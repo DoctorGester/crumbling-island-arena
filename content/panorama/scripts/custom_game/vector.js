@@ -117,3 +117,11 @@ Vector.prototype.cross = function( v2 ) {
             this.x * v2.y - this.y * v2.x 
     );
 }
+
+Vector.prototype.rotate2d = function(an) {
+    return new Vector(
+        this.x * Math.cos(an) - this.y * Math.sin(an),
+        this.x * Math.sin(an) + this.y * Math.cos(an),
+        this.z
+    );
+}

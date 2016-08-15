@@ -34,7 +34,7 @@
                 <Panel id="HeroPortraitContainer">
                     <DOTAHeroMovie id="HeroPortrait" onactivate="CenterCamera()"/>
                 </Panel>
-                <Panel id="HeroNameContainer">
+                <Panel id="HeroNameContainer" hittestchildren="false" hittest="false">
                     <Label id="HeroNameLabel" class="UILabel"/>
                 </Panel>
             </Panel>

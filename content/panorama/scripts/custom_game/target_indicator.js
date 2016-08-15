@@ -232,6 +232,39 @@ function UpdateLine(particle, unit, data, cursor) {
     return to;
 }
 
+indicatorTypes["TARGETING_INDICATOR_DUSA_SNAKE"] = function(data, unit) {
+    this.data = data;
+    this.unit = unit;
+    this.particle = Particles.CreateParticle("particles/targeting/dusa_snake.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN_FOLLOW, unit);
+
+    this.Update = function(cursor){
+        var to = Vector.FromArray(cursor);
+        var dir = to.minus(Vector.FromArray(Entities.GetAbsOrigin(unit))).normalize();
+        var pos = Vector.FromArray(Entities.GetAbsOrigin(unit));
+        var to = Vector.FromArray(cursor);
+
+        var length = to.minus(pos).length();
+        var newLength = Clamp(length, GetNumber(data.MinLength, 0, unit), GetNumber(data.MaxLength, Number.MAX_VALUE, unit));
+
+        if (length != newLength) {
+            length = newLength;
+            to = to.minus(pos).normalize().scale(length).add(pos);
+        }
+
+        Particles.SetParticleControl(this.particle, 1, to);
+        Particles.SetParticleControl(this.particle, 2, to.add(dir.scale(150).rotate2d(-0.75)));
+        Particles.SetParticleControl(this.particle, 3, to.minus(pos).normalize().scale(length / 2).add(pos));
+
+        Particles.SetParticleControlForward(this.particle, 3, [dir.y, -dir.x, 0])
+        Particles.SetParticleControlForward(this.particle, 1, [dir.y, -dir.x, 0])
+    }
+
+    this.Delete = function(){
+        Particles.DestroyParticleEffect(this.particle, false);
+        Particles.ReleaseParticleIndex(this.particle);
+    }
+};
+
 function UpdatePosition() {
     var cursor = GameUI.GetCursorPosition();
     var position = GameUI.GetScreenWorldPosition(cursor);
