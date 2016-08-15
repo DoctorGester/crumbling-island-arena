@@ -120,7 +120,7 @@ function Jugger:FindSpaceToSpawn()
     GameRules.GameMode.level:GroundAction(
         function(part)
             local distance = (self:GetPos() - Vector(part.x, part.y, 0)):Length2D()
-            if distance > 600 and distance < 2200 and Vector(part.x, part.y, 0):Length2D() < 1600 then
+            if distance > 600 and distance < 2200 and Vector(part.x, part.y, 0):Length2D() < GameRules.GameMode.level.distance - 700 then
                 table.insert(parts, part)
             end
         end
