@@ -13,7 +13,8 @@ if IsServer() then
         self:GetParent():GetParentEntity():Damage(self:GetCaster():GetParentEntity())
         FX("particles/undying_e/undying_e_hit.vpcf", PATTACH_CUSTOMORIGIN, self:GetCaster(), {
             cp0 = self:GetCaster():GetAbsOrigin() + Vector(0, 0, 200),
-            cp1 = { ent = self:GetParent(), point = "attach_hitloc" }
+            cp1 = { ent = self:GetParent(), point = "attach_hitloc" },
+            release = true
         })
         self:GetParent():EmitSound("Arena.Undying.HitE")
     end
