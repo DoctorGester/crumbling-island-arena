@@ -456,11 +456,13 @@ function HeroSelectionUpdated(data){
         if (hero == "null"){
             selectionImage.RemoveClass("AnimationSelectedHero");
         } else {
-            if (id == Game.GetLocalPlayerID() && (!oldSelected[key] || oldSelected[key] == "null")) {
-                HideAll();
-                ShowHeroDetails(hero);
-                Game.EmitSound("UI.SelectHeroLocal");
-                
+            if (id == Game.GetLocalPlayerID()) {
+                if (!oldSelected[key] || oldSelected[key] == "null") {
+                    HideAll();
+                    ShowHeroDetails(hero);
+                    Game.EmitSound("UI.SelectHeroLocal");
+                }
+
                 localHeroSelected = true;
             }
 
