@@ -232,11 +232,11 @@ function MiscInfoChanged(data) {
                 loading.AddClass("LoadingImage");
             }
         }
-    } else {
+    }// else {
         for (var k in playerRanks) {
             playerRanks[k].AddClass("Hidden");
         }
-    }
+    //}
 }
 
 function AddBanEvent(button, ban) {
