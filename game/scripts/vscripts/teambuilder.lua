@@ -190,15 +190,141 @@ function TeamBuilder:ResolveOneSidedRelations()
     end
 end
 
--- TODO fix teambuilder for teams of 4+ players
+TeamBuilderAlt = class({})
+
+function TeamBuilderAlt:constructor(players, maxPlayers, permutations)
+    self.players = players
+    self.prefs = {}
+    self.maxPlayers = maxPlayers
+
+    self.numPlayers = #self.players
+    self.bestModel = nil
+
+    self.permutations = permutations
+end
+
+function TeamBuilderAlt:SetTeamPreference(playerFrom, playerTo)
+    if playerFrom ~= playerTo then
+        table.insert(self.prefs, { from = playerFrom, to = playerTo })
+    end
+end
+
+function TeamBuilderAlt:Permutate(current, index)
+    if index == self.numPlayers + 1 then
+        table.insert(self.permutations, current)
+        return
+    end
+
+    for i = 1, self.numPlayers do
+        local player = self.players[i]
+
+        if vlua.find(current, player) == nil then
+            local clone = vlua.clone(current)
+            table.insert(clone, player)
+            self:Permutate(clone, index + 1)
+        end
+    end
+end
+
+function TeamBuilderAlt:ComputePermutations()
+    self.permutations = {}
+    self:Permutate({}, 1)
+end
+
+function TeamBuilderAlt:ResolveTeams()
+    if self.permutations == nil then
+        self:ComputePermutations()
+    end
+
+    self.models = {}
+
+    for offset = 0, self.numPlayers % self.maxPlayers do
+        for _, permutation in ipairs(self.permutations) do
+            local model = {}
+
+            for i = offset, self.numPlayers - 1, self.maxPlayers do
+                local currentTeam = nil
+
+                for id = i + 1, i + self.maxPlayers do
+                    if permutation[id] then
+                        if currentTeam == nil then
+                            currentTeam = {}
+                            table.insert(model, currentTeam)
+                        end
+
+                        table.insert(currentTeam, permutation[id])
+                    end
+                end
+            end
+
+            table.insert(self.models, model)
+        end
+    end
+
+    local maxScore = 0
+
+    for _, model in ipairs(self.models) do
+        local score = self:ScoreModel(model)
+
+        if score > maxScore then
+            self.bestModel = model
+            maxScore = score
+        end
+    end
+end
+
+function TeamBuilderAlt:ScoreModel(model)
+    local total = 0
+    local success = 0
+
+    for _, relation in ipairs(self.prefs) do
+        for _, team in ipairs(model) do
+            local frFound = false
+            local toFound = false
+
+            for _, player in ipairs(team) do
+                if player == relation.from then
+                    frFound = true
+                end
+
+                if player == relation.to then
+                    toFound = true
+                end
+
+                if frFound and toFound then
+                    success = success + 1
+                    break
+                end
+            end
+        end
+
+        total = total + 1
+    end
+
+    return success / total
+end
+
+function TeamBuilderAlt:Score()
+    return self:ScoreModel(self.bestModel)
+end
+
 if IsInToolsMode() then
     local totalScore = 0
-    local iterations = 1000
+    local totalScoreAlt = 0
+    local numPlayers = 3
+    local iterations = 100
+    local players = { "A", "B", "C", "D", "E" }
+
+    local baker = TeamBuilderAlt(players, numPlayers)
+    baker:ComputePermutations()
+
+    print("[TEAM BUILDER] test started")
 
     for i = 1, iterations do
-        local players = { "A", "B", "C", "D", "E", "F", "J", "K" }
+        players = vlua.clone(players)
 
-        local tb = TeamBuilder(players, 4)
+        local tb = TeamBuilder(players, numPlayers)
+        local tba = TeamBuilderAlt(players, numPlayers, baker.permutations)
 
         for j = 1, RandomInt(1, 12) do
             local from = RandomInt(1, #players)
@@ -209,15 +335,24 @@ if IsInToolsMode() then
             end
 
             tb:SetTeamPreference(players[from], players[to])
+            tba:SetTeamPreference(players[from], players[to])
         end
 
         tb:ResolveTeams()
         totalScore = totalScore + tb:Score()
+
+        tba:ResolveTeams()
+        totalScoreAlt = totalScoreAlt + tba:Score()
+
+        if i % 100 == 0 then
+            print("[TEAM BUILDER] test progress", i / iterations)
+        end
     end
 
     print("[TEAM BUILDER] test score", totalScore / iterations)
+    print("[TEAM BUILDER] test score alt", totalScoreAlt / iterations)
 
-    tb = TeamBuilder({ "A", "B", "C", "D", "E", "F" }, 3)
+    tb = TeamBuilderAlt({ "A", "B", "C", "D", "E", "F" }, 3)
     tb:SetTeamPreference("A", "B")
     tb:SetTeamPreference("B", "A")
     tb:SetTeamPreference("C", "D")

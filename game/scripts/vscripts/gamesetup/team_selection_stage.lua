@@ -44,7 +44,7 @@ function TeamSelectionStage:FinalizeResults()
         table.insert(players, player.id)
     end
 
-    local builder = TeamBuilder(players, self.maxPlayersInTeam)
+    local builder = TeamBuilderAlt(players, self.maxPlayersInTeam)
 
     for id, preferences in pairs(self.inputs) do
         for _, preference in pairs(preferences) do
@@ -56,8 +56,8 @@ function TeamSelectionStage:FinalizeResults()
 
     local relationsResult = {}
 
-    for _, batch in pairs(builder.batches) do
-        table.insert(relationsResult, vlua.clone(batch.players))
+    for _, team in pairs(builder.bestModel) do
+        table.insert(relationsResult, vlua.clone(team))
     end
     
     return {
