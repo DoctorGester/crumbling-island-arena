@@ -35,7 +35,7 @@
 		"HeroName_npc_dota_hero_queenofpain"			"Похоть"
 		"HeroName_npc_dota_hero_tusk"					"Мир"
 		"HeroName_npc_dota_hero_undying"				"Уныние"
-		"HeroName_npc_dota_hero_undying"				"Жадность"
+		"HeroName_npc_dota_hero_medusa"					"Жадность"
 
 		"Available_on_npc_dota_hero_lone_druid"			"Доступно с 4 июня!"
 		"Available_on_npc_dota_hero_drow_ranger"		"Доступено с 23 апреля!"
@@ -476,7 +476,7 @@
 		"AbilityTooltip_dusa_q"							"Запустить множество стрел, нанося урон врагам в области"
 		"AbilityTooltip_dusa_w"							"Запустить наносящий урон снаряд, восстанвливающий ману за каждого врага"
 		"AbilityTooltip_dusa_e"							"Потратить <font color=\"skyblue\">ману</font> и получить щит<br/><br/><font color=\"skyblue\">Мана</font> восстанавливается раз в 10 секунд<br/>Чем больше <font color=\"skyblue\">маны</font>, тем быстрее двигается герой"
-		"AbilityTooltip_dusa_r"							"Получить мощный бафф, оглушающий <font color=\"gold\"><b>ВСЕХ</b></font> герой, если они находится перед тобой больше 1 секунды"
+		"AbilityTooltip_dusa_r"							"Получить мощный бафф, оглушающий <font color=\"gold\"><b>ВСЕХ</b></font> героев, если они находится перед тобой больше 1 секунды"
 
 		"ModifierTooltip_modifier_charges"						"Заряды способности"
 		"ModifierTooltip_modifier_stunned_lua"					"Оглушен"
