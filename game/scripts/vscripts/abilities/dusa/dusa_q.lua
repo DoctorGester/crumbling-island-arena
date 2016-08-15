@@ -38,7 +38,8 @@ function self:OnSpellStart()
                         end
                     end
                 end,
-                hitSound = "Arena.Medusa.HitQ"
+                hitSound = "Arena.Medusa.HitQ",
+                disableStats = true
             }):Activate()
         end
 
@@ -50,6 +51,8 @@ function self:OnSpellStart()
 
         return 0.03
     end)
+
+    hero.round.statistics:IncreaseProjectilesFired(hero.owner)
 
     CreateAOEMarker(hero, self:GetCursorPosition(), 250, 1.0, Vector(106, 190, 0))
     hero:EmitSound("Arena.Medusa.CastQ")

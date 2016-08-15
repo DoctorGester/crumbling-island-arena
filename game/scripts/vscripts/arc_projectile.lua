@@ -43,7 +43,9 @@ function ArcProjectile:constructor(round, params)
     self:SetSpeed(params.speed or 600)
     self:SetPos(self.from)
 
-    self.hero.round.statistics:IncreaseProjectilesFired(self.owner)
+    if not params.disableStats then
+        self.hero.round.statistics:IncreaseProjectilesFired(self.owner)
+    end
 end
 
 function ArcProjectile:CanFall()
