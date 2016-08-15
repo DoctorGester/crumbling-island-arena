@@ -8,7 +8,8 @@ end
 if IsServer() then
     function self:OnCreated()
         self:StartIntervalThink(0.1)
-        self.restored = true
+        self.restored = false
+        self:GetParent():SetMana(0)
     end
 
     function self:OnIntervalThink()
@@ -24,7 +25,7 @@ if IsServer() then
     end
 
     function self:GetModifierMoveSpeedBonus_Constant()
-        return self:GetParent():GetMana() * 30
+        return -self:GetParent():GetMana() * 30
     end
 
     function self:DeclareFunctions()

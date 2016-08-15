@@ -481,7 +481,7 @@
 
 		"AbilityTooltip_dusa_q"							"Launch a barrage of arrows, damaging all enemies in the target area"
 		"AbilityTooltip_dusa_w"							"Launch a projectile damaging every enemy on it's way and restoring mana for each enemy hit"
-		"AbilityTooltip_dusa_e"							"Spend <font color=\"skyblue\">mana</font> to gain a shield<br/><br/><font color=\"skyblue\">Mana</font> is restored every 10 seconds<br/>The more <font color=\"skyblue\">mana</font> you have, the faster you move"
+		"AbilityTooltip_dusa_e"							"Spend <font color=\"skyblue\">mana</font> to gain a shield<br/><br/><font color=\"skyblue\">Mana</font> is restored every 10 seconds<br/>The more <font color=\"skyblue\">mana</font> you have, the slower you move"
 		"AbilityTooltip_dusa_r"							"Gain a powerful buff, disabling <font color=\"gold\"><b>ALL</b></font> heroes in front of you after looking at them for 1 second"
 
 		"ModifierTooltip_modifier_charges"						"Ability charges"
@@ -611,7 +611,7 @@
 		"ModifierTooltip_modifier_undying_e_target"				"Will take damage if stays near the Tombstone"
 		"ModifierTooltip_modifier_undying_r"					"Transformed"
 
-		"ModifierTooltip_modifier_dusa_mana"					"<font color=\"skyblue\">Mana</font> is restored every 10 seconds<br/>Moves faster depending on current amount of <font color=\"skyblue\">mana</font>"
+		"ModifierTooltip_modifier_dusa_mana"					"<font color=\"skyblue\">Mana</font> is restored every 10 seconds<br/>Moves slower depending on current amount of <font color=\"skyblue\">mana</font>"
 		"ModifierTooltip_modifier_dusa_e"						"Shielded from the next damage instance"
 		"ModifierTooltip_modifier_dusa_r_aura"					"Turning everyone in front of her into stone"
 		"ModifierTooltip_modifier_dusa_r_target"				"Will turn into stone soon"
