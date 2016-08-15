@@ -23,7 +23,7 @@ function self:OnSpellStart()
                 owner = hero,
                 from = hero:GetPos() + Vector(0, 0, 128),
                 to = target + RandomVector(1) * RandomFloat(0, 200),
-                speed = 2600,
+                speed = 2000,
                 arc = 700,
                 graphics = "particles/dusa_q/dusa_q.vpcf",
                 hitParams = {
