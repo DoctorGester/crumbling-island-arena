@@ -2668,7 +2668,7 @@
 		"ScriptFile" "abilities/slark/slark_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "slark_pounce"
-		"AbilityCooldown" "5.0"
+		"AbilityCooldown" "4.0"
 
 		"HoverIndicator"
 		{
