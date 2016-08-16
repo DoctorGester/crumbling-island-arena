@@ -110,6 +110,7 @@
 			m_bUseCount = true
 			m_bUseLocalCoords = true
 			m_bOffsetExistingPos = true
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_INIT_VelocityRandom"

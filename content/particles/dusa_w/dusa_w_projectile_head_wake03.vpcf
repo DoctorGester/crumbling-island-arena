@@ -109,6 +109,7 @@
 			m_nComponent2 = 2
 			m_nComponent1 = 1
 			m_nControlPointNumber = 3
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_INIT_VelocityRandom"
