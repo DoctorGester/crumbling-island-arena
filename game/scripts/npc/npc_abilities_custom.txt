@@ -2504,7 +2504,7 @@
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_AOE"
-			"Radius" "350"
+			"Radius" "400"
 			"DisplayRange" "1"
 		}
 	}
