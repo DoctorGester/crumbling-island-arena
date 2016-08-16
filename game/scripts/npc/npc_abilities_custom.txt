@@ -2298,7 +2298,7 @@
 		"ScriptFile" "abilities/ursa/ursa_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "ursa_overpower"
-		"AbilityCooldown" "4.0"
+		"AbilityCooldown" "3.0"
 		"AbilityCastPoint" "0.15"
 
 		"HoverIndicator"
@@ -2504,7 +2504,7 @@
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_AOE"
-			"Radius" "400"
+			"Radius" "450"
 			"DisplayRange" "1"
 		}
 	}
