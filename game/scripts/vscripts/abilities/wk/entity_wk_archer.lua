@@ -12,13 +12,13 @@ function WKArcher:constructor(round, owner, ability, position, target, speed)
     self.removeOnDeath = false
 
     self:SetFacing((target - position):Normalized() + Vector(0, 0, 0.5))
-    self:AddNewModifier(self.hero, nil, "modifier_wk_skeleton", { duration = 1.5 * speed })
+    self:AddNewModifier(self.hero, nil, "modifier_wk_skeleton", { duration = speed })
 
     if owner.owner then
         self:GetUnit():SetControllableByPlayer(owner.owner.id, true)
     end
 
-    StartAnimation(self:GetUnit(), { duration = 1.5 * speed, activity = ACT_DOTA_ATTACK, rate = 0.5 })
+    StartAnimation(self:GetUnit(), { duration = speed, activity = ACT_DOTA_ATTACK, rate = 0.75 })
 
     local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_clinkz/clinkz_windwalk.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetUnit())
     ParticleManager:SetParticleControlEnt(particle, 1, self:GetUnit(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetUnit():GetOrigin(), true)
