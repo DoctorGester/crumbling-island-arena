@@ -16,7 +16,7 @@ function qop_q:OnSpellStart()
         distance = 950,
         hitSound = "Arena.QOP.HitQ",
         hitFunction = function(_, victim)
-            victim:AddNewModifier(hero, self, "modifier_qop_q", { duration = 3.5, heals = hadCharges })
+            victim:AddNewModifier(hero, self, "modifier_qop_q", { duration = 2.0, heals = hadCharges })
         end
     }):Activate()
 
