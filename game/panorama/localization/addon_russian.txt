@@ -234,7 +234,7 @@
 		"ChatRandomed" "<b><font color='{s:color}'>{s:name}</font></b> случайно выбрал <font color='gold'>{s:hero}</font>"
 		"ChatPlaceholder" "Введите Ваше сообщение..."
 
-		"InfoRankReward" "Доберись до 1 ранга в этом сезоне<br/>Чтобы получить эту награду"
+		"InfoRankReward" "Доберись до 1 ранга<br/>и получи эту награду!"
 		"InfoRankRewardPrev" "Награда за 1 ранг<br/>Прошлого сезона"
 		"InfoRankSeason" "Конец {d:season} рейтингового сезона"
 		"InfoPreviousTop" "Лучшие игроки прошлого сезона"
