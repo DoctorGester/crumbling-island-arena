@@ -261,16 +261,23 @@ function TeamBuilderAlt:ResolveTeams()
         end
     end
 
-    local maxScore = 0
+    local maxScore = -1
+    local bestModels = {}
 
     for _, model in ipairs(self.models) do
         local score = self:ScoreModel(model)
 
         if score > maxScore then
-            self.bestModel = model
+            bestModels = {}
             maxScore = score
         end
+
+        if score == maxScore then
+            table.insert(bestModels, model)
+        end
     end
+
+    self.bestModel = bestModels[RandomInt(1, #bestModels)]
 end
 
 function TeamBuilderAlt:ScoreModel(model)
@@ -299,6 +306,10 @@ function TeamBuilderAlt:ScoreModel(model)
         end
 
         total = total + 1
+    end
+
+    if total == 0 then
+        return 0
     end
 
     return success / total
