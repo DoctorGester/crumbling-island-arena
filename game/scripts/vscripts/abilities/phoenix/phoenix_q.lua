@@ -16,6 +16,10 @@ function phoenix_q:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
 
+    if hero:GetHealth() > 1 then
+        hero:Damage(hero)
+    end
+
     Dash(hero, target, 900, {
         loopingSound = "Arena.Phoenix.CastQ",
         modifier = { name = "modifier_phoenix_q", ability = self },
