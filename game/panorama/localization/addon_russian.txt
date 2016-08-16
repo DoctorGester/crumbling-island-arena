@@ -474,7 +474,7 @@
 		"AbilityTooltip_undying_r"						"Необратимо трансформироваться, теряя все способности и получая две новых<br/>Герой имеет 3 здоровья после трансформации"
 
 		"AbilityTooltip_dusa_q"							"Запустить множество стрел, нанося урон врагам в области"
-		"AbilityTooltip_dusa_w"							"Запустить наносящий урон снаряд, восстанвливающий ману за каждого врага"
+		"AbilityTooltip_dusa_w"							"Запустить замедляющий снаряд, восстанвливающий ману за каждого врага"
 		"AbilityTooltip_dusa_e"							"Потратить <font color=\"skyblue\">ману</font> и получить щит<br/><br/><font color=\"skyblue\">Мана</font> восстанавливается раз в 10 секунд<br/>Чем больше <font color=\"skyblue\">маны</font>, тем медленнее двигается герой"
 		"AbilityTooltip_dusa_r"							"Получить мощный бафф, оглушающий <font color=\"gold\"><b>ВСЕХ</b></font> героев, если они находится перед тобой больше 1 секунды"
 
@@ -606,6 +606,7 @@
 		"ModifierTooltip_modifier_undying_r"					"Трансформировался"
 
 		"ModifierTooltip_modifier_dusa_mana"					"<font color=\"skyblue\">Мана</font> восстанавливается раз в 10 секунд<br/>Двигается медленнее от количества <font color=\"skyblue\">маны</font>"
+		"ModifierTooltip_modifier_dusa_w"						"Замедлен"
 		"ModifierTooltip_modifier_dusa_e"						"Защищен от урона"
 		"ModifierTooltip_modifier_dusa_r_aura"					"Обращает в камень всех перед собой"
 		"ModifierTooltip_modifier_dusa_r_target"				"Скоро обратится в камень"

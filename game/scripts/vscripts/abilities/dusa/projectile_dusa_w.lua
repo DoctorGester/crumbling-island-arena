@@ -1,7 +1,7 @@
 ProjectileDusaW = ProjectileDusaW or class({}, nil, DistanceCappedProjectile)
 local self = ProjectileDusaW
 
-function self:constructor(round, hero, target)
+function self:constructor(round, hero, target, ability)
     getbase(ProjectileDusaW).constructor(self, round, {
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 64),
@@ -12,7 +12,7 @@ function self:constructor(round, hero, target)
         continueOnHit = true,
         disablePrediction = true,
         hitFunction = function(projectile, target)
-            target:Damage(hero)
+            target:AddNewModifier(hero, ability, "modifier_dusa_w", { duration = 1.8 })
             target:EmitSound("Arena.Medusa.HitW")
 
             if instanceof(target, Hero) then
