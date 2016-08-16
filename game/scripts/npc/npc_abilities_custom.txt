@@ -2956,13 +2956,13 @@
 		"ScriptFile" "abilities/dusa/dusa_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "medusa_split_shot"
-		"AbilityCooldown" "2.8"
+		"AbilityCooldown" "3.2"
 		"AbilityCastPoint" "0.15"
 
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_AOE"
-			"Radius" "250"
+			"Radius" "200"
 			"DisplayRange" "1"
 		}
 

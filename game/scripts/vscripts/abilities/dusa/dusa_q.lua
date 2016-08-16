@@ -23,11 +23,11 @@ function self:OnSpellStart()
                 owner = hero,
                 from = hero:GetPos() + Vector(0, 0, 128),
                 to = target + RandomVector(1) * RandomFloat(0, 200),
-                speed = 2000,
+                speed = 2100,
                 arc = 700,
                 graphics = "particles/dusa_q/dusa_q.vpcf",
                 hitParams = {
-                    filter = Filters.Area(target, 250) + Filters.WrapFilter(groupFilter),
+                    filter = Filters.Area(target, 200) + Filters.WrapFilter(groupFilter),
                     filterProjectiles = true,
                     damage = true
                 },
@@ -54,7 +54,7 @@ function self:OnSpellStart()
 
     hero.round.statistics:IncreaseProjectilesFired(hero.owner)
 
-    CreateAOEMarker(hero, self:GetCursorPosition(), 250, 1.0, Vector(106, 190, 0))
+    CreateAOEMarker(hero, self:GetCursorPosition(), 200, 1.0, Vector(106, 190, 0))
     hero:EmitSound("Arena.Medusa.CastQ")
 
     self.tick = (self.tick or 0) + 1
