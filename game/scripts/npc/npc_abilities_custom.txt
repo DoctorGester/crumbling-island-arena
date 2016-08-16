@@ -1920,7 +1920,7 @@
 		"ScriptFile" "abilities/ember/ember_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "ember_spirit_searing_chains"
-		"AbilityCooldown" "5.5"
+		"AbilityCooldown" "3.5"
 		"AbilityCastPoint" "0.15"
 
 		"TargetingIndicator"
