@@ -1500,7 +1500,7 @@
 		"ScriptFile" "abilities/drow/drow_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "drow_ranger_frost_arrows"
-		"AbilityCooldown" "3.0"
+		"AbilityCooldown" "2.4"
 		"AbilityCastPoint" "0.2"
 
 		"TargetingIndicator"
