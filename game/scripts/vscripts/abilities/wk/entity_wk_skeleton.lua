@@ -6,7 +6,7 @@ function WKSkeleton:constructor(round, owner, ability, position, direction)
     self.ability = ability
     self.owner = owner.owner
     self.hero = owner
-    self.size = 64
+    self.size = 32
     self.start = position
     self.direction = direction
     self.removeOnDeath = false
@@ -97,10 +97,6 @@ function WKSkeleton:Update()
     if self.i % 30 == 0 then
         ExecuteOrderFromTable({ UnitIndex = self:GetUnit():GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_MOVE_TO_DIRECTION, Position = result })
     end
-end
-
-function WKSkeleton:TestFalling(source)
-    return Spells.TestPoint(self:GetPos(), self:GetUnit())
 end
 
 function WKSkeleton:Damage(source)
