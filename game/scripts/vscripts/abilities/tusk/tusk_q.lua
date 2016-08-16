@@ -8,7 +8,7 @@ function tusk_q:OnSpellStart()
     local pos = hero:GetPos()
 
     if hero:AreaEffect({
-        filter = Filters.Cone(pos, 300, direction, math.pi),
+        filter = Filters.Cone(pos, 350, direction, math.pi),
         sound = "Arena.Tusk.HitQ",
         damage = true,
         action = function(target)
