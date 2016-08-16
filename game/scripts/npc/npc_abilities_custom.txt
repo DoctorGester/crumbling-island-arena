@@ -2563,7 +2563,7 @@
 		"ScriptFile" "abilities/tinker/tinker_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "tinker_march_of_the_machines"
-		"AbilityCooldown" "8.0"
+		"AbilityCooldown" "4.0"
 		"AbilityCastPoint" "0.4"
 		"AbilityCastRange" "1600"
 
@@ -2585,7 +2585,7 @@
 		"ScriptFile" "abilities/tinker/tinker_e_sub"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "tinker_march_of_the_machines"
-		"AbilityCooldown" "8.0"
+		"AbilityCooldown" "4.0"
 		"AbilityCastPoint" "0.4"
 		"AbilityCastRange" "1600"
 
