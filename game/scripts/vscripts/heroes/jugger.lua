@@ -111,7 +111,7 @@ function Jugger:GetSwordRange()
 end
 
 function Jugger:StartSwordTimer()
-    self:FindModifier("modifier_jugger_sword"):SetDuration(12, true)
+    self:FindModifier("modifier_jugger_sword"):SetDuration(10, true)
 end
 
 function Jugger:FindSpaceToSpawn()
