@@ -1818,7 +1818,7 @@
 		"ScriptFile" "abilities/shaker/shaker_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName" "earthshaker_aftershock"
-		"AbilityCooldown" "5.5"
+		"AbilityCooldown" "4.0"
 		"AbilityCastPoint" "0.35"
 
 		"HoverIndicator"
