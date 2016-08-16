@@ -16,7 +16,7 @@ function modifier_zeus_w:OnCreated()
 end
 
 function modifier_zeus_w:GetModifierMoveSpeedBonus_Percentage(params)
-    return 30
+    return 50
 end
 
 function modifier_zeus_w:GetEffectName()
