@@ -236,6 +236,7 @@
 
 		"InfoRankReward" "Доберись до 1 ранга<br/>и получи эту награду!"
 		"InfoRankRewardPrev" "Награда за 1 ранг<br/>Прошлого сезона"
+		"InfoRankRewardDateHeader" "Дата выдачи наград"
 		"InfoRankSeason" "Конец {d:season} рейтингового сезона"
 		"InfoPreviousTop" "Лучшие игроки прошлого сезона"
 		"Info" "информация"

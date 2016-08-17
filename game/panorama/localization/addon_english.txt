@@ -235,6 +235,7 @@
 
 		"InfoRankReward" "Reach rank 1 this season<br/>to claim this reward"
 		"InfoRankRewardPrev" "Rank 1 reward<br/>For previous season"
+		"InfoRankRewardDateHeader" "Claim rank 1 reward on"
 		"InfoRankSeason" "Ranked season {d:season} ends"
 		"InfoPreviousTop" "Top players previous season"
 		"Info" "info"

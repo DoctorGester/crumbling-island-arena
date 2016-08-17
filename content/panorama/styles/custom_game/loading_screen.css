@@ -46,7 +46,7 @@ Label
 #RankedInfo
 {
     width: 40%;
-    height: 40%;
+    height: 45%;
     border-radius: 3px;
     //box-shadow: #111111 -2px -2px 4px 4px;
     //border: 1px solid skyblue;
@@ -172,7 +172,7 @@ Label
     horizontal-align: center;
 }
 
-#RankedSeasonEndHeader
+.RankedInfoRightHeader
 {
     horizontal-align: center;
     color: white;
@@ -181,12 +181,12 @@ Label
     margin-top: 40px;
 }
 
-.AspectRatio5x4 #RankedSeasonEndHeader, .AspectRatio4x3 #RankedSeasonEndHeader
+.AspectRatio5x4 .RankedInfoRightHeader, .AspectRatio4x3 .RankedInfoRightHeader
 {
     font-size: 20px;
 }
 
-#RankedSeasonEndText
+.RankedInfoRightText
 {
     horizontal-align: center;
     color: white;
