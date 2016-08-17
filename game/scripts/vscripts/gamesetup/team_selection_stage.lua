@@ -37,6 +37,10 @@ function TeamSelectionStage:GetDefaultPlayerInput(player)
     return {}
 end
 
+function TeamSelectionStage:SetRanks(ranks)
+    self.ranks = ranks
+end
+
 function TeamSelectionStage:FinalizeResults()
     local players = {}
 
@@ -50,6 +54,12 @@ function TeamSelectionStage:FinalizeResults()
         for _, preference in pairs(preferences) do
             builder:SetTeamPreference(id, tonumber(preference))
         end
+    end
+
+    if self.ranks then
+        builder:SetAdditionalWeightSupplier(function(player)
+            return self.ranks[player].rank
+        end)
     end
 
     builder:ResolveTeams()

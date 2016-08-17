@@ -209,6 +209,10 @@ function TeamBuilderAlt:SetTeamPreference(playerFrom, playerTo)
     end
 end
 
+function TeamBuilderAlt:SetAdditionalWeightSupplier(weightSupplier)
+    self.weightSupplier = weightSupplier
+end
+
 function TeamBuilderAlt:Permutate(current, index)
     if index == self.numPlayers + 1 then
         table.insert(self.permutations, current)
@@ -277,7 +281,68 @@ function TeamBuilderAlt:ResolveTeams()
         end
     end
 
+    print("Found a total of "..tostring(#bestModels).." models")
+
+    if self.weightSupplier == nil then
+        self.weightSupplier = function() return 1 end
+    end
+
+    bestModels = self:FindMostBalancedModels(bestModels)
+
     self.bestModel = bestModels[RandomInt(1, #bestModels)]
+end
+
+function TeamBuilderAlt:FindMostBalancedModels(models)
+    local maxScore = math.huge
+    local bestModels = {}
+
+    for _, model in ipairs(models) do
+        local score = self:ScoreBalancedModel(model)
+
+        if score < maxScore then
+            bestModels = {}
+            maxScore = score
+        end
+
+        if score == maxScore then
+            table.insert(bestModels, model)
+        end
+    end
+
+    print("Reduced model amount to "..tostring(#bestModels).." balanced models")
+    print("Lowest standard deviation", maxScore)
+
+    return bestModels
+end
+
+function TeamBuilderAlt:ScoreBalancedModel(model)
+    local total = 0
+    local weights = {}
+
+    for _, team in ipairs(model) do
+        local teamTotal = 0
+
+        for _, player in ipairs(team) do
+            local weight = self.weightSupplier(player) or 0
+
+            teamTotal = teamTotal + weight
+        end
+
+        local teamMean = teamTotal / #team
+        table.insert(weights, teamMean)
+        total = total + teamMean
+    end
+
+    local mean = total / #model
+    local deviationSum = 0
+
+    for _, weight in ipairs(weights) do
+        deviationSum = deviationSum + (weight - mean) ^ 2
+    end
+
+    local standardDeviation = math.sqrt(deviationSum / #weights)
+
+    return standardDeviation
 end
 
 function TeamBuilderAlt:ScoreModel(model)
@@ -369,6 +434,9 @@ if IsInToolsMode() then
     tb:SetTeamPreference("C", "D")
     tb:SetTeamPreference("D", "C")
     tb:SetTeamPreference("B", "C")
+    tb:SetAdditionalWeightSupplier(function(pl)
+        return ({ A = 100, B = 30, C = 20, D = 50, E = 50, F = 50 })[pl]
+    end)
 
     tb:ResolveTeams()
 end

@@ -859,7 +859,10 @@ function GameMode:ParseSteamId64Table(data)
 end
 
 function GameMode:OnRanksReceived(ranks)
-    CustomNetTables:SetTableValue("ranks", "current", self:ParseSteamId64Table(ranks))
+    local parsed = self:ParseSteamId64Table(ranks)
+    CustomNetTables:SetTableValue("ranks", "current", parsed)
+
+    return parsed
 end
 
 function GameMode:OnAchievementsReceived(achievements)
