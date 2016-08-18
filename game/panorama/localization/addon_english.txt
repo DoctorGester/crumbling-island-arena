@@ -445,7 +445,7 @@
 		"AbilityTooltip_brew_q"							"Receive a <font color=\"#AF9200\"><b>Beer</b></font> debuff<br/>Throw a beer to the target area, applying stacking <font color=\"#AF9200\"><b>Beer</b></font> debuff to every enemy hit"
 		"AbilityTooltip_brew_w"							"Unleash a damaging wave<br/>Wave range and thickness scale from your current <font color=\"#AF9200\"><b>Beer</b></font> stacks<br/>Enemies hit are stunned up to 3 seconds depending on their <font color=\"#AF9200\"><b>Beer</b></font> stacks"
 		"AbilityTooltip_brew_e"							"Heal and purge debuffs<br/><br/>Every stack of <font color=\"#AF9200\"><b>Beer</b></font> reduces cooldown by 1 second"
-		"AbilityTooltip_brew_r"							"Throw a bottle into the target area, knocking back and damaging enemies and applying 2 stacks of <font color=\"#AF9200\"><b>Beer</b></font> to everyone hit"
+		"AbilityTooltip_brew_r"							"Throw a bottle into the target area, knocking back and applying 2 stacks of <font color=\"#AF9200\"><b>Beer</b></font> to everyone hit<br/> Deals damage to enemies"
 
 		"AbilityTooltip_invoker_q"						"Deal damage in an AOE after a 1.1 second delay"
 		"AbilityTooltip_invoker_w"						"Launch a slowing projectile<br/><br/>Enemies affected take double damage from your <font color=\"gold\"><b>Q</b></font>"
