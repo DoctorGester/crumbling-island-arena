@@ -23,36 +23,28 @@ function brew_q:OnSpellStart()
 
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
-    PointTargetProjectile(self.round, {
+
+    local projectile = ArcProjectile(self.round, {
         owner = hero,
         from = hero:GetPos(),
         to = target,
         speed = 2400,
-        parabola = 600,
+        arc = 600,
         graphics = "particles/brew_q/brew_q.vpcf",
-        invulnerable = true,
-        hitCondition = 
-            function(self, target)
-                return false
-            end,
-        targetReachedFunction =
-            function(projectile)
-                local hit = hero:AreaEffect({
-                    filter = Filters.Area(target, 200),
-                    filterProjectiles = true,
-                    onlyHeroes = true,
-                    action = function(victim)
-                        self:AddBeerModifier(victim)
-                    end
-                })
-
-                if hit then
-                    self:EmitSound("Arena.Brew.HitQ")
-                end
-
-                ScreenShake(target, 5, 150, 0.25, 2000, 0, true)
-                
+        hitParams = {
+            filter = Filters.Area(target, 200),
+            filterProjectiles = true,
+            onlyHeroes = true,
+            action = function(victim)
+                self:AddBeerModifier(victim)
             end
+        },
+        hitScreenShake = true,
+        hitFunction = function(projectile, hit)
+            if hit then
+                projectile:EmitSound("Arena.Brew.HitQ")
+            end
+        end
     }):Activate()
 
     CreateAOEMarker(hero, target, 200, 0.4, Vector(255, 106, 0))
