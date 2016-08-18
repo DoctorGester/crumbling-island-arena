@@ -1,47 +1,52 @@
 brew_r = class({})
 
+function brew_r:OnAbilityPhaseStart()
+    local lastCast = self.lastCast or 0
+    local now = Time()
+
+    if now - lastCast > 1.5 then
+        self:GetCaster():GetParentEntity():EmitSound("Arena.Brew.CastR.Voice")
+        self.lastCast = now
+    end
+
+    return true
+end
+
 function brew_r:OnSpellStart()
     Wrappers.DirectionalAbility(self, 700)
 
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
 
-    PointTargetProjectile(self.round, {
+    local projectile = ArcProjectile(self.round, {
         owner = hero,
         from = hero:GetPos(),
         to = target,
         speed = 1900,
-        parabola = 300,
+        arc = 300,
         graphics = "particles/brew_r/brew_r.vpcf",
-        invulnerable = true,
-        hitCondition = 
-            function(self, target)
-                return false
-            end,
-        targetReachedFunction =
-            function(projectile)
-                hero:AreaEffect({
-                    filter = Filters.Area(target, 400),
-                    filterProjectiles = true,
-                    hitSelf = true,
-                    hitAllies = true,
-                    action = function(victim)
-                        local q = hero:FindAbility("brew_q")
+        hitParams = {
+            filter = Filters.Area(target, 400),
+            filterProjectiles = true,
+            hitSelf = true,
+            hitAllies = true,
+            action = function(victim)
+                local q = hero:FindAbility("brew_q")
 
-                        q:AddBeerModifier(victim)
-                        q:AddBeerModifier(victim)
+                q:AddBeerModifier(victim)
+                q:AddBeerModifier(victim)
 
-                        Knockback(victim, self, victim:GetPos() - target, 350, 1500, DashParabola(80))
+                Knockback(victim, self, victim:GetPos() - target, 350, 1500, DashParabola(80))
 
-                        if victim.owner.team ~= hero.owner.team then
-                            victim:Damage(hero)
-                        end
-                    end
-                })
-
-                ScreenShake(target, 5, 250, 0.45, 3000, 0, true)
-                self:EmitSound("Arena.Brew.HitR")
+                if victim.owner.team ~= hero.owner.team then
+                    victim:Damage(hero)
+                end
             end
+        },
+        hitSound = "Arena.Brew.HitR",
+        hitFunction = function(projectile, hit)
+            ScreenShake(target, 5, 250, 0.45, 3000, 0, true)
+        end
     }):Activate()
 
     hero:EmitSound("Arena.Brew.CastR")
