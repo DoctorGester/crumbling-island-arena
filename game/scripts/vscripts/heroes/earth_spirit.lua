@@ -28,7 +28,7 @@ function EarthSpirit:FindRemnant(point, area, exclude)
     local distance = 64000
 
     for _, value in pairs(self.remnants) do
-        if not exclude or not exclude[value] then
+        if (not exclude or not exclude[value]) and value:Alive() then
             local toRemnant = (point - value:GetPos()):Length2D()
 
             if toRemnant <= distance and (not area or toRemnant <= area) then
