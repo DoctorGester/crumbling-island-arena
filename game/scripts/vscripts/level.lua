@@ -207,7 +207,7 @@ function Level:Reset()
         part.angleVel = Vector(0, 0, 0)
         part.launched = false
         part.launchedBy = nil
-        part.launchedAt = nil
+        part.launchedAt = 0
         part:SetRenderColor(255, 255, 255)
     end
 
@@ -273,7 +273,7 @@ function Level:Update()
                 if part.z >= part.defaultZ then
                     table.remove(self.regeneratingParts, i)
                     part.launched = false
-                    part.launchedAt = nil
+                    part.launchedAt = 0
                     part.launchedBy = nil
                     part.health = 100
                     part.velocity = 0
@@ -373,11 +373,11 @@ function Level:Update()
     end
 
     if self.distance > FINISHING_DISTANCE then
-        if not IsInToolsMode() then
-            if self.tick % self.slowFactor == 0 then
+        --if not IsInToolsMode() then
+            --if self.tick % self.slowFactor == 0 then
                 self.distance = self.distance - 1
-            end
-        end
+            --end
+        --end
     else
         self.running = false
     end

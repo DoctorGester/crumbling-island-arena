@@ -99,7 +99,7 @@ function Spells:Update()
                     -- Doing damage to the pieces entity is standing on
                     if hit and not level.running and instanceof(entity, Hero) then
                         for enthit, _ in pairs(hit) do
-                            level:DamageGround(enthit, 0.35)
+                            level:DamageGround(enthit, 0.35, entity)
                         end
                     end
                 end
