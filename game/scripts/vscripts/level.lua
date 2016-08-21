@@ -226,7 +226,7 @@ function Level:LaunchPart(part, by)
     part.launchedBy = by
     part.launchedAt = GameRules:GetGameTime()
 
-    if self.enableRegeneration then
+    if by and self.enableRegeneration then
         table.insert(self.regeneratingParts, part)
         part.offsetX = 0
         part.offsetY = 0
