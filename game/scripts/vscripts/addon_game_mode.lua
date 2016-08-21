@@ -717,12 +717,14 @@ function GameMode:OnEntityKilled(event)
     local entity = EntIndexToHScript(event.entindex_killed)
 
     if entity:IsHero() and entity.hero then
-        entity.hero.round.entityDied = true
+        if not self:IsDeathMatch() then
+            entity.hero.round.entityDied = true
+
+            self.scoreEarned[entity.hero.owner] = self.currentScoreAddition
+            self.currentScoreAddition = self.currentScoreAddition + 1
+        end
 
         PlayerResource:SetOverrideSelectionEntity(entity.hero.owner.id, nil)
-
-        self.scoreEarned[entity.hero.owner] = self.currentScoreAddition
-        self.currentScoreAddition = self.currentScoreAddition + 1
 
         if entity:GetAbsOrigin().z <= -MAP_HEIGHT then
             local lastKnockbackCaster = entity.hero.lastKnockbackCaster

@@ -170,21 +170,6 @@ function DeathMatch:OnRoundEnd(round)
 end
 
 function DeathMatch:Activate(GameMode, inst)
-    function GameMode:OnEntityKilled(event)
-        local entity = EntIndexToHScript(event.entindex_killed)
-
-        if entity:IsHero() and entity.hero then
-            PlayerResource:SetOverrideSelectionEntity(entity.hero.owner.id, nil)
-
-            if entity:GetAbsOrigin().z <= -MAP_HEIGHT then
-                local lastKnockbackCaster = entity.hero.lastKnockbackCaster
-                lastKnockbackCaster = lastKnockbackCaster or self.level:FindReasonForFalling(entity.hero)
-
-                self:RecordKill(entity.hero, lastKnockbackCaster or entity.hero, true)
-            end
-        end
-    end
-
     function GameMode:RecordKill(victim, source, fell)
         if victim.owner.team ~= source.owner.team then
             self.round.statistics:IncreaseKills(source.owner)
@@ -199,7 +184,7 @@ function DeathMatch:Activate(GameMode, inst)
 
             source.owner.score = source.owner.score + 1
 
-            if source.owner.score >= self.gameGoal then
+            if source.owner.score == self.gameGoal then
                 self.winner = source.owner.team
                 self.round:EndRound()
             end
