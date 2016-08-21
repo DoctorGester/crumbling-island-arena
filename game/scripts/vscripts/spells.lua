@@ -97,9 +97,11 @@ function Spells:Update()
                     end
 
                     -- Doing damage to the pieces entity is standing on
-                    if hit and not level.running and instanceof(entity, Hero) then
-                        for enthit, _ in pairs(hit) do
-                            level:DamageGround(enthit, 0.35, entity)
+                    if not GameRules.GameMode:IsDeathMatch() then
+                        if hit and not level.running and instanceof(entity, Hero) then
+                            for enthit, _ in pairs(hit) do
+                                level:DamageGround(enthit, 0.35, entity)
+                            end
                         end
                     end
                 end

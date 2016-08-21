@@ -373,11 +373,11 @@ function Level:Update()
     end
 
     if self.distance > FINISHING_DISTANCE then
-        --if not IsInToolsMode() then
-            --if self.tick % self.slowFactor == 0 then
+        if not IsInToolsMode() then
+            if self.tick % self.slowFactor == 0 then
                 self.distance = self.distance - 1
-            --end
-        --end
+            end
+        end
     else
         self.running = false
     end
