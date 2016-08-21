@@ -269,7 +269,7 @@ function TeamBuilderAlt:ResolveTeams()
     local bestModels = {}
 
     for _, model in ipairs(self.models) do
-        local score = self:ScoreModel(model)
+        local score = self:ScoreModel(model, true)
 
         if score > maxScore then
             bestModels = {}
@@ -281,7 +281,7 @@ function TeamBuilderAlt:ResolveTeams()
         end
     end
 
-    print("Found a total of "..tostring(#bestModels).." models")
+    print("Found a total of "..tostring(#bestModels).." models", maxScore)
 
     if self.weightSupplier == nil then
         self.weightSupplier = function() return 1 end
@@ -345,27 +345,42 @@ function TeamBuilderAlt:ScoreBalancedModel(model)
     return standardDeviation
 end
 
-function TeamBuilderAlt:ScoreModel(model)
+function TeamBuilderAlt:FindRelation(model, from, to)
+    for _, team in ipairs(model) do
+        local frFound = false
+        local toFound = false
+
+        for _, player in ipairs(team) do
+            if player == from then
+                frFound = true
+            end
+
+            if player == to then
+                toFound = true
+            end
+
+            if frFound and toFound then
+                return true
+            end
+        end
+    end
+
+    return false
+end
+
+function TeamBuilderAlt:ScoreModel(model, multiplyMutual)
     local total = 0
     local success = 0
 
     for _, relation in ipairs(self.prefs) do
-        for _, team in ipairs(model) do
-            local frFound = false
-            local toFound = false
+        if self:FindRelation(model, relation.from, relation.to) then
+            success = success + 1
 
-            for _, player in ipairs(team) do
-                if player == relation.from then
-                    frFound = true
-                end
-
-                if player == relation.to then
-                    toFound = true
-                end
-
-                if frFound and toFound then
-                    success = success + 1
-                    break
+            if multiplyMutual then
+                for _, possibleMutual in ipairs(self.prefs) do
+                    if possibleMutual.from == relation.to and possibleMutual.to == relation.from then
+                        success = success + 1
+                    end
                 end
             end
         end
@@ -389,7 +404,7 @@ if IsInToolsMode() then
     local totalScoreAlt = 0
     local numPlayers = 3
     local iterations = 100
-    local players = { "A", "B", "C", "D", "E" }
+    local players = { "A", "B", "C", "D", "E", "F" }
 
     local baker = TeamBuilderAlt(players, numPlayers)
     baker:ComputePermutations()
@@ -437,6 +452,18 @@ if IsInToolsMode() then
     tb:SetAdditionalWeightSupplier(function(pl)
         return ({ A = 100, B = 30, C = 20, D = 50, E = 50, F = 50 })[pl]
     end)
+
+    tb:ResolveTeams()
+
+    tb = TeamBuilderAlt({ "A", "B", "C", "D" }, 2)
+    tb:SetAdditionalWeightSupplier(function(pl)
+        return ({ A = 1, B = 30, C = 1, D = 30 })[pl]
+    end)
+
+    tb:SetTeamPreference("A", "C")
+    tb:SetTeamPreference("C", "A")
+    tb:SetTeamPreference("B", "C")
+    tb:SetTeamPreference("D", "A")
 
     tb:ResolveTeams()
 end
