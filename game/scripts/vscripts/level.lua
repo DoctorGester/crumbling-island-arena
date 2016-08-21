@@ -158,11 +158,13 @@ function Level:DamageGroundInRadius(point, radius, source)
         end
     end
 
-    local particle = ParticleManager:CreateParticle("particles/cracks.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity())
-    ParticleManager:SetParticleControl(particle, 0, point)
-    ParticleManager:SetParticleControl(particle, 1, Vector(radius, 0, 0))
+    if not self.enableRegeneration then
+        local particle = ParticleManager:CreateParticle("particles/cracks.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity())
+        ParticleManager:SetParticleControl(particle, 0, point)
+        ParticleManager:SetParticleControl(particle, 1, Vector(radius, 0, 0))
 
-    table.insert(self.particles, particle)
+        table.insert(self.particles, particle)
+    end
 end
 
 function Level:DamageGround(part, damage, source)

@@ -70,7 +70,7 @@ function DeathMatch:FindPlaceToRespawn()
     GameRules.GameMode.level:GroundAction(
         function(part)
             local pos = Vector(part.x, part.y, 0)
-            if pos:Length2D() < GameRules.GameMode.level.distance - 700 then
+            if pos:Length2D() < GameRules.GameMode.level.distance - 300 then
                 local distance = 0
                 for _, player in pairs(self.players) do
                     if player.hero and player.hero:Alive() then
