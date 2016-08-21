@@ -115,7 +115,7 @@ function DeathMatch:CreateHeroForPlayer(player, heroName)
             if actualCooldown < 10 then
                 actualCooldown = ULTS_TIME / 2
             end
-            
+
             ability:StartCooldown(initialCooldown or actualCooldown)
         end
     end
@@ -221,10 +221,7 @@ function DeathMatch:Activate(GameMode, inst)
             playerData.team = player.team
             playerData.color = self.TeamColors[player.team]
             playerData.score = player.score
-
-            if player.hero then
-                playerData.isDead = not player.hero:Alive()
-            end
+            playerData.isDead = (not player.hero) or (not player.hero:Alive())
 
             table.insert(players, playerData)
         end
