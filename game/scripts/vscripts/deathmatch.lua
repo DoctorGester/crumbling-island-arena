@@ -109,13 +109,13 @@ function DeathMatch:CreateHeroForPlayer(player, heroName)
         local ability = unit:GetAbilityByIndex(i)
 
         if ability ~= nil and string.ends(ability:GetName(), "_r") then
-            local initialCooldown = self.availableHeroes[player.selectedHero].initialCD
+            local initialCooldown = self.availableHeroes[heroName].initialCD
             local actualCooldown = ability:GetCooldown(1) * 1.5
 
             if actualCooldown < 10 then
                 actualCooldown = ULTS_TIME / 2
             end
-
+            
             ability:StartCooldown(initialCooldown or actualCooldown)
         end
     end
