@@ -1024,7 +1024,7 @@ function GameMode:OnGameInProgress()
         self.heroSelection.SelectionTimerTime = 40
         self.deathmatch:Activate(GameMode, self)
         self.level:SetSlowFactor(7)
-        self.level:EnableRegeneration(30)
+        self.level:EnableRegeneration(10, 30)
 
         self:RegisterThinker(1,
             function()

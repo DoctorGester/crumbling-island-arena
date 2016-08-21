@@ -103,9 +103,10 @@ function Level:SetSlowFactor(factor)
     self.slowFactor = factor
 end
 
-function Level:EnableRegeneration(time)
+function Level:EnableRegeneration(timeBase, timeScaling)
     self.enableRegeneration = true
-    self.regenerationTime = time
+    self.regenerationTimeBase = timeBase
+    self.regenerationTimeScaling = timeScaling
 end
 
 function Level:GetStartingDistance()
@@ -227,6 +228,9 @@ function Level:LaunchPart(part, by)
 
     if by and self.enableRegeneration then
         table.insert(self.regeneratingParts, part)
+        part.offsetX = 0
+        part.offsetY = 0
+        part.offsetZ = 0
     end
 end
 
@@ -257,8 +261,9 @@ function Level:Update()
         for i = #self.regeneratingParts, 1, -1 do
             local part = self.regeneratingParts[i]
             local timeDiff = time - part.launchedAt
+            local timeScaled = self.distance / self:GetStartingDistance() * self.regenerationTimeScaling
 
-            if timeDiff > self.regenerationTime then
+            if timeDiff > self.regenerationTimeBase + timeScaled then
                 part.velocity = part.velocity + 2
                 part.z = math.min(part.z + part.velocity, part.defaultZ)
                 part.angles = part.angles - part.angleVel / 3
@@ -275,6 +280,44 @@ function Level:Update()
                     part:SetRenderColor(255, 255, 255)
                     part:SetAngles(0, 0, 0)
                     part.angleVel = Vector(0, 0, 0)
+                end
+            end
+        end
+
+        local copy = vlua.clone(self.parts)
+        table.sort(copy, function(a, b)
+            local alen = math.sqrt(a.offsetX * a.offsetX + a.offsetY * a.offsetY)
+            local blen = math.sqrt(b.offsetX * b.offsetX + b.offsetY * b.offsetY)
+            return alen > blen
+        end)
+
+        local i = 0
+
+        for _, part in ipairs(copy) do
+            if not part.launched and (part.offsetX ~= 0 or part.offsetY ~= 0) then
+                local speed = 0.2
+                local newX = part.offsetX
+                local newY = part.offsetY
+
+                if part.offsetX > 0 then
+                    newX = math.max(0, part.offsetX - speed)
+                elseif part.offsetX < 0 then
+                    newX = math.min(0, part.offsetX + speed)
+                end
+
+                if part.offsetY > 0 then
+                    newY = math.max(0, part.offsetY - speed)
+                elseif part.offsetY < 0 then
+                    newY = math.min(0, part.offsetY + speed)
+                end
+
+                self:SetPartOffset(part, newX, newY)
+                self:UpdatePartPosition(part)
+
+                i = i + 1
+
+                if i == 10 then
+                    break
                 end
             end
         end
