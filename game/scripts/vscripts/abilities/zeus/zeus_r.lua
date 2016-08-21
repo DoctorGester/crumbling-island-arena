@@ -39,7 +39,7 @@ function zeus_r:OnSpellStart()
                     end
                 })
 
-                Spells:GroundDamage(target, 256)
+                Spells:GroundDamage(target, 256, self.hero)
                 ScreenShake(target, 5, 150, 0.35, 4000, 0, true)
             end
 

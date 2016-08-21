@@ -69,6 +69,10 @@ end
 function EntityTinkerE:Update()
     getbase(EntityTinkerE).Update(self)
 
+    if not self.hero:Alive() then
+        self:Destroy()
+    end
+
     for target, _ in pairs(self.arrived) do
         if not target:Alive() or (self:GetPos() - target:GetPos()):Length2D() > 160 then
             self.arrived[target] = nil

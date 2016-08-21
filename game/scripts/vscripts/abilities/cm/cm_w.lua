@@ -67,7 +67,7 @@ function cm_w:OnSpellStart()
                     })
 
                     ScreenShake(damagePos, 3, 60, 0.15, 2000, 0, true)
-                    Spells:GroundDamage(damagePos, 128)
+                    Spells:GroundDamage(damagePos, 128, hero)
 
                     local sound = "Arena.CM.CastW"
                     if hit then sound = "Arena.CM.HitW" end

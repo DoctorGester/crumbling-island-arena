@@ -16,7 +16,8 @@ if IsServer() then
     end
 
     function modifier_venge_r:OnAbilityExecuted(event)
-        if event.unit:HasModifier("modifier_venge_r_target") then
+        local dist = (event.unit:GetAbsOrigin() - self:GetParent():GetAbsOrigin()):Length2D()
+        if event.unit:HasModifier("modifier_venge_r_target") and dist <= self:GetAuraRadius() then
             local unit = self:GetParent()
             unit:CastAbilityOnPosition(event.unit:GetAbsOrigin(), unit:FindAbilityByName("venge_q"), -1)
         end

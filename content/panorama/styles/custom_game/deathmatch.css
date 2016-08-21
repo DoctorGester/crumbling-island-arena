@@ -1,0 +1,314 @@
+#DeathMatchContainer
+{
+    align: center bottom;
+    margin-bottom: 230px;
+    flow-children: up;
+}
+
+#DeathMatchControls
+{
+    flow-children: right;
+    horizontal-align: center;
+}
+
+.DeathMatchButton
+{
+    width: 280px;
+    height: 54px;
+    background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+    background-size: 378px 60px;   
+    padding: 4px 12px 4px 12px;
+    border-top: 1px solid #ffffff05;
+    border-right: 1px solid #00000088;
+    border-left: 1px solid #ffffff05;
+    border-bottom: 1px solid #00000088;
+    margin: 8px;
+    border-radius: 3px;
+}
+
+#DeathMatchRespawnButton
+{
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#722217), to(#DD4A29));
+}
+
+#DeathMatchRespawnButton:hover
+{
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#3D120C), to(#AD3A20));
+}
+
+#DeathMatchRespawnButtonContainer
+{
+    align: center center;
+    flow-children: right;
+}
+
+#DeathMatchRespawnButtonIcon
+{
+    vertical-align: center;
+    margin-left: 8px;
+}
+
+#DeathMatchRespawnButton:active #DeathMatchRespawnButtonIcon
+{
+    transform: translateY(1px);
+}
+
+.DeathMatchButton Label
+{
+    align: center center;
+    text-transform: uppercase;
+    color: white;
+    font-size: 26px;
+}
+
+.DeathMatchButton:active
+{
+    sound: "UI.Click";
+}
+
+.DeathMatchButton:active Label
+{
+    transform: translateY(1px);
+}
+
+#RandomHeroButton
+{
+    width: 54px;
+    height: 54px;
+    margin: 8px;
+
+    background-color: black;
+    border-radius: 3px;
+}
+
+#RandomHeroButtonImage
+{
+    width: 100%;
+    height: 100%;
+    opacity-mask: url('file://{images}/custom_game/rolling_dices.png');
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#FFD800), to(#DD4A29));
+    overflow: clip clip;
+}
+
+#RandomHeroButton:hover #RandomHeroButtonImage
+{
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#D3B000), to(#A8381F));
+}
+
+#RandomHeroButton:active
+{
+    sound: "UI.Click";
+}
+
+#RandomHeroButton:active #RandomHeroButtonImage
+{
+    transform: translateY(1px);
+}
+
+#DeathMatchChangeHeroButton
+{
+    background-color:gradient(linear, 0% 0%, 0% 100%, from(#1D3F87), to(#2B59C4));
+}
+
+#DeathMatchChangeHeroButton:hover
+{
+    background-color: gradient( linear, 0% 0%, 0% 100%, from( #102149ff ), to( #345288 ) );
+}
+
+#DeathMatchHeroes
+{
+    width: 800px;
+    height: 550px;
+    background-color: #000000EE;
+    border-radius: 3px;
+    horizontal-align: center;
+    margin-bottom: 20px;
+    flow-children: right;
+}
+
+#DeathMatchHeroesHero
+{
+    width: fill-parent-flow(1.0);
+    height: 100%;
+    flow-children: down;
+}
+
+#DeathMatchHeroName
+{
+    margin-top: 30px;
+    margin-bottom: 45px;
+    align: center top;
+    font-size: 26px;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+    text-shadow: 0px 0px 2px 1.0 gold;
+    letter-spacing: 1px;
+    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+}
+
+#DeathMatchHeroMovieContainer
+{
+    width: 160px;
+    height: 160px;
+    overflow: clip;
+    align: center center;
+    border-radius: 50%;
+}
+
+#DeathMatchHeroMovie
+{
+    margin-top: -20px;
+    width: 180px;
+    height: 240px;
+}
+
+#DeathMatchHeroesContent
+{
+    flow-children: down;
+    width: 480px;
+    height: 100%;
+    padding: 30px;
+    align: center top;
+    overflow: clip scroll;
+}
+
+#DeathMatchHardHeroesLock
+{
+    width: 100%;
+    height: 100%;
+    border: 1px solid yellow;
+    border-radius: 3px;
+    background-color: #33333399;
+}
+
+#DeathMatchHardHeroesLock Panel
+{
+    align: center center;
+    opacity-mask: url("file://{images}/custom_game/lock.png");
+    width: 48px;
+    height: 48px;
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(yellow), to(#DD4A29));
+}
+
+#DeathMatchHeroesContentHardContainer
+{
+    margin-top: 2px;
+    width: 100%;
+    height: fill-parent-flow(1.0);
+}
+
+#DeathMatchHeroesContentHard
+{
+    width: 100%;
+    height: 100%;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.DeathMatchHeroList
+{
+    flow-children: down;
+}
+
+.DeathMatchHeroRow
+{
+    flow-children: right;
+    horizontal-align: center;
+}
+
+#DeathMatchHeroesContent DOTAHeroImage
+{
+    margin: 3px;
+    height: 48px;
+    width: 96px;
+    border-radius: 3px;
+}
+
+#DeathMatchHeroesContent DOTAHeroImage:hover 
+{
+    wash-color: #999999;
+}
+
+#DeathMatchHeroesContent DOTAHeroImage:active 
+{
+    transform: translateY(1px);
+    sound: "UI.DeathMatchHeroClick";
+}
+
+#DeathmatchHeroAbilities
+{
+    flow-children: up;
+    align: left bottom;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+.AbilityRow
+{
+    flow-children: right;
+}
+
+.AbilityRow Image
+{
+    width: 48px;
+    height: 48px;
+    margin: 4px;
+    border-radius: 3px;
+    tooltip-position: right;
+    tooltip-body-position: 100% 50%;
+
+    transition-property: transform, saturation;
+    transition-duration: 0.1s;
+}
+
+.AbilityRow Label
+{
+    vertical-align: center;
+    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+    margin-left: 8px;
+    font-size: 14px;
+    color: white;
+    text-shadow: skyblue 0px 0px 4px 4px;
+}
+
+/* Valve classes */
+
+VerticalScrollBar, HTMLVerticalScrollBar
+{
+    width: 8px;
+    margin: 0px, 8px, 0px 8px;
+    border-radius: 0px;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    /*box-shadow: fill #00000055 -3px 0px 3px 4px;*/
+    horizontal-align: right;
+    vertical-align: center;
+
+    transition-property: transform;
+}
+
+VerticalScrollBar .ScrollThumb, HTMLVerticalScrollBar .ScrollThumb
+{
+    width: 8px;
+    min-height: 32px;  // need to get the scrollthumb to hit the bottom of the scrollbar
+    background-color: #566767;
+    border-top: 1px solid #aaaaaa22;
+    border-right: 1px solid #000000aa;
+    transition-property: position;
+    /*background-color: gradient( linear, 0% 0%, 0% 100%, from( #3e4446 ), to( #33383a ) );*/
+    transition-property: background-color, transform;
+    transition-duration: 0.1s;
+    transition-timing-function: linear;
+}
+
+VerticalScrollBar:hover .ScrollThumb, HTMLVerticalScrollBar:hover .ScrollThumb
+{
+    background-color: #566767;
+}
+
+
+VerticalScrollBar:active .ScrollThumb, HTMLVerticalScrollBar:active .ScrollThumb
+{
+    background-color: #566767;
+}

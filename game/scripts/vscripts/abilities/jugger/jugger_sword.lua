@@ -15,6 +15,14 @@ function JuggerSword:constructor(round, owner, target, particle)
     self.particle = ParticleManager:CreateParticle(particle, PATTACH_ABSORIGIN_FOLLOW, self.unit)
     self:SetPos(target)
     self:EmitSound("Arena.Jugger.SwordAppear")
+
+    print(PlayerResource:GetPlayer(self.owner.id))
+    self.playerParticle = ParticleManager:CreateParticleForTeam(
+        "particles/econ/items/enigma/enigma_world_chasm/enigma_blackhole_ti5_core_rays.vpcf",
+        PATTACH_ABSORIGIN_FOLLOW,
+        self.unit,
+        self.owner.team
+    )
 end
 
 function JuggerSword:Remove()

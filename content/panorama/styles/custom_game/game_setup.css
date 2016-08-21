@@ -169,6 +169,11 @@
     opacity: 1.0;
 }
 
+.PlayerVotedm {
+    hue-rotation: 280deg;
+    opacity: 1.0;
+}
+
 .PlayerVote2v2 {
     hue-rotation: 20deg;
     opacity: 1.0;
@@ -321,6 +326,18 @@
 }
 
 #FFAButton:active
+{
+    border-bottom: 0;
+}
+
+#DMButton
+{
+    background-color: #EAC300;
+    border: 0;
+    border-bottom: 4px solid #C6A200;
+}
+
+#DMButton:active
 {
     border-bottom: 0;
 }

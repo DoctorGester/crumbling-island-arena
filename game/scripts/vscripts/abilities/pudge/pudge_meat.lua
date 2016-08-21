@@ -29,11 +29,11 @@ function PudgeMeat:Damage(source)
 end
 
 function PudgeMeat:CollidesWith(source)
-    return source == self.hero or instanceof(source, ProjectilePudgeQ)
+    return instanceof(source, Pudge) or instanceof(source, ProjectilePudgeQ)
 end
 
 function PudgeMeat:CollideWith(target)
-    if target == self.hero then
+    if instanceof(target, Pudge)then
         local particle = ParticleManager:CreateParticle(PudgeMeat.USE_PARTICLE, PATTACH_ABSORIGIN_FOLLOW, target:GetUnit())
         ParticleManager:SetParticleControl(particle, 1, target:GetPos())
         ParticleManager:ReleaseParticleIndex(particle)

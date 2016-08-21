@@ -51,6 +51,10 @@ function AddChatLine(hero, playerName, color, message, wasTopPlayer) {
     });
 }
 
+function OnKillMessage(args) {
+    MessageQueue.QueueMessage(args.victim, args.token, args.sound);
+}
+
 function OnCustomChatSay(args) {
     var color = LuaColor(args.color);
     
@@ -269,15 +273,155 @@ function GameStateChanged(data){
     }
 }
 
-
 function GameInfoChanged(data){
     if (data && data.roundNumber) {
         $("#RoundMessageBottom").text = (data.roundNumber - 1).toString();
     }
 }
 
+var DeathMatch = new (function() {
+    this.ShowHeroAbilities = function(hero) {
+        var customIcons = {};
+
+        if (hero.customIcons) {
+            for (ability in hero.customIcons) {
+                customIcons[ability] = hero.customIcons[ability];
+            }
+        }
+
+        var abilitiesToShow = ["Q", "W", "E", "R"];
+
+        for (var ability of abilitiesToShow) {
+            var found = 
+                _(hero.abilities)
+                    .chain()
+                    .filter(function(a) {
+                        return EndsWith(a.name, ability.toLowerCase());
+                    })
+                    .first()
+                    .value();
+
+            var row = $("#AbilityRow" + ability);
+
+            if (row && found) {
+                var image = row.Children()[0];
+                var label = row.Children()[1];
+
+                var icon = GetTexture(found, hero.customIcons);
+                image.SetImage(icon);
+
+                label.text = $.Localize(hero.name.substring("npc_dota_hero_".length) + "_Desc" + ability);
+            }
+        }
+    }
+
+    this.FilterDifficulty = function(difficulty) {
+        return _.filter(Object.keys(this.heroes), function(hero) {
+            return DeathMatch.heroes[hero].difficulty == difficulty;
+        });
+    }
+
+    this.FillHeroList = function(parent, difficulty) {
+        var heroes = this.FilterDifficulty(difficulty);
+
+        heroes = _(heroes).sortBy(function(hero) {
+            return DeathMatch.heroes[hero].order
+        });
+
+        heroes = _(heroes).sortBy(function(hero) {
+            return DeathMatch.heroes[hero].difficulty
+        });
+
+        var currentRow = null;
+
+        for (var index in heroes) {
+            if (index % 4 == 0) {
+                currentRow = $.CreatePanel("Panel", parent, "");
+                currentRow.AddClass("DeathMatchHeroRow");
+            }
+
+            var hero = heroes[index];
+            var heroData = this.heroes[hero];
+            var heroButton = $.CreatePanel("DOTAHeroImage", currentRow, "");
+            heroButton.SetScaling("stretch-to-fit-x-preserve-aspect");
+
+            heroButton.heroimagestyle = "landscape";
+            heroButton.heroname = hero;
+
+            this.AddButtonEvents(heroButton, hero);
+        }
+    }
+
+    this.HeroesUpdated = function(data) {
+        this.heroes = data;
+        this.FillHeroList($("#DeathMatchHeroesContentEasy"), "easy");
+        this.FillHeroList($("#DeathMatchHeroesContentHard"), "hard");
+    }
+
+    this.ShowHeroDetails = function(hero){
+        this.ShowHeroAbilities(this.heroes[hero]);
+
+        $("#DeathMatchHeroMovie").heroname = hero;
+        $("#DeathMatchHeroName").text = $.Localize("HeroName_" + hero).toUpperCase();
+    }
+
+    this.PlayersUpdated = function(data) {
+        if (data.isDeathMatch) {
+            var player = _(data.players).findWhere({ id: Game.GetLocalPlayerID() });
+            $("#DeathMatchContainer").SetHasClass("Hidden", !player.isDead);
+            $("#DeathMatchRespawnButtonIcon").heroname = player.hero;
+            $("#DeathMatchHardHeroesLock").SetHasClass("Hidden", !data.deathMatchHeroesLocked);
+        }
+    }
+
+    this.InstantRespawn = function() {
+        this.Respawn("npc_dota_hero_" + $("#DeathMatchRespawnButtonIcon").heroname);
+    }
+
+    this.Respawn = function(hero) {
+        GameEvents.SendCustomGameEventToServer("dm_respawn", { "hero": hero });
+        this.HideHeroes();
+    }
+
+    this.Random = function() {
+        GameEvents.SendCustomGameEventToServer("dm_random", {});
+        this.HideHeroes();
+    }
+
+    this.AddButtonEvents = function(button, name) {
+        button.SetPanelEvent("onactivate", function() {
+            DeathMatch.Respawn(name);
+        });
+
+        button.SetPanelEvent("onmouseover", function() {
+            DeathMatch.ShowHeroDetails(name);
+        });
+    }
+
+    this.HideHeroes = function() {
+        $("#DeathMatchHeroes").SetHasClass("Hidden", true);
+    }
+
+    this.OnRespawn = function(args) {
+        GameUI.SetCameraTargetPosition([ args.x, args.y, 0 ], 1.0);
+        Game.EmitSound("UI.Respawn");
+
+        if (this.deathMusic) {
+            Game.StopSound(this.deathMusic);
+        }
+    }
+
+    this.OnDeath = function(args) {
+        Game.EmitSound("UI.YouDied");
+        this.deathMusic = Game.EmitSound("UI.YouDiedMusic");
+    }
+
+})();
+
 function HeroesUpdate(data){
     availableHeroes = data;
+
+    DeathMatch.HeroesUpdated(data);
 }
 
 SetupUI();
@@ -287,6 +431,7 @@ DelayStateInit(GAME_STATE_ROUND_IN_PROGRESS, function () {
     SubscribeToNetTableKey("main", "heroes", true, HeroesUpdate);
     SubscribeToNetTableKey("main", "gameState", true, GameStateChanged);
     SubscribeToNetTableKey("main", "gameInfo", true, GameInfoChanged);
+    SubscribeToNetTableKey("main", "players", true, DeathMatch.PlayersUpdated);
 
     UpdateUI();
 
@@ -297,6 +442,9 @@ DelayStateInit(GAME_STATE_ROUND_IN_PROGRESS, function () {
 
     GameEvents.Subscribe("custom_chat_say", OnCustomChatSay);
     GameEvents.Subscribe("kill_log_entry", OnKillLogEntry);
+    GameEvents.Subscribe("kill_message", OnKillMessage);
+    GameEvents.Subscribe("dm_respawn_event", DeathMatch.OnRespawn);
+    GameEvents.Subscribe("dm_death_event", DeathMatch.OnDeath);
 
     // We can't completely lose focus without deleting the element which has it
     AddEnterListener("GameHudChatEnter", function() {

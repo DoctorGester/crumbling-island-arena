@@ -35,7 +35,7 @@ function invoker_q:OnSpellStart()
             })
 
             ScreenShake(target, 5, 150, 0.25, 2000, 0, true)
-            Spells:GroundDamage(target, 200)
+            Spells:GroundDamage(target, 200, hero)
         end
 
         local index =  ParticleManager:CreateParticle("particles/invoker_q/invoker_q.vpcf", PATTACH_ABSORIGIN, self:GetCaster())

@@ -4,6 +4,8 @@
         <include src="file://{resources}/styles/custom_game/ability_bar.css" />
         <include src="file://{resources}/styles/custom_game/timer.css" />
         <include src="file://{resources}/styles/custom_game/scoreboard.css" />
+        <include src="file://{resources}/styles/custom_game/kill_message.css" />
+        <include src="file://{resources}/styles/custom_game/deathmatch.css" />
         <include src="file://{resources}/styles/custom_game/util.css" />
     </styles>
     <scripts>
@@ -18,6 +20,7 @@
         <include src="file://{resources}/scripts/custom_game/hero_detector.js" />
         <!--include src="file://{resources}/scripts/custom_game/hero_bars.js" /-->
         <include src="file://{resources}/scripts/custom_game/target_indicator.js" />
+        <include src="file://{resources}/scripts/custom_game/message_queue.js" />
         <include src="file://{resources}/scripts/custom_game/vector_target.js" />
         <include src="file://{resources}/scripts/custom_game/kappa.js" />
     </scripts>
@@ -28,7 +31,6 @@
             </Panel>
             <Panel id="ScoreboardContainer" hittest="false" hittestchildren="false">
                 <Panel id="Scoreboard"/>
-                <Label id="ScoreboardGoal" text="Goal: 50"/>
             </Panel>
             <Panel id="HeroDetails">
                 <Panel id="HeroPortraitContainer">
@@ -48,13 +50,64 @@
                 <Panel class="AbilityPanel" hittest="false" id="AbilityPanel">
                 </Panel>
             </Panel>
-            <Panel id="KillLog" hittest="false"/>
+            <Panel id="KillLog" hittest="false" hittestchildren="false"/>
             <Panel id="GameChat" hittestchildren="false" hittest="false">
                 <Panel id="GameChatContent" class="ChatHidden" hittest="false"/>
                 <Panel id="GameChatEntryContainer"/>
             </Panel>
             <Label id="RoundMessageTop" class="RoundMessage" text="#Round" hittest="false"/>
             <Label id="RoundMessageBottom" class="RoundMessage" hittest="false"/>
+
+            <Label id="KillMessageTop" class="KillMessageLabel" text="ENEMY" hittest="false"/>
+            <Label id="KillMessageBottom" class="KillMessageLabel" text="SLAIN" hittest="false"/>
+            <Panel class="KillMessageContainer" id="KillMessageIconContainerTop" hittest="false">
+                <DOTAHeroImage id="KillMessageIconTop" heroimagestyle="icon" hittest="false"/>
+            </Panel>
+            <Panel class="KillMessageCutter" id="KillMessageCutterTop" hittest="false"/>
+            <Panel class="KillMessageCutter" id="KillMessageCutterBottom" hittest="false"/>
+            <Panel class="KillMessageContainer" id="KillMessageIconContainerBottom" hittest="false">
+                <DOTAHeroImage id="KillMessageIconBottom" heroimagestyle="icon" hittest="false"/>
+            </Panel>
+
+            <Panel id="DeathMatchContainer" class="Hidden">
+                <Panel id="DeathMatchControls">
+                    <Button class="DeathMatchButton" id="DeathMatchRespawnButton" onactivate="DeathMatch.InstantRespawn()">
+                        <Panel id="DeathMatchRespawnButtonContainer">
+                            <Label id="DeathMatchRespawnButtonText" text="#RespawnAs"/>
+                            <DOTAHeroImage id="DeathMatchRespawnButtonIcon" heroimagestyle="icon"/>
+                        </Panel>
+                    </Button>
+                    <Button id="RandomHeroButton" onactivate="DeathMatch.Random()">
+                        <Panel id="RandomHeroButtonImage"/>
+                    </Button>
+                    <Button class="DeathMatchButton" id="DeathMatchChangeHeroButton" onactivate="ToggleStyle(DeathMatchHeroes, Hidden); SetInputFocus(DeathMatchHeroes)">
+                        <Label text="#ChangeHero"/>
+                    </Button>
+                </Panel>
+                <Panel id="DeathMatchHeroes" class="Hidden" acceptsinput="true">
+                    <Panel id="DeathMatchHeroesHero">
+                        <Label id="DeathMatchHeroName"/>
+                        <Panel id="DeathMatchHeroMovieContainer">
+                                <DOTAHeroMovie id="DeathMatchHeroMovie"/>
+                        </Panel>
+                        <Panel id="DeathmatchHeroAbilities">
+                            <Panel id="AbilityRowR" class="AbilityRow"><Image/><Label/></Panel>
+                            <Panel id="AbilityRowE" class="AbilityRow"><Image/><Label/></Panel>
+                            <Panel id="AbilityRowW" class="AbilityRow"><Image/><Label/></Panel>
+                            <Panel id="AbilityRowQ" class="AbilityRow"><Image/><Label/></Panel>
+                        </Panel>
+                    </Panel>
+                    <Panel id="DeathMatchHeroesContent">
+                        <Panel id="DeathMatchHeroesContentEasy" class="DeathMatchHeroList"/>
+                        <Panel id="DeathMatchHeroesContentHardContainer">
+                            <Panel id="DeathMatchHeroesContentHard" class="DeathMatchHeroList"/>
+                            <Panel id="DeathMatchHardHeroesLock" acceptsinput="true">
+                                <Panel/>
+                            </Panel>
+                        </Panel>
+                    </Panel>
+                </Panel>
+            </Panel>
         </Panel>
     </Panel>
 </root>

@@ -98,6 +98,7 @@
     margin-bottom: 50px;
     margin-right: 100px;
     width: 200px;
+    height: 300px;
     transition: transform 1.0s linear 0.0ms;
     overflow: clip clip;
     transform: scaleY(-1.0);

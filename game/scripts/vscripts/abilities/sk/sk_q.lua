@@ -31,7 +31,7 @@ function sk_q:OnSpellStart()
         })
 
         ScreenShake(target, 5, 150, 0.25, 2000, 0, true)
-        Spells:GroundDamage(target, area)
+        Spells:GroundDamage(target, area, hero)
         local index = ImmediateEffectPoint("particles/units/heroes/hero_sandking/sandking_epicenter.vpcf", PATTACH_ABSORIGIN, hero, target)
         ParticleManager:SetParticleControl(index, 1, Vector(area, area, area))
     end)

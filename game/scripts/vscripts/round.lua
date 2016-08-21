@@ -47,8 +47,6 @@ end
 function Round:EndRound()
     for _, player in pairs(self.players) do
         if player.hero then
-            self.statistics:AddPlayedHero(player, player.selectedHero)
-
             player.hero.protected = true
         end
     end
@@ -122,6 +120,8 @@ function Round:CreateHeroes(spawnPoints)
             end
 
             hero:Activate()
+
+            self.statistics:AddPlayedHero(player, player.selectedHero)
 
             player.hero = hero
         else

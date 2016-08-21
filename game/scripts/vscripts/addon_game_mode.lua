@@ -17,6 +17,7 @@ require('gamesetup/game_setup')
 require('teambuilder')
 require('hero_selection')
 require('round')
+require('deathmatch')
 
 require('spells')
 require('projectile')
@@ -259,6 +260,7 @@ function GameMode:OnGameSetup()
     end
 
     local modes = {
+        ["dm"] = { playersInTeam = 1, announce = "announcer_announcer_type_death_match", spawns = roundSpawnPointsBig },
         ["ffa"] = { playersInTeam = 1, announce = "announcer_ann_custom_mode_06", spawns = roundSpawnPointsBig },
         ["2v2"] = { playersInTeam = 2, announce = "announcer_ann_custom_mode_07", spawns = roundSpawnPoints },
         ["3v3"] = { playersInTeam = 3, announce = "announcer_ann_custom_mode_07", spawns = teamSpawnPoints }
@@ -280,7 +282,11 @@ function GameMode:OnGameSetup()
         end
     end
 
-    if amount <= 3 or amount == 5 then
+    if amount == 3 or amount == 5 then
+        forcedMode = "dm"
+    end
+
+    if amount <= 2 then
         forcedMode = "ffa"
     end
 
@@ -684,7 +690,15 @@ function GameMode:OnHeroSelectionEnd()
     self.currentScoreAddition = 1
     self.scoreEarned = {}
     self.roundNumber = self.roundNumber + 1
-    self.round = Round(self.Players, self.Teams, self.AvailableHeroes, function(round) self:OnRoundEnd(round) end)
+    self.round = Round(self.Players, self.Teams, self.AvailableHeroes,
+        function(round)
+            if self:IsDeathMatch() then
+                self.deathmatch:OnRoundEnd(round)
+            else
+                self:OnRoundEnd(round)
+            end
+        end
+    )
     self.round:CreateHeroes(self.gameSetup:GetSpawnPoints())
     self.firstBloodBy = nil
     self:SetState(STATE_ROUND_IN_PROGRESS)
@@ -712,6 +726,7 @@ function GameMode:OnEntityKilled(event)
 
         if entity:GetAbsOrigin().z <= -MAP_HEIGHT then
             local lastKnockbackCaster = entity.hero.lastKnockbackCaster
+            lastKnockbackCaster = lastKnockbackCaster or self.level:FindReasonForFalling(entity.hero)
 
             self:RecordKill(entity.hero, lastKnockbackCaster or entity.hero, true)
         end
@@ -724,7 +739,7 @@ function GameMode:UpdatePlayerTable()
     for i, player in pairs(self.Players) do
         local playerData = {}
         playerData.id = i
-        playerData.hero = player.selectedHero;
+        playerData.hero = player.selectedHero
         playerData.team = player.team
         playerData.color = self.TeamColors[player.team]
         playerData.score = player.score
@@ -732,7 +747,12 @@ function GameMode:UpdatePlayerTable()
         table.insert(players, playerData)
     end
 
-    CustomNetTables:SetTableValue("main", "players", { players = players, goal = self.gameGoal })
+    local deathMatchHeroesLocked = nil
+
+    CustomNetTables:SetTableValue("main", "players", {
+        players = players,
+        goal = self.gameGoal
+    })
 end
 
 function GameMode:UpdateAvailableHeroesTable()
@@ -744,6 +764,10 @@ function GameMode:UpdateAvailableHeroesTable()
     end
 
     CustomNetTables:SetTableValue("main", "heroes", self.AvailableHeroes)
+end
+
+function GameMode:IsDeathMatch()
+    return self.gameSetup:GetSelectedMode() == "dm"
 end
 
 -- A replica of server-side function
@@ -993,6 +1017,22 @@ function GameMode:OnGameInProgress()
         self.rankedMode == "duel"
     )
 
+    if self:IsDeathMatch() then
+        self.deathmatch = DeathMatch(self.Players, self.AvailableHeroes)
+        self.heroSelection.SelectionTimerTime = 40
+        self.deathmatch:Activate(GameMode, self)
+        self.level:SetSlowFactor(7)
+        self.level:EnableRegeneration(45)
+
+        self:RegisterThinker(1,
+            function()
+                if self.State == STATE_ROUND_IN_PROGRESS then
+                    self.deathmatch:Update()
+                end
+            end
+        )
+    end
+
     self:RegisterThinker(1,
         function()
             if self.State == STATE_HERO_SELECTION and self.heroSelection then
@@ -1018,7 +1058,12 @@ function GameMode:OnGameInProgress()
         end
     )
 
-    self.gameGoal = PlayerResource:GetPlayerCount() * 6 * self.gameSetup:GetPlayersInTeam()
+    if self:IsDeathMatch() then
+        self.gameGoal = PlayerResource:GetPlayerCount() * 4
+    else
+        self.gameGoal = PlayerResource:GetPlayerCount() * 6 * self.gameSetup:GetPlayersInTeam()
+    end
+    
     self:UpdatePlayerTable()
     self:UpdateGameInfo()
 
@@ -1035,4 +1080,10 @@ function GameMode:OnNpcSpawned(keys)
         npc:AddNoDraw()
         npc:AddNewModifier(hero, nil, "modifier_hidden", {})
     end
+end
+
+-- Deathmatch extension reload
+
+if IsInToolsMode() and GameRules.GameMode and GameRules.GameMode.deathmatch then
+    GameRules.GameMode.deathmatch:Activate(GameMode, GameRules.GameMode)
 end

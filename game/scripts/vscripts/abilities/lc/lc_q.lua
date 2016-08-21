@@ -26,7 +26,7 @@ function lc_q:OnSpellStart()
     })
     
     ScreenShake(target, 5, 150, 0.25, 2000, 0, true)
-    Spells:GroundDamage(target, 200)
+    Spells:GroundDamage(target, 200, hero)
     hero:EmitSound("Arena.LC.HitQ")
 end
 

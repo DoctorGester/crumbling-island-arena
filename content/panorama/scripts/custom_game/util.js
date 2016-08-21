@@ -31,6 +31,40 @@ function TryFetchSteamId(id, avatar) {
     }
 }
 
+function FindOrCreate(parent, type, id, cl) {
+    if (type == null) {
+        type = "Panel";
+    }
+
+    if (!Array.isArray(cl)) {
+        cl = [ cl ];
+    }
+
+    for (var child of parent.Children()) {
+        out: {
+            if (child.paneltype == type && (!id || child.id == id)) {
+                for (var c of cl) {
+                    if (!child.BHasClass(c)) {
+                        break out;
+                    }
+                }
+
+                return child;
+            }
+        }
+    }
+
+    var child = $.CreatePanel(type, parent, id || "");
+
+    for (var c of cl) {
+        child.AddClass(c);
+    }
+
+    return child;
+}
+
+$.P = FindOrCreate;
+
 function GetTexture(data, customIcons) {
     var icon = "file://{images}/spellicons/" + (data.texture || data) + ".png";
     var name = data.name;
@@ -291,6 +325,6 @@ function CreateScoreboardFromData(players, callback) {
             data.push({ hero: player.heroes[index], name: player.names[index], id: player.ids[index] });
         }
 
-        callback(LuaColor(player.color), player.score, data);
+        callback(LuaColor(player.color), player.score, data, key);
     }
 }

@@ -40,7 +40,7 @@ function shaker_e:OnSpellStart()
     })
 
     hero:EmitSound("Arena.Shaker.CastE")
-    Spells:GroundDamage(hero:GetPos(), 200)
+    Spells:GroundDamage(hero:GetPos(), 200, hero)
 
     dash.modifierHandle:SetStackCount(25 / distance)
 end

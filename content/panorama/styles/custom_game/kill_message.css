@@ -1,0 +1,260 @@
+.KillMessageLabel
+{
+    font-family: Goudy Trajan Medium, FZKai-Z03, TH Sarabun New;
+    font-size: 80;
+    text-shadow: -1px 1px 2px 2.0 #000000;
+    color: red;
+    align: center;
+    visibility: collapse;
+}
+
+#KillMessageTop
+{
+    align: center top;
+    margin-top: 106px;
+    animation-duration: 2s;
+}
+
+#KillMessageBottom
+{
+    align: center top;
+    margin-top: 200px;
+    animation-duration: 2s;
+}
+
+.KillMessageContainer
+{
+    visibility: collapse;
+    align: center top;
+    height: 32px;
+    overflow: clip clip;
+    animation-duration: 2s;
+}
+
+#KillMessageIconContainerTop
+{
+    margin-top: 176px;
+}
+
+#KillMessageIconContainerBottom
+{
+    margin-top: 208px;
+}
+
+.KillMessageCutter
+{
+    align: center top;
+    margin-top: 208px;
+    border-top: 1px solid red;
+    width: 200px;
+    height: 1px;
+    opacity: 0.7;
+    visibility: collapse;
+}
+
+#KillMessageCutterTop
+{
+    animation-duration: 2s;
+}
+
+#KillMessageCutterBottom
+{
+    margin-top: 209px;
+    animation-duration: 2s;
+}
+
+#KillMessageIconTop
+{
+    margin-top: 16px;
+}
+
+#KillMessageIconBottom
+{
+    margin-top: -16px;
+}
+
+.AnimKillMessageTop
+{
+    animation-name: killTop;
+    visibility: visible;
+}
+
+.AnimKillMessageBottom
+{
+    animation-name: killBottom;
+    visibility: visible;
+}
+
+.AnimKillIconTop
+{
+    animation-name: killIconTop;
+    visibility: visible;
+}
+
+.AnimKillIconBottom
+{
+    animation-name: killIconBottom;
+    visibility: visible;
+}
+
+.AnimKillMessageCutterTop
+{
+    animation-name: killCutterTop;
+    visibility: visible;
+}
+
+.AnimKillMessageCutterBottom
+{
+    animation-name: killCutterBottom;
+    visibility: visible;
+}
+
+@keyframes 'killTop'
+{
+    0% {
+        transform: translateX(-100%) translateY(0%);
+    }
+
+    30%  {
+        transform: translateX(-30px);
+    }
+
+    85%  {
+        transform: translateX(30px);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes 'killBottom'
+{
+    0% {
+        transform: translateX(100%) translateY(0%);
+    }
+
+    30%  {
+        transform: translateX(30px);
+    }
+
+    85%  {
+        transform: translateX(-30px);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes 'killIconTop'
+{
+    0% {
+        opacity: 0;
+    }
+
+    55%  {
+        transform: rotateZ(0deg) translateX(0px);
+    }
+
+    60% {
+        opacity: 1;
+        transform: rotateZ(10deg) translateX(30px) translateY(-15px);
+    }
+
+    90%  {
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotateZ(90deg) translateX(150px) translateY(500px);
+        opacity: 0;
+    }
+}
+
+@keyframes 'killIconBottom'
+{
+    0% {
+        opacity: 0;
+    }
+
+    55%  {
+        transform: rotateZ(0deg) translateX(0px);
+    }
+
+    60% {
+        opacity: 1;
+        transform: rotateZ(-10deg) translateX(-30px) translateY(-15px);
+    }
+
+    90%  {
+        opacity: 1;
+    }
+
+    100% {
+        transform: rotateZ(-90deg) translateX(-150px) translateY(500px);
+        opacity: 0;
+    }
+}
+
+@keyframes 'killCutterTop'
+{
+    0% {
+        transform: translateX(-100%);
+        box-shadow: red -4px -4px 0px 0px;
+    }
+
+    40% {
+        transform: translateX(-100%);
+        box-shadow: red -1px -1px 8px 2px;
+    }
+
+    55% {
+        transform: translateX(120px);
+    }
+
+    60% {
+        transform: translateX(150px);
+    }
+
+    75% {
+        transform: translateX(100%);
+        box-shadow: red -2px -2px 8px 4px;
+    }
+
+    100% {
+        transform: translateX(100%);
+        box-shadow: red -4px -4px 0px 0px;
+    }
+}
+
+@keyframes 'killCutterBottom'
+{
+    0% {
+        transform: translateX(100%);
+        box-shadow: red -4px -4px 0px 0px;
+    }
+
+    40% {
+        transform: translateX(100%);
+        box-shadow: red -1px -1px 8px 2px;
+    }
+
+    55% {
+        transform: translateX(-120px);
+    }
+
+    60% {
+        transform: translateX(-150px);
+    }
+
+    75% {
+        transform: translateX(-100%);
+        box-shadow: red -2px -2px 8px 4px;
+    }
+
+    100% {
+        transform: translateX(-100%);
+        box-shadow: red -4px -4px 0px 0px;
+    }
+}

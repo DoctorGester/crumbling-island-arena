@@ -92,9 +92,20 @@ function Level:constructor()
     self.pulsePosition = 0
     self.pulseDirection = 1
     self.tick = 0
+    self.slowFactor = 1
+    self.enableRegeneration = false
 
     self:BuildIndex()
     self:SetupBackground()
+end
+
+function Level:SetSlowFactor(factor)
+    self.slowFactor = factor
+end
+
+function Level:EnableRegeneration(time)
+    self.enableRegeneration = true
+    self.regenerationTime = time
 end
 
 function Level:GetStartingDistance()
@@ -133,7 +144,7 @@ function Level:BuildIndex()
     end
 end
 
-function Level:DamageGroundInRadius(point, radius)
+function Level:DamageGroundInRadius(point, radius, source)
     -- TODO index points with cluster grid
     for _, part in ipairs(self.parts) do
         if part.velocity == 0 and part.health > 0 then
@@ -142,7 +153,7 @@ function Level:DamageGroundInRadius(point, radius)
             if distance <= radius then
                 local proportion = 1 - distance / radius
 
-                self:DamageGround(part, 60 * proportion)
+                self:DamageGround(part, 60 * proportion, source)
             end
         end
     end
@@ -154,7 +165,7 @@ function Level:DamageGroundInRadius(point, radius)
     table.insert(self.particles, particle)
 end
 
-function Level:DamageGround(part, damage)
+function Level:DamageGround(part, damage, source)
     part.health = part.health - damage
 
     if part.health <= 50 then
@@ -167,7 +178,7 @@ function Level:DamageGround(part, damage)
     end
 
     if part.health <= 0 then
-        self:LaunchPart(part)
+        self:LaunchPart(part, source)
     end
 end
 
@@ -175,6 +186,7 @@ function Level:Reset()
     self.running = true
     self.fallingParts = {}
     self.shakingParts = {}
+    self.regeneratingParts = {}
     self.distance = self:GetStartingDistance()
     self.pulsePosition = 0
     self.pulseDirection = 1
@@ -190,6 +202,9 @@ function Level:Reset()
         part.offsetZ = 0
         part.angles = Vector(0, 0, 0)
         part.angleVel = Vector(0, 0, 0)
+        part.launched = false
+        part.launchedBy = nil
+        part.launchedAt = nil
         part:SetRenderColor(255, 255, 255)
     end
 
@@ -201,9 +216,16 @@ function Level:Reset()
     GridNav:RegrowAllTrees()
 end
 
-function Level:LaunchPart(part)
+function Level:LaunchPart(part, by)
     table.insert(self.fallingParts, part)
     part.angleVel = Vector(RandomFloat(0, 2), RandomFloat(0, 2), 0)
+    part.launched = true
+    part.launchedBy = by
+    part.launchedAt = GameRules:GetGameTime()
+
+    if by and self.enableRegeneration then
+        table.insert(self.regeneratingParts, part)
+    end
 end
 
 function Level:Update()
@@ -211,7 +233,9 @@ function Level:Update()
 
     if currentIndex and self.running then
         for _, part in ipairs(currentIndex) do
-            self:LaunchPart(part)
+            if not part.launched then
+                self:LaunchPart(part)
+            end
         end
     end
 
@@ -221,6 +245,35 @@ function Level:Update()
         if shakingIndex then
             for _, part in ipairs(shakingIndex) do
                 table.insert(self.shakingParts, part)
+            end
+        end
+    end
+
+    if self.enableRegeneration then
+        local time = GameRules:GetGameTime()
+
+        for i = #self.regeneratingParts, 1, -1 do
+            local part = self.regeneratingParts[i]
+            local timeDiff = time - part.launchedAt
+
+            if timeDiff > self.regenerationTime then
+                part.velocity = part.velocity + 2
+                part.z = math.min(part.z + part.velocity, part.defaultZ)
+                part.angles = part.angles - part.angleVel / 3
+                part:SetAngles(part.angles.x, part.angles.y, part.angles.z)
+                self:UpdatePartPosition(part)
+
+                if part.z >= part.defaultZ then
+                    table.remove(self.regeneratingParts, i)
+                    part.launched = false
+                    part.launchedAt = nil
+                    part.launchedBy = nil
+                    part.health = 100
+                    part.velocity = 0
+                    part:SetRenderColor(255, 255, 255)
+                    part:SetAngles(0, 0, 0)
+                    part.angleVel = Vector(0, 0, 0)
+                end
             end
         end
     end
@@ -260,6 +313,7 @@ function Level:Update()
 
         if part.z <= -MAP_HEIGHT - 200 then
             table.remove(self.fallingParts, i)
+            part.velocity = 0
         end
     end
 
@@ -275,7 +329,9 @@ function Level:Update()
 
     if self.distance > FINISHING_DISTANCE then
         if not IsInToolsMode() then
-            self.distance = self.distance - 1
+            if self.tick % self.slowFactor == 0 then
+                self.distance = self.distance - 1
+            end
         end
     else
         self.running = false
@@ -304,6 +360,27 @@ end
 
 function Level:UpdatePartPosition(part)
     part:SetAbsOrigin(Vector(part.x + part.offsetX, part.y + part.offsetY, part.z + part.offsetZ))
+end
+
+function Level:FindReasonForFalling(hero)
+    local pos = hero:GetPos()
+    local time = GameRules:GetGameTime()
+    local closestReason = nil
+    local maxTime = -1
+
+    for _, part in ipairs(self.parts) do
+        if part.launched and part.launchedAt and part.launchedBy then
+            local len = (Vector(part.x + part.offsetX, part.y + part.offsetY, 0) - pos):Length2D()
+            if time - part.launchedAt <= 3 and len < 350 then
+                if part.launchedAt > maxTime then
+                    maxTime = part.launchedAt
+                    closestReason = part.launchedBy
+                end
+            end
+        end
+    end
+
+    return closestReason
 end
 
 function Level:SetPartOffset(part, offsetX, offsetY)

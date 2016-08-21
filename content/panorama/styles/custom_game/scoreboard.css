@@ -1,7 +1,7 @@
 #ScoreboardContainer
 {
     flow-children: down;
-    horizontal-align: center;
+    align: center top;
     transition: transform 1.0s linear 0.0ms;
 }
 
@@ -9,6 +9,12 @@
 {
     horizontal-align: center;
     flow-children: right;
+    clip: rect(-100%, -100%, 300%, 300%);
+}
+
+.ScoreboardTeamContainer
+{
+    flow-children: down;
 }
 
 .ScoreboardTeam
@@ -80,6 +86,22 @@
     margin-right: 6px;
 }
 
+.ScoreboardScoreClose
+{
+    width: 100%;
+    text-align: center;
+    font-size: 32px;
+    margin-left: 30px;
+    vertical-align: center;
+    text-shadow: 0px 0px 8px 2.0 #00FF21;
+    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+    color: white;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-name: ScoreClose;
+}
+
 #ScoreBoardGoal
 {
     horizontal-align: center;
@@ -91,6 +113,14 @@
     background-color: rgba(0, 0, 0, 100);
     /*width: 100%;*/
     text-align: center;
+}
+
+.AnimationScoreBoardScoreIncrease
+{
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    animation-name: ScoreIncrease;
 }
 
 .ConnectionStatePanel
@@ -120,4 +150,41 @@
     text-decoration: line-through;
     color: black;
     text-shadow: none;
+}
+
+@keyframes 'ScoreIncrease'
+{
+    0%
+    {
+        transform: scale3d(1, 1, 1);
+    }
+
+    65%
+    {
+        transform: scale3d(1.8, 1.8, 1.8);
+    }
+    
+    100%
+    {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+/* What the fuck, Valve? Do not remove the scaling */
+@keyframes 'ScoreClose'
+{
+    0%
+    {
+        transform: translateX(-2px) rotateZ(-3deg) scale3d(1, 1, 1);
+    }
+
+    50%
+    {
+        transform: translateX(2px) rotateZ(3deg) scale3d(1.01, 1.01, 1.01);
+    }
+    
+    100%
+    {
+        transform: translateX(-2px) rotateZ(-3deg) scale3d(1, 1, 1);
+    }
 }

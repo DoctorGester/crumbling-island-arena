@@ -388,6 +388,10 @@ function HeroesUpdated(data){
 function PlayersUpdated(data){
     $("#GameGoal").text = data.goal.toString();
 
+    if (!!data.isDeathMatch) {
+        $("#GameGoalText").text = $.Localize("#KillsToWin");
+    }
+
     var playersPanel = $("#PlayersContent");
     DeleteChildrenWithClass(playersPanel, "TeamPanel");
 
@@ -399,6 +403,10 @@ function PlayersUpdated(data){
 
         var scoreContainer = $.CreatePanel("Panel", panel, "");
         scoreContainer.AddClass("TeamScoreContainer");
+
+        if (!!data.isDeathMatch) {
+            scoreContainer.AddClass("Hidden");
+        }
 
         var scorePanel = $.CreatePanel("Label", scoreContainer, "");
         scorePanel.AddClass("TeamScore");

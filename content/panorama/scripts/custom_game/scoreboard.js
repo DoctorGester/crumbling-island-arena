@@ -2,45 +2,49 @@ var scoreboardConnectionStates = {};
 
 function PlayersUpdated(data) {
     var scoreboard = $("#Scoreboard");
-    DeleteChildrenWithClass(scoreboard, "ScoreboardTeam");
-
     scoreboardConnectionStates = {};
 
-    CreateScoreboardFromData(data.players, function(color, score, team) {
-        var panel = $.CreatePanel("Panel", scoreboard, "");
-        panel.AddClass("ScoreboardTeam");
+    CreateScoreboardFromData(data.players, function(color, score, team, teamId) {
+        var teamParent = $.P(scoreboard, null, teamId.toString(), "ScoreboardTeamContainer");
+        var panel = $.P(teamParent, null, null, "ScoreboardTeam");
         panel.style.backgroundColor = color;
 
-        var playersPanel = $.CreatePanel("Panel", panel, "");
-        playersPanel.AddClass("ScoreboardPlayers");
+        var playersPanel = $.P(panel, null, null, "ScoreboardPlayers");
 
         for (var player of team) {
-            var playerPanel = $.CreatePanel("Panel", playersPanel, "");
-            playerPanel.AddClass("ScoreboardPlayer")
-
-            var hero = $.CreatePanel("DOTAHeroImage", playerPanel, "");
+            var playerPanel = $.P(playersPanel, null, player.id, "ScoreboardPlayer");
+            var hero = $.P(playerPanel, "DOTAHeroImage", null, "ScoreboardPlayerHero");
             hero.heroname = player.hero;
             hero.heroimagestyle = "icon";
-            hero.AddClass("ScoreboardPlayerHero")
             hero.SetScaling("stretch-to-fit-y-preserve-aspect");
 
-            var namePanel = $.CreatePanel("Panel", playerPanel, "");
-            namePanel.AddClass("ScoreboardPlayerNameContainer");
+            var namePanel = $.P(playerPanel, null, null, "ScoreboardPlayerNameContainer");
+            var name = $.P(namePanel, "Label", null, "ScoreboardPlayerName");
+            name.text = player.name;
 
-            var playerName = player.name;
-            var name = $.CreatePanel("Label", namePanel, "");
-            name.AddClass("ScoreboardPlayerName");
-            name.text = playerName;
-
-            var connectionStatePanel = $.CreatePanel("Panel", namePanel, "");
-            connectionStatePanel.AddClass("ConnectionStatePanel")
+            var connectionStatePanel = $.P(namePanel, "Panel", null, "ConnectionStatePanel");
 
             scoreboardConnectionStates[player.id] = connectionStatePanel;
         }
 
-        var scorePanel = $.CreatePanel("Label", panel, "");
-        scorePanel.AddClass("ScoreboardTeamScore");
+        var scorePanel = $.P(panel, "Label", null, "ScoreboardTeamScore");
+        var prevText = scorePanel.text;
         scorePanel.text = Math.min(data.goal, score).toString();
+
+        if (data.isDeathMatch) {
+            var diff = Math.abs(data.goal - score);
+
+            if (diff < 10) {
+                var close = $.P(teamParent, "Label", null, "ScoreboardScoreClose");
+                close.SetDialogVariableInt("kills", diff);
+                close.text = $.Localize("ScoreboardClose", close);
+            }
+        }
+
+        if (prevText != scorePanel.text) {
+            scorePanel.SetHasClass("AnimationScoreBoardScoreIncrease", false);
+            scorePanel.SetHasClass("AnimationScoreBoardScoreIncrease", true);
+        }
     });
 
     UpdateScoreboardConnectionStates();
@@ -63,16 +67,7 @@ function ScheduleScoreboardUpdateConnectionStates() {
     UpdateScoreboardConnectionStates();
 }
 
-function GameInfoUpdated(gameInfo) {
-    if (gameInfo && gameInfo.goal) {
-        var label = $("#ScoreboardGoal");
-        label.SetDialogVariableInt("goal", gameInfo.goal);
-        label.text = $.Localize("#GameGoal", label);
-    }
-}
-
 DelayStateInit(GAME_STATE_ROUND_IN_PROGRESS, function () {
-    SubscribeToNetTableKey("main", "gameInfo", true, GameInfoUpdated);
     SubscribeToNetTableKey("main", "players", true, PlayersUpdated);
 
     ScheduleScoreboardUpdateConnectionStates();

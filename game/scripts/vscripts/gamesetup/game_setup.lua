@@ -36,6 +36,10 @@ function GameSetup:GetNextStageAndTime()
     end
 
     if (self:GetSelectedMode() ~= nil and self.currentStage == nil) or self.currentStage:Is("stage_mode") then
+        if self:GetSelectedMode() == "dm" then
+            return nil
+        end
+
         if self:GetSelectedMode() == "ffa" then
             if GameRules.GameMode.rankedMode ~= nil then
                 EmitAnnouncerSound("Announcer.BanMode")

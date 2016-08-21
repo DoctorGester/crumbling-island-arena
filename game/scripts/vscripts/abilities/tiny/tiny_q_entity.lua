@@ -89,7 +89,7 @@ function TinyQ:Update()
                     self.secondParticle = ParticleManager:CreateParticle("particles/tiny_q/tiny_q_ground.vpcf", PATTACH_ABSORIGIN_FOLLOW , self.unit)
                     self:EmitSound("Arena.Tiny.LandQ", pos)
 
-                    Spells:GroundDamage(self:GetPos(), 128)
+                    Spells:GroundDamage(self:GetPos(), 128, self.hero)
                 end
 
                 self:RemoveSmoke()
