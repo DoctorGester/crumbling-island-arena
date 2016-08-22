@@ -101,11 +101,15 @@ function Round:CreateHeroes(spawnPoints)
     print("Creating heroes")
     Shuffle(spawnPoints)
 
+    local teamSpawned = {}
+
     for i, player in pairs(self.players) do
         if player:IsConnected() and player.selectionLocked and player.selectedHero ~= nil then
+            local offset = (teamSpawned[player.team] or 0)
             local hero = self:LoadHeroClass(player.selectedHero)
-            local unit = CreateUnitByName(player.selectedHero, spawnPoints[self:GetTeamInverted(player.team) + 1] + RandomVector(150), true, nil, nil, player.team)
+            local unit = CreateUnitByName(player.selectedHero, spawnPoints[self:GetTeamInverted(player.team) + 1] + Vector(0, 128, 0) * offset, true, nil, nil, player.team)
             hero:SetUnit(unit)
+            hero:SetFacing(-hero:GetPos())
 
             hero:Setup()
             hero:SetOwner(player)
@@ -124,6 +128,8 @@ function Round:CreateHeroes(spawnPoints)
             self.statistics:AddPlayedHero(player, player.selectedHero)
 
             player.hero = hero
+
+            teamSpawned[player.team] = offset + 1
         else
             player.hero = nil
         end
