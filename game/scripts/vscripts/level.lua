@@ -94,6 +94,7 @@ function Level:constructor()
     self.tick = 0
     self.slowFactor = 1
     self.enableRegeneration = false
+    self.finishingDistance = FINISHING_DISTANCE
 
     self:BuildIndex()
     self:SetupBackground()
@@ -115,6 +116,10 @@ function Level:GetStartingDistance()
     end
 
     return 3000
+end
+
+function Level:SetFinishingDistance(d)
+    self.finishingDistance = d
 end
 
 function Level:BuildIndex()
@@ -245,7 +250,7 @@ function Level:Update()
         end
     end
 
-    if self.distance - 64 > FINISHING_DISTANCE then
+    if self.distance - 64 > self.finishingDistance then
         local shakingIndex = self.indexedParts[self.distance - 64]
 
         if shakingIndex then
@@ -372,7 +377,7 @@ function Level:Update()
         end
     end
 
-    if self.distance > FINISHING_DISTANCE then
+    if self.distance > self.finishingDistance then
         if not IsInToolsMode() then
             if self.tick % self.slowFactor == 0 then
                 self.distance = self.distance - 1

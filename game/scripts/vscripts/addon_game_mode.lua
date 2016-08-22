@@ -1025,6 +1025,7 @@ function GameMode:OnGameInProgress()
         self.deathmatch:Activate(GameMode, self)
         self.level:SetSlowFactor(8)
         self.level:EnableRegeneration(10, 20)
+        self.level:SetFinishingDistance(1200)
 
         self:RegisterThinker(1,
             function()
