@@ -205,7 +205,7 @@
 
 		"undying_DescQ" "Slow, increase your health"
 		"undying_DescW" "Rooting wave"
-		"undying_DescE" "Tombstone, slow + damage in AOE"
+		"undying_DescE" "Tombstone, damage in AOE"
 		"undying_DescR" "Permanently transform"
 
 		"medusa_DescQ" "Damage in an AOE"
@@ -486,7 +486,7 @@
 		"AbilityTooltip_undying_q_sub"					"Attack enemies in front of you"
 		"AbilityTooltip_undying_w"						"Launch a rooting and damaging wave"
 		"AbilityTooltip_undying_w_sub"					"Jump to the target area, stunning enemies on landing"
-		"AbilityTooltip_undying_e"						"Summon a Tombstone, which slows enemies and damages them for being in the area for 2.5 seconds"
+		"AbilityTooltip_undying_e"						"Summon a Tombstone, which damages enemies for being in the area for 2.5 seconds"
 		"AbilityTooltip_undying_r"						"Permanently transform, setting your health to 3, losing all abilities and gaining two new"
 
 		"AbilityTooltip_dusa_q"							"Launch a barrage of arrows, damaging all enemies in the target area"
