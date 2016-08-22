@@ -117,7 +117,7 @@
 {
     flow-children: down;
     width: 127px;
-    height: 127px;
+    height: 100px;
 
     background-image: url("file://{images}/custom_game/banner.png");
     background-repeat: no-repeat;
@@ -125,6 +125,7 @@
     background-size: 100% 100%;
 
     margin-right: 8px;
+    margin-top: 2px;
 }
 
 #VictoryText
