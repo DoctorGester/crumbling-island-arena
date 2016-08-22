@@ -9,7 +9,6 @@
 {
     horizontal-align: center;
     flow-children: right;
-    clip: rect(-100%, -100%, 300%, 300%);
 }
 
 .ScoreboardTeamContainer
@@ -206,21 +205,20 @@
     }
 }
 
-/* What the fuck, Valve? Do not remove the scaling */
 @keyframes 'ScoreClose'
 {
     0%
     {
-        transform: translateX(-2px) rotateZ(-3deg) scale3d(1, 1, 1);
+        transform: translateX(-2px) rotateZ(-3deg);
     }
 
     50%
     {
-        transform: translateX(2px) rotateZ(3deg) scale3d(1.01, 1.01, 1.01);
+        transform: translateX(2px) rotateZ(3deg);
     }
     
     100%
     {
-        transform: translateX(-2px) rotateZ(-3deg) scale3d(1, 1, 1);
+        transform: translateX(-2px) rotateZ(-3deg);
     }
 }
