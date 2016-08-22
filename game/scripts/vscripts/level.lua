@@ -448,9 +448,9 @@ function Level:SetupBackground()
         return
     end
     
-    local effect = ParticleManager:CreateParticle("particles/dire_fx/bad_ancient_ambient.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity())
-    ParticleManager:SetParticleControl(effect, 0, ancient:GetAbsOrigin())
-    ParticleManager:ReleaseParticleIndex(effect)
+    --local effect = ParticleManager:CreateParticle("particles/dire_fx/bad_ancient_ambient.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity())
+    --ParticleManager:SetParticleControl(effect, 0, ancient:GetAbsOrigin())
+    --ParticleManager:ReleaseParticleIndex(effect)
 
     for _, ent in pairs(Entities:FindAllByClassname("npc_dota_tower")) do
         ent:AddNewModifier(ent, nil, "modifier_tower", {})
