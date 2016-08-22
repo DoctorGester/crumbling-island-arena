@@ -68,6 +68,8 @@ function Precache(context)
     PrecacheResource("soundfile", "soundevents/custom_sounds.vsndevts", context)
     PrecacheResource("soundfile", "soundevents/voscripts/game_sounds_vo_announcer.vsndevts", context)
 
+    PrecacheResource("model", "models/items/lycan/wolves/hunter_kings_wolves/hunter_kings_wolves.vmdl", context)
+
     PrecacheUnitByNameSync("wk_skeleton", context)
     PrecacheUnitByNameSync("wk_zombie", context)
     PrecacheUnitByNameSync("wk_archer", context)
