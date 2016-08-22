@@ -245,7 +245,7 @@
 		"Info" "info"
 		"GameName" "Crumbling Island Arena"
 		"GameTip" "Tip: {s:tip}"
-		"GameTip0" "New hero every Saturday"
+		"GameTip0" "Try not to stand on the red ground"
 		"GameTip1" "You can destroy terrain with your abilities"
 		"GameTip2" "There are 2 ranked and 1 unranked map"
 		"GameTip3" "You can use twitch emotes in chat (after game mode and teams are selected)"
