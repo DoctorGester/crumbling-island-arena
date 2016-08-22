@@ -222,7 +222,7 @@
 		"RandomHero" "случайный выбор"
 		"LockedHeroes" "Недоступны первые 3 раунда"
 		"RankAward" "Награда за 1 ранг ({d:season} сезон)"
-		"GameGoal" "Цель: {d:goal}"
+		"GameGoal" "Цель"
 		"PointsToWin" "максимум очков"
 		"SurviveToWin" "Выживи и победишь!"
 		"Survive" "Выживи!"

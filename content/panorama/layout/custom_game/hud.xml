@@ -31,7 +31,7 @@
             </Panel>
             <Panel id="ScoreboardContainer" hittest="false" hittestchildren="false">
                 <Panel id="VictoryPanel">
-                    <Label id="VictoryText" text="#Goal"/>
+                    <Label id="VictoryText" text="#GameGoal"/>
                     <Label id="VictoryGoal" text="30"/>
                 </Panel>
                 <Panel id="Scoreboard"/>
