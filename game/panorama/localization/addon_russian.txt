@@ -320,7 +320,7 @@
 		"AbilityTooltip_earth_spirit_q"					"После короткой задержки, уронить <font color=\"#3A9B00\"><b>Копию</b></font> в указанную область"
 		"AbilityTooltip_earth_spirit_w"					"Укажите на <font color=\"#3A9B00\"><b>Копию</b></font>. Переместитесь к ней, если уже стоите на <font color=\"#3A9B00\"><b>Копии</b></font>. Если нет, притащите её к себе"
 		"AbilityTooltip_earth_spirit_e"					"Короткий прыжок. Можно указать на <font color=\"#3A9B00\"><b>Копию</b></font> и забраться на неё, получив неуязвимость"
-		"AbilityTooltip_earth_spirit_r"					"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>Укажите на <font color=\"#3A9B00\"><b>Копию</b></font>. После короткой задержки поменяйтесь с ней местами. Здоровье после применения - здоровье <font color=\"#3A9B00\"><b>Копии</b></font> * 3"
+		"AbilityTooltip_earth_spirit_r"					"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>Укажите на <font color=\"#3A9B00\"><b>Копию</b></font>. После короткой задержки поменяйтесь с ней местами. Здоровье после применения - здоровье <font color=\"#3A9B00\"><b>Копии</b></font> * 2"
 
 		"AbilityTooltip_cm_q"							"Запустить <font color=\"skyblue\"><b>Замораживающий</b></font> снаряд<br><br>Уже <font color=\"skyblue\"><b>Замороженные</b></font> враги получают урон"
 		"AbilityTooltip_cm_w"							"Выберите две точки<br>Враги на выбранной линии <font color=\"skyblue\"><b>Заморожены</b></font><br><br>Уже <font color=\"skyblue\"><b>Замороженные</b></font> враги получают урон"
