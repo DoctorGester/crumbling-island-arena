@@ -22,36 +22,29 @@
     flow-children: right;
     horizontal-align: center;
     vertical-align: top;
-    width: 120px;
-    height: fit-children;
     border-radius: 3px;
     transition-property: opacity;
     transition-duration: 0.1s;
     margin: 4px;
 }
 
-.ScoreboardTeam:hover
-{
-    opacity: 0.9;
-}
-
 .ScoreboardPlayers
 {
-    flow-children: down;
-    width: 60px;
+    flow-children: right;
+    height: 100%;
+    margin-left: 8px;
 }
 
 .ScoreboardPlayer
 {
-    width: 100%;
-    padding: 5px;
+    vertical-align: center;
+    margin: 3px;
     flow-children: right;
 }
 
 .ScoreboardPlayerHero
 {
     align: left center;
-    margin-left: 8px;
     width: 32px;
     height: 32px;
 }
@@ -72,6 +65,11 @@
     color: #CCB966;
     white-space: nowrap;
     text-align: center;
+}
+
+.ScoreboardTeamScoreContainer
+{
+    width: 60px;
 }
 
 .ScoreboardTeamScore
@@ -130,7 +128,7 @@
 
 #VictoryText
 {
-    margin-top: 10px;
+    margin-top: 4px;
     font-size: 16px;
     font-weight: bold;
     color: gold;

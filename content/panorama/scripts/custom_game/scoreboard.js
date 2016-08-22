@@ -5,7 +5,7 @@ function PlayersUpdated(data) {
     scoreboardConnectionStates = {};
 
     CreateScoreboardFromData(data.players, function(color, score, team, teamId) {
-        var teamParent = $.P(scoreboard, null, teamId.toString(), "ScoreboardTeamContainer");
+        var teamParent = $.P(scoreboard, null, "T" + teamId.toString(), "ScoreboardTeamContainer");
         var panel = $.P(teamParent, null, null, "ScoreboardTeam");
         panel.style.backgroundColor = color;
 
@@ -23,7 +23,8 @@ function PlayersUpdated(data) {
             scoreboardConnectionStates[player.id] = connectionStatePanel;
         }
 
-        var scorePanel = $.P(panel, "Label", null, "ScoreboardTeamScore");
+        var scoreContainer = $.P(panel, "Panel", null, "ScoreboardTeamScoreContainer");
+        var scorePanel = $.P(scoreContainer, "Label", null, "ScoreboardTeamScore");
         var prevText = scorePanel.text;
         scorePanel.text = Math.min(data.goal, score).toString();
 
