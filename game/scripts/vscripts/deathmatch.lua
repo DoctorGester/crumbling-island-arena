@@ -40,7 +40,7 @@ function DeathMatch:OnRespawn(args)
     local player = self.players[args.PlayerID]
     local hero = args.hero
 
-    if player.hero and not player.hero:Alive() then
+    if self:IsPlayerDead(player) then
         local heroData = self.availableHeroes[hero]
 
         if not heroData or (self:AreHardHeroesLocked() and heroData.difficulty == "hard") then
@@ -135,7 +135,7 @@ end
 function DeathMatch:OnRandom(args)
     local player = self.players[args.PlayerID]
 
-    if player.hero and not player.hero:Alive() then
+    if self:IsPlayerDead(player) then
         local allHeroes = {}
 
         for hero, data in pairs(self.availableHeroes) do
@@ -167,6 +167,10 @@ end
 function DeathMatch:OnRoundEnd(round)
     GameRules.GameMode.generalStatistics:Add(round.statistics)
     GameRules.GameMode:EndGame()
+end
+
+function DeathMatch:IsPlayerDead(player)
+    return (not player.hero) or (not player.hero:Alive())
 end
 
 function DeathMatch:Activate(GameMode, inst)
@@ -221,7 +225,7 @@ function DeathMatch:Activate(GameMode, inst)
             playerData.team = player.team
             playerData.color = self.TeamColors[player.team]
             playerData.score = player.score
-            playerData.isDead = (not player.hero) or (not player.hero:Alive())
+            playerData.isDead = self.deathmatch:IsPlayerDead(player)
 
             table.insert(players, playerData)
         end
