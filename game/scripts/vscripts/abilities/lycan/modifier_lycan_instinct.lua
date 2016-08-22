@@ -57,7 +57,7 @@ function modifier_lycan_instinct:DeclareFunctions()
 end
 
 function modifier_lycan_instinct:GetModifierMoveSpeedBonus_Percentage(params)
-    return self:GetStackCount() * 30
+    return self:GetStackCount() * 50
 end
 
 function modifier_lycan_instinct:IsHidden()
