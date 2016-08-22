@@ -60,12 +60,9 @@ function ProjectilePudgeQ:CollideWith(target)
 
             target:EmitSound("Arena.Pudge.HitQ.Voice")
         end
-    else
-        self.hero:RemoveModifier("modifier_pudge_hook_self")
-        self.hero:GetUnit():RemoveGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
-    end
 
-    self:Destroy()
+        self:Destroy()
+    end
 end
 
 function ProjectilePudgeQ:CollidesWith(source)
