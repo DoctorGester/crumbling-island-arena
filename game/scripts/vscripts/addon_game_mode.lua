@@ -1062,7 +1062,7 @@ function GameMode:OnGameInProgress()
     )
 
     if self:IsDeathMatch() then
-        self.gameGoal = PlayerResource:GetPlayerCount() * 4
+        self.gameGoal = PlayerResource:GetPlayerCount() * 3
     else
         self.gameGoal = PlayerResource:GetPlayerCount() * 6 * self.gameSetup:GetPlayersInTeam()
     end

@@ -18,11 +18,7 @@ function PlayersUpdated(data) {
             hero.heroimagestyle = "icon";
             hero.SetScaling("stretch-to-fit-y-preserve-aspect");
 
-            var namePanel = $.P(playerPanel, null, null, "ScoreboardPlayerNameContainer");
-            var name = $.P(namePanel, "Label", null, "ScoreboardPlayerName");
-            name.text = player.name;
-
-            var connectionStatePanel = $.P(namePanel, "Panel", null, "ConnectionStatePanel");
+            var connectionStatePanel = $.P(playerPanel, "Panel", null, "ConnectionStatePanel");
 
             scoreboardConnectionStates[player.id] = connectionStatePanel;
         }
@@ -34,7 +30,7 @@ function PlayersUpdated(data) {
         if (data.isDeathMatch) {
             var diff = Math.abs(data.goal - score);
 
-            if (diff < 10) {
+            if (diff < 5) {
                 var close = $.P(teamParent, "Label", null, "ScoreboardScoreClose");
                 close.SetDialogVariableInt("kills", diff);
                 close.text = $.Localize("ScoreboardClose", close);
@@ -46,6 +42,8 @@ function PlayersUpdated(data) {
             scorePanel.SetHasClass("AnimationScoreBoardScoreIncrease", true);
         }
     });
+
+    $("#VictoryGoal").text = data.goal.toString();
 
     UpdateScoreboardConnectionStates();
 }

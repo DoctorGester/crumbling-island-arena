@@ -1,6 +1,6 @@
 #ScoreboardContainer
 {
-    flow-children: down;
+    flow-children: right;
     align: center top;
     transition: transform 1.0s linear 0.0ms;
 }
@@ -22,8 +22,7 @@
     flow-children: right;
     horizontal-align: center;
     vertical-align: top;
-    opacity: 0.7;
-    width: 220px;
+    width: 120px;
     height: fit-children;
     border-radius: 3px;
     transition-property: opacity;
@@ -39,7 +38,7 @@
 .ScoreboardPlayers
 {
     flow-children: down;
-    width: 160px;
+    width: 60px;
 }
 
 .ScoreboardPlayer
@@ -90,8 +89,7 @@
 {
     width: 100%;
     text-align: center;
-    font-size: 32px;
-    margin-left: 30px;
+    font-size: 24px;
     vertical-align: center;
     text-shadow: 0px 0px 8px 2.0 #00FF21;
     font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
@@ -113,6 +111,44 @@
     background-color: rgba(0, 0, 0, 100);
     /*width: 100%;*/
     text-align: center;
+}
+
+#VictoryPanel
+{
+    flow-children: down;
+    width: 127px;
+    height: 127px;
+
+    background-image: url("file://{images}/custom_game/banner.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: 100% 100%;
+
+    margin-right: 8px;
+}
+
+#VictoryText
+{
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: gold;
+    text-shadow: 0px 0px 2px 2.0 black;
+    text-align: center;
+    width: 100%;
+    text-transform: uppercase;
+    text-overflow: clip;
+}
+
+#VictoryGoal
+{
+    horizontal-align: center;
+    font-weight: bold;
+    font-size: 40px;
+    color: white;
+    text-shadow: 0px 0px 2px 2.0 black;
+    color: gradient( linear, 0% 0%, 0% 100%, from( #c88423 ), color-stop( 0.25, #c88423 ), color-stop( 0.5, #fffb84 ), color-stop( 0.75, #c88423 ), to( #9a6717 ) );
+    text-overflow: clip;
 }
 
 .AnimationScoreBoardScoreIncrease

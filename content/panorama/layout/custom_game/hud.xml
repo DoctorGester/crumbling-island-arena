@@ -30,6 +30,10 @@
             <Panel id="DebugPanel" hittest="false">
             </Panel>
             <Panel id="ScoreboardContainer" hittest="false" hittestchildren="false">
+                <Panel id="VictoryPanel">
+                    <Label id="VictoryText" text="#Goal"/>
+                    <Label id="VictoryGoal" text="30"/>
+                </Panel>
                 <Panel id="Scoreboard"/>
             </Panel>
             <Panel id="HeroDetails">
