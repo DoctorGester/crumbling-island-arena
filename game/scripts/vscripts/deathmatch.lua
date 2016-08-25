@@ -28,14 +28,6 @@ function DeathMatch:Update()
     end
 end
 
-function DeathMatch:SendKillMessageToTeam(team, victim)
-    CustomGameEventManager:Send_ServerToTeam(team, "kill_message", { victim = victim, token = "KMNormal" })
-end
-
-function DeathMatch:SendFirstBloodMessage(victim)
-    CustomGameEventManager:Send_ServerToAllClients("kill_message", { victim = victim, token = "KMFirstBlood", sound = "UI.FirstBlood" })
-end
-
 function DeathMatch:OnRespawn(args)
     local player = self.players[args.PlayerID]
     local hero = args.hero
@@ -181,9 +173,9 @@ function DeathMatch:Activate(GameMode, inst)
             if not self.firstBloodBy then
                 self.firstBloodBy = source
                 self.round.statistics:IncreaseFBs(source.owner)
-                self.deathmatch:SendFirstBloodMessage(victim:GetName())
+                self:SendFirstBloodMessage(victim:GetName())
             else
-                self.deathmatch:SendKillMessageToTeam(source.owner.team, victim:GetName())
+                self:SendKillMessageToTeam(source.owner.team, victim:GetName())
             end
 
             source.owner.score = source.owner.score + 1

@@ -471,6 +471,14 @@ function GameMode:GetTeamScore(team)
     return score
 end
 
+function GameMode:SendKillMessageToTeam(team, victim)
+    CustomGameEventManager:Send_ServerToTeam(team, "kill_message", { victim = victim, token = "KMNormal" })
+end
+
+function GameMode:SendFirstBloodMessage(victim)
+    CustomGameEventManager:Send_ServerToAllClients("kill_message", { victim = victim, token = "KMFirstBlood", sound = "UI.FirstBlood" })
+end
+
 function GameMode:RecordKill(victim, source, fell)
     if victim.owner.team ~= source.owner.team then
         self.round.statistics:IncreaseKills(source.owner)
@@ -478,7 +486,17 @@ function GameMode:RecordKill(victim, source, fell)
         if not self.firstBloodBy then
             self.firstBloodBy = source
             self.round.statistics:IncreaseFBs(source.owner)
+            self:SendFirstBloodMessage(victim:GetName())
+        else
+            self:SendKillMessageToTeam(source.owner.team, victim:GetName())
         end
+    end
+
+    if not fell then
+        FX("particles/units/heroes/hero_axe/axe_culling_blade_kill.vpcf", PATTACH_ABSORIGIN, source, {
+            cp4 = victim:GetPos(),
+            release = true
+        })
     end
 
      CustomGameEventManager:Send_ServerToAllClients("kill_log_entry", {
