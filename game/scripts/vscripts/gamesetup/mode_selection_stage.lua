@@ -57,7 +57,7 @@ function ModeSelectionStage:FindSelectedMode()
     for mode, params in pairs(self.modes) do
         local votes = self:CountInput(mode)
 
-        if (votes >= players / 2 and params.playersInTeam > 1) or (votes > players / 2 and params.playersInTeam == 1) then
+        if votes >= players / 2 then
             return mode
         end
     end
@@ -80,7 +80,7 @@ function ModeSelectionStage:ValidateInput(player, input)
 end
 
 function ModeSelectionStage:GetDefaultPlayerInput(player)
-    return "dm"
+    return "ffa"
 end
 
 function ModeSelectionStage:FinalizeResults()

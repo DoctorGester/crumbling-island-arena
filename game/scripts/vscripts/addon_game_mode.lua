@@ -262,8 +262,8 @@ function GameMode:OnGameSetup()
     end
 
     local modes = {
-        ["dm"] = { playersInTeam = 1, announce = "announcer_announcer_type_death_match", spawns = roundSpawnPointsBig },
         ["ffa"] = { playersInTeam = 1, announce = "announcer_ann_custom_mode_06", spawns = roundSpawnPointsBig },
+        ["dm"] = { playersInTeam = 1, announce = "announcer_announcer_type_death_match", spawns = roundSpawnPointsBig },
         ["2v2"] = { playersInTeam = 2, announce = "announcer_ann_custom_mode_07", spawns = roundSpawnPoints },
         ["3v3"] = { playersInTeam = 3, announce = "announcer_ann_custom_mode_07", spawns = teamSpawnPoints }
     }
@@ -285,7 +285,8 @@ function GameMode:OnGameSetup()
     end
 
     if amount == 3 or amount == 5 then
-        forcedMode = "dm"
+        modes["2v2"] = nil
+        modes["3v3"] = nil
     end
 
     if amount <= 2 then
