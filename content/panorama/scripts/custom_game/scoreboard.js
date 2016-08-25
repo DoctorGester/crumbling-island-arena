@@ -28,14 +28,12 @@ function PlayersUpdated(data) {
         var prevText = scorePanel.text;
         scorePanel.text = Math.min(data.goal, score).toString();
 
-        if (data.isDeathMatch) {
-            var diff = Math.abs(data.goal - score);
+        var diff = Math.abs(data.goal - score);
 
-            if (diff < 5) {
-                var close = $.P(teamParent, "Label", null, "ScoreboardScoreClose");
-                close.SetDialogVariableInt("kills", diff);
-                close.text = $.Localize("ScoreboardClose", close);
-            }
+        if (diff < 5) {
+            var close = $.P(teamParent, "Label", null, "ScoreboardScoreClose");
+            close.SetDialogVariableInt("kills", diff);
+            close.text = $.Localize("ScoreboardClose", close);
         }
 
         if (prevText != scorePanel.text) {

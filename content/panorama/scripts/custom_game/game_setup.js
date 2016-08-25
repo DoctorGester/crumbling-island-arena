@@ -113,10 +113,6 @@ function GameModesChanges(data) {
     for (var key in data) {
         var mode = data[key];
 
-        if (mode == "ffa") {
-            continue;
-        }
-        
         var button = $.CreatePanel("Button", buttons, mode + "Button");
         button.AddClass("VotingButton");
 
