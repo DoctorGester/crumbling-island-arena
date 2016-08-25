@@ -95,6 +95,7 @@ function Level:constructor()
     self.slowFactor = 1
     self.enableRegeneration = false
     self.finishingDistance = FINISHING_DISTANCE
+    self.lastRegenerationAt = nil
 
     self:BuildIndex()
     self:SetupBackground()
@@ -198,6 +199,7 @@ function Level:Reset()
     self.distance = self:GetStartingDistance()
     self.pulsePosition = 0
     self.pulseDirection = 1
+    self.lastRegenerationAt = nil
 
     for _, part in ipairs(self.parts) do
         part:SetAbsOrigin(Vector(part.x, part.y, part.defaultZ))
@@ -213,6 +215,7 @@ function Level:Reset()
         part.launched = false
         part.launchedBy = nil
         part.launchedAt = 0
+        part.regeneratesAt = nil
         part:SetRenderColor(255, 255, 255)
     end
 
@@ -233,9 +236,6 @@ function Level:LaunchPart(part, by)
 
     if by and self.enableRegeneration then
         table.insert(self.regeneratingParts, part)
-        part.offsetX = 0
-        part.offsetY = 0
-        part.offsetZ = 0
     end
 end
 
@@ -260,31 +260,49 @@ function Level:Update()
         end
     end
 
-    if self.enableRegeneration then
-        local time = GameRules:GetGameTime()
+    local time = GameRules:GetGameTime()
 
+    if self.enableRegeneration then
         for i = #self.regeneratingParts, 1, -1 do
             local part = self.regeneratingParts[i]
             local timeDiff = time - part.launchedAt
             local timeScaled = self.distance / self:GetStartingDistance() * self.regenerationTimeScaling
 
             if timeDiff > self.regenerationTimeBase + timeScaled then
-                part.velocity = part.velocity + 2
-                part.z = math.min(part.z + part.velocity, part.defaultZ)
-                part.angles = part.angles - part.angleVel / 3
-                part:SetAngles(part.angles.x, part.angles.y, part.angles.z)
-                self:UpdatePartPosition(part)
+                if part.regeneratesAt == nil then
+                    if self.lastRegenerationAt and self.lastRegenerationAt >= time then
+                        part.regeneratesAt = self.lastRegenerationAt + 0.1
+                    else
+                        part.regeneratesAt = time
+                    end
 
-                if part.z >= part.defaultZ then
-                    table.remove(self.regeneratingParts, i)
-                    part.launched = false
-                    part.launchedAt = 0
-                    part.launchedBy = nil
-                    part.health = 100
-                    part.velocity = 0
-                    part:SetRenderColor(255, 255, 255)
-                    part:SetAngles(0, 0, 0)
-                    part.angleVel = Vector(0, 0, 0)
+                    part.regenerateFromAngles = Vector(part.angles.x, part.angles.y, part.angles.z)
+                end
+
+                self.lastRegenerationAt = part.regeneratesAt
+
+                if part.regeneratesAt ~= nil and time > part.regeneratesAt then
+                    local progress = EaseOutCircular(math.min(time - part.regeneratesAt, 1.5), 0, 1, 1.5)
+
+                    part.velocity = part.velocity + 2
+                    part.z = math.min(part.z + part.velocity, part.defaultZ)
+                    part.z = progress * MAP_HEIGHT - MAP_HEIGHT
+                    part.angles = SplineVectors(part.regenerateFromAngles, Vector(0, 0, 0), progress)--part.angles - part.angleVel / 3
+                    part:SetAngles(part.angles.x, part.angles.y, part.angles.z)
+                    self:UpdatePartPosition(part)
+
+                    if time - part.regeneratesAt >= 1.5 then
+                        table.remove(self.regeneratingParts, i)
+                        part.launched = false
+                        part.launchedAt = 0
+                        part.launchedBy = nil
+                        part.health = 100
+                        part.velocity = 0
+                        part:SetRenderColor(255, 255, 255)
+                        part:SetAngles(0, 0, 0)
+                        part.angleVel = Vector(0, 0, 0)
+                        part.regeneratesAt = nil
+                    end
                 end
             end
         end
@@ -364,6 +382,9 @@ function Level:Update()
         if part.z <= -MAP_HEIGHT - 200 then
             table.remove(self.fallingParts, i)
             part.velocity = 0
+            part.offsetX = 0
+            part.offsetY = 0
+            part.offsetZ = 0
         end
     end
 

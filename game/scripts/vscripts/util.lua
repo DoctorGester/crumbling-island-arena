@@ -43,6 +43,49 @@ function Bezier(t, p0, p1, p2, p3)
     return p
 end
 
+function EaseOutCircular(t, b, c, d)
+    t = t / d;
+    t = t - 1;
+    return c * math.sqrt(1 - t * t) + b;
+end
+
+function EaseOutBounce(t, b, c, d)
+    t = t / d
+    if (t < (1/2.75)) then
+        return c*(7.5625*t*t) + b;
+    elseif (t < (2/2.75)) then
+        t = t - (1.5/2.75)
+        return c*(7.5625*t*t + 0.75) + b
+    elseif (t < (2.5/2.75)) then
+        t = t - (2.25/2.75)
+        return c*(7.5625*t*t + 0.9375) + b
+    else
+        t = t- (2.625/2.75)
+        return c*(7.5625*(t)*t + 0.984375) + b
+    end
+end
+
+function EaseOutElastic(t, b, c, d)
+    local p = 0.3
+    local v = (2 ^ (-10*t)) * math.sin((t-p/4)*(2*math.pi)/p) + 1
+    return v * (t / d) * c + b
+end
+
+function EaseInOutBack(t, b, c, d)
+    local s = 1.70158;
+    local v = nil
+    local pos = t / d / 0.5
+
+    if(pos < 1) then
+        v = 0.5*(pos*pos*(((s*(1.525))+1)*pos -s))
+    else
+        pos = pos - 2
+        v = 0.5*(pos*pos*(((s*(1.525))+1)*pos +s) +2);
+    end
+
+    return v * (t / d) * c + b
+end
+
 function FX(path, attach, parent, options)
     if parent.GetUnit then
         parent = parent:GetUnit()
