@@ -90,10 +90,16 @@
     text-shadow: 0px 0px 8px 2.0 black;
     font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
     color: white;
-    animation-duration: 0.5s;
+    animation-duration: 0.35s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-name: ScoreClose;
+}
+
+.ScoreboardScoreSurvive
+{
+    text-shadow: red 0px 0px 4px 4px;
+    font-size: 28px;
 }
 
 #ScoreBoardGoal

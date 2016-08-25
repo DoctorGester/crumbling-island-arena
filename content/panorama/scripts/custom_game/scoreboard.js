@@ -30,10 +30,16 @@ function PlayersUpdated(data) {
 
         var diff = Math.abs(data.goal - score);
 
-        if (diff < 5) {
+        if (diff <= 6) {
             var close = $.P(teamParent, "Label", null, "ScoreboardScoreClose");
+            var survive = data.goal == score && !data.isDeathMatch;
             close.SetDialogVariableInt("kills", diff);
             close.text = $.Localize("ScoreboardClose", close);
+            close.SetHasClass("ScoreboardScoreSurvive", survive);
+
+            if (survive) {
+                close.text = $.Localize("#Survive");
+            }
         }
 
         if (prevText != scorePanel.text) {
