@@ -6,7 +6,7 @@ function ursa_w:OnSpellStart()
     local pos = hero:GetPos()
 
     hero:AreaEffect({
-        filter = Filters.Area(pos, 300),
+        filter = Filters.Area(pos, 350),
         filterProjectiles = true,
         modifier = { name = "modifier_stunned_lua", duration = 1.3, ability = self }
     })
