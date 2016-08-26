@@ -4,6 +4,7 @@
     [
         "main",
         "gameSetup",
-        "ranks"
+        "ranks",
+        "wearables"
     ]
 }

@@ -219,12 +219,43 @@ function Hero:Update()
 
     local invisLevel = 0.0
     local modelChanged = self:HasModelChanged()
+    local statusFx = nil
+    local maxPriority = 0
+    local minCreationTime = math.huge
 
     for _, modifier in pairs(self:AllModifiers()) do
         if modifier.GetModifierInvisibilityLevel then
             invisLevel = math.max(invisLevel, math.min(modifier:GetModifierInvisibilityLevel(), 1.0))
         end
+
+        if modifier.GetStatusEffectName then
+            local priority = 0
+
+            if modifier.StatusEffectPriority then
+                priority = modifier:StatusEffectPriority()
+            end
+
+            if priority >= maxPriority then
+                local creationTime = modifier:GetCreationTime()
+
+                if priority == maxPriority then
+                    if creationTime < minCreationTime then
+                        minCreationTime = creationTime
+
+                        statusFx = modifier:GetStatusEffectName()
+                    end
+                else
+                    statusFx = modifier:GetStatusEffectName()
+                end
+
+                maxPriority = priority
+                minCreationTime = creationTime
+            end
+        end
     end
+
+    local statusFxChanged = self.lastStatusFx ~= statusFx
+    self.lastStatusFx = statusFx
 
     for _, wearable in pairs(self.wearables) do
         local visuals = wearable:FindModifierByName("modifier_wearable_visuals")
@@ -237,6 +268,19 @@ function Hero:Update()
             end
 
             visuals:SetStackCount(count)
+        end
+
+        if statusFxChanged then
+            local visualsStatusFx = wearable:FindModifierByName("modifier_wearable_visuals_status_fx")
+
+            if visualsStatusFx ~= nil then
+                visualsStatusFx:Destroy()
+            end
+
+            if statusFx ~= nil then
+                CustomNetTables:SetTableValue("wearables", tostring(wearable:GetEntityIndex()), { fx = statusFx })
+                wearable:AddNewModifier(wearable, nil, "modifier_wearable_visuals_status_fx", {})
+            end
         end
     end
 end

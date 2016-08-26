@@ -4,7 +4,7 @@ function modifier_jugger_r:GetStatusEffectName()
     return "particles/status_fx/status_effect_omnislash.vpcf"
 end
 
-function modifier_jugger_r:GetStatusEffectPriority()
+function modifier_jugger_r:StatusEffectPriority()
     return 10
 end
 

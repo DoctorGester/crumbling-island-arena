@@ -56,3 +56,13 @@ if IsClient() then
         return stacks / 100
     end
 end
+
+modifier_wearable_visuals_status_fx = class({})
+
+function modifier_wearable_visuals_status_fx:GetStatusEffectName()
+    return CustomNetTables:GetTableValue("wearables", tostring(self:GetParent():GetEntityIndex())).fx
+end
+
+function modifier_wearable_visuals_status_fx:StatusEffectPriority()
+    return 1
+end

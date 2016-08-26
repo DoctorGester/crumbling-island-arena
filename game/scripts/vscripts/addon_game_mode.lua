@@ -412,6 +412,7 @@ function GameMode:InitModifiers()
     LinkLuaModifier("modifier_tower", "abilities/modifier_tower", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_creep", "abilities/modifier_creep", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_wearable_visuals", "abilities/modifier_wearable_visuals", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_wearable_visuals_status_fx", "abilities/modifier_wearable_visuals", LUA_MODIFIER_MOTION_NONE)
 end
 
 function GameMode:SetupMode()
