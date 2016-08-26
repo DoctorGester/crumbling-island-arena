@@ -483,11 +483,16 @@ function GameMode:RecordKill(victim, source, fell)
     if victim.owner.team ~= source.owner.team then
         self.round.statistics:IncreaseKills(source.owner)
 
+        local heroCount = self:CountHeroes()
+
         if not self.firstBloodBy then
             self.firstBloodBy = source
             self.round.statistics:IncreaseFBs(source.owner)
-            self:SendFirstBloodMessage(victim:GetName())
-        else
+
+            if heroCount > 3 then
+                self:SendFirstBloodMessage(victim:GetName())
+            end
+        elseif heroCount > 3 then
             self:SendKillMessageToTeam(source.owner.team, victim:GetName())
         end
     end
@@ -575,6 +580,18 @@ function GameMode:CheckEveryoneAbandoned()
     end
 end
 
+function GameMode:CountHeroes()
+    local amount = 0
+
+    for _, player in pairs(self.Players) do
+        if player.hero ~= nil then
+            amount = amount + 1
+        end
+    end
+
+    return amount
+end
+
 function GameMode:OnRoundEnd(round)
     local playersInTeam = self.gameSetup:GetPlayersInTeam()
     local winner = round.winner
@@ -602,11 +619,9 @@ function GameMode:OnRoundEnd(round)
     end
 
     local connectedCounts = {}
-    local totalConnected = 0
 
     for _, player in pairs(self.Players) do
         if player:IsConnected() and player.hero then
-            totalConnected = totalConnected + 1
             connectedCounts[player.team] = (connectedCounts[player.team] or 0) + 1
         end
     end
@@ -619,7 +634,7 @@ function GameMode:OnRoundEnd(round)
         end
     end
 
-    if totalConnected > 3 then
+    if self:CountHeroes() > 3 then
         if self.firstBloodBy then
             local firstBloodPlayer = self.firstBloodBy.owner
 
