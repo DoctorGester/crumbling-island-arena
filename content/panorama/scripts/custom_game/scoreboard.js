@@ -23,6 +23,8 @@ function PlayersUpdated(data) {
             scoreboardConnectionStates[player.id] = connectionStatePanel;
         }
 
+        score = Math.min(data.goal, score);
+
         var scoreContainer = $.P(panel, "Panel", null, "ScoreboardTeamScoreContainer");
         var scorePanel = $.P(scoreContainer, "Label", null, "ScoreboardTeamScore");
         var prevText = scorePanel.text;
