@@ -448,7 +448,9 @@ DelayStateInit(GAME_STATE_ROUND_IN_PROGRESS, function () {
 
     // We can't completely lose focus without deleting the element which has it
     AddEnterListener("GameHudChatEnter", function() {
-        if ($("#HeroPanel").BCanSeeInParentScroll()) {
+        var state = CustomNetTables.GetTableValue("main", "gameState").state;
+
+        if (state == GAME_STATE_ROUND_IN_PROGRESS || state == GAME_STATE_ROUND_ENDED) {
             $("#GameChatEntryContainer").BLoadLayout("file://{resources}/layout/custom_game/chat.xml", true, true);
             $("#GameChatEntry").SetFocus();
             $("#GameChat").RemoveClass("ChatHidden");
