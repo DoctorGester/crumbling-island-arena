@@ -18,7 +18,7 @@ function tiny_e:OnSpellStart()
 
     Timers:CreateTimer(delay,
         function()
-            local particle = ParticleManager:CreateParticle("particles/tiny_e/tiny_e.vpcf", PATTACH_ABSORIGIN, hero.unit)
+            local particle = ParticleManager:CreateParticle("particles/tiny_e/tiny_e.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity())
 
             ParticleManager:SetParticleControl(particle, 0, target)
             ParticleManager:SetParticleControl(particle, 1, Vector(radius, 1, 1))
