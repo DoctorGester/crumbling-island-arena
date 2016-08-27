@@ -16,6 +16,7 @@ function GameSetup:constructor(modes, players, teams, forcedMode)
         self.outputs["stage_mode"] = {}
         self.outputs["stage_mode"].selectedMode = forcedMode
         self.outputs["stage_mode"].playersInTeam = self.modes[forcedMode].playersInTeam
+        EmitAnnouncerSound(modes[forcedMode].announce)
     end
 end
 
