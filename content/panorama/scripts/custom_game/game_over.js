@@ -208,8 +208,8 @@ function GameInfoUpdated(gameInfo) {
     var totalFbs = 0;
 
     for (var id in stats) {
-        if (stats[id].fbs) {
-            totalFbs += stats[id].fbs;
+        if (stats[id].firstBloods) {
+            totalFbs += stats[id].firstBloods;
         }
     }
 
