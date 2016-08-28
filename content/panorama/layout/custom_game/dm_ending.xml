@@ -1,0 +1,14 @@
+﻿<root>
+    <styles>
+        <include src="file://{resources}/styles/custom_game/dm_ending.css" />
+    </styles>
+    <scripts>
+        <include src="file://{resources}/scripts/custom_game/underscore-min.js" />
+        <include src="file://{resources}/scripts/custom_game/util.js" />
+        <include src="file://{resources}/scripts/custom_game/dm_ending.js" />
+    </scripts>
+    <Panel class="MainPanel" hittest="false">
+        <Panel id="MatchResults" hittest="false" hittestchildren="false">
+        </Panel>
+    </Panel>
+</root>

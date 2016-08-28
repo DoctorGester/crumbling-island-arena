@@ -4,6 +4,7 @@ GAME_STATE_HERO_SELECTION = 2
 GAME_STATE_ROUND_IN_PROGRESS = 3
 GAME_STATE_ROUND_ENDED = 4
 GAME_STATE_GAME_OVER = 5
+GAME_STATE_GAME_OVER_DM = 6
 
 if (!Game.enterListeners) {
     Game.enterListeners = {};
@@ -44,7 +45,7 @@ function FindOrCreate(parent, type, id, cl) {
         out: {
             if (child.paneltype == type && (!id || child.id == id)) {
                 for (var c of cl) {
-                    if (!child.BHasClass(c)) {
+                    if (cl && !child.BHasClass(c)) {
                         break out;
                     }
                 }

@@ -1,8 +1,8 @@
 DeathMatch = DeathMatch or class({})
 
 function DeathMatch:constructor(players, availableHeroes) 
-    CustomGameEventManager:RegisterListener("dm_respawn", function(id, ...) self["OnRespawn"](self, ...) end)
-    CustomGameEventManager:RegisterListener("dm_random", function(id, ...) self["OnRandom"](self, ...) end)
+    self.respawnListener = CustomGameEventManager:RegisterListener("dm_respawn", function(id, ...) self["OnRespawn"](self, ...) end)
+    self.randomListener = CustomGameEventManager:RegisterListener("dm_random", function(id, ...) self["OnRandom"](self, ...) end)
 
     self.deathMatchLockTime = 180
     self.players = players
@@ -157,8 +157,20 @@ function DeathMatch:CleanupPlayer(round, player)
 end
 
 function DeathMatch:OnRoundEnd(round)
+    local winner = GameRules.GameMode.winner
+
+    GameRules.GameMode:SubmitRoundInfo(round, winner, winner ~= nil)
+    Stats.SubmitRoundInfo(self.players, GameRules.GameMode.roundNumber - 2, winner, round.statistics)
+
     GameRules.GameMode.generalStatistics:Add(round.statistics)
-    GameRules.GameMode:EndGame()
+    GameRules.GameMode:SetState(STATE_GAME_OVER_DM)
+
+    CustomGameEventManager:UnregisterListener(self.respawnListener)
+    CustomGameEventManager:UnregisterListener(self.randomListener)
+
+    Timers:CreateTimer(10, function ()
+        GameRules.GameMode:EndGame()
+    end)
 end
 
 function DeathMatch:IsPlayerDead(player)

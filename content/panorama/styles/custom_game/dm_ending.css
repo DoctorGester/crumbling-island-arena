@@ -1,0 +1,328 @@
+.MainPanel
+{
+    width: 100%;
+    height: 100%;
+}
+
+#MatchResults
+{
+    align: center center;
+    flow-children: up;
+    padding: 300px; /* To increase clipping */
+}
+
+.PlayerPanel
+{
+    flow-children: left;
+    align: right;
+    padding-left: 200px;  /* To increase clipping */
+    margin-right: 200px;
+}
+
+.PlayerPanelIn
+{
+    animation-duration: 0.6s;
+    animation-timing-function: linear;
+    animation-name: PlayerAnimation;
+}
+
+.PlayerPanelVictory
+{
+    animation-duration: 0.35s;
+    animation-timing-function: ease-out;
+    animation-name: Victory1;
+}
+
+.ScorePanel
+{
+    width: 80px;
+    margin-left: 50px;
+}
+
+.NamePanel
+{
+    font-size: 36px;
+    text-shadow: 0px 1px 2px 2.0 #000000;
+    white-space: nowrap;
+    vertical-align: center;
+}
+
+.ScorePanel Label
+{
+    text-align: center;
+    align: center center;
+    font-size: 48px;
+}
+
+.ScoreWon Label
+{
+    text-shadow: 0px 0px 8px 2.0 #00FF21;
+    animation-duration: 0.3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-name: PointsAnimation;
+}
+
+.Hidden
+{
+    opacity: 0;
+}
+
+.AnimationMessageVisible
+{
+    opacity: 1.0;
+}
+
+.AnimationMessageInvisible
+{
+    opacity: 0.0;
+}
+
+Label
+{
+    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+    color: white;
+}
+
+@keyframes 'PlayerAnimation'
+{
+    0%
+    {
+        transform: translateX(-1000px);
+    }
+
+    80%
+    {
+        transform: translateX(0px);
+    }
+    
+    85%
+    {
+        transform: translateX(-90px);
+    }
+
+    90%
+    {
+        transform: translateX(0px);
+    }
+
+    95%
+    {
+        transform: translateX(-40px);
+    }
+
+    100%
+    {
+        transform: translateX(0px);
+    }
+}
+
+@keyframes 'Victory1'
+{
+    0%
+    {
+        transform: scale3d(1, 1, 1);
+    }
+
+    50%
+    {
+        transform: scale3d(1.8, 1.8, 1.8);
+    }
+    
+    100%
+    {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+#RoundResults
+{
+    align: center center;
+    flow-children: right;
+    transition-property: opacity;
+    transition-duration: 0.1s;
+}
+
+#TeamScores
+{
+    flow-children: down;
+    vertical-align: center;
+}
+
+#GameGoal
+{
+    flow-children: right;
+    margin-left: 120px;
+    vertical-align: center;
+}
+
+#GameGoalNumber
+{
+    font-size: 120px;
+    font-weight: bold;
+    text-shadow: 0px 0px 8px 4.0 skyblue;
+    letter-spacing: 6px;
+    align: center center;
+    text-align: center;
+}
+
+#GameGoalText
+{
+    font-size: 32px;
+    vertical-align: center;
+    text-shadow: 0px 0px 4px 2.0 skyblue;
+}
+
+.TeamPanel
+{
+    flow-children: right;
+}
+
+.TeamNameAndHeroes
+{
+    flow-children: right;
+    vertical-align: center;
+}
+
+.TeamHeroes
+{
+    flow-children: right;
+    vertical-align: center;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.TeamHeroes DOTAHeroImage
+{
+    margin: 6px;
+    width: 32px;
+    height: 32px;
+}
+
+.TeamScore
+{
+    align: center center;
+    font-size: 48px;
+    margin-left: 12px;
+    text-shadow: 0px 0px 8px 2.0 skyblue;
+}
+
+.TeamEarned
+{
+    align: center center;
+    font-size: 56px;
+    margin-left: 24px;
+    animation-duration: 0.3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-name: PointsAnimation;
+}
+
+.TeamEarnedGoingToWin
+{
+    text-shadow: 0px 0px 8px 2.0 red;
+}
+
+.TeamEarnedWon
+{
+    text-shadow: 0px 0px 8px 2.0 #00FF21;
+}
+
+.SurviveToWin
+{
+    font-size: 24px;
+    text-align: center;
+    margin-left: 30px;
+    vertical-align: center;
+    text-shadow: 0px 0px 8px 2.0 black;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-name: PointsAnimation;
+}
+
+.Award
+{
+    margin-top: 10px;
+    horizontal-align: right;
+    flow-children: right;
+}
+
+.FirstBloodIcon
+{
+    background-image: url('file://{images}/custom_game/drop.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
+    vertical-align: center;
+    margin-right: 5px;
+}
+
+.MvpIcon
+{
+    background-image: url('file://{images}/custom_game/round-star.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    width: 32px;
+    height: 32px;
+    vertical-align: center;
+    margin-right: 5px;
+}
+
+.AwardHero
+{
+    vertical-align: center;
+    margin-left: 10px;
+}
+
+.AwardText
+{
+    font-size: 32px;
+    text-shadow: 0px 1px 2px 2.0 #000000;
+    vertical-align: center;
+}
+
+.TeamName
+{
+    width: 300px;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.TeamName Label
+{
+    color: white;
+    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+    font-size: 36px;
+    text-shadow: 0px 1px 2px 2.0 #000000;
+    white-space: nowrap;
+    align: right center;
+}
+
+@keyframes 'PointsAnimation'
+{
+    0%
+    {
+        transform: translateX(-2px) rotateZ(-3deg);
+    }
+
+    50%
+    {
+        transform: translateX(2px) rotateZ(3deg);
+    }
+    
+    100%
+    {
+        transform: translateX(-2px) rotateZ(-3deg);
+    }
+}

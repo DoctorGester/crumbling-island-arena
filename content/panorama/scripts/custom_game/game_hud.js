@@ -244,11 +244,21 @@ function DebugUpdate(data){
 }
 
 function GameStateChanged(data){
+    var animations = {
+        "HeroPanel": "AnimationHeroHudHidden",
+        "DeathMatchContainer": "AnimationHeroHudHidden",
+        "HeroDetails": "AnimationHeroDetailsHidden",
+        "ScoreboardContainer": "AnimationScoreboardHidden",
+        "KillLog": "AnimationKillLogHidden"
+    };
+
+    for (var panel in animations) {
+        var animation = animations[panel];
+
+        $("#" + panel).SetHasClass(animation, data.state != GAME_STATE_ROUND_IN_PROGRESS);
+    }
+    
     if (data.state == GAME_STATE_ROUND_IN_PROGRESS){
-        $("#HeroPanel").RemoveClass("AnimationHeroHudHidden");
-        $("#HeroDetails").RemoveClass("AnimationHeroDetailsHidden");
-        $("#ScoreboardContainer").RemoveClass("AnimationScoreboardHidden");
-        $("#KillLog").RemoveClass("AnimationKillLogHidden");
         $("#KillLog").RemoveAndDeleteChildren();
         $("#RoundMessageTop").AddClass("RoundMessageTopAnimation");
         $("#RoundMessageBottom").AddClass("RoundMessageBottomAnimation");
@@ -264,10 +274,6 @@ function GameStateChanged(data){
             CenterCamera(GetLocalPlayedHero());
         });
     } else {
-        $("#HeroPanel").AddClass("AnimationHeroHudHidden");
-        $("#HeroDetails").AddClass("AnimationHeroDetailsHidden");
-        $("#ScoreboardContainer").AddClass("AnimationScoreboardHidden");
-        $("#KillLog").AddClass("AnimationKillLogHidden");
         $("#RoundMessageTop").RemoveClass("RoundMessageTopAnimation");
         $("#RoundMessageBottom").RemoveClass("RoundMessageBottomAnimation");
     }

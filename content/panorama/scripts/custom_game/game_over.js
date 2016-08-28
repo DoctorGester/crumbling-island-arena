@@ -35,7 +35,7 @@ function AddNumberCell(row, color, number) {
     AddTextCell(row, color, (number ? number : 0).toString()).AddClass("TableCellNumber");
 }
 
-function AddPlayerRow(scoreboard, player, stats, winner, runnerUp, mvps, rankedMode) {
+function AddPlayerRow(scoreboard, player, stats, winner, runnerUp, mvps, fbs, rankedMode) {
     var row = $.CreatePanel("Panel", scoreboard, "");
     row.AddClass("TableRow");
     var color = player.color;
@@ -91,7 +91,11 @@ function AddPlayerRow(scoreboard, player, stats, winner, runnerUp, mvps, rankedM
     }
 
     AddNumberCell(row, color, stats.damageDealt);
-    AddNumberCell(row, color, stats.firstBloods);
+
+    if (fbs) {
+        AddNumberCell(row, color, stats.firstBloods);
+    }
+    
     AddNumberCell(row, color, stats.kills);
 
     if (mvps) {
@@ -159,11 +163,11 @@ function AddPlayerRow(scoreboard, player, stats, winner, runnerUp, mvps, rankedM
     }
 }
 
-function AddHeaders(scoreboard, mvps, rankedMode) {
+function AddHeaders(scoreboard, mvps, fbs, rankedMode) {
     var row = $.CreatePanel("Panel", scoreboard, "");
     row.AddClass("TableRow");
     AddTableHeaders(row, "TableColumnHeaderWide", "SbName");
-    AddTableHeaders(row, "TableColumnHeader", "SbDamage", "SbFirstBloods", "SbKills", mvps ? "SbMvps" : null, "SbProj", "SbAmountPlayed", "SbMostPlayed", rankedMode ? "SbRank" : null);
+    AddTableHeaders(row, "TableColumnHeader", "SbDamage", fbs ? "SbFirstBloods" : null, "SbKills", mvps ? "SbMvps" : null, "SbProj", "SbAmountPlayed", "SbMostPlayed", rankedMode ? "SbRank" : null);
 }
 
 function AddFooter(scoreboard) {
@@ -201,6 +205,14 @@ function GameInfoUpdated(gameInfo) {
         }
     }
 
+    var totalFbs = 0;
+
+    for (var id in stats) {
+        if (stats[id].fbs) {
+            totalFbs += stats[id].fbs;
+        }
+    }
+
     var winners =
         _(gameInfo.runnerUps)
         .chain()
@@ -226,13 +238,13 @@ function GameInfoUpdated(gameInfo) {
 
     winners.push.apply(winners, nonWinners); // All players combined and sorted
 
-    AddHeaders(scoreboard, totalMvps > 0, gameInfo.rankedMode);
+    AddHeaders(scoreboard, totalMvps > 0, totalFbs > 0, gameInfo.rankedMode);
 
     _(winners).each(function(player) {
         var winner = player.team == gameInfo.winner;
         var runnerUp = _(gameInfo.runnerUps).values().indexOf(player.team) != -1;
 
-        AddPlayerRow(scoreboard, players[player.id.toString()], stats[player.id.toString()], winner, runnerUp, totalMvps > 0, gameInfo.rankedMode);
+        AddPlayerRow(scoreboard, players[player.id.toString()], stats[player.id.toString()], winner, runnerUp, totalMvps > 0, totalFbs > 0, gameInfo.rankedMode);
     });
 
     AddFooter(scoreboard);

@@ -28,13 +28,13 @@ require('chat')
 require('debug_util')
 
 _G.GAME_VERSION = "1.6"
-
-STATE_NONE = 0
-STATE_GAME_SETUP = 1
-STATE_HERO_SELECTION = 2
-STATE_ROUND_IN_PROGRESS = 3
-STATE_ROUND_ENDED = 4
-STATE_GAME_OVER = 5
+_G.STATE_NONE = 0
+_G.STATE_GAME_SETUP = 1
+_G.STATE_HERO_SELECTION = 2
+_G.STATE_ROUND_IN_PROGRESS = 3
+_G.STATE_ROUND_ENDED = 4
+_G.STATE_GAME_OVER = 5
+_G.STATE_GAME_OVER_DM = 6
 
 ROUND_ENDING_TIME = 6
 FIXED_DAY_TIME = 0.27
@@ -568,9 +568,12 @@ function GameMode:CheckEveryoneAbandoned()
 
         if self.abandonTimer > 20 then
             if self.State == STATE_ROUND_IN_PROGRESS and self.round then
-                self:SubmitRoundInfo(self.round, self.winner, true)
+                self.generalStatistics:Add(self.round.statistics)
+                self:SubmitRoundInfo(self.round, connectedTeam, true)
+                Stats.SubmitRoundInfo(self.Players, self.roundNumber - 2, connectedTeam, self.round.statistics)
             else
-                self:SubmitRoundInfo({ statistics = Statistics(self.Players) }, self.winner, true)
+                self:SubmitRoundInfo({ statistics = Statistics(self.Players) }, connectedTeam, true)
+                Stats.SubmitRoundInfo(self.Players, self.roundNumber - 2, connectedTeam, Statistics(self.Players))
             end
 
             self.winner = connectedTeam
@@ -1060,7 +1063,7 @@ function GameMode:OnGameInProgress()
         self.deathmatch = DeathMatch(self.Players, self.AvailableHeroes)
         self.heroSelection.SelectionTimerTime = 40
         self.deathmatch:Activate(GameMode, self)
-        self.level:SetSlowFactor(8)
+        self.level:SetSlowFactor(7)
         self.level:EnableRegeneration(10, 20)
         self.level:SetFinishingDistance(1200)
 
