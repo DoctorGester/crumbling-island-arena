@@ -84,10 +84,10 @@ function ProjectileTinkerW:GetNextPosition(pos)
         end
     end
 
-    local v = self:GetSpeed() * (tpos - pos):Normalized()
+    local v = self.speed * (tpos - pos):Normalized()
     self.vel = 0.98 * self.vel + 0.02 * v
 
-    return pos + self.vel / 30
+    return pos + self.vel / 30 * self.currentMultiplier
 end
 
 function ProjectileTinkerW:Remove()

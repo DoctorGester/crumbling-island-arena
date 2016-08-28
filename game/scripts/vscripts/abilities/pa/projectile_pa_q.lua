@@ -78,10 +78,10 @@ function ProjectilePAQ:GetNextPosition(pos)
     if self.state == ProjectilePAQ.STATE_NORMAL then
         self.vel = self.vel + dif * 32
 
-        return self.position + self.vel * self.hero:GetSpeedMultiplier() / 30
+        return self.position + self.vel * self.hero:GetSpeedMultiplier() / 30 * self.currentMultiplier
     elseif self.state == ProjectilePAQ.STATE_GOING_BACK then
-        dif = dif * self:GetSpeed()
+        dif = dif * self.speed
 
-        return self.position + dif * self.hero:GetSpeedMultiplier(self) / 30
+        return self.position + dif * self.hero:GetSpeedMultiplier(self) / 30 * self.currentMultiplier
     end
 end

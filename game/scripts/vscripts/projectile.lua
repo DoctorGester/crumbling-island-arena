@@ -80,6 +80,20 @@ function Projectile:Update()
         return
     end
 
+    local multiplier = 1
+
+    for _, modifier in pairs(self:AllModifiers()) do
+        if modifier.GetProjectileSpeedModifier then
+            multiplier = multiplier * modifier:GetProjectileSpeedModifier()
+        end
+    end
+
+    if self.currentMultiplier < multiplier then
+        self.currentMultiplier = math.min(self.currentMultiplier + 0.15, multiplier)
+    else
+        self.currentMultiplier = math.max(self.currentMultiplier - 0.15, multiplier)
+    end
+
     local pos = self:GetPos()
 
     if IsOutOfTheMap(pos) then
@@ -152,20 +166,6 @@ function Projectile:Damage(source)
 end
 
 function Projectile:GetSpeed()
-    local multiplier = 1
-
-    for _, modifier in pairs(self:AllModifiers()) do
-        if modifier.GetProjectileSpeedModifier then
-            multiplier = multiplier * modifier:GetProjectileSpeedModifier()
-        end
-    end
-
-    if self.currentMultiplier < multiplier then
-        self.currentMultiplier = math.min(self.currentMultiplier + 0.05, multiplier)
-    else
-        self.currentMultiplier = math.max(self.currentMultiplier - 0.05, multiplier)
-    end
-
     return self.speed * self.currentMultiplier
 end
 
