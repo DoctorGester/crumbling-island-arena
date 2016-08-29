@@ -20,6 +20,12 @@ function JuggerWard:constructor(round, owner, target, ability)
 
     self:EmitSound("Arena.Jugger.CastW")
     self:EmitSound("Arena.Jugger.LoopW")
+
+    if owner:IsAwardEnabled() then
+        local model = "models/items/juggernaut/ward/dc_wardupate/dc_wardupate.vmdl"
+        self:GetUnit():SetOriginalModel(model)
+        self:GetUnit():SetModel(model)
+    end
 end
 
 function JuggerWard:CreateParticles()

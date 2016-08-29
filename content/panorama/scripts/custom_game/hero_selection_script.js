@@ -12,7 +12,8 @@ var previewLoadingQueue = [];
 var buttonLoadingQueue = [];
 
 var seasonAwards = {
-    0: "npc_dota_hero_lycan"
+    0: "npc_dota_hero_lycan",
+    1: "npc_dota_hero_juggernaut"
 };
 
 function CreateDifficultyLock() {
@@ -497,7 +498,7 @@ function HeroSelectionUpdated(data){
 
 function AchievementsUpdated(achievements) {
     var achievement = achievements[Game.GetLocalPlayerID()];
-    
+
     if (achievement) {
         if (achievement.achievedSeasons) {
             for (var season of _.values(achievement.achievedSeasons)) {

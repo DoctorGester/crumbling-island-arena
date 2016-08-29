@@ -45,11 +45,17 @@ Jugger.Swords = {
 function Jugger:SetUnit(unit)
     getbase(Jugger).SetUnit(self, unit)
 
-    for _, part in pairs({ "ernaut_pants", "_bracers", "_cape", "_mask" }) do
-        self:AttachWearable("models/heroes/juggernaut/jugg"..part..".vmdl")
+    if self:IsAwardEnabled() then
+        for _, part in pairs({ "dc_armsupdate", "dc_backupdate4", "dc_headupdate", "dc_legsupdate5" }) do
+            self:AttachWearable("models/items/juggernaut/"..part.."/"..part..".vmdl")
+        end
+    else
+        for _, part in pairs({ "ernaut_pants", "_bracers", "_cape", "_mask" }) do
+            self:AttachWearable("models/heroes/juggernaut/jugg"..part..".vmdl")
+        end
     end
 
-    self.swordModel = self:AttachWearable("models/heroes/juggernaut/jugg_sword.vmdl")
+    self.swordModel = self:AttachWearable(self:GetSwordModel(0))
 
     self.swordLevel = 0
     self:AddNewModifier(self, nil, "modifier_jugger_sword", {})
@@ -58,6 +64,18 @@ function Jugger:SetUnit(unit)
 
     self.swordOnLevel = nil
     self.swordParticle = nil
+end
+
+function Jugger:GetAwardSeason()
+    return 1
+end
+
+function Jugger:GetSwordModel(level)
+    if level == 0 and self:IsAwardEnabled() then
+        return "models/items/juggernaut/dc_weaponupdate/dc_weaponupdate.vmdl"
+    end
+
+    return Jugger.Swords[level].model
 end
 
 function Jugger:SwordOnLevelDestroyed()
@@ -93,7 +111,7 @@ end
 function Jugger:UpdateSwordLevel()
     self:FindModifier("modifier_jugger_sword"):SetStackCount(Jugger.Swords[self.swordLevel].range)
 
-    self.swordModel:SetModel(Jugger.Swords[self.swordLevel].model)
+    self.swordModel:SetModel(self:GetSwordModel(self.swordLevel))
     
     if self.swordParticle then
         ParticleManager:DestroyParticle(self.swordParticle, false)
