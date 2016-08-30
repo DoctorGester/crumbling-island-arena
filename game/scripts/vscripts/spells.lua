@@ -129,22 +129,22 @@ function Spells:GroundDamage(point, radius, source)
 end
 
 function Spells:GetValidTargets()
-    local result = {}
-
-    for _, ent in pairs(self.entities) do
-        if not ent:IsInvulnerable() and ent:Alive() then
-            table.insert(result, ent)
-        end
-    end
-
-    return result
+    return self:FilterEntities(function(ent)
+        return not ent:IsInvulnerable() and ent:Alive()
+    end)
 end
 
 function Spells:GetHeroTargets()
+    return self:FilterEntities(function(ent)
+        return instanceof(ent, Hero)
+    end, self:GetValidTargets())
+end
+
+function Spells:FilterEntities(filter, list)
     local result = {}
 
-    for _, ent in pairs(self:GetValidTargets()) do
-        if ent:__instanceof__(Hero) then
+    for _, ent in pairs(list or self.entities) do
+        if filter(ent) then
             table.insert(result, ent)
         end
     end

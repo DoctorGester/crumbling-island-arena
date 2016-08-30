@@ -31,8 +31,6 @@ function earth_spirit_q:OnSpellStart()
             remnant:SetUnit(unit, true)
             remnant:SetPos(cursor + Vector(0, 0, 600))
             remnant:Activate()
-
-            hero:AddRemnant(remnant)
         end
     )
 end

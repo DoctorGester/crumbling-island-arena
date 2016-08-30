@@ -4,7 +4,7 @@ function DeathMatch:constructor(players, availableHeroes)
     self.respawnListener = CustomGameEventManager:RegisterListener("dm_respawn", function(id, ...) self["OnRespawn"](self, ...) end)
     self.randomListener = CustomGameEventManager:RegisterListener("dm_random", function(id, ...) self["OnRandom"](self, ...) end)
 
-    self.deathMatchLockTime = 180
+    self.deathMatchLockTime = IsInToolsMode() and 10 or 180
     self.players = players
     self.availableHeroes = availableHeroes
     self.removalQueue = {}
@@ -149,7 +149,10 @@ function DeathMatch:CleanupPlayer(round, player)
 
     for _, entity in pairs(round.spells.entities) do
         if entity.owner == player then
-            if not instanceof(entity, Projectile) and not instanceof(entity, ArcProjectile) and not instanceof(entity, Hero) then
+            if not instanceof(entity, Projectile) and
+               not instanceof(entity, ArcProjectile) and
+               not instanceof(entity, Hero) and
+               not entity.dontCleanup then
                 entity:Destroy()
             end
         end

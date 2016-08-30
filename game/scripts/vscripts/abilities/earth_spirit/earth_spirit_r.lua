@@ -13,11 +13,33 @@ function earth_spirit_r:OnSpellStart()
     self:GetCaster().hero:EmitSound("Arena.Earth.CastR")
 end
 
+function earth_spirit_r:CastFilterResultLocation(location)
+    if not IsServer() then return UF_SUCCESS end
+
+    local hero = self:GetCaster():GetParentEntity()
+    if not hero:FindNonEnemyStandRemnantCursor(self, location) then
+        return UF_FAIL_CUSTOM
+    end
+
+    return UF_SUCCESS
+end
+
+function earth_spirit_r:GetCustomCastErrorLocation(location)
+    if not IsServer() then return "" end
+
+    local hero = self:GetCaster():GetParentEntity()
+    if not hero:FindNonEnemyStandRemnantCursor(self, location) then
+        return "#dota_hud_error_earth_spirit_cant_cast_no_remnant"
+    end
+
+    return ""
+end
+
 function earth_spirit_r:OnChannelFinish(interrupted)
     if interrupted then return end
 
     local hero = self:GetCaster().hero
-    local remnant = hero:FindRemnant(self:GetCursorPosition(), 200)
+    local remnant = hero:FindNonEnemyStandRemnantCursor(self)
 
     if not remnant then return end
 
@@ -29,12 +51,13 @@ function earth_spirit_r:OnChannelFinish(interrupted)
     ParticleManager:SetParticleControl(particle, 1, remnant:GetPos())
 
     local remnantUnit = remnant.unit
+    remnantUnit:SetTeam(hero.owner.team)
     remnant:SetUnit(hero.unit, hero:HasRemnantStand())
     remnant:SetPos(hero:GetPos())
 
     if hero:HasRemnantStand() then
         local stand = hero:GetRemnantStand()
-        hero:RemoveRemnantStand()
+        hero:GetRemnantStand():SetStandingHero(nil)
         stand:Destroy()
     end
 
@@ -49,25 +72,4 @@ function earth_spirit_r:OnChannelFinish(interrupted)
     hero:Setup()
 
     remnantUnit:SetHealth(2 * remnant.health)
-end
-
-function earth_spirit_r:CastFilterResultLocation(location)
-    -- Remnant data can't be accessed on the client
-    if not IsServer() then return UF_SUCCESS end
-
-    if not self:GetCaster().hero:FindRemnant(location, 200) then
-        return UF_FAIL_CUSTOM
-    end
-
-    return UF_SUCCESS
-end
-
-function earth_spirit_r:GetCustomCastErrorLocation(location)
-    if not IsServer() then return "" end
-
-    if not self:GetCaster().hero:FindRemnant(location, 200) then
-        return "#dota_hud_error_earth_spirit_cant_cast_no_remnant"
-    end
-
-    return ""
 end

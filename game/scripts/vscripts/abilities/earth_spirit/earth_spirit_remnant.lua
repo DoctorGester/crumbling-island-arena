@@ -11,6 +11,11 @@ function EarthSpiritRemnant:constructor(round, owner)
     self.enemiesHit = {}
     self.invulnerable = true
     self.targetRemoved = 0
+
+    self.standingHero = nil
+
+    -- Deathmatch only
+    self.dontCleanup = true
 end
 
 function EarthSpiritRemnant:CreateCounter()
@@ -25,9 +30,21 @@ end
 function EarthSpiritRemnant:MakeFall()
     getbase(EarthSpiritRemnant).MakeFall(self)
 
-    if not self.hero.destroyed then
-        self.hero:RemnantDestroyed(self)
+    if self.standingHero ~= nil then
+        self.standingHero:RemnantDestroyed(self)
     end
+end
+
+function EarthSpiritRemnant:SetStandingHero(hero)
+    if hero ~= nil then
+        local source = hero:FindAbility("earth_spirit_q")
+
+        hero:AddNewModifier(hero, source, "modifier_earth_spirit_stand", {})
+    elseif self.standingHero ~= nil then
+        self.standingHero:RemoveModifier("modifier_earth_spirit_stand")
+    end
+
+    self.standingHero = hero
 end
 
 function EarthSpiritRemnant:UpdateChildren()
@@ -35,8 +52,8 @@ function EarthSpiritRemnant:UpdateChildren()
         ParticleManager:SetParticleControl(self.healthCounter, 0, self:GetPos() + Vector(0, 0, 200))
     end
 
-    if self.hero.remnantStand == self then
-        self.hero:SetPos(self:GetPos() + Vector(0, 0, 150))
+    if self.standingHero then
+        self.standingHero:SetPos(self:GetPos() + Vector(0, 0, 150))
     end
 end
 
@@ -53,14 +70,18 @@ function EarthSpiritRemnant:SetPos(pos)
 end
 
 function EarthSpiritRemnant:SetUnit(unit, fall)
-    getbase(EarthSpiritRemnant).SetUnit(self, unit)
+    getbase(EarthSpiritRemnant).SetUnit(self, unit) 
 
     self.fell = not fall
     self.unit.hero = self
 end
 
-function EarthSpiritRemnant:SetTarget(target)
+function EarthSpiritRemnant:SetTarget(target, source)
+    self.owner = source.owner
+    self.hero = source
+
     self.collisionType = COLLISION_TYPE_INFLICTOR
+    self.round.spells:InterruptDashes(self)
 
     EarthSpiritRemnantDash(self, target)
 end
@@ -68,7 +89,9 @@ end
 function EarthSpiritRemnant:RemoveTarget()
     self.targetRemoved = 2
 
-    self.unit:EmitSound("Arena.Earth.EndW")
+    if self:Alive() then
+        self:EmitSound("Arena.Earth.EndW")
+    end
 
     self:AreaEffect({
         filter = Filters.Area(self:GetPos(), 256),
@@ -141,6 +164,17 @@ end
 function EarthSpiritRemnant:Update()
     getbase(EarthSpiritRemnant).Update(self)
 
+    local earthSpirit = self.round.spells:FilterEntities(
+        function(ent)
+            return instanceof(ent, EarthSpirit) and ent:Alive()
+        end
+    )[1]
+
+    if not earthSpirit then
+        self:Destroy()
+        return
+    end
+
     if self.targetRemoved > 0 then
         self.targetRemoved = self.targetRemoved - 1
 
@@ -181,8 +215,9 @@ function EarthSpiritRemnant:Remove()
 
     ImmediateEffectPoint("particles/units/heroes/hero_earth_spirit/earthspirit_petrify_shockwave.vpcf", PATTACH_CUSTOMORIGIN, self.hero, self:GetPos())
 
-    if not self.hero.destroyed then
-        self.hero:RemnantDestroyed(self)
+    if self.standingHero ~= nil and not self.standingHero.destroyed then
+        self.standingHero:FallFromStand()
+        self:SetStandingHero(nil)
     end
 end
 

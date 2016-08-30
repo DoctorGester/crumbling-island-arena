@@ -25,7 +25,7 @@ function earth_spirit_e:OnSpellStart()
 
     if hero:HasRemnantStand() then
         hadStand = true
-        hero:RemoveRemnantStand()
+        hero:GetRemnantStand():SetStandingHero(nil)
     end
 
     ESDash(targetRemnant, hero, target, 600, {
@@ -34,8 +34,8 @@ function earth_spirit_e:OnSpellStart()
         forceFacing = true,
         noFixedDuration = true,
         arrivalFunction = function()
-            if targetRemnant and not targetRemnant.destroyed then
-                hero:SetRemnantStand(targetRemnant)
+            if targetRemnant and not targetRemnant.destroyed and not targetRemnant.standingHero then
+                targetRemnant:SetStandingHero(hero)
                 target = targetRemnant:GetPos()
                 hero:SetPos(Vector(target.x, target.y, target.z + 150))
             end
@@ -50,7 +50,7 @@ function earth_spirit_e:OnSpellStart()
                 y0 = 150
             end
 
-            if targetRemnant and not targetRemnant.destroyed then
+            if targetRemnant and not targetRemnant.destroyed and not targetRemnant.standingHero then
                 y1 = 150
             end
 

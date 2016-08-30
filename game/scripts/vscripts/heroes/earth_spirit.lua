@@ -2,76 +2,78 @@ EarthSpirit = class({}, nil, Hero)
 
 function EarthSpirit:constructor()
     getbase(self).constructor(self)
-
-    self.remnants = {}
-    self.remnantStand = nil
 end
 
-function EarthSpirit:AddRemnant(remnant)
-    table.insert(self.remnants, remnant)
-end
-
-function EarthSpirit:RemnantDestroyed(remnant)
-    if self.remnantStand == remnant then
-        self:RemoveRemnantStand()
-        self:FallFromStand()
-    end
-
-    local index = GetIndex(self.remnants, remnant)
-    if index then
-        table.remove(self.remnants, GetIndex(self.remnants, remnant))
-    end
-end
-
-function EarthSpirit:FindRemnant(point, area, exclude)
+function EarthSpirit:FindRemnant(point, area, filter)
     local closest = nil
     local distance = 64000
 
-    for _, value in pairs(self.remnants) do
-        if (not exclude or not exclude[value]) and value:Alive() then
-            local toRemnant = (point - value:GetPos()):Length2D()
+    local remnants = nil
 
-            if toRemnant <= distance and (not area or toRemnant <= area) then
-                closest = value
-                distance = toRemnant
-            end
+    if filter then
+        remnants = self.round.spells:FilterEntities(filter, self:AllRemnants())
+    else
+        remnants = self:AllRemnants()
+    end
+
+    for _, value in pairs(remnants) do
+        local toRemnant = (point - value:GetPos()):Length2D()
+
+        if toRemnant <= distance and (not area or toRemnant <= area) then
+            closest = value
+            distance = toRemnant
         end
     end
 
     return closest
 end
 
-function EarthSpirit:FindNonStandRemnantCursor(ability, location)
-    local hero = ability:GetCaster().hero
-    local exclude = {}
-
-    if hero:HasRemnantStand() then
-        exclude[hero:GetRemnantStand()] = true
-    end
-
-    return hero:FindRemnant(location or ability:GetCursorPosition(), 200, exclude)
+function EarthSpirit:AllRemnants()
+    return self.round.spells:FilterEntities(function(ent)
+        return instanceof(ent, EarthSpiritRemnant)
+    end, self.round.spells:GetValidTargets())
 end
 
-function EarthSpirit:SetRemnantStand(remnant)
-    local source = self.unit:FindAbilityByName("earth_spirit_q")
+function EarthSpirit:FindNonStandRemnantCursor(ability, location)
+    local hero = ability:GetCaster():GetParentEntity()
 
-    self.invulnerable = true
-    self.remnantStand = remnant
-    self:AddNewModifier(self, source, "modifier_earth_spirit_stand", {})
+    return hero:FindRemnant(location or ability:GetCursorPosition(), 200,
+        function(remnant)
+            return remnant.standingHero == nil
+        end
+    )
+end
+
+function EarthSpirit:FindNonHeroStandRemnantCursor(ability, location)
+    local hero = ability:GetCaster():GetParentEntity()
+    return hero:FindRemnant(location or ability:GetCursorPosition(), 200,
+        function(remnant)
+            return remnant.standingHero ~= self or remnant.standingHero == nil
+        end
+    )
+end
+
+function EarthSpirit:FindNonEnemyStandRemnantCursor(ability, location)
+    local hero = ability:GetCaster():GetParentEntity()
+    return hero:FindRemnant(location or ability:GetCursorPosition(), 200,
+        function(remnant)
+            return remnant.standingHero == self or remnant.standingHero == nil
+        end
+    )
 end
 
 function EarthSpirit:GetRemnantStand()
-    return self.remnantStand
+    return self.round.spells:FilterEntities(function(ent)
+        return ent.standingHero == self
+    end, self:AllRemnants())[1]
 end
 
 function EarthSpirit:HasRemnantStand()
-    return self.remnantStand ~= nil
+    return self:GetRemnantStand() ~= nil
 end
 
-function EarthSpirit:RemoveRemnantStand()
-    self.invulnerable = false
-    self.remnantStand = nil
-    self:RemoveModifier("modifier_earth_spirit_stand")
+function EarthSpirit:IsInvulnerable()
+    return self.invulnerable or self:HasModifier("modifier_earth_spirit_stand")
 end
 
 function EarthSpirit:FallFromStand()
