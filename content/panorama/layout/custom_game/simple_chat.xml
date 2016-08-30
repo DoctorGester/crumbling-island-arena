@@ -8,11 +8,11 @@
         <include src="file://{resources}/scripts/custom_game/util.js" />
     </scripts>
     <script>
-        var contentPanel = $("#ChatContent");
-        var entry = $("#ChatEntry");
-
         $.GetContextPanel().RegisterListener = function(uniqueName) {
             AddEnterListener(uniqueName, function() {
+                var contentPanel = $("#ChatContent");
+                var entry = $("#ChatEntry");
+
                 if (contentPanel.BCanSeeInParentScroll()) {
                     entry.SetFocus();
                 }
