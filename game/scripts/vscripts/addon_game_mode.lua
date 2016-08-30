@@ -747,8 +747,14 @@ function GameMode:OnHeroSelectionEnd()
 
     Timers:CreateTimer(1.5,
         function()
-            --EmitAnnouncerSound("announcer_ann_custom_adventure_alerts_42")
-            EmitAnnouncerSound("announcer_announcer_battle_begin_01")
+            local roundSoundNumber = self.roundNumber - 1
+
+            if roundSoundNumber <= 10 and not self:IsDeathMatch() then
+                print(string.format("announcer_ann_custom_round_%02d", roundSoundNumber))
+                EmitAnnouncerSound(string.format("announcer_ann_custom_round_%02d", roundSoundNumber))
+            else
+                EmitAnnouncerSound("announcer_announcer_battle_begin_01")
+            end
         end
     )
 end
