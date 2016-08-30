@@ -205,7 +205,6 @@ function HideAll() {
 function PickRandomHero(){
     if (selectedHeroes[Game.GetLocalPlayerID()] == "null") {
         GameEvents.SendCustomGameEventToServer("selection_random", {});
-        Game.EmitSound("UI.SelectHeroLocal");
     }
 }
 
@@ -613,4 +612,6 @@ DelayStateInit(GAME_STATE_HERO_SELECTION, function () {
     CheckConnectionState();
     CheckPause();
     CheckPreviews();
+
+    PreloadAwardPreview(seasonAwards[2]);
 });
