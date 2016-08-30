@@ -27,7 +27,7 @@ function phoenix_w:OnSpellStart()
         graphics = "particles/phoenix_w/phoenix_w.vpcf",
         hitCondition = 
             function(self, target)
-                return instanceof(target, Projectile)
+                return instanceof(target, Projectile) and self.owner.team ~= target.owner.team
             end,
         targetReachedFunction =
             function(projectile)
