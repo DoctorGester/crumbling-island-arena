@@ -612,6 +612,4 @@ DelayStateInit(GAME_STATE_HERO_SELECTION, function () {
     CheckConnectionState();
     CheckPause();
     CheckPreviews();
-
-    PreloadAwardPreview(seasonAwards[2]);
 });
