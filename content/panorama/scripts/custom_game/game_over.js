@@ -262,16 +262,6 @@ function UpdateGameOverConnectionStates() {
     }
 }
 
-function UpdateLabelFromRank(label, rankData) {
-    if (rankData.rank == 1 && rankData.streak) {
-        label.AddClass("EliteText");
-        label.text = "+" + rankData.streak.current;
-    } else {
-        label.AddClass("NormalText");
-        label.text = rankData.rank;
-    }
-}
-
 function RanksUpdated(ranks) {
     var previous = ranks.previous[Players.GetLocalPlayer()];
     var updated = ranks.updated[Players.GetLocalPlayer()];

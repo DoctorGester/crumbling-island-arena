@@ -99,7 +99,7 @@ function RankedInfoChanged(info) {
     $("#RankedInfoContainer").RemoveClass("Hidden");
 }
 
-$.AsyncWebRequest("http://178.63.238.188:3637/ranks/info", { type: "GET", 
+$.AsyncWebRequest("http://127.0.0.1:5141/ranks/info", { type: "GET", 
     success: function( data ) {
         var info = JSON.parse(data);
         RankedInfoChanged(info);

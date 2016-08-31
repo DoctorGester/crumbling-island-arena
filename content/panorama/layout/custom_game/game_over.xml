@@ -15,13 +15,14 @@
                 <DOTAScenePanel id="RankEffect" class="Hidden" map="maps/scenes/badge_level_up.vmap"/>
                 <Panel id="RankElements">
                     <Label id="RankUpdatedLabel" text="#RankUpdated"/>
-                    <Image id="Rank">
+                    <Panel id="RankContainer">
+                        <Image id="Rank"/>
                         <Label id="RankLabel"/>
-                    </Image>
-                    <Image id="RankNew">
+                    </Panel>
+                    <Panel id="RankNewContainer">
+                        <Image id="RankNew"/>
                         <Label id="RankLabelNew"/>
-                    </Image>
-                    <Label id="EliteRankText" html="true"/>
+                    </Panel>
                     <Label id="ClickToClose" text="#RankClose"/>
                 </Panel>
             </Panel>

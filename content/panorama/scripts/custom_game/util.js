@@ -78,40 +78,42 @@ function GetTexture(data, customIcons) {
 }
 
 function CreateRankPanelSmall(parent, rankData, style) {
-    var rank = $.CreatePanel("Image", parent, "");
+    var container = $.CreatePanel("Panel", parent, "");
+
+    var rank = $.CreatePanel("Image", container, "");
     rank.AddClass(style);
     rank.SetImage("file://{images}/profile_badges/level_" + (100 - rankData.rank) + ".png");
 
-    if (rankData.rank == 1 && rankData.streak) {
+    if (rankData.rank == 1 && rankData.elo) {
         rank.BCreateChildren("<DOTAScenePanel class='EliteEffect' map='maps/scenes/shining_default.vmap'/>");
     }
 
-    var rankNumber = $.CreatePanel("Label", rank, "");
+    var rankNumber = $.CreatePanel("Label", container, "");
     rankNumber.AddClass("RankLabel");
 
-    if (rankData.rank == 1 && rankData.streak) {
-        rankNumber.text = "+" + rankData.streak.max;
+    if (rankData.rank == 1 && rankData.elo) {
+        rankNumber.text = rankData.elo;
         rankNumber.AddClass("EliteText");
     } else {
         rankNumber.text = rankData.rank;
         rankNumber.AddClass("NormalText");
     }
 
-    rank.SetPanelEvent("onmouseover", function() {
+    container.SetPanelEvent("onmouseover", function() {
         var text = $.Localize("RankTip");
 
-        if (rankData.rank == 1 && rankData.streak) {
+        if (rankData.rank == 1 && rankData.elo) {
             text = $.Localize("RankEliteTip");
         }
 
         $.DispatchEvent("DOTAShowTextTooltip", rank, text);
     });
 
-    rank.SetPanelEvent("onmouseout", function() {
+    container.SetPanelEvent("onmouseout", function() {
         $.DispatchEvent("DOTAHideTextTooltip");
     });
 
-    return rank;
+    return container;
 }
 
 function UUID(){

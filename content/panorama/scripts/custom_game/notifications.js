@@ -43,14 +43,24 @@ var NotificationQueue = new (function() {
     }
 });
 
+function UpdateLabelFromRank(label, rankData) {
+    if (rankData.rank == 1 && rankData.elo) {
+        label.AddClass("EliteText");
+        label.text = rankData.elo;
+    } else {
+        label.AddClass("NormalText");
+        label.text = rankData.rank;
+    }
+}
+
 function RankNotification(ranks) {
     var previous = ranks.previous;
     var updated = ranks.updated;
 
-    var lostStreak = (updated.streak && previous.streak && updated.streak.current < previous.streak.current);
+    var lostElo = (updated.elo && previous.elo && updated.elo < previous.elo);
 
-    var rankPanel = $("#Rank");
-    var newRankPanel = $("#RankNew");
+    var rankPanel = $("#RankContainer");
+    var newRankPanel = $("#RankNewContainer");
 
     var elements = $("#RankElements");
 
@@ -64,17 +74,14 @@ function RankNotification(ranks) {
     });
 
     $("#GameOverBlur").AddClass("Blurred");
-    rankPanel.SetImage("file://{images}/profile_badges/level_" + (100 - previous.rank) + ".png");
-
+    $("#Rank").SetImage("file://{images}/profile_badges/level_" + (100 - previous.rank) + ".png");
     rankPanel.SetHasClass("Hidden", false);
     
-    newRankPanel.SetImage("file://{images}/profile_badges/level_" + (100 - updated.rank) + ".png");
+    $("#RankNew").SetImage("file://{images}/profile_badges/level_" + (100 - updated.rank) + ".png");
     newRankPanel.SetHasClass("Hidden", true);
 
     UpdateLabelFromRank($("#RankLabel"), previous);
     UpdateLabelFromRank($("#RankLabelNew"), updated);
-
-    $("#EliteRankText").text = "";
 
     $.Schedule(1.8, function() {
         rankPanel.RemoveClass("RankEndAnimationClass");
@@ -82,7 +89,7 @@ function RankNotification(ranks) {
     });
 
     $.Schedule(2, function() {
-        if (updated.rank > previous.rank || lostStreak) {
+        if (updated.rank > previous.rank || lostElo) {
             Game.EmitSound("UI.RankDecrease");
         } else if (updated.rank > 20) {
             Game.EmitSound("UI.RankLow");
@@ -97,15 +104,8 @@ function RankNotification(ranks) {
         newRankPanel.RemoveClass("RankAnimationClass");
         newRankPanel.AddClass("RankAnimationClass");
 
-        if (updated.rank <= previous.rank && !lostStreak){
+        if (updated.rank <= previous.rank && !lostElo){
             $("#RankEffect").SetHasClass("Hidden", false);
-        }
-
-        if (updated.rank == 1 && updated.streak) {
-            var label = $("#EliteRankText");
-
-            label.SetDialogVariable("max", updated.streak.max);
-            label.text = $.Localize("RankStreak", label);
         }
     });
 }

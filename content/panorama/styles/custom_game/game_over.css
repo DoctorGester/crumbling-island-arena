@@ -325,11 +325,15 @@
     align: center center;
 }
 
+#RankContainer, #RankNewContainer
+{
+    align: center;
+}
+
 #Rank, #RankNew
 {
     width: 256px;
     height: 256px;
-    align: center center;
     saturation: 1.0;
     background-color: rgba(0, 0, 0, 45);
     border-radius: 50%;
