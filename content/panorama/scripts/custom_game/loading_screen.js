@@ -65,8 +65,7 @@ function RankedInfoChanged(info) {
 
     var seasonRewardToShow = info.currentSeason;
 
-    $("#RankedRewardImage").SetImage("file://{images}/custom_game/rewards/" + seasonRewardToShow + ".png");
-    $("#RankedRewardImage").SetScaling("stretch-to-fit-y-preserve-aspect");
+    $("#RankedRewardImage").BLoadLayoutSnippet("reward" + seasonRewardToShow);
     $("#RankedRewardText").SetDialogVariableInt("season", seasonRewardToShow + 1);
     $("#RankedSeasonEndHeader").SetDialogVariableInt("season", info.currentSeason + 1);
 
