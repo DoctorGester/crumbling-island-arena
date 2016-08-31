@@ -65,17 +65,10 @@ function RankedInfoChanged(info) {
 
     var seasonRewardToShow = info.currentSeason;
 
-    if (moment().isBefore(moment.unix(info.seasonEndTime).subtract(20, "days"))) {
-        $("#RankedRewardText").text = $.Localize("InfoRankRewardPrev");
-
-        seasonRewardToShow--;
-    }
-
     $("#RankedRewardImage").SetImage("file://{images}/custom_game/rewards/" + seasonRewardToShow + ".png");
     $("#RankedRewardImage").SetScaling("stretch-to-fit-y-preserve-aspect");
     $("#RankedRewardText").SetDialogVariableInt("season", seasonRewardToShow + 1);
     $("#RankedSeasonEndHeader").SetDialogVariableInt("season", info.currentSeason + 1);
-    $("#RankedRewardDateText").text = moment.unix(info.seasonEndTime).locale($.Localize("locale")).format("MMMM Do");
 
     var parent = $("#RankedSeasonCongratulationsPlayers");
 

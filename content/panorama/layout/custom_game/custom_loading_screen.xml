@@ -25,8 +25,6 @@
                     </Panel>
                     <Label id="RankedSeasonEndHeader" class="RankedInfoRightHeader" text="#InfoRankSeason"/>
                     <Label id="RankedSeasonEndText" class="RankedInfoRightText"/>
-                    <Label class="RankedInfoRightHeader" text="#InfoRankRewardDateHeader"/>
-                    <Label id="RankedRewardDateText" class="RankedInfoRightText"/>
                 </Panel>
             </Panel>
             <Panel id="RankedInfoLoading" class="LoadingImage"/>
