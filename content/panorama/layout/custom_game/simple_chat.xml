@@ -13,7 +13,7 @@
                 var contentPanel = $("#ChatContent");
                 var entry = $("#ChatEntry");
 
-                if (contentPanel.BCanSeeInParentScroll()) {
+                if (contentPanel && contentPanel.BCanSeeInParentScroll()) {
                     entry.SetFocus();
                 }
             });

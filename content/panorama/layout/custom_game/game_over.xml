@@ -6,28 +6,49 @@
     <scripts>
         <include src="file://{resources}/scripts/custom_game/underscore-min.js" />
         <include src="file://{resources}/scripts/custom_game/util.js" />
+        <include src="file://{resources}/scripts/custom_game/notifications.js" />
         <include src="file://{resources}/scripts/custom_game/game_over.js" />
     </scripts>
-    <Panel class="GameOverBackground" hittest="false">
+    <snippets>
+        <snippet name="RankNotification">
+            <Panel>
+                <DOTAScenePanel id="RankEffect" class="Hidden" map="maps/scenes/badge_level_up.vmap"/>
+                <Panel id="RankElements">
+                    <Label id="RankUpdatedLabel" text="#RankUpdated"/>
+                    <Image id="Rank">
+                        <Label id="RankLabel"/>
+                    </Image>
+                    <Image id="RankNew">
+                        <Label id="RankLabelNew"/>
+                    </Image>
+                    <Label id="EliteRankText" html="true"/>
+                    <Label id="ClickToClose" text="#RankClose"/>
+                </Panel>
+            </Panel>
+        </snippet>
+
+        <snippet name="RewardNotification">
+            <Panel>
+                <DOTAScenePanel id="RewardRays" map="maps/scenes/red_godrays.vmap"/>
+
+                <Panel id="RewardArea">
+                    <Label id="RewardReceivedHeader" text="#RewardReceived"/>
+                    <Panel id="RewardModelContainer"/>
+                    <Label id="RewardTip" text="#RewardTip"/>
+                    <Label id="ClickToClose" text="#RankClose"/>
+                </Panel>
+            </Panel>
+        </snippet>
+    </snippets>
+
+    <Panel class="GameOverBackground" style="visibility: visible;" hittest="false">
         <Panel id="GameOverBlur">
             <Image id="GameOverBackgroundImage" src="file://{images}/custom_game/loadscreen.png"/>
             <Panel hittest="false" id="GameOverScoreboard">
             </Panel>
             <Panel id="GameOverChat"/>
         </Panel>
-        <Panel id="RankUpdate" class="Hidden">
-            <DOTAScenePanel id="RankEffect" class="Hidden" map="maps/scenes/badge_level_up.vmap"/>
-            <Panel id="RankElements">
-                <Label id="RankUpdatedLabel" text="#RankUpdated"/>
-                <Image id="Rank">
-                    <Label id="RankLabel"/>
-                </Image>
-                <Image id="RankNew">
-                    <Label id="RankLabelNew"/>
-                </Image>
-                <Label id="EliteRankText" html="true"/>
-                <Label id="ClickToClose" text="#RankClose"/>
-            </Panel>
+        <Panel id="NotificationArea" class="Hidden">
         </Panel>
     </Panel>
 

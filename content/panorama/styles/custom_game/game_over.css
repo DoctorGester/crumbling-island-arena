@@ -261,11 +261,62 @@
     z-index: 1;
 }
 
-#RankUpdate
+#NotificationArea
 {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 200);
+}
+
+#RewardArea
+{
+    align: center center;
+    flow-children: down;
+}
+
+#RewardRays
+{
+    width: 100%;
+    height: 100%;
+}
+
+.RewardHidden
+{
+    opacity: 0.0;
+}
+
+#RewardModel
+{
+    width: 500px;
+    height: 700px;
+    opacity-mask: url("s2r://panorama/images/masks/softedge_box_png.vtex");
+    horizontal-align: center;
+    margin-top: -100px;
+}
+
+#RewardReceivedHeader
+{
+    align: center top;
+    color: white;
+    letter-spacing: 10px;
+    font-size: 90px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: red 0px 0px 4px 4px;
+    transform: rotateX(8deg);
+}
+
+#RewardTip
+{
+    align: center;
+    font-size: 16px;
+    color: #BBBBBB;
+    text-transform: uppercase;
+}
+
+#RewardArea #ClickToClose
+{
+    transform: rotateX(-8deg);
 }
 
 #RankElements
@@ -284,6 +335,10 @@
     border-radius: 50%;
 }
 
+#ClickToClose, #RankUpdatedLabel, #EliteRankText, #RankLabel, #RankLabelNew, #RewardReceivedHeader, #RewardTip {
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+}
+
 #RankLabel, #RankLabelNew
 {
     align: center bottom;
@@ -292,14 +347,12 @@
     margin-bottom: -20px;
     font-weight: bold;
     letter-spacing: none;
-    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
 }
 
 #EliteRankText
 {
     margin-top: 50px;
     align: center bottom;
-    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
     color: white;
     letter-spacing: 1px;
     font-size: 38px;
@@ -310,7 +363,6 @@
 {
     margin-top: 50px;
     align: center bottom;
-    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
     color: white;
     letter-spacing: 2px;
     font-size: 30px;
@@ -322,7 +374,6 @@
 {
     margin-bottom: 50px;
     align: center top;
-    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
     color: white;
     letter-spacing: 10px;
     font-size: 90px;

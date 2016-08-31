@@ -273,10 +273,6 @@ function UpdateLabelFromRank(label, rankData) {
 }
 
 function RanksUpdated(ranks) {
-    if (!ranks) {
-        return;
-    }
-
     var previous = ranks.previous[Players.GetLocalPlayer()];
     var updated = ranks.updated[Players.GetLocalPlayer()];
 
@@ -284,75 +280,11 @@ function RanksUpdated(ranks) {
         return;
     }
 
-    var lostStreak = (updated.streak && previous.streak && updated.streak.current < previous.streak.current);
+    NotificationQueue.AddNotification("RankNotification", RankNotification, { previous: previous, updated: updated });
 
-    var topPanel = $("#RankUpdate");
-    var rankPanel = $("#Rank");
-    var newRankPanel = $("#RankNew");
-
-    var elements = $("#RankElements");
-
-    elements.SetHasClass("Hidden", true);
-
-    $.Schedule(0.4, function() {
-        Game.EmitSound("UI.RankAppear");
-        elements.SetHasClass("Hidden", false);
-        elements.RemoveClass("RankOpenAnimationClass");
-        elements.AddClass("RankOpenAnimationClass");
-    });
-
-    $("#GameOverBlur").AddClass("Blurred");
-    rankPanel.SetImage("file://{images}/profile_badges/level_" + (100 - previous.rank) + ".png");
-
-    topPanel.SetHasClass("Hidden", false);
-    rankPanel.SetHasClass("Hidden", false);
-    
-    newRankPanel.SetImage("file://{images}/profile_badges/level_" + (100 - updated.rank) + ".png");
-    newRankPanel.SetHasClass("Hidden", true);
-
-    UpdateLabelFromRank($("#RankLabel"), previous);
-    UpdateLabelFromRank($("#RankLabelNew"), updated);
-
-    $("#EliteRankText").text = "";
-
-    $.Schedule(1.8, function() {
-        rankPanel.RemoveClass("RankEndAnimationClass");
-        rankPanel.AddClass("RankEndAnimationClass");
-    });
-
-    $.Schedule(2, function() {
-        if (updated.rank > previous.rank || lostStreak) {
-            Game.EmitSound("UI.RankDecrease");
-        } else if (updated.rank > 20) {
-            Game.EmitSound("UI.RankLow");
-        } else if (updated.rank > 10) {
-            Game.EmitSound("UI.RankMedium");
-        } else {
-            Game.EmitSound("UI.RankHigh");
-        }
-        
-        newRankPanel.SetHasClass("Hidden", false);
-        rankPanel.SetHasClass("Hidden", true);
-        newRankPanel.RemoveClass("RankAnimationClass");
-        newRankPanel.AddClass("RankAnimationClass");
-
-        if (updated.rank <= previous.rank && !lostStreak){
-            $("#RankEffect").SetHasClass("Hidden", false);
-        }
-
-        topPanel.SetPanelEvent("onactivate", function() {
-            topPanel.SetHasClass("Hidden", true);
-            Game.EmitSound("UI.RankClose");
-            $("#GameOverBlur").RemoveClass("Blurred");
-        });
-
-        if (updated.rank == 1 && updated.streak) {
-            var label = $("#EliteRankText");
-
-            label.SetDialogVariable("max", updated.streak.max);
-            label.text = $.Localize("RankStreak", label);
-        }
-    });
+    if (previous.rank > 1 && updated.rank == 1 && typeof ranks.currentSeason !== 'undefined') {
+        NotificationQueue.AddNotification("RewardNotification", RewardNotification, { season: ranks.currentSeason });
+    }
 }
 
 $.GetContextPanel().AddClass("GameOverScoreboardVisible");

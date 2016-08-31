@@ -291,6 +291,9 @@
 		"SbRunnerUp" "Runner up"
 		"SbTooManyHeroes" "Too many heroes to display"
 
+		"RewardReceived" "Reward received"
+		"RewardTip" "Does not appear in the armory, available only in crumbling island arena"
+
 		"KMFirstBlood" "First Blood"
 		"KMNormal" "Enemy Slain"
 

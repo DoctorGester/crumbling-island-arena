@@ -750,7 +750,6 @@ function GameMode:OnHeroSelectionEnd()
             local roundSoundNumber = self.roundNumber - 1
 
             if roundSoundNumber <= 10 and not self:IsDeathMatch() then
-                print(string.format("announcer_ann_custom_round_%02d", roundSoundNumber))
                 EmitAnnouncerSound(string.format("announcer_ann_custom_round_%02d", roundSoundNumber))
             else
                 EmitAnnouncerSound("announcer_announcer_battle_begin_01")
@@ -972,7 +971,8 @@ function GameMode:OnRankUpdatesReceived(ranks)
 
     CustomNetTables:SetTableValue("ranks", "update", {
         previous = self:ParseSteamId64Table(ranks.previous),
-        updated = self:ParseSteamId64Table(ranks.updated)
+        updated = self:ParseSteamId64Table(ranks.updated),
+        currentSeason = self.currentSeason
     })
 end
 
@@ -1033,6 +1033,8 @@ function GameMode:OnGameInProgress()
 
     Stats.SubmitMatchInfo(self.Players, self.gameSetup:GetSelectedMode(), GAME_VERSION,
         function(data)
+            self.currentSeason = data.currentSeason
+
             if data.achievements then
                 self:OnAchievementsReceived(data.achievements)
             end

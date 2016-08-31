@@ -955,6 +955,7 @@
 	"npc_dota_hero_invoker"
 	{
 		"override_hero"	"npc_dota_hero_invoker"
+		"Class" "heroes/invoker:Invoker"
 		"ArmorPhysical"	"0"
 		"MagicalResistance"	"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
@@ -975,6 +976,7 @@
 		"GameSoundsFile" ""
 		"VoiceFile"	""
 		"Difficulty" "easy"
+		"DisableWearables" "1"
 		"Order" "25"
 
 		"Ability1" "invoker_q"

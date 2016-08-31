@@ -42,8 +42,8 @@ Jugger.Swords = {
     }
 }
 
-function Jugger:SetUnit(unit)
-    getbase(Jugger).SetUnit(self, unit)
+function Jugger:SetOwner(owner)
+    getbase(Jugger).SetOwner(self, owner)
 
     if self:IsAwardEnabled() then
         for _, part in pairs({ "dc_armsupdate", "dc_backupdate4", "dc_headupdate", "dc_legsupdate5" }) do
@@ -56,7 +56,6 @@ function Jugger:SetUnit(unit)
     end
 
     self.swordModel = self:AttachWearable(self:GetSwordModel(0))
-
     self.swordLevel = 0
     self:AddNewModifier(self, nil, "modifier_jugger_sword", {})
     self:UpdateSwordLevel()

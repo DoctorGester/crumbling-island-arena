@@ -292,6 +292,9 @@
 		"SbRunnerUp" "Второе место"
 		"SbTooManyHeroes" "Слишком много героев"
 
+		"RewardReceived" "Новая награда"
+		"RewardTip" "Не появляется в арсенале, доступно только при игре в crumbling island arena"
+
 		"KMFirstBlood" "Первая кровь"
 		"KMNormal" "Враг убит"
 

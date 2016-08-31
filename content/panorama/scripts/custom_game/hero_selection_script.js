@@ -13,7 +13,8 @@ var buttonLoadingQueue = [];
 
 var seasonAwards = {
     0: "npc_dota_hero_lycan",
-    1: "npc_dota_hero_juggernaut"
+    1: "npc_dota_hero_juggernaut",
+    2: "npc_dota_hero_invoker"
 };
 
 function CreateDifficultyLock() {
@@ -48,7 +49,7 @@ function CreateDifficultyLock() {
     $("#HeroSelectionBackground").MoveChildBefore(lock, $("#PauseOverlay"));
 }
 
-function PreloadPreview(hero, value) {
+function PreloadPreview(hero, value, insertFirst) {
     var preview = $.CreatePanel("Panel", $("#LeftSideHeroes"), "");
     preview.AddClass("HeroPreview");
 
@@ -61,11 +62,17 @@ function PreloadPreview(hero, value) {
     loading.AddClass("LoadingImage");
     loading.AddClass("HeroPreviewLoading");
 
-    previewLoadingQueue.push({
+    var queueElement = {
         container: preview,
         children: value,
         loadingImage: loading
-    });
+    };
+
+    if (insertFirst) {
+        previewLoadingQueue.unshift(queueElement);
+    } else {
+        previewLoadingQueue.push(queueElement);
+    }
 
     return preview;
 }
@@ -82,8 +89,8 @@ function PreloadHeroPreviews(heroes) {
     }
 }
 
-function PreloadAwardPreview(hero) {
-    heroAwards[hero] = PreloadPreview(hero, "<DOTAScenePanel antialias='true' class='HeroPreviewScene' light='light' camera='default' map='maps/rewards/" + hero + "'/>");
+function PreloadAwardPreview(hero, season) {
+    heroAwards[hero] = PreloadPreview(hero, "<DOTAScenePanel antialias='true' class='HeroPreviewScene' light='light' camera='default' map='maps/rewards/" + season + "'/>", true);
     heroPreviews[hero] = heroAwards[hero];
 }
 
@@ -501,7 +508,7 @@ function AchievementsUpdated(achievements) {
     if (achievement) {
         if (achievement.achievedSeasons) {
             for (var season of _.values(achievement.achievedSeasons)) {
-                PreloadAwardPreview(seasonAwards[season]);
+                PreloadAwardPreview(seasonAwards[season], season);
             }
         }
     }
@@ -530,7 +537,7 @@ function CheckPause() {
 }
 
 function CheckPreviews() {
-    $.Schedule(0.05, CheckPreviews);
+    $.Schedule(0.02, CheckPreviews);
 
     var somethingIsLoading = false;
     var notLoadedContainer = null;
