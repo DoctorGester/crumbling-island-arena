@@ -28,7 +28,10 @@
             <Panel id="RankedInfoContainer" class="Hidden">
                 <Panel id="RankedReward">
                     <Panel id="RankedRewardImage"/>
-                    <Label id="RankedRewardText" html="true" text="#InfoRankReward"/>
+                    <Panel id="RankedRewardBottom" onmouseover="DOTAShowTextTooltip(RewardTip)" onmouseout="DOTAHideTextTooltip()">
+                        <Panel id="RankedRewardIcon"/>
+                        <Label id="RankedRewardText" html="true" text="#InfoRankReward"/>
+                    </Panel>
                 </Panel>
                 <Panel id="RankedSeasonInfo">
                     <Panel id="RankedSeasonCongratulations">

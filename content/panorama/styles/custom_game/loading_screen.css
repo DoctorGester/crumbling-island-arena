@@ -89,7 +89,7 @@ Label
 #RankedReward
 {
     height: 100%;
-    width: 30%;
+    width: 40%;
 }
 
 #RankedRewardBottom
@@ -98,6 +98,8 @@ Label
     flow-children: right;
     height: fill-parent-flow(1.0);
     width: 100%;
+    tooltip-position: bottom;
+    tooltip-body-position: 50% 100%;
 }
 
 #RankedRewardImage
@@ -107,6 +109,7 @@ Label
     height: 80%;
     width: 100%;
     overflow: clip clip;
+    margin-right: 60px;
 }
 
 .RewardImage
@@ -121,10 +124,23 @@ Label
     align: center center;
 }
 
+#RankedRewardIcon
+{
+    background-image: url("file://{images}/status_icons/information.psd");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    width: 32px;
+    height: 32px;
+    wash-color: #AAAAAA;
+    vertical-align: center;
+}
+
 #RankedRewardText
 {
     color: white;
     font-size: 18px;
+    margin-left: 16px;
     vertical-align: center;
 }
 
@@ -133,7 +149,6 @@ Label
     flow-children: down;
     width: fill-parent-flow(1.0);
     height: 100%;
-    margin-left: 60px;
 }
 
 #RankedSeasonCongratulations

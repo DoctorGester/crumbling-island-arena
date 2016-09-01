@@ -292,7 +292,7 @@
 		"SbTooManyHeroes" "Too many heroes to display"
 
 		"RewardReceived" "Reward received"
-		"RewardTip" "Does not appear in the armory, available only in crumbling island arena"
+		"RewardTip" "Does not appear in the armory, available only in Crumbling Island Arena"
 
 		"KMFirstBlood" "First Blood"
 		"KMNormal" "Enemy Slain"

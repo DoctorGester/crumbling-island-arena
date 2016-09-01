@@ -293,7 +293,7 @@
 		"SbTooManyHeroes" "Слишком много героев"
 
 		"RewardReceived" "Новая награда"
-		"RewardTip" "Не появляется в арсенале, доступно только при игре в crumbling island arena"
+		"RewardTip" "Не появляется в арсенале, доступно ТОЛЬКО при игре в Crumbling Island Arena"
 
 		"KMFirstBlood" "Первая кровь"
 		"KMNormal" "Враг убит"
