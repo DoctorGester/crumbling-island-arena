@@ -17,7 +17,7 @@
         </snippet>
         <snippet name="reward2">
             <Panel>
-                <Movie class="RewardMovie" src="file://{resources}/videos/custom_game/rewards/2.webm" controls="none" repeat="true" autoplay="onload"/>
+                <Movie class="RewardMovie" src="http://zippy.gfycat.com/OddEnragedBernesemountaindog.webm" controls="none" repeat="true" autoplay="onload"/>
             </Panel>
         </snippet>
     </snippets>
