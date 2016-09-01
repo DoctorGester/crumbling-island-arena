@@ -45,7 +45,7 @@ var NotificationQueue = new (function() {
 
 function UpdateLabelFromRank(label, rankData) {
     if (rankData.rank == 1 && rankData.elo) {
-        label.AddClass("EliteText");
+        label.AddClass("EliteRankLabel");
         label.text = rankData.elo;
     } else {
         label.AddClass("NormalText");
