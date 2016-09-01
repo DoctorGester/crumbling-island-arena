@@ -31,6 +31,7 @@
 .ChatIcon
 {
     margin-right: 5px;
+    vertical-align: bottom;
 }
 
 .ChatLine

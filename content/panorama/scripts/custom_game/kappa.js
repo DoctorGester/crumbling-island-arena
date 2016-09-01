@@ -264,8 +264,12 @@ function ProcessEmote(input, template, emote, id) {
     return input.replace(new RegExp("\\b" + emote + "\\b", "g"), "<img src='" + url + "'/>");
 }
 
-function InsertEmotes(input) {
+function InsertEmotes(input, wasTopPlayer) {
     input = EscapeHtml(input);
+
+    if (wasTopPlayer) {
+        input = input.replace(new RegExp("\\bKappa\\b", "g"), "<img src='file://{images}/custom_game/golden_kappa.png'/>");
+    }
 
     for (var emote in emotes) {
         input = ProcessEmote(input, template, emote, emotes[emote])
