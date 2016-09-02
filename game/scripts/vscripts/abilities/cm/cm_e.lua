@@ -16,10 +16,11 @@ function cm_e:OnSpellStart()
         hitFunction = function(projectile, target)
             if hero:IsFrozen(target) then
                 target:Damage(hero)
+            else
+                hero:Freeze(target, self)
             end
 
             target:EmitSound("Arena.CM.HitE")
-            hero:Freeze(target, self)
         end,
         destroyFunction = function(projectile)
             hero:StopSound("Arena.CM.LoopE")

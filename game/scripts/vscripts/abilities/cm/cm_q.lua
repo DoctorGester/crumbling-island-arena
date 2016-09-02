@@ -17,9 +17,9 @@ function cm_q:OnSpellStart()
         hitFunction = function(projectile, target)
             if hero:IsFrozen(target) then
                 target:Damage(hero)
+            else
+                hero:Freeze(target, self)
             end
-
-            hero:Freeze(target, self)
         end
     }):Activate()
 

@@ -59,9 +59,10 @@ function cm_w:OnSpellStart()
 
                             if frozen then
                                 target:Damage(hero)
+                            else
+                                hero:Freeze(target, ability)
                             end
-
-                            hero:Freeze(target, ability)
+                            
                             damaged[target] = true
                         end
                     })
