@@ -41,5 +41,5 @@ function self:Update()
     local prev = self:GetPos()
     getbase(ProjectileDusaW).Update(self)
     self:SetFacing(self:GetPos() - prev)
-    self.tick = self.tick + 1
+    self.tick = self.tick + self.currentMultiplier
 end
