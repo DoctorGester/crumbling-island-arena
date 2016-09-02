@@ -330,6 +330,10 @@ var DeathMatch = new (function() {
     this.FillHeroList = function(parent, difficulty) {
         var heroes = this.FilterDifficulty(difficulty);
 
+        heroes = _(heroes).reject(function(hero) {
+            return DeathMatch.heroes[hero].disabled;
+        });
+
         heroes = _(heroes).sortBy(function(hero) {
             return DeathMatch.heroes[hero].order
         });

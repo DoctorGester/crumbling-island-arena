@@ -160,7 +160,7 @@ function ShowHeroDetails(heroName) {
     var notAvailable = allHeroes[heroName].disabled;
 
     ShowHeroAbilities(heroName);
-    $("#HeroAbilities").visible = true;
+    $("#HeroAbilities").visible = !notAvailable;
     $("#HeroName").text = $.Localize("#HeroName_" + heroData.name);
 
     $("#HeroAbilities").SetHasClass("NotAvailableHero", notAvailable);
@@ -243,7 +243,7 @@ function AddButtonEvents(button, name) {
 
 function AddDisabledButtonEvents(button, name) {
     button.SetPanelEvent("onmouseover", function() {
-        $.DispatchEvent("DOTAShowTextTooltip", button, $.Localize("Available_on_" + name))
+        $.DispatchEvent("DOTAShowTextTooltip", button, $.Localize("AvailableSoon"))
 
         ShowHeroDetails(name);
     });
@@ -386,7 +386,7 @@ function HeroesUpdated(data){
     var easy = FilterDifficulty(heroes, data, "easy");
     var hard = FilterDifficulty(heroes, data, "hard");
 
-    CreateHeroList($("#EasyHeroes"), easy, [ 4, 6, 6, 6, 5 ] , 4);
+    CreateHeroList($("#EasyHeroes"), easy, [ 4, 5, 6, 6, 6 ] , 4);
     CreateHeroList($("#HardHeroes"), hard, [ 6, 4 ]);
 
     LoadHeroButton();

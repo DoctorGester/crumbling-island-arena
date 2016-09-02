@@ -53,6 +53,7 @@
 		"Available_on_npc_dota_hero_queenofpain"		"Доступно с 23 июля!"
 		"Available_on_npc_dota_hero_tusk"				"Доступно с 30 июля!"
 		"Available_on_npc_dota_hero_undying"			"Доступно с 7-8 августа!"
+		"AvailableSoon"									"Доступно скоро!"
 
 		"phantom_assassin_DescQ" "Бумеранг"
 		"phantom_assassin_DescW" "Атака вокруг себя"

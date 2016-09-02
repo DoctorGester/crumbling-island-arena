@@ -36,6 +36,11 @@
 		"HeroName_npc_dota_hero_tusk"					"The World"
 		"HeroName_npc_dota_hero_undying"				"Sloth"
 		"HeroName_npc_dota_hero_medusa"					"Greed"
+		"HeroName_npc_dota_hero_omniknight"				"?????"
+		"HeroName_npc_dota_hero_axe"					"?????"
+		"HeroName_npc_dota_hero_shadow_demon"			"Love"
+		"HeroName_npc_dota_hero_faceless_void"			"Eyes of Heaven"
+		"HeroName_npc_dota_hero_beastmaster"			"?????"
 
 		"Available_on_npc_dota_hero_drow_ranger"		"Available on April 23!"
 		"Available_on_npc_dota_hero_skeleton_king"		"Available on April 30!"
@@ -52,6 +57,7 @@
 		"Available_on_npc_dota_hero_queenofpain"		"Available on July 23!"
 		"Available_on_npc_dota_hero_tusk"				"Available on July 30!"
 		"Available_on_npc_dota_hero_undying"			"Available on August 7-8!"
+		"AvailableSoon"									"Available soon!"
 
 		"phantom_assassin_DescQ" "Short ranged boomerang"
 		"phantom_assassin_DescW" "Melee AOE attack"

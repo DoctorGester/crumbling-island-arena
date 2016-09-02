@@ -245,7 +245,8 @@
 
 #HeroList
 {
-    align: center center;
+    align: center top;
+    margin-top: 100px;
     width: 65%;
     flow-children: down;
 }
