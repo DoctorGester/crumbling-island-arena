@@ -28,14 +28,18 @@ function DeathMatch:Update()
     end
 end
 
+function DeathMatch:IsHeroAvailable(hero)
+    local heroData = self.availableHeroes[hero]
+
+    return (not self:AreHardHeroesLocked() or heroData.difficulty ~= "hard") and not heroData.disabled
+end
+
 function DeathMatch:OnRespawn(args)
     local player = self.players[args.PlayerID]
     local hero = args.hero
 
     if self:IsPlayerDead(player) then
-        local heroData = self.availableHeroes[hero]
-
-        if not heroData or (self:AreHardHeroesLocked() and heroData.difficulty == "hard") then
+        if not self:IsHeroAvailable(hero) then
             return
         end
 
@@ -130,8 +134,8 @@ function DeathMatch:OnRandom(args)
     if self:IsPlayerDead(player) then
         local allHeroes = {}
 
-        for hero, data in pairs(self.availableHeroes) do
-            if not self:AreHardHeroesLocked() or data.difficulty ~= "hard" then
+        for hero, _ in pairs(self.availableHeroes) do
+            if self:IsHeroAvailable(hero) then
                 table.insert(allHeroes, hero)
             end
         end
