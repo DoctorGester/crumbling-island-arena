@@ -8,7 +8,7 @@ function venge_e:OnSpellStart()
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 128),
         to = target + Vector(0, 0, 128),
-        speed = 1300,
+        speed = 1400,
         graphics = "particles/venge_e/venge_e.vpcf",
         distance = 950,
         hitSound = "Arena.Venge.HitE",

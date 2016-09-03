@@ -1440,7 +1440,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "vengefulspirit_nether_swap"
 		"AbilityCooldown" "6.0"
-		"AbilityCastPoint" "0.15"
+		"AbilityCastPoint" "0.1"
 
 		"TargetingIndicator"
 		{
