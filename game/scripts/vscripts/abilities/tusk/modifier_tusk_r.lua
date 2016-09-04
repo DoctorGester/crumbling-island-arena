@@ -7,3 +7,7 @@ end
 function modifier_tusk_r:GetKnockbackMultiplier()
     return 2
 end
+
+function modifier_tusk_r:GetAttributes()
+    return MODIFIER_ATTRIBUTE_MULTIPLE
+end
