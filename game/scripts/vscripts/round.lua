@@ -144,6 +144,8 @@ function Round:Destroy()
         end
     end
 
+    self:Update() -- To stop dashes
+
     for _, entity in pairs(self.spells.entities) do
         if instanceof(entity, Hero) then
             entity.removeOnDeath = true
