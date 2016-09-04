@@ -37,6 +37,8 @@ function jugger_q:OnSpellStart()
     else
         hero:EmitSound("Arena.Jugger.CastQ")
     end
+
+    ScreenShake(target, 5, 150, 0.25, 2000, 0, true)
 end
 
 function jugger_q:GetCastAnimation()
