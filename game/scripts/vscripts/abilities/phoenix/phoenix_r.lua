@@ -105,7 +105,7 @@ if IsServer() then
         hero:StopSound("Arena.Phoenix.LoopR2")
         hero:EmitSound("Arena.Phoenix.EndR", target)
 
-        if self.timePassed and self.timePassed > 1.0 and not hero:FindModifier(EGG_MODIFIER) then
+        if self.timePassed and self.timePassed > 0.5 and not hero:FindModifier(EGG_MODIFIER) then
             hero:SetHealth(1)
             hero:Damage(self)
         end
