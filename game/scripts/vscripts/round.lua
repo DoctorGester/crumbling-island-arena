@@ -118,8 +118,12 @@ function Round:CreateHeroes(spawnPoints)
             for i = 0, count do
                 local ability = unit:GetAbilityByIndex(i)
 
-                if ability ~= nil and string.ends(ability:GetName(), "_r") then
-                    ability:StartCooldown(self.availableHeroes[player.selectedHero].initialCD or ULTS_TIME)
+                if ability ~= nil then
+                    if string.ends(ability:GetName(), "_r") then
+                        ability:StartCooldown(self.availableHeroes[player.selectedHero].initialCD or ULTS_TIME)
+                    else
+                        ability:StartCooldown(3)
+                    end
                 end
             end
 
