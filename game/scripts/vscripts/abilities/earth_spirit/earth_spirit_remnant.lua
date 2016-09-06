@@ -31,7 +31,8 @@ function EarthSpiritRemnant:MakeFall()
     getbase(EarthSpiritRemnant).MakeFall(self)
 
     if self.standingHero ~= nil then
-        self.standingHero:RemnantDestroyed(self)
+        self.standingHero:FallFromStand()
+        self:SetStandingHero(nil)
     end
 end
 
