@@ -1,6 +1,14 @@
 modifier_charges = class({})
 
 if IsServer() then
+    function modifier_charges:RestoreCharge()
+        if self:GetStackCount() == 0 then
+            self:GetAbility():EndCooldown()
+        end
+
+        self:OnIntervalThink()
+    end
+
     function modifier_charges:Update()
         if self:GetDuration() == -1 then
             self:SetDuration(self.kv.replenish_time, true)

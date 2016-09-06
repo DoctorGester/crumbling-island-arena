@@ -386,7 +386,7 @@ function HeroesUpdated(data){
     var easy = FilterDifficulty(heroes, data, "easy");
     var hard = FilterDifficulty(heroes, data, "hard");
 
-    CreateHeroList($("#EasyHeroes"), easy, [ 4, 5, 6, 6, 6 ] , 4);
+    CreateHeroList($("#EasyHeroes"), easy, [ 4, 5, 6, 6, 7 ] , 4);
     CreateHeroList($("#HardHeroes"), hard, [ 6, 4 ]);
 
     LoadHeroButton();

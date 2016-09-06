@@ -83,7 +83,7 @@ end
 
 function Dash:Update()
     local result = nil
-    if self.hero:Alive() then
+    if self.hero:Alive() and not self.cantStart then
         local origin = self.hero:GetPos()
         result = self:PositionFunction(origin)
 

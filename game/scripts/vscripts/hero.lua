@@ -188,6 +188,20 @@ function Hero:MakeFall()
     end
 end
 
+function Hero:AddNewModifier(source, ability, modifier, params)
+    for _, modifier in pairs(self:AllModifiers()) do
+        if modifier.OnModifierAdded then
+            local result = modifier:OnModifierAdded(source, ability, modifier, params)
+
+            if result == false then
+                return
+            end
+        end
+    end
+
+    return getbase(Hero).AddNewModifier(self, source, ability, modifier, params)
+end
+
 function Hero:HasModelChanged()
     for _, modifier in pairs(self:AllModifiers()) do
         if modifier.DeclareFunctions then

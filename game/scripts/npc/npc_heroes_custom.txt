@@ -1402,4 +1402,39 @@
 
 		"Ultimate" "dusa_r"
 	}
+
+	"npc_dota_hero_antimage"
+	{
+		"override_hero"	"npc_dota_hero_antimage"
+		"Class" "heroes/am:AM"
+		"ArmorPhysical"	"0"
+		"MagicalResistance"	"0"
+		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
+		"AttributePrimary"	"DOTA_ATTRIBUTE_STRENGTH"
+		"BountyXP"	"0"
+		"MovementSpeed"	"350"
+		"MovementTurnRate"	"10"
+		"StatusHealth"	"5"
+		"StatusHealthRegen"	"0"
+		"StatusManaRegen"	"0"
+		"StatusMana"	"3"
+		"StatusStartingMana"	"0"
+		"AttributeBaseStrength"	"0"
+		"AttributeBaseIntelligence" "0"
+		"VisionDaytimeRange" "0"
+		"VisionNighttimeRange" "0"
+		"DrawParticlesWhileHidden" "1"
+		"Portrait"	""
+		"SoundSet"	""
+		"GameSoundsFile" ""
+		"VoiceFile"	""
+		"Difficulty" "easy"
+		"Disabled" "true"
+		"Order" "37"
+
+		"Ability1" "am_q"
+		"Ability2" "am_w"
+		"Ability3" "am_e"
+		"Ability4" "am_r"
+	}
 }

@@ -215,9 +215,49 @@ indicatorTypes["TARGETING_INDICATOR_TINKER_LASER"] = function(data, unit) {
     }
 };
 
+indicatorTypes["TARGETING_INDICATOR_AM_DASH"] = function(data, unit) {
+    this.data = data;
+    this.unit = unit;
+    this.particle = Particles.CreateParticle("particles/targeting/line.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN, unit);
+    this.particle2 = Particles.CreateParticle("particles/targeting/line.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN, unit);
+
+    this.Update = function(cursor){
+        this.UpdateLine(cursor, this.particle, 120);
+        this.UpdateLine(cursor, this.particle2, -120);
+    }
+
+    this.UpdateLine = function(cursor, particle, offset) {
+        var to = Vector.FromArray(cursor);
+        to.z = 0;
+
+        var pos = Vector.FromArray(Entities.GetAbsOrigin(unit));
+        pos.z = 0;
+
+        var forward = to.minus(pos).normalize();
+
+        var offsetStart = pos.add(new Vector(forward.y, -forward.x, 0).scale(offset));
+
+        var result = to.minus(Vector.FromArray(Entities.GetAbsOrigin(this.unit))).normalize().scale(150).add(to);
+        Particles.SetParticleControl(particle, 0, offsetStart)
+        Particles.SetParticleControl(particle, 1, forward.scale(450).add(offsetStart));
+        Particles.SetParticleControl(particle, 2, forward.scale(600).add(offsetStart));
+    }
+
+    this.Delete = function(){
+        Particles.DestroyParticleEffect(this.particle, false);
+        Particles.ReleaseParticleIndex(this.particle);
+
+        Particles.DestroyParticleEffect(this.particle2, false);
+        Particles.ReleaseParticleIndex(this.particle2);
+    }
+};
+
 function UpdateLine(particle, unit, data, cursor) {
     var pos = Vector.FromArray(Entities.GetAbsOrigin(unit));
     var to = Vector.FromArray(cursor);
+
+    pos.z = 32;
+    to.z = 32;
 
     var length = to.minus(pos).length();
     var newLength = Clamp(length, GetNumber(data.MinLength, 0, unit), GetNumber(data.MaxLength, Number.MAX_VALUE, unit));

@@ -36,6 +36,7 @@
 		"HeroName_npc_dota_hero_tusk"					"Мир"
 		"HeroName_npc_dota_hero_undying"				"Уныние"
 		"HeroName_npc_dota_hero_medusa"					"Жадность"
+		"HeroName_npc_dota_hero_antimage"				"Эа"
 
 		"Available_on_npc_dota_hero_lone_druid"			"Доступно с 4 июня!"
 		"Available_on_npc_dota_hero_drow_ranger"		"Доступено с 23 апреля!"
@@ -214,6 +215,11 @@
 		"medusa_DescW" "Снаряд восстанавливающий ману"
 		"medusa_DescE" "Потратить ману и получить щит"
 		"medusa_DescR" "Оглушить ВСЕХ героев перед собой"
+
+		"antimage_DescQ" "Атаковать врагов вокруг"
+		"antimage_DescW" "Щит от дебаффов"
+		"antimage_DescE" "Короткий рывок"
+		"antimage_DescR" "Безмолвие + замедление в области"
 
 		"HeroBanned" "Этот герой забанен"
 		"PlayerHeader" "Игроки"
@@ -492,6 +498,11 @@
 		"AbilityTooltip_dusa_e"							"Потратить <font color=\"skyblue\">ману</font> и получить щит<br/><br/><font color=\"skyblue\">Мана</font> восстанавливается раз в 10 секунд<br/>Чем больше <font color=\"skyblue\">маны</font>, тем медленнее двигается герой"
 		"AbilityTooltip_dusa_r"							"Получить мощный бафф, оглушающий <font color=\"gold\"><b>ВСЕХ</b></font> героев, если они находится перед тобой больше 1 секунды"
 
+		"AbilityTooltip_am_q"							"Применить стакающийся дебафф ко всем врагам вокруг<br/>Когда количество стаков достигнет 3, враг получит урон"
+		"AbilityTooltip_am_w"							"Получить короткий щит, защищающий от дебаффов<br/>Каждый дебафф восстанавливает заряд <font color=\"gold\"><b>E</b></font>"
+		"AbilityTooltip_am_e"							"<font color=\"#DAFF7F\"><b>С зарядами</b></font><br/>Короткий рывок<br/>Применяет стакающийся дебафф ко всем врагам на пути<br/>Когда количество стаков достигнет 3, враг получит урон"
+		"AbilityTooltip_am_r"							"Применить безмолвие на всех врагов в области и замедлить их в зависимости от их количества способностей на перезарядке"
+
 		"ModifierTooltip_modifier_charges"						"Заряды способности"
 		"ModifierTooltip_modifier_stunned_lua"					"Оглушен"
 		"ModifierTooltip_modifier_silence_lua"					"Безмолвие"
@@ -625,6 +636,11 @@
 		"ModifierTooltip_modifier_dusa_r_aura"					"Обращает в камень всех перед собой"
 		"ModifierTooltip_modifier_dusa_r_target"				"Скоро обратится в камень"
 		"ModifierTooltip_modifier_dusa_r"						"Оглушен"
+
+		"ModifierTooltip_modifier_am_damage"					"Получит урон когда количество стаков достигнет 3"
+		"ModifierTooltip_modifier_am_w"							"Защищен от дебаффов"
+		"ModifierTooltip_modifier_am_e"							"Magic be dashed"
+		"ModifierTooltip_modifier_am_r"							"Замедлен и обезмолвлен"
 	}
 }
 

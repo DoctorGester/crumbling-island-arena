@@ -41,6 +41,7 @@
 		"HeroName_npc_dota_hero_shadow_demon"			"Love"
 		"HeroName_npc_dota_hero_faceless_void"			"Eyes of Heaven"
 		"HeroName_npc_dota_hero_beastmaster"			"?????"
+		"HeroName_npc_dota_hero_antimage"				"Ea"
 
 		"Available_on_npc_dota_hero_drow_ranger"		"Available on April 23!"
 		"Available_on_npc_dota_hero_skeleton_king"		"Available on April 30!"
@@ -218,6 +219,11 @@
 		"medusa_DescW" "Mana restoring projectile"
 		"medusa_DescE" "Spend mana to gain a shield"
 		"medusa_DescR" "Disable ALL heroes in front of you"
+
+		"antimage_DescQ" "Attack enemies around you"
+		"antimage_DescW" "Debuff deflecting shield"
+		"antimage_DescE" "Short dash"
+		"antimage_DescR" "Silence + slow in the AOE"
 
 		"HeroBanned" "This hero is banned"
 		"PlayerHeader" "Players"
@@ -503,6 +509,11 @@
 		"AbilityTooltip_dusa_e"							"Spend <font color=\"skyblue\">mana</font> to gain a shield<br/><br/><font color=\"skyblue\">Mana</font> is restored every 10 seconds<br/>The more <font color=\"skyblue\">mana</font> you have, the slower you move"
 		"AbilityTooltip_dusa_r"							"Gain a powerful buff, disabling <font color=\"gold\"><b>ALL</b></font> heroes in front of you after looking at them for 1 second"
 
+		"AbilityTooltip_am_q"							"Apply a stacking debuff to all enemies around<br/>When an enemy reaches 3 stacks he takes damage"
+		"AbilityTooltip_am_w"							"Gain a short shield which negates applied debuffs<br/>Every debuff restores a charge of <font color=\"gold\"><b>E</b></font>"
+		"AbilityTooltip_am_e"							"<font color=\"#DAFF7F\"><b>Charged</b></font><br/>Short dash<br/>Applies a stacking debuff to all enemies on the way<br/>When an enemy reaches 3 stacks he takes damage"
+		"AbilityTooltip_am_r"							"Silence all enemies in the target area and slow them based on the number of abilities they have on cooldown"
+
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
 		"ModifierTooltip_modifier_silence_lua"					"Silenced"
@@ -636,6 +647,11 @@
 		"ModifierTooltip_modifier_dusa_r_aura"					"Turning everyone in front of her into stone"
 		"ModifierTooltip_modifier_dusa_r_target"				"Will turn into stone soon"
 		"ModifierTooltip_modifier_dusa_r"						"Stunned"
+
+		"ModifierTooltip_modifier_am_damage"					"Will take damage once the stack count reaches 3"
+		"ModifierTooltip_modifier_am_w"							"Protected from debuffs"
+		"ModifierTooltip_modifier_am_e"							"Magic be dashed"
+		"ModifierTooltip_modifier_am_r"							"Slowed and silenced"
 	}
 }
 
