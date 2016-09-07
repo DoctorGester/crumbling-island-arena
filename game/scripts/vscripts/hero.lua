@@ -119,7 +119,13 @@ function Hero:Damage(source)
     ParticleManager:ReleaseParticleIndex(sign)
 
     GameRules.GameMode:OnDamageDealt(self, source)
+
+    if not self:Alive() then
+        self:OnDeath()
+    end
 end
+
+function Hero:OnDeath() end
 
 function Hero:Heal()
     if self.unit:IsAlive() then
