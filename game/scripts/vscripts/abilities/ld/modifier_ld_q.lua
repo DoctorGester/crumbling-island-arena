@@ -21,6 +21,6 @@ function modifier_ld_q:GetStatusEffectName()
     return "particles/status_fx/status_effect_templar_slow.vpcf"
 end
 
-function modifier_ld_q:GetStatusEffectPriority()
+function modifier_ld_q:StatusEffectPriority()
     return 2
 end

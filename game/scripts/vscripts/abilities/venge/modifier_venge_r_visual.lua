@@ -17,7 +17,7 @@ function modifier_venge_r_visual:GetStatusEffectName()
     return "particles/status_fx/status_effect_illusion.vpcf"
 end
 
-function modifier_venge_r_visual:GetStatusEffectPriority()
+function modifier_venge_r_visual:StatusEffectPriority()
     return 10
 end
 

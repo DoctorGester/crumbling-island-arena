@@ -20,6 +20,6 @@ function modifier_ld_w_sub:GetStatusEffectName()
     return "particles/status_fx/status_effect_lone_druid_savage_roar.vpcf"
 end
 
-function modifier_ld_w_sub:GetStatusEffectPriority()
+function modifier_ld_w_sub:StatusEffectPriority()
     return 2
 end
