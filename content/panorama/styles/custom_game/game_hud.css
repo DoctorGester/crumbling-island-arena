@@ -92,7 +92,7 @@
 
 #KillLog
 {
-    flow-children: up;
+    flow-children: down;
     vertical-align: bottom;
     horizontal-align: right;
     margin-bottom: 50px;
@@ -101,6 +101,11 @@
     height: 300px;
     transition: transform 1.0s linear 0.0ms;
     overflow: clip clip;
+}
+
+.KillLogTransform
+{
+    transform: scaleY(-1.0);
 }
 
 .KillLogEntry
@@ -114,12 +119,12 @@
     padding: 10px;
     transition-property: transform, position;
     transition-duration: 0.5s;
-    transform: translateX(-400px);
+    transform: translateX(-400px) scaleY(-1.0);
 }
 
 .KillLogEntryAppear
 {
-    transform: translateX(0px);
+    transform: translateX(0px) scaleY(-1.0);
 }
 
 .KillLogEntry Image, .KillLogEntry DOTAHeroImage

@@ -25,7 +25,7 @@
         <include src="file://{resources}/scripts/custom_game/kappa.js" />
     </scripts>
     <Panel class="MainPanel" hittest="false">
-        <Image src="file://{images}/custom_game/ld_r.png" style="opacity:0.0;"/>
+        <Image src="file://{images}/custom_game/pl_r.png" style="opacity:0.0;"/>
         <Panel id="MainPanel" class="MainPanel" hittest="false">
             <Panel id="DebugPanel" hittest="false">
             </Panel>
@@ -54,7 +54,7 @@
                 <Panel class="AbilityPanel" hittest="false" id="AbilityPanel">
                 </Panel>
             </Panel>
-            <Panel id="KillLog" hittest="false" hittestchildren="false"/>
+            <Panel id="KillLog" class="KillLogTransform" hittest="false" hittestchildren="false"/>
             <Panel id="GameChat" hittestchildren="false" hittest="false">
                 <Panel id="GameChatContent" class="ChatHidden" hittest="false"/>
                 <Panel id="GameChatEntryContainer"/>
