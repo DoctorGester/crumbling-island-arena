@@ -52,11 +52,12 @@ function GameSetup:GetNextStageAndTime()
 
         local gameMode = GameRules.GameMode
         Stats.SubmitMatchInfo(gameMode.Players, self:GetSelectedMode(), GAME_VERSION, function(data)
-            if data.ranks then
-                local result = gameMode:OnRanksReceived(data.ranks)
+            if data and data.gamesPlayed then
+                local result = gameMode:ParseSteamId64Table(data.gamesPlayed)
+                PrintTable(result)
 
                 if self.currentStage:Is("stage_team") then
-                    self.currentStage:SetRanks(result)
+                    self.currentStage:SetWeights(result)
                 end
             end
         end)

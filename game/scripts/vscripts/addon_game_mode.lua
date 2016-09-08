@@ -206,7 +206,11 @@ function GameMode:EventStateChanged(args)
     end
 
     if newState == DOTA_GAMERULES_STATE_CUSTOM_GAME_SETUP then
-        self:OnGameSetup()
+        if IsInToolsMode() then
+            Timers:CreateTimer(1, function() self:OnGameSetup() end)
+        else
+            self:OnGameSetup()
+        end
     end
      
     if newState == DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
@@ -219,10 +223,6 @@ function GameMode:OnGameSetup()
 
     local amount = 0
     local i = 0
-
-    if IsInToolsMode() then
-        amount = 1
-    end
 
     for id = 0, DOTA_MAX_PLAYERS do
         if PlayerResource:IsValidPlayer(id) then
@@ -417,6 +417,7 @@ end
 
 function GameMode:SetupMode()
     self.Players = {}
+    self.Thinkers = {}
     self:SetState(STATE_GAME_SETUP)
 
     self.Round = nil
@@ -821,10 +822,6 @@ end
 function GameMode:GetRankedMode()
     local players = 0
     local mode = self.gameSetup:GetSelectedMode()
-
-    if IsInToolsMode() then
-        players = 1
-    end
 
     for _, player in pairs(self.Players) do
         players = players + 1

@@ -281,7 +281,9 @@ function TeamBuilderAlt:ResolveTeams()
         end
     end
 
-    print("Found a total of "..tostring(#bestModels).." models", maxScore)
+    if not self.disableDebug then
+        print("[TEAM BUILDER] Found a total of "..tostring(#bestModels).." models", maxScore)
+    end
 
     if self.weightSupplier == nil then
         self.weightSupplier = function() return 1 end
@@ -309,8 +311,10 @@ function TeamBuilderAlt:FindMostBalancedModels(models)
         end
     end
 
-    print("Reduced model amount to "..tostring(#bestModels).." balanced models")
-    print("Lowest standard deviation", maxScore)
+    if not self.disableDebug then
+        print("[TEAM BUILDER] Reduced model amount to "..tostring(#bestModels).." balanced models")
+        print("[TEAM BUILDER] Lowest standard deviation", maxScore)
+    end
 
     return bestModels
 end
@@ -416,6 +420,8 @@ if IsInToolsMode() then
 
         local tb = TeamBuilder(players, numPlayers)
         local tba = TeamBuilderAlt(players, numPlayers, baker.permutations)
+
+        tba.disableDebug = true
 
         for j = 1, RandomInt(1, 12) do
             local from = RandomInt(1, #players)

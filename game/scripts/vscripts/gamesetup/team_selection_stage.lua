@@ -37,8 +37,8 @@ function TeamSelectionStage:GetDefaultPlayerInput(player)
     return {}
 end
 
-function TeamSelectionStage:SetRanks(ranks)
-    self.ranks = ranks
+function TeamSelectionStage:SetWeights(weights)
+    self.weights = weights
 end
 
 function TeamSelectionStage:FinalizeResults()
@@ -56,9 +56,9 @@ function TeamSelectionStage:FinalizeResults()
         end
     end
 
-    if self.ranks then
+    if self.weights then
         builder:SetAdditionalWeightSupplier(function(player)
-            return self.ranks[player].rank
+            return self.weights[player]
         end)
     end
 
