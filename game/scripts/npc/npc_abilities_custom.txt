@@ -3103,4 +3103,80 @@
 			"Radius" "500"
 		}
 	}
+
+	"pl_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pl/pl_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "phantom_lancer_spirit_lance"
+		"AbilityCooldown" "2.2"
+		"AbilityCastPoint" "0.15"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "350"
+		}
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "350"
+		}
+	}
+
+	"pl_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pl/pl_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "phantom_lancer_phantom_edge"
+		"AbilityCooldown" "5.0"
+	}
+
+	"pl_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pl/pl_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "phantom_lancer_phantom_edge"
+		"AbilityCooldown" "6.0"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "600"
+			"MaxLength" "1200"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1200"
+		}
+	}
+
+	"pl_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pl/pl_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "phantom_lancer_phantom_edge"
+		"AbilityCooldown" "10.0"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "1200"
+			"MaxLength" "1200"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1200"
+		}
+	}
 }

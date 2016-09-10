@@ -81,6 +81,20 @@ function Hero:SwapAbilities(from, to)
     self.unit:SwapAbilities(from, to, false, true)
 end
 
+function Hero:IsInvulnerable()
+    for _, modifier in pairs(self:AllModifiers()) do
+        if modifier.IsInvulnerable then
+            local result = modifier:IsInvulnerable(self)
+
+            if result == true then
+                return true
+            end
+        end
+    end
+
+    return self.invulnerable
+end
+
 function Hero:Damage(source)
     if source == nil then source = self end
 
@@ -194,18 +208,20 @@ function Hero:MakeFall()
     end
 end
 
-function Hero:AddNewModifier(source, ability, modifier, params)
-    for _, modifier in pairs(self:AllModifiers()) do
-        if modifier.OnModifierAdded then
-            local result = modifier:OnModifierAdded(source, ability, modifier, params)
+function Hero:AddNewModifier(source, ability, name, params)
+    if name ~= "modifier_falling" then
+        for _, modifier in pairs(self:AllModifiers()) do
+            if modifier.OnModifierAdded then
+                local result = modifier:OnModifierAdded(source, ability, name, params)
 
-            if result == false then
-                return
+                if result == false then
+                    return
+                end
             end
         end
     end
 
-    return getbase(Hero).AddNewModifier(self, source, ability, modifier, params)
+    return getbase(Hero).AddNewModifier(self, source, ability, name, params)
 end
 
 function Hero:HasModelChanged()

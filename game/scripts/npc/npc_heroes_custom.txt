@@ -1466,9 +1466,16 @@
 		"Disabled" "true"
 		"Order" "38"
 
-		"Ability1" "am_q"
-		"Ability2" "am_w"
-		"Ability3" "am_e"
-		"Ability4" "am_r"
+		"Ability1" "pl_q"
+		"Ability2" "pl_w"
+		"Ability3" "pl_e"
+		"Ability4" "pl_r"
+
+		"CustomIcons"
+		{
+			"pl_w" "pl_w.png"
+			"pl_r" "pl_r.png"
+		}
+
 	}
 }

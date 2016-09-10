@@ -42,7 +42,7 @@
 		"HeroName_npc_dota_hero_faceless_void"			"Eyes of Heaven"
 		"HeroName_npc_dota_hero_beastmaster"			"?????"
 		"HeroName_npc_dota_hero_antimage"				"Ea"
-		"HeroName_npc_dota_hero_phantom_lancer"			"?????"
+		"HeroName_npc_dota_hero_phantom_lancer"			"Gemini"
 
 		"Available_on_npc_dota_hero_drow_ranger"		"Available on April 23!"
 		"Available_on_npc_dota_hero_skeleton_king"		"Available on April 30!"
@@ -225,6 +225,11 @@
 		"antimage_DescW" "Debuff deflecting shield"
 		"antimage_DescE" "Short dash"
 		"antimage_DescR" "Silence + slow in the AOE"
+
+		"phantom_lancer_DescQ" "Melee attack, turns illusions into projectiles"
+		"phantom_lancer_DescW" "Counter next damage instance and blink"
+		"phantom_lancer_DescE" "Summon an illusion"
+		"phantom_lancer_DescR" "Summon an illusion using melee attack"
 
 		"HeroBanned" "This hero is banned"
 		"PlayerHeader" "Players"
@@ -515,6 +520,11 @@
 		"AbilityTooltip_am_e"							"<font color=\"#DAFF7F\"><b>Charged</b></font><br/>Short dash<br/>Applies a stacking debuff to all enemies on the way<br/>When an enemy reaches 3 stacks he takes damage"
 		"AbilityTooltip_am_r"							"Silence all enemies in the target area and slow them based on the number of abilities they have on cooldown"
 
+		"AbilityTooltip_pl_q"							"Attack enemies in front of you<br/>All illusions hit turn into projectiles and fly forward damaging first enemy on their way"
+		"AbilityTooltip_pl_w"							"Become immobile and immune, countering next damage instance in a short period<br/>Once damage is countered, appear behind the back of the enemy"
+		"AbilityTooltip_pl_e"							"Summon an illusion or target an existing one, make it run towards you, gives speed bonus on contact, slows enemies on contact"
+		"AbilityTooltip_pl_r"							"Summon an illusion behind you, which uses your <font color=\"gold\"><b>Q</b></font> after a short delay"
+
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
 		"ModifierTooltip_modifier_silence_lua"					"Silenced"
@@ -653,6 +663,11 @@
 		"ModifierTooltip_modifier_am_w"							"Protected from debuffs"
 		"ModifierTooltip_modifier_am_e"							"Magic be dashed"
 		"ModifierTooltip_modifier_am_r"							"Slowed and silenced"
+
+		"ModifierTooltip_modifier_pl_e_slow"					"Slowed"
+		"ModifierTooltip_modifier_pl_e_speed"					"Sped up"
+		"ModifierTooltip_modifier_pl_w"							"Will counter next damage instance"
+		"ModifierTooltip_modifier_pl_q"							"Shiny"
 	}
 }
 

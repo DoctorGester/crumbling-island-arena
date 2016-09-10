@@ -187,4 +187,26 @@
 	    "MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
 	    "StatusHealth" "2"
 	}
+
+	"pl_illusion"
+	{
+		"BaseClass"     "npc_dota_creature"
+	    "Model"         "models/heroes/phantom_lancer/phantom_lancer.vmdl"
+	    "ModelScale"    "0.84"
+	    "DrawParticlesWhileHidden" "1"
+	    "MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+
+	    "Creature"
+	    {
+	        "AttachWearables"
+	        {
+	            "1" { "ItemDef" "127" }
+	            "2" { "ItemDef" "128" }
+	            "3" { "ItemDef" "129" }
+	            "4" { "ItemDef" "130" }
+	            "5" { "ItemDef" "131" }
+	            "6" { "ItemDef" "132" }
+	        }
+	    }
+	}
 }

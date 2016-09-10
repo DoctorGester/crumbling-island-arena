@@ -37,6 +37,7 @@
 		"HeroName_npc_dota_hero_undying"				"Уныние"
 		"HeroName_npc_dota_hero_medusa"					"Жадность"
 		"HeroName_npc_dota_hero_antimage"				"Эа"
+		"HeroName_npc_dota_hero_phantom_lancer"			"Близнецы"
 
 		"Available_on_npc_dota_hero_lone_druid"			"Доступно с 4 июня!"
 		"Available_on_npc_dota_hero_drow_ranger"		"Доступено с 23 апреля!"
@@ -220,6 +221,11 @@
 		"antimage_DescW" "Щит от дебаффов"
 		"antimage_DescE" "Короткий рывок"
 		"antimage_DescR" "Безмолвие + замедление в области"
+
+		"phantom_lancer_DescQ" "Атака перед собой, превращает иллюзии в снаряды"
+		"phantom_lancer_DescW" "Отразить следующую атаку"
+		"phantom_lancer_DescE" "Призвать иллюзию"
+		"phantom_lancer_DescR" "Призвать атакующую иллюзию"
 
 		"HeroBanned" "Этот герой забанен"
 		"PlayerHeader" "Игроки"
@@ -503,6 +509,11 @@
 		"AbilityTooltip_am_e"							"<font color=\"#DAFF7F\"><b>С зарядами</b></font><br/>Короткий рывок<br/>Применяет стакающийся дебафф ко всем врагам на пути<br/>Когда количество стаков достигнет 3, враг получит урон"
 		"AbilityTooltip_am_r"							"Применить безмолвие на всех врагов в области и замедлить их в зависимости от их количества способностей на перезарядке"
 
+		"AbilityTooltip_pl_q"							"Атаковать врагов перед собой<br/>Все иллюзии превращаются в снаряды летящие вперед и наносящие урон первому врагу на пути"
+		"AbilityTooltip_pl_w"							"Обездвижить себя, отражая следующую полученную единицу урона<br/>Как только способность сработает, герой переместится за спину врага"
+		"AbilityTooltip_pl_e"							"Призвать иллюзию или выбрать существующую, заставив её бежать в сторону героя, давая бонус скорости при контакте и замедляя врагов на пути"
+		"AbilityTooltip_pl_r"							"Призвать иллюзию за спиной, использующую твою <font color=\"gold\"><b>Q</b></font> после короткой задержки"
+
 		"ModifierTooltip_modifier_charges"						"Заряды способности"
 		"ModifierTooltip_modifier_stunned_lua"					"Оглушен"
 		"ModifierTooltip_modifier_silence_lua"					"Безмолвие"
@@ -641,6 +652,11 @@
 		"ModifierTooltip_modifier_am_w"							"Защищен от дебаффов"
 		"ModifierTooltip_modifier_am_e"							"Magic be dashed"
 		"ModifierTooltip_modifier_am_r"							"Замедлен и обезмолвлен"
+
+		"ModifierTooltip_modifier_pl_e_slow"					"Замедлен"
+		"ModifierTooltip_modifier_pl_e_speed"					"Ускорен"
+		"ModifierTooltip_modifier_pl_w"							"Отразит следующую атаку"
+		"ModifierTooltip_modifier_pl_q"							"Светится!"
 	}
 }
 

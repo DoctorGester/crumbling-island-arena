@@ -150,7 +150,7 @@ function DashPudgeQ:PositionFunction(current)
 end
 
 function DashPudgeQ:HasEnded()
-    return (self.pudge:GetPos() - self.hero:GetPos()):Length2D() <= self.velocity * 3
+    return not self.hero:Alive() or (self.pudge:GetPos() - self.hero:GetPos()):Length2D() <= self.velocity * 3
 end
 
 function DashPudgeQ:End(...)

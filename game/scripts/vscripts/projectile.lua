@@ -121,6 +121,8 @@ function Projectile:CollideWith(target)
         return
     end
 
+    local invulnerableTarget = target:IsInvulnerable()
+
     if self.hitFunction then
         self:hitFunction(target)
     else
@@ -137,7 +139,7 @@ function Projectile:CollideWith(target)
 
     if self.continueOnHit then
         self.hitGroup[target] = self.gracePeriod
-    elseif not instanceof(target, Projectile) and not target:IsInvulnerable() then
+    elseif not instanceof(target, Projectile) and not invulnerableTarget then
         self:Destroy()
     end
 end

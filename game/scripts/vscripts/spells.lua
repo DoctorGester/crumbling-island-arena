@@ -140,6 +140,22 @@ function Spells:GetHeroTargets()
     end, self:GetValidTargets())
 end
 
+function Spells:FindClosest(to, range, list)
+    local min = math.huge
+    local closest = nil
+
+    for _, ent in pairs(list or self.entities) do
+        local distance = (ent:GetPos() - to):Length2D()
+
+        if distance < min and distance <= range then
+            min = distance
+            closest = ent
+        end
+    end
+
+    return closest
+end
+
 function Spells:FilterEntities(filter, list)
     local result = {}
 
@@ -200,9 +216,7 @@ function Filters.Cone(from, radius, direction, coneAngle)
         local dot = direction:Dot((target:GetPos() - from):Normalized())
         dot = math.min(math.max(dot, -1), 1) -- Yes, that happens
 
-        local angle = math.acos(dot)
-
-        return angle <= coneAngle / 2 and rfilter(target)
+        return math.acos(dot) <= coneAngle / 2 and rfilter(target)
     end)
 end
 
