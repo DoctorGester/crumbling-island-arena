@@ -63,7 +63,7 @@
 
         function OnChatSay(args) {
             AddChatLine("#ChatLine", {
-                name: Players.GetPlayerName(args.player),
+                name: EscapeHtml(Players.GetPlayerName(args.player)),
                 color:  LuaColor(args.color),
                 message: InsertEmotes(args.message, args.wasTopPlayer)
             }, args.wasTopPlayer);

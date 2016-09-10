@@ -58,7 +58,7 @@ function OnKillMessage(args) {
 function OnCustomChatSay(args) {
     var color = LuaColor(args.color);
     
-    AddChatLine(args.hero, Players.GetPlayerName(args.player), color, args.message, args.wasTopPlayer);
+    AddChatLine(args.hero, EscapeHtml(Players.GetPlayerName(args.player)), color, args.message, args.wasTopPlayer);
 }
 
 function OnKillLogEntry(args) {
