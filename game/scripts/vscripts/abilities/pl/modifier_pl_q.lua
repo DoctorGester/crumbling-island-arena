@@ -11,7 +11,9 @@ if IsServer() then
     end
 
     function self:OnDestroy()
-        self:GetParent():RemoveNoDraw()
+        if self:GetParent():GetParentEntity():Alive() then
+            self:GetParent():RemoveNoDraw()
+        end
     end
 end
 
