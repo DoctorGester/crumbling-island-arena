@@ -197,7 +197,10 @@ function Filters.Cone(from, radius, direction, coneAngle)
     local rfilter = Filters.Area(from, radius)
 
     return Filters.WrapFilter(function(target)
-        local angle = math.acos(direction:Dot((target:GetPos() - from):Normalized()))
+        local dot = direction:Dot((target:GetPos() - from):Normalized())
+        dot = math.min(math.max(dot, -1), 1) -- Yes, that happens
+
+        local angle = math.acos(dot)
 
         return angle <= coneAngle / 2 and rfilter(target)
     end)
