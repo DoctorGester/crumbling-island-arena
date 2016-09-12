@@ -8,7 +8,7 @@ function self:constructor(round, owner, target, facing, ability)
     self.hero = owner
     self.health = 1
     self.size = 64
-    self.collisionType = COLLISION_TYPE_RECEIVER
+    self.collisionType = COLLISION_TYPE_INFLICTOR
 
     local unit = self:GetUnit()
     
@@ -63,6 +63,14 @@ function self:Update()
         if time - self.refreshTime > 12 then
             self:Destroy()
         end
+    end
+end
+
+function self:CollideWith(target)
+    if target == self.hero then
+        target:EmitSound("Arena.PL.HitE")
+        target:AddNewModifier(target, self.ability, "modifier_pl_e_speed", { duration = 3 })
+        self:Destroy()
     end
 end
 
@@ -123,7 +131,7 @@ function PLIllusionDash:constructor(illusion, target, ability)
 end
 
 function PLIllusionDash:HasEnded()
-    return (self.target:GetPos() - self.hero:GetPos()):Length2D() <= 64 or not self.target:Alive()
+    return (self.target:GetPos() - self.hero:GetPos()):Length2D() <= 250 or not self.target:Alive()
 end
 
 function PLIllusionDash:PositionFunction(current)
@@ -140,15 +148,5 @@ function PLIllusionDash:Update(...)
         if self.tick % 5 == 0 then
             self.hero:EmitSound("Arena.PL.StepE")
         end
-    end
-end
-
-function PLIllusionDash:End(...)
-    getbase(PLIllusionDash).End(self, ...)
-
-    if self.hero:Alive() and self.target:Alive() and (self.target:GetPos() - self.hero:GetPos()):Length2D() <= 64 then
-        self.target:EmitSound("Arena.PL.HitE")
-        self.target:AddNewModifier(self.target, self.ability, "modifier_pl_e_speed", { duration = 3 })
-        self.hero:Destroy()
     end
 end
