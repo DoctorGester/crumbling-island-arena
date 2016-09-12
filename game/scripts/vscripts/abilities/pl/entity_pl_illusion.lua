@@ -60,7 +60,7 @@ function self:Update()
             end
         end
 
-        if time - self.refreshTime > 5 then
+        if time - self.refreshTime > 12 then
             self:Destroy()
         end
     end
