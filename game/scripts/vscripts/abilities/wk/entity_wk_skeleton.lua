@@ -63,10 +63,10 @@ function WKSkeleton:Update()
                 local modifier = self.attacking:FindModifier("modifier_wk_q")
 
                 if not modifier then
-                    self.attacking:Damage(self)
                     modifier = self.attacking:AddNewModifier(self.hero, self.ability, "modifier_wk_q", { duration = 3 })
 
                     if modifier then
+                        self.attacking:Damage(self)
                         modifier:SetStackCount(1)
                     end
                 else
