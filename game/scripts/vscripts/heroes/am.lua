@@ -6,7 +6,7 @@ function AM:SetUnit(unit)
     self:AddNewModifier(self, unit:FindAbilityByName("am_e"), "modifier_charges",
         {
             max_count = 3,
-            replenish_time = 5
+            replenish_time = 3
         }
     )
 end

@@ -9,7 +9,7 @@ function self:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
 
-    Dash(hero, target, 1500, {
+    Dash(hero, target, 2000, {
         modifier = { name = "modifier_am_e", ability = self },
         forceFacing = true,
         hitParams = {

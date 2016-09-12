@@ -2,10 +2,6 @@ modifier_charges = class({})
 
 if IsServer() then
     function modifier_charges:RestoreCharge()
-        if self:GetStackCount() == 0 then
-            self:GetAbility():EndCooldown()
-        end
-
         self:OnIntervalThink()
     end
 
@@ -52,6 +48,8 @@ if IsServer() then
 
     function modifier_charges:OnIntervalThink()
         local stacks = self:GetStackCount()
+
+        self:GetAbility():EndCooldown()
 
         if stacks < self.kv.max_count then
             self:SetDuration(self.kv.replenish_time, true)

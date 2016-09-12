@@ -30,6 +30,10 @@ function self:DealDamage(target)
             modifier:Destroy()
 
             target:EmitSound("Arena.AM.Proc")
+
+            FX("particles/generic_gameplay/generic_manaburn.vpcf", PATTACH_ABSORIGIN_FOLLOW, target, {
+                release = true
+            })
         else
             modifier:SetStackCount(stacks)
         end

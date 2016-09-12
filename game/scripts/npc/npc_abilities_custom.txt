@@ -3039,7 +3039,7 @@
 		"ScriptFile" "abilities/am/am_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName" "antimage_mana_break"
-		"AbilityCooldown" "0.5"
+		"AbilityCooldown" "0.45"
 		"AbilityCastPoint" "0.1"
 
 		"HoverIndicator"
@@ -3062,7 +3062,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/am/am_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN"
 		"AbilityTextureName" "antimage_blink"
 		"AbilityCooldown" "0.1"
 
