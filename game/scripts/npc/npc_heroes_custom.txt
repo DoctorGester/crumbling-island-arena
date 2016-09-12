@@ -1248,7 +1248,7 @@
 		"GameSoundsFile" ""
 		"VoiceFile"	""
 		"Difficulty" "easy"
-		"Disabled" "true"
+		"Disabled" "false"
 		"Order" "32"
 
 		"Ability1" "omni_q"
@@ -1429,7 +1429,7 @@
 		"GameSoundsFile" ""
 		"VoiceFile"	""
 		"Difficulty" "easy"
-		"Disabled" "true"
+		"Disabled" "false"
 		"Order" "37"
 
 		"Ability1" "am_q"
@@ -1463,7 +1463,7 @@
 		"GameSoundsFile" ""
 		"VoiceFile"	""
 		"Difficulty" "easy"
-		"Disabled" "true"
+		"Disabled" "false"
 		"Order" "38"
 
 		"Ability1" "pl_q"
