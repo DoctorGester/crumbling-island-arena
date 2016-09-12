@@ -3,15 +3,23 @@ local self = omni_q
 
 function self:OnSpellStart()
     local hero = self:GetCaster().hero
-    local hit = hero:AreaEffect({
-        filter = Filters.Area(hero:GetPos(), 300),
+    hero:AreaEffect({
+        filter = Filters.Area(hero:GetPos(), 300) + Filters.WrapFilter(function(v) return v.owner.team == hero.owner.team end),
         filterProjectiles = true,
         hitAllies = true,
         action = function(victim)
-            if victim.owner.team ~= hero.owner.team then
-                victim:Damage(hero)
-            else
-                victim:Heal()
+            victim:Heal()
+        end
+    })
+
+    local hit = false
+
+    hero:AreaEffect({
+        filter = Filters.Area(hero:GetPos(), 300),
+        damage = true,
+        action = function(victim)
+            if instanceof(victim, Hero) then
+                hit = true
             end
         end
     })

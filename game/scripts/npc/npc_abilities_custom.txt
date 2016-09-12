@@ -3186,7 +3186,7 @@
 		"ScriptFile" "abilities/omni/omni_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName" "omniknight_purification"
-		"AbilityCooldown" "3.7"
+		"AbilityCooldown" "5.0"
 		"AbilityCastPoint" "0.15"
 
 		"HoverIndicator"
