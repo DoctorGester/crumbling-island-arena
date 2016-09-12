@@ -3179,4 +3179,64 @@
 			"Radius" "1200"
 		}
 	}
+
+	"omni_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/omni/omni_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "omniknight_purification"
+		"AbilityCooldown" "3.7"
+		"AbilityCastPoint" "0.15"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
+	}
+
+	"omni_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/omni/omni_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "omniknight_degen_aura"
+		"AbilityCooldown" "4.0"
+		"AbilityCastPoint" "0.15"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "220"
+			"Offset" "200"
+		}
+	}
+
+	"omni_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/omni/omni_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "omniknight_repel"
+		"AbilityCooldown" "6.0"
+		"AbilityCastPoint" "0.15"
+	}
+
+	"omni_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/omni/omni_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "omniknight_guardian_angel"
+		"AbilityCooldown" "16.0"
+		"AbilityCastPoint" "0.15"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1200"
+		}
+	}
 }

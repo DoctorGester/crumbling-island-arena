@@ -11597,3 +11597,167 @@
         }
     }
 }
+
+"Arena.Omni.CastQ"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_update_default"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/omniknight/purification.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "60.00000" }
+                    "distance_max"      {   "value"     "2000.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Omni.CastW"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_update_default"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/leshrac/split_earth.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "0.80000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "60.00000" }
+                    "distance_max"      {   "value"     "2000.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Omni.LoopE"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_update_default"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/omniknight/repel.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "volume_fade_out"   {   "value"     "0.700000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "60.00000" }
+                    "distance_max"      {   "value"     "2000.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Omni.CastR"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_update_default"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/omniknight/guardian_cast.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "60.00000" }
+                    "distance_max"      {   "value"     "2000.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Omni.HitR"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_update_default"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/omniknight/guardian01.vsnd"
+                              "value0"        "sounds/weapons/hero/omniknight/guardian02.vsnd"
+                              "value0"        "sounds/weapons/hero/omniknight/guardian03.vsnd"
+                              "value0"        "sounds/weapons/hero/omniknight/guardian04.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "60.00000" }
+                    "distance_max"      {   "value"     "2000.000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}

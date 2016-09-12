@@ -1251,12 +1251,12 @@
 		"Disabled" "true"
 		"Order" "32"
 
-		"Ability1" "dusa_q"
-		"Ability2" "dusa_w"
-		"Ability3" "dusa_e"
-		"Ability4" "dusa_r"
+		"Ability1" "omni_q"
+		"Ability2" "omni_w"
+		"Ability3" "omni_e"
+		"Ability4" "omni_r"
 
-		"Ultimate" "dusa_r"
+		"Ultimate" "omni_r"
 	}
 
 	"npc_dota_hero_axe"

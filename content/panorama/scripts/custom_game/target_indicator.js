@@ -86,6 +86,7 @@ indicatorTypes["TARGETING_INDICATOR_RANGE"] = function(data, unit) {
         Particles.SetParticleControl(this.particle, 1, [ GetNumber(data.Radius, 0, this.unit), 0, 0 ]);
 
         if (this.offset) {
+            cursor = Vector.FromArray(cursor);
             var pos = Vector.FromArray(Entities.GetAbsOrigin(this.unit));
             var result = cursor.minus(pos).normalize().scale(this.offset).add(pos);
 

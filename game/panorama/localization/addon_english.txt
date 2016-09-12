@@ -36,7 +36,7 @@
 		"HeroName_npc_dota_hero_tusk"					"The World"
 		"HeroName_npc_dota_hero_undying"				"Sloth"
 		"HeroName_npc_dota_hero_medusa"					"Greed"
-		"HeroName_npc_dota_hero_omniknight"				"?????"
+		"HeroName_npc_dota_hero_omniknight"				"Enoch"
 		"HeroName_npc_dota_hero_axe"					"?????"
 		"HeroName_npc_dota_hero_shadow_demon"			"Love"
 		"HeroName_npc_dota_hero_faceless_void"			"Eyes of Heaven"
@@ -230,6 +230,11 @@
 		"phantom_lancer_DescW" "Counter next damage instance and blink"
 		"phantom_lancer_DescE" "Summon an illusion"
 		"phantom_lancer_DescR" "Summon an illusion using melee attack"
+
+		"omniknight_DescQ" "Damage enemies and heal allies around"
+		"omniknight_DescW" "Melee stunning attack"
+		"omniknight_DescE" "Invulnerability"
+		"omniknight_DescR" "Give all allies damage resistance"
 
 		"HeroBanned" "This hero is banned"
 		"PlayerHeader" "Players"
@@ -525,6 +530,11 @@
 		"AbilityTooltip_pl_e"							"Summon an illusion or target an existing one, make it run towards you, gives speed bonus on contact, slows enemies on contact"
 		"AbilityTooltip_pl_r"							"Summon an illusion behind you, which uses your <font color=\"gold\"><b>Q</b></font> after a short delay"
 
+		"AbilityTooltip_omni_q"							"Heal all allies and damage all enemies around you<br/>You are healed if at least one target was hit"
+		"AbilityTooltip_omni_w"							"Stun enemies in fron of you"
+		"AbilityTooltip_omni_e"							"Gain invulnerability for a short period of time"
+		"AbilityTooltip_omni_r"							"Give yourself and all allies around damage resistance buff"
+
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
 		"ModifierTooltip_modifier_silence_lua"					"Silenced"
@@ -668,6 +678,9 @@
 		"ModifierTooltip_modifier_pl_e_speed"					"Sped up"
 		"ModifierTooltip_modifier_pl_w"							"Will counter next damage instance"
 		"ModifierTooltip_modifier_pl_q"							"Shiny"
+
+		"ModifierTooltip_modifier_omni_e"						"Invulnerable"
+		"ModifierTooltip_modifier_omni_r"						"Immune to damage"
 	}
 }
 

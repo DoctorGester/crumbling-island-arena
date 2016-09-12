@@ -1134,3 +1134,7 @@ end
 if IsInToolsMode() and GameRules.GameMode and GameRules.GameMode.deathmatch then
     GameRules.GameMode.deathmatch:Activate(GameMode, GameRules.GameMode)
 end
+
+if IsInToolsMode() then
+    GameMode.InitModifiers()
+end

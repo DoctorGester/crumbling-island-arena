@@ -36,6 +36,7 @@
 		"HeroName_npc_dota_hero_tusk"					"Мир"
 		"HeroName_npc_dota_hero_undying"				"Уныние"
 		"HeroName_npc_dota_hero_medusa"					"Жадность"
+		"HeroName_npc_dota_hero_omniknight"				"Энох"
 		"HeroName_npc_dota_hero_antimage"				"Эа"
 		"HeroName_npc_dota_hero_phantom_lancer"			"Близнецы"
 
@@ -226,6 +227,11 @@
 		"phantom_lancer_DescW" "Отразить следующую атаку"
 		"phantom_lancer_DescE" "Призвать иллюзию"
 		"phantom_lancer_DescR" "Призвать атакующую иллюзию"
+
+		"omniknight_DescQ" "Урон врагам и лечение союзников вокруг"
+		"omniknight_DescW" "Оглушающая атака перед собой"
+		"omniknight_DescE" "Неуязвимость"
+		"omniknight_DescR" "Дать всей команде неуязвимость к урону"
 
 		"HeroBanned" "Этот герой забанен"
 		"PlayerHeader" "Игроки"
@@ -514,6 +520,11 @@
 		"AbilityTooltip_pl_e"							"Призвать иллюзию или выбрать существующую, заставив её бежать в сторону героя, давая бонус скорости при контакте и замедляя врагов на пути"
 		"AbilityTooltip_pl_r"							"Призвать иллюзию за спиной, использующую твою <font color=\"gold\"><b>Q</b></font> после короткой задержки"
 
+		"AbilityTooltip_omni_q"							"Вылечить союзников и нанести урон врагам вокруг<br/>Если хоть одна цель была задета, восстановить здоровье себе"
+		"AbilityTooltip_omni_w"							"Оглушить врагов перед собой"
+		"AbilityTooltip_omni_e"							"Получить неуязвимость на короткий промежуток времени"
+		"AbilityTooltip_omni_r"							"Дать себе и союзникам вокруг защиту от урона"
+
 		"ModifierTooltip_modifier_charges"						"Заряды способности"
 		"ModifierTooltip_modifier_stunned_lua"					"Оглушен"
 		"ModifierTooltip_modifier_silence_lua"					"Безмолвие"
@@ -657,6 +668,9 @@
 		"ModifierTooltip_modifier_pl_e_speed"					"Ускорен"
 		"ModifierTooltip_modifier_pl_w"							"Отразит следующую атаку"
 		"ModifierTooltip_modifier_pl_q"							"Светится!"
+
+		"ModifierTooltip_modifier_omni_e"						"Неуязвим"
+		"ModifierTooltip_modifier_omni_r"						"Защищен от урона"
 	}
 }
 
