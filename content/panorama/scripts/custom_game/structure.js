@@ -12,14 +12,15 @@ var Structure = new (function(){
             var differences = odiff(pair[0], structure);
 
             for (var change of differences) {
-                if (change.type === "set") {
-                    var result = this.FollowPath(parent, change.path);
-                    var property = result[1][0];
-                    var remainingPath = result[1].slice(1);
-                    var panel = result[0];
+                var result = this.FollowPath(parent, change.path);
+                var property = result[1][0];
+                var remainingPath = result[1].slice(1);
+                var panel = result[0];
 
-                    var originalValuePath = change.path.slice(0, change.path.length - remainingPath.length);
-                    var originalValue = this.OriginalValue(pair[0], originalValuePath);
+                var originalValuePath = change.path.slice(0, change.path.length - remainingPath.length);
+                var originalValue = this.OriginalValue(pair[0], originalValuePath);
+
+                if (change.type === "set") {
                     var val = change.val;
 
                     if (!!originalValue && !!val && remainingPath.length > 0) {
@@ -48,22 +49,21 @@ var Structure = new (function(){
                 }
 
                 if (change.type === "rm") {
-                    var result = this.FollowPath(parent, change.path);
-                    var panel = result[0];
-                    var property = result[1][0];
-                    var remainingPath = result[1].slice(1);
-
                     if (property === undefined || property === "children") {
                         for (var i = change.index; i < change.num; i++) {
                             panel.GetChild(i).DeleteAsync(0);
                         }
                     } else {
-                        $.Msg(change);
+                        var newValue = this.OriginalValue(structure, originalValuePath);
+
+                        this.SetProperty(panel, property, newValue, originalValue);
                     }
                 }
 
                 if (change.type === "add") {
-                    $.Msg(change)
+                    var newValue = this.OriginalValue(structure, originalValuePath);
+
+                    this.SetProperty(panel, property, newValue, originalValue);
                 }
             }
 
@@ -79,6 +79,10 @@ var Structure = new (function(){
     }
 
     this.Clone = function(obj) {
+        if (Array.isArray(obj)) {
+            obj = _.compact(obj);
+        }
+
         if (obj === null || typeof obj !== 'object') {
             if (typeof obj === 'function') {
                 return obj();
@@ -162,7 +166,9 @@ var Structure = new (function(){
             }
 
             for (var cls of this.AlwaysArray(value)) {
-                panel.AddClass(cls);
+                if (cls) {
+                    panel.AddClass(cls);
+                }
             }
 
         } else if (property == "scaling") {
@@ -176,7 +182,7 @@ var Structure = new (function(){
         } else if (property == "style") {
             if (!!prevValue) {
                 for (var key in prevValue) {
-                    panel.style[key] = undefined;
+                    panel.style[key] = null;
                 }
             }
 
