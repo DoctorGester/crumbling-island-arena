@@ -1,5 +1,4 @@
 var allHeroes = {};
-var heroButtons = {};
 var playerColors = {};
 var selectedHeroes = {};
 var previewSchedule = 0;
@@ -215,10 +214,10 @@ function PickRandomHero(){
 }
 
 function AddButtonEvents(button, name, isQuestTarget) {
-    button.onactivate = function() {
+    button.onactivate = function(panel) {
         var lock = $("#DifficultyLock");
 
-        if (heroButtons[name].GetParent().GetParent() == $("#HardHeroes") && lock) {
+        if (panel.GetParent().GetParent() == $("#HardHeroes") && lock) {
             return;
         }
 
@@ -303,7 +302,10 @@ function CreateHeroList(heroList, heroes, quests, selectedHeroes, rows, randomBu
 
     var heroesInRow = rows[0];
     var randomAdded = false;
-    var questHeroes = FindQuestHeroes(quests[Game.GetLocalPlayerID()]);
+    var questHeroes = quests ? FindQuestHeroes(quests[Game.GetLocalPlayerID()]) : [];
+    var localInfo = Game.GetPlayerInfo(Game.GetLocalPlayerID()) || {};
+    var localTeam = localInfo.player_team_id || -1;
+    var spectator = localTeam == -1;
 
     for (var i = 0, currentRow = 0; i < heroes.length; currentRow++, i += heroesInRow, heroesInRow = rows[currentRow]) {
         var row = {
@@ -328,11 +330,27 @@ function CreateHeroList(heroList, heroes, quests, selectedHeroes, rows, randomBu
                     class: "RandomButton"
                 };
             } else {
+                var selected = false;
+
+                if (selectedHeroes && (!selectedHeroes.allowSame || (selectedHeroes.locked || selectedTeam == localTeam || spectator))) {
+                    for (var id in selectedHeroes.selected) {
+                        var sHero = selectedHeroes.selected[id];
+
+                        if (sHero == hero) {
+                            selected = true;
+                            button.style = { boxShadow: function() { return (playerColors[id] || "#ff0000") + " -2px -2px 4px 4px"; } };
+
+                            break;
+                        }
+                    }
+                }
+
                 var mainChild = {
                     tag: "DOTAHeroImage",
                     class: [
                         "HeroButton",
-                        (notAvailable || banned) ? "NotAvailableHeroButton" : undefined,
+                        (notAvailable || banned) ? "NotAvailableHeroButton" : null,
+                        selected ? null : "HeroButtonDesaturated"
                     ],
                     heroimagestyle: "portrait",
                     heroname: heroes[j],
@@ -352,8 +370,6 @@ function CreateHeroList(heroList, heroes, quests, selectedHeroes, rows, randomBu
                         button.children.push({
                             class: "HeroButtonQuest"
                         });
-
-                        SimpleTooltip(mainChild, "#Test");
                     }
 
                     AddButtonEvents(mainChild, hero, isQuestTarget);
@@ -396,11 +412,6 @@ function GameStateChanged(data){
         $("#HeroAbilities").visible = false;
         $("#HeroName").text = "";
 
-        for (var key in heroButtons) {
-            heroButtons[key].style.boxShadow = null;
-            heroButtons[key].RemoveClass("HeroButtonSaturated");
-        }
-
         selectedHeroes = {};
 
         for (var preview in heroPreviews) {
@@ -424,9 +435,11 @@ function UpdateHeroSelectionButtons(data){
 
     heroes = _(heroes).sortBy(function(hero) { return allHeroes[hero].order });
     
-    previewLoadingQueue = [];
+    if (Object.keys(heroPreviews).length == 0) {
+        previewLoadingQueue = [];
 
-    PreloadHeroPreviews(heroes);
+        PreloadHeroPreviews(heroes);
+    }
 
     var easy = FilterDifficulty(heroes, allHeroes, "easy");
     var hard = FilterDifficulty(heroes, allHeroes, "hard");
@@ -535,9 +548,6 @@ function HeroSelectionUpdated(data){
             selectionImage.heroname = hero;
             selectionImage.RemoveClass("AnimationImageHover");
             selectionImage.AddClass("AnimationSelectedHero");
-
-            heroButtons[hero].style.boxShadow = playerColors[id] + " -2px -2px 4px 4px";
-            heroButtons[hero].AddClass("HeroButtonSaturated");
         }
     }
 
