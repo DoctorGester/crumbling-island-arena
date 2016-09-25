@@ -323,6 +323,7 @@
 		"QuestMAKE_KILLS" "Kill {i:goal} enemy heroes"
 		"QuestCAST_SPELLS" "Cast {i:goal} spells"
 		"QuestRESTORE_HEALTH" "Receive {i:goal} points<br/>of healing"
+		"QuestAvailable" "Quest available!"
 		"PassProgress" "Pass progress"
 		"PassLevel" "Level {i:level}"
 		"PassTopPlayers" "Top Pass Players"

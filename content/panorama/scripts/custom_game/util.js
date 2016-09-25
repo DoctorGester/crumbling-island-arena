@@ -196,6 +196,38 @@ function UnwrapString(table){
     return keys[0];
 }
 
+function SimpleTooltip(target, token) {
+    target.onmouseover = function(panel) {
+        $.DispatchEvent("DOTAShowTextTooltip", panel, $.Localize(token))
+    };
+
+    target.onmouseout = function(){
+        $.DispatchEvent("DOTAHideTextTooltip");
+    };
+}
+
+function AggregateNetTables(keys, callback) {
+    var aggregator = function() {
+        var result = {};
+
+        for (var key of keys) {
+            var value = CustomNetTables.GetTableValue(key.table, key.key);
+
+            if (value) {
+                result[key.name || key.key] = value;
+            }
+        }
+
+        callback(result);
+    };
+
+    for (var key of keys) {
+        SubscribeToNetTableKey(key.table, key.key, false, aggregator);
+    }
+
+    aggregator();
+}
+
 function SubscribeToNetTableKey(table, key, loadNow, callback){
     var listener = CustomNetTables.SubscribeNetTableListener(table, function(table, tableKey, data){
         if (key == tableKey){

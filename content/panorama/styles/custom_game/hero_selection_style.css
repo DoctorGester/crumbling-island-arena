@@ -264,6 +264,17 @@
     wash-color: #333333;
 }
 
+.HeroButtonQuest
+{
+    background-image: url("file://{images}/custom_game/points.png");
+    background-size: 100% 100%;
+    width: 22px;
+    height: 27px;
+    align: right bottom;
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
 #DifficultyLock
 {
     background-color: #4d5860EF;
@@ -326,7 +337,6 @@
 
 .HeroButtonContainer
 {
-    saturation: 0.2;
     margin: 4px;
     width: 75px;
     height: 75px;
@@ -344,12 +354,17 @@
 {
     width: 100%;
     height: 100%;
+    saturation: 0.2;
 }
 
 .HeroButtonContainer:hover
 {
-    saturation: 1.0;
     box-shadow: skyblue -2px -2px 0px 4px;
+}
+
+.HeroButtonContainer:hover .HeroButton
+{
+    saturation: 1.0;
 }
 
 .RandomButton
@@ -358,11 +373,17 @@
     height: 100%;
     background-color: black;
     wash-color: skyblue;
+    saturation: 0.2;
 
     background-image: url('file://{images}/custom_game/rolling_dices.png');
     background-size: 80% 80%;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.HeroButtonContainer:hover .RandomButton
+{
+    saturation: 1.0;
 }
 
 .ConnectionStatePanel

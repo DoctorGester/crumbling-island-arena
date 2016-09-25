@@ -155,7 +155,7 @@
                 "type" "static"
                 "activity" "ACT_DOTA_TAUNT"
                 "translate" "shake_moneymaker"
-                "length" "6.5"
+                "length" "7.0"
             }
         }
     }

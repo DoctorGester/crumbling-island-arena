@@ -1,5 +1,7 @@
 var Structure = new (function(){
     this.structureList = [];
+    this.events = [ "onactivate", "onmouseover", "onmouseout" ];
+    this.functionKeys = [ "onactivate", "onmouseover", "onmouseout", "onChange" ];
 
     this.Create = function(parent, structure) {
         var pair = this.FindStructure(parent);
@@ -55,11 +57,13 @@ var Structure = new (function(){
                         for (var i = change.index; i < change.num; i++) {
                             panel.GetChild(i).DeleteAsync(0);
                         }
+                    } else {
+                        $.Msg(change);
                     }
                 }
 
                 if (change.type === "add") {
-
+                    $.Msg(change)
                 }
             }
 
@@ -85,7 +89,7 @@ var Structure = new (function(){
      
         var temp = obj.constructor();
         for (var key in obj) {
-            if (key == "onChange" && typeof obj[key] === 'function') {
+            if (this.functionKeys.indexOf(key) !== -1 && typeof obj[key] === 'function') {
                 temp[key] = obj[key];
             } else {
                 temp[key] = this.Clone(obj[key]);
@@ -161,6 +165,14 @@ var Structure = new (function(){
                 panel.AddClass(cls);
             }
 
+        } else if (property == "scaling") {
+            panel.SetScaling(value);
+        } else if (this.events.indexOf(property) !== -1) {
+            if (!!prevValue) {
+                panel.ClearPanelEvent(property);
+            }
+
+            panel.SetPanelEvent(property, function() { value(panel); });
         } else if (property == "style") {
             if (!!prevValue) {
                 for (var key in prevValue) {
