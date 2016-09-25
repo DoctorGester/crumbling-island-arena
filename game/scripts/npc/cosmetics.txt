@@ -21,6 +21,20 @@
             "set" "balance_bladekeeper"
             "ignore" "7076"
         }
+
+        "2"
+        {
+            "type" "pass"
+            "level" "8"
+            "taunt"
+            {
+                "type" "static"
+                "activity" "ACT_DOTA_TAUNT"
+                "translate" "face_me"
+                "sound" "Taunt.Jugg"
+                "length" "2.0"
+            }
+        }
     }
 
     "invoker"
@@ -197,23 +211,6 @@
                 "activity" "ACT_DOTA_TAUNT"
                 "translate" "snowangel"
                 "length" "5.5"
-            }
-        }
-    }
-
-    "juggernaut"
-    {
-        "1"
-        {
-            "type" "pass"
-            "level" "8"
-            "taunt"
-            {
-                "type" "static"
-                "activity" "ACT_DOTA_TAUNT"
-                "translate" "face_me"
-                "sound" "Taunt.Jugg"
-                "length" "2.0"
             }
         }
     }
