@@ -277,11 +277,18 @@ function RanksUpdated(ranks) {
     }
 }
 
+function OnQuestResults(results) {
+    results = results[Players.GetLocalPlayer()];
+
+    NotificationQueue.AddNotification("PassNotification", PassNotification, { results: results });
+}
+
 $.GetContextPanel().AddClass("GameOverScoreboardVisible");
 $("#GameOverChat").BLoadLayout("file://{resources}/layout/custom_game/simple_chat.xml", false, false);
 $("#GameOverChat").RegisterListener("GameOverEnter");
 
 SubscribeToNetTableKey("main", "gameInfo", true, GameInfoUpdated);
 SubscribeToNetTableKey("ranks", "update", true, RanksUpdated);
+SubscribeToNetTableKey("pass", "questResults", true, OnQuestResults);
 
 UpdateGameOverConnectionStates();

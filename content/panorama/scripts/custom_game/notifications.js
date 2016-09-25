@@ -128,3 +128,30 @@ function RewardNotification(data) {
         area.AddClass("RankOpenAnimationClass");
     });
 }
+
+function PassNotification(results) {
+    results = results.results;
+
+    var area = $("#PassNotification");
+
+    area.RemoveClass("RankOpenAnimationClass");
+    area.AddClass("RankOpenAnimationClass");
+
+    Game.EmitSound("UI.RankAppear");
+
+    if (results.experience || results.experience === 0) {
+        Pass.UpdateExperience(results.experience, true);
+    }
+
+    $.Schedule(0.5, function() {
+        if (results.completedQuests) {
+            Pass.QuestsCompleted(results.completedQuests);
+        }
+
+        if (results.experience || results.experience === 0) {
+            $.Schedule(results.completedQuests ? 3 : 1.5, function() {
+                Pass.UpdateExperienceAnimated(results.experience, results.earnedExperience);
+            });
+        }
+    });
+}

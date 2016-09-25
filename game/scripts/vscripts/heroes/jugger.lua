@@ -45,16 +45,6 @@ Jugger.Swords = {
 function Jugger:SetOwner(owner)
     getbase(Jugger).SetOwner(self, owner)
 
-    if self:IsAwardEnabled() then
-        for _, part in pairs({ "dc_armsupdate", "dc_backupdate4", "dc_headupdate", "dc_legsupdate5" }) do
-            self:AttachWearable("models/items/juggernaut/"..part.."/"..part..".vmdl")
-        end
-    else
-        for _, part in pairs({ "ernaut_pants", "_bracers", "_cape", "_mask" }) do
-            self:AttachWearable("models/heroes/juggernaut/jugg"..part..".vmdl")
-        end
-    end
-
     self.swordModel = self:AttachWearable(self:GetSwordModel(0))
     self.swordLevel = 0
     self:AddNewModifier(self, nil, "modifier_jugger_sword", {})
@@ -63,10 +53,6 @@ function Jugger:SetOwner(owner)
 
     self.swordOnLevel = nil
     self.swordParticle = nil
-end
-
-function Jugger:GetAwardSeason()
-    return 1
 end
 
 function Jugger:GetSwordModel(level)

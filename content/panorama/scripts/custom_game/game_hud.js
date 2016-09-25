@@ -8,6 +8,7 @@ var abilityBar = null;
 var buffBar = null;
 var healthBar = null;
 var chatLines = [];
+var cosmeticAbilityBar = null;
 
 GameUI.SetCameraPitchMin(60);
 GameUI.SetCameraPitchMax(60);
@@ -143,6 +144,10 @@ function LoadHeroUI(heroId){
         abilityBar = new AbilityBar("#AbilityPanel");
     }
 
+    if (cosmeticAbilityBar == null) {
+        cosmeticAbilityBar = new AbilityBar("#HeroCosmeticAbilities");
+    }
+
     if (healthBar == null) {
         healthBar = new HealthBar("#HealthPanel", heroId);
     }
@@ -155,6 +160,12 @@ function LoadHeroUI(heroId){
 
     abilityBar.SetProvider(new EntityAbilityDataProvider(heroId));
     abilityBar.RegisterEvents(true);
+
+    var cosmeticProvider = new EntityAbilityDataProvider(heroId);
+    cosmeticProvider.SetOnlyCosmetic(true);
+
+    cosmeticAbilityBar.SetProvider(cosmeticProvider);
+    cosmeticAbilityBar.RegisterEvents(true);
 
     healthBar.SetEntity(heroId);
     buffBar.SetEntity(heroId);
@@ -189,6 +200,10 @@ function UpdateUI(){
 
     if (abilityBar != null) {
         abilityBar.Update();
+    }
+
+    if (cosmeticAbilityBar != null) {
+        cosmeticAbilityBar.Update();
     }
 
     if (buffBar != null) {
@@ -231,6 +246,7 @@ function FillDebugPanel(){
     AddDebugButton("Switch end check", "debug_switch_end_check");
     AddDebugButton("Switch debug display", "debug_switch_debug_display");
     AddDebugButton("Reset level", "debug_reset_level");
+    AddDebugButton("ALL HEROES", "debug_test_everything");
 }
 
 function DebugUpdate(data){

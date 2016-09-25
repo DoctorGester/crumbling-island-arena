@@ -16,6 +16,20 @@ Game.OnEnterPressed = function() {
     }
 }
 
+function Label(id, cl, text) {
+    if (arguments.length < 3) {
+        text = cl;
+        cl = null;
+    }
+
+    if (arguments.length < 2) {
+        text = id;
+        id = null;
+    }
+
+    return { tag: "Label", id: id, class: cl, text: text };
+}
+
 function AddEnterListener(name, callback) {
     Game.enterListeners[name] = callback;
 }
@@ -30,6 +44,10 @@ function TryFetchSteamId(id, avatar) {
     } else {
         avatar.steamid = info.player_steamid;
     }
+}
+
+function StartsWith(str, searchString) {
+    return str.substring(0, searchString.length) === searchString;
 }
 
 function FindOrCreate(parent, type, id, cl) {
@@ -328,6 +346,6 @@ function CreateScoreboardFromData(players, callback) {
             data.push({ hero: player.heroes[index], name: player.names[index], id: player.ids[index] });
         }
 
-        callback(LuaColor(player.color), player.score, data, key);
+        callback(LuaColor(player.color), player.score, data, key, player.ids[index]);
     }
 }

@@ -6,6 +6,9 @@ Debug = Debug or {
 }
 
 function Debug.OnTestEverything()
+    for name, _ in pairs(GameRules.GameMode.AvailableHeroes) do
+        Debug.OnCreateTestHero(nil, { name = name })
+    end
 end
 
 function Debug.OnTakeDamage(eventSourceIndex, args)
@@ -53,11 +56,7 @@ function InjectFreeSelection()
         self.unit:SetControllableByPlayer(owner.id, true)
         self.unit:SetCustomHealthLabel(name, c[1], c[2], c[3])
 
-        local season = self:GetAwardSeason()
-
-        if season ~= nil then
-            self.awardEnabled = GameRules.GameMode:IsAwardedForSeason(owner.id, season)
-        end
+        self:LoadWearables()
     end
 end
 

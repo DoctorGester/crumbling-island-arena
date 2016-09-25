@@ -6,6 +6,17 @@ function string.ends(str, ending)
    return ending == '' or string.sub(str, -string.len(ending)) == ending
 end
 
+function string.split(str, sep)
+   local result = {}
+   local regex = ("([^%s]+)"):format(sep)
+   
+   for each in str:gmatch(regex) do
+      table.insert(result, each)
+   end
+
+   return result
+end
+
 function WrapString(str)
     local result = {}
     result[str] = 0
@@ -522,64 +533,16 @@ _G.GenericModifier = function(definition, states, properties)
     return modifier
 end
 
-function LoadDefaultHeroItems(hero, gameItems)
-    local heroName = hero:GetName()
-    local defaultSlots = {}
-    local cosmeticItems = {}
+function FilterPassPlayers(players)
+    local result = {}
 
-    for _, item in pairs(gameItems) do
-        local prefab = item.prefab
-        local wearable = prefab == "wearable"
-        local default = prefab == "default_item"
-
-        if (wearable or default) and item.used_by_heroes[heroName] == 1 then
-            local itemSlot = item.item_slot
-
-            -- Valve did not include some item_slot definitions for weapons
-            if itemSlot == nil then
-                itemSlot = "weapon"
-            end
-
-            if item.model_player ~= nil then
-                if default and itemSlot ~= nil then
-                    defaultSlots[itemSlot] = item.model_player
-                else
-                    local itemModels = {}
-                    itemModels[item.model_player] = true
-
-                    if item.visuals ~= nil then
-                        local styles = item.visuals.styles
-
-                        if styles ~= nil then
-                            for _, style in pairs(styles) do
-                                if style.model_player ~= nil then
-                                    itemModels[style.model_player] = true
-                                end
-                            end
-                        end
-                    end
-
-                    cosmeticItems[#cosmeticItems + 1] = { slot = itemSlot, models = itemModels }
-                end
-            end
+    for _, player in pairs(players) do
+        if PlayerResource:HasCustomGameTicketForPlayerID(player.id) or IsInToolsMode() then
+            table.insert(result, tostring(PlayerResource:GetSteamID(player.id)))
         end
     end
 
-    DeepPrintTable(defaultSlots)
-
-    local children = hero:GetChildren()
-
-    for _, child in pairs(children) do
-        if child:GetClassname() == "dota_item_wearable" then
-            for _, item in pairs(cosmeticItems) do
-                if item.models[child:GetModelName()] then
-                    child:SetModel(defaultSlots[item.slot])
-                end
-            end
-        end
-    end
-
-    return hero
+    return result
 end
 
 function PrintTable(t, indent, done)

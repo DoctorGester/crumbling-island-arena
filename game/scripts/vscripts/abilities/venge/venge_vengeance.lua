@@ -1,4 +1,4 @@
-Vengeance = class({}, nil, UnitEntity)
+Vengeance = class({}, nil, WearableOwner)
 
 function Vengeance:constructor(round, owner, target, facing, ability)
     getbase(Vengeance).constructor(self, round, "npc_dota_hero_vengefulspirit", target, owner.unit:GetTeamNumber())
@@ -23,6 +23,8 @@ function Vengeance:constructor(round, owner, target, facing, ability)
     self:AddNewModifier(self.hero, ability, "modifier_venge_r_visual", {})
     self:SetFacing(facing)
     self:SetPos(target)
+
+    self:LoadItems()
 end
 
 function Vengeance:CreateParticles()

@@ -12,11 +12,11 @@ if IsServer() then
         ParticleManager:SetParticleControl(index, 3, Vector(160, 1, 120))
         ParticleManager:SetParticleControlEnt(index, 4, self:GetParent(), PATTACH_POINT_FOLLOW, nil, self:GetParent():GetOrigin(), true)
         self:AddParticle(index, false, false, -1, false, false)
-        self:GetParent():AddNoDraw()
+        self:GetParent():GetParentEntity():SetHidden(true)
     end
 
     function modifier_tusk_e:OnDestroy()
-        self:GetParent():RemoveNoDraw()
+        self:GetParent():GetParentEntity():SetHidden(false)
         self:GetParent():StartGestureWithPlaybackRate(ACT_DOTA_TELEPORT_END, 1.5)
     end
 end

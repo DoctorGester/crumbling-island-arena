@@ -27,6 +27,18 @@ function UnitEntity:constructor(round, unitName, pos, team, findSpace)
 	end
 end
 
+function UnitEntity:SetHidden(hidden)
+    if hidden then
+        self.unit:AddNoDraw()
+    else
+        self.unit:RemoveNoDraw()
+    end
+end
+
+function UnitEntity:GetName()
+    return self.unit:GetName()
+end
+
 function UnitEntity:MakeFall()
     getbase(UnitEntity).MakeFall(self)
 

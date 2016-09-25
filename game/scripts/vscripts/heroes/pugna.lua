@@ -24,20 +24,15 @@ function Pugna:UpdateColor()
 
     self.unit:SetRenderColor(color.x, color.y, color.z)
 
-    local model = self.unit:FirstMoveChild()
-    while model ~= nil do
-        if model:GetClassname() == "dota_item_wearable" then
-            local m = model:GetModelName()
+    for _, wearable in pairs(self.wearables) do
+        local m = wearable:GetModelName()
 
-            if m == "models/heroes/pugna/pugna_shoulder.vmdl" or
-               m == "models/heroes/pugna/pugna_head.vmdl" or
-               m == "models/heroes/pugna/pugna_weapon.vmdl"
-            then 
-                model:SetRenderColor(color.x, color.y, color.z)
-            end
+        if m == "models/heroes/pugna/pugna_shoulder.vmdl" or
+           m == "models/heroes/pugna/pugna_head.vmdl" or
+           m == "models/heroes/pugna/pugna_weapon.vmdl"
+        then 
+            wearable:SetRenderColor(color.x, color.y, color.z)
         end
-
-        model = model:NextMovePeer()
     end
 end
 

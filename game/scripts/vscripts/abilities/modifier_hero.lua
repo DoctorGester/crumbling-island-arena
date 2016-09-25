@@ -21,7 +21,8 @@ end
 function modifier_hero:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_DISABLE_HEALING,
-        MODIFIER_PROPERTY_MOVESPEED_LIMIT
+        MODIFIER_PROPERTY_MOVESPEED_LIMIT,
+        MODIFIER_EVENT_ON_ABILITY_FULLY_CAST
     }
 
     return funcs
@@ -33,6 +34,18 @@ if IsServer() then
             return 20
         end
     end
+
+    function modifier_hero:OnAbilityFullyCast(event)
+        if event.unit == self:GetParent() then
+            local player = self:GetParent():GetParentEntity().owner
+            local round = GameRules.GameMode.round
+
+            if round and not round.ended and round.statistics then
+                round.statistics:IncreaseSpellsCast(player)
+            end
+        end
+    end
+
 end
 
 function modifier_hero:GetDisableHealing()

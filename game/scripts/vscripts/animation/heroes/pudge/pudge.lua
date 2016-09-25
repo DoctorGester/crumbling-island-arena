@@ -119,3 +119,35 @@ model:CreateSequence(
 		}
 	}
 )
+
+-- Harpoon Immortal
+
+model:CreateSequence(
+	{
+		name = "hh_rot",
+		sequences = {
+			{ "@hh_rot" }
+		},
+		weightlist = "upperBody",
+		activities = {
+			{ name = "ACT_DOTA_CAST_ABILITY_ROT", weight = 1 },
+			{ name = "harpoon", weight = 1 }
+		}
+	}
+)
+
+model:CreateSequence(
+	{
+		name = "hh_pudge_walkN",
+		sequences = {
+			{ "@hh_pudge_walkN" }
+		},
+		addlayer = {
+			"turns"
+		},
+		activities = {
+			{ name = "ACT_DOTA_RUN", weight = 1 },
+			{ name = "harpoon", weight = 1 }
+		}
+	}
+)

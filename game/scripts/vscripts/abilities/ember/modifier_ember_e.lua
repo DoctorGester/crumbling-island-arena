@@ -6,11 +6,11 @@ if IsServer() then
         ParticleManager:SetParticleControlEnt(index, 0, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetOrigin(), true)
         self:AddParticle(index, false, false, -1, false, false)
 
-        self:GetParent():AddNoDraw()
+        self:GetParent():GetParentEntity():SetHidden(true)
     end
 
     function modifier_ember_e:OnDestroy()
-        self:GetParent():RemoveNoDraw()
+        self:GetParent():GetParentEntity():SetHidden(false)
     end
 end
 

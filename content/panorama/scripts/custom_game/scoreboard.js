@@ -1,67 +1,82 @@
 var scoreboardConnectionStates = {};
+var lastScoreboardData = null;
 
-function PlayersUpdated(data) {
-    var scoreboard = $("#Scoreboard");
-    scoreboardConnectionStates = {};
+function CreatePlayerStructure(data, color, score, team, teamId, playedId) {
+    var survive = data.goal == score && !data.isDeathMatch;
+    var diff = Math.abs(data.goal - score);
 
-    CreateScoreboardFromData(data.players, function(color, score, team, teamId) {
-        var teamParent = $.P(scoreboard, null, "T" + teamId.toString(), "ScoreboardTeamContainer");
-        var panel = $.P(teamParent, null, null, "ScoreboardTeam");
-        panel.style.backgroundColor = color;
+    var close = {
+        tag: "Label",
+        class: [ "ScoreboardScoreClose", survive ? "ScoreboardScoreSurvive" : undefined ],
+        dvars: { kills: diff },
+        text: survive ? "#Survive" : "#ScoreboardClose"
+    };
 
-        var playersPanel = $.P(panel, null, null, "ScoreboardPlayers");
+    var players = [];
 
-        for (var player of team) {
-            var playerPanel = $.P(playersPanel, null, player.id, "ScoreboardPlayer");
-            var hero = $.P(playerPanel, "DOTAHeroImage", null, "ScoreboardPlayerHero");
-            hero.heroname = player.hero;
-            hero.heroimagestyle = "icon";
-            hero.SetScaling("stretch-to-fit-y-preserve-aspect");
+    for (var player of team) {
+        players.push({
+            class: "ScoreboardPlayer",
+            children: { tag: "DOTAHeroImage", class: "ScoreboardPlayerHero", heroname: player.hero, heroimagestyle: "icon" }
+        });
+    }
 
-            var connectionStatePanel = $.P(playerPanel, "Panel", null, "ConnectionStatePanel");
+    var state = Game.GetPlayerInfo(parseInt(playedId)).player_connection_state;
+    var dc = state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_DISCONNECTED;
+    var ab = state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED;
 
-            scoreboardConnectionStates[player.id] = connectionStatePanel;
-        }
+    return {
+        class: "ScoreboardTeamContainer",
+        children: [
+            {
+                class: "ScoreboardTeam",
+                style: { backgroundColor: color },
+                children: [
+                    { class: "ScoreboardPlayers", children: players },
+                    {
+                        class: "ScoreboardTeamScoreContainer",
+                        children: {
+                            tag: "Label",
+                            class: [
+                                "ScoreboardTeamScore",
+                                dc ? "ConnectionStateDisconnected" : undefined,
+                                ab ? "ConnectionStateAbandoned" : undefined
+                            ],
+                            text: Math.min(data.goal, score).toString(),
+                            onChange: function(panel, property, value) {
+                                panel.SetHasClass("AnimationScoreBoardScoreIncrease", false);
+                                panel.SetHasClass("AnimationScoreBoardScoreIncrease", true);
+                            }
+                        }
+                    }
+                ]
+            },
 
-        score = Math.min(data.goal, score);
+            diff <= 6 ? close : undefined
+        ]
+    };
+}
 
-        var scoreContainer = $.P(panel, "Panel", null, "ScoreboardTeamScoreContainer");
-        var scorePanel = $.P(scoreContainer, "Label", null, "ScoreboardTeamScore");
-        var prevText = scorePanel.text;
-        scorePanel.text = Math.min(data.goal, score).toString();
+function CreateScoreboardStructure(data) {
+    var structure = [];
 
-        var diff = Math.abs(data.goal - score);
-
-        if (diff <= 6) {
-            var close = $.P(teamParent, "Label", null, "ScoreboardScoreClose");
-            var survive = data.goal == score && !data.isDeathMatch;
-            close.SetDialogVariableInt("kills", diff);
-            close.text = $.Localize("ScoreboardClose", close);
-            close.SetHasClass("ScoreboardScoreSurvive", survive);
-
-            if (survive) {
-                close.text = $.Localize("#Survive");
-            }
-        }
-
-        if (prevText != scorePanel.text) {
-            scorePanel.SetHasClass("AnimationScoreBoardScoreIncrease", false);
-            scorePanel.SetHasClass("AnimationScoreBoardScoreIncrease", true);
-        }
+    CreateScoreboardFromData(data.players, function(color, score, team, teamId, playerId) {
+        structure.push(CreatePlayerStructure(data, color, score, team, teamId, playerId));
     });
 
+    return structure;
+}
+
+function PlayersUpdated(data) {
+    Structure.Create($("#Scoreboard"), CreateScoreboardStructure(data));
     $("#VictoryGoal").text = data.goal.toString();
 
-    UpdateScoreboardConnectionStates();
+    lastScoreboardData = data;
 }
 
 function UpdateScoreboardConnectionStates() {
-    for (var id in scoreboardConnectionStates) {
-        var panel = scoreboardConnectionStates[id];
-        var state = Game.GetPlayerInfo(parseInt(id)).player_connection_state;
-
-        panel.SetHasClass("ConnectionStateDisconnected", state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_DISCONNECTED);
-        panel.SetHasClass("ConnectionStateAbandoned", state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED);
+    if (!!lastScoreboardData) {
+        Structure.Create($("#Scoreboard"), CreateScoreboardStructure(lastScoreboardData));
     }
 }
 

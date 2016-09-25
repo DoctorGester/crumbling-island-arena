@@ -1,5 +1,5 @@
 if not Hero then
-    Hero = class({}, nil, UnitEntity)
+    Hero = class({}, nil, WearableOwner)
 end
 
 function Hero:constructor(round)
@@ -10,13 +10,114 @@ function Hero:constructor(round)
     self.removeOnDeath = false
     self.collisionType = COLLISION_TYPE_RECEIVER
 
-    self.wearables = {}
     self.soundsStarted = {}
+    self.wearables = {}
+    self.wearableParticles = {}
+    self.mappedParticles = {}
+    self.wearableSlots = {}
 end
 
 function Hero:SetUnit(unit)
     getbase(Hero).SetUnit(self, unit)
     unit.hero = self
+end
+
+function Hero:GetShortName()
+    return self:GetName():sub(("npc_dota_hero_"):len() + 1)
+end
+
+function Hero:LoadWearables()
+    local cosmetics = Cosmetics[self:GetShortName()]
+    local result = {}
+
+    self.passEnabled = PlayerResource:HasCustomGameTicketForPlayerID(self.owner.id)
+
+    if cosmetics then
+        local function processIgnore(t)
+            local ignore = t.ignore
+
+            if ignore then
+                for _, item in pairs(tostring(ignore):split(",")) do
+                    table.insert(result, { ignore = tonumber(item) })
+                end
+            end
+        end
+
+        if cosmetics.ignore == "all" then
+            for _, item in pairs(self:FindDefaultItems()) do
+                table.insert(result, { ignore = item.id })
+            end
+        else
+            processIgnore(cosmetics)
+        end
+
+        local ordered = {}
+
+        for id, entry in pairs(cosmetics) do
+            if type(entry) == "table" then
+                ordered[tonumber(id)] = entry
+            end
+        end
+
+        for _, entry in ipairs(ordered) do
+            local t = entry.type
+            local passBase = (t == "pass_base" and self.passEnabled)
+            local elite = (t == "elite")
+
+            if elite then
+                self.awardEnabled = GameRules.GameMode:IsAwardedForSeason(self.owner.id, entry.season)
+
+                elite = elite and self.awardEnabled
+            end
+
+            local passLevel = (t == "pass" and entry.level <= (self.owner.passLevel or 0))
+
+            if passBase or elite or passLevel then
+                processIgnore(entry)
+
+                if entry.set then
+                    table.insert(result, entry.set)
+                end
+
+                if entry.item then
+                    for _, item in pairs(tostring(entry.item):split(",")) do
+                        table.insert(result, tonumber(item))
+                    end
+                end
+
+                if entry.particles then
+                    for original, asset in pairs(entry.particles) do
+                        self.mappedParticles[original] = asset
+                    end
+                end
+
+                if entry.emote then
+                    self:GetUnit():RemoveAbility("placeholder_emote")
+                    self:GetUnit():AddAbility("emote"):SetLevel(1)
+                end
+
+                if entry.taunt then
+                    self:GetUnit():RemoveAbility("placeholder_taunt")
+
+                    local ability = entry.taunt.type == "static" and "taunt_static" or "taunt_moving"
+                    local taunt = self:GetUnit():AddAbility(ability)
+                    local length = entry.taunt.length
+
+                    if length == nil then
+                        length = 1.5
+                    end
+
+                    taunt:SetLevel(1)
+                    taunt.length = length
+                    taunt.activity = entry.taunt.activity
+                    taunt.sound = entry.taunt.sound
+                    taunt.translate = entry.taunt.translate
+                end
+            end
+        end
+    end
+
+    self:LoadItems(unpack(result))
 end
 
 function Hero:StopSound(sound)
@@ -34,23 +135,11 @@ function Hero:SetOwner(owner)
     self.unit:SetCustomHealthLabel(name, c[1], c[2], c[3])
     PlayerResource:SetOverrideSelectionEntity(owner.id, self.unit)
 
-    local season = self:GetAwardSeason()
-
-    if season ~= nil then
-        self.awardEnabled = GameRules.GameMode:IsAwardedForSeason(owner.id, season)
-    end
-end
-
-function Hero:GetAwardSeason()
-    return nil
+    self:LoadWearables()
 end
 
 function Hero:IsAwardEnabled()
     return self.awardEnabled
-end
-
-function Hero:GetName()
-    return self.unit:GetName()
 end
 
 function Hero:GetPos()
@@ -224,24 +313,6 @@ function Hero:AddNewModifier(source, ability, name, params)
     return getbase(Hero).AddNewModifier(self, source, ability, name, params)
 end
 
-function Hero:HasModelChanged()
-    for _, modifier in pairs(self:AllModifiers()) do
-        if modifier.DeclareFunctions then
-            local funcs = modifier:DeclareFunctions()
-
-            if vlua.find(funcs, MODIFIER_PROPERTY_MODEL_CHANGE) ~= nil then
-                if modifier.GetModifierModelChange then
-                    if modifier:GetModifierModelChange() then
-                        return true
-                    end
-                end
-            end
-        end
-    end
-
-    return false
-end
-
 function Hero:Update()
     getbase(Hero).Update(self)
 
@@ -250,73 +321,6 @@ function Hero:Update()
 
         if assigned then
             assigned:SetAbsOrigin(self:GetPos())
-        end
-    end
-
-    local invisLevel = 0.0
-    local modelChanged = self:HasModelChanged()
-    local statusFx = nil
-    local maxPriority = 0
-    local minCreationTime = math.huge
-
-    for _, modifier in pairs(self:AllModifiers()) do
-        if modifier.GetModifierInvisibilityLevel then
-            invisLevel = math.max(invisLevel, math.min(modifier:GetModifierInvisibilityLevel(), 1.0))
-        end
-
-        if modifier.GetStatusEffectName then
-            local priority = 0
-
-            if modifier.StatusEffectPriority then
-                priority = modifier:StatusEffectPriority()
-            end
-
-            if priority >= maxPriority then
-                local creationTime = modifier:GetCreationTime()
-
-                if priority == maxPriority then
-                    if creationTime < minCreationTime then
-                        minCreationTime = creationTime
-
-                        statusFx = modifier:GetStatusEffectName()
-                    end
-                else
-                    statusFx = modifier:GetStatusEffectName()
-                end
-
-                maxPriority = priority
-                minCreationTime = creationTime
-            end
-        end
-    end
-
-    local statusFxChanged = self.lastStatusFx ~= statusFx
-    self.lastStatusFx = statusFx
-
-    for _, wearable in pairs(self.wearables) do
-        local visuals = wearable:FindModifierByName("modifier_wearable_visuals")
-
-        if visuals then
-            local count = invisLevel * 100
-
-            if modelChanged then
-                count = count + 101
-            end
-
-            visuals:SetStackCount(count)
-        end
-
-        if statusFxChanged then
-            local visualsStatusFx = wearable:FindModifierByName("modifier_wearable_visuals_status_fx")
-
-            if visualsStatusFx ~= nil then
-                visualsStatusFx:Destroy()
-            end
-
-            if statusFx ~= nil then
-                CustomNetTables:SetTableValue("wearables", tostring(wearable:GetEntityIndex()), { fx = statusFx })
-                wearable:AddNewModifier(wearable, nil, "modifier_wearable_visuals_status_fx", {})
-            end
         end
     end
 end
@@ -348,34 +352,9 @@ function Hero:Remove()
         end
     end
 
-    for _, part in pairs(self.wearables) do
-        part:RemoveSelf()
-    end
-
     for _, sound in pairs(self.soundsStarted) do
         getbase(Hero).StopSound(self, sound)
     end
 
-    self.wearables = {}
-
     getbase(Hero).Remove(self)
-end
-
-function Hero:AttachWearable(modelPath)
-    local wearable = CreateUnitByName("wearable_model", Vector(0, 0, 0), false, nil, nil, DOTA_TEAM_NOTEAM)
-
-    local oldSet = wearable.SetModel
-
-    wearable.SetModel = function(self, model)
-        oldSet(self, model)
-        self:SetOriginalModel(model)
-    end
-
-    wearable:SetModel(modelPath)
-    wearable:FollowEntity(self:GetUnit(), true)
-    wearable:AddNewModifier(wearable, nil, "modifier_wearable_visuals", {})
-
-    table.insert(self.wearables, wearable)
-
-    return wearable
 end

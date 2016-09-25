@@ -20,12 +20,6 @@ function pudge_q:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
 
-    local hook = hero:GetUnit():GetTogglableWearable(DOTA_LOADOUT_TYPE_WEAPON)
-
-    if hook then
-        hook:AddEffects(EF_NODRAW)
-    end
-
     ProjectilePudgeQ(hero.round, hero, target, self):Activate()
 
     hero:AddNewModifier(hero, self, "modifier_pudge_hook_self", {})

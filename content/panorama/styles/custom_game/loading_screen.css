@@ -232,9 +232,59 @@ Label
     flow-children: down;
 }
 
+.HallHeader
+{
+    font-size: 28px;
+    font-weight: bold;
+    color: #CCCCCC;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+#HallOfPass
+{
+    margin-top: 300px;
+    align: right top;
+    margin-right: 30px;
+    flow-children: down;
+}
+
+#HallOfPassHeader
+{
+    align: right;
+    margin-right: 60px;
+}
+
+#HallOfPassLoading
+{
+    horizontal-align: center;
+}
+
+#HallOfPassPlayers
+{
+    flow-children: down;
+    margin-right: 60px;
+}
+
+.HallOfPassPlayer
+{
+    flow-children: left;
+    horizontal-align: right;
+    margin-bottom: 20px;
+}
+
+.HallOfPassPlayer DOTAUserName Label
+{
+    align: right;
+    margin-right: 20px;
+}
+
+/* Hall of fame */
+
 #HallOfFame
 {
-    align: left center;
+    margin-top: 300px;
+    align: left top;
     margin-left: 30px;
     flow-children: down;
 }
@@ -247,11 +297,6 @@ Label
 #HallOfFameHeader
 {
     margin-left: 40px;
-    font-size: 28px;
-    font-weight: bold;
-    color: #CCCCCC;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
 }
 
 #HallOfFamePlayers

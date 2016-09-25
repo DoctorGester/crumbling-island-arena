@@ -1,4 +1,4 @@
-EmberRemnant = class({}, nil, UnitEntity)
+EmberRemnant = class({}, nil, WearableOwner)
 
 function EmberRemnant:constructor(round, owner, target, ability)
     getbase(EmberRemnant).constructor(self, round, "npc_dota_hero_ember_spirit", owner:GetPos(), owner.unit:GetTeamNumber())
@@ -32,6 +32,7 @@ function EmberRemnant:constructor(round, owner, target, ability)
     })
 
     self:EmitSound("Arena.Ember.CastE")
+    self:LoadItems()
 end
 
 function EmberRemnant:IsInvulnerable()

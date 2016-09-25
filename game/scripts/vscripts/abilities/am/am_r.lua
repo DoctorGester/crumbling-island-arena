@@ -19,7 +19,7 @@ function self:OnSpellStart()
         modifier = { name = "modifier_am_r", duration = 2.5, ability = self }
     })
 
-    FX("particles/units/heroes/hero_antimage/antimage_manavoid.vpcf", PATTACH_WORLDORIGIN, hero, {
+    FX(hero:GetMappedParticle("particles/units/heroes/hero_antimage/antimage_manavoid.vpcf"), PATTACH_WORLDORIGIN, hero, {
         cp0 = target,
         cp1 = Vector(350, 0, 0),
         release = true

@@ -44,12 +44,15 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		
 		"Ability1" "zeus_q"
 		"Ability2" "zeus_w"
 		"Ability3" "zeus_e"
-		"Ability4" "zeus_r"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "zeus_r"
 		"Order" "0"
 
 		"Ultimate" "zeus_r"
@@ -85,13 +88,16 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "hard"
 		"Order" "1"
 
 		"Ability1" "storm_spirit_q"
 		"Ability2" "storm_spirit_w"
 		"Ability3" "storm_spirit_e"
-		"Ability4" "storm_spirit_r"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "storm_spirit_r"
 
 		"Ultimate" "storm_spirit_r"
 	}
@@ -119,8 +125,8 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
-		"Difficulty" "hard"
 		"DisableWearables" "1"
+		"Difficulty" "hard"
 		"Order" "2"
 		
 		"Ability1" "pa_q"
@@ -129,7 +135,9 @@
 		"Ability4" "pa_q_sub"
 		"Ability5" "pa_w_sub"
 		"Ability6" "pa_e_sub"
-		"Ability7" "pa_r"
+		"Ability7" "placeholder_emote"
+		"Ability8" "placeholder_taunt"
+		"Ability9" "pa_r"
 
 		"Ultimate" "pa_r"
 		"CustomIcons"
@@ -166,14 +174,15 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "hard"
 		"Order" "3"
 
 		"Ability1" "earth_spirit_q"
 		"Ability2" "earth_spirit_w"
 		"Ability3" "earth_spirit_e"
-		"Ability4" ""
-		"Ability5" ""
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
 		"Ability6" "earth_spirit_r"
 
 		"Ultimate" "earth_spirit_r"
@@ -202,6 +211,7 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "hard"
 		"Order" "4"
 		
@@ -209,7 +219,9 @@
 		"Ability2" "cm_w"
 		"Ability3" "cm_e"
 		"Ability4" "cm_e_sub"
-		"Ability5" "cm_r"
+		"Ability5" "placeholder_emote"
+		"Ability6" "placeholder_taunt"
+		"Ability7" "cm_r"
 
 		"Ultimate" "cm_r"
 	}
@@ -237,13 +249,16 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Order" "5"
 		
 		"Ability1" "sven_q"
 		"Ability2" "sven_w"
 		"Ability3" "sven_e"
-		"Ability4" "sven_r"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "sven_r"
 
 		"Ultimate" "sven_r"
 	}
@@ -270,13 +285,16 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Order" "6"
 		
 		"Ability1" "sniper_q"
 		"Ability2" "sniper_w"
 		"Ability3" "sniper_e"
-		"Ability4" "sniper_r"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "sniper_r"
 
 		"Ultimate" "sniper_r"
 
@@ -308,13 +326,16 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Order" "7"
 		
 		"Ability1" "sk_q"
 		"Ability2" "sk_w"
 		"Ability3" "sk_e"
-		"Ability4" "sk_r"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "sk_r"
 
 		"Ultimate" "sk_r"
 	}
@@ -342,13 +363,16 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Order" "8"
 		
 		"Ability1" "lc_q"
 		"Ability2" "lc_w"
 		"Ability3" "lc_e"
-		"Ability4" "lc_r"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "lc_r"
 
 		"Ultimate" "lc_r"
 
@@ -388,7 +412,9 @@
 		"Ability1" "lycan_q"
 		"Ability2" "lycan_w"
 		"Ability3" "lycan_e"
-		"Ability4" "lycan_r"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "lycan_r"
 
 		"Ultimate" "lycan_r"
 	}
@@ -416,13 +442,16 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "hard"
 		"Order" "10"
 		
 		"Ability1" "pugna_q"
 		"Ability2" "pugna_w"
 		"Ability3" "pugna_e"
-		"Ability4" "pugna_r"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "pugna_r"
 
 		"Ultimate" "pugna_r"
 
@@ -458,15 +487,16 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "hard"
 		"Order" "11"
 		
 		"Ability1" "phoenix_q"
 		"Ability2" "phoenix_w"
 		"Ability3" "phoenix_e"
-		"Ability4" "phoenix_r"
-		"Ability5" ""
-		"Ability6" ""
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "phoenix_r"
 
 		"Ultimate" "phoenix_r"
 	}
@@ -494,15 +524,16 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Order" "12"
 		
 		"Ability1" "ta_q"
 		"Ability2" "ta_w"
 		"Ability3" "ta_e"
-		"Ability4" "ta_r"
-		"Ability5" ""
-		"Ability6" ""
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "ta_r"
 
 		"Ultimate" "ta_r"
 	}
@@ -537,9 +568,9 @@
 		"Ability1" "tiny_q"
 		"Ability2" "tiny_w"
 		"Ability3" "tiny_e"
-		"Ability4" "tiny_r"
-		"Ability5" ""
-		"Ability6" ""
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "tiny_r"
 
 		"Ultimate" "tiny_r"
 	}
@@ -566,15 +597,16 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Order" "14"
 		
 		"Ability1" "venge_q"
 		"Ability2" "venge_w"
 		"Ability3" "venge_e"
-		"Ability4" "venge_r"
-		"Ability5" ""
-		"Ability6" ""
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "venge_r"
 
 		"Ultimate" "venge_r"
 	}
@@ -607,9 +639,9 @@
 		"Ability1" "drow_q"
 		"Ability2" "drow_w"
 		"Ability3" "drow_e"
-		"Ability4" "drow_r"
-		"Ability5" ""
-		"Ability6" ""
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "drow_r"
 
 		"Ultimate" "drow_r"
 	}
@@ -636,15 +668,16 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Order" "16"
 		
 		"Ability1" "wk_q"
 		"Ability2" "wk_w"
 		"Ability3" "wk_e"
-		"Ability4" "wk_r"
-		"Ability5" ""
-		"Ability6" ""
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "wk_r"
 
 		"Ultimate" "wk_r"
 
@@ -678,15 +711,16 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "hard"
 		"Order" "17"
 		
 		"Ability1" "ogre_q"
 		"Ability2" "ogre_w"
 		"Ability3" "ogre_e"
-		"Ability4" "ogre_r"
-		"Ability5" ""
-		"Ability6" ""
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "ogre_r"
 
 		"Ultimate" "ogre_r"
 	}
@@ -713,15 +747,16 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Order" "18"
 		
 		"Ability1" "shaker_q"
 		"Ability2" "shaker_w"
 		"Ability3" "shaker_e"
-		"Ability4" "shaker_r"
-		"Ability5" ""
-		"Ability6" ""
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "shaker_r"
 
 		"Ultimate" "shaker_r"
 	}
@@ -749,6 +784,7 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"DrawParticlesWhileHidden" "1"
 		"Difficulty" "easy"
 		"Order" "19"
@@ -756,9 +792,9 @@
 		"Ability1" "ember_q"
 		"Ability2" "ember_w"
 		"Ability3" "ember_e"
-		"Ability4" "ember_r"
-		"Ability5" ""
-		"Ability6" ""
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "ember_r"
 
 		"Ultimate" "ember_r"
 	}
@@ -800,8 +836,9 @@
 		"Ability2" "jugger_w"
 		"Ability3" "jugger_e"
 		"Ability4" "jugger_e_sub"
-		"Ability5" "jugger_r"
-		"Ability6" ""
+		"Ability5" "placeholder_emote"
+		"Ability6" "placeholder_taunt"
+		"Ability7" "jugger_r"
 
 		"Ultimate" "jugger_r"
 	}
@@ -828,6 +865,7 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "hard"
 		"Order" "21"
 		"UltiCooldown" "3"
@@ -843,7 +881,9 @@
 		"Ability4" "ld_q_sub"
 		"Ability5" "ld_w_sub"
 		"Ability6" "ld_e_sub"
-		"Ability7" "ld_r"
+		"Ability7" "placeholder_emote"
+		"Ability8" "placeholder_taunt"
+		"Ability9" "ld_r"
 
 		"Ultimate" "ld_r"
 	}
@@ -851,7 +891,6 @@
 	"npc_dota_hero_pudge"
 	{
 		"override_hero"	"npc_dota_hero_pudge"
-		"Class" "heroes/pudge:Pudge"
 		"ArmorPhysical"	"0"
 		"MagicalResistance"	"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
@@ -878,7 +917,9 @@
 		"Ability1" "pudge_q"
 		"Ability2" "pudge_w"
 		"Ability3" "pudge_e"
-		"Ability4" "pudge_r"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "pudge_r"
 
 		"Ultimate" "pudge_r"
 	}
@@ -906,14 +947,16 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Order" "23"
 
 		"Ability1" "ursa_q"
 		"Ability2" "ursa_w"
 		"Ability3" "ursa_e"
-		"Ability4" "ursa_r"
-		"Ability6" ""
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "ursa_r"
 
 		"Ultimate" "ursa_r"
 	}
@@ -940,14 +983,16 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Order" "24"
 
 		"Ability1" "brew_q"
 		"Ability2" "brew_w"
 		"Ability3" "brew_e"
-		"Ability4" "brew_r"
-		"Ability6" ""
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "brew_r"
 
 		"Ultimate" "brew_r"
 	}
@@ -982,9 +1027,9 @@
 		"Ability1" "invoker_q"
 		"Ability2" "invoker_w"
 		"Ability3" "invoker_e"
-		"Ability4" "invoker_r"
-		"Ability5" ""
-		"Ability6" ""
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "invoker_r"
 		"Ability7" ""
 		"Ability8" ""
 		"Ability9" ""
@@ -1028,14 +1073,17 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Order" "26"
 
 		"Ability1" "tinker_q"
 		"Ability2" "tinker_w"
 		"Ability3" "tinker_e"
-		"Ability4" "tinker_e_sub"
-		"Ability5" "tinker_r"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "tinker_e_sub"
+		"Ability7" "tinker_r"
 
 		"CustomIcons"
 		{
@@ -1068,13 +1116,16 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Order" "27"
 
 		"Ability1" "slark_q"
 		"Ability2" "slark_w"
 		"Ability3" "slark_e"
-		"Ability4" "slark_r"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "slark_r"
 
 		"Ultimate" "slark_r"
 	}
@@ -1101,13 +1152,16 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Order" "28"
 
 		"Ability1" "qop_q"
 		"Ability2" "qop_w"
 		"Ability3" "qop_e"
-		"Ability4" "qop_r"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "qop_r"
 
 		"Ultimate" "qop_r"
 	}
@@ -1136,6 +1190,7 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Disabled" "false"
 		"Order" "29"
@@ -1143,9 +1198,9 @@
 		"Ability1" "tusk_q"
 		"Ability2" "tusk_w"
 		"Ability3" "tusk_e"
-		"Ability4" "tusk_r"
-		"Ability5" ""
-		"Ability6" ""
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "tusk_r"
 
 		"Ultimate" "tusk_r"
 	}
@@ -1173,6 +1228,7 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "hard"
 		"Disabled" "false"
 		"Order" "30"
@@ -1180,9 +1236,11 @@
 		"Ability1" "undying_q"
 		"Ability2" "undying_w"
 		"Ability3" "undying_e"
-		"Ability4" "undying_r"
-		"Ability5" "undying_q_sub"
-		"Ability6" "undying_w_sub"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "undying_r"
+		"Ability7" "undying_q_sub"
+		"Ability8" "undying_w_sub"
 
 		"Ultimate" "undying_r"
 	}
@@ -1211,6 +1269,7 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Disabled" "false"
 		"Order" "31"
@@ -1218,7 +1277,9 @@
 		"Ability1" "dusa_q"
 		"Ability2" "dusa_w"
 		"Ability3" "dusa_e"
-		"Ability4" "dusa_r"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "dusa_r"
 
 		"Ultimate" "dusa_r"
 	}
@@ -1236,7 +1297,6 @@
 		"StatusHealth"	"5"
 		"StatusHealthRegen"	"0"
 		"StatusManaRegen"	"0"
-		"StatusMana"	"3"
 		"StatusStartingMana"	"0"
 		"AttributeBaseStrength"	"0"
 		"AttributeBaseIntelligence" "0"
@@ -1247,6 +1307,7 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Disabled" "false"
 		"Order" "32"
@@ -1254,7 +1315,9 @@
 		"Ability1" "omni_q"
 		"Ability2" "omni_w"
 		"Ability3" "omni_e"
-		"Ability4" "omni_r"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "omni_r"
 
 		"Ultimate" "omni_r"
 	}
@@ -1272,7 +1335,6 @@
 		"StatusHealth"	"5"
 		"StatusHealthRegen"	"0"
 		"StatusManaRegen"	"0"
-		"StatusMana"	"3"
 		"StatusStartingMana"	"0"
 		"AttributeBaseStrength"	"0"
 		"AttributeBaseIntelligence" "0"
@@ -1283,6 +1345,7 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Disabled" "true"
 		"Order" "33"
@@ -1290,7 +1353,9 @@
 		"Ability1" "dusa_q"
 		"Ability2" "dusa_w"
 		"Ability3" "dusa_e"
-		"Ability4" "dusa_r"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "dusa_r"
 
 		"Ultimate" "dusa_r"
 	}
@@ -1308,7 +1373,6 @@
 		"StatusHealth"	"5"
 		"StatusHealthRegen"	"0"
 		"StatusManaRegen"	"0"
-		"StatusMana"	"3"
 		"StatusStartingMana"	"0"
 		"AttributeBaseStrength"	"0"
 		"AttributeBaseIntelligence" "0"
@@ -1319,6 +1383,7 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Disabled" "true"
 		"Order" "34"
@@ -1326,7 +1391,9 @@
 		"Ability1" "dusa_q"
 		"Ability2" "dusa_w"
 		"Ability3" "dusa_e"
-		"Ability4" "dusa_r"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "dusa_r"
 
 		"Ultimate" "dusa_r"
 	}
@@ -1344,7 +1411,6 @@
 		"StatusHealth"	"5"
 		"StatusHealthRegen"	"0"
 		"StatusManaRegen"	"0"
-		"StatusMana"	"3"
 		"StatusStartingMana"	"0"
 		"AttributeBaseStrength"	"0"
 		"AttributeBaseIntelligence" "0"
@@ -1355,6 +1421,7 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Disabled" "true"
 		"Order" "35"
@@ -1362,7 +1429,9 @@
 		"Ability1" "dusa_q"
 		"Ability2" "dusa_w"
 		"Ability3" "dusa_e"
-		"Ability4" "dusa_r"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "dusa_r"
 
 		"Ultimate" "dusa_r"
 	}
@@ -1380,7 +1449,6 @@
 		"StatusHealth"	"5"
 		"StatusHealthRegen"	"0"
 		"StatusManaRegen"	"0"
-		"StatusMana"	"3"
 		"StatusStartingMana"	"0"
 		"AttributeBaseStrength"	"0"
 		"AttributeBaseIntelligence" "0"
@@ -1391,6 +1459,7 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Disabled" "true"
 		"Order" "36"
@@ -1398,7 +1467,9 @@
 		"Ability1" "dusa_q"
 		"Ability2" "dusa_w"
 		"Ability3" "dusa_e"
-		"Ability4" "dusa_r"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "dusa_r"
 
 		"Ultimate" "dusa_r"
 	}
@@ -1417,7 +1488,6 @@
 		"StatusHealth"	"5"
 		"StatusHealthRegen"	"0"
 		"StatusManaRegen"	"0"
-		"StatusMana"	"3"
 		"StatusStartingMana"	"0"
 		"AttributeBaseStrength"	"0"
 		"AttributeBaseIntelligence" "0"
@@ -1428,6 +1498,7 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Disabled" "false"
 		"Order" "37"
@@ -1435,7 +1506,9 @@
 		"Ability1" "am_q"
 		"Ability2" "am_w"
 		"Ability3" "am_e"
-		"Ability4" "am_r"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "am_r"
 	}
 
 	"npc_dota_hero_phantom_lancer"
@@ -1451,7 +1524,6 @@
 		"StatusHealth"	"5"
 		"StatusHealthRegen"	"0"
 		"StatusManaRegen"	"0"
-		"StatusMana"	"3"
 		"StatusStartingMana"	"0"
 		"AttributeBaseStrength"	"0"
 		"AttributeBaseIntelligence" "0"
@@ -1462,6 +1534,7 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Disabled" "false"
 		"Order" "38"
@@ -1469,7 +1542,9 @@
 		"Ability1" "pl_q"
 		"Ability2" "pl_w"
 		"Ability3" "pl_e"
-		"Ability4" "pl_r"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "pl_r"
 
 		"CustomIcons"
 		{

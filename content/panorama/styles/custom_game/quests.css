@@ -1,0 +1,204 @@
+@define expgradient: gradient( linear, 0% 0%, 0% 100%, from(#fce93fBB), to(#efcf00) );
+
+#PassContent
+{
+    align: right bottom;
+    width: 30%;
+    height: 28%;
+    flow-children: down;
+    margin-bottom: 14px;
+}
+
+.PassContent Label {
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+}
+
+#LevelBar
+{
+    width: 100%;
+    height: 64px;
+    flow-children: right;
+}
+
+#LevelBadge
+{
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+}
+
+#BadeImage
+{
+    width: 100%;
+    height: 100%;
+}
+
+#LevelText
+{
+    align: center center;
+    text-align: center;
+    font-weight: bold;
+    font-size: 35px;
+    margin-top: 4px;
+    width: 100%;
+    color: white;
+    text-shadow: gold 0px 0px 2px 2px;
+}
+
+#LevelProgress
+{
+    width: fill-parent-flow(1.0);
+    height: 32px;
+    vertical-align: center;
+    background-color: #00000088;
+    border-radius: 3px;
+    margin-left: 4px;
+    margin-right: 8px;
+    //border: 1px solid #999999;
+}
+
+#LevelBadgeScene
+{
+    width: 100%;
+    height: 100%;
+}
+
+#LevelProgressText
+{
+    font-size: 16px;
+    color: white;
+    align: center center;
+    text-shadow: 0px 0px 4px 3.0 black;
+}
+
+#LevelProgress .ProgressBarLeft
+{
+    background-color: expgradient;
+}
+
+.Animated .ProgressBarLeft {
+    transition-property: width;
+    transition-duration: 2s;
+}
+
+#QuestList
+{
+    width: 100%;
+    height: 80%;
+    align: right bottom;
+    flow-children: right;
+}
+
+.AspectRatio5x4 #PassContent, .AspectRatio4x3 #PassContent
+{
+    width: 35%;
+}
+
+.QuestPanel
+{
+    margin: 10px;
+    width: 30%;
+    height: 100%;
+    border-radius: 3px;
+    background-color: #00000088;
+}
+
+.QuestTextContainer
+{
+    align: center top;
+    height: 35%;
+    width: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#QuestText
+{
+    text-align: center;
+    font-size: 20px;
+    margin-top: 10px;
+    color: white;
+    white-space: normal;
+    align: center center;
+}
+
+.AspectRatio5x4 #QuestText, .AspectRatio4x3 #QuestText
+{
+    font-size: 18px;
+}
+
+.AspectRatio5x4 #QuestText Image, .AspectRatio4x3 #QuestText Image
+{
+    width: 24px;
+    height: 24px;
+}
+
+.QuestProgressBadge
+{
+    align: center bottom;
+    background-color: black;
+    border-radius: 3px;
+    padding-top: 4px;
+    width: 70%;
+}
+
+#QuestReward
+{
+    font-weight: bold;
+    color: white;
+    font-size: 40px;
+    margin-top: 80px;
+    text-shadow: 0px 0px 8px 4.0 black;
+    align: center center;
+}
+
+#QuestProgress
+{
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 3px;
+    align: center center;
+    text-align: center;
+    color: #BBBBBB;
+}
+
+#QuestPointsScene
+{
+    opacity-mask: url('s2r://panorama/images/masks/softedge_box_png.vtex');
+    width: 100%;
+    height: 40%;
+    margin-bottom: 40px;
+    hue-rotation: 30deg;
+    align: center bottom;
+}
+
+.QuestNew
+{
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    animation-name: NewQuest;
+    sound: "UI.QuestAdded";
+}
+
+@keyframes 'NewQuest'
+{
+
+    0%
+    {
+        transform: rotateZ(25deg) scale3d(4, 4, 4);
+        opacity: 0.5;
+    }
+
+
+    70%
+    {
+        transform: transform: rotateZ(0deg) scale3d(0.9, 0.9, 0.9);
+        opacity: 1;
+    }
+    
+    100%
+    {
+        transform: scale3d(1, 1, 1);
+    }
+}

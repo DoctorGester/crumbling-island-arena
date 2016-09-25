@@ -9,24 +9,6 @@ function Lycan:SetUnit(unit)
     self:AddNewModifier(self, nil, "modifier_lycan_instinct")
 end
 
-function Lycan:GetAwardSeason()
-    return 0
-end
-
-function Lycan:SetOwner(owner)
-    getbase(Lycan).SetOwner(self, owner)
-
-    if self:IsAwardEnabled() then
-        for _, part in pairs({ "armor", "belt", "weapon", "shoulder", "head" }) do
-            self:AttachWearable("models/items/lycan/hunter_kings_"..part.."/hunter_kings_"..part..".vmdl")
-        end
-    else
-        for _, part in pairs({ "armor", "belt", "blades", "fur", "head" }) do
-            self:AttachWearable("models/heroes/lycan/lycan_"..part..".vmdl")
-        end
-    end
-end
-
 function Lycan:IsTransformed()
     return self:FindModifier("modifier_lycan_r")
 end

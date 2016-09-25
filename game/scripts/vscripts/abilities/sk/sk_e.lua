@@ -37,7 +37,7 @@ function sk_e:OnSpellStart()
         damage = true
     })
 
-    local effect = ImmediateEffect("particles/units/heroes/hero_sandking/sandking_burrowstrike.vpcf", PATTACH_POINT, hero)
+    local effect = ImmediateEffect(hero:GetMappedParticle("particles/units/heroes/hero_sandking/sandking_burrowstrike.vpcf"), PATTACH_POINT, hero)
     ParticleManager:SetParticleControl(effect, 0, casterPos)
     ParticleManager:SetParticleControl(effect, 1, target)
 

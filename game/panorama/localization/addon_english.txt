@@ -314,6 +314,19 @@
 		"SbRunnerUp" "Runner up"
 		"SbTooManyHeroes" "Too many heroes to display"
 
+		"QuestPLAY_ROUNDS_AS" "Play {i:goal} rounds as<br/><img src='file://{images}/heroes/icons/npc_dota_hero_{s:hero}.png'/>"
+		"QuestPLAY_ROUNDS_AS_OR" "Play {i:goal} rounds as<br/><img src='file://{images}/heroes/icons/npc_dota_hero_{s:hero}.png'/> or <img src='file://{images}/heroes/icons/npc_dota_hero_{s:shero}.png'/>"
+		"QuestPLAY_GAMES" "Play {i:goal} games"
+		"QuestDEAL_DAMAGE" "Deal {i:goal} damage<br/>to enemy heroes"
+		"QuestEARN_MVP" "Earn MVP {i:goal} times"
+		"QuestEARN_FIRST_BLOOD" "Earn First Blood {i:goal} times"
+		"QuestMAKE_KILLS" "Kill {i:goal} enemy heroes"
+		"QuestCAST_SPELLS" "Cast {i:goal} spells"
+		"QuestRESTORE_HEALTH" "Receive {i:goal} points<br/>of healing"
+		"PassProgress" "Pass progress"
+		"PassLevel" "Level {i:level}"
+		"PassTopPlayers" "Top Pass Players"
+
 		"RewardReceived" "Reward received"
 		"RewardTip" "Does not appear in the armory, available only in Crumbling Island Arena"
 

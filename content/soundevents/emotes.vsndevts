@@ -1,0 +1,84 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+
+{
+    invoker = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/vo/invoker/invo_kill_08.vsnd"
+        ]
+        distance_max = "3500"
+    }
+
+    earthshaker = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/vo/earthshaker/erth_attack_08.vsnd"
+        ]
+        distance_max = "3500"
+    }
+
+    pudge = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/vo/pudge/pud_kill_07.vsnd"
+        ]
+        distance_max = "3500"
+    }
+
+    drow_ranger = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/vo/drowranger/dro_deny_04.vsnd"
+        ]
+        distance_max = "3500"
+    }
+
+    tusk = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/vo/tusk/tusk_attack_12.vsnd"
+        ]
+        distance_max = "3500"
+    }
+
+    phantom_assassin = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/vo/phantom_assassin/phass_kill_12.vsnd"
+        ]
+        distance_max = "3500"
+    }
+
+    zuus = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/vo/zuus/zuus_attack_03.vsnd"
+        ]
+        distance_max = "3500"
+    }
+
+    Taunt.AM = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/vo/antimage/anti_spawn_04.vsnd"
+        ]
+        distance_max = "3500"
+    }
+
+    Taunt.Jugg = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/vo/juggernaut/jug_attack_08.vsnd"
+        ]
+        distance_max = "3500"
+    }
+}

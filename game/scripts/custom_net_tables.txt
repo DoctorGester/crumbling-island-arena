@@ -5,6 +5,7 @@
         "main",
         "gameSetup",
         "ranks",
-        "wearables"
+        "wearables",
+        "pass"
     ]
 }

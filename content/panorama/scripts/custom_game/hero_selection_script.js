@@ -537,7 +537,7 @@ function CheckPause() {
 }
 
 function CheckPreviews() {
-    $.Schedule(0.02, CheckPreviews);
+    $.Schedule(0.01, CheckPreviews);
 
     var somethingIsLoading = false;
     var notLoadedContainer = null;
@@ -575,7 +575,7 @@ function CheckPreviews() {
 
 function LoadHeroButton() {
     if (buttonLoadingQueue.length > 1) {
-        $.Schedule(0.05, LoadHeroButton);
+        $.Schedule(0.02, LoadHeroButton);
     }
 
     if (buttonLoadingQueue.length == 0) {
@@ -612,6 +612,9 @@ DelayStateInit(GAME_STATE_HERO_SELECTION, function () {
     SubscribeToNetTableKey("main", "selectedHeroes", true, HeroSelectionUpdated);
 
     SubscribeToNetTableKey("ranks", "achievements", true, AchievementsUpdated);
+
+    SubscribeToNetTableKey("pass", "experience", true, Pass.ExperienceUpdated);
+    SubscribeToNetTableKey("pass", "quests", true, Pass.QuestsUpdated);
 
     $("#HeroSelectionChat").BLoadLayout("file://{resources}/layout/custom_game/simple_chat.xml", false, false);
     $("#HeroSelectionChat").RegisterListener("HeroSelectionEnter");

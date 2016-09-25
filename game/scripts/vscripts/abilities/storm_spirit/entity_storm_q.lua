@@ -1,4 +1,4 @@
-EntityStormQ = EntityStormQ or class({}, nil, UnitEntity)
+EntityStormQ = EntityStormQ or class({}, nil, WearableOwner)
 
 function EntityStormQ:constructor(round, owner, position, facing)
     getbase(EntityStormQ).constructor(self, round, owner:GetName(), position)
@@ -15,6 +15,8 @@ function EntityStormQ:constructor(round, owner, position, facing)
     ParticleManager:SetParticleControl(self.rangeIndicator, 1, Vector(300, 1, 1))
     ParticleManager:SetParticleControl(self.rangeIndicator, 2, Vector(67, 204, 250))
     ParticleManager:SetParticleControl(self.rangeIndicator, 3, Vector(600, 0, 0))
+    
+    self:LoadItems()
 end
 
 function EntityStormQ:Update()

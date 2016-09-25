@@ -9,6 +9,8 @@
         <include src="file://{resources}/styles/custom_game/util.css" />
     </styles>
     <scripts>
+        <include src="file://{resources}/scripts/custom_game/odiff.js" />
+        <include src="file://{resources}/scripts/custom_game/structure.js" />
         <include src="file://{resources}/scripts/custom_game/underscore-min.js" />
         <include src="file://{resources}/scripts/custom_game/vector.js" />
         <include src="file://{resources}/scripts/custom_game/util.js" />
@@ -40,8 +42,9 @@
                 <Panel id="HeroPortraitContainer">
                     <DOTAHeroMovie id="HeroPortrait" onactivate="CenterCamera()"/>
                 </Panel>
-                <Panel id="HeroNameContainer" hittestchildren="false" hittest="false">
-                    <Label id="HeroNameLabel" class="UILabel"/>
+                <Panel id="HeroNameContainer" hittest="false">
+                    <Label id="HeroNameLabel" class="UILabel" hittest="false"/>
+                    <Panel id="HeroCosmeticAbilities"/>
                 </Panel>
             </Panel>
             <Panel id="HeroPanel" hittest="false">

@@ -23,3 +23,7 @@ end
 function modifier_storm_spirit_remnant:GetStatusEffectName()
     return "particles/status_fx/status_effect_ancestral_spirit.vpcf"
 end
+
+function modifier_storm_spirit_remnant:StatusEffectPriority()
+    return 10
+end

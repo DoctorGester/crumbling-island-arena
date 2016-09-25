@@ -38,7 +38,8 @@ function Stats.SubmitMatchInfo(players, mode, version, callback)
         table.insert(data.players, playerData)
     end
 
-    Stats.SendData(string.format("match/%s", GameRules:GetMatchID()), data, callback)
+    Stats.SendData(string.format("match/%s", GameRules:GetMatchID()), data)
+    Stats.SendData(string.format("match/info/%s", GameRules:GetMatchID()), data, callback, 30)
 end
 
 function Stats.SubmitRoundInfo(players, roundNumber, roundWinner, statistics)
@@ -63,44 +64,67 @@ function Stats.SubmitRoundInfo(players, roundNumber, roundWinner, statistics)
     Stats.SendData(string.format("match/%s/%s", GameRules:GetMatchID(), roundNumber), data)
 end
 
-function Stats.SubmitMatchWinner(winner, callback)
-    Stats.SendData(string.format("winner/%s", GameRules:GetMatchID(), roundNumber), { winnerTeam = winner }, callback)
+function Stats.SubmitMatchResult(winner, players, callback)
+    Stats.SendData(string.format("winner/%s", GameRules:GetMatchID(), roundNumber), {
+        winnerTeam = winner,
+        gameLength = math.ceil(GameRules:GetGameTime()),
+        questProgress = Quests.GetProgressReport(),
+        passPlayers = FilterPassPlayers(players)
+    }, callback)
 end
 
 function Stats.RequestTopPlayers(callback)
     Stats.RequestData("ranks/top", callback)
 end
 
-function Stats.RequestData(url, callback)
+function Stats.RequestData(url, callback, rep)
     local req = CreateHTTPRequest("GET", Stats.host..url)
     req:Send(function(res)
         if res.StatusCode ~= 200 then
             print("Server connection failure")
+
+            if rep ~= nil and rep > 0 then
+                print("Repeating in 3 seconds")
+
+                Timers:CreateTimer(3, function() Stats.SendData(url, callback, rep - 1) end)
+            end
+
             return
         end
 
         if callback then
+            print("[STATS] Received", res.Body)
             local obj, pos, err = json.decode(res.Body)
             callback(obj)
         end
     end)
 end
 
-function Stats.SendData(url, data, callback)
+function Stats.SendData(url, data, callback, rep)
     local req = CreateHTTPRequest("POST", Stats.host..url)
     local encoded = json.encode(data)
-    print(encoded)
+    print("[STATS] URL", url, "payload:", encoded)
 
     req:SetHTTPRequestGetOrPostParameter('data', encoded)
     req:Send(function(res)
         if res.StatusCode ~= 200 then
-            print("Server connection failure")
+            print("[STATS] Server connection failure, code", res.StatusCode)
+
+            if rep ~= nil and rep > 0 then
+                print("[STATS] Repeating in 3 seconds")
+
+                Timers:CreateTimer(3, function() Stats.SendData(url, data, callback, rep - 1) end)
+            end
+
             return
         end
 
         if callback then
+            print("[STATS] Received", res.Body)
             local obj, pos, err = json.decode(res.Body)
             callback(obj)
         end
     end)
 end
+
+--Stats.RequestData("quests/mock/76561198046920629", function(...) GameRules.GameMode:OnMatchResultsReceived(...) end)

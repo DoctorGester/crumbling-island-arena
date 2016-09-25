@@ -14,6 +14,8 @@ function Statistics:IncreaseValue(player, value, amount)
 	end
 
 	self.stats[player.id][value] = (self.stats[player.id][value] or 0) + amount
+
+	Quests.IncreaseProgress(player, value)
 end
 
 function Statistics:IncreaseRoundsWon(player)
@@ -48,10 +50,16 @@ function Statistics:IncreaseKills(player)
 	self:IncreaseValue(player, "kills", 1)
 end
 
+function Statistics:IncreaseSpellsCast(player)
+	self:IncreaseValue(player, "spellsCast", 1)
+end
+
 function Statistics:AddPlayedHero(player, heroName)
 	if not player then
 		return
 	end
+
+	Quests.IncreaseProgress(player, "hero", heroName)
 	
 	player = player.id
 

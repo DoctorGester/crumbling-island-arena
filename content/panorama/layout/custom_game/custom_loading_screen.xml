@@ -49,9 +49,15 @@
         </Panel>
 
         <Panel id="HallOfFame">
-            <Label id="HallOfFameHeader" text="#RankTopPlayers"/>
+            <Label id="HallOfFameHeader" class="HallHeader" text="#RankTopPlayers"/>
             <Panel id="HallOfFamePlayers"/>
             <Panel id="HallOfFameLoading" class="LoadingImage"/>
+        </Panel>
+
+        <Panel id="HallOfPass">
+            <Label id="HallOfPassHeader" class="HallHeader" text="#PassTopPlayers"/>
+            <Panel id="HallOfPassPlayers"/>
+            <Panel id="HallOfPassLoading" class="LoadingImage"/>
         </Panel>
 
         <Panel id="GameTip"><Label id="GameTipText"/></Panel>

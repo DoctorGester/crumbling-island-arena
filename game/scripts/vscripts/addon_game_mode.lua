@@ -8,6 +8,7 @@ require('stats')
 
 require('dynamic_entity')
 require('unit_entity')
+require('wearable_owner')
 require('hero')
 require('player')
 require('level')
@@ -18,6 +19,7 @@ require('teambuilder')
 require('hero_selection')
 require('round')
 require('deathmatch')
+require('quests')
 
 require('spells')
 require('projectile')
@@ -66,6 +68,7 @@ function Precache(context)
     PrecacheResource("model", "models/development/invisiblebox.vmdl", context)
     PrecacheResource("particle", "particles/ui/ui_generic_treasure_impact.vpcf", context)
     PrecacheResource("soundfile", "soundevents/custom_sounds.vsndevts", context)
+    PrecacheResource("soundfile", "soundevents/emotes.vsndevts", context)
     PrecacheResource("soundfile", "soundevents/voscripts/game_sounds_vo_announcer.vsndevts", context)
 
     PrecacheResource("model", "models/items/lycan/wolves/hunter_kings_wolves/hunter_kings_wolves.vmdl", context)
@@ -74,10 +77,54 @@ function Precache(context)
     PrecacheUnitByNameSync("wk_zombie", context)
     PrecacheUnitByNameSync("wk_archer", context)
 
+    _G.GameItems = LoadKeyValues("scripts/items/items_game.txt")
+    _G.Cosmetics = LoadKeyValues("scripts/npc/cosmetics.txt")
+
     local heroes = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
 
     for _, data in pairs(heroes) do
         PrecacheUnitByNameSync(data.override_hero, context)
+
+        local allItems = {}
+        local wearableOwnerProxy = {
+            GetName = function() return data.override_hero end
+        }
+
+        for _, item in pairs(WearableOwner.FindDefaultItems(wearableOwnerProxy)) do
+            table.insert(allItems, item)
+        end
+
+        local shortName = data.override_hero:sub(("npc_dota_hero_"):len() + 1)
+        local cosmetics = Cosmetics[shortName]
+
+        if cosmetics then
+            for _, entry in pairs(cosmetics) do
+                if type(entry) == "table" then
+                    if entry.set then
+                        for _, item in pairs(WearableOwner.FindSetItems(nil, entry.set) or {}) do
+                            table.insert(allItems, item)
+                        end
+                    end
+
+                    if entry.item then
+                        for _, item in pairs(tostring(entry.item):split(",")) do
+                            local realItem = GameItems.items[item]
+
+                            if realItem then
+                                table.insert(allItems, realItem)
+                            end
+                        end
+                    end
+                end
+            end
+        end
+
+        for _, item in pairs(allItems) do
+            if item.model_player then
+                PrecacheModel(item.model_player, context)
+                print("Precaching", item.model_player)
+            end
+        end
     end
 
     local units = LoadKeyValues("scripts/npc/npc_units_custom.txt")
@@ -311,6 +358,8 @@ function GameMode:OnGameSetup()
             end
         end
     )
+
+    Quests.Init(self.Players)
 end
 
 function GameMode:InitSettings()
@@ -319,7 +368,7 @@ function GameMode:InitSettings()
     GameRules:SetSameHeroSelectionEnabled(true)
     GameRules:SetHeroSelectionTime(1.0)
     GameRules:SetPreGameTime(0)
-    GameRules:SetPostGameTime(300)
+    GameRules:SetPostGameTime(300000)
     GameRules:SetTreeRegrowTime(60.0)
     GameRules:SetUseCustomHeroXPValues(true)
     GameRules:SetGoldPerTick(0)
@@ -358,6 +407,17 @@ function GameMode:FilterExecuteOrder(filterTable)
 
         -- Yes, that happened
         if unit ~= nil then
+            local currentChanneling = nil
+
+            local count = unit:GetAbilityCount()
+            for i = 0, count - 1 do
+                local ability = unit:GetAbilityByIndex(i)
+
+                if ability and ability:IsChanneling() then
+                    currentChanneling = ability:GetName()
+                end
+            end
+
             if orderType == DOTA_UNIT_ORDER_CAST_TOGGLE then
                 local ability = EntIndexToHScript(filterTable.entindex_ability)
 
@@ -368,7 +428,7 @@ function GameMode:FilterExecuteOrder(filterTable)
                 else
                     CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(filterTable.issuer_player_id_const), "cooldown_error", {})
                 end
-            elseif not unit:IsChanneling() or orderType == DOTA_UNIT_ORDER_STOP or orderType == DOTA_UNIT_ORDER_HOLD_POSITION then
+            elseif not unit:IsChanneling() or currentChanneling == "taunt_static" or orderType == DOTA_UNIT_ORDER_STOP or orderType == DOTA_UNIT_ORDER_HOLD_POSITION then
                 filteredUnits[index] = unitIndex
 
                 index = index + 1
@@ -412,6 +472,7 @@ function GameMode:InitModifiers()
     LinkLuaModifier("modifier_creep", "abilities/modifier_creep", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_wearable_visuals", "abilities/modifier_wearable_visuals", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_wearable_visuals_status_fx", "abilities/modifier_wearable_visuals", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_wearable_visuals_activity", "abilities/modifier_wearable_visuals", LUA_MODIFIER_MOTION_NONE)
 end
 
 function GameMode:SetupMode()
@@ -527,7 +588,11 @@ end
 
 function GameMode:EndGame()
     if self.winner then
-        Stats.SubmitMatchWinner(self.winner, function(...) self:OnRankUpdatesReceived(...) end)
+        for _, player in pairs(self.Players) do
+            Quests.IncreaseProgress(player, "gamesPlayed")
+        end
+
+        Stats.SubmitMatchResult(self.winner, self.Players, function(...) self:OnMatchResultsReceived(...) end)
     end
 
     EmitAnnouncerSound("announcer_ann_custom_end_08")
@@ -942,6 +1007,17 @@ function GameMode:OnAchievementsReceived(achievements)
     CustomNetTables:SetTableValue("ranks", "achievements", self.achievements)
 end
 
+function GameMode:OnPassExperienceReceived(experience)
+    self.passExperience = self:ParseSteamId64Table(experience)
+
+    for playerId, experience in pairs(self.passExperience) do
+        self.Players[playerId].passExperience = experience % 1000
+        self.Players[playerId].passLevel = math.floor(experience / 1000)
+    end
+
+    CustomNetTables:SetTableValue("pass", "experience", self.passExperience)
+end
+
 function GameMode:IsAwardedForSeason(playerId, season)
     if self.achievements == nil then
         return false
@@ -960,16 +1036,22 @@ function GameMode:IsAwardedForSeason(playerId, season)
     return false
 end
 
-function GameMode:OnRankUpdatesReceived(ranks)
-    if not ranks or not ranks.previous or not ranks.updated then
-        return
+function GameMode:OnMatchResultsReceived(data)
+    local questResults = data.questResults
+
+    if questResults then
+        CustomNetTables:SetTableValue("pass", "questResults", self:ParseSteamId64Table(questResults))
     end
 
-    CustomNetTables:SetTableValue("ranks", "update", {
-        previous = self:ParseSteamId64Table(ranks.previous),
-        updated = self:ParseSteamId64Table(ranks.updated),
-        currentSeason = self.currentSeason
-    })
+    local ranks = data.rankDetails
+
+    if ranks and ranks.previous and ranks.updated then
+        CustomNetTables:SetTableValue("ranks", "update", {
+            previous = self:ParseSteamId64Table(ranks.previous),
+            updated = self:ParseSteamId64Table(ranks.updated),
+            currentSeason = self.currentSeason
+        })
+    end
 end
 
 function GameMode:LoadCustomHeroes()
@@ -996,7 +1078,7 @@ function GameMode:LoadCustomHeroes()
             local abilities = {}
             for i = 0, 10 do
                 local abilityName = data["Ability"..tostring(i)]
-                if abilityName and #abilityName ~= 0 then
+                if abilityName and #abilityName ~= 0 and not abilityName:starts("placeholder") then
                     local ability = {}
                     ability.name = abilityName
                     ability.texture = customAbilities[ability.name].AbilityTextureName
@@ -1034,6 +1116,10 @@ function GameMode:OnGameInProgress()
             if data.achievements then
                 self:OnAchievementsReceived(data.achievements)
             end
+
+            if data.passExperience then
+                self:OnPassExperienceReceived(data.passExperience)
+            end
         end
     )
 
@@ -1043,8 +1129,6 @@ function GameMode:OnGameInProgress()
     self.winner = nil
 
     self.generalStatistics = Statistics(self.Players)
-
-    self.GameItems = nil--LoadKeyValues("scripts/items/items_game.txt").items
 
     self.level = Level()
     self.level:LoadPolygons()
@@ -1110,7 +1194,7 @@ function GameMode:OnGameInProgress()
     else
         self.gameGoal = PlayerResource:GetPlayerCount() * 6 * self.gameSetup:GetPlayersInTeam()
     end
-    
+
     self:UpdatePlayerTable()
     self:UpdateGameInfo()
 
@@ -1136,5 +1220,9 @@ if IsInToolsMode() and GameRules.GameMode and GameRules.GameMode.deathmatch then
 end
 
 if IsInToolsMode() then
+    _G.Cosmetics = LoadKeyValues("scripts/npc/cosmetics.txt")
+
     GameMode.InitModifiers()
+
+    GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(GameMode, "FilterExecuteOrder"), GameRules.GameMode)
 end

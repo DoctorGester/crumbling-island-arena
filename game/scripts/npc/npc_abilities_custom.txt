@@ -29,6 +29,48 @@
 		}
 	}
 
+	"placeholder_emote"
+	{
+		"AbilityBehavior" 		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"BaseClass" 			"ability_datadriven"
+		"AbilityTextureName"	"rubick_empty1"
+		"IsCosmetic" "1"
+	}
+
+	"placeholder_taunt"
+	{
+		"AbilityBehavior" 		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"BaseClass" 			"ability_datadriven"
+		"AbilityTextureName"	"rubick_empty1"
+	}
+
+	"taunt_static"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/taunt_static"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName" "rubick_empty1"
+		"AbilityCooldown" "8.0"
+	}
+
+	"taunt_moving"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/taunt_moving"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName" "rubick_empty1"
+		"AbilityCooldown" "8.0"
+	}
+
+	"emote"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/emote"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
+		"AbilityTextureName" "rubick_empty1"
+		"AbilityCooldown" "8.0"
+	}
+
 	// Storm spirit
 
 	"storm_spirit_q"

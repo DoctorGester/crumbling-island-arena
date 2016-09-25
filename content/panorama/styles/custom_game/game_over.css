@@ -265,7 +265,7 @@
 {
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 200);
+    background-color: rgba(0, 0, 0, 230);
 }
 
 #RewardArea
@@ -339,7 +339,7 @@
     border-radius: 50%;
 }
 
-#ClickToClose, #RankUpdatedLabel, #EliteRankText, #RankLabel, #RankLabelNew, #RewardReceivedHeader, #RewardTip {
+#ClickToClose, #RankUpdatedLabel, #EliteRankText, #RankLabel, #RankLabelNew, #RewardReceivedHeader, #RewardTip, #PassProgressHeader {
     font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
 }
 
@@ -434,6 +434,106 @@
     animation-name: RankAnimation;
 }
 
+#PassProgressHeader
+{
+    align: center;
+    margin-bottom: 40px;
+    color: white;
+    letter-spacing: 10px;
+    font-size: 90px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: gold 0px 0px 2px 2px;
+    transform: rotateX(8deg);
+}
+
+.PassNotification
+{
+    align: center center;
+    flow-children: down;
+    margin-top: 140px;
+}
+
+.PassNotification #QuestList
+{
+    width: fit-children;
+    align: center center;
+    height: 300px;
+    margin-top: 40px;
+}
+
+.PassNotification #LevelProgress
+{
+    background-color: #000000DD;
+    border: 0;
+}
+
+.PassNotification #LevelBar
+{
+    height: fit-children;
+}
+
+.PassNotification #LevelText
+{
+    font-weight: normal;
+    text-transform: uppercase;
+    text-shadow: black 1px 1px 1px 1px;
+    font-size: 60px;
+    margin-bottom: 20px;
+}
+
+.PassNotification #LevelBar
+{
+    width: 900px;
+}
+
+.PassNotification #QuestList .QuestPanel
+{
+    width: 220px;
+}
+
+#NextLevelReward
+{
+    margin-top: 40px;
+    align: center;
+    flow-children: right;
+    padding-left: 60px; /* For animations */
+    padding-right: 60px;
+}
+
+#NextLevelReward Label
+{
+    color: white;
+    font-size: 60px;
+    text-transform: uppercase;
+}
+
+#NextLevelReward DOTAHeroImage
+{
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    margin-left: 20px;
+    box-shadow: skyblue -1px -1px 2px 2px;
+}
+
+.QuestComplete
+{
+    animation-duration: 0.7s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    animation-name: QuestComplete;
+    sound: "UI.Whoosh";
+}
+
+.LevelIncrease
+{
+    animation-duration: 0.3s;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    animation-name: LevelIncrease;
+}
+
 @keyframes 'RankOpen'
 {
     0%
@@ -475,6 +575,39 @@
     50%
     {
         transform: scale3d(1.8, 1.8, 1.8);
+    }
+    
+    100%
+    {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+@keyframes 'QuestComplete'
+{
+
+    0%
+    {
+        opacity: 1;
+    }
+
+    100%
+    {
+        wash-color: gold;
+        opacity: 0;
+    }
+}
+
+@keyframes 'LevelIncrease'
+{
+    0%
+    {
+        transform: scale3d(1, 1, 1);
+    }
+
+    65%
+    {
+        transform: scale3d(1.4, 1.4, 1.4);
     }
     
     100%

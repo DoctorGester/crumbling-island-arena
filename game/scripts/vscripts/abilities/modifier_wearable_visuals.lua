@@ -66,3 +66,32 @@ end
 function modifier_wearable_visuals_status_fx:StatusEffectPriority()
     return 1
 end
+
+modifier_wearable_visuals_activity = class({})
+
+function modifier_wearable_visuals_activity:IsHidden()
+    return true
+end
+
+function modifier_wearable_visuals_activity:DeclareFunctions()
+    local funcs = {
+        MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
+    }
+
+    return funcs
+end
+
+function modifier_wearable_visuals_activity:GetActivityTranslationModifiers()
+    local activity = self.activity or CustomNetTables:GetTableValue("wearables", "activity_"..tostring(self:GetParent():GetEntityIndex())).activity
+    self.activity = activity
+
+    return activity
+end
+
+function modifier_wearable_visuals_activity:RemoveOnDeath()
+    return false
+end
+
+function modifier_wearable_visuals_activity:IsPurgable()
+    return false
+end

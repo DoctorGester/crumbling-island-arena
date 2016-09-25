@@ -6,7 +6,7 @@ function ProjectilePudgeQ:constructor(round, hero, target, ability)
         from = hero:GetPos() + Vector(0, 0, 64),
         to = target + Vector(0, 0, 64),
         speed = 1600,
-        graphics = "particles/pudge_q/pudge_q.vpcf",
+        graphics = hero:GetMappedParticle("particles/pudge_q/pudge_q.vpcf"),
         destroyFunction = function(projectile)
             if projectile.hitSomething then
                 projectile:RetractHook()
@@ -27,7 +27,7 @@ function ProjectilePudgeQ:constructor(round, hero, target, ability)
         disablePrediction = true
     })
 
-    hero:SetHookVisible(false)
+    hero:GetWearableBySlot("weapon"):AddEffects(EF_NODRAW)
 
     self.ability = ability
     self.hitSomething = false
@@ -125,7 +125,7 @@ function ProjectilePudgeQ:Remove()
     getbase(ProjectilePudgeQ).Remove(self)
 
     if not self.hitSomething then
-        self.hero:SetHookVisible(true)
+        self.hero:GetWearableBySlot("weapon"):RemoveEffects(EF_NODRAW)
     end
 end
 
@@ -161,5 +161,5 @@ function DashPudgeQ:End(...)
 
     self.pudge:StopSound("Arena.Pudge.CastQ")
     self.pudge:EmitSound("Arena.Pudge.EndQ")
-    self.pudge:SetHookVisible(true)
+    self.pudge:GetWearableBySlot("weapon"):RemoveEffects(EF_NODRAW)
 end

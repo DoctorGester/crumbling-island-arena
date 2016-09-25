@@ -1,0 +1,245 @@
+"cosmetics"
+{
+    "lycan"
+    {
+        "1"
+        {
+            "type" "elite"
+            "season" "0"
+            "set" "hunter_of_kings"
+        }
+    }
+
+    "juggernaut"
+    {
+        "ignore" "7"
+
+        "1"
+        {
+            "type" "elite"
+            "season" "1"
+            "set" "balance_bladekeeper"
+            "ignore" "7076"
+        }
+    }
+
+    "invoker"
+    {
+        "1"
+        {
+            "type" "elite"
+            "season" "2"
+            "set" "invoker_dark_artistry"
+        }
+
+        "2"
+        {
+            "type" "pass_base"
+            "item" "8746"
+        }
+
+        "3"
+        {
+            "type" "pass"
+            "level" "1"
+            "emote" "default"
+        }
+    }
+
+    "earthshaker"
+    {
+        "1"
+        {
+            "type" "pass_base"
+            "item" "6820"
+        }
+
+        "2"
+        {
+            "type" "promo"
+            "promo_id" "0"
+            "item" "6486"
+        }
+
+        "3"
+        {
+            "type" "pass"
+            "level" "4"
+            "emote" "default"
+        }
+    }
+
+    "drow_ranger"
+    {
+        "ignore" "all"
+
+        "1"
+        {
+            "type" "pass"
+            "level" "10"
+            "emote" "default"
+        }
+    }
+
+    "pudge"
+    {
+        "1"
+        {
+            "type" "pass_base"
+            "item" "8004"
+            "particles"
+            {
+                "particles/pudge_q/pudge_q.vpcf" "particles/econ/pudge_q/pudge_q_chain.vpcf"
+            }
+        }
+
+        "2"
+        {
+            "type" "pass"
+            "level" "7"
+            "emote" "default"
+        }
+    }
+
+    "tusk"
+    {
+        "1"
+        {
+            "type" "pass"
+            "level" "13"
+            "emote" "default"
+        }
+    }
+
+    "phantom_assassin"
+    {
+        "1"
+        {
+            "type" "pass"
+            "level" "16"
+            "emote" "default"
+        }
+    }
+
+    "zuus"
+    {
+        "1"
+        {
+            "type" "pass"
+            "level" "19"
+            "emote" "default"
+        }
+    }
+
+    "ember_spirit"
+    {
+        "1"
+        {
+            "type" "pass"
+            "level" "3"
+            "item" "7470,7472"
+        }
+    }
+
+    "skeleton_king"
+    {
+        "1"
+        {
+            "type" "pass"
+            "level" "6"
+            "item" "8001"
+        }
+    }
+
+    "vengefulspirit"
+    {
+        "1"
+        {
+            "type" "pass"
+            "level" "9"
+            "item" "5344"
+        }
+    }
+
+    "antimage"
+    {
+        "1"
+        {
+            "type" "pass"
+            "level" "12"
+            "item" "8271,8324"
+        }
+
+        "2"
+        {
+            "type" "pass"
+            "level" "2"
+            "taunt"
+            {
+                "type" "static"
+                "activity" "ACT_DOTA_TAUNT"
+                "translate" "magic_ends_here"
+                "sound" "Taunt.AM"
+                "length" "2.0"
+            }
+        }
+    }
+
+    "crystal_maiden"
+    {
+        "1"
+        {
+            "type" "pass"
+            "level" "5"
+            "taunt"
+            {
+                "type" "static"
+                "activity" "ACT_DOTA_TAUNT"
+                "translate" "snowangel"
+                "length" "5.5"
+            }
+        }
+    }
+
+    "juggernaut"
+    {
+        "1"
+        {
+            "type" "pass"
+            "level" "8"
+            "taunt"
+            {
+                "type" "static"
+                "activity" "ACT_DOTA_TAUNT"
+                "translate" "face_me"
+                "sound" "Taunt.Jugg"
+                "length" "2.0"
+            }
+        }
+    }
+
+    "sniper"
+    {
+        "1"
+        {
+            "type" "pass"
+            "level" "15"
+            "item" "6453"
+        }
+    }
+
+    "sand_king"
+    {
+        "1"
+        {
+            "type" "pass"
+            "level" "18"
+            "item" "8074"
+        }
+    }
+
+    "tiny"
+    {
+        "ignore" "497"
+    }
+}

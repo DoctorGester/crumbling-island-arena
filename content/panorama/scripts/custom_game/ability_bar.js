@@ -14,9 +14,13 @@ function EmptyAbilityDataProvider() {
 
 function EntityAbilityDataProvider(entityId) {
     this.entityId = entityId;
+    this.onlyCosmetic = false;
 
     this.FilterAbility = function(id) {
-        return !Abilities.IsAttributeBonus(id) && Abilities.IsDisplayedAbility(id);
+        var nl = DOTA_ABILITY_BEHAVIOR.DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE;
+        var cosmetic = (Abilities.GetBehavior(id) & nl) == nl;
+
+        return !Abilities.IsAttributeBonus(id) && Abilities.IsDisplayedAbility(id) && !Abilities.IsPassive(id) && cosmetic == this.onlyCosmetic;
     }
 
     this.FilterAbilities = function() {
@@ -32,6 +36,10 @@ function EntityAbilityDataProvider(entityId) {
         }
 
         return abilities;
+    }
+
+    this.SetOnlyCosmetic = function(only) {
+        this.onlyCosmetic = only;
     }
 
     this.GetAbilityData = function(slot) {

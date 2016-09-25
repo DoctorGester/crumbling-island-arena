@@ -3,10 +3,14 @@
         <include src="file://{resources}/styles/custom_game/ability_bar.css" />
         <include src="file://{resources}/styles/custom_game/hero_selection_style.css" />
         <include src="file://{resources}/styles/custom_game/util.css" />
+        <include src="file://{resources}/styles/custom_game/quests.css" />
     </styles>
     <scripts>
+        <include src="file://{resources}/scripts/custom_game/odiff.js" />
+        <include src="file://{resources}/scripts/custom_game/structure.js" />
         <include src="file://{resources}/scripts/custom_game/underscore-min.js" />
         <include src="file://{resources}/scripts/custom_game/util.js" />
+        <include src="file://{resources}/scripts/custom_game/pass.js" />
         <include src="file://{resources}/scripts/custom_game/hero_selection_script.js" />
     </scripts>
     <Panel class="MainPanel" hittest="false">
@@ -43,6 +47,17 @@
                 <Label id="TimerText"></Label>
             </Panel>
 
+            <Panel id="PassContent" class="PassContent">
+                <Panel id="QuestList"/>
+                <Panel id="LevelBar">
+                    <Panel id="LevelBadge">
+                        <Label id="LevelText" text="10"/>
+                    </Panel>
+                    <ProgressBar id="LevelProgress" max="1000">
+                        <Label id="LevelProgressText"/>
+                    </ProgressBar>
+                </Panel>
+            </Panel>
             <Panel id="HeroSelectionChat"/>
             <Panel id="PauseOverlay">
                 <Panel>

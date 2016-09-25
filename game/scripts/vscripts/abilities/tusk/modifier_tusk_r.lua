@@ -4,6 +4,10 @@ function modifier_tusk_r:GetStatusEffectName()
     return "particles/status_fx/status_effect_frost_lich.vpcf"
 end
 
+function modifier_tusk_r:StatusEffectPriority()
+    return 9
+end
+
 function modifier_tusk_r:GetKnockbackMultiplier()
     return 2
 end

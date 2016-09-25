@@ -2,10 +2,14 @@
     <styles>
         <include src="file://{resources}/styles/custom_game/game_over.css" />
         <include src="file://{resources}/styles/custom_game/util.css" />
+        <include src="file://{resources}/styles/custom_game/quests.css" />
     </styles>
     <scripts>
+        <include src="file://{resources}/scripts/custom_game/odiff.js" />
+        <include src="file://{resources}/scripts/custom_game/structure.js" />
         <include src="file://{resources}/scripts/custom_game/underscore-min.js" />
         <include src="file://{resources}/scripts/custom_game/util.js" />
+        <include src="file://{resources}/scripts/custom_game/pass.js" />
         <include src="file://{resources}/scripts/custom_game/notifications.js" />
         <include src="file://{resources}/scripts/custom_game/game_over.js" />
     </scripts>
@@ -37,6 +41,25 @@
                     <Panel id="RewardModelContainer"/>
                     <Label id="RewardTip" text="#RewardTip"/>
                     <Label id="ClickToClose" text="#RankClose"/>
+                </Panel>
+            </Panel>
+        </snippet>
+
+        <snippet name="PassNotification">
+            <Panel>
+                <Panel id="PassNotification" class="PassNotification PassContent">
+                    <Label id="PassProgressHeader" text="#PassProgress"/>
+                    <Label id="LevelText"/>
+                    <Panel id="LevelBar">
+                        <ProgressBar id="LevelProgress" max="1000">
+                            <Label id="LevelProgressText"/>
+                        </ProgressBar>
+                    </Panel>
+                    <Panel id="NextLevelReward">
+                        <Label text="Next level reward"/>
+                        <DOTAHeroImage id="NextLevelRewardImage" scaling="none" heroimagestyle="portrait" heroname="npc_dota_hero_crystal_maiden"/>
+                    </Panel>
+                    <Panel id="QuestList"/>
                 </Panel>
             </Panel>
         </snippet>

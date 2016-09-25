@@ -4,6 +4,10 @@ function modifier_earth_spirit_remnant:GetStatusEffectName()
     return "particles/status_fx/status_effect_earth_spirit_petrify.vpcf"
 end
 
+function modifier_earth_spirit_remnant:StatusEffectPriority()
+    return 10
+end
+
 function modifier_earth_spirit_remnant:CheckState()
     local state = {
         [MODIFIER_STATE_NO_HEALTH_BAR] = true,

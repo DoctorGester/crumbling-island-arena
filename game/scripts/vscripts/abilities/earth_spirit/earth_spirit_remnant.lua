@@ -1,4 +1,4 @@
-EarthSpiritRemnant = EarthSpiritRemnant or class({}, nil, UnitEntity)
+EarthSpiritRemnant = EarthSpiritRemnant or class({}, nil, WearableOwner)
 
 function EarthSpiritRemnant:constructor(round, owner)
     getbase(EarthSpiritRemnant).constructor(self, round)
@@ -75,6 +75,7 @@ function EarthSpiritRemnant:SetUnit(unit, fall)
 
     self.fell = not fall
     self.unit.hero = self
+    self:LoadItems()
 end
 
 function EarthSpiritRemnant:SetTarget(target, source)
