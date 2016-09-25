@@ -442,6 +442,9 @@ local _ANIMATION_TRANSLATE_TO_CODE = {
   twinblade_run=368,
   twinblade_run_injured=369,
   windwalk=370,
+  sideflip_gesture=371,
+  walk_gesture=372,
+  juggle_gesture=373
 
 }
 
@@ -511,7 +514,7 @@ function EndAnimation(unit)
   unit:RemoveModifierByName("modifier_animation_translate")
 end
 
-function AddAnimationTranslate(unit, translate)
+function AddAnimationTranslate(unit, translate, duration)
   if translate == nil or _ANIMATION_TRANSLATE_TO_CODE[translate] == nil then
     print("[ANIMATIONS.lua] ERROR, no translate-code found for '" .. translate .. "'.  This translate may be misspelled or need to be added to the enum manually.")
     return

@@ -83,6 +83,38 @@
         }
     }
 
+    "slark"
+    {
+        "1"
+        {
+            "type" "pass_base"
+            "taunt"
+            {
+                "type" "moving"
+                "activity" "ACT_DOTA_TAUNT"
+                "translate" "sideflip_gesture"
+                "sound" "Taunt.Slark"
+                "length" "1.2"
+            }
+        }
+    }
+
+    "undying"
+    {
+        "1"
+        {
+            "type" "pass_base"
+            "taunt"
+            {
+                "type" "moving"
+                "activity" "ACT_DOTA_TAUNT"
+                "translate" "walk_gesture"
+                "sound" "Taunt.Undying"
+                "length" "3.0"
+            }
+        }
+    }
+    
     "drow_ranger"
     {
         "ignore" "all"
@@ -112,6 +144,19 @@
             "type" "pass"
             "level" "7"
             "emote" "default"
+        }
+
+        "3"
+        {
+            "type" "pass"
+            "level" "17"
+            "taunt"
+            {
+                "type" "static"
+                "activity" "ACT_DOTA_TAUNT"
+                "translate" "shake_moneymaker"
+                "length" "6.5"
+            }
         }
     }
 
@@ -143,6 +188,19 @@
             "level" "19"
             "emote" "default"
         }
+
+        "2"
+        {
+            "type" "pass_base"
+            "taunt"
+            {
+                "type" "moving"
+                "activity" "ACT_DOTA_TAUNT"
+                "translate" "jump_gesture"
+                "sound" "Taunt.Zuus"
+                "length" "0.8"
+            }
+        }
     }
 
     "ember_spirit"
@@ -172,6 +230,20 @@
             "type" "pass"
             "level" "9"
             "item" "5344"
+        }
+
+        "2"
+        {
+            "type" "pass"
+            "level" "14"
+            "taunt"
+            {
+                "type" "moving"
+                "activity" "ACT_DOTA_TAUNT"
+                "translate" "chicken_gesture"
+                "sound" "Taunt.Venge"
+                "length" "0.8"
+            }
         }
     }
 
@@ -222,6 +294,20 @@
             "type" "pass"
             "level" "15"
             "item" "6453"
+        }
+
+        "2"
+        {
+            "type" "pass"
+            "level" "11"
+            "taunt"
+            {
+                "type" "moving"
+                "activity" "ACT_DOTA_TAUNT"
+                "translate" "taunt_quickdraw_gesture"
+                "sound" "Arena.Sniper.PreQ"
+                "length" "0.8"
+            }
         }
     }
 

@@ -81,4 +81,40 @@
         ]
         distance_max = "3500"
     }
+
+    Taunt.Slark = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/weapons/hero/slark/taunt_flip.vsnd"
+        ]
+        distance_max = "3500"
+    }
+
+    Taunt.Undying = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/weapons/hero/undying/dead_can_dance.vsnd"
+        ]
+        distance_max = "3500"
+    }
+
+    Taunt.Zuus = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/weapons/hero/zuus/taunt_jump.vsnd"
+        ]
+        distance_max = "3500"
+    }
+
+    Taunt.Venge = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/weapons/hero/vengeful_spirit/chicken_dance.vsnd"
+        ]
+        distance_max = "3500"
+    }
 }

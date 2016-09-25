@@ -1222,6 +1222,19 @@ end
 if IsInToolsMode() then
     _G.Cosmetics = LoadKeyValues("scripts/npc/cosmetics.txt")
 
+    for i = 0, 20 do
+        for hero, cosmetics in pairs(Cosmetics) do
+            for _, asset in pairs(cosmetics) do
+                if type(asset) == "table" then
+                    if asset.level == i then
+                        print(i, hero)
+                        break
+                    end
+                end
+            end
+        end
+    end
+
     GameMode.InitModifiers()
 
     GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(GameMode, "FilterExecuteOrder"), GameRules.GameMode)
