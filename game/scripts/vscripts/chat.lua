@@ -24,7 +24,8 @@ function Chat:OnSay(args)
         color = self.teamColors[self.players[id].team],
         player = id,
         message = args.message,
-        wasTopPlayer = self.players[id].wasTopPlayer
+        wasTopPlayer = self.players[id].wasTopPlayer,
+        hasPass = PlayerResource:HasCustomGameTicketForPlayerID(id)
     })
 end
 

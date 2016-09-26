@@ -62,7 +62,7 @@
         }
 
         function OnChatSay(args) {
-            AddChatLine("#ChatLine", {
+            AddChatLine(args.hasPass ? "#ChatLinePass" : "#ChatLine", {
                 name: EscapeHtml(Players.GetPlayerName(args.player)),
                 color:  LuaColor(args.color),
                 message: InsertEmotes(args.message, args.wasTopPlayer)

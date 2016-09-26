@@ -257,6 +257,7 @@
 		"MVP" "<b><font color='gold'>MVP</font></b> is <b><font color='{s:color}'>{s:name}</font></b>"
 
 		"ChatLine" "<b><font color='{s:color}'>{s:name}</font></b>: {s:message}"
+		"ChatLinePass" "<b><font color='{s:color}'>{s:name}</font></b>: <font color='gold'>{s:message}</font>"
 		"ChatRandomed" "<b><font color='{s:color}'>{s:name}</font></b> has randomed <font color='gold'>{s:hero}</font>"
 		"ChatPlaceholder" "Type here..."
 
