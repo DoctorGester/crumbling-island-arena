@@ -58,6 +58,8 @@
                     </ProgressBar>
                 </Panel>
             </Panel>
+            <DOTAStoreItem id="PassNotOwned" itemdef="16970"/>
+            
             <Panel id="HeroSelectionChat"/>
             <Panel id="PauseOverlay">
                 <Panel>

@@ -1,5 +1,16 @@
 @define expgradient: gradient( linear, 0% 0%, 0% 100%, from(#fce93fBB), to(#efcf00) );
 
+#PassNotOwned
+{
+    align: right bottom;
+    width: 20%;
+    height: 28%;
+    margin-bottom: 14px;
+    margin-right: 14px;
+    background-color: #00000088;
+    border-radius: 3px;
+}
+
 #PassContent
 {
     align: right bottom;
