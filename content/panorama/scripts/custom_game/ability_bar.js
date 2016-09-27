@@ -45,6 +45,7 @@ function EntityAbilityDataProvider(entityId) {
     this.GetAbilityData = function(slot) {
         var ability = this.FilterAbilities()[slot];
         var data = {};
+        var nl = DOTA_ABILITY_BEHAVIOR.DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE;
 
         data.id = ability;
         data.key = Abilities.GetKeybind(ability);
@@ -58,6 +59,7 @@ function EntityAbilityDataProvider(entityId) {
         data.beingCast = Abilities.IsInAbilityPhase(ability);
         data.toggled = Abilities.IsToggle(ability) && Abilities.GetToggleState(ability);
         data.range = Abilities.GetCastRange(ability);
+        data.cosmetic = (Abilities.GetBehavior(ability) & nl) == nl;
 
         if (data.cooldown == 0 || data.ready){
             data.cooldown = Abilities.GetCooldown(ability);
@@ -103,6 +105,7 @@ function AbilityBar(elementId) {
     this.element = $(elementId);
     this.abilities = {};
     this.customIcons = {};
+    this.customClasses = {};
 
     this.SetProvider = function(provider) {
         this.provider = provider;
@@ -129,7 +132,11 @@ function AbilityBar(elementId) {
         data.texture = GetTexture(data, this.customIcons);
 
         var ability = this.GetAbility(slot);
+        var prevCl = this.customClasses[ability.data.name];
+        var cl = this.customClasses[data.name];
+
         ability.SetData(data);
+        ability.SetCustomClass(prevCl, cl);
 
         if (this.provider.IsSilenced && this.provider.IsStunned) {
             ability.SetDisabled(this.provider.IsSilenced(), this.provider.IsStunned());
@@ -138,6 +145,10 @@ function AbilityBar(elementId) {
 
     this.AddCustomIcon = function(abilityName, iconPath) {
         this.customIcons[abilityName] = iconPath;
+    }
+
+    this.AddCustomClass = function(abilityName, cl) {
+        this.customClasses[abilityName] = cl;
     }
 
     this.GetAbility = function(slot) {
@@ -200,6 +211,8 @@ function AbilityButton(parent, hero, ability) {
     this.image.AddClass("AbilityButton");
     this.ability = ability;
 
+    this.custom = $.CreatePanel("Panel", this.image, "");
+
     this.inside = $.CreatePanel("Panel", this.image, "");
     this.inside.AddClass("AbilityButtonInside");
 
@@ -220,7 +233,7 @@ function AbilityButton(parent, hero, ability) {
     this.data = {};
 
     this.SetData = function(data) {
-        if (this.data.texture != data.texture) {
+        if (this.data.texture != data.texture && !data.cosmetic) {
             this.image.SetImage(data.texture);
         }
 
@@ -239,6 +252,16 @@ function AbilityButton(parent, hero, ability) {
         this.image.SetHasClass("AbilityButtonToggled", data.toggled);
 
         this.data = data;
+    }
+
+    this.SetCustomClass = function(prevCl, cl) {
+        if (prevCl) {
+            this.custom.SetHasClass(prevCl, false);
+        }
+
+        if (cl) {
+            this.custom.SetHasClass(cl, true);
+        }
     }
 
     this.SetCooldown = function(remaining, cd, ready, activated) {

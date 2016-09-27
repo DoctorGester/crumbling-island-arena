@@ -166,6 +166,22 @@
     opacity: 0.4;
 }
 
+.AbilityEmote
+{
+    width: 100%;
+    height: 100%;
+    opacity-mask: url('file://{images}/custom_game/emote.png');
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#44E500), to(#007F0E));
+}
+
+.AbilityTaunt
+{
+    width: 100%;
+    height: 100%;
+    opacity-mask: url('file://{images}/custom_game/taunt.png');
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#FFD800), to(#DD4A29));
+}
+
 #DebugPanel
 {
     flow-children: down;

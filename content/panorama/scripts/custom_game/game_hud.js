@@ -166,6 +166,9 @@ function LoadHeroUI(heroId){
 
     cosmeticAbilityBar.SetProvider(cosmeticProvider);
     cosmeticAbilityBar.RegisterEvents(true);
+    cosmeticAbilityBar.AddCustomClass("taunt_static", "AbilityTaunt");
+    cosmeticAbilityBar.AddCustomClass("taunt_moving", "AbilityTaunt");
+    cosmeticAbilityBar.AddCustomClass("emote", "AbilityEmote");
 
     healthBar.SetEntity(heroId);
     buffBar.SetEntity(heroId);
