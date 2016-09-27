@@ -553,7 +553,7 @@
 		"AbilityTooltip_pl_r"							"Summon an illusion behind you, which uses your <font color=\"gold\"><b>Q</b></font> after a short delay"
 
 		"AbilityTooltip_omni_q"							"Heal all allies and damage all enemies around you<br/>You are healed if at least one target was damaged"
-		"AbilityTooltip_omni_w"							"Stun enemies in fron of you"
+		"AbilityTooltip_omni_w"							"Stun enemies in front of you"
 		"AbilityTooltip_omni_e"							"Gain invulnerability for a short period of time"
 		"AbilityTooltip_omni_r"							"Give yourself and all allies around damage resistance buff"
 
