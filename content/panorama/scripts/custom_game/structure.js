@@ -13,11 +13,6 @@ var Structure = new (function(){
 
             for (var change of differences) {
                 var result = this.FollowPath(parent, change.path);
-
-                if (result == null) {
-                    continue;
-                }
-                
                 var property = result[1][0];
                 var remainingPath = result[1].slice(1);
                 var panel = result[0];
@@ -66,9 +61,17 @@ var Structure = new (function(){
                 }
 
                 if (change.type === "add") {
-                    var newValue = this.OriginalValue(structure, originalValuePath);
+                    if (property === undefined || property === "children") {
+                        var atIndex = panel.GetChild(change.index);
 
-                    this.SetProperty(panel, property, newValue, originalValue);
+                        for (var val of change.vals) {
+                            Structure.CreateStructureInternal(panel, val, atIndex);
+                        }
+                    } else {
+                        var newValue = this.OriginalValue(structure, originalValuePath);
+
+                        this.SetProperty(panel, property, newValue, originalValue);
+                    }
                 }
             }
 
@@ -132,10 +135,6 @@ var Structure = new (function(){
         var lastIndex = 0;
 
         for (var index in path) {
-            if (currentPanel == null) {
-                return null;
-            }
-
             var pathElement = path[index];
 
             if (prevElement === "children"){
@@ -223,7 +222,7 @@ var Structure = new (function(){
         }
     }
 
-    this.CreateStructureInternal = function(parent, structure) {
+    this.CreateStructureInternal = function(parent, structure, insertBefore) {
         if (!structure) {
             return;
         }
@@ -248,6 +247,10 @@ var Structure = new (function(){
                     }
                 } else {
                     panel = $.CreatePanel(value.tag || "Panel", parent, value.id || "");
+                }
+
+                if (!!insertBefore) {
+                    parent.MoveChildBefore(panel, insertBefore);
                 }
 
                 for (var key of Object.keys(value)) {
