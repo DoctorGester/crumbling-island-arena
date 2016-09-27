@@ -2,6 +2,7 @@ var Structure = new (function(){
     this.structureList = [];
     this.events = [ "onactivate", "onmouseover", "onmouseout" ];
     this.functionKeys = [ "onactivate", "onmouseover", "onmouseout", "onChange" ];
+    this.deletedThisFrame = [];
 
     this.Create = function(parent, structure) {
         var pair = this.FindStructure(parent);
@@ -11,8 +12,14 @@ var Structure = new (function(){
         if (!!pair) {
             var differences = odiff(pair[0], structure);
 
+            if (differences.length > 0) {
+                $.Schedule(0, function() {
+                    Structure.deletedThisFrame = [];
+                });
+            }
+
             for (var change of differences) {
-                var result = this.FollowPath(parent, change.path);
+                var result = this.FollowPath(parent, change.path, this.deletedThisFrame);
                 var property = result[1][0];
                 var remainingPath = result[1].slice(1);
                 var panel = result[0];
@@ -50,8 +57,16 @@ var Structure = new (function(){
 
                 if (change.type === "rm") {
                     if (property === undefined || property === "children") {
-                        for (var i = change.index; i < change.num; i++) {
+                        for (var i = change.index; i < change.index + change.num; i++) {
+                            var c = panel.GetChild(i);
+
+                            if (this.deletedThisFrame.indexOf(c) !== -1) {
+                                change.index++;
+                                continue;
+                            }
+
                             panel.GetChild(i).DeleteAsync(0);
+                            this.deletedThisFrame.push(panel);
                         }
                     } else {
                         var newValue = this.OriginalValue(structure, originalValuePath);
@@ -129,7 +144,7 @@ var Structure = new (function(){
         return current;
     }
 
-    this.FollowPath = function(parent, path) {
+    this.FollowPath = function(parent, path, deleted) {
         var currentPanel = parent;
         var prevElement = "children";
         var lastIndex = 0;
@@ -140,8 +155,11 @@ var Structure = new (function(){
             if (prevElement === "children"){
                 var inArr = Number.isInteger(pathElement);
 
-                currentPanel = currentPanel.GetChild(inArr ? pathElement : 0);
-                lastIndex = parseInt(index) + (inArr ? 1 : 0);
+                do {
+                    currentPanel = currentPanel.GetChild(inArr ? pathElement : 0);
+                    lastIndex = parseInt(index) + (inArr ? 1 : 0);
+                    inArr++;
+                } while (deleted.indexOf(currentPanel) !== -1)
             }
 
             prevElement = pathElement;
