@@ -60,7 +60,7 @@ function Quests.GetProgressReport()
 end
 
 function Quests.FindQuestForPlayerWithType(playerId, questType)
-    for _, quest in pairs(Quests.quests[playerId]) do
+    for _, quest in pairs(Quests.quests[playerId] or {}) do
         if quest.type == questType then
             return quest
         end
@@ -72,6 +72,7 @@ end
 function Quests.IncreaseQuestProgress(quest)
     if quest then
         quest.progress = math.min(quest.progress + 1, quest.goal)
+        Quests.NetworkQuests()
     end
 end
 
@@ -99,7 +100,5 @@ function Quests.IncreaseProgress(player, questType, hero)
                 end
             end
         end
-
-        Quests.NetworkQuests()
     end
 end

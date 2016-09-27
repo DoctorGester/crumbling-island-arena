@@ -298,11 +298,15 @@ function FindQuestHeroes(quests) {
 function CreateHeroList(heroList, heroes, quests, selectedHeroes, rows, randomButtonRow){
     var structure = [];
 
+    if (!heroes) {
+        return;
+    }
+
     heroes = _(heroes).sortBy(function(hero) { return allHeroes[hero].disabled });
 
     var heroesInRow = rows[0];
     var randomAdded = false;
-    var questHeroes = quests ? FindQuestHeroes(quests[Game.GetLocalPlayerID()]) : [];
+    var questHeroes = !!quests ? FindQuestHeroes(quests[Game.GetLocalPlayerID()] || []) : [];
     var localInfo = Game.GetPlayerInfo(Game.GetLocalPlayerID()) || {};
     var localTeam = localInfo.player_team_id || -1;
     var spectator = localTeam == -1;
