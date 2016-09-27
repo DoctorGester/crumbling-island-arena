@@ -311,6 +311,21 @@
 		"SbRunnerUp" "Второе место"
 		"SbTooManyHeroes" "Слишком много героев"
 
+		"QuestPLAY_ROUNDS_AS" "Сыграть {i:goal} раундов за<br/><img src='file://{images}/heroes/icons/npc_dota_hero_{s:hero}.png'/>"
+		"QuestPLAY_ROUNDS_AS_OR" "Сыграть {i:goal} раундов за<br/><img src='file://{images}/heroes/icons/npc_dota_hero_{s:hero}.png'/> или <img src='file://{images}/heroes/icons/npc_dota_hero_{s:shero}.png'/>"
+		"QuestPLAY_GAMES" "Сыграть {i:goal} игр"
+		"QuestDEAL_DAMAGE" "Нанести {i:goal} урона<br/>врагам"
+		"QuestEARN_MVP" "Получить MVP {i:goal} раз"
+		"QuestEARN_FIRST_BLOOD" "Получить Первую Кровь<br/>{i:goal} раз"
+		"QuestMAKE_KILLS" "Убить {i:goal} вражеских<br/>героев"
+		"QuestCAST_SPELLS" "Использовать<br/>{i:goal} способностей"
+		"QuestRESTORE_HEALTH" "Восстановить {i:goal}<br/>очков здоровья"
+		"QuestAvailable" "Доступен квест!"
+		"PassProgress" "Обновление пропуска"
+		"PassLevel" "Уровень {i:level}"
+		"PassTopPlayers" "Лучшие игроки пропуска"
+		"NextLevelReward" "СЛЕДУЮЩАЯ НАГРАДА"
+
 		"RewardReceived" "Новая награда"
 		"RewardTip" "Не появляется в арсенале, доступно ТОЛЬКО при игре в Crumbling Island Arena"
 
@@ -340,6 +355,10 @@
 		"RoundLost" "Поражение!"
 
 		"AbilityTooltip"								"{s:description}<br><br><font color=\"gold\">Перезарядка</font>: {s:cooldown}"
+
+		"AbilityTooltip_taunt_static"					"Насмехайся над врагами! Покажи им, как ты двигаешься, пускай завидуют!"
+		"AbilityTooltip_taunt_moving"					"Это что-то вроде танца? Плевать, жги!"
+		"AbilityTooltip_emote"							"Скажи это вслух! Пусть они знают, что ты о них думаешь!"
 
 		"AbilityTooltip_earth_spirit_q"					"После короткой задержки, уронить <font color=\"#3A9B00\"><b>Копию</b></font> в указанную область"
 		"AbilityTooltip_earth_spirit_w"					"Укажите на <font color=\"#3A9B00\"><b>Копию</b></font>. Переместитесь к ней, если уже стоите на <font color=\"#3A9B00\"><b>Копии</b></font>. Если нет, притащите её к себе"
