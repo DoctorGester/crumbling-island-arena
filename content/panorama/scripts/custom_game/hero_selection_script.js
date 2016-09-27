@@ -329,6 +329,8 @@ function CreateHeroList(heroList, heroes, quests, selectedHeroes, rows, randomBu
                 button.children = {
                     class: "RandomButton"
                 };
+
+                button.onactivate = PickRandomHero;
             } else {
                 var selected = false;
 
