@@ -135,7 +135,7 @@ $.AsyncWebRequest("http://178.63.238.188:3637/ranks/info", { type: "GET",
     }
 });
 
-$.AsyncWebRequest("http://127.0.0.1:5141/pass/top", { type: "GET", 
+$.AsyncWebRequest("http://178.63.238.188:3637/pass/top", { type: "GET", 
     success: function( data ) {
         var info = JSON.parse(data);
         PassTopChanged(info);

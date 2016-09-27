@@ -4,6 +4,27 @@
     height: 100%;
 }
 
+#FadeInPanel
+{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+
+.AnimationFadeIn
+{
+    animation-duration: 1.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-name: FadeIn;
+    sound: "UI.RoundEndFadeIn";
+}
+
+.Hidden
+{
+    visibility: collapse;
+}
+
 .AnimationMessageVisible
 {
     opacity: 1.0;
@@ -20,12 +41,31 @@ Label
     color: white;
 }
 
+#RoundResultContainer
+{
+    align: center top;
+    width: 100%;
+    height:120px;
+    background-image:url('file://{images}/custom_game/bg_titlebar.jpg');
+    background-size:100% 100%;
+    margin-top: 30px;
+}
+
+#RoundResult
+{
+    align: center top;
+    font-size: 100px;
+    text-transform: uppercase;
+    text-shadow: 0px 0px 8px 2.0 red;
+}
+
 #RoundResults
 {
-    align: center center;
-    flow-children: right;
+    align: left bottom;
+    flow-children: down;
     transition-property: opacity;
     transition-duration: 0.1s;
+    margin-bottom: 100px;
 }
 
 #TeamScores
@@ -37,8 +77,8 @@ Label
 #GameGoal
 {
     flow-children: right;
-    margin-left: 120px;
-    vertical-align: center;
+    margin-top: 30px;
+    align: right center;
 }
 
 #GameGoalNumber
@@ -183,6 +223,24 @@ Label
     text-shadow: 0px 1px 2px 2.0 #000000;
     white-space: nowrap;
     align: right center;
+}
+
+@keyframes 'FadeIn'
+{
+    0%
+    {
+        opacity: 1.0;
+    }
+
+    30%
+    {
+        opacity: 1.0;
+    }
+    
+    100%
+    {
+        opacity: 0.0;
+    }
 }
 
 @keyframes 'PointsAnimation'

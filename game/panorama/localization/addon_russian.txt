@@ -336,6 +336,8 @@
 
 		"RoundEnding" "<font color='{s:color}'>{s:name}</font> победил!"
 		"RoundEndingWasted" "Ничья!"
+		"RoundWon" "Победа!"
+		"RoundLost" "Поражение!"
 
 		"AbilityTooltip"								"{s:description}<br><br><font color=\"gold\">Перезарядка</font>: {s:cooldown}"
 

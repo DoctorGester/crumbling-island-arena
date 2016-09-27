@@ -117,4 +117,292 @@
         ]
         distance_max = "3500"
     }
+
+    Round.antimage = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/antimage/anti_kill_07.vsnd"
+        ]
+    }
+
+    Round.skeleton_king = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/skeleton_king/wraith_kill_17.vsnd"
+        ]
+    }
+
+    Round.zuus = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/zuus/zuus_kill_09.vsnd"
+        ]
+    }
+
+    Round.storm_spirit = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/stormspirit/ss_kill_03.vsnd"
+        ]
+    }
+
+    Round.phantom_assassin = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/phantom_assassin/phass_kill_10.vsnd"
+        ]
+    }
+
+    Round.earth_spirit = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/earth_spirit/earthspi_kill_11.vsnd"
+        ]
+    }
+
+    Round.crystal_maiden = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/crystalmaiden/cm_kill_03.vsnd"
+        ]
+    }
+
+    Round. = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            ""
+        ]
+    }
+
+    Round.sven = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/sven/sven_win_04.vsnd"
+        ]
+    }
+    
+    Round.sniper = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/sniper/snip_kill_02.vsnd"
+        ]
+    }
+    
+    Round.sand_king = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/sandking/skg_kill_10.vsnd"
+        ]
+    }
+
+    Round.legion_commander = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/legion_commander/legcom_kill_14.vsnd"
+        ]
+    }
+
+    Round.lycan = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/lycan/lycan_kill_08.vsnd"
+        ]
+    }
+
+    Round.pugna = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/pugna/pugna_kill_14.vsnd"
+        ]
+    }
+
+    Round.phoenix = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/phoenix/phoenix_bird_kill.vsnd"
+        ]
+    }
+
+    Round.templar_assassin = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/templar_assassin/temp_kill_10.vsnd"
+        ]
+    }
+    
+    Round.tiny = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/tiny/tiny_win_03.vsnd"
+        ]
+    }
+
+    Round.vengefulspirit = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/vengefulspirit/vng_kill_12.vsnd"
+        ]
+    }
+
+    Round.drow_ranger = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/drowranger/dro_win_03.vsnd"
+        ]
+    }
+
+    Round.ogre_magi = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/ogre_magi/ogmag_kill_05.vsnd"
+        ]
+    }
+    
+    Round.earthshaker = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/earthshaker/erth_kill_08.vsnd"
+        ]
+    }
+
+    Round.ember_spirit = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/ember_spirit/embr_kill_05.vsnd"
+        ]
+    }
+
+    Round.juggernaut = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/juggernaut/jug_kill_08.vsnd"
+        ]
+    }
+
+    Round.lone_druid = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/lone_druid/lone_druid_kill_02.vsnd"
+        ]
+    }
+
+    Round.pudge = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/pudge/pud_kill_01.vsnd"
+        ]
+    }
+
+    Round.ursa = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/ursa/ursa_kill_04.vsnd"
+        ]
+    }
+
+    Round.brewmaster = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/brewmaster/brew_kill_10.vsnd"
+        ]
+    }
+
+    Round.invoker = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/invoker/invo_kill_01.vsnd"
+        ]
+    }
+    
+    Round.tinker = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/tinker/tink_kill_07.vsnd"
+        ]
+    }
+    
+    Round.slark = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/slark/slark_kill_09.vsnd"
+        ]
+    }
+    
+    Round.queenofpain = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/queenofpain/pain_kill_02.vsnd"
+        ]
+    }
+    
+    Round.tusk = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/tusk/tusk_kill_12.vsnd"
+        ]
+    }
+    
+    Round.undying = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/undying/undying_kill_06.vsnd"
+        ]
+    }
+    
+    Round.medusa = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/medusa/medus_kill_01.vsnd"
+        ]
+    }
+    
+    Round.omniknight = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/omniknight/omni_kill_10.vsnd"
+        ]
+    }
+    
+    Round.phantom_lancer = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/phantom_lancer/plance_kill_08.vsnd"
+        ]
+    }
 }

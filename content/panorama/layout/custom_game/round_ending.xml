@@ -9,6 +9,9 @@
         <include src="file://{resources}/scripts/custom_game/round_ending.js" />
     </scripts>
     <Panel class="RoundEndingBackground" hittest="false">
+        <Panel id="RoundResultContainer" class="Hidden" style="">
+            <Label id="RoundResult"/>
+        </Panel>
         <Panel id="RoundResults" class="AnimationMessageInvisible" hittest="false" hittestchildren="false">
             <Panel id="TeamScores"/>
             <Panel id="GameGoal">
@@ -16,5 +19,6 @@
                 <Label id="GameGoalText" text="#PointsToWin"/>
             </Panel>
         </Panel>
+        <Panel id="FadeInPanel" class="Hidden"/>
     </Panel>
 </root>

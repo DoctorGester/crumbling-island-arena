@@ -13,6 +13,11 @@ var Structure = new (function(){
 
             for (var change of differences) {
                 var result = this.FollowPath(parent, change.path);
+
+                if (result == null) {
+                    continue;
+                }
+                
                 var property = result[1][0];
                 var remainingPath = result[1].slice(1);
                 var panel = result[0];
@@ -127,6 +132,10 @@ var Structure = new (function(){
         var lastIndex = 0;
 
         for (var index in path) {
+            if (currentPanel == null) {
+                return null;
+            }
+
             var pathElement = path[index];
 
             if (prevElement === "children"){

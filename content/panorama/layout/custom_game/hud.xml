@@ -65,15 +65,17 @@
             <Label id="RoundMessageTop" class="RoundMessage" text="#Round" hittest="false"/>
             <Label id="RoundMessageBottom" class="RoundMessage" hittest="false"/>
 
-            <Label id="KillMessageTop" class="KillMessageLabel" text="ENEMY" hittest="false"/>
-            <Label id="KillMessageBottom" class="KillMessageLabel" text="SLAIN" hittest="false"/>
-            <Panel class="KillMessageContainer" id="KillMessageIconContainerTop" hittest="false">
-                <DOTAHeroImage id="KillMessageIconTop" heroimagestyle="icon" hittest="false"/>
-            </Panel>
-            <Panel class="KillMessageCutter" id="KillMessageCutterTop" hittest="false"/>
-            <Panel class="KillMessageCutter" id="KillMessageCutterBottom" hittest="false"/>
-            <Panel class="KillMessageContainer" id="KillMessageIconContainerBottom" hittest="false">
-                <DOTAHeroImage id="KillMessageIconBottom" heroimagestyle="icon" hittest="false"/>
+            <Panel id="KillMessageContainer" hittest="false" hittestchildren="false">
+                <Label id="KillMessageTop" class="KillMessageLabel" text="ENEMY"/>
+                <Label id="KillMessageBottom" class="KillMessageLabel" text="SLAIN"/>
+                <Panel class="KillMessageContainer" id="KillMessageIconContainerTop">
+                    <DOTAHeroImage id="KillMessageIconTop" heroimagestyle="icon" hittest="false"/>
+                </Panel>
+                <Panel class="KillMessageCutter" id="KillMessageCutterTop"/>
+                <Panel class="KillMessageCutter" id="KillMessageCutterBottom"/>
+                <Panel class="KillMessageContainer" id="KillMessageIconContainerBottom">
+                    <DOTAHeroImage id="KillMessageIconBottom" heroimagestyle="icon" hittest="false"/>
+                </Panel>
             </Panel>
 
             <Panel id="DeathMatchContainer" class="Hidden">

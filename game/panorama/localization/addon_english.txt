@@ -352,6 +352,8 @@
 		"GameInfoText" "Every player has <font color='#3A9B00'>5</font> health points<br>Autoattacks are <font color='red'>disabled</font><br><font color='red'>No</font> standard dota abilities<br>Ultimates are unlocked over time<br>Last man standing wins<br>The arena <font color='gold'>shrinks</font> and <font color='gold'>crumbles</font>"
 		"GameInfoTimesUp" "Time's up!"
 
+		"RoundWon" "Round won!"
+		"RoundLost" "Round lost!"
 		"RoundEnding" "<font color='{s:color}'>{s:name}</font> wins!"
 		"RoundEndingWasted" "round wasted!"
 

@@ -338,7 +338,7 @@ function CreateHeroList(heroList, heroes, quests, selectedHeroes, rows, randomBu
 
                         if (sHero == hero) {
                             selected = true;
-                            button.style = { boxShadow: function() { return (playerColors[id] || "#ff0000") + " -2px -2px 4px 4px"; } };
+                            button.style = { boxShadow: (playerColors[id] || "#ff0000") + " -2px -2px 4px 4px" };
 
                             break;
                         }

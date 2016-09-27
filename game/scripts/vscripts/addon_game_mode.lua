@@ -163,7 +163,6 @@ function WritePrefab()
     end
 
     file:write("return pieces")
-
     file:close()
 end
 
@@ -470,6 +469,7 @@ function GameMode:InitModifiers()
     LinkLuaModifier("modifier_hero", "abilities/modifier_hero", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_tower", "abilities/modifier_tower", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_creep", "abilities/modifier_creep", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_preview", "abilities/modifier_preview", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_wearable_visuals", "abilities/modifier_wearable_visuals", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_wearable_visuals_status_fx", "abilities/modifier_wearable_visuals", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_wearable_visuals_activity", "abilities/modifier_wearable_visuals", LUA_MODIFIER_MOTION_NONE)
@@ -519,6 +519,8 @@ function GameMode:SetupMode()
             SetTeamCustomHealthbarColor(team, color[1], color[2], color[3])
         end
     end
+
+    self.cameraDummy = CreateUnitByName("npc_dummy_unit", Vector(-550, 500, 0), false, nil, nil, DOTA_TEAM_NOTEAM)
 end
 
 function GameMode:GetTeamScore(team)
@@ -745,7 +747,7 @@ function GameMode:OnRoundEnd(round)
     for player, earned in pairs(self.scoreEarned) do
         player.score = player.score + earned
     end
-
+    
     for _, player in pairs(self.Players) do
         local playerData = {}
         playerData.id = player.id
@@ -763,6 +765,55 @@ function GameMode:OnRoundEnd(round)
         end
     end
 
+    -- Setting up end-camera
+    round:Destroy()
+    DoEntFire("round_end_layer_entity", "ShowWorldLayerAndSpawnEntities", "", 0.0, nil, nil)
+    self.level:Hide()
+
+    local positions = {
+        { Vector(100, -400, 17), Vector(1, -1, 0), true },
+        { Vector(300, -300, 17), Vector(0.8, -1, 0) },
+        { Vector(0, -200, 17), Vector(1, -0.5, 0) }
+    }
+
+    local index = 1
+    local tempPlayers = {}
+    local tempHeroes = {}
+
+    for _, player in pairs(self.Players) do
+        if player.selectedHero and player.team == winner then
+            table.insert(tempPlayers, player)
+        end
+
+        PlayerResource:SetOverrideSelectionEntity(player.id, nil)
+        PlayerResource:SetCameraTarget(player.id, self.cameraDummy)
+    end
+
+    Shuffle(tempPlayers)
+
+    for _, player in pairs(tempPlayers) do
+        local hero = self.round:LoadHeroClass(player.selectedHero)
+        local unit = CreateUnitByName(player.selectedHero, positions[index][1], false, nil, nil, player.team)
+        hero:SetUnit(unit)
+        hero.owner = player
+        hero:LoadWearables()
+
+        unit:SetAbsOrigin(positions[index][1])
+        unit:AddNewModifier(unit, nil, "modifier_preview", {})
+        unit:SetForwardVector(positions[index][2])
+        unit:StartGesture(ACT_DOTA_LOADOUT)
+
+        if positions[index][3] then
+            Timers:CreateTimer(ROUND_ENDING_TIME / 3, function()
+                EmitAnnouncerSound("Round."..hero:GetShortName())
+            end)
+        end
+
+        table.insert(tempHeroes, hero)
+
+        index = index + 1
+    end
+
     self:UpdatePlayerTable()
     self.generalStatistics:Add(round.statistics)
     self:SubmitRoundInfo(round, winner, self.winner ~= nil)
@@ -773,8 +824,18 @@ function GameMode:OnRoundEnd(round)
     self:SetState(STATE_ROUND_ENDED)
 
     Timers:CreateTimer(ROUND_ENDING_TIME, function ()
-        round:Destroy()
+        for _, hero in pairs(tempHeroes) do
+            hero:GetUnit():RemoveSelf()
+        end
+
+        DoEntFire("round_end_layer_entity", "HideWorldLayerAndDestroyEntities", "", 0.0, nil, nil)
+        self.level:Show()
+
         self.round = nil
+
+        for _, player in pairs(self.Players) do
+            PlayerResource:SetCameraTarget(player.id, nil)
+        end
 
         if self.winner then
             self:EndGame()
@@ -1236,6 +1297,4 @@ if IsInToolsMode() then
     end
 
     GameMode.InitModifiers()
-
-    GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(GameMode, "FilterExecuteOrder"), GameRules.GameMode)
 end

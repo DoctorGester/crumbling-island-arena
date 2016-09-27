@@ -250,10 +250,6 @@ function FillDebugPanel(){
 }
 
 function DebugUpdate(data){
-    if (!data){
-        return;
-    }
-
     if (data.enabled){
         FillDebugPanel();
     }
@@ -265,7 +261,8 @@ function GameStateChanged(data){
         "DeathMatchContainer": "AnimationHeroHudHidden",
         "HeroDetails": "AnimationHeroDetailsHidden",
         "ScoreboardContainer": "AnimationScoreboardHidden",
-        "KillLog": "AnimationKillLogHidden"
+        "KillLog": "AnimationKillLogHidden",
+        "KillMessageContainer": "Hidden"
     };
 
     for (var panel in animations) {

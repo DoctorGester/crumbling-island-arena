@@ -101,6 +101,18 @@ function Level:constructor()
     self:SetupBackground()
 end
 
+function Level:Hide()
+    for _, part in ipairs(self.parts) do
+        part:AddEffects(EF_NODRAW)
+    end
+end
+
+function Level:Show()
+    for _, part in ipairs(self.parts) do
+        part:RemoveEffects(EF_NODRAW)
+    end
+end
+
 function Level:SetSlowFactor(factor)
     self.slowFactor = factor
 end
