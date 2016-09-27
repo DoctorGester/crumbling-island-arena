@@ -328,6 +328,7 @@
 		"PassProgress" "Pass progress"
 		"PassLevel" "Level {i:level}"
 		"PassTopPlayers" "Top Pass Players"
+		"NextLevelReward" "NEXT LEVEL REWARD"
 
 		"RewardReceived" "Reward received"
 		"RewardTip" "Does not appear in the armory, available only in Crumbling Island Arena"
@@ -365,6 +366,10 @@
 		"StageFinal"									""
 
 		"AbilityTooltip"								"{s:description}<br><br><font color=\"gold\">CD</font>: {s:cooldown}"
+
+		"AbilityTooltip_taunt_static"					"Taunt your enemies! Show them your best moves and make them jelly!"
+		"AbilityTooltip_taunt_moving"					"Is that some kind of a dance? Nevermind, gimme gimme!"
+		"AbilityTooltip_emote"							"Say it out loud! Your enemies must know what you think about them!"
 
 		"AbilityTooltip_earth_spirit_q"					"After a short delay, drop a <font color=\"#3A9B00\"><b>Remnant</b></font> at the target location."
 		"AbilityTooltip_earth_spirit_w"					"Target a <font color=\"#3A9B00\"><b>Remnant</b></font>, if you are standing on a <font color=\"#3A9B00\"><b>Remnant</b></font>, drag target to you. Otherwise, move your <font color=\"#3A9B00\"><b>Remnant</b></font> to it."

@@ -1165,6 +1165,41 @@ function GameMode:AssignBannedHeroes()
     end
 end
 
+function GameMode:NetworkCosmetics()
+    local result = {}
+
+    for hero, cosmetics in pairs(Cosmetics) do
+        for _, asset in pairs(cosmetics) do
+            if type(asset) == "table" then
+                if asset.type == "pass" then
+                    local images = nil
+
+                    if asset.item then
+                        for _, item in pairs(tostring(asset.item):split(",")) do
+                            local realItem = GameItems.items[item]
+
+                            if realItem then
+                                local wasEmpty = images == nil
+                                images = (images or "")..(wasEmpty and "" or ",")..realItem.image_inventory
+                            end
+                        end
+                    end
+
+                    result[asset.level] = {
+                        item = asset.item,
+                        emote = asset.emote,
+                        taunt = asset.taunt ~= nil,
+                        hero = hero,
+                        images = images
+                    }
+                end
+            end
+        end
+    end
+
+    CustomNetTables:SetTableValue("pass", "cosmetics", result)
+end
+
 function GameMode:OnGameInProgress()
     if not statCollection.sentStage2 and statCollection.sentStage1 then
         statCollection:sendStage2()
@@ -1198,6 +1233,7 @@ function GameMode:OnGameInProgress()
 
     self:AssignBannedHeroes()
     self:UpdateAvailableHeroesTable()
+    self:NetworkCosmetics()
 
     self.heroSelection = HeroSelection(
         self.Players,

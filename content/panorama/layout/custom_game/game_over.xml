@@ -56,10 +56,31 @@
                         </ProgressBar>
                     </Panel>
                     <Panel id="NextLevelReward">
-                        <Label text="Next level reward"/>
-                        <DOTAHeroImage id="NextLevelRewardImage" scaling="none" heroimagestyle="portrait" heroname="npc_dota_hero_crystal_maiden"/>
+                        <Label text="#NextLevelReward"/>
+                        <Panel id="NextLevelRewardContainer" onmouseout="$.DispatchEvent('DOTAHideTextTooltip');">
+                            <Image id="NextLevelRewardImage" scaling="stretch-to-fit-y-preserve-aspect"/>
+                            <DOTAHeroImage id="NextLevelRewardHeroImage" heroimagestyle="icon" heroname="npc_dota_hero_crystal_maiden"/>
+                        </Panel>
                     </Panel>
                     <Panel id="QuestList"/>
+                </Panel>
+            </Panel>
+        </snippet>
+
+        <snippet name="PassRewardNotification">
+            <Panel>
+                <DOTAScenePanel id="RewardRays" class="PassResultRays" map="maps/scenes/red_godrays.vmap"/>
+
+                <Panel id="RewardArea">
+                    <Label id="PassProgressHeader" text="#RewardReceived"/>
+                    <Panel id="PassRewardContainer" onmouseout="$.DispatchEvent('DOTAHideTextTooltip');">
+                        <Panel id="PassRewardImageContainer">
+                            <Image id="PassRewardImage" scaling="stretch-to-fit-y-preserve-aspect"/>
+                        </Panel>
+                        <DOTAHeroImage id="PassRewardHeroImage" scaling="none" heroimagestyle="portrait"/>
+                    </Panel>
+                    <Label id="RewardTip" text="#RewardTip"/>
+                    <Label id="ClickToClose" text="#RankClose"/>
                 </Panel>
             </Panel>
         </snippet>

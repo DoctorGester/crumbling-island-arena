@@ -121,9 +121,9 @@ var Pass = new (function(){
         exp = parseInt(exp);
 
         var experience = exp % 1000;
-        var level = Math.floor(experience / 1000);
+        var level = Math.floor(exp / 1000);
 
-        return { e: experience, l: level };
+        return { e: experience, l: level, t: exp };
     }
 
     this.UpdateExperience = function(exp, expandedLevelText) {
@@ -145,6 +145,31 @@ var Pass = new (function(){
         $("#LevelText").text = text.toUpperCase();
     }
 
+    this.UpdateRewardImage = function(level, rewardImage, rewardHeroImage) {
+        var asset = CustomNetTables.GetTableValue("pass", "cosmetics")[(level + 1).toString()];
+        var panel = $(rewardImage);
+
+        $(rewardHeroImage).heroname = "npc_dota_hero_" + asset.hero;
+        panel.SetHasClass("RewardItem", !!asset.item);
+        panel.SetHasClass("RewardEmote", !!asset.emote);
+        panel.SetHasClass("RewardTaunt", !!asset.taunt);
+
+        $.DispatchEvent("DOTAHideTextTooltip");
+
+        if (asset.item && asset.images) {
+            var image = asset.images.split(",")[0];
+            panel.SetImage("file://{images}/" + image + ".png");
+            panel.ClearPanelEvent("onmouseover");
+        } else {
+            panel.SetImage(null);
+            panel.SetPanelEvent("onmouseover", function() {
+                $.DispatchEvent("DOTAShowTextTooltip", panel, $.Localize(!!asset.taunt ? "AbilityTooltip_taunt_static" : "AbilityTooltip_emote"));
+            });
+        }
+
+        return asset;
+    }
+
     this.UpdateExperienceAnimated = function(exp, earned) {
         var from = this.GetExpAndLevel(exp);
         var textFunc = function(value) { return value + "/1000"; };
@@ -156,11 +181,12 @@ var Pass = new (function(){
             var to = { e: 1000, l: from.l + 1 };
 
             $.Schedule(2, function() {
-                var remaining = exp + earned - 1000;
+                var remaining = (exp + earned) % 1000;
 
                 $("#LevelText").SetHasClass("LevelIncrease", false);
                 $("#LevelText").SetHasClass("LevelIncrease", true);
-                $("#NextLevelRewardImage").heroname = "npc_dota_hero_antimage";
+
+                Pass.UpdateRewardImage(to.l, "#NextLevelRewardImage", "#NextLevelRewardHeroImage");
 
                 Pass.AnimateTo(label, 0, remaining, 2.0, textFunc, true);
                 barParent.SetHasClass("Animated", false);
