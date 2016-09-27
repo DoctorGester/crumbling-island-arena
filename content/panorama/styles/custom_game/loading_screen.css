@@ -258,6 +258,7 @@ Label
 #HallOfPassLoading
 {
     horizontal-align: center;
+    margin-right: 60px;
 }
 
 #HallOfPassPlayers
