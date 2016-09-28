@@ -4,6 +4,10 @@ function modifier_tusk_w:GetStatusEffectName()
     return "particles/status_fx/status_effect_frost_lich.vpcf"
 end
 
+function modifier_tusk_w:StatusEffectPriority()
+    return 1
+end
+
 function modifier_tusk_w:GetProjectileSpeedModifier()
     return 0.3
 end
