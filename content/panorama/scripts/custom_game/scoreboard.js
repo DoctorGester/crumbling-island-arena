@@ -8,8 +8,8 @@ function CreatePlayerStructure(data, color, score, team, teamId, playedId) {
     var close = {
         tag: "Label",
         class: [ "ScoreboardScoreClose", survive ? "ScoreboardScoreSurvive" : undefined ],
-        dvars: { kills: diff },
-        text: survive ? "#Survive" : "#ScoreboardClose"
+        /*dvars: { kills: diff },
+        text: survive ? "#Survive" : "#ScoreboardClose"*/
     };
 
     var players = [];
