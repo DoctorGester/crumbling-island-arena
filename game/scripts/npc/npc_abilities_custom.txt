@@ -34,7 +34,6 @@
 		"AbilityBehavior" 		"DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"BaseClass" 			"ability_datadriven"
 		"AbilityTextureName"	"rubick_empty1"
-		"IsCosmetic" "1"
 	}
 
 	"placeholder_taunt"

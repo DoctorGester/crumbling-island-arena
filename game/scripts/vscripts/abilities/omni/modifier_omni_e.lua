@@ -11,6 +11,14 @@ if IsServer() then
     end
 end
 
+function self:CheckState()
+    local state = {
+        [MODIFIER_STATE_NO_HEALTH_BAR] = true,
+    }
+
+    return state
+end
+
 function self:IsInvulnerable()
     return true
 end
