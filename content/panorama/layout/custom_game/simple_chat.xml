@@ -20,7 +20,7 @@
         }
 
         function SubmitChat() {
-            GameEvents.SendCustomGameEventToServer("custom_chat_say", { message: $("#ChatEntry").text, team: GameUI.IsShiftDown() });
+            GameEvents.SendCustomGameEventToServer("custom_chat_say", { message: $("#ChatEntry").text, team: !GameUI.IsShiftDown() });
 
             $("#ChatEntry").text = "";
         }

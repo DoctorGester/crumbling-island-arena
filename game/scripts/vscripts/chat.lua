@@ -19,6 +19,10 @@ function Chat:OnSay(args)
         return
     end
 
+    if GameRules.GameMode.gameSetup:GetPlayersInTeam() == 1 then
+        args.team = false
+    end
+
     local arguments = {
         hero = self.players[id].selectedHero,
         color = self.teamColors[self.players[id].team],
