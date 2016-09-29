@@ -88,6 +88,8 @@ function PreloadHeroPreviews(heroes) {
 }
 
 function PreloadAwardPreview(hero, season) {
+    HidePreview(hero);
+
     heroAwards[hero] = PreloadPreview(hero, "<DOTAScenePanel antialias='true' class='HeroPreviewScene' light='light' camera='default' map='maps/rewards/" + season + "'/>", true);
     heroPreviews[hero] = heroAwards[hero];
 }
@@ -197,13 +199,19 @@ function HideHeroDetails(heroName) {
     }
 }
 
+function HidePreview(hero) {
+    if (heroPreviews[hero]) {
+        heroPreviews[hero].RemoveClass("HeroPreviewIn");
+        heroPreviews[hero].style.visibility = "collapse";
+    }
+}
+
 function HideAll() {
     $("#HeroAbilities").visible = false;
     $("#HeroName").text = "";
 
     for (var hero in heroPreviews) {
-        heroPreviews[hero].RemoveClass("HeroPreviewIn");
-        heroPreviews[hero].style.visibility = "collapse";
+        HidePreview(hero);
     }
 }
 
@@ -221,9 +229,7 @@ function AddButtonEvents(button, name, isQuestTarget) {
             return;
         }
 
-        if (selectedHeroes[Game.GetLocalPlayerID()] == "null") {
-            GameEvents.SendCustomGameEventToServer("selection_hero_click", { "hero": name });
-        }
+        GameEvents.SendCustomGameEventToServer("selection_hero_click", { "hero": name });
     };
 
     button.onmouseover = function(panel) {
@@ -338,10 +344,11 @@ function CreateHeroList(heroList, heroes, quests, selectedHeroes, rows, randomBu
             } else {
                 var selected = false;
 
-                if (selectedHeroes && (!selectedHeroes.allowSame || (selectedHeroes.locked || selectedTeam == localTeam || spectator))) {
-                    for (var id in selectedHeroes.selected) {
-                        var sHero = selectedHeroes.selected[id];
+                for (var id in (selectedHeroes || {}).selected) {
+                    var selectedTeam = Game.GetPlayerInfo(parseInt(id)).player_team_id;
+                    var sHero = selectedHeroes.selected[id];
 
+                    if (!selectedHeroes.allowSame || (selectedHeroes.locked || selectedTeam == localTeam || spectator)) {
                         if (sHero == hero) {
                             selected = true;
                             button.style = { boxShadow: (playerColors[id] || "#ff0000") + " -2px -2px 4px 4px" };
@@ -534,9 +541,10 @@ function HeroSelectionUpdated(data){
             selectionImage.RemoveClass("AnimationSelectedHero");
         } else {
             if (id == Game.GetLocalPlayerID()) {
+                HideAll();
+                ShowHeroDetails(hero);
+
                 if (!oldSelected[key] || oldSelected[key] == "null") {
-                    HideAll();
-                    ShowHeroDetails(hero);
                     Game.EmitSound("UI.SelectHeroLocal");
                 }
 
