@@ -2,8 +2,10 @@ var scoreboardConnectionStates = {};
 var lastScoreboardData = null;
 
 function CreatePlayerStructure(data, color, score, team, teamId, playedId) {
+    score = Math.min(data.goal, score);
+
     var survive = data.goal == score && !data.isDeathMatch;
-    var diff = Math.abs(data.goal - Math.min(data.goal, score));
+    var diff = Math.abs(data.goal - score);
 
     var close = {
         tag: "Label",
@@ -47,7 +49,7 @@ function CreatePlayerStructure(data, color, score, team, teamId, playedId) {
                         children: {
                             tag: "Label",
                             class: "ScoreboardTeamScore",
-                            text: Math.min(data.goal, score).toString(),
+                            text: score.toString(),
                             onChange: function(panel, property, value) {
                                 panel.SetHasClass("AnimationScoreBoardScoreIncrease", false);
                                 panel.SetHasClass("AnimationScoreBoardScoreIncrease", true);
