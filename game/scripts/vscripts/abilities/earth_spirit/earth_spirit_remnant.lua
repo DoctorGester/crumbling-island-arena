@@ -13,6 +13,7 @@ function EarthSpiritRemnant:constructor(round, owner)
     self.targetRemoved = 0
 
     self.standingHero = nil
+    self.removeOnDeath = true
 
     -- Deathmatch only
     self.dontCleanup = true
@@ -209,7 +210,6 @@ end
 function EarthSpiritRemnant:Remove()
     if self.unit then
         self.unit:StopSound("Arena.Earth.CastW.Loop")
-        self.unit:RemoveSelf()
     end
 
     ParticleManager:DestroyParticle(self.healthCounter, true)
@@ -221,6 +221,8 @@ function EarthSpiritRemnant:Remove()
         self.standingHero:FallFromStand()
         self:SetStandingHero(nil)
     end
+
+    getbase(EarthSpiritRemnant).Remove(self)
 end
 
 function EarthSpiritRemnant:Damage(source)
