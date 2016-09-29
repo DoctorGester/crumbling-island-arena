@@ -113,7 +113,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/storm_spirit/storm_spirit_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "storm_spirit_ball_lightning"
 
 		"precache"
@@ -177,7 +177,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/zeus/zeus_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "storm_spirit_overload"
 		"AbilityCooldown" "7.0"
 		"AbilityCastPoint" "0.15"
@@ -397,7 +397,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/earth_spirit/earth_spirit_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "earth_spirit_magnetize"
 		"AbilityCooldown" "4.0"
 
@@ -901,7 +901,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/lc/lc_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "legion_commander_press_the_attack"
 		"AbilityCooldown" "6.0"
 
@@ -1041,7 +1041,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/phoenix/phoenix_q"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "phoenix_icarus_dive"
 		"AbilityCooldown" "5.5"
 
@@ -1597,7 +1597,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/drow/drow_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "drow_ranger_trueshot"
 		"AbilityCooldown" "8.0"
 
@@ -1878,7 +1878,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/shaker/shaker_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "earthshaker_enchant_totem"
 		"AbilityCooldown" "5.0"
 
@@ -1989,7 +1989,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/ember/ember_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "ember_spirit_activate_fire_remnant"
 		"AbilityCooldown" "2.7"
 
@@ -2096,7 +2096,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/jugger/jugger_e_sub"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "ember_spirit_activate_fire_remnant"
 
 		"TargetingIndicator"
@@ -2299,7 +2299,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/pudge/pudge_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "pudge/scavenger_dragon_ability/pudge_flesh_heap"
 		"AbilityCooldown" "9.0"
 
@@ -2851,7 +2851,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/tusk/tusk_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "tusk/glaciomarine_ability_icons/tusk_snowball"
 		"AbilityCooldown" "6.0"
 
@@ -3103,7 +3103,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/am/am_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "antimage_blink"
 		"AbilityCooldown" "0.1"
 
