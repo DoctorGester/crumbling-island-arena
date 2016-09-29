@@ -18,7 +18,11 @@
                 return;
             }
 
-            GameEvents.SendCustomGameEventToServer("custom_chat_say", { message: entry.text, team: !GameUI.IsShiftDown() });
+            if (entry.text === "-ping") {
+                Game.ServerCmd("dota_ping");
+            } else {
+                GameEvents.SendCustomGameEventToServer("custom_chat_say", { message: entry.text, team: !GameUI.IsShiftDown() });
+            }
 
             entry.text = "";
         }
