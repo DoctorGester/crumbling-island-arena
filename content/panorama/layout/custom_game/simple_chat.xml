@@ -20,12 +20,12 @@
         }
 
         function SubmitChat() {
-            GameEvents.SendCustomGameEventToServer("custom_chat_say", { message: $("#ChatEntry").text });
+            GameEvents.SendCustomGameEventToServer("custom_chat_say", { message: $("#ChatEntry").text, team: GameUI.IsShiftDown() });
 
             $("#ChatEntry").text = "";
         }
 
-        function AddChatLine(token, vars, wasTopPlayer) {
+        function AddChatLine(token, vars, team, wasTopPlayer) {
             var lineParent = $.CreatePanel("Panel", $("#ChatContent"), "");
             lineParent.AddClass("ChatLine");
             lineParent.AddClass("ChatLineAppear");
@@ -45,7 +45,7 @@
             }
 
             line.html = true;
-            line.text = $.Localize(token, line);
+            line.text = (team ? ($.Localize("#ChatTeam") + " ") : "") + $.Localize(token, line);
             line.AddClass("ChatLineText");
 
             if (last != null) {
@@ -58,7 +58,7 @@
                 name: Players.GetPlayerName(args.player),
                 color: LuaColor(args.color),
                 hero: $.Localize("HeroName_" + args.hero)
-            }, args.wasTopPlayer);
+            }, args.team, args.wasTopPlayer);
         }
 
         function OnChatSay(args) {
@@ -66,7 +66,7 @@
                 name: EscapeHtml(Players.GetPlayerName(args.player)),
                 color:  LuaColor(args.color),
                 message: InsertEmotes(args.message, args.wasTopPlayer)
-            }, args.wasTopPlayer);
+            }, args.team, args.wasTopPlayer);
         }
 
         GameEvents.Subscribe("custom_chat_say", OnChatSay);

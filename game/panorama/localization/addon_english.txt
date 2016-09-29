@@ -260,6 +260,7 @@
 		"ChatLinePass" "<b><font color='{s:color}'>{s:name}</font></b>: <font color='gold'>{s:message}</font>"
 		"ChatRandomed" "<b><font color='{s:color}'>{s:name}</font></b> has randomed <font color='gold'>{s:hero}</font>"
 		"ChatPlaceholder" "Type here..."
+		"ChatTeam" "[TEAM]"
 
 		"InfoRankReward" "Reach rank 1 this season<br/>to claim this reward"
 		"InfoRankRewardPrev" "Rank 1 reward<br/>For previous season"

@@ -15,7 +15,7 @@ GameUI.SetCameraPitchMax(60);
 GameUI.SetCameraLookAtPositionHeightOffset(100);
 GameUI.GameChat = $("#GameChat");
 
-function AddChatLine(hero, playerName, color, message, wasTopPlayer, hasPass) {
+function AddChatLine(hero, playerName, color, message, team, wasTopPlayer, hasPass) {
     var line = $.CreatePanel("Panel", $("#GameChatContent"), "");
     var last = $("#GameChatContent").GetChild(0);
     line.AddClass("GameChatLine");
@@ -43,7 +43,7 @@ function AddChatLine(hero, playerName, color, message, wasTopPlayer, hasPass) {
     label.SetDialogVariable("color", color);
     label.SetDialogVariable("message", InsertEmotes(message, wasTopPlayer));
     label.html = true;
-    label.text = $.Localize(hasPass ? "#ChatLinePass" : "#ChatLine", label);
+    label.text = (team ? ($.Localize("#ChatTeam") + " ") : "") + $.Localize(hasPass ? "#ChatLinePass" : "#ChatLine", label);
 
     $("#GameChatContent").ScrollToBottom();
 
@@ -59,7 +59,7 @@ function OnKillMessage(args) {
 function OnCustomChatSay(args) {
     var color = LuaColor(args.color);
     
-    AddChatLine(args.hero, EscapeHtml(Players.GetPlayerName(args.player)), color, args.message, args.wasTopPlayer, args.hasPass);
+    AddChatLine(args.hero, EscapeHtml(Players.GetPlayerName(args.player)), color, args.message, args.team, args.wasTopPlayer, args.hasPass);
 }
 
 function OnKillLogEntry(args) {

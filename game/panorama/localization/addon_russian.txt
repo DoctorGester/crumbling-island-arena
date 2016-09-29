@@ -256,6 +256,7 @@
 		"ChatLine" "<b><font color='{s:color}'>{s:name}</font></b>: {s:message}"
 		"ChatRandomed" "<b><font color='{s:color}'>{s:name}</font></b> случайно выбрал <font color='gold'>{s:hero}</font>"
 		"ChatPlaceholder" "Введите Ваше сообщение..."
+		"ChatTeam" "[КОМАНДА]"
 
 		"InfoRankReward" "Доберись до 1 ранга<br/>и получи эту награду!"
 		"InfoRankRewardPrev" "Награда за 1 ранг<br/>Прошлого сезона"

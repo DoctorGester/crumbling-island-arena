@@ -19,30 +19,35 @@ function Chat:OnSay(args)
         return
     end
 
-    CustomGameEventManager:Send_ServerToAllClients("custom_chat_say", {
+    local arguments = {
         hero = self.players[id].selectedHero,
         color = self.teamColors[self.players[id].team],
         player = id,
         message = args.message,
+        team = args.team,
         wasTopPlayer = self.players[id].wasTopPlayer,
         hasPass = PlayerResource:HasCustomGameTicketForPlayerID(id)
-    })
+    }
+
+    if args.team then
+        CustomGameEventManager:Send_ServerToTeam(self.players[id].team, "custom_chat_say", arguments)
+    else
+        CustomGameEventManager:Send_ServerToAllClients("custom_chat_say", arguments)
+    end
 end
 
 function Chat:PlayerRandomed(id, hero, teamLocal)
+    local args = {
+        color = self.teamColors[self.players[id].team],
+        player = id,
+        hero = hero,
+        wasTopPlayer = self.players[id].wasTopPlayer,
+        team = teamLocal
+    }
+
     if teamLocal then
-        CustomGameEventManager:Send_ServerToTeam(self.players[id].team, "custom_randomed_message", {
-            color = self.teamColors[self.players[id].team],
-            player = id,
-            hero = hero,
-            wasTopPlayer = self.players[id].wasTopPlayer
-        })
+        CustomGameEventManager:Send_ServerToTeam(self.players[id].team, "custom_randomed_message", args)
     else
-        CustomGameEventManager:Send_ServerToAllClients("custom_randomed_message", {
-            color = self.teamColors[self.players[id].team],
-            player = id,
-            hero = hero,
-            wasTopPlayer = self.players[id].wasTopPlayer
-        })
+        CustomGameEventManager:Send_ServerToAllClients("custom_randomed_message", args)
     end
 end
