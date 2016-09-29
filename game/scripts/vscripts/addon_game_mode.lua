@@ -798,6 +798,10 @@ function GameMode:OnRoundEnd(round)
         hero.owner = player
         hero:LoadWearables()
 
+        if instanceof(hero, Jugger) then
+            hero:AttachWearable(hero:GetSwordModel(0))
+        end
+
         unit:SetAbsOrigin(positions[index][1])
         unit:AddNewModifier(unit, nil, "modifier_preview", {})
         unit:SetForwardVector(positions[index][2])
