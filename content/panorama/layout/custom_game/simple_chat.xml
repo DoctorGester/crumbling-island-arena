@@ -55,7 +55,7 @@
 
         function OnRandomedMessage(args) {
             AddChatLine("#ChatRandomed", {
-                name: Players.GetPlayerName(args.player),
+                name: EscapeHtml(Players.GetPlayerName(args.player)),
                 color: LuaColor(args.color),
                 hero: $.Localize("HeroName_" + args.hero)
             }, args.team, args.wasTopPlayer);
