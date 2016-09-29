@@ -3,13 +3,13 @@ var lastScoreboardData = null;
 
 function CreatePlayerStructure(data, color, score, team, teamId, playedId) {
     var survive = data.goal == score && !data.isDeathMatch;
-    var diff = Math.abs(data.goal - score);
+    var diff = Math.abs(data.goal - Math.min(data.goal, score));
 
     var close = {
         tag: "Label",
         class: [ "ScoreboardScoreClose", survive ? "ScoreboardScoreSurvive" : undefined ],
-        /*dvars: { kills: diff },
-        text: survive ? "#Survive" : "#ScoreboardClose"*/
+        dvars: { kills: diff },
+        text: survive ? "#Survive" : "#ScoreboardClose"
     };
 
     var players = [];

@@ -2,7 +2,7 @@ var Structure = new (function(){
     this.structures = new Map();
     this.events = [ "onactivate", "onmouseover", "onmouseout" ];
     this.functionKeys = [ "onactivate", "onmouseover", "onmouseout", "onChange" ];
-    this.structurePanelMap = new WeakMap();
+    this.structurePanelMap = new Map();
 
     this.Create = function(parent, structure) {
         var oldStructure = this.structures.get(parent);
@@ -10,6 +10,7 @@ var Structure = new (function(){
         structure = this.Clone(structure);
 
         if (!!oldStructure) {
+            // It just works :)
             var differences = odiff(oldStructure, structure);
 
             for (var change of differences) {
@@ -17,49 +18,73 @@ var Structure = new (function(){
                 var property = result[1][0];
                 var remainingPath = result[1].slice(1);
                 var structurePanel = result[0];
-
                 var panel = this.structurePanelMap.get(structurePanel);
 
                 var originalValuePath = change.path.slice(0, change.path.length - remainingPath.length);
                 var originalValue = this.OriginalValue(oldStructure, originalValuePath);
 
+                var parentPath = change.path.slice(0, change.path.length - remainingPath.length - 1);
+                var parentStruct = this.FollowPath(oldStructure, parentPath)[0];
+                var parentPanel;
+
+                if (parentStruct == oldStructure) {
+                    parentStruct = { children: parentStruct };
+                    parentPanel = parent;
+                } else {
+                    parentPanel = this.structurePanelMap.get(parentStruct);
+                }
+
                 if (change.type === "set") {
                     var val = change.val;
 
-                    if (!!originalValue && !!val && remainingPath.length > 0) {
-                        var current = this.Clone(originalValue);
+                    if (property === undefined || property === "children") {
+                        var index = change.path[change.path.length - 1];
+                        var p = this.structurePanelMap.get(parentStruct.children[index]);
+                        this.structurePanelMap.delete(parentStruct.children[index]);
 
-                        for (var index in remainingPath) {
-                            var part = remainingPath[index];
+                        parentStruct.children[index] = val;
 
-                            if (index < remainingPath.length - 1) {
-                                current = current[part];
-                            } else {
-                                current[part] = val;
+                        Structure.CreateStructureInternal(parentPanel, val, p);
+                        p.DeleteAsync(0);
+                    } else {
+                        if (!!originalValue && !!val && remainingPath.length > 0) {
+                            var current = this.Clone(originalValue);
+
+                            for (var index in remainingPath) {
+                                var part = remainingPath[index];
+
+                                if (index < remainingPath.length - 1) {
+                                    current = current[part];
+                                } else {
+                                    current[part] = val;
+                                }
                             }
+
+                            val = current;
                         }
 
-                        val = current;
+                        var newPanel = this.OriginalValue(structure, change.path.slice(0, change.path.length - remainingPath.length - 1));
+                        
+                        if (!!newPanel && !!newPanel.onChange) {
+                            newPanel.onChange(panel, property, val);
+                        }
+
+                        this.SetProperty(panel, property, val, originalValue);
+
+                        structurePanel[property] = val;
                     }
-
-                    var newPanel = this.OriginalValue(structure, change.path.slice(0, change.path.length - remainingPath.length - 1));
-                    
-                    if (!!newPanel && !!newPanel.onChange) {
-                        newPanel.onChange(panel, property, val);
-                    }
-
-                    this.SetProperty(panel, property, val, originalValue);
-
-                    structurePanel[property] = val;
                 }
 
                 if (change.type === "rm") {
                     if (property === undefined || property === "children") {
                         for (var i = change.index; i < change.index + change.num; i++) {
-                            this.structurePanelMap.get(structurePanel[i]).DeleteAsync(0);
+                            var p = this.structurePanelMap.get(structurePanel.children[i]);
+                            p.DeleteAsync(0);
+
+                            this.structurePanelMap.delete(parentStruct.children[i]);
                         }
 
-                        structurePanel.splice(change.index, change.num);
+                        structurePanel.children.splice(change.index, change.num);
                     } else {
                         var newValue = this.OriginalValue(structure, originalValuePath);
 
@@ -71,16 +96,14 @@ var Structure = new (function(){
 
                 if (change.type === "add") {
                     if (property === undefined || property === "children") {
-                        var parentPath = change.path.slice(0, change.path.length - remainingPath.length - 1);
-                        var parentStruct = this.OriginalValue(oldStructure, parentPath);
-                        var parent = this.structurePanelMap.get(parentStruct);
-                        var atIndex = structurePanel.length > change.index ? this.structurePanelMap.get(structurePanel[change.index]) : null;
+                        var parent = this.structurePanelMap.get(structurePanel);
+                        var atIndex = structurePanel.children.length > change.index ? this.structurePanelMap.get(structurePanel.children[change.index]) : null;
 
                         for (var val of change.vals) {
                             Structure.CreateStructureInternal(parent, val, atIndex);
                         }
 
-                        structurePanel.splice.apply(structurePanel, [change.index, 0].concat(change.vals))
+                        structurePanel.children.splice.apply(structurePanel.children, [change.index, 0].concat(change.vals));
                     } else {
                         var newValue = this.OriginalValue(structure, originalValuePath);
 
@@ -115,6 +138,8 @@ var Structure = new (function(){
         for (var key in obj) {
             if (this.functionKeys.indexOf(key) !== -1 && typeof obj[key] === 'function') {
                 temp[key] = obj[key];
+            } else if (key == "children") {
+                temp[key] = this.AlwaysArray(this.Clone(obj[key]));
             } else {
                 temp[key] = this.Clone(obj[key]);
             }
@@ -135,64 +160,26 @@ var Structure = new (function(){
 
     this.FollowPath = function(structure, path) {
         var current = structure;
-        var lastIndex = 0;
-        var lastParent = structure;
         var prevElement = "children";
+        var lastIndex = 0;
+        var lastPanel = structure;
 
         for (var index in path) {
             var pathElement = path[index];
+
+            if (prevElement === "children"){
+                var inArr = Number.isInteger(pathElement);
+
+                lastPanel = inArr ? current[pathElement] : current;
+                lastIndex = parseInt(index) + (inArr ? 1 : 0);
+            }
 
             current = current[pathElement];
 
-            //$.Msg(current)
-
-            if (pathElement === "children"){
-                lastParent = current;
-                lastIndex = parseInt(index) + 1;
-            }
-        }
-
-        return [ lastParent, path.slice(lastIndex) ];
-
-        /*var currentPanel = structure;
-        var prevElement = "children";
-        var lastIndex = 0;
-
-        for (var index in path) {
-            var pathElement = path[index];
-
-            if (prevElement === "children"){
-                var inArr = Number.isInteger(pathElement);
-
-                currentPanel = currentPanel[inArr ? pathElement : 0];
-                lastIndex = parseInt(index) + (inArr ? 1 : 0);
-            }
-
             prevElement = pathElement;
         }
 
-        return [ this.structurePanelMap.get(currentPanel), path.slice(lastIndex) ];*/
-    }
-
-    this.FollowPath2 = function(parent, path) {
-        var currentPanel = parent;
-        var prevElement = "children";
-        var lastIndex = 0;
-
-        for (var index in path) {
-            var pathElement = path[index];
-
-            if (prevElement === "children"){
-                var inArr = Number.isInteger(pathElement);
-
-                currentPanel = currentPanel.GetChild(inArr ? pathElement : 0);
-                lastIndex = parseInt(index) + (inArr ? 1 : 0);
-            }
-
-            prevElement = pathElement;
-        }
-
-        return [ currentPanel, path.slice(lastIndex) ];
+        return [ lastPanel, path.slice(lastIndex) ];
     }
 
     this.AlwaysArray = function(v) {
@@ -247,10 +234,6 @@ var Structure = new (function(){
 
             for (var key in dvar) {
                 var val = dvar[key];
-
-                if (!val) {
-                    continue;
-                }
 
                 if (Number.isInteger(val)) {
                     panel.SetDialogVariableInt(key, val);
