@@ -375,7 +375,7 @@ function CreateHeroList(heroList, heroes, quests, selectedHeroes, rows, randomBu
                 if (notAvailable) {
                     AddDisabledButtonEvents(mainChild, hero);
                 } else if (banned) {
-                    AddBannedButtonEvents(mainChild, hero)
+                    AddBannedButtonEvents(mainChild, hero);
                 } else {
                     var isQuestTarget = questHeroes.indexOf(hero) !== -1;
 

@@ -15,15 +15,24 @@ function CreatePlayerStructure(data, color, score, team, teamId, playedId) {
     var players = [];
 
     for (var player of team) {
+        var state = Game.GetPlayerInfo(parseInt(player.id)).player_connection_state;
+        var dc = state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_DISCONNECTED;
+        var ab = state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED;
+
         players.push({
             class: "ScoreboardPlayer",
-            children: { tag: "DOTAHeroImage", class: "ScoreboardPlayerHero", heroname: player.hero, heroimagestyle: "icon" }
+            children: [
+                { tag: "DOTAHeroImage", class: "ScoreboardPlayerHero", heroname: player.hero, heroimagestyle: "icon" },
+                { 
+                    class: [
+                        "ConnectionStatePanel",
+                        dc ? "ConnectionStateDisconnected" : undefined,
+                        ab ? "ConnectionStateAbandoned" : undefined
+                    ]
+                }
+            ]
         });
     }
-
-    var state = Game.GetPlayerInfo(parseInt(playedId)).player_connection_state;
-    var dc = state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_DISCONNECTED;
-    var ab = state == DOTAConnectionState_t.DOTA_CONNECTION_STATE_ABANDONED;
 
     return {
         class: "ScoreboardTeamContainer",
@@ -37,11 +46,7 @@ function CreatePlayerStructure(data, color, score, team, teamId, playedId) {
                         class: "ScoreboardTeamScoreContainer",
                         children: {
                             tag: "Label",
-                            class: [
-                                "ScoreboardTeamScore",
-                                dc ? "ConnectionStateDisconnected" : undefined,
-                                ab ? "ConnectionStateAbandoned" : undefined
-                            ],
+                            class: "ScoreboardTeamScore",
                             text: Math.min(data.goal, score).toString(),
                             onChange: function(panel, property, value) {
                                 panel.SetHasClass("AnimationScoreBoardScoreIncrease", false);

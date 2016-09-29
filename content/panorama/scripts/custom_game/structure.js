@@ -13,7 +13,7 @@ var Structure = new (function(){
             // It just works :)
             var differences = odiff(oldStructure, structure);
 
-            for (var change of differences) {
+            for (var change of differences.reverse()) {
                 var result = this.FollowPath(oldStructure, change.path);
                 var property = result[1][0];
                 var remainingPath = result[1].slice(1);
