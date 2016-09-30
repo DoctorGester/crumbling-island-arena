@@ -214,6 +214,8 @@ function Hero:Damage(source)
 
     ApplyDamage(damageTable)
 
+    self:GetUnit():AddNewModifier(self:GetUnit(), nil, "modifier_damaged", { duration = 0.2 })
+
     local sign = ParticleManager:CreateParticle("particles/msg_fx/msg_damage.vpcf", PATTACH_CUSTOMORIGIN, mode)
     ParticleManager:SetParticleControl(sign, 0, self:GetPos())
     ParticleManager:SetParticleControl(sign, 1, Vector(0, 1, 3))
