@@ -590,12 +590,14 @@ end
 
 function GameMode:EndGame()
     if self.winner then
-        for _, player in pairs(self.Players) do
-            Quests.IncreaseProgress(player, "gamesPlayed")
-        end
-
         Stats.SubmitMatchResult(self.winner, self.Players, function(...) self:OnMatchResultsReceived(...) end)
     end
+
+    for _, player in pairs(self.Players) do
+        Quests.IncreaseProgress(player, "gamesPlayed")
+    end
+
+    Stats.SubmitQuestProgress(self.Players, function(...) self:OnQuestResultsReceived(...) end)
 
     EmitAnnouncerSound("announcer_ann_custom_end_08")
     self:UpdateGameInfo()
@@ -1102,12 +1104,6 @@ function GameMode:IsAwardedForSeason(playerId, season)
 end
 
 function GameMode:OnMatchResultsReceived(data)
-    local questResults = data.questResults
-
-    if questResults then
-        CustomNetTables:SetTableValue("pass", "questResults", self:ParseSteamId64Table(questResults))
-    end
-
     local ranks = data.rankDetails
 
     if ranks and ranks.previous and ranks.updated then
@@ -1116,6 +1112,12 @@ function GameMode:OnMatchResultsReceived(data)
             updated = self:ParseSteamId64Table(ranks.updated),
             currentSeason = self.currentSeason
         })
+    end
+end
+
+function GameMode:OnQuestResultsReceived(data)
+    if data then
+        CustomNetTables:SetTableValue("pass", "questResults", self:ParseSteamId64Table(data))
     end
 end
 

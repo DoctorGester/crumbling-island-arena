@@ -67,10 +67,20 @@ end
 function Stats.SubmitMatchResult(winner, players, callback)
     Stats.SendData(string.format("winner/%s", GameRules:GetMatchID(), roundNumber), {
         winnerTeam = winner,
-        gameLength = math.ceil(GameRules:GetGameTime()),
-        questProgress = Quests.GetProgressReport(),
-        passPlayers = FilterPassPlayers(players)
+        gameLength = math.ceil(GameRules:GetGameTime())
     }, callback)
+end
+
+function Stats.SubmitQuestProgress(players, callback)
+    local questProgress = Quests.GetProgressReport()
+
+    setmetatable(questProgress, { __jsontype = "object" })
+
+    Stats.SendData(string.format("quests/report/%s", GameRules:GetMatchID(), roundNumber), {
+        gameLength = math.ceil(GameRules:GetGameTime()),
+        questProgress = questProgress,
+        passPlayers = FilterPassPlayers(players)
+    }, callback, 20)
 end
 
 function Stats.RequestTopPlayers(callback)

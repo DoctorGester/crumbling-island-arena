@@ -43,7 +43,6 @@ end
 
 function Quests.GetProgressReport()
     local result = {}
-    local hasKeys = false
 
     if Quests.quests then
         for _, quests in pairs(Quests.quests) do
@@ -54,9 +53,7 @@ function Quests.GetProgressReport()
         end
     end
 
-    if hasKeys then
-       return result
-    end
+    return result
 end
 
 function Quests.FindQuestForPlayerWithType(playerId, questType)

@@ -14,7 +14,7 @@ GameUI.SetCameraPitchMin(60);
 GameUI.SetCameraPitchMax(60);
 GameUI.SetCameraLookAtPositionHeightOffset(100);
 GameUI.GameChat = $("#GameChat");
-Game.ServerCmd("dota_ping")
+
 function AddChatLine(hero, playerName, color, message, team, wasTopPlayer, hasPass) {
     var line = $.CreatePanel("Panel", $("#GameChatContent"), "");
     var last = $("#GameChatContent").GetChild(0);
