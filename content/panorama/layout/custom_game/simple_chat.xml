@@ -72,8 +72,8 @@
         GameEvents.Subscribe("custom_chat_say", OnChatSay);
         GameEvents.Subscribe("custom_randomed_message", OnRandomedMessage);
     </script>
-    <Panel class="Chat">
-        <Panel id="ChatContent">
+    <Panel class="Chat" hittest="false">
+        <Panel id="ChatContent" hittest="false">
         </Panel>
         <TextEntry id="ChatEntry" multiline="false" textmode="normal" oninputsubmit="SubmitChat()" maxchars="256" placeholder="#ChatPlaceholder"/>
     </Panel>

@@ -19,7 +19,7 @@
             <Panel id="HeroSelectionTopGradient" hittest="false"/>
 
             <DOTAScenePanel id="HeroSelectedRays" class="Hidden" hittest="false" map="scenes/loadout_preview_rays" camera="camera_1"/>
-            <Panel id="LeftSideHeroes">
+            <Panel id="LeftSideHeroes" hittest="false" hittestchildren="false">
                 <Label id="HeroName" class="YellowLabel"></Label>
             </Panel>
 
@@ -31,23 +31,23 @@
                 <Panel id="AchievementRow" class="AbilityRow"><Image/><Label id="RankAwardText" text="#RankAward"/></Panel>
             </Panel>
 
-            <Panel id="RightSide">
+            <Panel id="RightSide" hittest="false" hittestchildren="false">
                 <Label id="PlayersLabel" text="#PlayerHeader" class="YellowLabel"/>
                 <Panel id="PlayersContent"/>
                 <Label id="GameGoal" class="BlueLabel"/>
                 <Label id="GameGoalText" text="#PointsToWin" class="BlueLabel"/>
             </Panel>
 
-            <Panel id="HeroList">
-                <Label class="BlueLabel" text="#HeroListHeader"></Label>
-                <Panel id="DifficultyList">
-                    <Panel id="EasyHeroes" class="HeroButtons"/>
-                    <Panel id="HardHeroes" class="HeroButtons"/>
+            <Panel id="HeroList" hittest="false">
+                <Label class="BlueLabel" text="#HeroListHeader" hittest="false"></Label>
+                <Panel id="DifficultyList" hittest="false">
+                    <Panel id="EasyHeroes" class="HeroButtons" hittest="false"/>
+                    <Panel id="HardHeroes" class="HeroButtons" hittest="false"/>
                 </Panel>
-                <Label id="TimerText"></Label>
+                <Label id="TimerText" hittest="false"></Label>
             </Panel>
 
-            <Panel id="PassContent" class="PassContent">
+            <Panel id="PassContent" class="PassContent" hittest="false" hittestchildren="false">
                 <Panel id="QuestList"/>
                 <Panel id="LevelBar">
                     <Panel id="LevelBadge">
