@@ -284,6 +284,7 @@ end
 
 function WearableOwner:Remove()
     for _, part in pairs(self.wearables) do
+        CustomNetTables:SetTableValue("wearables", tostring(part:GetEntityIndex()), nil)
         part:RemoveSelf()
     end
 
@@ -291,6 +292,8 @@ function WearableOwner:Remove()
         ParticleManager:DestroyParticle(particle, false)
         ParticleManager:ReleaseParticleIndex(particle)
     end
+
+    CustomNetTables:SetTableValue("wearables", "activity_"..tostring(self:GetUnit():GetEntityIndex()), nil)
 
     self.wearables = {}
     self.wearableParticles = {}
