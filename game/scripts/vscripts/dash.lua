@@ -186,6 +186,31 @@ function Dash:OnArrival(reachedDestination)
     end
 end
 
+FunctionDash = FunctionDash or class({}, nil, Dash)
+
+function FunctionDash:constructor(hero, to, time, params)
+    getbase(FunctionDash).constructor(self, hero, to, (hero:GetPos() - to):Length2D() / time, params)
+
+    self.time = time
+    self.startTime = GameRules:GetGameTime()
+end
+
+function FunctionDash:HasEnded()
+    return (GameRules:GetGameTime() - self.startTime) >= self.time
+end
+
+function FunctionDash:PositionFunction(current)
+    -- Cubic
+    local function f(t)
+        return t*(2-t) 
+    end
+
+    local progress = math.min((GameRules:GetGameTime() - self.startTime) / self.time, 1.0)
+    progress = f(progress)
+
+    return self.from + (self.to - self.from) * progress
+end
+
 -- Knockback utility method
 
 function Knockback(hero, ability, direction, distance, speed, heightFunction, modifier)

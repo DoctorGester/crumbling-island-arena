@@ -15,7 +15,7 @@ function shaker_e:OnSpellStart()
     ParticleManager:SetParticleControl(effect, 2, Vector(0.3, 0, 0))
     ParticleManager:ReleaseParticleIndex(effect)
 
-    local dash = Dash(hero, target, 1400, {
+    local dash = FunctionDash(hero, target, 0.4, {
         forceFacing = true,
         heightFunction = function(dash, current)
             local d = (dash.from - dash.to):Length2D()
