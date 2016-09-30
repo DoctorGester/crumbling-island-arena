@@ -227,12 +227,19 @@
     {
         "1"
         {
+            "type" "elite"
+            "season" "3"
+            "set" "flightless_fury"
+        }
+
+        "2"
+        {
             "type" "pass"
             "level" "9"
             "item" "5344"
         }
 
-        "2"
+        "3"
         {
             "type" "pass"
             "level" "14"

@@ -12,7 +12,8 @@ var previewLoadingQueue = [];
 var seasonAwards = {
     0: "npc_dota_hero_lycan",
     1: "npc_dota_hero_juggernaut",
-    2: "npc_dota_hero_invoker"
+    2: "npc_dota_hero_invoker",
+    3: "npc_dota_hero_vengefulspirit"
 };
 
 function CreateDifficultyLock() {
