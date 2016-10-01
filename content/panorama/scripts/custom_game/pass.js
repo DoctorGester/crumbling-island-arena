@@ -172,13 +172,14 @@ var Pass = new (function(){
 
     this.UpdateExperienceAnimated = function(exp, earned) {
         var from = this.GetExpAndLevel(exp);
+        var to = this.GetExpAndLevel(exp + earned);
         var textFunc = function(value) { return value + "/1000"; };
         var label = $("#LevelProgressText");
         var barParent = $("#LevelBar");
         var bar = $("#LevelProgress");
 
-        if (exp + earned > 1000) {
-            var to = { e: 1000, l: from.l + 1 };
+        if (from.l !== to.l) {
+            to = { e: 1000, l: from.l + 1 };
 
             $.Schedule(2, function() {
                 var remaining = (exp + earned) % 1000;
@@ -208,8 +209,6 @@ var Pass = new (function(){
 
             Pass.AnimateTo($("#LevelText"), from.l + 1, from.l + 2, 2.0, function(value) { Pass.SetLevelText(value); });
         } else {
-            var to = this.GetExpAndLevel(exp + earned);
-
             $.Schedule(2, function() {
                 Game.EmitSound("UI.ExpComplete");
             });

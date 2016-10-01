@@ -137,4 +137,4 @@ function Stats.SendData(url, data, callback, rep)
     end)
 end
 
---Stats.RequestData("quests/mock/76561198046920629", function(...) GameRules.GameMode:OnMatchResultsReceived(...) end)
+--Stats.RequestData("quests/mock/76561198046920629", function(...) GameRules.GameMode:OnQuestResultsReceived(...) end)
