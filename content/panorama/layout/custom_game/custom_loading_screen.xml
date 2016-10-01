@@ -59,7 +59,7 @@
             <Panel id="HallOfFameLoading" class="LoadingImage"/>
         </Panel>
 
-        <Panel id="HallOfPass" class="Hidden">
+        <Panel id="HallOfPass">
             <Label id="HallOfPassHeader" class="HallHeader" text="#PassTopPlayers"/>
             <Panel id="HallOfPassPlayers"/>
             <Panel id="HallOfPassLoading" class="LoadingImage"/>

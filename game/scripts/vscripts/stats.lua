@@ -1,6 +1,6 @@
 Stats = Stats or {}
 
-Stats.host = "http://178.63.238.188:3637/"
+Stats.host = "http://138.68.73.132:3637/"
 Stats.maps = {
     ranked_2v2 = "RANKED_4",
     ranked_3v3 = "RANKED_6",

@@ -128,14 +128,14 @@ function PassTopChanged(top) {
     }
 }
 
-$.AsyncWebRequest("http://178.63.238.188:3637/ranks/info", { type: "GET", 
+$.AsyncWebRequest("http://138.68.73.132:3637/ranks/info", { type: "GET", 
     success: function( data ) {
         var info = JSON.parse(data);
         RankedInfoChanged(info);
     }
 });
 
-$.AsyncWebRequest("http://178.63.238.188:3637/pass/top", { type: "GET", 
+$.AsyncWebRequest("http://138.68.73.132:3637/pass/top", { type: "GET", 
     success: function( data ) {
         var info = JSON.parse(data);
         PassTopChanged(info);
