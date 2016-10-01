@@ -471,6 +471,7 @@
 .PassNotification #LevelBar
 {
     height: fit-children;
+    align: center;
 }
 
 .PassNotification #LevelText

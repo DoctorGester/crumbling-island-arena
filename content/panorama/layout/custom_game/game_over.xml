@@ -87,8 +87,8 @@
     </snippets>
 
     <Panel class="GameOverBackground" style="visibility: visible;" hittest="false">
-        <Panel id="GameOverBlur">
-            <Image id="GameOverBackgroundImage" src="file://{images}/custom_game/loadscreen.png"/>
+        <Panel id="GameOverBlur" hittest="false">
+            <Image id="GameOverBackgroundImage" src="file://{images}/custom_game/loadscreen.png" hittest="false"/>
             <Panel hittest="false" id="GameOverScoreboard">
             </Panel>
             <Panel id="GameOverChat"/>
