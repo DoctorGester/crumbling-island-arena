@@ -61,8 +61,7 @@ function Hero:LoadWearables()
 
         for _, entry in ipairs(ordered) do
             local t = entry.type
-            local lvl = self.owner.passLevel or 0
-            local passBase = (t == "pass_base" and (self.passEnabled or lvl >= 0))
+            local passBase = (t == "pass_base" and (self.passEnabled or self.owner.passLevel ~= nil))
             local elite = (t == "elite")
 
             if elite then
@@ -71,7 +70,7 @@ function Hero:LoadWearables()
                 elite = elite and self.awardEnabled
             end
 
-            local passLevel = (t == "pass" and entry.level <= lvl)
+            local passLevel = (t == "pass" and entry.level <= (self.owner.passLevel or 0))
 
             if passBase or elite or passLevel then
                 processIgnore(entry)
