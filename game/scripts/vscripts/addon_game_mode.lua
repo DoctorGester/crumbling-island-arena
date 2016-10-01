@@ -357,8 +357,6 @@ function GameMode:OnGameSetup()
             end
         end
     )
-
-    Quests.Init(self.Players)
 end
 
 function GameMode:InitSettings()
@@ -1225,6 +1223,8 @@ function GameMode:OnGameInProgress()
             end
         end
     )
+
+    Quests.Init(self.Players)
 
     self.chat = Chat(self.Players, self.Users, self.TeamColors)
 
