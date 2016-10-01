@@ -217,6 +217,12 @@
     {
         "1"
         {
+            "type" "pass_base"
+            "emote" "default"
+        }
+
+        "2"
+        {
             "type" "pass"
             "level" "6"
             "item" "8001"
@@ -298,12 +304,18 @@
     {
         "1"
         {
+            "type" "pass_base"
+            "emote" "default"
+        }
+
+        "2"
+        {
             "type" "pass"
             "level" "15"
             "item" "6453"
         }
 
-        "2"
+        "3"
         {
             "type" "pass"
             "level" "11"
@@ -331,5 +343,14 @@
     "tiny"
     {
         "ignore" "497"
+    }
+
+    "queenofpain"
+    {
+        "1"
+        {
+            "type" "pass_base"
+            "emote" "default"
+        }
     }
 }
