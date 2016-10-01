@@ -683,6 +683,6 @@ DelayStateInit(GAME_STATE_HERO_SELECTION, function () {
     CheckPreviews();
 
     var hasTicket = Players.HasCustomGameTicketForPlayerID(Game.GetLocalPlayerID());
-    $("#PassNotOwned").SetHasClass("Hidden", !hasTicket);
-    $("#PassContent").SetHasClass("Hidden", hasTicket);
+    $("#PassNotOwned").SetHasClass("Hidden", hasTicket);
+    $("#PassContent").SetHasClass("Hidden", !hasTicket);
 });
