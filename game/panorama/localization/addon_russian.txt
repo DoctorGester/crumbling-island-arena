@@ -326,6 +326,7 @@
 		"PassLevel" "Уровень {i:level}"
 		"PassTopPlayers" "Лучшие игроки пропуска"
 		"NextLevelReward" "СЛЕДУЮЩАЯ НАГРАДА"
+		"ServerConnection" "Подключение к серверу..."
 
 		"RewardReceived" "Новая награда"
 		"RewardTip" "Не появляется в арсенале, доступно ТОЛЬКО при игре в Crumbling Island Arena"

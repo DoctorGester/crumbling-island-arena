@@ -51,10 +51,10 @@
                 <Panel id="QuestList"/>
                 <Panel id="LevelBar">
                     <Panel id="LevelBadge">
-                        <Label id="LevelText" text="10"/>
+                        <Label id="LevelText"/>
                     </Panel>
                     <ProgressBar id="LevelProgress" max="1000">
-                        <Label id="LevelProgressText"/>
+                        <Label id="LevelProgressText" text="#ServerConnection"/>
                     </ProgressBar>
                 </Panel>
             </Panel>

@@ -330,6 +330,7 @@
 		"PassLevel" "Level {i:level}"
 		"PassTopPlayers" "Top Pass Players"
 		"NextLevelReward" "NEXT LEVEL REWARD"
+		"ServerConnection" "Connecting to server..."
 
 		"RewardReceived" "Reward received"
 		"RewardTip" "Does not appear in the armory, available only in Crumbling Island Arena"
