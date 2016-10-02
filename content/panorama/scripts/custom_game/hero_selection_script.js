@@ -77,7 +77,7 @@ function PreloadPreview(hero, value, insertFirst) {
 }
 
 function PreloadHeroPreview(hero) {
-    heroPreviews[hero] = PreloadPreview(hero, "<DOTAScenePanel class='HeroPreviewScene' unit='" + hero + "'/>");
+    heroPreviews[hero] = PreloadPreview(hero, "<DOTAScenePanel antialias='true' class='HeroPreviewScene' unit='" + hero + "'/>");
 }
 
 function PreloadHeroPreviews(heroes) {
