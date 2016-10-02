@@ -3,6 +3,7 @@ var Structure = new (function(){
     this.events = [ "onactivate", "onmouseover", "onmouseout" ];
     this.functionKeys = [ "onactivate", "onmouseover", "onmouseout", "onChange" ];
     this.structurePanelMap = new Map();
+    this.localizeTargetMap = new Map();
 
     this.Create = function(parent, structure) {
         var oldStructure = this.structures.get(parent);
@@ -41,6 +42,7 @@ var Structure = new (function(){
                         var index = change.path[change.path.length - 1];
                         var p = this.structurePanelMap.get(parentStruct.children[index]);
                         this.structurePanelMap.delete(parentStruct.children[index]);
+                        this.localizeTargetMap.delete(p);
 
                         parentStruct.children[index] = val;
 
@@ -82,6 +84,7 @@ var Structure = new (function(){
                             p.DeleteAsync(0);
 
                             this.structurePanelMap.delete(parentStruct.children[i]);
+                            this.localizeTargetMap.delete(p);
                         }
 
                         structurePanel.children.splice(change.index, change.num);
@@ -240,9 +243,16 @@ var Structure = new (function(){
                 } else {
                     panel.SetDialogVariable(key, val);
                 }
+
+                var txt = this.localizeTargetMap.get(panel);
+
+                if (txt) {
+                    panel.text = $.Localize(txt, panel);
+                }
             }
         } else {
             if (property === "text" && typeof value === "string" && StartsWith(value, "#")) {
+                this.localizeTargetMap.set(panel, value);
                 value = $.Localize(value, panel);
             }
 
