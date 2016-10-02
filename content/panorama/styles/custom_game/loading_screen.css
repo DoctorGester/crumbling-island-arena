@@ -43,31 +43,183 @@ Label
     align: center center;
 }
 
-#RankedInfo
+.Widget
 {
-    width: 40%;
-    height: 40%;
     border-radius: 3px;
     //box-shadow: #111111 -2px -2px 4px 4px;
     //border: 1px solid skyblue;
-    align: center center;
     background-color: rgba(0, 0, 0, 190);
+    margin: 10px;
+}
+
+.WidgetContainer
+{
+    width: 100%;
+    height: 100%;
+    flow-children: right;
+    padding: 30px;
+    padding-top: 50px;
+}
+
+.WidgetHeader
+{
+    horizontal-align: center;
+    color: white;
+    text-transform: uppercase;
+    font-size: 24px;
+}
+
+.AspectRatio5x4 .WidgetHeader, .AspectRatio4x3 .WidgetHeader
+{
+    font-size: 20px;
+}
+
+#InfoWidgets
+{
+    height: 60%;
+    width: 100%;
+    margin-top: 150px;
+}
+
+#PassInfo
+{
+    width: 30%;
+    height: 100%;
+}
+
+.AspectRatio5x4 #PassInfo, .AspectRatio4x3 #PassInfo
+{
+    width: 50%;
+    align: right center;
+}
+
+.PassHeader
+{
+    horizontal-align: center;
+    color: white;
+    text-transform: uppercase;
+    font-size: 19px;
+}
+
+#PassInfoContainer
+{
+    flow-children: down;
+}
+
+#PassInfo DOTAPurchaseButton
+{
+    align: center;
+    height: 50px;
+}
+
+#PassRewards
+{
+    height: 270px;
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    flow-children: right;
+}
+
+#PassBaseRewards
+{
+    flow-children: right;
+    align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#PassBaseRewards Panel
+{
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    margin-left: 8px;
+    margin-right: 8px;
+    tooltip-position: top;
+    tooltip-body-position: 50% 100%;
+}
+
+#PassTip
+{
+    margin-bottom: 40px;
+    color: gold;
+    text-transform: uppercase;
+    align: center;
+    font-size: 16px;
+}
+
+#PassRewards #LevelBar
+{
+    margin-top: 10px;
+}
+
+#PassRewardLeft
+{
+    flow-children: down;
+    width: fill-parent-flow(1.0);
+    margin-right: 30px;
+}
+
+#PassRewardRight
+{
+    flow-children: down;
+    height: 100%;
+}
+
+#PassRewardRight .QuestPanel
+{
+    width: 170px;
+    margin: 0;
+    margin-top: 20px;
+}
+
+#PassLeaderboards
+{
+    flow-children: right;
+    align: center;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+.PassPlayer
+{
+    width: 48px;
+    height: 48px;
+    align: center center;
+    border-radius: 50%;
+    tooltip-position: top;
+    tooltip-body-position: 50% 100%;
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+.PassPlayer .RankLabel
+{
+    margin-top: 20px;
+}
+
+.WidgetRow
+{
+    flow-children: right;
+}
+
+#RankedInfo
+{
+    width: 40%;
+    height: 100%;
+    align: left top;
 }
 
 .AspectRatio5x4 #RankedInfo, .AspectRatio4x3 #RankedInfo
 {
     width: 50%;
-    margin-right: 200px;
     align: right center;
 }
 
 #RankedInfoContainer
 {
-    width: 100%;
-    height: 100%;
     flow-children: right;
-    padding: 35px;
-    padding-top: 60px;
 }
 
 #RankedInfoHeader
@@ -151,30 +303,40 @@ Label
     height: 100%;
 }
 
-#RankedSeasonCongratulations
+#RankedSeasonTop
 {
     width: 100%;
     flow-children: down;
 }
 
-#RankedSeasonCongratulationsLabel
+.RankedMode
 {
-    horizontal-align: center;
+    align: center bottom;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 220);
+}
+
+.RankedModeName
+{
+    align: center center;
+    font-size: 13px;
+    margin: 1px;
     color: white;
-    text-transform: uppercase;
-    font-size: 24px;
 }
 
-.AspectRatio5x4 #RankedSeasonCongratulationsLabel, .AspectRatio4x3 #RankedSeasonCongratulationsLabel
+#RankedSeasonCongratulations
 {
-    font-size: 20px;
+    width: 100%;
+    flow-children: down;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
-#RankedSeasonCongratulationsPlayers
+.RankedPlayers
 {
     flow-children: right;
     horizontal-align: center;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .RankedSeasonCongratulationsPlayer
@@ -186,8 +348,9 @@ Label
 
 .RankedSeasonCongratulationsPlayerAvatar
 {
-    width: 48px;
-    height: 48px;
+    align: center center;
+    width: 56px;
+    height: 56px;
     border-radius: 3px;
     border: 1px solid gold;
     margin-bottom: 16px;
@@ -202,16 +365,7 @@ Label
 
 .RankedInfoRightHeader
 {
-    horizontal-align: center;
-    color: white;
-    text-transform: uppercase;
-    font-size: 24px;
     margin-top: 40px;
-}
-
-.AspectRatio5x4 .RankedInfoRightHeader, .AspectRatio4x3 .RankedInfoRightHeader
-{
-    font-size: 20px;
 }
 
 .RankedInfoRightText
@@ -219,7 +373,7 @@ Label
     horizontal-align: center;
     color: white;
     font-size: 24px;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 #RankedInfoLoading
@@ -232,109 +386,6 @@ Label
     flow-children: down;
 }
 
-.HallHeader
-{
-    font-size: 28px;
-    font-weight: bold;
-    color: #CCCCCC;
-    margin-bottom: 20px;
-    letter-spacing: 2px;
-}
-
-#HallOfPass
-{
-    margin-top: 300px;
-    align: right top;
-    margin-right: 30px;
-    flow-children: down;
-}
-
-#HallOfPassHeader
-{
-    align: right;
-    margin-right: 60px;
-}
-
-#HallOfPassLoading
-{
-    horizontal-align: center;
-    margin-right: 60px;
-}
-
-#HallOfPassPlayers
-{
-    flow-children: down;
-    margin-right: 60px;
-}
-
-.HallOfPassPlayer
-{
-    flow-children: left;
-    horizontal-align: right;
-    margin-bottom: 20px;
-}
-
-.HallOfPassPlayer DOTAUserName Label
-{
-    align: right;
-    margin-right: 20px;
-}
-
-/* Hall of fame */
-
-#HallOfFame
-{
-    margin-top: 300px;
-    align: left top;
-    margin-left: 30px;
-    flow-children: down;
-}
-
-#HallOfFameLoading
-{
-    horizontal-align: center;
-}
-
-#HallOfFameHeader
-{
-    margin-left: 40px;
-}
-
-#HallOfFamePlayers
-{
-    flow-children: down;
-}
-
-.HallOfFameModePlayers
-{
-    flow-children: down;
-    border-left: 1px solid #3399cc33;
-    padding-left: 10px;
-}
-
-.HallOfFameMode
-{
-    flow-children: right;
-    margin-bottom: 30px;
-}
-
-.HallOfFamePlayer
-{
-    flow-children: right;
-    horizontal-align: left;
-    margin-bottom: 20px;
-}
-
-.HallOfFameAvatarContainer
-{
-    width: 64px;
-    height: 64px;
-    vertical-align: center;
-    background-color: rgba(0, 255, 255, 5);
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
 .HallOfFameAvatar
 {
     width: 48px;
@@ -343,6 +394,8 @@ Label
     border-radius: 50%;
     tooltip-position: top;
     tooltip-body-position: 50% 100%;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .HallOfFameRank
@@ -353,24 +406,4 @@ Label
     tooltip-position: top;
     tooltip-body-position: 50% 100%;
     background-color: rgba(0, 255, 255, 5);
-}
-
-.HallOfFameName
-{
-    color: #AAAAAA;
-    vertical-align: center;
-    margin-left: 10px;
-    font-size: 24px;
-    width: 300px;
-}
-
-.HallOfFameModeName
-{
-    color: #BBBBBB;
-    vertical-align: center;
-    margin-right: 10px;
-    font-size: 24px;
-    width: 100px;
-    text-align: center;
-    font-weight: bold;
 }

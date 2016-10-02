@@ -74,6 +74,27 @@ b
     background-size: 100% 100%;
 }
 
+.RewardItem
+{
+    opacity-mask: url('file://{images}/custom_game/chest.png');
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#7F0000), to(#FF6500));
+    box-shadow: #FF6500 -1px -1px 1px 1px;
+}
+
+.RewardEmote
+{
+    opacity-mask: url('file://{images}/custom_game/emote.png');
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#44E500), to(#007F0E));
+    box-shadow: #DDDDDD -1px -1px 1px 1px;
+}
+
+.RewardTaunt
+{
+    opacity-mask: url('file://{images}/custom_game/taunt.png');
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#FFD800), to(#DD4A29));
+    box-shadow: gold -1px -1px 1px 1px;
+}
+
 @keyframes 'LoadingImageRotate'
 {
     0%

@@ -2,6 +2,7 @@
     <styles>
         <include src="file://{resources}/styles/custom_game/loading_screen.css" />
         <include src="file://{resources}/styles/custom_game/util.css" />
+        <include src="file://{resources}/styles/custom_game/quests.css" />
     </styles>
     <scripts>
         <include src="file://{resources}/scripts/custom_game/util.js" />
@@ -26,43 +27,86 @@
             </Panel>
         </snippet>
     </snippets>
-    <Panel style="width:100%;height:100%;overflow:clip;background-color:black;">
-        <Image src="file://{images}/custom_game/loadscreen.png"/>
+    <Panel style="width:100%;height:100%;overflow:clip;background-color:black;" hittest="false">
+        <Image src="file://{images}/custom_game/loadscreen.png" hittest="false"/>
         <Label id="MapName" text="#GameName"/>
-        <Panel id="RankedInfo">
-            <Panel id="RankedInfoContainer" class="Hidden">
-                <Panel id="RankedReward">
-                    <Panel id="RankedRewardImage"/>
-                    <Panel id="RankedRewardBottom" onmouseover="DOTAShowTextTooltip(RewardTip)" onmouseout="DOTAHideTextTooltip()">
-                        <Panel id="RankedRewardIcon"/>
-                        <Label id="RankedRewardText" html="true" text="#InfoRankReward"/>
+        <Panel id="InfoWidgets" class="WidgetRow">
+            <Panel id="RankedInfo" class="Widget">
+                <Panel id="RankedInfoContainer" class="Hidden WidgetContainer">
+                    <Panel id="RankedReward">
+                        <Panel id="RankedRewardImage"/>
+                        <Panel id="RankedRewardBottom" onmouseover="DOTAShowTextTooltip(RewardTip)" onmouseout="DOTAHideTextTooltip()">
+                            <Panel id="RankedRewardIcon"/>
+                            <Label id="RankedRewardText" html="true" text="#InfoRankReward"/>
+                        </Panel>
+                    </Panel>
+                    <Panel id="RankedSeasonInfo">
+                        <Panel id="RankedSeasonTop">
+                            <Label class="WidgetHeader" text="#RankTopPlayers"/>
+                            <Panel id="RankedTopPlayers" class="RankedPlayers"/>
+                        </Panel>
+                        <Panel id="RankedSeasonCongratulations">
+                            <Label class="WidgetHeader" text="#InfoPreviousTop"/>
+                            <Panel id="RankedSeasonCongratulationsPlayers" class="RankedPlayers"/>
+                        </Panel>
+                        <Label id="RankedSeasonEndHeader" class="WidgetHeader" text="#InfoRankSeason"/>
+                        <Label id="RankedSeasonEndText" class="RankedInfoRightText"/>
                     </Panel>
                 </Panel>
-                <Panel id="RankedSeasonInfo">
-                    <Panel id="RankedSeasonCongratulations">
-                        <Label id="RankedSeasonCongratulationsLabel" text="#InfoPreviousTop"/>
-                        <Panel id="RankedSeasonCongratulationsPlayers"/>
-                    </Panel>
-                    <Label id="RankedSeasonEndHeader" class="RankedInfoRightHeader" text="#InfoRankSeason"/>
-                    <Label id="RankedSeasonEndText" class="RankedInfoRightText"/>
+                <Panel id="RankedInfoLoading" class="LoadingImage"/>
+                <Panel id="RankedInfoHeader">
+                    <Label id="RankedInfoHeaderText" text="#Info"/>
                 </Panel>
             </Panel>
-            <Panel id="RankedInfoLoading" class="LoadingImage"/>
-            <Panel id="RankedInfoHeader">
-                <Label id="RankedInfoHeaderText" text="#Info"/>
+
+            <Panel id="PassInfo" class="Widget">
+                <Panel id="PassInfoContainer" class="WidgetContainer">
+                    <Label class="WidgetHeader" text="#InfoPassHeader"/>
+                    <Panel id="PassRewards">
+                        <Panel id="PassRewardLeft">
+                            <Label class="PassHeader" text="#InfoPassBase"/>
+                            <Panel id="PassBaseRewards">
+                                <Panel class="RewardItem" onmouseover="DOTAShowTextTooltip(InfoPassItems)" onmouseout="DOTAHideTextTooltip()"/>
+                                <Panel class="RewardTaunt" onmouseover="DOTAShowTextTooltip(InfoPassTaunts)" onmouseout="DOTAHideTextTooltip()"/>
+                                <Panel class="RewardEmote" onmouseover="DOTAShowTextTooltip(InfoPassEmotes)" onmouseout="DOTAHideTextTooltip()"/>
+                            </Panel>
+                            <Label id="PassTip" text="#InfoPassTip"/>
+
+                            <Label class="PassHeader" text="#InfoPassLevels"/>
+                            <Panel id="LevelBar">
+                                <Panel id="LevelBadge">
+                                    <Label id="LevelText" text="4"/>
+                                </Panel>
+                                <ProgressBar id="LevelProgress" max="1000" value="750">
+                                    <Label id="LevelProgressText" text="750/1000"/>
+                                </ProgressBar>
+                            </Panel>
+                        </Panel>
+                        <Panel id="PassRewardRight">
+                            <Label class="PassHeader" text="#InfoPassQuests"/>
+                            <Panel class="QuestPanel">
+                                <DOTAScenePanel id='QuestPointsScene' map='maps/scenes/battlepass_ti6_rewardintro.vmap'/>
+                                <Label id="QuestReward" text="150"/>
+                                <Panel class="QuestTextContainer">
+                                    <Label id="QuestText" html="true" text="#InfoQuestSample"/>
+                                </Panel>
+                                <Panel class="QuestProgressBadge">
+                                    <Label id="QuestProgress" text="16/20"/>
+                                </Panel>
+                            </Panel>
+                        </Panel>
+                    </Panel>
+                    <Label class="WidgetHeader" text="#InfoPassLb"/>
+                    <Panel id="PassLeaderboards">
+                        <Panel id="PassInfoLoading" class="LoadingImage"/>
+                    </Panel>
+
+                    <DOTAPurchaseButton itemdef="17172"/>
+                </Panel>
+                <Panel id="RankedInfoHeader">
+                    <Label id="RankedInfoHeaderText" text="#Pass"/>
+                </Panel>
             </Panel>
-        </Panel>
-
-        <Panel id="HallOfFame">
-            <Label id="HallOfFameHeader" class="HallHeader" text="#RankTopPlayers"/>
-            <Panel id="HallOfFamePlayers"/>
-            <Panel id="HallOfFameLoading" class="LoadingImage"/>
-        </Panel>
-
-        <Panel id="HallOfPass">
-            <Label id="HallOfPassHeader" class="HallHeader" text="#PassTopPlayers"/>
-            <Panel id="HallOfPassPlayers"/>
-            <Panel id="HallOfPassLoading" class="LoadingImage"/>
         </Panel>
 
         <Panel id="GameTip"><Label id="GameTipText"/></Panel>

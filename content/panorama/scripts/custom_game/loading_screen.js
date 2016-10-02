@@ -9,8 +9,6 @@ function HallOfFameChanged(data) {
         return;
     }
 
-    $("#HallOfFameLoading").AddClass("Hidden");
-
     var parent = $("#HallOfFamePlayers");
 
     for (var mode in data) {
@@ -20,34 +18,24 @@ function HallOfFameChanged(data) {
             continue;
         }
 
-        var modePanel = $.CreatePanel("Panel", parent, "");
-        modePanel.AddClass("HallOfFameMode");
-
-        var modeName = $.CreatePanel("Label", modePanel, "");
-        modeName.text = $.Localize("RankMode_" + mode);
-        modeName.AddClass("HallOfFameModeName");
-
-        var modePlayersPanel = $.CreatePanel("Panel", modePanel, "");
-        modePlayersPanel.AddClass("HallOfFameModePlayers");
-
         for (var i = 0; i < hallOfFamePlayers[mode] && i < players.length; i++) {
             var player = players[i];
 
-            var playerPanel = $.CreatePanel("Panel", modePlayersPanel, "");
-            playerPanel.AddClass("HallOfFamePlayer");
+            var playerPanel = $.CreatePanel("Panel", $("#RankedTopPlayers"), "");
+            playerPanel.AddClass("RankedSeasonCongratulationsPlayer");
 
-            var avatarContainer = $.CreatePanel("Panel", playerPanel, "");
-            avatarContainer.AddClass("HallOfFameAvatarContainer");
-
-            var avatar = $.CreatePanel("DOTAAvatarImage", avatarContainer, "");
+            var avatar = $.CreatePanel("DOTAAvatarImage", playerPanel, "");
             avatar.steamid = player.steamId64.toString();
-            avatar.AddClass("HallOfFameAvatar");
+            avatar.AddClass("RankedSeasonCongratulationsPlayerAvatar");
+
+            var modePanel = $.CreatePanel("Panel", avatar, "");
+            modePanel.AddClass("RankedMode");
+
+            var modeName = $.CreatePanel("Label", modePanel, "");
+            modeName.text = $.Localize("RankMode_" + mode).toUpperCase();
+            modeName.AddClass("RankedModeName");
 
             CreateRankPanelSmall(playerPanel, player, "HallOfFameRank");
-
-            var name = $.CreatePanel("DOTAUserName", playerPanel, "");
-            name.steamid = player.steamId64.toString();
-            name.AddClass("HallOfFameName");
         }
     }
 }
@@ -100,31 +88,20 @@ function RankedInfoChanged(info) {
 }
 
 function PassTopChanged(top) {
-    var players = $("#HallOfPassPlayers");
+    var players = $("#PassLeaderboards");
 
-    $("#HallOfPassLoading").AddClass("Hidden");
+    $("#PassInfoLoading").DeleteAsync(0);
 
     for (var player of top) {
-        var playerPanel = $.CreatePanel("Panel", players, "");
-        playerPanel.AddClass("HallOfPassPlayer");
-
-        var avatarContainer = $.CreatePanel("Panel", playerPanel, "");
-        avatarContainer.AddClass("HallOfFameAvatarContainer");
-
-        var avatar = $.CreatePanel("DOTAAvatarImage", avatarContainer, "");
+        var avatar = $.CreatePanel("DOTAAvatarImage", players, "");
         avatar.steamid = player.steamId64.toString();
-        avatar.AddClass("HallOfFameAvatar");
-        avatarContainer.BCreateChildren("<DOTAScenePanel class='EliteEffect' map='maps/scenes/vr_theater/vr_background_particle.vmap'/>");
+        avatar.AddClass("PassPlayer");
+        avatar.BCreateChildren("<DOTAScenePanel class='EliteEffect' map='maps/scenes/vr_theater/vr_background_particle.vmap'/>");
 
-        var level = $.CreatePanel("Label", avatarContainer, "");
+        var level = $.CreatePanel("Label", avatar, "");
         level.AddClass("EliteText");
         level.AddClass("RankLabel");
         level.text = Math.floor(parseInt(player.experience) / 1000) + 1;
-
-        var name = $.CreatePanel("DOTAUserName", playerPanel, "");
-        name.steamid = player.steamId64.toString();
-        name.AddClass("HallOfFameName");
-
     }
 }
 
@@ -157,7 +134,8 @@ if (hittestBlocker) {
 
 GameEvents.Subscribe("game_rules_state_change", function(data) {
     if (Game.GameStateIsAfter(DOTA_GameState.DOTA_GAMERULES_STATE_WAIT_FOR_PLAYERS_TO_LOAD)) {
-        $("#RankedInfo").SetHasClass("Hidden", true);
-        $("#GameTip").SetHasClass("Hidden", true);
+        //$("#PassInfo").SetHasClass("Hidden", true);
+        //$("#RankedInfo").SetHasClass("Hidden", true);
+        //$("#GameTip").SetHasClass("Hidden", true);
     }
 });
