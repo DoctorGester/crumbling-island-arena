@@ -135,7 +135,9 @@ function Hero:SetOwner(owner)
     self.unit:SetCustomHealthLabel(name, c[1], c[2], c[3])
     PlayerResource:SetOverrideSelectionEntity(owner.id, self.unit)
 
-    self:LoadWearables()
+    if #self.wearables == 0 then
+        self:LoadWearables()
+    end
 end
 
 function Hero:IsAwardEnabled()

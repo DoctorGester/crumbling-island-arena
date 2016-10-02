@@ -56,7 +56,9 @@ function InjectFreeSelection()
         self.unit:SetControllableByPlayer(owner.id, true)
         self.unit:SetCustomHealthLabel(name, c[1], c[2], c[3])
 
-        self:LoadWearables()
+        if #self.wearables == 0 then
+            self:LoadWearables()
+        end
     end
 end
 

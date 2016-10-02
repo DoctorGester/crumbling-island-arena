@@ -50,6 +50,14 @@ function earth_spirit_r:OnChannelFinish(interrupted)
     ParticleManager:SetParticleControl(particle, 0, hero:GetPos())
     ParticleManager:SetParticleControl(particle, 1, remnant:GetPos())
 
+    local swapVars = { "wearables", "wearableParticles", "mappedParticles", "wearableSlots", "lastStatusFx" }
+
+    for _, var in pairs(swapVars) do
+        local temp = hero[var]
+        hero[var] = remnant[var]
+        remnant[var] = temp
+    end
+
     local remnantUnit = remnant.unit
     remnantUnit:SetTeam(hero.owner.team)
     remnant:SetUnit(hero.unit, hero:HasRemnantStand())

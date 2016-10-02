@@ -76,7 +76,10 @@ function EarthSpiritRemnant:SetUnit(unit, fall)
 
     self.fell = not fall
     self.unit.hero = self
-    self:LoadItems()
+
+    if #self.wearables == 0 then
+        self:LoadItems()
+    end
 end
 
 function EarthSpiritRemnant:SetTarget(target, source)
