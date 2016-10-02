@@ -149,6 +149,64 @@ function ShowHeroAbilities(heroName) {
     }
 }
 
+function ShowHeroCosmetics(heroName) {
+    var parent = $("#HeroCosmetics");
+    parent.RemoveAndDeleteChildren();
+
+    var all = CustomNetTables.GetTableValue("pass", "heroes") || {};
+    var assets = all.cosmetics[heroName.substring("npc_dota_hero_".length)];
+
+    if (!assets) {
+        return;
+    }
+
+    var experience = (CustomNetTables.GetTableValue("pass", "experience") || {})[Game.GetLocalPlayerID()];
+
+    if (!experience) {
+        return;
+    }
+
+    var level = experience / 1000;
+    var toShow = [];
+
+    for (var id in assets) {
+        var asset = assets[id];
+
+        if (asset.level && level >= asset.level) {
+            toShow.push(asset);
+        }
+
+        if (asset.type == "pass_base") {
+            toShow.push(asset);
+        }
+    }
+
+    for (var asset of toShow) {
+        var row = $.CreatePanel("Panel", parent, undefined);
+        var image = $.CreatePanel("Image", row, undefined);
+        var text = $.CreatePanel("Label", row, undefined);
+        image.SetScaling("stretch-to-fit-y-preserve-aspect");
+
+        if (asset.emote) {
+            image.AddClass("RewardEmote");
+            text.text = $.Localize("#EmoteReward");
+        }
+
+        if (asset.taunt) {
+            image.AddClass("RewardTaunt");
+            text.text = $.Localize("#TauntReward");
+        }
+
+        if (asset.item) {
+            var img = all.images[asset.item.toString()].split(",")[0];
+            image.SetImage("file://{images}/" + img + ".png");
+            text.text = $.Localize("#ItemReward");
+        }
+
+        row.AddClass("CosmeticsRow");
+    }
+}
+
 function ShowHeroDetails(heroName) {
     var selected = selectedHeroes[Game.GetLocalPlayerID()];
 
@@ -161,6 +219,8 @@ function ShowHeroDetails(heroName) {
     var notAvailable = allHeroes[heroName].disabled;
 
     ShowHeroAbilities(heroName);
+    ShowHeroCosmetics(heroName);
+    $("#HeroCosmetics").visible = !notAvailable;
     $("#HeroAbilities").visible = !notAvailable;
     $("#HeroName").text = $.Localize("#HeroName_" + heroData.name);
 
@@ -190,6 +250,7 @@ function HideHeroDetails(heroName) {
 
         previewSchedule = $.Schedule(0.1, function() {
             $("#HeroAbilities").visible = false;
+            $("#HeroCosmetics").visible = false;
             $("#HeroName").text = "";
 
             heroPreviews[heroName].style.visibility = "collapse";

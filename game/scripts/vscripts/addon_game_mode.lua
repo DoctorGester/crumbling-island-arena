@@ -1172,11 +1172,12 @@ end
 
 function GameMode:NetworkCosmetics()
     local result = {}
+    local imageMap = {}
 
     for hero, cosmetics in pairs(Cosmetics) do
         for _, asset in pairs(cosmetics) do
             if type(asset) == "table" then
-                if asset.type == "pass" then
+                if asset.type == "pass" or asset.type == "pass_base" then
                     local images = nil
 
                     if asset.item then
@@ -1188,21 +1189,26 @@ function GameMode:NetworkCosmetics()
                                 images = (images or "")..(wasEmpty and "" or ",")..realItem.image_inventory
                             end
                         end
+
+                        imageMap[asset.item] = images
                     end
 
-                    result[asset.level] = {
-                        item = asset.item,
-                        emote = asset.emote,
-                        taunt = asset.taunt ~= nil,
-                        hero = hero,
-                        images = images
-                    }
+                    if asset.type == "pass" then
+                        result[asset.level] = {
+                            item = asset.item,
+                            emote = asset.emote,
+                            taunt = asset.taunt ~= nil,
+                            hero = hero,
+                            images = images
+                        }
+                    end
                 end
             end
         end
     end
 
     CustomNetTables:SetTableValue("pass", "cosmetics", result)
+    CustomNetTables:SetTableValue("pass", "heroes", { cosmetics = Cosmetics, images = imageMap })
 end
 
 function GameMode:OnGameInProgress()

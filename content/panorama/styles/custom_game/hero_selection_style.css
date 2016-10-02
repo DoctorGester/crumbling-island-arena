@@ -53,6 +53,39 @@
     background-color: gradient( linear, 0% 0%, 0% 100%, from( #000000 ), to( #00000000 ) );
 }
 
+#HeroCosmetics
+{
+    flow-children: up;
+    align: left bottom;
+    margin-left: 450px;
+    margin-bottom: 100px;
+    opacity: 0.8;
+}
+
+.AspectRatio5x4 #HeroCosmetics, .AspectRatio4x3 #HeroCosmetics
+{
+    margin-left: 350px;
+}
+
+.AspectRatio5x4 .CosmeticsRow Label, .AspectRatio4x3 .CosmeticsRow Label
+{
+    visibility: collapse;
+}
+
+.CosmeticsRow
+{
+    flow-children: left;
+    align: right;
+}
+
+.CosmeticsRow Image
+{
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin: 4px;
+}
+
 #HeroAbilities
 {
     flow-children: up;
@@ -81,7 +114,7 @@
     transition-duration: 0.1s;
 }
 
-.AbilityRow Label
+.AbilityRow Label, .CosmeticsRow Label
 {
     vertical-align: center;
     font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
@@ -89,6 +122,11 @@
     font-size: 14px;
     color: white;
     text-shadow: skyblue 0px 0px 4px 4px;
+}
+
+.CosmeticsRow Label {
+    margin-right: 8px;
+    text-shadow: gold 0px 0px 4px 4px;
 }
 
 .AbilityButtonEnabled {

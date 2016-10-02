@@ -31,6 +31,8 @@
                 <Panel id="AchievementRow" class="AbilityRow"><Image/><Label id="RankAwardText" text="#RankAward"/></Panel>
             </Panel>
 
+            <Panel id="HeroCosmetics"/>
+
             <Panel id="RightSide" hittest="false" hittestchildren="false">
                 <Label id="PlayersLabel" text="#PlayerHeader" class="YellowLabel"/>
                 <Panel id="PlayersContent"/>
