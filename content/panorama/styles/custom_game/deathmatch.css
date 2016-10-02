@@ -13,7 +13,7 @@
 
 .DeathMatchButton
 {
-    width: 280px;
+    min-width: 280px;
     height: 54px;
     background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
     background-size: 378px 60px;   
