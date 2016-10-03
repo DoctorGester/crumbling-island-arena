@@ -66,7 +66,6 @@ var Pass = new (function(){
     }
 
     this.CreateQuestStructure = function(quest, showCompletion) {
-        quest.progress = 10;
         var isCompleted = showCompletion && quest.progress == quest.goal;
 
         return {
