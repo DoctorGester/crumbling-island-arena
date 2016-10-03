@@ -70,6 +70,7 @@ function Precache(context)
     PrecacheResource("soundfile", "soundevents/custom_sounds.vsndevts", context)
     PrecacheResource("soundfile", "soundevents/emotes.vsndevts", context)
     PrecacheResource("soundfile", "soundevents/voscripts/game_sounds_vo_announcer.vsndevts", context)
+    PrecacheResource("soundfile", "soundevents/music/dsadowski_01/soundevents_music.vsndevts", context)
 
     PrecacheResource("model", "models/items/lycan/wolves/hunter_kings_wolves/hunter_kings_wolves.vmdl", context)
 
@@ -810,7 +811,11 @@ function GameMode:OnRoundEnd(round)
 
         if positions[index][3] then
             Timers:CreateTimer(ROUND_ENDING_TIME / 3, function()
-                EmitAnnouncerSound("Round."..hero:GetShortName())
+                if hero:FindAbility("emote") then
+                    EmitAnnouncerSound(hero:GetShortName())
+                else
+                    EmitAnnouncerSound("Round."..hero:GetShortName())
+                end
             end)
         end
 
@@ -852,11 +857,16 @@ function GameMode:OnRoundEnd(round)
 
             self:SetState(STATE_HERO_SELECTION)
             self.heroSelection:Start(function() self:OnHeroSelectionEnd() end)
+            
+            GameRules:GetGameModeEntity():StopSound("dsadowski_01.music.battle_01")
+            GameRules:GetGameModeEntity():EmitSound("dsadowski_01.music.countdown")
         end
     end)
 end
 
 function GameMode:OnHeroSelectionEnd()
+    GameRules:GetGameModeEntity():EmitSound("dsadowski_01.music.battle_01")
+
     self.level:Reset()
     self.currentScoreAddition = 1
     self.scoreEarned = {}
@@ -1312,6 +1322,8 @@ function GameMode:OnGameInProgress()
 
     self:SetState(STATE_HERO_SELECTION)
     self.heroSelection:Start(function() self:OnHeroSelectionEnd() end)
+
+    GameRules:GetGameModeEntity():EmitSound("dsadowski_01.music.countdown")
 end
 
 function GameMode:OnNpcSpawned(keys)
