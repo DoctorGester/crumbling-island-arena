@@ -270,6 +270,7 @@ function HidePreview(hero) {
 
 function HideAll() {
     $("#HeroAbilities").visible = false;
+    $("#HeroCosmetics").visible = false;
     $("#HeroName").text = "";
 
     for (var hero in heroPreviews) {
