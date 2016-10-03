@@ -114,6 +114,28 @@
     background-color: #00000088;
 }
 
+.QuestContainer
+{
+    width: 100%;
+    height: 100%;
+}
+
+.QuestContainerComplete
+{
+    blur: gaussian(2, 2, 1);
+}
+
+.QuestCompleteOverlay
+{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 200);
+    background-image: url('file://{images}/custom_game/check.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 70% 45%;
+}
+
 .QuestTextContainer
 {
     align: center top;

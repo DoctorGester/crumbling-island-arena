@@ -9,7 +9,7 @@ var Pass = new (function(){
         }
 
         for (var quest of _.values(quests)) {
-            structure.push(Pass.CreateQuestStructure(quest));
+            structure.push(Pass.CreateQuestStructure(quest, true));
         }
 
         Structure.Create(parent, structure);
@@ -34,7 +34,7 @@ var Pass = new (function(){
         var structure = [];
 
         for (var quest of _.values(quests)) {
-            structure.push(this.CreateQuestStructure(quest));
+            structure.push(this.CreateQuestStructure(quest, false));
         }
 
         Structure.Create(parent, structure);
@@ -49,8 +49,7 @@ var Pass = new (function(){
         $.Schedule(3, function() {
             for (var quest of _.values(quests)) {
                 var panel = parent.FindChild("Quest" + quest.id);
-                panel.SetHasClass("QuestComplete", false);
-                panel.SetHasClass("QuestComplete", true);
+                panel.AddClass("QuestComplete");
             }
         });
 
@@ -66,33 +65,44 @@ var Pass = new (function(){
         Game.EmitSound("announcer_ann_custom_adventure_alerts_11");
     }
 
-    this.CreateQuestStructure = function(quest) {
+    this.CreateQuestStructure = function(quest, showCompletion) {
+        quest.progress = 10;
+        var isCompleted = showCompletion && quest.progress == quest.goal;
+
         return {
             class: "QuestPanel",
             id: "Quest" + quest.id,
             children: [
                 {
-                    id: "QuestPointsScene",
-                    custom: "<DOTAScenePanel id='QuestPointsScene' map='maps/scenes/battlepass_ti6_rewardintro.vmap'/>"
-                },
-                {
-                    class: "QuestTextContainer",
-                    children: {
-                        tag: "Label",
-                        id: "QuestText",
-                        html: true,
-                        dvars: {
-                            goal: quest.goal,
-                            hero: quest.hero ? quest.hero.toLowerCase() : null,
-                            shero: quest.secondaryHero ? quest.secondaryHero.toLowerCase() : null
+                    class: [ "QuestContainer", isCompleted ? "QuestContainerComplete" : undefined ],
+                    children: [
+                        {
+                            id: "QuestPointsScene",
+                            custom: "<DOTAScenePanel id='QuestPointsScene' map='maps/scenes/battlepass_ti6_rewardintro.vmap'/>"
                         },
-                        text: "#Quest" + quest.type
-                    }
+                        {
+                            class: "QuestTextContainer",
+                            children: {
+                                tag: "Label",
+                                id: "QuestText",
+                                html: true,
+                                dvars: {
+                                    goal: quest.goal,
+                                    hero: quest.hero ? quest.hero.toLowerCase() : null,
+                                    shero: quest.secondaryHero ? quest.secondaryHero.toLowerCase() : null
+                                },
+                                text: "#Quest" + quest.type
+                            }
+                        },
+                        Label("QuestReward", quest.reward),
+                        {
+                            class: [ "QuestProgressBadge", "Test" ],
+                            children: Label("QuestProgress", quest.progress + "/" + quest.goal),
+                        }
+                    ]
                 },
-                Label("QuestReward", quest.reward),
                 {
-                    class: [ "QuestProgressBadge", "Test" ],
-                    children: Label("QuestProgress", quest.progress + "/" + quest.goal),
+                    class: [ "QuestCompleteOverlay", !isCompleted ? "Hidden" : undefined ]
                 }
             ]
         };
