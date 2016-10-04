@@ -18,6 +18,7 @@ require('gamesetup/game_setup')
 require('teambuilder')
 require('hero_selection')
 require('round')
+require('rune')
 require('deathmatch')
 require('quests')
 
@@ -1125,7 +1126,7 @@ function GameMode:OnMatchResultsReceived(data)
 end
 
 function GameMode:OnQuestResultsReceived(data)
-    if data then
+    if data and type(data) == "table" then
         CustomNetTables:SetTableValue("pass", "questResults", self:ParseSteamId64Table(data))
     end
 end

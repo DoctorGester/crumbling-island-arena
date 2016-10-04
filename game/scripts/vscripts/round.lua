@@ -15,6 +15,8 @@ function Round:constructor(players, teams, availableHeroes, callback)
 
     self.spells = Spells()
     self.statistics = Statistics(players)
+    self.runeTimer = 25 * 30
+    self.rune = nil
 end
 
 function Round:CheckEndConditions()
@@ -62,6 +64,19 @@ end
 
 function Round:Update()
     self.spells:Update()
+
+    if not self.rune then
+        self.runeTimer = self.runeTimer - 1
+
+        if self.runeTimer <= 0 then
+            self.rune = Rune(self):Activate()
+        end
+    end
+
+    if self.rune and not self.rune:Alive() then
+        self.rune = nil
+        self.runeTimer = 25 * 30
+    end
 
     if self.entityDied then
         self.entityDied = false
