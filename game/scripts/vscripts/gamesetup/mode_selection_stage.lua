@@ -80,7 +80,7 @@ function ModeSelectionStage:ValidateInput(player, input)
 end
 
 function ModeSelectionStage:GetDefaultPlayerInput(player)
-    return "dm"
+    return "ffa"
 end
 
 function ModeSelectionStage:FinalizeResults()
