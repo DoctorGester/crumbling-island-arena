@@ -24,7 +24,7 @@ function ModeSelectionStage:FindMostVotedMode()
     for mode, _ in pairs(self.modes) do
         local votes = self:CountInput(mode)
 
-        if votes > count then
+        if votes >= count then
             count = votes
             mostVoted = mode
         end
