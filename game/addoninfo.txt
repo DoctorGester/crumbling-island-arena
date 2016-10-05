@@ -1,6 +1,6 @@
 "AddonInfo"
 {
-	maps			"unranked ranked_2v2 ranked_3v3"
+	maps			"unranked ranked_2v2 ranked_3v3 ranked_1v1"
 	"IsPlayable"	"1"
     
     "unranked"
@@ -16,6 +16,11 @@
     "ranked_3v3"
     {
                     "MaxPlayers"                    "6"
+    }
+
+    "ranked_1v1"
+    {
+                    "MaxPlayers"                    "2"
     }
 
     "Default_Keys"

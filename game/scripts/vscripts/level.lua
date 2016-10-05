@@ -16,6 +16,7 @@ MAPS = {
     ["unranked"] = { pieces = 919, prefab = "arena_big", transformer = bigTransformer },
     ["ranked_3v3"] = { pieces = 919, prefab = "arena_big", transformer = bigTransformer },
     ["ranked_2v2"] = { pieces = 579, prefab = "arena_small", transformer = smallTransformer },
+    ["ranked_1v1"] = { pieces = 579, prefab = "arena_small", transformer = smallTransformer },
 }
 
 if Level == nil then

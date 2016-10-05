@@ -2,6 +2,7 @@ Stats = Stats or {}
 
 Stats.host = "http://138.68.73.132:3637/"
 Stats.maps = {
+    ranked_1v1 = "RANKED_2",
     ranked_2v2 = "RANKED_4",
     ranked_3v3 = "RANKED_6",
     unranked = "UNRANKED"
