@@ -198,6 +198,7 @@ function GameInfoUpdated(gameInfo) {
     var stats = gameInfo.statistics;
 
     var totalMvps = 0;
+    var duelMap = Game.GetMapInfo().map_display_name == "ranked_1v1"
 
     for (var id in stats) {
         if (stats[id].mvps) {
@@ -238,13 +239,13 @@ function GameInfoUpdated(gameInfo) {
 
     winners.push.apply(winners, nonWinners); // All players combined and sorted
 
-    AddHeaders(scoreboard, totalMvps > 0, totalFbs > 0, gameInfo.rankedMode);
+    AddHeaders(scoreboard, totalMvps > 0, totalFbs > 1, gameInfo.rankedMode && !duelMap);
 
     _(winners).each(function(player) {
         var winner = player.team == gameInfo.winner;
         var runnerUp = _(gameInfo.runnerUps).values().indexOf(player.team) != -1;
 
-        AddPlayerRow(scoreboard, players[player.id.toString()], stats[player.id.toString()], winner, runnerUp, totalMvps > 0, totalFbs > 0, gameInfo.rankedMode);
+        AddPlayerRow(scoreboard, players[player.id.toString()], stats[player.id.toString()], winner, runnerUp, totalMvps > 0, totalFbs > 1, gameInfo.rankedMode && !duelMap);
     });
 
     AddFooter(scoreboard);
