@@ -14,7 +14,7 @@
 .PlayerPanel
 {
     flow-children: left;
-    align: right;
+    horizontal-align: right;
     padding-left: 200px;  /* To increase clipping */
     margin-right: 200px;
 }

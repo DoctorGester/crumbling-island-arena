@@ -177,7 +177,7 @@ Label
 #PassLeaderboards
 {
     flow-children: right;
-    align: center;
+    horizontal-align: center;
     margin-top: 10px;
     margin-bottom: 40px;
 }
