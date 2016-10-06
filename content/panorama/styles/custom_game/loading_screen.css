@@ -108,7 +108,7 @@ Label
 
 #PassInfo DOTAPurchaseButton
 {
-    align: center;
+    horizontal-align: center;
     height: 50px;
 }
 
@@ -124,7 +124,7 @@ Label
 #PassBaseRewards
 {
     flow-children: right;
-    align: center;
+    horizontal-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
 }
@@ -145,7 +145,7 @@ Label
     margin-bottom: 40px;
     color: gold;
     text-transform: uppercase;
-    align: center;
+    horizontal-align: center;
     font-size: 16px;
 }
 

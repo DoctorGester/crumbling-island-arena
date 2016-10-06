@@ -226,7 +226,7 @@
 
     70%
     {
-        transform: transform: rotateZ(0deg) scale3d(0.9, 0.9, 0.9);
+        transform: rotateZ(0deg) scale3d(0.9, 0.9, 0.9);
         opacity: 1;
     }
     

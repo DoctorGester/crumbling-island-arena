@@ -308,7 +308,7 @@
 
 #RewardTip
 {
-    align: center;
+    horizontal-align: center;
     font-size: 16px;
     color: #BBBBBB;
     text-transform: uppercase;
@@ -327,7 +327,7 @@
 
 #RankContainer, #RankNewContainer
 {
-    align: center;
+    horizontal-align: center;
 }
 
 #Rank, #RankNew
@@ -350,7 +350,7 @@
     font-size: 100px;
     margin-bottom: -20px;
     font-weight: bold;
-    letter-spacing: none;
+    letter-spacing: 0;
 }
 
 #EliteRankText
@@ -436,7 +436,7 @@
 
 #PassProgressHeader
 {
-    align: center;
+    horizontal-align: center;
     margin-bottom: 40px;
     color: white;
     letter-spacing: 10px;
@@ -471,7 +471,7 @@
 .PassNotification #LevelBar
 {
     height: fit-children;
-    align: center;
+    horizontal-align: center;
 }
 
 .PassNotification #LevelText
@@ -497,7 +497,7 @@
 {
     margin-top: 40px;
     margin-left: 20px;
-    align: center;
+    horizontal-align: center;
     flow-children: right;
     padding-left: 60px; /* For animations */
     padding-right: 60px;
