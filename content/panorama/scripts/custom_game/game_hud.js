@@ -52,6 +52,36 @@ function AddChatLine(hero, playerName, color, message, team, wasTopPlayer, hasPa
     });
 }
 
+function OnCustomSystemMessage(args) {
+    var line = $.CreatePanel("Panel", $("#GameChatContent"), "");
+    var last = $("#GameChatContent").GetChild(0);
+    line.AddClass("GameChatLine");
+    line.AddClass("GameChatLineAppear");
+
+    var label = $.CreatePanel("Label", line, "");
+
+    for (key in args.vars) {
+        if (key === "player") {
+            args.vars[key] = EscapeHtml(Players.GetPlayerName(args.vars[key]))
+        }
+
+        if (key === "color") {
+            args.vars[key] = LuaColor(args.vars[key])
+        }
+
+        label.SetDialogVariable(key, args.vars[key]);
+    }
+
+    label.html = true;
+    label.text = $.Localize("#System") + " " + $.Localize(args.token, label);
+
+    $("#GameChatContent").ScrollToBottom();
+
+    if (last != null) {
+        $("#GameChatContent").MoveChildBefore(line, last);
+    }
+}
+
 function OnKillMessage(args) {
     MessageQueue.QueueMessage(args.victim, args.token, args.sound);
 }
@@ -467,6 +497,7 @@ DelayStateInit(GAME_STATE_ROUND_IN_PROGRESS, function () {
     });
 
     GameEvents.Subscribe("custom_chat_say", OnCustomChatSay);
+    GameEvents.Subscribe("custom_system_message", OnCustomSystemMessage);
     GameEvents.Subscribe("kill_log_entry", OnKillLogEntry);
     GameEvents.Subscribe("kill_message", OnKillMessage);
     GameEvents.Subscribe("dm_respawn_event", DeathMatch.OnRespawn);

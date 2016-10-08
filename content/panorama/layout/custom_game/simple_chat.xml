@@ -25,7 +25,7 @@
             $("#ChatEntry").text = "";
         }
 
-        function AddChatLine(token, vars, team, wasTopPlayer) {
+        function AddChatLine(token, vars, team, wasTopPlayer, system) {
             var lineParent = $.CreatePanel("Panel", $("#ChatContent"), "");
             lineParent.AddClass("ChatLine");
             lineParent.AddClass("ChatLineAppear");
@@ -45,7 +45,7 @@
             }
 
             line.html = true;
-            line.text = (team ? ($.Localize("#ChatTeam") + " ") : "") + $.Localize(token, line);
+            line.text = (system ? ($.Localize("#System") + " ") : "") + (team ? ($.Localize("#ChatTeam") + " ") : "") + $.Localize(token, line);
             line.AddClass("ChatLineText");
 
             if (last != null) {
@@ -69,8 +69,23 @@
             }, args.team, args.wasTopPlayer);
         }
 
+        function OnSystemMessage(args) {
+            for (var key in args.vars) {
+                if (key === "player") {
+                    args.vars[key] = EscapeHtml(Players.GetPlayerName(args.vars[key]))
+                }
+
+                if (key === "color") {
+                    args.vars[key] = LuaColor(args.vars[key])
+                }
+            }
+            
+            AddChatLine(args.token, args.vars, false, false, true);
+        }
+
         GameEvents.Subscribe("custom_chat_say", OnChatSay);
         GameEvents.Subscribe("custom_randomed_message", OnRandomedMessage);
+        GameEvents.Subscribe("custom_system_message", OnSystemMessage);
     </script>
     <Panel class="Chat" hittest="false">
         <Panel id="ChatContent" hittest="false">

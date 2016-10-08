@@ -55,3 +55,7 @@ function Chat:PlayerRandomed(id, hero, teamLocal)
         CustomGameEventManager:Send_ServerToAllClients("custom_randomed_message", args)
     end
 end
+
+function SystemMessage(token, vars)
+    CustomGameEventManager:Send_ServerToAllClients("custom_system_message", { token = token or "", vars = vars or {}})
+end

@@ -636,6 +636,14 @@ function GameMode:CheckEveryoneAbandoned()
     if playerCount > 1 and connectedTeamCount == 1 then
         self.abandonTimer = (self.abandonTimer or 0) + 1
 
+        if self.abandonTimer == 1 then
+            SystemMessage("SystemEveryoneLeft", { time = 20 })
+        end
+
+        if self.abandonTimer == 10 then
+            SystemMessage("SystemEveryoneLeft", { time = 10 })
+        end
+
         if self.abandonTimer > 20 then
             if self.State == STATE_ROUND_IN_PROGRESS and self.round then
                 self.generalStatistics:Add(self.round.statistics)
@@ -1088,8 +1096,11 @@ function GameMode:OnPassExperienceReceived(experience)
     self.passExperience = self:ParseSteamId64Table(experience)
 
     for playerId, experience in pairs(self.passExperience) do
-        self.Players[playerId].passExperience = experience % 1000
-        self.Players[playerId].passLevel = math.floor(experience / 1000)
+        local player = self.Players[playerId]
+        player.passExperience = experience % 1000
+        player.passLevel = math.floor(experience / 1000)
+
+        SystemMessage("SystemPassLevel", { player = playerId, color = self.TeamColors[player.team], level = player.passLevel })
     end
 
     CustomNetTables:SetTableValue("pass", "experience", self.passExperience)

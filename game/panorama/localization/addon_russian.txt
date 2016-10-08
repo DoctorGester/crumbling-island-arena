@@ -372,6 +372,10 @@
 		"RoundWon" "Победа!"
 		"RoundLost" "Поражение!"
 
+		"System" "[<font color='#7FC9FF'>СИСТЕМА</font>]"
+		"SystemEveryoneLeft" "Все враги покинули игру! Игра закончится через <font color='#FF7F7F'>{s:time}</font> секунд, если они не вернутся"
+		"SystemPassLevel" "У <font color='{s:color}'><b>{s:player}</b></font> Пропуск <font color='gold'><b>{s:level}</b></font> уровня!"
+
 		"AbilityTooltip"								"{s:description}<br><br><font color=\"gold\">Перезарядка</font>: {s:cooldown}"
 
 		"AbilityTooltip_taunt_static"					"Насмехайся над врагами! Покажи им, как ты двигаешься, пускай завидуют!"
