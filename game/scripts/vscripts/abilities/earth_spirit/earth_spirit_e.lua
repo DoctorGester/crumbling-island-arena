@@ -38,6 +38,7 @@ function earth_spirit_e:OnSpellStart()
                 targetRemnant:SetStandingHero(hero)
                 target = targetRemnant:GetPos()
                 hero:SetPos(Vector(target.x, target.y, target.z + 150))
+                self:EndCooldown()
             end
         end,
         heightFunction = function(dash, current)

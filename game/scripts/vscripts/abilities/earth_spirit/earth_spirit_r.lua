@@ -79,5 +79,5 @@ function earth_spirit_r:OnChannelFinish(interrupted)
     hero:SetOwner(hero.owner) -- Just refreshing control
     hero:Setup()
 
-    remnantUnit:SetHealth(2 * remnant.health)
+    remnantUnit:SetHealth(remnant.health)
 end

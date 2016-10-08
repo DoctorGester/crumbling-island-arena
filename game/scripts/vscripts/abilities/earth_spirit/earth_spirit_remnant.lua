@@ -5,7 +5,7 @@ function EarthSpiritRemnant:constructor(round, owner)
 
     self.owner = owner.owner
     self.hero = owner
-    self.health = 1
+    self.health = 2
     self.fell = false
     self.collisionType = COLLISION_TYPE_RECEIVER
     self.enemiesHit = {}
@@ -230,7 +230,7 @@ end
 
 function EarthSpiritRemnant:Damage(source)
     if instanceof(source, EarthSpiritRemnant) then
-        source.health = source.health + self.health
+        source.health = source.health + 1
         ParticleManager:SetParticleControl(source.healthCounter, 1, Vector(0, source.health, 0))
 
         self.unit:EmitSound("Arena.Earth.EndQ")

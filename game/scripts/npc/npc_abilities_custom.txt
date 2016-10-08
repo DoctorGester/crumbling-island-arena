@@ -353,7 +353,7 @@
 		"ScriptFile" "abilities/earth_spirit/earth_spirit_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "earth_spirit_stone_caller"
-		"AbilityCooldown" "5.0"
+		"AbilityCooldown" "7.5"
 
 		"TargetingIndicator"
 		{
@@ -385,7 +385,7 @@
 		"ScriptFile" "abilities/earth_spirit/earth_spirit_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "earth_spirit_geomagnetic_grip"
-		"AbilityCooldown" "7.0"
+		"AbilityCooldown" "5.0"
 
 		"precache"
 		{
@@ -399,7 +399,7 @@
 		"ScriptFile" "abilities/earth_spirit/earth_spirit_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "earth_spirit_magnetize"
-		"AbilityCooldown" "4.0"
+		"AbilityCooldown" "3.5"
 
 		"TargetingIndicator"
 		{
