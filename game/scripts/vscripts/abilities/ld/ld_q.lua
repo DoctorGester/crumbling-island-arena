@@ -15,7 +15,7 @@ function ld_q:OnSpellStart()
         distance = 950,
         hitModifier = { name = "modifier_ld_q", duration = 2.0, ability = self },
         hitFunction = function(self, target)
-            if instanceof(target, Hero) then
+            if instanceof(target, Hero) or instanceof(target, Rune) then
                 for _, modifier in pairs(target:AllModifiers()) do
                     if modifier.CheckState and modifier:CheckState()[MODIFIER_STATE_ROOTED] and modifier:GetCaster() ~= modifier:GetParent() then
                         target:EmitSound("Arena.LD.HitQ2")
