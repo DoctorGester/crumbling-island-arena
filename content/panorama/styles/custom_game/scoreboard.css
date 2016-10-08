@@ -25,6 +25,7 @@
     transition-property: opacity;
     transition-duration: 0.1s;
     margin: 4px;
+    min-width: 150px;
 }
 
 .ScoreboardPlayers
@@ -68,6 +69,7 @@
 .ScoreboardTeamScoreContainer
 {
     width: 60px;
+    horizontal-align: right;
 }
 
 .ScoreboardTeamScore
