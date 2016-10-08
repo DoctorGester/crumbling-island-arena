@@ -495,7 +495,7 @@
 		"ScriptFile" "abilities/cm/cm_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "ancient_apparition_chilling_touch"
-		"AbilityCooldown" "7.0"
+		"AbilityCooldown" "5.0"
 
 		"TargetingIndicator"
 		{
