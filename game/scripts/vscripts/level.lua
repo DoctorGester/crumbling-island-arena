@@ -13,10 +13,10 @@ local function smallTransformer(x, y)
 end
 
 MAPS = {
-    ["unranked"] = { pieces = 919, prefab = "arena_big", transformer = bigTransformer },
-    ["ranked_3v3"] = { pieces = 919, prefab = "arena_big", transformer = bigTransformer },
-    ["ranked_2v2"] = { pieces = 579, prefab = "arena_small", transformer = smallTransformer },
-    ["ranked_1v1"] = { pieces = 579, prefab = "arena_small", transformer = smallTransformer },
+    ["unranked"] = { pieces = 919, prefab = "arena_big", transformer = bigTransformer, startingDistance = 3000 },
+    ["ranked_3v3"] = { pieces = 919, prefab = "arena_big", transformer = bigTransformer, startingDistance = 3000 },
+    ["ranked_2v2"] = { pieces = 579, prefab = "arena_small", transformer = smallTransformer, startingDistance = 2300 },
+    ["ranked_1v1"] = { pieces = 579, prefab = "arena_small", transformer = smallTransformer, startingDistance = 2300 },
 }
 
 if Level == nil then
@@ -125,11 +125,7 @@ function Level:EnableRegeneration(timeBase, timeScaling)
 end
 
 function Level:GetStartingDistance()
-    if GetMapName() == "ranked_2v2" then
-        return 2300
-    end
-
-    return 3000
+    return MAPS[GetMapName()].startingDistance
 end
 
 function Level:SetFinishingDistance(d)
