@@ -88,6 +88,7 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DrawParticlesWhileHidden" "1"
 		"DisableWearables" "1"
 		"Difficulty" "hard"
 		"Order" "1"
