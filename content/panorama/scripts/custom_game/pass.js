@@ -159,7 +159,7 @@ var Pass = new (function(){
         var panel = $(rewardImage);
 
         $(rewardHeroImage).heroname = "npc_dota_hero_" + asset.hero;
-        panel.SetHasClass("RewardItem", !!asset.item);
+        panel.SetHasClass("RewardItemBorder", !!asset.item);
         panel.SetHasClass("RewardEmote", !!asset.emote);
         panel.SetHasClass("RewardTaunt", !!asset.taunt);
 
