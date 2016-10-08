@@ -394,6 +394,11 @@
     height: 100%;
 }
 
+.HeroButtonElite
+{
+    box-shadow: gold -1px -1px 2px 2px;
+}
+
 .HeroButtonContainer:hover
 {
     box-shadow: skyblue -2px -2px 0px 4px;

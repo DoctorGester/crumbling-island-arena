@@ -364,7 +364,7 @@ function FindQuestHeroes(quests) {
     return result;
 }
 
-function CreateHeroList(heroList, heroes, quests, selectedHeroes, rows, randomButtonRow){
+function CreateHeroList(heroList, heroes, quests, selectedHeroes, achievements, rows, randomButtonRow){
     var structure = [];
 
     if (!heroes) {
@@ -379,6 +379,19 @@ function CreateHeroList(heroList, heroes, quests, selectedHeroes, rows, randomBu
     var localInfo = Game.GetPlayerInfo(Game.GetLocalPlayerID()) || {};
     var localTeam = localInfo.player_team_id || -1;
     var spectator = localTeam == -1;
+    var eliteHeroes = [];
+
+    if (achievements) {
+        var achievement = achievements[Game.GetLocalPlayerID()];
+
+        if (achievement) {
+            if (achievement.achievedSeasons) {
+                for (var season of _.values(achievement.achievedSeasons)) {
+                    eliteHeroes.push(seasonAwards[season]);
+                }
+            }
+        }
+    }
 
     for (var i = 0, currentRow = 0; i < heroes.length; currentRow++, i += heroesInRow, heroesInRow = rows[currentRow]) {
         var row = {
@@ -392,7 +405,10 @@ function CreateHeroList(heroList, heroes, quests, selectedHeroes, rows, randomBu
             var banned = !!allHeroes[hero].banned;
 
             var button = {
-                class: "HeroButtonContainer"
+                class: [
+                    "HeroButtonContainer",
+                    eliteHeroes.indexOf(hero) !== -1 ? "HeroButtonElite" : null
+                ]
             };
 
             if (currentRow == randomButtonRow - 1 && (j - i) == Math.floor(heroesInRow / 2) && !randomAdded) {
@@ -520,8 +536,8 @@ function UpdateHeroSelectionButtons(data){
     var easy = FilterDifficulty(heroes, allHeroes, "easy");
     var hard = FilterDifficulty(heroes, allHeroes, "hard");
 
-    CreateHeroList($("#EasyHeroes"), easy, data.quests, data.selectedHeroes, [ 4, 6, 6, 6, 7 ] , 4);
-    CreateHeroList($("#HardHeroes"), hard, data.quests, data.selectedHeroes, [ 6, 4 ]);
+    CreateHeroList($("#EasyHeroes"), easy, data.quests, data.selectedHeroes, data.achievements, [ 4, 6, 6, 6, 7 ] , 4);
+    CreateHeroList($("#HardHeroes"), hard, data.quests, data.selectedHeroes, data.achievements, [ 6, 4 ]);
 }
 
 function PlayersUpdated(data){
@@ -723,7 +739,8 @@ DelayStateInit(GAME_STATE_HERO_SELECTION, function () {
     AggregateNetTables([
         { table: "main", key: "heroes" },
         { table: "main", key: "selectedHeroes" },
-        { table: "pass", key: "quests"}
+        { table: "pass", key: "quests"},
+        { table: "ranks", key: "achievements" }
     ], UpdateHeroSelectionButtons)
 
     //SubscribeToNetTableKey("main", "heroes", true, HeroesUpdated);
