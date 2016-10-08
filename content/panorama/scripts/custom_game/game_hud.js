@@ -80,6 +80,10 @@ function OnCustomSystemMessage(args) {
     if (last != null) {
         $("#GameChatContent").MoveChildBefore(line, last);
     }
+
+    $.Schedule(5, function(){
+        line.AddClass("GameChatLineHidden");
+    });
 }
 
 function OnKillMessage(args) {
