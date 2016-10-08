@@ -1279,6 +1279,10 @@ function GameMode:OnGameInProgress()
         self.rankedMode == "duel"
     )
 
+    if self.rankedMode == "duel" then
+        self.heroSelection.SelectionTimerTime = 15
+    end
+
     if self:IsDeathMatch() then
         self.deathmatch = DeathMatch(self.Players, self.AvailableHeroes)
         self.heroSelection.SelectionTimerTime = 40
