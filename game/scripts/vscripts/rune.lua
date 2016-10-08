@@ -47,8 +47,8 @@ function Rune:Damage(source)
 
         for _, hero in pairs(self.round.spells:FilterEntities(
             function(target)
-                return source.owner.team == target.owner.team
-            end, self.round.spells:GetHeroTargets())) do
+                return instanceof(target, Hero) and target:Alive() and source.owner.team == target.owner.team
+            end)) do
             hero:Heal()
 
             FX("particles/items3_fx/warmage_recipient.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero, { release = true })
