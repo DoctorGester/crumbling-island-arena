@@ -2256,7 +2256,7 @@
 		"ScriptFile" "abilities/pudge/pudge_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "pudge_meat_hook"
-		"AbilityCooldown" "7.0"
+		"AbilityCooldown" "6.0"
 		"AbilityCastPoint" "0.15"
 
 		"TargetingIndicator"
