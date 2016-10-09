@@ -1422,7 +1422,7 @@
 		"ScriptFile" "abilities/venge/venge_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "vengefulspirit_magic_missile"
-		"AbilityCooldown" "2.2"
+		"AbilityCooldown" "2.4"
 		"AbilityCastPoint" "0.15"
 
 		"TargetingIndicator"
