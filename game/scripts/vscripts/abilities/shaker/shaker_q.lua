@@ -110,13 +110,7 @@ function shaker_q:OnSpellStart()
                 action = function(target)
                     damaged[target] = true
 
-                    Knockback(target, self, direction, 350, 1500,
-                        function(dash, current)
-                            local d = (dash.from - dash.to):Length2D()
-                            local x = (dash.from - current):Length2D()
-                            return ParabolaZ(250, d, x)
-                        end
-                    )
+                    Knockback(target, self, direction, 350, 1500, DashParabola(250))
                 end
             })
 
