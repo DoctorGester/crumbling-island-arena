@@ -20,7 +20,8 @@ function EarthSpiritRemnant:constructor(round, owner)
 end
 
 function EarthSpiritRemnant:CreateCounter()
-    self.healthCounter = ParticleManager:CreateParticle("particles/generic_counter.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.unit)
+    self.healthCounter = ParticleManager:CreateParticle("particles/generic_counter.vpcf", PATTACH_CUSTOMORIGIN, nil)
+    ParticleManager:SetParticleControlEnt(self.healthCounter, 0, self.unit, PATTACH_ABSORIGIN_FOLLOW, nil, self:GetPos(), true)
     ParticleManager:SetParticleControl(self.healthCounter, 1, Vector(0, self.health, 0))
     ParticleManager:SetParticleControl(self.healthCounter, 2, Vector(0, 170, 0))
 end
@@ -51,10 +52,6 @@ function EarthSpiritRemnant:SetStandingHero(hero)
 end
 
 function EarthSpiritRemnant:UpdateChildren()
-    if self.healthCounter then
-        ParticleManager:SetParticleControl(self.healthCounter, 0, self:GetPos() + Vector(0, 0, 200))
-    end
-
     if self.standingHero then
         self.standingHero:SetPos(self:GetPos() + Vector(0, 0, 150))
     end
