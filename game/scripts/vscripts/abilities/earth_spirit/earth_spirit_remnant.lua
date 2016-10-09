@@ -20,8 +20,9 @@ function EarthSpiritRemnant:constructor(round, owner)
 end
 
 function EarthSpiritRemnant:CreateCounter()
-    self.healthCounter = ParticleManager:CreateParticle("particles/earth_spirit_q/earth_spirit_q_counter.vpcf", PATTACH_CUSTOMORIGIN, nil)
+    self.healthCounter = ParticleManager:CreateParticle("particles/generic_counter.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.unit)
     ParticleManager:SetParticleControl(self.healthCounter, 1, Vector(0, self.health, 0))
+    ParticleManager:SetParticleControl(self.healthCounter, 2, Vector(0, 170, 0))
 end
 
 function EarthSpiritRemnant:CanFall()
@@ -79,6 +80,10 @@ function EarthSpiritRemnant:SetUnit(unit, fall)
 
     if #self.wearables == 0 then
         self:LoadItems()
+    end
+
+    if self.healthCounter then
+        ParticleManager:SetParticleControlEnt(self.healthCounter, 0, unit, PATTACH_ABSORIGIN_FOLLOW, nil, self:GetPos(), true)
     end
 end
 

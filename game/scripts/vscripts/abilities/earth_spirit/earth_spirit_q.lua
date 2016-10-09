@@ -27,9 +27,9 @@ function earth_spirit_q:OnSpellStart()
             FreezeAnimation(unit)
 
             local remnant = EarthSpiritRemnant(hero.round, hero)
-            remnant:CreateCounter()
             remnant:SetUnit(unit, true)
             remnant:SetPos(cursor + Vector(0, 0, 600))
+            remnant:CreateCounter()
             remnant:Activate()
         end
     )
