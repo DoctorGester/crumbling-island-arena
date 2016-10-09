@@ -28,7 +28,7 @@ function earth_spirit_e:OnSpellStart()
         hero:GetRemnantStand():SetStandingHero(nil)
     end
 
-    ESDash(targetRemnant, hero, target, 600, {
+    ESDash(targetRemnant, hero, target, 900, {
         loopingSound = "Arena.Earth.CastE.Loop",
         modifier = { name = "modifier_earth_spirit_e", ability = self },
         forceFacing = true,
