@@ -65,17 +65,19 @@ end
 function Round:Update()
     self.spells:Update()
 
-    if not self.rune then
-        self.runeTimer = self.runeTimer - 1
+    if not self.ended then
+        if not self.rune then
+            self.runeTimer = self.runeTimer - 1
 
-        if self.runeTimer <= 0 then
-            self.rune = Rune(self):Activate()
+            if self.runeTimer <= 0 then
+                self.rune = Rune(self):Activate()
+            end
         end
-    end
 
-    if self.rune and not self.rune:Alive() then
-        self.rune = nil
-        self.runeTimer = 25 * 30
+        if self.rune and not self.rune:Alive() then
+            self.rune = nil
+            self.runeTimer = 25 * 30
+        end
     end
 
     if self.entityDied then
