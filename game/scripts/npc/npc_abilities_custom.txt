@@ -1570,7 +1570,7 @@
 		"ScriptFile" "abilities/drow/drow_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "drow_ranger_silence"
-		"AbilityCooldown" "9.0"
+		"AbilityCooldown" "7.0"
 		"AbilityCastPoint" "0.2"
 
 		"TargetingIndicator"
