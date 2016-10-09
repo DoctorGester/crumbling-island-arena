@@ -230,7 +230,7 @@ end
 
 function EarthSpiritRemnant:Damage(source)
     if instanceof(source, EarthSpiritRemnant) then
-        source.health = source.health + 1
+        source.health = math.max(source.health, self.health) + 1
         ParticleManager:SetParticleControl(source.healthCounter, 1, Vector(0, source.health, 0))
 
         self.unit:EmitSound("Arena.Earth.EndQ")
