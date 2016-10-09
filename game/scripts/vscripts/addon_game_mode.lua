@@ -1100,7 +1100,7 @@ function GameMode:OnPassExperienceReceived(experience)
         player.passExperience = experience % 1000
         player.passLevel = math.floor(experience / 1000)
 
-        SystemMessage("SystemPassLevel", { player = playerId, color = self.TeamColors[player.team], level = player.passLevel })
+        SystemMessage("SystemPassLevel", { player = playerId, color = self.TeamColors[player.team], level = player.passLevel + 1 })
     end
 
     CustomNetTables:SetTableValue("pass", "experience", self.passExperience)
