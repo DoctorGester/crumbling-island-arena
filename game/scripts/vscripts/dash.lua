@@ -118,7 +118,7 @@ function Dash:Update()
 end
 
 function Dash:End(at, reachedDestination)
-    if (at - self.to):Length2D() < 100 then
+    if self.to and (at - self.to):Length2D() < 100 then
         at = self.to
     end
 
