@@ -118,6 +118,10 @@ function Dash:Update()
 end
 
 function Dash:End(at, reachedDestination)
+    if (at - self.to):Length2D() < 100 then
+        at = self.to
+    end
+
     if self.hero:Alive() then
         if self.findClearSpace then
             GridNav:DestroyTreesAroundPoint(at, self.radius, true)
