@@ -270,7 +270,7 @@
 
 		"Pass" "пропуск"
 		"InfoPassHeader" "Поддержи разработчика, купив пропуск!"
-		"InfoQuestSample" "Сыграть 20 раундов за<br/><img src='file://{images}/heroes/icons/npc_dota_hero_earthshaker.png'/>"
+		"InfoQuestSample" "Сыграть 20 раз за<br/><img src='file://{images}/heroes/icons/npc_dota_hero_earthshaker.png'/>"
 		"InfoPassQuests" "Квесты!"
 		"InfoPassBase" "9 стартовых наград!"
 		"InfoPassLevels" "Уровни разблокируют еще!"
@@ -328,8 +328,8 @@
 		"SbRunnerUp" "Второе место"
 		"SbTooManyHeroes" "Слишком много героев"
 
-		"QuestPLAY_ROUNDS_AS" "Сыграть {i:goal} раундов за<br/><img src='file://{images}/heroes/icons/npc_dota_hero_{s:hero}.png'/>"
-		"QuestPLAY_ROUNDS_AS_OR" "Сыграть {i:goal} раундов за<br/><img src='file://{images}/heroes/icons/npc_dota_hero_{s:hero}.png'/> или <img src='file://{images}/heroes/icons/npc_dota_hero_{s:shero}.png'/>"
+		"QuestPLAY_ROUNDS_AS" "Сыграть {i:goal} раз за<br/><img src='file://{images}/heroes/icons/npc_dota_hero_{s:hero}.png'/>"
+		"QuestPLAY_ROUNDS_AS_OR" "Сыграть {i:goal} раз за<br/><img src='file://{images}/heroes/icons/npc_dota_hero_{s:hero}.png'/> или <img src='file://{images}/heroes/icons/npc_dota_hero_{s:shero}.png'/>"
 		"QuestPLAY_GAMES" "Сыграть {i:goal} игр"
 		"QuestDEAL_DAMAGE" "Нанести {i:goal} урона<br/>врагам"
 		"QuestEARN_MVP" "Получить MVP {i:goal} раз"
