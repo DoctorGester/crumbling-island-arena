@@ -1,2 +1,282 @@
-!function(e,r){"object"==typeof exports&&"object"==typeof module?module.exports=r():"function"==typeof define&&define.amd?define(r):"object"==typeof exports?exports.odiff=r():e.odiff=r()}(this,function(){return function(e){function r(n){if(t[n])return t[n].exports;var a=t[n]={exports:{},id:n,loaded:!1};return e[n].call(a.exports,a,a.exports,r),a.loaded=!0,a.exports}var t={};return r.m=e,r.c=t,r.p="",r(0)}([function(e){"use strict";function r(e,r,t,n,a,i,f){for(var o=n-i,c=a-f,u=Math.max(o,c),s=1;u>=s;s++){var b=r[n-s],l=t[a-s];if(c>=s&&o>=s&&e(b,l))return{a:n-s,b:a-s};for(var p=0;s>p;p++){var v=r[n-p],h=t[a-p];if(c>=s&&e(v,l))return{a:n-p,b:a-s};if(o>=s&&e(b,h))return{a:n-s,b:a-p}}}return{a:i-1,b:f-1}}function t(e,r){if(e instanceof Array){if(!(r instanceof Array))return!1;for(var t=e.length/10,f=Math.abs(e.length-r.length),o=0;o<e.length;o++)if(n(e[o],r[o])){if(f>=2&&f>t||f===e.length)return!1;f++}return!0}if(e instanceof Object){if(!(r instanceof Object))return!1;var c=i(a(Object.keys(e)),a(Object.keys(r))),u=Object.keys(c).length,t=u/10,f=0;for(var s in c){var b=e[s],l=r[s];if(!n(b,l)){if(f>=2&&f>t||f+1===u)return!1;f++}}return!0}return e===r||Number.isNaN(e)&&Number.isNaN(r)}function n(e,r){if(e instanceof Array){if(!(r instanceof Array))return!1;if(e.length!==r.length)return!1;for(var t=0;t<e.length;t++)if(!n(e[t],r[t]))return!1;return!0}if(e instanceof Object){if(!(r instanceof Object))return!1;var a=Object.keys(e),i=Object.keys(r);if(a.length!==i.length)return!1;for(var t=0;t<a.length;t++){var f=a[t],o=e[f],c=r[f];if(!n(o,c))return!1}return!0}return e===r||Number.isNaN(e)&&Number.isNaN(r)}function a(e){var r={};return e.forEach(function(e){r[e]=!0}),r}function i(e,r){for(var t in r)e[t]=r[t];return e}e.exports=function(e,r){var t=[];return f(e,r,t,[]),t};var f=function(e,o,c,u){function s(e,r,t){e.push({type:"set",path:r,val:t})}function b(e,r,t,n){e.push({type:"rm",path:r,index:t,num:n})}function l(e,r,t,n){e.push({type:"add",path:r,index:t,vals:n})}if(!(e===o||Number.isNaN(e)&&Number.isNaN(o)))if(e instanceof Array&&o instanceof Array){for(var p=e.length-1,v=o.length-1;p>=0&&v>=0;)if(n(e[p],o[v]))p--,v--;else{for(var h=r(n,e,o,p,v,0,0),y=p,N=v;y>h.a&&N>h.b;)if(t(e[y],o[N]))f(e[y],o[N],c,u.concat([y])),y--,N--;else{var d=r(t,e,o,y,N,h.a+1,h.b+1),j=y-d.a,x=N-d.b;1===j&&1===x?s(c,u.concat(d.a+1),o[d.b+1]):1===j&&2===x?(l(c,u,d.a+2,o.slice(d.b+2,N+1)),s(c,u.concat(d.a+1),o[d.b+1])):2===j&&1===x?(b(c,u,d.a+2,1),s(c,u.concat(d.a+1),o[d.b+1])):2===j&&2===x?(s(c,u.concat(d.a+2),o[d.b+2]),s(c,u.concat(d.a+1),o[d.b+1])):(j>0&&b(c,u,d.a+1,j),x>0&&l(c,u,d.a+1,o.slice(d.b+1,N+1))),y=d.a,N=d.b}y>h.a?b(c,u,y,y-h.a):N>h.b&&l(c,u,y+1,o.slice(h.b+1,N+1)),p=h.a,v=h.b}p>=0?b(c,u,0,p+1):v>=0&&l(c,u,0,o.slice(0,v+1))}else if(e instanceof Object&&o instanceof Object){var g=i(a(Object.keys(e)),a(Object.keys(o)));for(var m in g){var O=u.concat([m]);f(e[m],o[m],c,O)}}else s(c,u,o)};e.exports.similar=t,e.exports.equal=n}])});
-//# sourceMappingURL=odiff.umd.js.map
+"use strict";
+
+/* Copyright (c) 2013 Billy Tetrud - Free to use for any purpose: MIT License*/
+// gets the changes that need to happen to a to change it into b
+// returns an object with the members
+    // type
+    // property
+    // value
+    // values
+    // count
+
+var odiff = function(a, b) {
+    var results = []
+    diffInternal(a,b,results,[])
+    return results
+}
+
+var diffInternal = function(a,b,acc,base) {
+    if(a === b || Number.isNaN(a)&&Number.isNaN(b)) {
+        return;
+    } else if(a instanceof Array && b instanceof Array) {
+        var an=a.length-1,bn=b.length-1
+        while(an >= 0 && bn >= 0) {     // loop backwards (so that making changes in order will work correctly)
+            if(!equal(a[an], b[bn])) {
+                var indexes = findMatchIndexes(equal, a,b, an,bn, 0, 0)
+
+                var anInner=an,bnInner=bn
+                while(anInner > indexes.a && bnInner > indexes.b) {
+                    if(similar(a[anInner], b[bnInner])) {
+                        // get change for that element
+                        diffInternal(a[anInner],b[bnInner],acc, base.concat([anInner]))
+                        anInner--; bnInner--;
+                    } else {
+                        var indexesInner = findMatchIndexes(similar, a,b, anInner,bnInner, indexes.a+1, indexes.b+1)
+
+                        var numberPulled = anInner-indexesInner.a
+                        var numberPushed = bnInner-indexesInner.b
+
+                        if(numberPulled === 1 && numberPushed === 1) {
+                            set(acc, base.concat(indexesInner.a+1), b[indexesInner.b+1]) // set the one
+                        } else if(numberPulled === 1 && numberPushed === 2) {
+                            // set one, push the other
+                            add(acc, base,indexesInner.a+2, b.slice(indexesInner.b+2, bnInner+1))
+                            set(acc, base.concat(indexesInner.a+1), b[indexesInner.b+1])
+                        } else if(numberPulled === 2 && numberPushed === 1) {
+                            // set one, pull the other
+                            rm(acc, base, indexesInner.a+2, 1)
+                            set(acc, base.concat(indexesInner.a+1), b[indexesInner.b+1])
+                        } else if(numberPulled === 2 && numberPushed === 2) {
+                            set(acc, base.concat(indexesInner.a+2), b[indexesInner.b+2])
+                            set(acc, base.concat(indexesInner.a+1), b[indexesInner.b+1])
+                        } else {
+                            if(numberPulled > 0) { // if there were some elements pulled
+                                rm(acc, base, indexesInner.a+1, numberPulled)
+                            }
+                            if(numberPushed > 0) { // if there were some elements pushed
+                                add(acc, base,indexesInner.a+1, b.slice(indexesInner.b+1, bnInner+1))
+                            }
+                        }
+
+                        anInner = indexesInner.a
+                        bnInner = indexesInner.b
+                    }
+                }
+
+                if(anInner > indexes.a) {        // more to pull
+                    rm(acc, base, anInner, anInner-indexes.a)
+                } else if(bnInner > indexes.b) { // more to push
+                    add(acc, base, anInner+1, b.slice(indexes.b+1, bnInner+1))
+                }
+
+                an = indexes.a
+                bn = indexes.b
+            } else {
+                an--; bn--;
+            }
+        }
+
+        if(an >= 0) {        // more to pull
+            rm(acc, base, 0, an+1)
+        } else if(bn >= 0) { // more to push
+            add(acc, base,0, b.slice(0, bn+1))
+        }
+    } else if (a instanceof Function && b instanceof Function) {
+        set(acc, base, b)
+    } else if(a instanceof Object && b instanceof Object) {
+        var keyMap = merge(arrayToMap(Object.keys(a)), arrayToMap(Object.keys(b)))
+        for(var key in keyMap) {
+            var path = base.concat([key])
+            diffInternal(a[key],b[key],acc, path)
+        }
+    } else {
+        set(acc, base, b)
+    }
+
+    // adds an 'set' type to the changeList
+    function set(changeList, property, value) {
+        changeList.push({
+            type:'set',
+            path: property,
+            val: value
+        })
+    }
+
+    // adds an 'rm' type to the changeList
+    function rm(changeList, property, index, count) {
+        changeList.push({
+            type:'rm',
+            path: property,
+            index: index,
+            num: count
+        })
+    }
+
+    // adds an 'add' type to the changeList
+    function add(changeList, property, index, values) {
+        changeList.push({
+            type:'add',
+            path: property,
+            index: index,
+            vals: values
+        })
+    }
+}
+
+// finds and returns the closest indexes in a and b that match starting with divergenceIndex
+// note: loops backwards like the rest of this stuff
+// returns the index beyond the first element (aSubMin-1 or bSubMin-1) for each if there is no match
+// parameters:
+    // compareFn - determines what matches (returns true if the arguments match)
+    // a,b - two arrays to compare
+    // divergenceIndexA,divergenceIndexB - the two positions of a and b to start comparing from
+    // aSubMin,bSubMin - the two positions to compare until
+function findMatchIndexes(compareFn, a,b, divergenceIndexA,divergenceIndexB, aSubMin, bSubMin) {
+    var maxNForA = divergenceIndexA-aSubMin
+    var maxNForB = divergenceIndexB-bSubMin
+    var maxN = Math.max(maxNForA, maxNForB)
+    for(var n=1; n<=maxN; n++) {
+        var newestA = a[divergenceIndexA-n] // the current item farthest from the divergence index being compared
+        var newestB = b[divergenceIndexB-n]
+
+        if(n<=maxNForB && n<=maxNForA && compareFn(newestA, newestB)) {
+            return {a:divergenceIndexA-n, b:divergenceIndexB-n}
+        }
+
+        for(var j=0; j<n; j++) {
+            var elemA = a[divergenceIndexA-j] // an element between the divergence index and the newest items
+            var elemB = b[divergenceIndexB-j]
+
+            if(n<=maxNForB && compareFn(elemA, newestB)) {
+                return {a:divergenceIndexA-j, b:divergenceIndexB-n}
+            } else if(n<=maxNForA && compareFn(newestA, elemB)) {
+                return {a:divergenceIndexA-n, b:divergenceIndexB-j}
+            }
+        }
+    }
+    // else
+    return {a: aSubMin-1, b: bSubMin-1}
+}
+
+
+// compares arrays and objects and returns true if they're similar meaning:
+    // less than 2 changes, or
+    // less than 10% different members
+function similar(a,b) {
+    if(a instanceof Array) {
+        if(!(b instanceof Array))
+            return false
+
+        var tenPercent = a.length/10
+        var notEqual = Math.abs(a.length-b.length) // initialize with the length difference
+        for(var n=0; n<a.length; n++) {
+            if(equal(a[n],b[n])) {
+                if(notEqual >= 2 && notEqual > tenPercent || notEqual === a.length) {
+                    return false
+                }
+
+                notEqual++
+            }
+        }
+        // else
+        return true
+    } else if(a instanceof Function) {
+        if(!(b instanceof Function))
+            return false
+
+        return a.toString() == b.toString()
+    } else if(a instanceof Object) {
+        if(!(b instanceof Object))
+            return false
+
+        var keyMap = merge(arrayToMap(Object.keys(a)), arrayToMap(Object.keys(b)))
+        var keyLength = Object.keys(keyMap).length
+        var tenPercent = keyLength / 10
+        var notEqual = 0
+        for(var key in keyMap) {
+            var aVal = a[key]
+            var bVal = b[key]
+
+            if(!equal(aVal,bVal)) {
+                if(notEqual >= 2 && notEqual > tenPercent || notEqual+1 === keyLength) {
+                    return false
+                }
+
+                notEqual++
+            }
+        }
+        // else
+        return true
+
+    } else {
+        return a===b || Number.isNaN(a) && Number.isNaN(b)
+    }
+}
+
+// compares arrays and objects for value equality (all elements and members must match)
+function equal(a,b) {
+    if(a instanceof Array) {
+        if(!(b instanceof Array))
+            return false
+        if(a.length !== b.length) {
+            return false
+        } else {
+            for(var n=0; n<a.length; n++) {
+                if(!equal(a[n],b[n])) {
+                    return false
+                }
+            }
+            // else
+            return true
+        }
+    } else if(a instanceof Function) {
+        if(!(b instanceof Function))
+            return false
+
+        return a.toString() == b.toString()
+    } else if(a instanceof Object) {
+        if(!(b instanceof Object))
+            return false
+
+        var aKeys = Object.keys(a)
+        var bKeys = Object.keys(b)
+
+        if(aKeys.length !== bKeys.length) {
+            return false
+        } else {
+            for(var n=0; n<aKeys.length; n++) {
+                var key = aKeys[n]
+                var aVal = a[key]
+                var bVal = b[key]
+
+                if(!equal(aVal,bVal)) {
+                    return false
+                }
+            }
+            // else
+            return true
+        }
+    } else {
+        return a===b || Number.isNaN(a) && Number.isNaN(b)
+    }
+}
+
+
+// turns an array of values into a an object where those values are all keys that point to 'true'
+function arrayToMap(array) {
+    var result = {}
+    array.forEach(function(v) {
+        result[v] = true
+    })
+    return result
+}
+
+// Overwrites obj1's values with obj2's and adds obj2's if non existent in obj1
+// returns obj1 (now mutated)
+function merge(obj1, obj2){
+    for(var key in obj2){
+        obj1[key] = obj2[key]
+    }
+
+    return obj1
+}
