@@ -45,6 +45,7 @@
 		"GameSoundsFile" ""
 		"VoiceFile"	""
 		"DisableWearables" "1"
+		"RoundEndActivity" "ACT_DOTA_CAPTURE"
 		"Difficulty" "easy"
 		
 		"Ability1" "zeus_q"
@@ -127,6 +128,7 @@
 		"GameSoundsFile" ""
 		"VoiceFile"	""
 		"DisableWearables" "1"
+		"RoundEndActivity" "ACT_DOTA_CAPTURE"
 		"Difficulty" "hard"
 		"Order" "2"
 		
@@ -213,6 +215,7 @@
 		"GameSoundsFile" ""
 		"VoiceFile"	""
 		"DisableWearables" "1"
+		"RoundEndTranslation" "impatient_maiden"
 		"Difficulty" "hard"
 		"Order" "4"
 		
@@ -525,6 +528,8 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"RoundEndActivity" "ACT_DOTA_IDLE"
+		"RoundEndTranslation" "meld"
 		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Order" "12"
@@ -563,6 +568,7 @@
 		"GameSoundsFile" ""
 		"VoiceFile"	""
 		"DisableWearables" "1"
+		"RoundEndActivity" "ACT_DOTA_IDLE"
 		"Difficulty" "easy"
 		"Order" "13"
 		
@@ -630,6 +636,7 @@
 		"AttributeBaseIntelligence" "0"
 		"VisionDaytimeRange" "0"
 		"VisionNighttimeRange" "0"
+		"RoundEndActivity" "ACT_DOTA_VICTORY"
 		"Portrait"	""
 		"SoundSet"	""
 		"GameSoundsFile" ""
@@ -787,6 +794,7 @@
 		"VoiceFile"	""
 		"DisableWearables" "1"
 		"DrawParticlesWhileHidden" "1"
+		"RoundEndActivity" "ACT_DOTA_VICTORY"
 		"Difficulty" "easy"
 		"Order" "19"
 		

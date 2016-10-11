@@ -782,7 +782,7 @@ function GameMode:OnRoundEnd(round)
     self.level:Hide()
 
     local positions = {
-        { Vector(100, -400, 17), Vector(1, -1, 0), true },
+        { Vector(100, -400, 17), Vector(1, -0.4, 0), true },
         { Vector(300, -300, 17), Vector(0.8, -1, 0) },
         { Vector(0, -200, 17), Vector(1, -0.5, 0) }
     }
@@ -816,7 +816,9 @@ function GameMode:OnRoundEnd(round)
         unit:SetAbsOrigin(positions[index][1])
         unit:AddNewModifier(unit, nil, "modifier_preview", {})
         unit:SetForwardVector(positions[index][2])
-        unit:StartGesture(ACT_DOTA_LOADOUT)
+
+        local data = self.AvailableHeroes[player.selectedHero]
+        StartAnimation(unit, { duration = 10, activity = _G[data.endActivity], translate = data.endTranslation})
 
         if positions[index][3] then
             Timers:CreateTimer(ROUND_ENDING_TIME / 3, function()
@@ -956,11 +958,19 @@ function GameMode:UpdateAvailableHeroesTable()
     local heroes = {}
 
     for name, data in pairs(self.AvailableHeroes) do
-        data.name = name
-        table.insert(heroes, data)
+        heroes[name] = {
+            customIcons = data.customIcons,
+            difficulty = data.difficulty,
+            order = data.order,
+            disabled = data.disabled,
+            name = name,
+            abilities = data.abilities
+        }
+
+        table.insert(heroes, hero)
     end
 
-    CustomNetTables:SetTableValue("main", "heroes", self.AvailableHeroes)
+    CustomNetTables:SetTableValue("main", "heroes", heroes)
 end
 
 function GameMode:IsDeathMatch()
@@ -1160,7 +1170,9 @@ function GameMode:LoadCustomHeroes()
                 difficulty = data.Difficulty or "easy",
                 order = data.Order or math.huge,
                 disabled = (data.Disabled and data.Disabled == "true" and not enableForDebug) or false,
-                initialCD = data.UltiCooldown
+                initialCD = data.UltiCooldown,
+                endActivity = data.RoundEndActivity or "ACT_DOTA_LOADOUT",
+                endTranslation = data.RoundEndTranslation
             }
 
             local abilities = {}
@@ -1374,4 +1386,5 @@ if IsInToolsMode() then
     end
 
     GameMode.InitModifiers()
+    GameRules.GameMode:LoadCustomHeroes()
 end
