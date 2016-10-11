@@ -274,7 +274,7 @@
 
 		"Pass" "pass"
 		"InfoPassHeader" "Support the developer by buying a pass!"
-		"InfoQuestSample" "Play 20 rounds as<br/><img src='file://{images}/heroes/icons/npc_dota_hero_earthshaker.png'/>"
+		"InfoQuestSample" "Play 8 rounds as<br/><img src='file://{images}/heroes/icons/npc_dota_hero_earthshaker.png'/>"
 		"InfoPassQuests" "Daily quests!"
 		"InfoPassBase" "9 base rewards!"
 		"InfoPassLevels" "Levels unlock more!"

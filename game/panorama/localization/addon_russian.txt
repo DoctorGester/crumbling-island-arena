@@ -270,7 +270,7 @@
 
 		"Pass" "пропуск"
 		"InfoPassHeader" "Поддержи разработчика, купив пропуск!"
-		"InfoQuestSample" "Сыграть 20 раз за<br/><img src='file://{images}/heroes/icons/npc_dota_hero_earthshaker.png'/>"
+		"InfoQuestSample" "Сыграть 8 раз за<br/><img src='file://{images}/heroes/icons/npc_dota_hero_earthshaker.png'/>"
 		"InfoPassQuests" "Квесты!"
 		"InfoPassBase" "9 стартовых наград!"
 		"InfoPassLevels" "Уровни разблокируют еще!"
