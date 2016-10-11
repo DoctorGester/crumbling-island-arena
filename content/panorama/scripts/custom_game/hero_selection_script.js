@@ -502,6 +502,7 @@ function GameStateChanged(data){
         Game.EmitSound("UI.SelectionStart")
 
         $("#HeroAbilities").visible = false;
+        $("#HeroCosmetics").visible = false;
         $("#HeroName").text = "";
 
         selectedHeroes = {};
