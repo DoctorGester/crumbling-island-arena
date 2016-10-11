@@ -964,7 +964,8 @@ function GameMode:UpdateAvailableHeroesTable()
             order = data.order,
             disabled = data.disabled,
             name = name,
-            abilities = data.abilities
+            abilities = data.abilities,
+            banned = data.banned
         }
 
         table.insert(heroes, hero)
