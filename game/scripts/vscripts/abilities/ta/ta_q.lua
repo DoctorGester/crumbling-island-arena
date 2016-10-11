@@ -12,7 +12,7 @@ function ta_q:OnSpellStart()
     local target = hero:GetPos() + direction:Normalized() * 500
     local height = Vector(0, 0, 64)
 
-    local effect = ImmediateEffect("particles/units/heroes/hero_templar_assassin/templar_assassin_psi_blade.vpcf", PATTACH_ABSORIGIN, hero)
+    local effect = ImmediateEffect(hero:GetMappedParticle("particles/units/heroes/hero_templar_assassin/templar_assassin_psi_blade.vpcf"), PATTACH_ABSORIGIN, hero)
     ParticleManager:SetParticleControl(effect, 0, hero:GetPos() + height)
     ParticleManager:SetParticleControl(effect, 1, target + height)
     ParticleManager:SetParticleControl(effect, 3, target + height)
@@ -30,7 +30,7 @@ function ta_q:OnSpellStart()
 
             victim:Damage(hero)
 
-            local effect = ImmediateEffect("particles/units/heroes/hero_templar_assassin/templar_assassin_meld_hit.vpcf", PATTACH_ABSORIGIN, hero)
+            local effect = ImmediateEffect(hero:GetMappedParticle("particles/units/heroes/hero_templar_assassin/templar_assassin_meld_hit.vpcf"), PATTACH_ABSORIGIN, hero)
             ParticleManager:SetParticleControlForward(effect, 0, direction:Normalized())
             ParticleManager:SetParticleControl(effect, 3, victim:GetPos())
         end

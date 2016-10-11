@@ -374,7 +374,8 @@ local _CODE_TO_ANIMATION_TRANSLATE = {
   [370]="windwalk",
   [371]="sideflip_gesture",
   [372]="walk_gesture",
-  [373]="juggle_gesture"
+  [373]="juggle_gesture",
+  [374]="keg_roll_gesture"
 }
 
 function modifier_animation_translate_permanent:OnCreated(keys)

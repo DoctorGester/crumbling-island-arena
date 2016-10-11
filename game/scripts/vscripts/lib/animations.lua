@@ -444,7 +444,8 @@ local _ANIMATION_TRANSLATE_TO_CODE = {
   windwalk=370,
   sideflip_gesture=371,
   walk_gesture=372,
-  juggle_gesture=373
+  juggle_gesture=373,
+  keg_roll_gesture=374
 
 }
 

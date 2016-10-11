@@ -101,12 +101,43 @@
         distance_max = "3500"
     }
 
+    vengefulspirit = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/vo/vengefulspirit/vng_kill_09.vsnd"
+        ]
+        volume = "3"
+        distance_max = "3500"
+    }
+
+    crystal_maiden = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/vo/crystalmaiden/cm_kill_08.vsnd"
+        ]
+        volume = "3"
+        distance_max = "3500"
+    }
+
     Taunt.AM = {
         type = "dota_update_default"
         vsnd_files = 
         [
             "sounds/vo/antimage/anti_spawn_04.vsnd"
         ]
+        volume = "1.5"
+        distance_max = "3500"
+    }
+
+    Taunt.Drow = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/vo/drowranger/drow_rival_17.vsnd"
+        ]
+        volume = "1.5"
         distance_max = "3500"
     }
 
@@ -116,6 +147,7 @@
         [
             "sounds/vo/juggernaut/jug_attack_08.vsnd"
         ]
+        volume = "1.5"
         distance_max = "3500"
     }
 
@@ -133,6 +165,15 @@
         vsnd_files = 
         [
             "sounds/weapons/hero/undying/dead_can_dance.vsnd"
+        ]
+        distance_max = "3500"
+    }
+
+    Taunt.Brew = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/weapons/hero/brewmaster/taunt_keg_roll.vsnd"
         ]
         distance_max = "3500"
     }

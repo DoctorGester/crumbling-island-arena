@@ -1372,7 +1372,7 @@ end
 if IsInToolsMode() then
     _G.Cosmetics = LoadKeyValues("scripts/npc/cosmetics.txt")
 
-    for i = 0, 20 do
+    for i = 0, 30 do
         for hero, cosmetics in pairs(Cosmetics) do
             for _, asset in pairs(cosmetics) do
                 if type(asset) == "table" then
@@ -1386,5 +1386,4 @@ if IsInToolsMode() then
     end
 
     GameMode.InitModifiers()
-    GameRules.GameMode:LoadCustomHeroes()
 end

@@ -2,7 +2,8 @@ modifier_storm_spirit_e = class({})
 
 if IsServer() then
     function modifier_storm_spirit_e:OnCreated(kv)
-        local index = ParticleManager:CreateParticle("particles/units/heroes/hero_stormspirit/stormspirit_ball_lightning.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
+        local path = self:GetParent():GetParentEntity():GetMappedParticle("particles/units/heroes/hero_stormspirit/stormspirit_ball_lightning.vpcf")
+        local index = ParticleManager:CreateParticle(path, PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
         ParticleManager:SetParticleControlEnt(index, 1, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetCaster():GetOrigin(), true)
         self:AddParticle(index, false, false, -1, false, false)
         self:GetParent():GetParentEntity():SetHidden(true)

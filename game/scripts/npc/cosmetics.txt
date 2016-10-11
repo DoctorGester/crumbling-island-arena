@@ -125,6 +125,37 @@
             "level" "10"
             "emote" "default"
         }
+
+        "2"
+        {
+            "type" "pass"
+            "level" "22"
+            "taunt"
+            {
+                "type" "static"
+                "activity" "ACT_DOTA_TAUNT"
+                "translate" "whats_that"
+                "sound" "Taunt.Drow"
+                "length" "3.0"
+            }
+        }
+    }
+
+    "brewmaster"
+    {
+        "1"
+        {
+            "type" "pass"
+            "level" "25"
+            "taunt"
+            {
+                "type" "moving"
+                "activity" "ACT_DOTA_TAUNT"
+                "translate" "keg_roll_gesture"
+                "sound" "Taunt.Brew"
+                "length" "4.0"
+            }
+        }
     }
 
     "pudge"
@@ -203,6 +234,30 @@
         }
     }
 
+    "templar_assassin"
+    {
+        "1"
+        {
+            "type" "pass"
+            "level" "20"
+            "item" "9318"
+            "particles"
+            {
+                "particles/units/heroes/hero_templar_assassin/templar_assassin_meld_hit.vpcf" "particles/econ/items/templar_assassin/templar_assassin_focal/templar_assassin_meld_focal_attack_hit.vpcf"
+            }
+        }
+    }
+
+    "storm_spirit"
+    {
+        "1"
+        {
+            "type" "pass"
+            "level" "23"
+            "item" "6431"
+        }
+    }
+
     "ember_spirit"
     {
         "1"
@@ -263,6 +318,13 @@
                 "length" "0.8"
             }
         }
+
+        "4"
+        {
+            "type" "pass"
+            "level" "21"
+            "emote" "default"
+        }
     }
 
     "antimage"
@@ -302,6 +364,13 @@
                 "translate" "snowangel"
                 "length" "5.5"
             }
+        }
+
+        "2"
+        {
+            "type" "pass"
+            "level" "24"
+            "emote" "default"
         }
     }
 
