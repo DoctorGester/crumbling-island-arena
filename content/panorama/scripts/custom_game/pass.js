@@ -51,6 +51,8 @@ var Pass = new (function(){
                 var panel = parent.FindChild("Quest" + quest.id);
                 panel.AddClass("QuestComplete");
             }
+
+            Game.EmitSound("UI.Whoosh")
         });
 
         $.Schedule(3.6, function() {

@@ -540,7 +540,6 @@
     animation-timing-function: ease-out;
     animation-iteration-count: 1;
     animation-name: QuestComplete;
-    sound: "UI.Whoosh";
 }
 
 .LevelIncrease
