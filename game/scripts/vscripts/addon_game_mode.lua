@@ -784,7 +784,7 @@ function GameMode:OnRoundEnd(round)
     local positions = {
         { Vector(100, -400, 17), Vector(1, -0.4, 0), true },
         { Vector(300, -300, 17), Vector(0.8, -1, 0) },
-        { Vector(0, -200, 17), Vector(1, -0.5, 0) }
+        { Vector(100, -170, 17), Vector(0.25, -0.5, 0) }
     }
 
     local index = 1
@@ -815,10 +815,14 @@ function GameMode:OnRoundEnd(round)
 
         unit:SetAbsOrigin(positions[index][1])
         unit:AddNewModifier(unit, nil, "modifier_preview", {})
-        unit:SetForwardVector(positions[index][2])
+        unit:SetForwardVector(positions[index][2]:Normalized())
 
         local data = self.AvailableHeroes[player.selectedHero]
-        StartAnimation(unit, { duration = 10, activity = _G[data.endActivity], translate = data.endTranslation})
+        unit:StartGesture(_G[data.endActivity])
+
+        if data.endTranslation then
+            AddAnimationTranslate(unit, data.endTranslation)
+        end
 
         if positions[index][3] then
             Timers:CreateTimer(ROUND_ENDING_TIME / 3, function()
