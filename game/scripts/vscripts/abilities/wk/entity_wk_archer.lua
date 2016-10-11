@@ -49,7 +49,7 @@ function WKArcher:Update()
             to = self.target,
             speed = 3200,
             arc = 600,
-            graphics = "particles/wk_w/wk_w.vpcf",
+            graphics = self.hero:GetMappedParticle("particles/wk_w/wk_w.vpcf"),
             hitParams = {
                 filter = Filters.Area(self.target, 200),
                 filterProjectiles = true,

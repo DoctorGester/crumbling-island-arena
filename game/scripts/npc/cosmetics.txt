@@ -226,6 +226,11 @@
             "type" "pass"
             "level" "6"
             "item" "8001"
+
+            "particles"
+            {
+                "particles/wk_w/wk_w.vpcf" "particles/econ/wk_w/wk_w.vpcf"
+            }
         }
     }
 
