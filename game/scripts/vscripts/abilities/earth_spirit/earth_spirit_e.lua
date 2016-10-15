@@ -39,6 +39,19 @@ function earth_spirit_e:OnSpellStart()
                 target = targetRemnant:GetPos()
                 hero:SetPos(Vector(target.x, target.y, target.z + 150))
                 self:EndCooldown()
+
+                Timers:CreateTimer(function()
+                    hero:AreaEffect({
+                        filter = Filters.Area(hero:GetPos(), 256),
+                        onlyHeroes = true,
+                        hitAllies = true,
+                        action = function(target)
+                            if target ~= hero then
+                                target:FindClearSpace(target:GetPos(), false)
+                            end
+                        end
+                    })
+                end)
             end
         end,
         heightFunction = function(dash, current)

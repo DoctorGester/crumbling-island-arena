@@ -101,16 +101,18 @@ function EarthSpiritRemnant:RemoveTarget()
         self:EmitSound("Arena.Earth.EndW")
     end
 
-    self:AreaEffect({
-        filter = Filters.Area(self:GetPos(), 256),
-        onlyHeroes = true,
-        hitAllies = true,
-        action = function(target)
-            if target ~= self.hero then
-                target:FindClearSpace(target:GetPos(), true)
+    Timers:CreateTimer(function()
+        self:AreaEffect({
+            filter = Filters.Area(self:GetPos(), 256),
+            onlyHeroes = true,
+            hitAllies = true,
+            action = function(target)
+                if target ~= self.hero then
+                    target:FindClearSpace(target:GetPos(), true)
+                end
             end
-        end
-    })
+        })
+    end)
 end
 
 function EarthSpiritRemnant:CollideWith(target)
