@@ -1,7 +1,7 @@
 cm_w = class({})
 
 function cm_w:OnAbilityPhaseStart()
-    Wrappers.GuidedAbility(self, true)
+    Wrappers.GuidedAbility(self, true, true)
     return true
 end
 
@@ -23,6 +23,8 @@ function cm_w:OnChannelThink(interval)
     if (self.previousTarget - target):Length2D() > 30 then
         target = self.previousTarget + (target - self.previousTarget):Normalized() * 30
     end
+
+    hero:SetFacing((target - hero:GetPos()) * Vector(1, 1, 0))
 
     self.previousTarget = target
 

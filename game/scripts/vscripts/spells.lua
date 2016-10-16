@@ -337,11 +337,12 @@ function Wrappers.GuidedAbility(ability, forceFacing, doNotSetFacing)
 
         if forceFacing then
             local caster = self:GetCaster()
+            local f = caster:GetParentEntity():GetFacing()
 
             Timers:CreateTimer(function()
                 if IsValidEntity(caster) then
                     caster:Interrupt()
-                    caster:GetParentEntity():SetFacing(self.lastFacing)
+                    caster:GetParentEntity():SetFacing(f)
                 end
             end)
         end
