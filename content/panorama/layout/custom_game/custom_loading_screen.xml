@@ -91,7 +91,7 @@
                                     <Label id="QuestText" html="true" text="#InfoQuestSample"/>
                                 </Panel>
                                 <Panel class="QuestProgressBadge">
-                                    <Label id="QuestProgress" text="16/20"/>
+                                    <Label id="QuestProgress" text="6/8"/>
                                 </Panel>
                             </Panel>
                         </Panel>
