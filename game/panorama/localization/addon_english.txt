@@ -67,7 +67,7 @@
 		"phantom_assassin_DescR" "Invisibility"
 
 		"crystal_maiden_DescQ" "Freezing projectile"
-		"crystal_maiden_DescW" "Freeze in a line"
+		"crystal_maiden_DescW" "Channeling. Freeze under the cursor"
 		"crystal_maiden_DescE" "Freezing wave, reactivate to relocate"
 		"crystal_maiden_DescR" "AOE slow + freeze"
 
@@ -400,7 +400,7 @@
 		"AbilityTooltip_earth_spirit_r"					"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Target a <font color=\"#3A9B00\"><b>Remnant</b></font>. After a short delay, emerge from it, leaving your old body behind."
 
 		"AbilityTooltip_cm_q"							"Launch a projectile into a chosen direction<br>Enemies hit are <font color=\"skyblue\"><b>Frozen</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies take damage"
-		"AbilityTooltip_cm_w"							"Choose two point targets<br>Enemies along the chosen line are <font color=\"skyblue\"><b>Frozen</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies take damage"
+		"AbilityTooltip_cm_w"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Enemies under the cursor are <font color=\"skyblue\"><b>Frozen</b></font> after a delay<br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies take damage"
 		"AbilityTooltip_cm_e"							"Launch a wave into a chosen direction<br>Reactivate to relocate to the wave\\\\'s position<br>Enemies hit are <font color=\"skyblue\"><b>Frozen</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies take damage"
 		"AbilityTooltip_cm_e_sub"						"Relocate to the wave\\\\'s position"
 		"AbilityTooltip_cm_r"							"Target an area<br>All enemies in the area are slowed and considered <font color=\"skyblue\"><b>Frozen</b></font>"
