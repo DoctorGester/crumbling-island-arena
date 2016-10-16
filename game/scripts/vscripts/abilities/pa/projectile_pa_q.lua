@@ -64,6 +64,7 @@ end
 
 function ProjectilePAQ:Return()
     self.state = ProjectilePAQ.STATE_GOING_BACK
+    self.hitGroup = {}
 end
 
 function ProjectilePAQ:Remove()
