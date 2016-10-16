@@ -15,6 +15,11 @@ function phoenix_r:GetChannelAnimation()
     return ACT_DOTA_OVERRIDE_ABILITY_2
 end
 
+function phoenix_r:OnAbilityPhaseStart()
+    Wrappers.GuidedAbility(self, true, true)
+    return true
+end
+
 if IsServer() then
     function phoenix_r:DestroyMarker()
         if self.marker then
@@ -36,18 +41,34 @@ if IsServer() then
 
     function phoenix_r:OnChannelThink(interval)
         local hero = self:GetCaster().hero
-        local target = self:GetCursorPosition()
+        local actualTarget = self:GetCursorPosition()
         local radius = 350
 
+        local target = self.target or actualTarget
+
+        local speed = 8
+
+        if (target - actualTarget):Length2D() <= speed then
+            target = actualTarget
+        else
+            target = target + (actualTarget - target):Normalized() * speed
+        end
+
+        self.target = target
         self.timePassed = self.timePassed or 0
+
+        hero:SetFacing((self.target - hero:GetPos()) * Vector(1, 1, 0))
 
         if self.timePassed == 0 and not self.marker then
             self.marker = ParticleManager:CreateParticle("particles/phoenix_r/phoenix_r_marker.vpcf", PATTACH_ABSORIGIN, hero.unit)
-            ParticleManager:SetParticleControl(self.marker, 0, target)
             ParticleManager:SetParticleControl(self.marker, 1, Vector(radius, 0, 0))
             ParticleManager:SetParticleControl(self.marker, 2, Vector(radius, 0, 0))
 
             hero:EmitSound("Arena.Phoenix.CastR")
+        end
+
+        if self.marker then
+            ParticleManager:SetParticleControl(self.marker, 0, target)
         end
 
         if self.timePassed ~= 0 then
@@ -65,12 +86,13 @@ if IsServer() then
                 hero:EmitSound("Arena.Phoenix.LoopR2")
 
                 self.beam = ParticleManager:CreateParticle("particles/phoenix_r/phoenix_r.vpcf", PATTACH_ABSORIGIN, hero.unit)
-                ParticleManager:SetParticleControl(self.beam, 0, target)
                 ParticleManager:SetParticleControl(self.beam, 1, Vector(radius, 1, 1))
                 ParticleManager:SetParticleControlEnt(self.beam, 3, self:GetCaster(), PATTACH_POINT_FOLLOW, "attach_hitloc", hero:GetPos(), true)
 
                 GridNav:DestroyTreesAroundPoint(target, radius, true)
             end
+
+            ParticleManager:SetParticleControl(self.beam, 0, target)
 
             local damaged = self.damaged or {}
             self.damaged = damaged
@@ -100,6 +122,8 @@ if IsServer() then
     function phoenix_r:OnChannelFinish(interrupted)
         local hero = self:GetCaster().hero
         local target = self:GetCursorPosition()
+
+        self.target = nil
         
         hero:StopSound("Arena.Phoenix.LoopR")
         hero:StopSound("Arena.Phoenix.LoopR2")

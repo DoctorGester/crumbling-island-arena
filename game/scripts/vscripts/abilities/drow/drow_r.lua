@@ -1,9 +1,14 @@
 drow_r = class({})
 
+function drow_r:OnAbilityPhaseStart()
+    Wrappers.GuidedAbility(self, true)
+    return true
+end
+
 function drow_r:OnChannelThink(interval)
     self.channelingTime = (self.channelingTime or 0) + interval
 
-    if not self.soundPlayed and self.channelingTime >= 0.25 then
+    if not self.soundPlayed and self.channelingTime >= 0.45 then
         self:GetCaster().hero:EmitSound("Arena.Drow.PreR")
         self.soundPlayed = true
     end
@@ -54,7 +59,7 @@ function drow_r:OnChannelFinish(interrupted)
 end
 
 function drow_r:GetChannelTime()
-    return 0.7
+    return 0.9
 end
 
 function drow_r:GetCastAnimation()

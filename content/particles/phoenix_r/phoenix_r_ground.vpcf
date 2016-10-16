@@ -1,39 +1,34 @@
 <!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
 {
 	_class = "CParticleSystemDefinition"
-	m_Operators =
+	m_Operators = 
 	[
 		{
 			_class = "C_OP_BasicMovement"
 		},
 		{
-			_class = "C_OP_RampScalarLinearSimple"
-			m_Rate = 1.000000
-			m_nField = 7
+			_class = "C_OP_Decay"
 		},
 		{
-			_class = "C_OP_RampScalarLinearSimple"
-			m_Rate = -5.000000
-			m_nField = 7
-			m_nOpEndCapState = 1
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.75
 		},
 		{
-			_class = "C_OP_EndCapTimedDecay"
-			m_flDecayTime = 3.000000
+			_class = "C_OP_FadeInSimple"
 		},
 	]
-	m_Renderers =
+	m_Renderers = 
 	[
 		{
 			_class = "C_OP_RenderProjected"
 		},
 	]
-	m_Initializers =
+	m_Initializers = 
 	[
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMin = 20.000000
-			m_fLifetimeMax = 20.000000
+			m_fLifetimeMin = 3.0
+			m_fLifetimeMax = 3.0
 		},
 		{
 			_class = "C_INIT_CreateWithinSphere"
@@ -41,20 +36,15 @@
 		{
 			_class = "C_INIT_RemapCPtoScalar"
 			m_nCPInput = 1
-			m_flInputMax = 1000.000000
-			m_flOutputMax = 1500.000000
-		},
-		{
-			_class = "C_INIT_RandomAlpha"
-			m_nAlphaMin = 0
-			m_nAlphaMax = 0
+			m_flInputMax = 1000.0
+			m_flOutputMax = 1500.0
 		},
 	]
-	m_Emitters =
+	m_Emitters = 
 	[
 		{
-			_class = "C_OP_InstantaneousEmitter"
-			m_nParticlesToEmit = 1
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 1.0
 		},
 	]
 }

@@ -3,20 +3,14 @@
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 4
-	m_ConstantColor =
-	[
-		218,
-		220,
-		255,
-		255,
-	]
-	m_Renderers =
+	m_ConstantColor = [ 218, 220, 255, 255 ]
+	m_Renderers = 
 	[
 		{
 			_class = "C_OP_RenderModels"
 			m_bOrientZ = true
 			m_bSuppressTint = true
-			m_ModelList =
+			m_ModelList = 
 			[
 				{
 					m_model = resource:"models/heroes/crystal_maiden/crystal_maiden_ice.vmdl"
@@ -27,7 +21,7 @@
 			m_nLOD = 1
 		},
 	]
-	m_Operators =
+	m_Operators = 
 	[
 		{
 			_class = "C_OP_BasicMovement"
@@ -35,25 +29,34 @@
 		{
 			_class = "C_OP_RemapVelocityToVector"
 			m_nFieldOutput = 21
-		},
-		{
-			_class = "C_OP_StopAfterCPDuration"
-			m_nCP = 2
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_OP_Decay"
+			m_nOpEndCapState = 1
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_PositionLock"
+			m_bLockRot = true
+		},
+		{
+			_class = "C_OP_RemapCPOrientationToRotations"
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_EndCapTimedDecay"
 		},
 	]
-	m_Initializers =
+	m_Initializers = 
 	[
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 2.000000
-			m_flRadiusMax = 2.000000
+			m_flRadiusMin = 2.0
+			m_flRadiusMax = 2.0
 		},
 		{
 			_class = "C_INIT_CreateWithinSphere"
-			m_nControlPointNumber = 1
 		},
 		{
 			_class = "C_INIT_RandomRotation"
@@ -61,40 +64,18 @@
 		},
 		{
 			_class = "C_INIT_RandomRotation"
-			m_flDegreesMax = 180.000000
-			m_flDegreesMin = 180.000000
-		},
-		{
-			_class = "C_INIT_RemapCPtoScalar"
-			m_nCPInput = 2
-			m_nFieldOutput = 1
-			m_flInputMax = 100.000000
-			m_flOutputMax = 100.000000
+			m_flDegreesMax = 180.0
+			m_flDegreesMin = 180.0
 		},
 	]
-	m_Emitters =
+	m_Emitters = 
 	[
 		{
 			_class = "C_OP_InstantaneousEmitter"
 			m_nParticlesToEmit = 1
 		},
 	]
-	m_Constraints =
-	[
-		{
-			_class = "C_OP_ConstrainDistanceToPath"
-			m_flMaxDistance1 = 0.000000
-			m_flMaxDistanceMid = 0.000000
-			m_flMaxDistance0 = 0.000000
-			m_flTravelTime = 1.000000
-			m_PathParameters =
-			{
-				m_nStartControlPointNumber = 1
-			}
-			m_nFieldScale = 1
-		},
-	]
-	m_Children =
+	m_Children = 
 	[
 		{
 			m_ChildRef = resource:"particles/cm_w/cm_w_a.vpcf"

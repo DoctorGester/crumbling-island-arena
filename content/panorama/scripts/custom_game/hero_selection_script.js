@@ -110,7 +110,7 @@ function ShowHeroAbilities(heroName) {
     var customIcons = {};
 
     if (hero.customIcons) {
-        for (ability in hero.customIcons) {
+        for (var ability in hero.customIcons) {
             customIcons[ability] = hero.customIcons[ability];
         }
     }

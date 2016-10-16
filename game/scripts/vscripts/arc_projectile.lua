@@ -79,13 +79,13 @@ function ArcProjectile:Update()
 
     getbase(Projectile).Update(self)
 
+    local pos = self:GetPos()
+
     if self.falling then
         self:SetPos(self:GetPos() + self.fallingDirection)
         self:SetFacing(self:GetPos() - prevFallingPos)
         return
     end
-
-    local pos = self:GetPos()
 
     if IsOutOfTheMap(pos) then
         self:Destroy()
@@ -113,6 +113,8 @@ end
 
 function ArcProjectile:TargetReached()
     local hit = false
+
+    self:SetPos(self.to)
 
     if self.hitSound then
         self:EmitSound(self.hitSound)
@@ -176,6 +178,14 @@ function ArcProjectile:SetGraphics(graphics)
     end
 end
 
+function ArcProjectile:Destroy()
+    if self.destroyFunction then
+        self:destroyFunction()
+    end
+
+    getbase(ArcProjectile).Destroy(self)
+end
+
 function ArcProjectile:Remove()
     if self.loopingSound then
         self:StopSound(self.loopingSound)
@@ -190,5 +200,5 @@ function ArcProjectile:Remove()
         Level.KillCreepsInRadius(self:GetPos(), 512)
     end
 
-    getbase(Projectile).Remove(self)
+    getbase(ArcProjectile).Remove(self)
 end

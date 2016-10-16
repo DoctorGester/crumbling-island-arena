@@ -8,6 +8,8 @@ var hoverIndicators = {};
 var indicatorTypes = {};
 var hoverTypes = {};
 var hoverIndicator = null;
+var guidedAbility = -1;
+var castedAbility = -1;
 
 function GetNumber(value, or, unit) {
     if (!value) {
@@ -330,10 +332,15 @@ function UpdateHoverPosition() {
 }
 
 function UpdateTargetIndicator(){
-    $.Schedule(0.01, UpdateTargetIndicator);
+    $.Schedule(1 / 144, UpdateTargetIndicator);
 
     var unit = Players.GetLocalPlayerPortraitUnit();
     var active = Abilities.GetLocalPlayerActiveAbility();
+
+    if (active == -1) {
+        active = guidedAbility;
+    }
+
     var newHover = hoverAbility;
     var data = targetingIndicators[Abilities.GetAbilityName(active)];
 
@@ -384,6 +391,14 @@ function SetCurrentHoverSpell(spell){
     } else {
         hoverAbility = -1;
     }
+}
+
+function SetGuidedAbility(ability) {
+    guidedAbility = ability;
+}
+
+function SetCastedAbility(ability) {
+    castedAbility = ability;
 }
 
 UpdateTargetIndicator();

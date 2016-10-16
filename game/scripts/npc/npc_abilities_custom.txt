@@ -465,13 +465,7 @@
 		"AbilityTextureName" "crystal_maiden_freezing_field"
 		"AbilityCooldown" "6.0"
 		"AbilityCastRange" "700"
-		"VectorTarget"
-		{
-			"PointOfCast" "midpoint"
-			"MaxDistance"   "800" 
-            "MinDistance"   "800"
-		}
-
+		
 		"TargetingIndicator"
 		{
 			"DisplayRange" "1"
@@ -1543,7 +1537,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "drow_ranger_frost_arrows"
 		"AbilityCooldown" "2.4"
-		"AbilityCastPoint" "0.2"
+		"AbilityCastPoint" "0.125"
 
 		"TargetingIndicator"
 		{
@@ -1630,7 +1624,6 @@
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName" "drow_ranger_marksmanship"
 		"AbilityCooldown" "12.0"
-		"AbilityCastPoint" "0.2"
 
 		"TargetingIndicator"
 		{

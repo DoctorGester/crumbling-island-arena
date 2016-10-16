@@ -246,6 +246,36 @@ function UpdateUI(){
     if (buffBar != null) {
         buffBar.Update();
     }
+
+    UpdateGuidedAndCastedAbilities(localHero);
+}
+
+function UpdateGuidedAndCastedAbilities(localHero) {
+    var count = Entities.GetAbilityCount(localHero);
+    var guided = -1;
+    var casted = -1;
+
+    for (var i = 0; i < count; i++) {
+        var ability = Entities.GetAbility(localHero, i);
+
+        if (Abilities.IsInAbilityPhase(ability)) {
+            casted = ability;
+        }
+
+        var p = DOTA_ABILITY_BEHAVIOR.DOTA_ABILITY_BEHAVIOR_POINT;
+        var pointTarget = (Abilities.GetBehavior(ability) & p) == p;
+
+        if (pointTarget && Abilities.GetChannelStartTime(ability) > 0) {
+            var cursor = GameUI.GetCursorPosition();
+            var position = GameUI.GetScreenWorldPosition(cursor);
+
+            GameEvents.SendCustomGameEventToServer("guided_ability_cursor", { pos: position, ability: ability })
+            guided = ability;
+        }
+    }
+
+    SetGuidedAbility(guided);
+    SetCastedAbility(casted);
 }
 
 function CenterCamera(on){

@@ -1,88 +1,90 @@
 cm_w = class({})
 
-function cm_w:OnSpellStart()
-    local hero = self:GetCaster().hero
-    local startPos = self:GetInitialPosition()
-    local maxDistance = 800
-    local castTime = 0.9
-    local endPos = startPos + self:GetDirectionVector() * maxDistance
-    local timePassed = 0
-    local damaged = {}
-    local ability = self
+function cm_w:OnAbilityPhaseStart()
+    Wrappers.GuidedAbility(self, true)
+    return true
+end
 
-    if self:GetDirectionVector():Length2D() == 0 then
-        endPos = startPos + (startPos - hero:GetPos()):Normalized() * maxDistance
+function cm_w:GetChannelTime()
+    return 2.0
+end
+
+function cm_w:OnChannelFinish(interrupted)
+    self.timePassed = nil
+    self.previousTarget = nil
+end
+
+function cm_w:OnChannelThink(interval)
+    local hero = self:GetCaster():GetParentEntity()
+    local target = self:GetCursorPosition() * Vector(1, 1, 0)
+
+    self.previousTarget = self.previousTarget or target
+
+    if (self.previousTarget - target):Length2D() > 30 then
+        target = self.previousTarget + (target - self.previousTarget):Normalized() * 30
     end
 
-    Timers:CreateTimer(
-        function()
-            timePassed = timePassed + 0.1
+    self.previousTarget = target
 
-            function GetPositionForTime(time)
-                return startPos + (endPos - startPos):Normalized() * (maxDistance * (time / castTime))
-            end
+    self.damaged = self.damaged or {}
+    self.timePassed = (self.timePassed or 0) + interval
 
-            if timePassed < castTime then
-                local effectPos = GetPositionForTime(timePassed)
-                local startingHeight = 1600
-                local offset = Vector(-320, 490, startingHeight)
-                local skies = effectPos + offset
-                local time = 0.4
-                local speed = startingHeight / time
+    if self.timePassed > 0.12 then
+        hero:EmitSound("Arena.CM.PreW", target)
 
-                EmitSoundOnLocationWithCaster(effectPos, "Arena.CM.PreW", hero.unit)
+        self.projectileCounter = (self.projectileCounter or 0) + 1
 
-                if not Spells.TestPoint(effectPos) then
-                    effectPos = effectPos - (offset / time) * (MAP_HEIGHT / speed)
-                    time = time + MAP_HEIGHT / speed
+        ArcProjectile(hero.round, {
+            owner = hero,
+            from = target + Vector(0, 0, 1600) - hero:GetFacing() * 400,
+            to = target,
+            speed = 3000,
+            arc = 200,
+            radius = 96,
+            graphics = "particles/cm_w/cm_w.vpcf",
+            hitFunction = function(projectile, hit)
+                local function groupFilter(target)
+                    return not self.damaged[target]
                 end
 
-                local effect = ParticleManager:CreateParticle("particles/cm_w/cm_w.vpcf", PATTACH_CUSTOMORIGIN, hero:GetUnit())
-                ParticleManager:SetParticleControl(effect, 0, effectPos)
-                ParticleManager:SetParticleControl(effect, 1, skies)
-                ParticleManager:SetParticleControl(effect, 2, Vector(time, 0, 0))
-                ParticleManager:ReleaseParticleIndex(effect)
-            end
+                local hit = hero:AreaEffect({
+                    filter = Filters.And(Filters.Area(target, 128), groupFilter),
+                    action = function(victim)
+                        local frozen = hero:IsFrozen(victim)
 
-            if timePassed >= 0.4 then
-                local damagePos = GetPositionForTime(timePassed - 0.4)
-
-                if Spells.TestPoint(damagePos) then
-                    local function groupFilter(target)
-                        return not damaged[target]
-                    end
-
-                    local hit = hero:AreaEffect({
-                        filter = Filters.And(Filters.Area(damagePos, 128), groupFilter),
-                        action = function(target)
-                            local frozen = hero:IsFrozen(target)
-
-                            if frozen then
-                                target:Damage(hero)
-                            else
-                                hero:Freeze(target, ability)
-                            end
-                            
-                            damaged[target] = true
+                        if frozen then
+                            victim:Damage(hero)
+                        else
+                            hero:Freeze(victim, ability)
                         end
-                    })
+                        
+                        self.damaged[victim] = true
+                    end
+                })
 
-                    ScreenShake(damagePos, 3, 60, 0.15, 2000, 0, true)
-                    Spells:GroundDamage(damagePos, 128, hero)
+                ScreenShake(target, 3, 60, 0.15, 2000, 0, true)
 
-                    local sound = "Arena.CM.CastW"
-                    if hit then sound = "Arena.CM.HitW" end
+                local sound = "Arena.CM.CastW"
+                if hit then sound = "Arena.CM.HitW" end
 
-                    EmitSoundOnLocationWithCaster(damagePos, sound, hero.unit)
-                    ImmediateEffectPoint("particles/econ/items/crystal_maiden/crystal_maiden_maiden_of_icewrack/maiden_arcana_ground_ambient.vpcf", PATTACH_CUSTOMORIGIN, hero, damagePos)
+                hero:EmitSound(sound, target)
+                ImmediateEffectPoint("particles/econ/items/crystal_maiden/crystal_maiden_maiden_of_icewrack/maiden_arcana_ground_ambient.vpcf", PATTACH_CUSTOMORIGIN, hero, target)
+            end,
+            destroyFunction = function()
+                self.projectileCounter = (self.projectileCounter or 0) - 1
+
+                if self.projectileCounter == 0 then
+                    self.damaged = nil
                 end
             end
+        }):Activate()
 
-            if timePassed >= castTime + 0.4 then return end
+        self.timePassed = nil
+    end
+end
 
-            return 0.1
-        end
-    )
+function cm_w:GetPlaybackRateOverride()
+    return 0.4
 end
 
 function cm_w:GetCastAnimation()

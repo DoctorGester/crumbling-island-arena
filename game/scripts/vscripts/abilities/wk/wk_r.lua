@@ -1,6 +1,8 @@
 wk_r = class({})
 
 function wk_r:OnAbilityPhaseStart()
+    Wrappers.GuidedAbility(self, true)
+
     self:GetCaster().hero:EmitSound("Arena.WK.PreR")
 
     return true

@@ -289,3 +289,67 @@ function Wrappers.DirectionalAbility(ability, optionalRange, optionalMinRange)
         return target
     end
 end
+
+function Wrappers.GuidedAbility(ability, forceFacing, doNotSetFacing)
+    if ability._guided then
+        return
+    else
+        ability._guided = true
+    end
+
+    local onChannelThink = ability.OnChannelThink
+    local getCursorPosition = ability.GetCursorPosition
+
+    function ability:OnChannelThink(interval)
+        if interval == 0 then
+            local function updateLastFacing(self, from)
+                local delta = from - self:GetCaster():GetParentEntity():GetPos()
+                delta = (delta * Vector(1, 1, 0)):Normalized()
+                self.lastFacing = delta
+                self.lastGuidedPos = from
+            end
+
+            updateLastFacing(self, getCursorPosition(self))
+
+            self.listener = CustomGameEventManager:RegisterListener("guided_ability_cursor", function(_, args)
+                local eventAbility = EntIndexToHScript(args.ability)
+
+                if eventAbility ~= self then
+                    return
+                end
+
+                local pos = Vector(args.pos["0"], args.pos["1"], args.pos["2"])
+                updateLastFacing(self, pos)
+            end)
+        end
+
+        if not doNotSetFacing then
+            self:GetCaster():GetParentEntity():SetFacing(self.lastFacing)
+        end
+
+        onChannelThink(self, interval)
+    end
+
+    local onChannelFinish = ability.OnChannelFinish
+
+    function ability:OnChannelFinish(interrupted)
+        CustomGameEventManager:UnregisterListener(self.listener)
+
+        if forceFacing then
+            local caster = self:GetCaster()
+
+            Timers:CreateTimer(function()
+                if IsValidEntity(caster) then
+                    caster:Interrupt()
+                    caster:GetParentEntity():SetFacing(self.lastFacing)
+                end
+            end)
+        end
+
+        onChannelFinish(self, interrupted)
+    end
+
+    function ability:GetCursorPosition()
+        return self.lastGuidedPos
+    end
+end
