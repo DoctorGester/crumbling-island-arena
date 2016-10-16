@@ -314,7 +314,7 @@ function Wrappers.GuidedAbility(ability, forceFacing, doNotSetFacing)
             self.listener = CustomGameEventManager:RegisterListener("guided_ability_cursor", function(_, args)
                 local eventAbility = EntIndexToHScript(args.ability)
 
-                if eventAbility ~= self then
+                if eventAbility ~= self or args.PlayerID ~= self:GetCaster():GetParentEntity().owner.id then
                     return
                 end
 
