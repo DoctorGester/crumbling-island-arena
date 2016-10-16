@@ -3,6 +3,8 @@
         <include src="file://{resources}/styles/custom_game/game_hud.css" />
     </styles>
     <script>
+        $("#GameChatTarget").text = $.Localize(GameUI.GameChat.shiftHeld ? "#ChatAll" : "#ChatTeam");
+
         function HideGameChat() {
             if (GameUI.GameChat) {
                 GameUI.GameChat.AddClass("ChatHidden");
@@ -21,7 +23,7 @@
             if (entry.text === "-ping") {
                 Game.ServerCmd("dota_ping");
             } else {
-                GameEvents.SendCustomGameEventToServer("custom_chat_say", { message: entry.text, team: !GameUI.IsShiftDown() });
+                GameEvents.SendCustomGameEventToServer("custom_chat_say", { message: entry.text, team: !GameUI.GameChat.shiftHeld });
             }
 
             entry.text = "";
@@ -36,6 +38,8 @@
             maxchars="256"
             oncancel="HideGameChat()"
             onblur="HideGameChat()"
-        />
+        >
+            <Label id="GameChatTarget" text="[TEAM]"/>
+        </TextEntry>
     </Panel>
 </root>

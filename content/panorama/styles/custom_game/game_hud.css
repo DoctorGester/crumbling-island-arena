@@ -269,6 +269,13 @@
     border-radius: 3px;
 }
 
+#GameChatTarget
+{
+    horizontal-align: right;
+    margin-right: 8px;
+    color: #BBBBBB;
+}
+
 .GameChatLine
 {
     font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;

@@ -15,12 +15,17 @@
 
                 if (contentPanel && contentPanel.BCanSeeInParentScroll()) {
                     entry.SetFocus();
+                    entry.shiftHeld = GameUI.IsShiftDown();
+
+                    $("#ChatTarget").text = $.Localize(entry.shiftHeld ? "#ChatAll" : "#ChatTeam");
                 }
             });
         }
 
+        $("#ChatTarget").text = $.Localize("#ChatTeam");
+
         function SubmitChat() {
-            GameEvents.SendCustomGameEventToServer("custom_chat_say", { message: $("#ChatEntry").text, team: !GameUI.IsShiftDown() });
+            GameEvents.SendCustomGameEventToServer("custom_chat_say", { message: $("#ChatEntry").text, team: !$("#ChatEntry").shiftHeld });
 
             $("#ChatEntry").text = "";
         }
@@ -90,6 +95,8 @@
     <Panel class="Chat" hittest="false">
         <Panel id="ChatContent" hittest="false">
         </Panel>
-        <TextEntry id="ChatEntry" multiline="false" textmode="normal" oninputsubmit="SubmitChat()" maxchars="256" placeholder="#ChatPlaceholder"/>
+        <TextEntry id="ChatEntry" multiline="false" textmode="normal" oninputsubmit="SubmitChat()" maxchars="256" placeholder="#ChatPlaceholder">
+            <Label id="ChatTarget" />
+        </TextEntry>
     </Panel>
 </root>

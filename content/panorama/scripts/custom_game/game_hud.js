@@ -512,6 +512,7 @@ DelayStateInit(GAME_STATE_ROUND_IN_PROGRESS, function () {
         var state = CustomNetTables.GetTableValue("main", "gameState").state;
 
         if (state == GAME_STATE_ROUND_IN_PROGRESS || state == GAME_STATE_ROUND_ENDED) {
+            GameUI.GameChat.shiftHeld = GameUI.IsShiftDown();
             $("#GameChatEntryContainer").BLoadLayout("file://{resources}/layout/custom_game/chat.xml", true, true);
             $("#GameChatEntry").SetFocus();
             $("#GameChat").RemoveClass("ChatHidden");

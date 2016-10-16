@@ -28,6 +28,13 @@
     border-radius: 3px;
 }
 
+#ChatTarget
+{
+    horizontal-align: right;
+    margin-right: 8px;
+    color: #BBBBBB;
+}
+
 .ChatIcon
 {
     margin-right: 5px;
