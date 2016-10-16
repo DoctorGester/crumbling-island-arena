@@ -5,9 +5,9 @@ LinkLuaModifier("modifier_pa_e", "abilities/pa/modifier_pa_e", LUA_MODIFIER_MOTI
 function pa_e:OnSpellStart()
     local hero = self:GetCaster().hero
     local modifier = hero:AddNewModifier(hero, self, "modifier_pa_e", { duration = 0.55 })
-    StartAnimation(hero:GetUnit(), { duration = 0.7, activity = ACT_DOTA_CAST_ABILITY_2, rate = 1.35 })
+    StartAnimation(hero:GetUnit(), { duration = 0.7, activity = ACT_DOTA_CAST_ABILITY_2, rate = 1.5 })
 
-    Timers:CreateTimer(0.15,
+    Timers:CreateTimer(0.1,
         function()
             self:GetCaster():Interrupt()
             Dash(hero, hero:GetPos() + hero:GetFacing() * 500, 1250, {
