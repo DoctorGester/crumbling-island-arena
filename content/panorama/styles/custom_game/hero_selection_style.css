@@ -304,13 +304,24 @@
 
 .HeroButtonQuest
 {
-    background-image: url("file://{images}/custom_game/points.png");
     background-size: 100% 100%;
-    width: 22px;
-    height: 27px;
     align: right bottom;
     margin-right: 8px;
     margin-bottom: 8px;
+}
+
+.HeroButtonQuestInProgress
+{
+    background-image: url("file://{images}/custom_game/points.png");
+    width: 22px;
+    height: 27px;
+}
+
+.HeroButtonQuestComplete
+{
+    background-image: url("file://{images}/custom_game/check.png");
+    width: 22px;
+    height: 18px;
 }
 
 #DifficultyLock

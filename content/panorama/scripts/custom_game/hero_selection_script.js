@@ -284,7 +284,7 @@ function PickRandomHero(){
     }
 }
 
-function AddButtonEvents(button, name, isQuestTarget) {
+function AddButtonEvents(button, name, questComplete) {
     button.onactivate = function(panel) {
         var lock = $("#DifficultyLock");
 
@@ -298,7 +298,7 @@ function AddButtonEvents(button, name, isQuestTarget) {
     button.onmouseover = function(panel) {
         GameEvents.SendCustomGameEventToServer("selection_hero_hover", { "hero": name });
 
-        if (isQuestTarget) {
+        if (questComplete == false) {
              $.DispatchEvent("DOTAShowTextTooltip", panel, $.Localize("QuestAvailable"))
         }
 
@@ -308,7 +308,7 @@ function AddButtonEvents(button, name, isQuestTarget) {
     button.onmouseout = function(){
         GameEvents.SendCustomGameEventToServer("selection_hero_hover", { "hero": "null" });
 
-        if (isQuestTarget) {
+        if (questComplete == false) {
             $.DispatchEvent("DOTAHideTextTooltip");
         }
 
@@ -345,19 +345,21 @@ function AddBannedButtonEvents(button, name) {
 }
 
 function FindQuestHeroes(quests) {
-    var result = [];
+    var result = {};
 
     $.Each(quests, function(q) {
         var transform = function(s) {
             return "npc_dota_hero_" + s.toLowerCase();
         };
 
+        var complete = q.progress >= q.goal;
+
         if (q.hero) {
-            result.push(transform(q.hero));
+            result[transform(q.hero)] = complete;
         }
 
         if (q.secondaryHero) {
-            result.push(transform(q.secondaryHero));
+            result[transform(q.secondaryHero)] = complete;
         }
     })
 
@@ -375,7 +377,7 @@ function CreateHeroList(heroList, heroes, quests, selectedHeroes, achievements, 
 
     var heroesInRow = rows[0];
     var randomAdded = false;
-    var questHeroes = !!quests ? FindQuestHeroes(quests[Game.GetLocalPlayerID()] || []) : [];
+    var questHeroes = !!quests ? FindQuestHeroes(quests[Game.GetLocalPlayerID()] || []) : {};
     var localInfo = Game.GetPlayerInfo(Game.GetLocalPlayerID()) || {};
     var localTeam = localInfo.player_team_id || -1;
     var spectator = localTeam == -1;
@@ -456,15 +458,15 @@ function CreateHeroList(heroList, heroes, quests, selectedHeroes, achievements, 
                 } else if (banned) {
                     AddBannedButtonEvents(mainChild, hero);
                 } else {
-                    var isQuestTarget = questHeroes.indexOf(hero) !== -1;
+                    var questComplete = questHeroes[hero];
 
-                    if (isQuestTarget) {
+                    if (questComplete != undefined) {
                         button.children.push({
-                            class: "HeroButtonQuest"
+                            class: [ "HeroButtonQuest", questComplete ? "HeroButtonQuestComplete" : "HeroButtonQuestInProgress" ]
                         });
                     }
 
-                    AddButtonEvents(mainChild, hero, isQuestTarget);
+                    AddButtonEvents(mainChild, hero, questComplete);
                 }
             }
 
