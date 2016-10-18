@@ -464,18 +464,6 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "crystal_maiden_freezing_field"
 		"AbilityCooldown" "6.0"
-		"AbilityCastRange" "700"
-		
-		"TargetingIndicator"
-		{
-			"DisplayRange" "1"
-		}
-
-		"HoverIndicator"
-		{
-			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "700"
-		}
 
 		"precache"
 		{
