@@ -139,6 +139,10 @@ function PassRewardNotification(data) {
     $.Schedule(0.3, function() {
         var asset = Pass.UpdateRewardImage(data.level - 1, "#PassRewardImage", "#PassRewardHeroImage");
 
+        if (!asset) {
+            return;
+        }
+
         area.SetHasClass("RewardHidden", false);
         area.RemoveClass("RankOpenAnimationClass");
         area.AddClass("RankOpenAnimationClass");
@@ -163,11 +167,13 @@ function PassNotification(results) {
 
     if (results.experience || results.experience === 0) {
         Pass.UpdateExperience(results.experience, true);
-        Pass.UpdateRewardImage(Pass.GetExpAndLevel(results.experience).l, "#NextLevelRewardImage", "#NextLevelRewardHeroImage");
+        var asset = Pass.UpdateRewardImage(Pass.GetExpAndLevel(results.experience).l, "#NextLevelRewardImage", "#NextLevelRewardHeroImage");
+
+        $("#NextLevelReward").SetHasClass("Hidden", !asset);
 
         var to = Pass.GetExpAndLevel(results.experience + (results.earnedExperience || 0));
 
-        if (Pass.GetExpAndLevel(results.experience).l < to.l) {
+        if (Pass.GetExpAndLevel(results.experience).l < to.l && asset) {
             NotificationQueue.AddNotification("PassRewardNotification", PassRewardNotification, { level: to.l });
         }
     }

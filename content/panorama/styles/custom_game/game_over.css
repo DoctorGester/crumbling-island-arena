@@ -539,7 +539,7 @@
     animation-duration: 0.7s;
     animation-timing-function: ease-out;
     animation-iteration-count: 1;
-    animation-name: QuestComplete;
+    animation-name: QuestCompleteAnimation;
 }
 
 .LevelIncrease
@@ -636,7 +636,7 @@
     }
 }
 
-@keyframes 'QuestComplete'
+@keyframes 'QuestCompleteAnimation'
 {
 
     0%

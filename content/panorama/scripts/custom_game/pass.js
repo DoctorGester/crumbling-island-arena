@@ -160,6 +160,10 @@ var Pass = new (function(){
         var asset = CustomNetTables.GetTableValue("pass", "cosmetics")[(level + 1).toString()];
         var panel = $(rewardImage);
 
+        if (!asset) {
+            return;
+        }
+
         $(rewardHeroImage).heroname = "npc_dota_hero_" + asset.hero;
         panel.SetHasClass("RewardItemBorder", !!asset.item);
         panel.SetHasClass("RewardEmote", !!asset.emote);
@@ -198,7 +202,8 @@ var Pass = new (function(){
                 $("#LevelText").SetHasClass("LevelIncrease", false);
                 $("#LevelText").SetHasClass("LevelIncrease", true);
 
-                Pass.UpdateRewardImage(to.l, "#NextLevelRewardImage", "#NextLevelRewardHeroImage");
+                var asset = Pass.UpdateRewardImage(to.l, "#NextLevelRewardImage", "#NextLevelRewardHeroImage");
+                $("#NextLevelReward").SetHasClass("Hidden", !asset);
 
                 Pass.AnimateTo(label, 0, remaining, 2.0, textFunc, true);
                 barParent.SetHasClass("Animated", false);
