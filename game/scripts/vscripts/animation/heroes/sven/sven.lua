@@ -260,6 +260,18 @@ model:CreateSequence(
 
 model:CreateSequence(
 	{
+		name = "runN_anim_2",
+		sequences = {
+			{ "@runN" }
+		},
+		activities = {
+			{ name = "ACT_DOTA_CHANNEL_ABILITY_3", weight = 1 }
+		}
+	}
+)
+
+model:CreateSequence(
+	{
 		name = "attack_q",
 		sequences = {
 			{ "attack02_anim" }

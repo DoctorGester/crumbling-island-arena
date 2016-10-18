@@ -19,7 +19,7 @@ function modifier_sven_e:CheckState()
 end
 
 function modifier_sven_e:GetOverrideAnimation(params)
-    return ACT_DOTA_RUN
+    return ACT_DOTA_CHANNEL_ABILITY_3
 end
 
 function modifier_sven_e:GetOverrideAnimationWeight(params)
