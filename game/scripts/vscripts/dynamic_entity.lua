@@ -69,7 +69,9 @@ function DynamicEntity:Update()
         if self:GetPos().z <= -MAP_HEIGHT then
             self:Destroy()
 
-            SplashEffect(self:GetPos())
+            if self.SetHidden then
+                self:SetHidden(true)
+            end
         end
     end
 end
