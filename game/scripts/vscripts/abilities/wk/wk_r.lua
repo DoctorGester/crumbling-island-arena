@@ -5,6 +5,12 @@ function wk_r:OnAbilityPhaseStart()
 
     self:GetCaster().hero:EmitSound("Arena.WK.PreR")
 
+    if RandomInt(1, 100) == 1 then
+        self:GetCaster().hero:EmitSound("Arena.WK.CastR.Voice.Rare")
+    else
+        self:GetCaster().hero:EmitSound("Arena.WK.CastR.Voice")
+    end
+
     return true
 end
 
