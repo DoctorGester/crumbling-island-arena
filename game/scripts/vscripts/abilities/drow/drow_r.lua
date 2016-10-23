@@ -8,6 +8,10 @@ end
 function drow_r:OnChannelThink(interval)
     self.channelingTime = (self.channelingTime or 0) + interval
 
+    if interval == 0 then
+        self:GetCaster().hero:EmitSound("Arena.Drow.CastR.Voice")
+    end
+
     if not self.soundPlayed and self.channelingTime >= 0.45 then
         self:GetCaster().hero:EmitSound("Arena.Drow.PreR")
         self.soundPlayed = true
