@@ -1,7 +1,7 @@
 SECOND_STAGE_OBSTRUCTOR = "Layer2Obstructor"
 THIRD_STAGE_OBSTRUCTOR = "Layer3Obstructor"
 
-MAP_HEIGHT = 3500
+MAP_HEIGHT = 7000
 FINISHING_DISTANCE = 900
 
 local function bigTransformer(x, y)
@@ -226,6 +226,7 @@ function Level:Reset()
         part.launchedAt = 0
         part.regeneratesAt = nil
         part:SetRenderColor(255, 255, 255)
+        part:RemoveEffects(EF_NODRAW)
     end
 
     for _, particle in ipairs(self.particles) do
@@ -298,6 +299,7 @@ function Level:Update()
                     part.z = progress * MAP_HEIGHT - MAP_HEIGHT
                     part.angles = SplineVectors(part.regenerateFromAngles, Vector(0, 0, 0), progress)--part.angles - part.angleVel / 3
                     part:SetAngles(part.angles.x, part.angles.y, part.angles.z)
+                    part:RemoveEffects(EF_NODRAW)
                     self:UpdatePartPosition(part)
 
                     if time - part.regeneratesAt >= 1.5 then
@@ -401,7 +403,8 @@ function Level:Update()
         local part = self.shakingParts[i]
         
         if part.z <= -MAP_HEIGHT then
-            SplashEffect(part:GetAbsOrigin())
+            --SplashEffect(part:GetAbsOrigin())
+            part:AddEffects(EF_NODRAW)
 
             table.remove(self.shakingParts, i)
         end
