@@ -7,7 +7,7 @@ function invoker_q:OnSpellStart()
 
     local blank = not Spells.TestPoint(target)
     if blank then
-        realTarget = target - Vector(0, 0, MAP_HEIGHT)
+        realTarget = target - Vector(0, 0, MAP_HEIGHT / 2)
     end
 
     local particle = ParticleManager:CreateParticle("particles/invoker_q/invoker_q_preview.vpcf", PATTACH_ABSORIGIN, self:GetCaster())
@@ -21,7 +21,7 @@ function invoker_q:OnSpellStart()
         hero:EmitSound("Arena.Invoker.HitQ", realTarget)
 
         if blank then
-            realTarget = target - Vector(0, 0, MAP_HEIGHT)
+            realTarget = target - Vector(0, 0, MAP_HEIGHT / 2)
         else
             hero:AreaEffect({
                 filter = Filters.Area(target, 200),
