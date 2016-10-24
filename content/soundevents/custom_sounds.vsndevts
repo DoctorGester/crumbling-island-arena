@@ -2202,11 +2202,11 @@
                               "value0"        "sounds/vo/earth_spirit/earthspi_respawn_12.vsnd"
                         }
                     }
-                    "volume"            {   "value"     "1.00000"  }
+                    "volume"            {   "value"     "2.00000"  }
                     "pitch_rand_min"    {   "value"     "-0.05000"  }
                     "pitch_rand_max"    {   "value"     "0.050000"  }
                     "pitch"             {   "value"     "1.00000"  }
-                    "soundlevel"        {   "value"     "81.00000" }
+                    "soundlevel"        {   "value"     "95.00000" }
                     
                     "event_type"        {   "value"     "1.000000"  }
                 }
