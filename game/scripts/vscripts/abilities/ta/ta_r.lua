@@ -7,5 +7,6 @@ function ta_r:OnSpellStart()
 
     hero:AddNewModifier(hero, self, "modifier_ta_r_shield", { duration = 4 })
     hero:EmitSound("Arena.TA.CastR")
+    hero:EmitSound("Arena.TA.CastR.Voice")
     self:GetCaster():StartGesture(ACT_DOTA_CAST_REFRACTION)
 end
