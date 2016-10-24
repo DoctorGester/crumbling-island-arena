@@ -69,7 +69,8 @@ function earth_spirit_r:OnChannelFinish(interrupted)
         stand:Destroy()
     end
 
-    hero:EmitSound("Arena.Earth.FinishR")
+    hero:EmitSound("Arena.Earth.EndR")
+    hero:EmitSound("Arena.Earth.EndR.Voice")
     hero:AddNewModifier(hero, self, "modifier_earth_spirit_remnant", {})
     FreezeAnimation(hero.unit)
 
