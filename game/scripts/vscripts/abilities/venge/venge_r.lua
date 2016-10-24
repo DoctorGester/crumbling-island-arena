@@ -30,6 +30,7 @@ function venge_r:OnSpellStart()
 
     hero:RemoveModifier("modifier_venge_r_animation")
     hero:EmitSound("Arena.Venge.CastR")
+    hero:EmitSound("Arena.Venge.CastR.Voice")
     
     Vengeance(hero.round, hero, target, direction, self):Activate()
 end
