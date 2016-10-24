@@ -7,6 +7,7 @@ function invoker_r:OnSpellStart()
     local target = self:GetCursorPosition()
 
     hero:EmitSound("Arena.Invoker.CastR", target)
+    hero:EmitSound("Arena.Invoker.CastR.Voice")
 
     ArcProjectile(self.round, {
         owner = hero,
