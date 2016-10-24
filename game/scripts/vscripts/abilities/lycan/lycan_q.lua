@@ -19,6 +19,7 @@ function lycan_q:OnSpellStart()
     LycanWolf(hero.round, hero, target, -1):Activate()
 
     hero:EmitSound("Arena.Lycan.CastQ")
+    hero:EmitSound("Arena.Lycan.CastQ.Voice")
 end
 
 function lycan_q:GetCastAnimation()
