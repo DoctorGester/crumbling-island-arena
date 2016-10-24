@@ -137,10 +137,9 @@
 		"Ability3" "pa_e"
 		"Ability4" "pa_q_sub"
 		"Ability5" "pa_w_sub"
-		"Ability6" "pa_e_sub"
-		"Ability7" "placeholder_emote"
-		"Ability8" "placeholder_taunt"
-		"Ability9" "pa_r"
+		"Ability6" "placeholder_emote"
+		"Ability7" "placeholder_taunt"
+		"Ability8" "pa_r"
 
 		"Ultimate" "pa_r"
 		"CustomIcons"
