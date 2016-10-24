@@ -22,6 +22,8 @@ function earth_spirit_q:OnSpellStart()
 
     StartAnimation(unit, {duration=1, activity=ACT_DOTA_VICTORY, rate=10})
 
+    hero:EmitSound("Arena.Earth.CastQ.Voice")
+
     Timers:CreateTimer(0.7,
         function()
             FreezeAnimation(unit)

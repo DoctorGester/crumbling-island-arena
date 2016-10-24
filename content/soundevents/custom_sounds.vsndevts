@@ -1950,6 +1950,43 @@
     }
 }
 
+"Arena.Earth.CastQ.Voice"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/vo/earth_spirit/earthspi_stonecaller_05.vsnd"
+                              "value0"        "sounds/vo/earth_spirit/earthspi_stonecaller_07.vsnd"
+                              "value0"        "sounds/vo/earth_spirit/earthspi_stonecaller_10.vsnd"
+                              "value0"        "sounds/vo/earth_spirit/earthspi_stonecaller_11.vsnd"
+                              "value0"        "sounds/vo/earth_spirit/earthspi_stonecaller_12.vsnd"
+                              "value0"        "sounds/vo/earth_spirit/earthspi_stonecaller_15.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "2.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+                    
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
 "Arena.Earth.EndQ"
 {
 	"operator_stacks"
