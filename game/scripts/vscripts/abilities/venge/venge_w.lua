@@ -19,4 +19,5 @@ function venge_w:OnSpellStart()
     }):Activate()
 
     hero:EmitSound("Arena.Venge.CastW")
+    hero:EmitSound("Arena.Venge.CastW.Voice")
 end
