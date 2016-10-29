@@ -17,7 +17,9 @@ function zeus_e:OnSpellStart()
     GridNav:DestroyTreesAroundPoint(target, 128, true)
     hero:FindClearSpace(target, true)
 
-    if hero:WallIntersection(casterPos, target) then
+    for _, wall in pairs(hero.round.spells:FilterEntities(function(t)
+        return instanceof(t, EntityZeusW) and t.owner.team == hero.owner.team and t:IntersectsWith(casterPos, target)
+    end)) do
         hero:AreaEffect({
             filter = Filters.Line(casterPos, target, 64),
             filterProjectiles = true,
@@ -28,6 +30,8 @@ function zeus_e:OnSpellStart()
                 self:CreateLightning(self, pos + Vector(0, 0, 800), pos)
             end
         })
+
+        break
     end
 
     self:CreateLightning(self, Vector(casterPos.x, casterPos.y, casterPos.z + 64), Vector(target.x, target.y, target.z + 64))

@@ -23,7 +23,7 @@ function zeus_q:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_1
 end
 
-ZeusQProjectile = ZeusQProjectile or class({}, nil, DistanceCappedProjectile)
+_G["ZeusQProjectile"] = ZeusQProjectile or class({}, nil, DistanceCappedProjectile)
 
 function ZeusQProjectile:constructor(ability, ...)
     getbase(ZeusQProjectile).constructor(self, ...)
@@ -32,20 +32,14 @@ function ZeusQProjectile:constructor(ability, ...)
     self.empowered = false
 end
 
-function ZeusQProjectile:Update()
-    local prev = self:GetPos()
-    getbase(ZeusQProjectile).Update(self)
-    local pos = self:GetPos()
+function ZeusQProjectile:Empower()
+    self.distance = 3000
+    self.empowered = true
 
-    if not self.empowered and self.hero:WallIntersection(prev, pos) then
-        self.distance = 3000
-        self.empowered = true
-
-        self.hitModifier = { name = "modifier_stunned_lua", duration = 1.0, ability = self.ability }
-        self.hitSound = "Arena.Zeus.HitQ2"
-        self:EmitSound("Arena.Zeus.EmpowerQ")
-        self:SetGraphics("particles/zeus_q_emp/zeus_q_emp.vpcf")
-    end
+    self.hitModifier = { name = "modifier_stunned_lua", duration = 1.0, ability = self.ability }
+    self.hitSound = "Arena.Zeus.HitQ2"
+    self:EmitSound("Arena.Zeus.EmpowerQ")
+    self:SetGraphics("particles/zeus_q_emp/zeus_q_emp.vpcf")
 end
 
 function ZeusQProjectile:GetSpeed()

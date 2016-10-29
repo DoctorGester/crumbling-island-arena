@@ -113,7 +113,7 @@ function Projectile:CollidesWith(target)
         return self:hitCondition(target)
     end
 
-    return self.owner.team ~= target.owner.team
+    return self.owner.team ~= target.owner.team or target.specialAlly
 end
 
 function Projectile:CollideWith(target)
