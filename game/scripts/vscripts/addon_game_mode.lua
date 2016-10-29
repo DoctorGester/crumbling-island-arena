@@ -21,6 +21,7 @@ require('round')
 require('rune')
 require('deathmatch')
 require('quests')
+require('heroes/hero_util')
 
 require('spells')
 require('projectile')
@@ -808,6 +809,7 @@ function GameMode:OnRoundEnd(round)
         hero:SetUnit(unit)
         hero.owner = player
         hero:LoadWearables()
+        self.round:LoadHeroMixins(player.selectedHero, hero)
 
         if instanceof(hero, Jugger) then
             hero:AttachWearable(hero:GetSwordModel(0))
@@ -1177,7 +1179,8 @@ function GameMode:LoadCustomHeroes()
                 disabled = (data.Disabled and data.Disabled == "true" and not enableForDebug) or false,
                 initialCD = data.UltiCooldown,
                 endActivity = data.RoundEndActivity or "ACT_DOTA_LOADOUT",
-                endTranslation = data.RoundEndTranslation
+                endTranslation = data.RoundEndTranslation,
+                defaultMixin = data.DefaultMixin,
             }
 
             local abilities = {}

@@ -72,7 +72,7 @@ function LycanWolf:Update()
             if distance <= 250 then
                 self.attacking:Damage(self)
                 self:EmitSound("Arena.Lycan.HitQ2")
-                self.hero:MakeBleed(self.attacking)
+                LycanUtil.MakeBleed(self.hero, self.attacking)
             end
         end
 

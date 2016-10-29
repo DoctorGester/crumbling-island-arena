@@ -1,20 +1,18 @@
-Invoker = class({}, {}, Hero)
+Invoker = class({}, {}, Mixin)
 
-function Invoker:SetOwner(owner)
-    getbase(Invoker).SetOwner(self, owner)
-
+function Invoker:Init(hero)
     local function AttachOrb(path, attach)
         self.orbs = self.orbs or {}
 
-        local particle = ParticleManager:CreateParticle(path, PATTACH_POINT_FOLLOW, self:GetUnit())
-        ParticleManager:SetParticleControlEnt(particle, 1, self:GetUnit(), PATTACH_POINT_FOLLOW, attach, self:GetPos(), true)
+        local particle = ParticleManager:CreateParticle(path, PATTACH_POINT_FOLLOW, hero:GetUnit())
+        ParticleManager:SetParticleControlEnt(particle, 1, hero:GetUnit(), PATTACH_POINT_FOLLOW, attach, hero:GetPos(), true)
 
         table.insert(self.orbs, particle)
     end
 
     local orbPattern = "particles/units/heroes/hero_invoker/invoker_%s_orb.vpcf"
 
-    if self:IsAwardEnabled() then
+    if hero:IsAwardEnabled() then
         orbPattern = "particles/econ/items/invoker/invoker_apex/invoker_apex_%s_orb.vpcf"
     end
 
@@ -23,9 +21,7 @@ function Invoker:SetOwner(owner)
     end
 end
 
-function Invoker:OnDeath()
-    getbase(Invoker).OnDeath(self)
-
+function Invoker:Dispose()
     for _, orb in pairs(self.orbs or {}) do
         ParticleManager:DestroyParticle(orb, false)
         ParticleManager:ReleaseParticleIndex(orb)

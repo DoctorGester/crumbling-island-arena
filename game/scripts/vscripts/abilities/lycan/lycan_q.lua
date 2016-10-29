@@ -1,6 +1,8 @@
 lycan_q = class({})
 
 LinkLuaModifier("modifier_lycan_q", "abilities/lycan/modifier_lycan_q", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_lycan_instinct", "abilities/lycan/modifier_lycan_instinct", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_lycan_bleed", "abilities/lycan/modifier_lycan_bleed", LUA_MODIFIER_MOTION_NONE)
 
 require('abilities/lycan/lycan_wolf')
 
@@ -24,4 +26,8 @@ end
 
 function lycan_q:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_1
+end
+
+function lycan_q:GetIntrinsicModifierName()
+    return "modifier_lycan_instinct"
 end

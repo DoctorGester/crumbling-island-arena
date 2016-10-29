@@ -30,3 +30,7 @@ end
 function modifier_sven_e:GetOverrideAnimationRate(params)
     return 1.8
 end
+
+function modifier_sven_e:OnDamageReceived()
+    return false
+end

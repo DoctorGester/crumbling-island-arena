@@ -36,3 +36,11 @@ end
 function modifier_ursa_r:GetEffectAttachType()
     return PATTACH_ABSORIGIN_FOLLOW
 end
+
+function modifier_ursa_r:OnModifierAdded(source, ability, name)
+    return name == "modifier_ursa_e"
+end
+
+function modifier_ursa_r:OnDamageReceived()
+    return false
+end

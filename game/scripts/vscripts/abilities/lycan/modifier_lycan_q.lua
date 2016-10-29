@@ -28,7 +28,7 @@ end
 
 function modifier_lycan_q:GetModifierMoveSpeedOverride(params)
     if IsServer() then
-        if self:GetCaster().hero:IsTransformed() then
+        if LycanUtil.IsTransformed(self:GetCaster():GetParentEntity()) then
             return 1000
         end
     end

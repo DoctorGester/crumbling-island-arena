@@ -26,3 +26,7 @@ end
 function modifier_ember_e:Airborne()
     return true
 end
+
+function modifier_ember_e:IsInvulnerable()
+    return true
+end

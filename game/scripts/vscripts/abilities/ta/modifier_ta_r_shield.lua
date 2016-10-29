@@ -8,4 +8,11 @@ if IsServer() then
         ParticleManager:SetParticleControlEnt(index, 5, self:GetCaster(), PATTACH_ABSORIGIN_FOLLOW, "attach_hitloc", self:GetCaster():GetOrigin(), true)
         self:AddParticle(index, false, false, -1, false, false)
     end
+
+    function modifier_ta_r_shield:OnDamageReceived(source, hero)
+        hero:EmitSound("Arena.TA.HitR")
+        hero:AddNewModifier(hero, self:GetAbility(), "modifier_ta_r_heal", { duration = 3 })
+
+        return true
+    end
 end

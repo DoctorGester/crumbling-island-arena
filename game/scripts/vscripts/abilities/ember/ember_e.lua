@@ -12,7 +12,7 @@ function ember_e:OnSpellStart()
         forceFacing = true,
         hitParams = {
             action = function(target)
-                if hero:Burn(target, self) then
+                if EmberUtil.Burn(hero, target, self) then
                     target:Damage(hero)
                 end
             end

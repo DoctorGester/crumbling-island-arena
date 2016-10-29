@@ -39,20 +39,6 @@ function EmberRemnant:IsInvulnerable()
     return self.invulnerable or self:HasModifier("modifier_ember_e")
 end
 
-function EmberRemnant:IsBurning(target)
-    return target:HasModifier("modifier_ember_burning")
-end
-
-function EmberRemnant:Burn(target, ability)
-    if self:IsBurning(target) then
-        target:RemoveModifier("modifier_ember_burning")
-        return true
-    end
-
-    target:AddNewModifier(self, ability, "modifier_ember_burning", { duration = 2.0 })
-    return false
-end
-
 function EmberRemnant:Damage(source)
     if source.owner.team ~= self.hero.team then
         self.health = self.health - 1

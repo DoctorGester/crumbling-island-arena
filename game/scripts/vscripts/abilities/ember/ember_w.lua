@@ -15,7 +15,7 @@ function ember_w:OnSpellStart()
         hitModifier = { name = "modifier_ember_w", duration = 1.0, ability = self },
         hitSound = "Arena.Ember.HitW",
         hitFunction = function(projectile, target)
-            if hero:Burn(target, self) then
+            if EmberUtil.Burn(hero, target, self) then
                 target:AddNewModifier(hero, self, "modifier_stunned_lua", { duration = 1.0 })
             end
         end,

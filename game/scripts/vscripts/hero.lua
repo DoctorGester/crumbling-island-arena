@@ -15,6 +15,29 @@ function Hero:constructor(round)
     self.wearableParticles = {}
     self.mappedParticles = {}
     self.wearableSlots = {}
+    self.mixins = {}
+end
+
+function Hero:AddMixin(mixin)
+    mixin:Init(self)
+
+    self.mixins[mixin] = true
+end
+
+function Hero:RemoveMixin(mixin)
+    mixin:Dispose()
+    
+    self.mixins[mixin] = nil
+end
+
+function Hero:FindMixin(t)
+    for mixin, _ in pairs(self.mixins) do
+        if instanceof(mixin, t) then
+            return mixin
+        end
+    end
+
+    return nil
 end
 
 function Hero:SetUnit(unit)
@@ -232,7 +255,13 @@ function Hero:Damage(source)
     end
 end
 
-function Hero:OnDeath() end
+function Hero:OnDeath()
+    for mixin, _ in pairs(self.mixins) do
+        mixin:Dispose()
+    end
+
+    self.mixins = {}
+end
 
 function Hero:Heal()
     if self.unit:IsAlive() then

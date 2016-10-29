@@ -19,11 +19,11 @@ function lycan_w:OnSpellStart()
         sound = "Arena.Lycan.HitW",
         damage = true,
         action = function(target)
-            if hero:IsTransformed() and hero:IsBleeding(target) then
+            if LycanUtil.IsTransformed(hero) and LycanUtil.IsTransformed(target) then
                 target:AddNewModifier(hero, self, "modifier_lycan_w", { duration = 2.5 })
             end
 
-            hero:MakeBleed(target)
+            LycanUtil.MakeBleed(hero, target)
         end
     })
 

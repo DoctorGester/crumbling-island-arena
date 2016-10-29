@@ -24,7 +24,6 @@
 	"npc_dota_hero_zeus"
 	{
 		"override_hero"	"npc_dota_hero_zuus"
-		"Class" "heroes/zeus:Zeus"
 		"ArmorPhysical"	"0"
 		"MagicalResistance"	"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
@@ -346,7 +345,6 @@
 	"npc_dota_hero_legion_commander"
 	{
 		"override_hero"	"npc_dota_hero_legion_commander"
-		"Class" "heroes/lc:LC"
 		"ArmorPhysical"	"0"
 		"MagicalResistance"	"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
@@ -388,7 +386,6 @@
 	"npc_dota_hero_lycan"
 	{
 		"override_hero"	"npc_dota_hero_lycan"
-		"Class" "heroes/lycan:Lycan"
 		"ArmorPhysical"	"0"
 		"MagicalResistance"	"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
@@ -507,7 +504,6 @@
 	"npc_dota_hero_templar_assassin"
 	{
 		"override_hero"	"npc_dota_hero_templar_assassin"
-		"Class" "heroes/ta:TA"
 		"ArmorPhysical"	"0"
 		"MagicalResistance"	"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
@@ -771,7 +767,6 @@
 	"npc_dota_hero_ember_spirit"
 	{
 		"override_hero"	"npc_dota_hero_ember_spirit"
-		"Class" "heroes/ember:Ember"
 		"ArmorPhysical"	"0"
 		"MagicalResistance"	"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
@@ -935,7 +930,6 @@
 	"npc_dota_hero_ursa"
 	{
 		"override_hero"	"npc_dota_hero_ursa"
-		"Class" "heroes/ursa:Ursa"
 		"ArmorPhysical"	"0"
 		"MagicalResistance"	"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
@@ -1008,7 +1002,7 @@
 	"npc_dota_hero_invoker"
 	{
 		"override_hero"	"npc_dota_hero_invoker"
-		"Class" "heroes/invoker:Invoker"
+		"DefaultMixin" "heroes/invoker:Invoker"
 		"ArmorPhysical"	"0"
 		"MagicalResistance"	"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
@@ -1177,7 +1171,6 @@
 	"npc_dota_hero_tusk"
 	{
 		"override_hero"	"npc_dota_hero_tusk"
-		"Class" "heroes/tusk:Tusk"
 		"ArmorPhysical"	"0"
 		"MagicalResistance"	"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"

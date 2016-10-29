@@ -29,3 +29,7 @@ function modifier_tusk_e:CheckState()
 
     return state
 end
+
+function modifier_tusk_e:IsInvulnerable()
+    return true
+end

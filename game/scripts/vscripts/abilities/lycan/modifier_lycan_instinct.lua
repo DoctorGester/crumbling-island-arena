@@ -19,7 +19,7 @@ function modifier_lycan_instinct:OnIntervalThink()
             local angle = VectorToAngles(direction)
             local delta = RotationDelta(facing, angle).y
 
-            if hero:IsBleeding(target) and delta < 30 and delta > -30 then
+            if LycanUtil.IsBleeding(target) and delta < 30 and delta > -30 then
                 feelingBlood = true
                 break
             end

@@ -38,6 +38,7 @@ function Debug.OnCreateTestHero(eventSourceIndex, args)
     hero:SetUnit(CreateUnitByName(args.name, Vector(0, 0, 0), true, nil, nil, DOTA_TEAM_CUSTOM_2))
     hero:Setup()
     hero:SetOwner({ id = 2, hero = hero, team = DOTA_TEAM_CUSTOM_2, score = 0, IsConnected = function() return true end })
+    round:LoadHeroMixins(args.name, hero)
 
     local _, first = next(round.players)
     hero.unit:SetControllableByPlayer(first.id, true)

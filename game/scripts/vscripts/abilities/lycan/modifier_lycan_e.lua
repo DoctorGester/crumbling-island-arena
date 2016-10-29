@@ -2,7 +2,7 @@ modifier_lycan_e = class({})
 
 if IsServer() then
     function modifier_lycan_e:OnCreated()
-        self.bleedingOccured = self:GetCaster().hero:IsBleeding(self:GetParent().hero)
+        self.bleedingOccured = LycanUtil.IsBleeding(self:GetParent():GetParentEntity())
 
         local unit = self:GetParent()
 
@@ -25,7 +25,7 @@ function modifier_lycan_e:OnDestroy()
         local hero = self:GetCaster().hero
         local target = self:GetParent().hero
 
-        if hero:IsTransformed() then
+        if LycanUtil.IsTransformed(hero) then
             target:AddNewModifier(hero, self:GetAbility(), "modifier_lycan_e_silence", { duration = 1.7 })
         end
     end

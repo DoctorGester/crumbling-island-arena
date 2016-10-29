@@ -1,6 +1,7 @@
 lc_q = class({})
 
 LinkLuaModifier("modifier_lc_q", "abilities/lc/modifier_lc_q", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_lc_q_animation", "abilities/lc/modifier_lc_q_animation", LUA_MODIFIER_MOTION_NONE)
 
 function lc_q:OnAbilityPhaseStart()
     local hero = self:GetCaster().hero
@@ -36,4 +37,8 @@ end
 
 function lc_q:GetPlaybackRateOverride()
     return 2
+end
+
+function lc_q:GetIntrinsicModifierName()
+    return "modifier_lc_q_animation"
 end

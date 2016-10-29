@@ -99,6 +99,7 @@ function DeathMatch:CreateHeroForPlayer(player, heroName)
     hero:SetUnit(unit)
     hero:Setup()
     hero:SetOwner(player)
+    GameRules.GameMode.round:LoadHeroMixins(heroName, hero)
 
     local count = unit:GetAbilityCount() - 1
     for i = 0, count do

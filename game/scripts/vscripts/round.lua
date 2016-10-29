@@ -90,16 +90,30 @@ function Round:LoadHeroClass(name)
     local classValue = self.availableHeroes[name].class
 
     if classValue then
-        print("Loading class "..classValue)
-
         local path, className = classValue:match("([^:]+):([^:]+)")
+        print("Loading class "..classValue)
         require(path)
-        return assert(loadstring("return "..className.."()"))()
+
+        return _G[className]()
     else
         print("Falling back to default Hero class")
 
         return Hero()
     end
+end
+
+function Round:LoadHeroMixins(name, hero)
+    local defaultMixin = self.availableHeroes[name].defaultMixin
+
+    if defaultMixin then
+        local path, className = defaultMixin:match("([^:]+):([^:]+)")
+        print("Loading mixin "..defaultMixin)
+        require(path)
+
+        hero:AddMixin(_G[className]())
+    end
+
+    return hero
 end
 
 function Round:GetTeamInverted(team)
@@ -130,6 +144,8 @@ function Round:CreateHeroes(spawnPoints)
 
             hero:Setup()
             hero:SetOwner(player)
+
+            self:LoadHeroMixins(player.selectedHero, hero)
 
             local count = unit:GetAbilityCount() - 1
             for i = 0, count do

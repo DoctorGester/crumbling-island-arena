@@ -1,5 +1,6 @@
 ember_q = class({})
 LinkLuaModifier("modifier_ember_q", "abilities/ember/modifier_ember_q", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_ember_burning", "abilities/ember/modifier_ember_burning", LUA_MODIFIER_MOTION_NONE)
 
 function ember_q:OnSpellStart()
     local hero = self:GetCaster().hero
@@ -17,7 +18,7 @@ function ember_q:OnSpellStart()
         hitFunction = function(projectile, target)
             target:Damage(hero)
 
-            if hero:Burn(target, self) then
+            if EmberUtil.Burn(hero, target, self) then
                 target:AddNewModifier(hero, self, "modifier_ember_q", { duration = 2.5 })
             end
         end

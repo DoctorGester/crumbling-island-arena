@@ -36,7 +36,7 @@ function sven_w:OnSpellStart()
     local direction = self:GetDirection()
     local ability = self
 
-    if not hero:IsEnraged() then
+    if not SvenUtil.IsEnraged(hero) then
         self:Shout(direction:Normalized())
     else
         for i = 0, 8 do
