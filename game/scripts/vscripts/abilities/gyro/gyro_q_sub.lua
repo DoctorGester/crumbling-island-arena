@@ -50,6 +50,7 @@ function self:OnSpellStart()
         end
     }):Activate()
 
+    SoftKnockback(hero, (hero:GetPos() - target):Normalized(), 10, { decrease = 4 })
     hero:EmitSound("Arena.Gyro.CastQ.Sub")
 end
 
