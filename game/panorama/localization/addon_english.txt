@@ -43,6 +43,7 @@
 		"HeroName_npc_dota_hero_beastmaster"			"?????"
 		"HeroName_npc_dota_hero_antimage"				"Ea"
 		"HeroName_npc_dota_hero_phantom_lancer"			"Gemini"
+		"HeroName_npc_dota_hero_gyrocopter"				"The Turtle"
 		"HeroName_npc_dota_hero_rubick"					"Envy"
 
 		"Available_on_npc_dota_hero_drow_ranger"		"Available on April 23!"
@@ -236,6 +237,11 @@
 		"omniknight_DescW" "Melee stunning attack"
 		"omniknight_DescE" "Invulnerability"
 		"omniknight_DescR" "Give all allies damage resistance"
+
+		"gyrocopter_DescQ" "Three slowing attacks, hit all to damage"
+		"gyrocopter_DescW" "Gain a shield, spend it to fire a rocket"
+		"gyrocopter_DescE" "Global dash"
+		"gyrocopter_DescR" "Fire many projectiles with knockback"
 
 		"HeroBanned" "This hero is banned"
 		"PlayerHeader" "Players"
@@ -482,7 +488,7 @@
 		"AbilityTooltip_wk_q"							"Raise a squad of skeleton footmen<br/>Skeletons attack first enemy they encounter<br/>Every attack applies a stacking slow"
 		"AbilityTooltip_wk_w"							"Raise three skeleton archers who attack target area, slowing all enemies caught"
 		"AbilityTooltip_wk_e"							"Raise a wall of immortal zombies"
-		"AbilityTooltip_wk_r"							"Strike ground in a long wide line, stunning all enemies caught"
+		"AbilityTooltip_wk_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Strike ground in a long wide line, stunning all enemies caught"
 
 		"AbilityTooltip_ogre_q"							"Throw a concoction into a target area, applying concoction effect to all heroes"
 		"AbilityTooltip_ogre_w"							"Use a concoction onto yourself and nearby heroes"
@@ -580,6 +586,13 @@
 		"AbilityTooltip_omni_w"							"Stun enemies in front of you"
 		"AbilityTooltip_omni_e"							"Gain invulnerability for a short period of time"
 		"AbilityTooltip_omni_r"							"Give yourself and all allies around damage resistance buff"
+
+		"AbilityTooltip_gyro_q"							"Gain 3 additional attacks for 5 seconds"
+		"AbilityTooltip_gyro_q_sub"						"Fire a projectile with stacking slow<br/>Deals damage when 3 stacks are reached"
+		"AbilityTooltip_gyro_w"							"Gain a shield<br/>Reactivate to fire a stunning and damaging rocket"
+		"AbilityTooltip_gyro_w_sub"						"Fire a stunning and damaging rocket"
+		"AbilityTooltip_gyro_e"							"Global dash<br/>Goes on 5-second cooldown when damaged"
+		"AbilityTooltip_gyro_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Continiously launch knocking back projectiles"
 
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
@@ -727,6 +740,11 @@
 
 		"ModifierTooltip_modifier_omni_e"						"Invulnerable"
 		"ModifierTooltip_modifier_omni_r"						"Immune to damage"
+
+		"ModifierTooltip_modifier_gyro_q"						"Remaining attacks"
+		"ModifierTooltip_modifier_gyro_q_slow"					"Slowed"
+		"ModifierTooltip_modifier_gyro_w"						"Shielded"
+		"ModifierTooltip_modifier_gyro_e"						"Sky High"
 	}
 }
 

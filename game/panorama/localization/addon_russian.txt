@@ -40,6 +40,7 @@
 		"HeroName_npc_dota_hero_shadow_demon"			"Ведьма"
 		"HeroName_npc_dota_hero_antimage"				"Эа"
 		"HeroName_npc_dota_hero_phantom_lancer"			"Близнецы"
+		"HeroName_npc_dota_hero_gyrocopter"				"Черепаха"
 		"HeroName_npc_dota_hero_rubick"					"Зависть"
 
 		"Available_on_npc_dota_hero_lone_druid"			"Доступно с 4 июня!"
@@ -234,6 +235,11 @@
 		"omniknight_DescW" "Оглушающая атака перед собой"
 		"omniknight_DescE" "Неуязвимость"
 		"omniknight_DescR" "Дать всей команде неуязвимость к урону"
+
+		"gyrocopter_DescQ" "Три замедляющие атаки, попасть всеми = урон"
+		"gyrocopter_DescW" "Получить щит, потратить его и выпустить снаряд"
+		"gyrocopter_DescE" "Глобальное перемещение"
+		"gyrocopter_DescR" "Выпустить много отталкивающих снарядов"
 
 		"HeroBanned" "Этот герой забанен"
 		"PlayerHeader" "Игроки"
@@ -472,7 +478,7 @@
 		"AbilityTooltip_wk_q"							"Призвать отряд скелетов мечников<br/>Скелеты атакуют первого врага на пути<br/>Каждая атака накладывает замедление"
 		"AbilityTooltip_wk_w"							"Призвать трех скелетов-лучников, атакующих указанную область, замедляя противников при попадании"
 		"AbilityTooltip_wk_e"							"Призвать стену бессмертных зомби"
-		"AbilityTooltip_wk_r"							"Атаковать землю по длинной и широкой линии, оглушая противников на ней"
+		"AbilityTooltip_wk_r"							"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>Атаковать землю по длинной и широкой линии, оглушая противников на ней"
 
 		"AbilityTooltip_ogre_q"							"Бросить смесь в область, применяя её эффект на всех героев"
 		"AbilityTooltip_ogre_w"							"Использовать смесь на себя и героев поблизости"
@@ -570,6 +576,13 @@
 		"AbilityTooltip_omni_w"							"Оглушить врагов перед собой"
 		"AbilityTooltip_omni_e"							"Получить неуязвимость на короткий промежуток времени"
 		"AbilityTooltip_omni_r"							"Дать себе и союзникам вокруг защиту от урона"
+
+		"AbilityTooltip_gyro_q"							"Получить 3 атаки на 5 секунд"
+		"AbilityTooltip_gyro_q_sub"						"Запустить снаряд со стакающимся замедлением<br/>Нанесёт урон когда на враге будет 3 стака"
+		"AbilityTooltip_gyro_w"							"Получить щить<br/>Используй еще раз, чтобы запустить оглушающую и наносящую урон ракету"
+		"AbilityTooltip_gyro_w_sub"						"Запустить оглушающую и наносящую урон ракету"
+		"AbilityTooltip_gyro_e"							"Глобальное перемещение<br/>Уходит на 5-секундную перезарядку при получении урона"
+		"AbilityTooltip_gyro_r"							"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>Выпустить поток отталкивающих снарядов"
 
 		"ModifierTooltip_modifier_charges"						"Заряды способности"
 		"ModifierTooltip_modifier_stunned_lua"					"Оглушен"
@@ -717,6 +730,10 @@
 
 		"ModifierTooltip_modifier_omni_e"						"Неуязвим"
 		"ModifierTooltip_modifier_omni_r"						"Защищен от урона"
+
+		"ModifierTooltip_modifier_gyro_q"						"Оставшиеся атаки"
+		"ModifierTooltip_modifier_gyro_q_slow"					"Замедлен"
+		"ModifierTooltip_modifier_gyro_w"						"Защищен"
 	}
 }
 
