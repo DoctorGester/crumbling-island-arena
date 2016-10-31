@@ -39,7 +39,7 @@ function drow_r:OnChannelFinish(interrupted)
         hitSound = "Arena.Drow.HitR",
         hitFunction = function(projectile, target)
             target:Damage(projectile)
-            Knockback(target, self, direction, 600, 1500)
+            SoftKnockback(target, projectile.vel, 100, {})
 
             local pos = projectile:GetPos()
 

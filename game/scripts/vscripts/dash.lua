@@ -49,7 +49,7 @@ function Dash:constructor(hero, to, speed, params)
         local duration = nil
 
         if self.to and not params.noFixedDuration then
-            duration = (self.to - self.hero:GetPos()):Length2D() / speed
+            duration = (self.to - self.hero:GetPos()):Length2D() / speed * 1.3
         end
 
         self.modifierHandle
@@ -215,20 +215,62 @@ function FunctionDash:PositionFunction(current)
     return self.from + (self.to - self.from) * progress
 end
 
+SoftKnockback = SoftKnockback or class({}, nil, Dash)
+
+function SoftKnockback:constructor(hero, direction, force, params)
+    local multiplier = 1
+
+    for _, modifier in pairs(hero:AllModifiers()) do
+        if modifier.GetKnockbackMultiplier then
+            multiplier = multiplier * modifier:GetKnockbackMultiplier()
+        end
+    end
+
+    params.forceFacing = nil
+    params.modifier = nil
+
+    getbase(SoftKnockback).constructor(self, hero, nil, 0, params)
+
+    self.direction = direction
+    self.force = force * multiplier
+    self.decrease = params.decrease or 7
+
+    self.decrease = self.decrease * multiplier
+end
+
+function SoftKnockback:HasEnded()
+    return self.force <= 0
+end
+
+function SoftKnockback:PositionFunction(current)
+    return current + self.direction * self.force
+end
+
+function SoftKnockback:Update()
+    self.force = math.max(0, self.force - self.decrease)
+
+    getbase(SoftKnockback).Update(self)
+end
+
+function SoftKnockback:End(at, reachedDestination)
+    self:OnArrival(reachedDestination)
+    self.destroyed = true
+end
+
 -- Knockback utility method
 
 function Knockback(hero, ability, direction, distance, speed, heightFunction, modifier)
     hero.round.spells:InterruptDashes(hero)
 
-    local multipler = 1
+    local multiplier = 1
 
     for _, modifier in pairs(hero:AllModifiers()) do
         if modifier.GetKnockbackMultiplier then
-            multipler = multipler * modifier:GetKnockbackMultiplier()
+            multiplier = multiplier * modifier:GetKnockbackMultiplier()
         end
     end
 
-    Dash(hero, hero:GetPos() + direction:Normalized() * distance * multipler, speed, {
+    Dash(hero, hero:GetPos() + direction:Normalized() * distance * multiplier, speed, {
         modifier = { name = modifier or "modifier_knockback_lua", ability = ability, source = ability:GetCaster() },
         heightFunction = heightFunction,
         interruptedByStuns = false
