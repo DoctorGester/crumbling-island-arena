@@ -3262,4 +3262,100 @@
 			"Radius" "1200"
 		}
 	}
+
+	"gyro_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/gyro/gyro_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "gyrocopter_flak_cannon"
+		"AbilityCooldown" "4.0"
+	}
+
+	"gyro_q_sub"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/gyro/gyro_q_sub"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "gyrocopter_flak_cannon"
+		"AbilityCooldown" "0.08"
+		"AbilityCastPoint" "0.1"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "750"
+			"MaxLength" "750"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "750"
+		}
+	}
+
+	"gyro_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/gyro/gyro_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "gyrocopter_homing_missile"
+		"AbilityCooldown" "5.0"
+	}
+
+	"gyro_w_sub"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/gyro/gyro_w_sub"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "gyrocopter_homing_missile"
+		"AbilityCastPoint" "0.15"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "300 + GetRemainingModifierTime(unit, 'modifier_gyro_w') * 250"
+			"MaxLength" "300 + GetRemainingModifierTime(unit, 'modifier_gyro_w') * 250"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300 + GetRemainingModifierTime(unit, 'modifier_gyro_w') * 250"
+		}
+	}
+
+	"gyro_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/gyro/gyro_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "gyrocopter_call_down"
+		"AbilityCooldown" "8.0"
+	}
+
+	"gyro_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/gyro/gyro_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "gyrocopter_rocket_barrage"
+		"AbilityCooldown" "16.0"
+		"AbilityCastPoint" "0.15"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "1500"
+			"MaxLength" "1500"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1500"
+		}
+	}
 }

@@ -483,4 +483,12 @@
             "sounds/vo/phantom_lancer/plance_kill_08.vsnd"
         ]
     }
+
+    Round.gyrocopter = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/vo/gyrocopter/gyro_kill_01.vsnd"
+        ]
+    }
 }

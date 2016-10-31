@@ -539,7 +539,7 @@ function UpdateHeroSelectionButtons(data){
     var easy = FilterDifficulty(heroes, allHeroes, "easy");
     var hard = FilterDifficulty(heroes, allHeroes, "hard");
 
-    CreateHeroList($("#EasyHeroes"), easy, data.quests, data.selectedHeroes, data.achievements, [ 4, 6, 6, 6, 7 ] , 4);
+    CreateHeroList($("#EasyHeroes"), easy, data.quests, data.selectedHeroes, data.achievements, [ 5, 6, 6, 6, 7 ] , 4);
     CreateHeroList($("#HardHeroes"), hard, data.quests, data.selectedHeroes, data.achievements, [ 6, 4 ]);
 }
 

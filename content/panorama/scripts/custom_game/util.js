@@ -315,24 +315,26 @@ function EndsWith(str, suffix) {
     return str.indexOf(suffix, str.length - suffix.length) !== -1;
 }
 
-function HasModifier(unit, modifier) {
+function FindModifier(unit, modifier) {
     for (var i = 0; i < Entities.GetNumBuffs(unit); i++) {
         if (Buffs.GetName(unit, Entities.GetBuff(unit, i)) == modifier){
-            return true;
+            return Entities.GetBuff(unit, i);
         }
     }
+}
 
-    return false;
+function HasModifier(unit, modifier) {
+    return !!FindModifier(unit, modifier);
 }
 
 function GetStackCount(unit, modifier) {
-    for (var i = 0; i < Entities.GetNumBuffs(unit); i++) {
-        if (Buffs.GetName(unit, Entities.GetBuff(unit, i)) == modifier){
-            return Buffs.GetStackCount(unit, Entities.GetBuff(unit, i));
-        }
-    }
+    var m = FindModifier(unit, modifier);
+    return m ? Buffs.GetStackCount(unit, m) : 0;
+}
 
-    return 0;
+function GetRemainingModifierTime(unit, modifier) {
+    var m = FindModifier(unit, modifier);
+    return m ? Buffs.GetRemainingTime(unit, m) : 0;
 }
 
 function GetModifierCount(unit, modifier) {

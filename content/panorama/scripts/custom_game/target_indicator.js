@@ -344,6 +344,13 @@ function UpdateTargetIndicator(){
     var newHover = hoverAbility;
     var data = targetingIndicators[Abilities.GetAbilityName(active)];
 
+    // TODO fix this hack
+    if (hoverAbility == -1) {
+        if (HasModifier(unit, "modifier_gyro_w")) {
+            newHover = Entities.GetAbilityByName(unit, "gyro_w_sub");
+        }
+    }
+
     if (active != lastAbility) {
         lastAbility = active;
 
