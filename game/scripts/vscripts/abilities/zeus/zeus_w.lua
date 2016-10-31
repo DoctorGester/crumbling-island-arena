@@ -2,22 +2,19 @@ zeus_w = class({})
 LinkLuaModifier("modifier_zeus_w", "abilities/zeus/modifier_zeus_w", LUA_MODIFIER_MOTION_NONE)
 
 function zeus_w:OnSpellStart()
+    Wrappers.DirectionalAbility(self, 300, 300)
+
     local hero = self:GetCaster().hero
     local casterPos = hero:GetPos()
     local target = self:GetCursorPosition()
-    local direction = (target - casterPos):Normalized()
-
-    if direction:Length2D() == 0 then
-        direction = hero:GetFacing()
-    end
+    local direction = self:GetDirection()
 
     casterPos.z = 0
     direction.z = 0
 
-    local wallCenter = casterPos + direction * 300
     local offset = Vector(-direction.y, direction.x, 0)
-    local wallStart = wallCenter + offset * 250
-    local wallEnd = wallCenter - offset * 250
+    local wallStart = target + offset * 250
+    local wallEnd = target - offset * 250
 
     wallStart.z =  GetGroundHeight(wallStart, nil) + 32
     wallEnd.z = GetGroundHeight(wallEnd, nil) + 32
