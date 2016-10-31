@@ -21,7 +21,7 @@ function self:OnSpellStart()
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 128),
         to = target + Vector(0, 0, 128),
-        speed = 1250,
+        speed = 1500,
         graphics = "particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_guided_missile.vpcf",
         distance = 750,
         hitSound = "Arena.Gyro.HitQ.Sub",
