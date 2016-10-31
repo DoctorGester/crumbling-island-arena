@@ -232,6 +232,13 @@
                 "length" "0.8"
             }
         }
+
+        "3"
+        {
+            "type" "elite"
+            "set" "wartorn_heavens"
+            "season" "4"
+        }
     }
 
     "templar_assassin"

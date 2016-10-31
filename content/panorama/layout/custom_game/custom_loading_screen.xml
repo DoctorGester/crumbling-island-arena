@@ -26,6 +26,11 @@
                 <Image class="RewardImage" src="file://{images}/loadingscreens/flightless_fury_loading_screen/loadingscreen.vtex" scaling="stretch-to-fit-y-preserve-aspect"/>
             </Panel>
         </snippet>
+        <snippet name="reward4">
+            <Panel>
+                <Image class="RewardImage" src="file://{images}/loadingscreens/zeus_lord_of_heaven_zeus_lord_of_heaven_loading_screen/loadingscreen.vtex" scaling="stretch-to-fit-y-preserve-aspect"/>
+            </Panel>
+        </snippet>
     </snippets>
     <Panel style="width:100%;height:100%;overflow:clip;background-color:black;" hittest="false">
         <Image src="file://{images}/custom_game/loadscreen.png" hittest="false"/>
