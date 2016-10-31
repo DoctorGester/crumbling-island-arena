@@ -38,7 +38,7 @@
 		"HeroName_npc_dota_hero_medusa"					"Greed"
 		"HeroName_npc_dota_hero_omniknight"				"Enoch"
 		"HeroName_npc_dota_hero_axe"					"?????"
-		"HeroName_npc_dota_hero_shadow_demon"			"Love"
+		"HeroName_npc_dota_hero_shadow_demon"			"The Witch"
 		"HeroName_npc_dota_hero_faceless_void"			"Eyes of Heaven"
 		"HeroName_npc_dota_hero_beastmaster"			"?????"
 		"HeroName_npc_dota_hero_antimage"				"Ea"
