@@ -39,6 +39,7 @@
 		"HeroName_npc_dota_hero_omniknight"				"Энох"
 		"HeroName_npc_dota_hero_antimage"				"Эа"
 		"HeroName_npc_dota_hero_phantom_lancer"			"Близнецы"
+		"HeroName_npc_dota_hero_rubick"					"Зависть"
 
 		"Available_on_npc_dota_hero_lone_druid"			"Доступно с 4 июня!"
 		"Available_on_npc_dota_hero_drow_ranger"		"Доступено с 23 апреля!"
