@@ -591,7 +591,7 @@
 		"AbilityTooltip_gyro_q_sub"						"Fire a projectile with stacking slow<br/>Deals damage when 3 stacks are reached"
 		"AbilityTooltip_gyro_w"							"Gain a shield<br/>Reactivate to fire a stunning and damaging rocket"
 		"AbilityTooltip_gyro_w_sub"						"Fire a stunning and damaging rocket"
-		"AbilityTooltip_gyro_e"							"Global dash<br/>Goes on 5-second cooldown when damaged"
+		"AbilityTooltip_gyro_e"							"Global dash<br/>Goes on a 3-second cooldown when damaged"
 		"AbilityTooltip_gyro_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Continiously launch knocking back projectiles"
 
 		"ModifierTooltip_modifier_charges"						"Ability charges"
