@@ -222,7 +222,7 @@ function ShowHeroDetails(heroName) {
     ShowHeroCosmetics(heroName);
     $("#HeroCosmetics").visible = !notAvailable;
     $("#HeroAbilities").visible = !notAvailable;
-    $("#HeroName").text = $.Localize("#HeroName_" + heroData.name);
+    $("#HeroName").text = $.Localize("#HeroName_" + heroData.name).toUpperCase();
 
     $("#HeroAbilities").SetHasClass("NotAvailableHero", notAvailable);
     $("#HeroName").SetHasClass("NotAvailableHero", notAvailable);
