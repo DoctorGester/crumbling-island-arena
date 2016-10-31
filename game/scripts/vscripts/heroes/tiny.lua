@@ -1,20 +1,18 @@
 Tiny = class({}, {}, Hero)
 
-function Tiny:Damage(...)
-    getbase(Tiny).Damage(self, ...)
+function Tiny:OnDeath(...)
+    getbase(Tiny).OnDeath(self, ...)
 
-    if not self:Alive() then
-        for _, part in pairs(self.wearables) do
-            part:RemoveSelf()
-        end
-
-        self.wearables = {}
-
-        local index = ParticleManager:CreateParticle("particles/units/heroes/hero_tiny/tiny01_death.vpcf", PATTACH_CUSTOMORIGIN, nil)
-        ParticleManager:SetParticleControl(index, 0, self:GetPos())
-        ParticleManager:SetParticleControlForward(index, 0, self:GetFacing())
-        ParticleManager:ReleaseParticleIndex(index)
+    for _, part in pairs(self.wearables) do
+        part:RemoveSelf()
     end
+
+    self.wearables = {}
+
+    local index = ParticleManager:CreateParticle("particles/units/heroes/hero_tiny/tiny01_death.vpcf", PATTACH_CUSTOMORIGIN, nil)
+    ParticleManager:SetParticleControl(index, 0, self:GetPos())
+    ParticleManager:SetParticleControlForward(index, 0, self:GetFacing())
+    ParticleManager:ReleaseParticleIndex(index)
 end
 
 function Tiny:HasModelChanged()
