@@ -93,8 +93,8 @@ function WearableOwner:AttachVisuals(wearable, visuals)
             elseif t == "particle" then
                 self.mappedParticles[visual.asset] = visual.modifier
             elseif t == "activity" then
-                CustomNetTables:SetTableValue("wearables", "activity_"..tostring(self:GetUnit():GetEntityIndex()), { activity = visual.modifier })
-                self:AddNewModifier(self, nil, "modifier_wearable_visuals_activity", {})
+                CustomNetTables:SetTableValue("wearables", "activity_"..tostring(wearable:GetEntityIndex()), { activity = visual.modifier })
+                self:AddNewModifier(wearable, nil, "modifier_wearable_visuals_activity", {})
             else
                 print("Unknown modifier type", t, "with mod", visual.modifier)
             end
@@ -285,6 +285,7 @@ end
 function WearableOwner:Remove()
     for _, part in pairs(self.wearables) do
         CustomNetTables:SetTableValue("wearables", tostring(part:GetEntityIndex()), nil)
+        CustomNetTables:SetTableValue("wearables", "activity_"..tostring(part:GetEntityIndex()), nil)
         part:RemoveSelf()
     end
 
@@ -292,8 +293,6 @@ function WearableOwner:Remove()
         ParticleManager:DestroyParticle(particle, false)
         ParticleManager:ReleaseParticleIndex(particle)
     end
-
-    CustomNetTables:SetTableValue("wearables", "activity_"..tostring(self:GetUnit():GetEntityIndex()), nil)
 
     self.wearables = {}
     self.wearableParticles = {}

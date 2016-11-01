@@ -82,7 +82,7 @@ function modifier_wearable_visuals_activity:DeclareFunctions()
 end
 
 function modifier_wearable_visuals_activity:GetActivityTranslationModifiers()
-    local activity = self.activity or CustomNetTables:GetTableValue("wearables", "activity_"..tostring(self:GetParent():GetEntityIndex())).activity
+    local activity = self.activity or CustomNetTables:GetTableValue("wearables", "activity_"..tostring(self:GetCaster():GetEntityIndex())).activity
     self.activity = activity
 
     return activity
@@ -94,4 +94,8 @@ end
 
 function modifier_wearable_visuals_activity:IsPurgable()
     return false
+end
+
+function modifier_wearable_visuals_activity:GetAttributes()
+    return MODIFIER_ATTRIBUTE_MULTIPLE
 end
