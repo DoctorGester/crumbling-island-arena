@@ -1,24 +1,14 @@
 PA = class({}, {}, Hero)
 
-function PA:SetUnit(unit)
-    getbase(PA).SetUnit(self, unit)
-
-    for _, part in pairs({ "cape", "daggers", "helmet", "shoulders" }) do
-        self:AttachWearable("models/heroes/phantom_assassin/phantom_assassin_"..part..".vmdl")
-    end
-
-    self.weaponModel = self:AttachWearable("models/heroes/phantom_assassin/phantom_assassin_weapon.vmdl")
-end
-
 function PA:GetSpeedMultiplier()
     return self:HasModifier("modifier_pa_r") and 2 or 1
 end
 
 function PA:SetWeaponVisible(visible)
     if visible then
-        self.weaponModel:RemoveEffects(EF_NODRAW)
+        self:GetWearableBySlot("weapon"):RemoveEffects(EF_NODRAW)
     else
-        self.weaponModel:AddEffects(EF_NODRAW)
+        self:GetWearableBySlot("weapon"):AddEffects(EF_NODRAW)
     end
 end
 
