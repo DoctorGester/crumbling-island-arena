@@ -930,7 +930,7 @@ function GameMode:OnEntityKilled(event)
         PlayerResource:SetOverrideSelectionEntity(entity.hero.owner.id, nil)
 
         if entity:GetAbsOrigin().z <= -MAP_HEIGHT then
-            local lastKnockbackCaster = entity.hero.lastKnockbackCaster
+            local lastKnockbackCaster = entity.hero.lastKnockbackSource
             lastKnockbackCaster = lastKnockbackCaster or self.level:FindReasonForFalling(entity.hero)
 
             self:RecordKill(entity.hero, lastKnockbackCaster or entity.hero, true)

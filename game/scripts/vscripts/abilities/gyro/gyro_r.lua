@@ -49,11 +49,11 @@ if IsServer() then
                     })
 
                     ScreenShake(projectile:GetPos(), 5, 150, 0.25, 1500, 0, true)
-                    SoftKnockback(victim, projectile.vel, 50, {})
+                    SoftKnockback(victim, hero, projectile.vel, 50, {})
                 end
             }):Activate()
 
-            SoftKnockback(hero, (hero:GetPos() - target):Normalized(), 10, { decrease = 4 })
+            SoftKnockback(hero, hero, (hero:GetPos() - target):Normalized(), 10, { decrease = 4 })
             hero:EmitSound("Arena.Gyro.FireR")
         end
     end

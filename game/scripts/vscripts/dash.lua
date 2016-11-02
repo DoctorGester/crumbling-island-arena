@@ -217,7 +217,7 @@ end
 
 SoftKnockback = SoftKnockback or class({}, nil, Dash)
 
-function SoftKnockback:constructor(hero, direction, force, params)
+function SoftKnockback:constructor(hero, source, direction, force, params)
     local multiplier = 1
 
     for _, modifier in pairs(hero:AllModifiers()) do
@@ -236,6 +236,8 @@ function SoftKnockback:constructor(hero, direction, force, params)
     self.decrease = params.decrease or 7
 
     self.decrease = self.decrease * multiplier
+
+    hero:AddKnockbackSource(source)
 end
 
 function SoftKnockback:HasEnded()
@@ -275,4 +277,6 @@ function Knockback(hero, ability, direction, distance, speed, heightFunction, mo
         heightFunction = heightFunction,
         interruptedByStuns = false
     })
+
+    hero:AddKnockbackSource(ability:GetCaster():GetParentEntity())
 end

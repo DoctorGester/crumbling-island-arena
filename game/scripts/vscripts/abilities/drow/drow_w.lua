@@ -26,7 +26,7 @@ function drow_w:OnSpellStart()
         end,
         hitFunction = function(projectile, target)
             local delta = 1 - math.min(1, (target:GetPos() - startPos):Length2D() / 1000)
-            SoftKnockback(target, projectile.vel, 50 + 50 * delta, {})
+            SoftKnockback(target, hero, projectile.vel, 50 + 50 * delta, {})
         end
     }):Activate()
 

@@ -40,7 +40,7 @@ function self:OnSpellStart()
             cp0 = { ent = projectile, point = "attach_hitloc" }
         })
 
-        SoftKnockback(hero, (hero:GetPos() - target):Normalized(), 30, { decrease = 4 })
+        SoftKnockback(hero, hero, (hero:GetPos() - target):Normalized(), 30, { decrease = 4 })
 
         hero:EmitSound("Arena.Gyro.CastW.Sub")
     end

@@ -16,6 +16,8 @@ function Hero:constructor(round)
     self.mappedParticles = {}
     self.wearableSlots = {}
     self.mixins = {}
+    self.lastKnockbackSource = nil
+    self.lastKnockbackTimer = 0
 end
 
 function Hero:AddMixin(mixin)
@@ -320,14 +322,9 @@ function Hero:CanFall()
     return not airborne
 end
 
-function Hero:MakeFall()
-    getbase(Hero).MakeFall(self)
-
-    local modifier = self:FindModifier("modifier_knockback_lua")
-
-    if modifier then
-        self.lastKnockbackCaster = modifier:GetCaster().hero
-    end
+function Hero:AddKnockbackSource(source)
+    self.lastKnockbackSource = source
+    self.lastKnockbackTimer = 45
 end
 
 function Hero:AddNewModifier(source, ability, name, params)
@@ -348,6 +345,14 @@ end
 
 function Hero:Update()
     getbase(Hero).Update(self)
+
+    if not self.falling then
+        if self.lastKnockbackTimer > 0 then
+            self.lastKnockbackTimer = self.lastKnockbackTimer - 1
+        else
+            self.lastKnockbackSource = nil
+        end
+    end
 
     if self.owner and self.unit and self.owner:IsConnected() and PlayerResource:GetPlayer(self.owner.id) then
         local assigned = PlayerResource:GetPlayer(self.owner.id):GetAssignedHero()
