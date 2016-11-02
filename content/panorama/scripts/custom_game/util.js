@@ -226,6 +226,8 @@ function AggregateNetTables(keys, callback) {
     }
 
     aggregator();
+
+    return aggregator;
 }
 
 function SubscribeToNetTableKey(table, key, loadNow, callback){

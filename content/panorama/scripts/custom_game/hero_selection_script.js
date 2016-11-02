@@ -6,6 +6,8 @@ var hidingCurrentPreview = null;
 var playerConnectionStates = {};
 var heroPreviews = {};
 var heroAwards = {};
+var showAllHeroes = false;
+var heroSelectionAggregator = undefined;
 
 var previewLoadingQueue = [];
 
@@ -367,7 +369,7 @@ function FindQuestHeroes(quests) {
     return result;
 }
 
-function CreateHeroList(heroList, heroes, quests, selectedHeroes, achievements, rows, randomButtonRow){
+function CreateHeroList(heroList, heroes, quests, selectedHeroes, achievements, newPlayer, rows, randomButtonRow){
     var structure = [];
 
     if (!heroes) {
@@ -406,11 +408,14 @@ function CreateHeroList(heroList, heroes, quests, selectedHeroes, achievements, 
             var hero = heroes[j];
             var notAvailable = !!allHeroes[hero].disabled;
             var banned = !!allHeroes[hero].banned;
+            var hide = (!allHeroes[hero].forNewPlayers && questHeroes[hero] == undefined) && newPlayer;
 
             var button = {
                 class: [
                     "HeroButtonContainer",
-                    eliteHeroes.indexOf(hero) !== -1 ? "HeroButtonElite" : null
+                    newPlayer ? "NewPlayer" : null,
+                    eliteHeroes.indexOf(hero) !== -1 ? "HeroButtonElite" : null,
+                    hide ? "Hidden" : null
                 ]
             };
 
@@ -524,6 +529,11 @@ function FilterDifficulty(heroes, data, difficulty) {
     });
 }
 
+function ShowAllHeroes() {
+    showAllHeroes = true;
+    heroSelectionAggregator();
+}
+
 function UpdateHeroSelectionButtons(data){
     allHeroes = data.heroes;
 
@@ -540,8 +550,25 @@ function UpdateHeroSelectionButtons(data){
     var easy = FilterDifficulty(heroes, allHeroes, "easy");
     var hard = FilterDifficulty(heroes, allHeroes, "hard");
 
-    CreateHeroList($("#EasyHeroes"), easy, data.quests, data.selectedHeroes, data.achievements, [ 5, 6, 6, 6, 7 ] , 4);
-    CreateHeroList($("#HardHeroes"), hard, data.quests, data.selectedHeroes, data.achievements, [ 6, 5 ]);
+    var players = (data.players || {}).players || {};
+    var localPlayer = {};
+
+    for (var key in players) {
+        var player = players[key];
+
+        if (player.id == Game.GetLocalPlayerID()) {
+            localPlayer = player;
+            break;
+        }
+    }
+
+    var newPlayer = ((localPlayer.gamesPlayed || 6) <= 5) && !showAllHeroes;
+
+    $("#HeroList").SetHasClass("NewPlayer", newPlayer);
+    $("#ShowAllHeroesButton").SetHasClass("NewPlayer", newPlayer);
+
+    CreateHeroList($("#EasyHeroes"), easy, data.quests, data.selectedHeroes, data.achievements, newPlayer, [ 5, 6, 6, 6, 7 ] , 4);
+    CreateHeroList($("#HardHeroes"), hard, data.quests, data.selectedHeroes, data.achievements, newPlayer, [ 6, 5 ]);
 }
 
 function PlayersUpdated(data){
@@ -740,11 +767,12 @@ DelayStateInit(GAME_STATE_HERO_SELECTION, function () {
     GameEvents.Subscribe("selection_hero_hover_client", SelectionHoverClient);
     GameEvents.Subscribe("timer_tick", OnTimerTick);
 
-    AggregateNetTables([
+    heroSelectionAggregator = AggregateNetTables([
         { table: "main", key: "heroes" },
         { table: "main", key: "selectedHeroes" },
         { table: "pass", key: "quests"},
-        { table: "ranks", key: "achievements" }
+        { table: "ranks", key: "achievements" },
+        { table: "main", key: "players" }
     ], UpdateHeroSelectionButtons)
 
     //SubscribeToNetTableKey("main", "heroes", true, HeroesUpdated);

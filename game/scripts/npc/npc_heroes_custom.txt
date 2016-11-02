@@ -46,6 +46,7 @@
 		"DisableWearables" "1"
 		"RoundEndActivity" "ACT_DOTA_CAPTURE"
 		"Difficulty" "easy"
+		"ForNewPlayers" "1"
 		
 		"Ability1" "zeus_q"
 		"Ability2" "zeus_w"
@@ -253,6 +254,7 @@
 		"VoiceFile"	""
 		"DisableWearables" "1"
 		"Difficulty" "easy"
+		"ForNewPlayers" "1"
 		"Order" "5"
 		
 		"Ability1" "sven_q"
@@ -289,6 +291,7 @@
 		"VoiceFile"	""
 		"DisableWearables" "1"
 		"Difficulty" "easy"
+		"ForNewPlayers" "1"
 		"Order" "6"
 		
 		"Ability1" "sniper_q"
@@ -602,6 +605,7 @@
 		"VoiceFile"	""
 		"DisableWearables" "1"
 		"Difficulty" "easy"
+		"ForNewPlayers" "1"
 		"Order" "14"
 		
 		"Ability1" "venge_q"
@@ -638,6 +642,7 @@
 		"GameSoundsFile" ""
 		"VoiceFile"	""
 		"Difficulty" "easy"
+		"ForNewPlayers" "1"
 		"Order" "15"
 		
 		"Ability1" "drow_q"
@@ -753,6 +758,7 @@
 		"VoiceFile"	""
 		"DisableWearables" "1"
 		"Difficulty" "easy"
+		"ForNewPlayers" "1"
 		"Order" "18"
 		
 		"Ability1" "shaker_q"
@@ -791,6 +797,7 @@
 		"DrawParticlesWhileHidden" "1"
 		"RoundEndActivity" "ACT_DOTA_VICTORY"
 		"Difficulty" "easy"
+		"ForNewPlayers" "1"
 		"Order" "19"
 		
 		"Ability1" "ember_q"
@@ -916,6 +923,7 @@
 		"VoiceFile"	""
 		"DisableWearables" "1"
 		"Difficulty" "easy"
+		"ForNewPlayers" "1"
 		"Order" "22"
 
 		"Ability1" "pudge_q"
@@ -1025,6 +1033,7 @@
 		"VoiceFile"	""
 		"Difficulty" "easy"
 		"DisableWearables" "1"
+		"ForNewPlayers" "1"
 		"Order" "25"
 
 		"Ability1" "invoker_q"

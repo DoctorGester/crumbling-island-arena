@@ -948,6 +948,7 @@ function GameMode:UpdatePlayerTable()
         playerData.team = player.team
         playerData.color = self.TeamColors[player.team]
         playerData.score = player.score
+        playerData.gamesPlayed = self.gamesPlayed and self.gamesPlayed[i] or nil
 
         table.insert(players, playerData)
     end
@@ -971,7 +972,8 @@ function GameMode:UpdateAvailableHeroesTable()
             disabled = data.disabled,
             name = name,
             abilities = data.abilities,
-            banned = data.banned
+            banned = data.banned,
+            forNewPlayers = data.forNewPlayers
         }
 
         table.insert(heroes, hero)
@@ -1183,7 +1185,8 @@ function GameMode:LoadCustomHeroes()
                 defaultMixin = data.DefaultMixin,
                 removeWearablesOnDeath = data.RemoveWearablesOnDeath,
                 removeWearablesDelay = data.RemoveWearablesDelay,
-                hideOnDeathDelay = data.HideOnDeathDelay
+                hideOnDeathDelay = data.HideOnDeathDelay,
+                forNewPlayers = data.ForNewPlayers
             }
 
             local abilities = {}
@@ -1264,6 +1267,11 @@ function GameMode:OnGameInProgress()
     Stats.SubmitMatchInfo(self.Players, self.gameSetup:GetSelectedMode(), GAME_VERSION,
         function(data)
             self.currentSeason = data.currentSeason
+
+            if data.gamesPlayed then
+                self.gamesPlayed = self:ParseSteamId64Table(data.gamesPlayed)
+                self:UpdatePlayerTable()
+            end
 
             if data.achievements then
                 self:OnAchievementsReceived(data.achievements)

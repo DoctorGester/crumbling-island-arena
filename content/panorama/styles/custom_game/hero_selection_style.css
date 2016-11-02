@@ -294,6 +294,12 @@
     flow-children: down;
 }
 
+#HeroList.NewPlayer
+{
+    align: center center;
+    margin: 0;
+}
+
 .NotAvailableHeroButton
 {
     saturation: 0;
@@ -397,6 +403,55 @@
     margin: 6px;
     box-shadow: #000000ff -2px -2px 4px 4px;
     border-radius: 50%;
+}
+
+.NewPlayer.HeroButtonContainer 
+{
+    width: 90px;
+    height: 90px;
+}
+
+#ShowAllHeroesButton
+{
+    min-width: 280px;
+    height: 54px;
+    background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+    background-size: 378px 60px;   
+    padding: 4px 12px 4px 12px;
+    margin: 8px;
+    border-radius: 3px;
+    background-color: #0065AD66;
+    visibility: collapse;
+    align: center center;
+}
+
+#ShowAllHeroesButton Label
+{
+    align: center center;
+    text-transform: uppercase;
+    color: #DDD;
+    font-size: 26px;
+    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+}
+
+#ShowAllHeroesButton:active
+{
+    sound: "UI.Click";
+}
+
+#ShowAllHeroesButton:active Label
+{
+    transform: translateY(1px);
+}
+
+#ShowAllHeroesButton:hover
+{
+    background-color: #345288;
+}
+
+#ShowAllHeroesButton.NewPlayer
+{
+    visibility: visible;
 }
 
 .HeroButtonDesaturated
