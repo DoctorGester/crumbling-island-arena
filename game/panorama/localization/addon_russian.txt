@@ -247,6 +247,7 @@
 		"ScoreHeader" "счет"
 		"HeroListHeader" "выбери героя"
 		"RandomHero" "случайный выбор"
+		"ShowAllHeroes" "показать всех"
 		"LockedHeroes" "Недоступны первые 3 раунда"
 		"RankAward" "Награда за 1 ранг ({d:season} сезон)"
 		"GameGoal" "Цель"

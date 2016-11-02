@@ -249,6 +249,7 @@
 		"ScoreHeader" "score"
 		"HeroListHeader" "select your hero"
 		"RandomHero" "random hero"
+		"ShowAllHeroes" "show all heroes"
 		"LockedHeroes" "Not available for the first 3 rounds"
 		"RankAward" "Rank 1 reward (Season {d:season})"
 		"GameGoal" "Goal"

@@ -46,7 +46,7 @@
                     <Panel id="EasyHeroes" class="HeroButtons" hittest="false"/>
                     <Panel id="HardHeroes" class="HeroButtons" hittest="false"/>
                 </Panel>
-                <Button id="ShowAllHeroesButton" onactivate="ShowAllHeroes()"><Label text="Show all heroes"></Label></Button>
+                <Button id="ShowAllHeroesButton" onactivate="ShowAllHeroes()"><Label text="#ShowAllHeroes"></Label></Button>
                 <Label id="TimerText" hittest="false"></Label>
             </Panel>
 
