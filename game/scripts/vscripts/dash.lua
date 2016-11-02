@@ -257,6 +257,7 @@ function SoftKnockback:Update()
 end
 
 function SoftKnockback:End(at, reachedDestination)
+    self.hero:FindClearSpace(self.hero:GetPos(), true)
     self:OnArrival(reachedDestination)
     self.destroyed = true
 end
