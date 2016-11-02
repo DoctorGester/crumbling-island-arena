@@ -222,7 +222,16 @@ function Hero:Damage(source)
         return
     end
 
-    for _, modifier in pairs(self:AllModifiers()) do
+    local all = self:AllModifiers()
+
+    table.sort(all, function(a, b)
+        local ap = a.OnDamageReceivedPriority and a:OnDamageReceivedPriority() or 0
+        local bp = b.OnDamageReceivedPriority and b:OnDamageReceivedPriority() or 0
+
+        return ap > bp
+    end)
+
+    for _, modifier in pairs(all) do
         if modifier.OnDamageReceived then
             local result = modifier:OnDamageReceived(source, self)
 

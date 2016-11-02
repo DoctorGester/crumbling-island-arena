@@ -23,6 +23,10 @@ if IsServer() then
 
         return false
     end
+
+    function self:OnDamageReceivedPriority()
+        return 1
+    end
 end
 
 function self:GetEffectName()
