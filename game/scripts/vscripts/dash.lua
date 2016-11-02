@@ -237,7 +237,9 @@ function SoftKnockback:constructor(hero, source, direction, force, params)
 
     self.decrease = self.decrease * multiplier
 
-    hero:AddKnockbackSource(source)
+    if instanceof(hero, Hero) then
+        hero:AddKnockbackSource(source)
+    end
 end
 
 function SoftKnockback:HasEnded()
@@ -278,5 +280,7 @@ function Knockback(hero, ability, direction, distance, speed, heightFunction, mo
         interruptedByStuns = false
     })
 
-    hero:AddKnockbackSource(ability:GetCaster():GetParentEntity())
+    if instanceof(hero, Hero) then
+        hero:AddKnockbackSource(ability:GetCaster():GetParentEntity())
+    end
 end
