@@ -69,8 +69,6 @@ function Projectile:FindClearSpace(position, force)
     self:GetUnit():SetNeverMoveToClearSpace(false)
     FindClearSpaceForUnit(self.unit, position, force)
     self:GetUnit():SetNeverMoveToClearSpace(true)
-
-    self.skipSetPosition = 5
 end
 
 function Projectile:Update()

@@ -28,8 +28,8 @@ function venge_e:OnSpellStart()
             pos.z = heroPos.z
             heroPos.z = z
 
-            hero:SetPos(heroPos)
-            target:SetPos(pos)
+            hero:FindClearSpace(heroPos, true)
+            target:FindClearSpace(pos, true)
             
             target:EmitSound("Arena.Venge.HitE")
 
