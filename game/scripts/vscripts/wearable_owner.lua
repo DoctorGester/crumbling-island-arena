@@ -282,20 +282,28 @@ function WearableOwner:AttachWearable(modelPath)
     return wearable
 end
 
-function WearableOwner:Remove()
+function WearableOwner:CleanParticles()
+    for _, particle in pairs(self.wearableParticles) do
+        ParticleManager:DestroyParticle(particle, false)
+        ParticleManager:ReleaseParticleIndex(particle)
+    end
+
+    self.wearableParticles = {}
+end
+
+function WearableOwner:CleanWearables()
     for _, part in pairs(self.wearables) do
         CustomNetTables:SetTableValue("wearables", tostring(part:GetEntityIndex()), nil)
         CustomNetTables:SetTableValue("wearables", "activity_"..tostring(part:GetEntityIndex()), nil)
         part:RemoveSelf()
     end
 
-    for _, particle in pairs(self.wearableParticles) do
-        ParticleManager:DestroyParticle(particle, false)
-        ParticleManager:ReleaseParticleIndex(particle)
-    end
-
     self.wearables = {}
-    self.wearableParticles = {}
+end
+
+function WearableOwner:Remove()
+    self:CleanWearables()
+    self:CleanParticles()
 
     getbase(WearableOwner).Remove(self)
 end

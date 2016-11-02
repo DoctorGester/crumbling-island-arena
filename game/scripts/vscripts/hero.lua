@@ -2,7 +2,7 @@ if not Hero then
     Hero = class({}, nil, WearableOwner)
 end
 
-function Hero:constructor(round)
+function Hero:constructor(data)
     DynamicEntity.constructor(self, round) -- Intended
 
     self.protected = false
@@ -18,6 +18,9 @@ function Hero:constructor(round)
     self.mixins = {}
     self.lastKnockbackSource = nil
     self.lastKnockbackTimer = 0
+    self.data = data
+    self.wearableRemoveTimer = 0
+    self.hideOnDeathTimer = 0
 end
 
 function Hero:AddMixin(mixin)
@@ -272,6 +275,18 @@ function Hero:OnDeath()
     end
 
     self.mixins = {}
+
+    if self.data and self.data.removeWearablesOnDeath then
+        self.wearableRemoveTimer = 1
+
+        if self.data.removeWearablesDelay then
+            self.wearableRemoveTimer = math.floor(self.data.removeWearablesDelay * 30)
+        end
+    end
+
+    if self.data and self.data.hideOnDeathDelay then
+        self.hideOnDeathTimer = math.floor(self.data.hideOnDeathDelay * 30)
+    end
 end
 
 function Hero:Heal()
@@ -354,6 +369,24 @@ end
 
 function Hero:Update()
     getbase(Hero).Update(self)
+
+    if self.wearableRemoveTimer > 0 then
+        self.wearableRemoveTimer = self.wearableRemoveTimer - 1
+
+        if self.wearableRemoveTimer == 0 then
+            self:CleanParticles()
+            self:CleanWearables()
+        end
+    end
+
+    if self.hideOnDeathTimer > 0 then
+        self.hideOnDeathTimer = self.hideOnDeathTimer - 1
+
+        if self.hideOnDeathTimer == 0 then
+            self:CleanParticles()
+            self:SetHidden(true)
+        end
+    end
 
     if not self.falling then
         if self.lastKnockbackTimer > 0 then

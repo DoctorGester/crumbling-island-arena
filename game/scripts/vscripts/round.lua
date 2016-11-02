@@ -94,11 +94,11 @@ function Round:LoadHeroClass(name)
         print("Loading class "..classValue)
         require(path)
 
-        return _G[className]()
+        return _G[className](self.availableHeroes[name])
     else
         print("Falling back to default Hero class")
 
-        return Hero()
+        return Hero(self.availableHeroes[name])
     end
 end
 

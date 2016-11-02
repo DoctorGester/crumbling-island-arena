@@ -1181,6 +1181,9 @@ function GameMode:LoadCustomHeroes()
                 endActivity = data.RoundEndActivity or "ACT_DOTA_LOADOUT",
                 endTranslation = data.RoundEndTranslation,
                 defaultMixin = data.DefaultMixin,
+                removeWearablesOnDeath = data.RemoveWearablesOnDeath,
+                removeWearablesDelay = data.RemoveWearablesDelay,
+                hideOnDeathDelay = data.HideOnDeathDelay
             }
 
             local abilities = {}

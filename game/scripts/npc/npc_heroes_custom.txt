@@ -214,6 +214,7 @@
 		"VoiceFile"	""
 		"DisableWearables" "1"
 		"RoundEndTranslation" "impatient_maiden"
+		"RemoveWearablesOnDeath" "1"
 		"Difficulty" "hard"
 		"Order" "4"
 		
@@ -562,6 +563,7 @@
 		"GameSoundsFile" ""
 		"VoiceFile"	""
 		"DisableWearables" "1"
+		"RemoveWearablesOnDeath" "1"
 		"RoundEndActivity" "ACT_DOTA_IDLE"
 		"Difficulty" "easy"
 		"Order" "13"
@@ -1535,6 +1537,8 @@
 		"GameSoundsFile" ""
 		"VoiceFile"	""
 		"DisableWearables" "1"
+		"RemoveWearablesOnDeath" "1"
+		"RemoveWearablesDelay" "0.4"
 		"Difficulty" "easy"
 		"Disabled" "false"
 		"Order" "38"
@@ -1579,6 +1583,7 @@
 		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Disabled" "false"
+		"HideOnDeathDelay" "3.0"
 		"Order" "39"
 
 		"Ability1" "gyro_q"
