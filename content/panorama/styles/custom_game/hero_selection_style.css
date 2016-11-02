@@ -335,30 +335,6 @@
     height: 18px;
 }
 
-#DifficultyLock
-{
-    background-color: #4d5860EF;
-    border-radius: 3px;
-    height: 109px;
-}
-
-#DifficultyLock Panel
-{
-    align: center center;
-    opacity-mask: url("file://{images}/custom_game/lock.png");
-    width: 48px;
-    height: 48px;
-    background-color: #aaaaaa;
-}
-
-#DifficultyLock Label
-{
-    color: #aaaaaa;
-    align: center bottom;
-    font-size: 16px;
-    margin-bottom: 20px;
-}
-
 #DifficultyList
 {
     width: 100%;

@@ -118,7 +118,6 @@
 #DeathMatchHeroes
 {
     width: 800px;
-    height: 550px;
     background-color: #000000EE;
     border-radius: 3px;
     horizontal-align: center;
@@ -167,28 +166,9 @@
 {
     flow-children: down;
     width: 480px;
-    height: 100%;
     padding: 30px;
     align: center top;
     overflow: clip scroll;
-}
-
-#DeathMatchHardHeroesLock
-{
-    width: 100%;
-    height: 100%;
-    border: 1px solid yellow;
-    border-radius: 3px;
-    background-color: #33333399;
-}
-
-#DeathMatchHardHeroesLock Panel
-{
-    align: center center;
-    opacity-mask: url("file://{images}/custom_game/lock.png");
-    width: 48px;
-    height: 48px;
-    background-color: gradient(linear, 0% 0%, 0% 100%, from(yellow), to(#DD4A29));
 }
 
 #DeathMatchHeroesContentHardContainer
@@ -196,14 +176,6 @@
     margin-top: 2px;
     width: 100%;
     height: fill-parent-flow(1.0);
-}
-
-#DeathMatchHeroesContentHard
-{
-    width: 100%;
-    height: 100%;
-    padding-top: 2px;
-    padding-bottom: 2px;
 }
 
 .DeathMatchHeroList

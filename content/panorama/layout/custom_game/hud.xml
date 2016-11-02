@@ -108,12 +108,7 @@
                     </Panel>
                     <Panel id="DeathMatchHeroesContent">
                         <Panel id="DeathMatchHeroesContentEasy" class="DeathMatchHeroList"/>
-                        <Panel id="DeathMatchHeroesContentHardContainer">
-                            <Panel id="DeathMatchHeroesContentHard" class="DeathMatchHeroList"/>
-                            <Panel id="DeathMatchHardHeroesLock" acceptsinput="true">
-                                <Panel/>
-                            </Panel>
-                        </Panel>
+                        <Panel id="DeathMatchHeroesContentHard" class="DeathMatchHeroList"/>
                     </Panel>
                 </Panel>
             </Panel>

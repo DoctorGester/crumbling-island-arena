@@ -4,19 +4,12 @@ function DeathMatch:constructor(players, availableHeroes)
     self.respawnListener = CustomGameEventManager:RegisterListener("dm_respawn", function(id, ...) self["OnRespawn"](self, ...) end)
     self.randomListener = CustomGameEventManager:RegisterListener("dm_random", function(id, ...) self["OnRandom"](self, ...) end)
 
-    self.deathMatchLockTime = IsInToolsMode() and 10 or 180
     self.players = players
     self.availableHeroes = availableHeroes
     self.removalQueue = {}
 end
 
 function DeathMatch:Update()
-    self.deathMatchLockTime = self.deathMatchLockTime - 1
-
-    if self.deathMatchLockTime == 0 then
-        GameRules.GameMode:UpdatePlayerTable()
-    end
-
     local time = GameRules:GetGameTime()
 
     for hero, timeQueued in pairs(self.removalQueue) do
@@ -31,7 +24,7 @@ end
 function DeathMatch:IsHeroAvailable(hero)
     local heroData = self.availableHeroes[hero]
 
-    return (not self:AreHardHeroesLocked() or heroData.difficulty ~= "hard") and not heroData.disabled
+    return not heroData.disabled
 end
 
 function DeathMatch:OnRespawn(args)
@@ -51,13 +44,6 @@ function DeathMatch:EnqueueRemove(hero)
     self.removalQueue[hero] = GameRules:GetGameTime()
 end
 
-function DeathMatch:AreHardHeroesLocked()
-    if self.deathMatchLockTime == nil then
-        return true
-    end
-
-    return self.deathMatchLockTime > 0
-end
 
 function DeathMatch:FindPlaceToRespawn()
     local maxDistance = -1
@@ -245,8 +231,7 @@ function DeathMatch:Activate(GameMode, inst)
         CustomNetTables:SetTableValue("main", "players", {
             players = players,
             goal = self.gameGoal,
-            isDeathMatch = self:IsDeathMatch(),
-            deathMatchHeroesLocked = self.deathmatch:AreHardHeroesLocked()
+            isDeathMatch = self:IsDeathMatch()
         })
     end
 end

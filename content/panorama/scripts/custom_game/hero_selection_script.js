@@ -19,38 +19,6 @@ var seasonAwards = {
     4: "npc_dota_hero_zuus"
 };
 
-function CreateDifficultyLock() {
-    // Dis gon be ugly
-    var lockedHeroes = $("#HardHeroes");
-    var background = $("#HeroSelectionBackground");
-    var relation = 1080 / background.actuallayoutheight;
-
-    var lock = $.CreatePanel("Panel", $("#HeroSelectionBackground"), "DifficultyLock");
-    var startY = (lockedHeroes.GetPositionWithinWindow().y - 3) * relation;
-
-    var widestRow = _(lockedHeroes.Children()).max(function(row) { return row.actuallayoutwidth });
-
-    var startX = (widestRow.GetPositionWithinWindow().x - 3) * relation;
-
-    if (startX == Infinity || startY == Infinity) {
-        $.Schedule(0.01, CreateDifficultyLock);
-        lock.DeleteAsync(0);
-        return;
-    }
-
-    lock.style.x = startX + "px";
-    lock.style.y = startY + "px";
-    lock.style.height = ((lockedHeroes.actuallayoutheight + 6) * relation) + "px";
-    lock.style.width = ((widestRow.actuallayoutwidth + 6) * relation) + "px";
-
-    var image = $.CreatePanel("Panel", lock, "");
-    var text = $.CreatePanel("Label", lock, "");
-    
-    text.text = $.Localize("LockedHeroes");
-
-    $("#HeroSelectionBackground").MoveChildBefore(lock, $("#PauseOverlay"));
-}
-
 function PreloadPreview(hero, value, insertFirst) {
     var preview = $.CreatePanel("Panel", $("#LeftSideHeroes"), "");
     preview.AddClass("HeroPreview");
@@ -694,16 +662,6 @@ function AchievementsUpdated(achievements) {
 function GameInfoChanged(gameInfo) {
     if (!gameInfo) {
         return;
-    }
-
-    var lock = $("#DifficultyLock");
-    if (gameInfo.hardHeroesLocked == 1) {
-        if (!lock)
-            CreateDifficultyLock();
-    } else {
-        if (lock) {
-            lock.DeleteAsync(0);
-        }
     }
 }
 

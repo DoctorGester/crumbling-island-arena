@@ -867,11 +867,6 @@ function GameMode:OnRoundEnd(round)
         if self.winner then
             self:EndGame()
         else
-            if self.roundNumber == 4 then
-                self.heroSelection.HardHeroesLocked = false
-                self:UpdateGameInfo()
-            end
-
             self:SetState(STATE_HERO_SELECTION)
             self.heroSelection:Start(function() self:OnHeroSelectionEnd() end)
             
@@ -952,8 +947,6 @@ function GameMode:UpdatePlayerTable()
 
         table.insert(players, playerData)
     end
-
-    local deathMatchHeroesLocked = nil
 
     CustomNetTables:SetTableValue("main", "players", {
         players = players,
@@ -1071,7 +1064,6 @@ function GameMode:UpdateGameInfo()
 
     CustomNetTables:SetTableValue("main", "gameInfo", {
         goal = self.gameGoal,
-        hardHeroesLocked = self.heroSelection.HardHeroesLocked,
         winner = self.winner,
         roundNumber = self.roundNumber,
         statistics = self.generalStatistics.stats,

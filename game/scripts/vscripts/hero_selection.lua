@@ -8,7 +8,6 @@ function HeroSelection:constructor(players, availableHeroes, teamColors, chat, r
     self.Players = players
     self.TeamColors = teamColors
     self.AvailableHeroes = availableHeroes
-    self.HardHeroesLocked = not ranked
     self.PreviousRandomed = {}
     self.Chat = chat
     self.AllowSameHeroPicks = allowSameHeroPicks
@@ -30,10 +29,6 @@ function HeroSelection:CanBeSelectedBy(hero, who)
     local entry = self.AvailableHeroes[hero]
 
     if entry and (entry.disabled or entry.banned) then
-        return false
-    end
-
-    if self.HardHeroesLocked and entry and entry.difficulty == "hard" then
         return false
     end
 
