@@ -61,11 +61,12 @@ end
 
 function ProjectileTinkerW:GetNextPosition(pos)
     local function PortalFilter(p)
-        return instanceof(p, EntityTinkerE) and p:Alive() and not p:Arrived(self) and p.link and p.link:Alive()
+        return instanceof(p, EntityTinkerE) and p:Alive() and p.link and p.link:Alive() and p.primary
     end
 
     local tpos = self.target:GetPos()
     local distance = (pos - tpos):Length2D()
+    local closestPos = nil
 
     for _, portal in pairs(self.round.spells:FilterEntities(PortalFilter)) do
         local firstPortal = portal
@@ -84,10 +85,12 @@ function ProjectileTinkerW:GetNextPosition(pos)
         end
 
         if closest and fdistance + sdistance < distance then
-            tpos = closest:GetPos()
+            closestPos = closest:GetPos()
             distance = fdistance + sdistance
         end
     end
+
+    tpos = closestPos or tpos
 
     local v = self.speed * ((tpos - pos) * Vector(1, 1, 0)):Normalized()
     self.vel = 0.98 * self.vel + 0.02 * v
