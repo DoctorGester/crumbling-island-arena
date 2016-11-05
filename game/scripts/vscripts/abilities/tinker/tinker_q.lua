@@ -9,37 +9,36 @@ function tinker_q:OnSpellStart()
     local target = self:GetCursorPosition()
     local height = Vector(0, 0, 200)
 
-    local interPortal = hero:GetFirstPortal()
-    local nextPortal = hero:GetSecondPortal()
-    local intersection = false
+    local function PortalFilter(ent)
+        return instanceof(ent, EntityTinkerE) and ent:Alive() and ent.link and ent.link:Alive()
+    end
 
-    if interPortal and nextPortal then
-        intersection = self:GetPortalIntersection(hero:GetFirstPortal(), from, target)
+    local portals = hero.round.spells:FilterEntities(PortalFilter)
 
-        if intersection then
-            local secondIntersection = self:GetPortalIntersection(hero:GetSecondPortal(), from, target)
+    local min = math.huge
+    local closest = nil
+    local closestPoint = nil
 
-            if secondIntersection and (intersection - from):Length2D() > (secondIntersection - from):Length2D() then
-                intersection = nil
-            end
-        end
+    for _, portal in pairs(portals) do
+        local closestPointFound = ClosestPointToSegment(from, target, portal:GetPos())
+        local dist = portal:GetPos() - closestPointFound
 
-        if not intersection then
-            intersection = self:GetPortalIntersection(hero:GetSecondPortal(), from, target)
-            nextPortal = hero:GetFirstPortal()
-            interPortal = hero:GetSecondPortal()
+        if dist:Length2D() <= portal.size + 96 and dist:Length2D() < min then
+            min = distance
+            closest = portal
+            closestPoint = closestPointFound
         end
     end
 
-    if intersection then
+    if closest then
         local effect = ImmediateEffect("particles/units/heroes/hero_tinker/tinker_laser.vpcf", PATTACH_ABSORIGIN, hero)
         ParticleManager:SetParticleControlEnt(effect, 9, hero:GetUnit(), PATTACH_POINT_FOLLOW, "ArbitraryChain8_plc8", hero:GetPos(), true)
-        ParticleManager:SetParticleControl(effect, 1, intersection + height)
+        ParticleManager:SetParticleControl(effect, 1, closestPoint + height)
 
-        local diff = interPortal:GetPos() - intersection
-        local portalStart = nextPortal:GetPos() + diff
-        local remaining = 700 - (intersection - from):Length2D()
-        local dir = (intersection - from):Normalized()
+        local diff = closest:GetPos() - closestPoint
+        local portalStart = closest.link:GetPos() + diff
+        local remaining = 700 - (closestPoint - from):Length2D()
+        local dir = (closestPoint - from):Normalized()
         local portalEnd = portalStart + remaining * dir
 
         effect = ImmediateEffect("particles/units/heroes/hero_tinker/tinker_laser.vpcf", PATTACH_ABSORIGIN, hero)
@@ -47,13 +46,7 @@ function tinker_q:OnSpellStart()
         ParticleManager:SetParticleControl(effect, 1, portalEnd + height / 2)
 
         hero:AreaEffect({
-            filter = Filters.Line(from, intersection, 64),
-            damage = true,
-            sound = "Arena.Tinker.HitQ"
-        })
-
-        hero:AreaEffect({
-            filter = Filters.Line(portalStart, portalEnd, 64),
+            filter = Filters.Line(from, closestPoint, 64)..Filters.Line(portalStart, portalEnd, 64),
             damage = true,
             sound = "Arena.Tinker.HitQ"
         })
@@ -70,19 +63,6 @@ function tinker_q:OnSpellStart()
     end
 
     hero:EmitSound("Arena.Tinker.CastQ")
-end
-
-function tinker_q:GetPortalIntersection(portal, from, to)
-    if not portal then
-        return false
-    end
-
-    local closest = ClosestPointToSegment(from, to, portal:GetPos())
-    local dist = portal:GetPos() - closest
-
-    if dist:Length2D() <= portal.size + 96 then
-        return closest
-    end
 end
 
 function tinker_q:GetCastAnimation()

@@ -60,13 +60,17 @@ function ProjectileTinkerW:Update()
 end
 
 function ProjectileTinkerW:GetNextPosition(pos)
-    local firstPortal = self.hero:GetFirstPortal()
-    local secondPortal = self.hero:GetSecondPortal()
+    local function PortalFilter(p)
+        return instanceof(p, EntityTinkerE) and p:Alive() and not p:Arrived(self) and p.link and p.link:Alive()
+    end
 
     local tpos = self.target:GetPos()
     local distance = (pos - tpos):Length2D()
 
-    if firstPortal and secondPortal then
+    for _, portal in pairs(self.round.spells:FilterEntities(PortalFilter)) do
+        local firstPortal = portal
+        local secondPortal = portal.link
+
         local fdistance = (firstPortal:GetPos() - pos):Length2D()
         local sdistance = (secondPortal:GetPos() - pos):Length2D()
         local closest = nil
@@ -81,6 +85,7 @@ function ProjectileTinkerW:GetNextPosition(pos)
 
         if closest and fdistance + sdistance < distance then
             tpos = closest:GetPos()
+            distance = fdistance + sdistance
         end
     end
 

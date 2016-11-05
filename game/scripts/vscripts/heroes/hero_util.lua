@@ -40,3 +40,109 @@ SvenUtil = {}
 function SvenUtil.IsEnraged(hero)
     return hero:FindModifier("modifier_sven_r")
 end
+
+TinkerUtil = {}
+
+function TinkerUtil.PortalAbility(ability, isPrimary, swapTo, startEffect, effect, warpEffect)
+    local function FindPortal(hero, primary)
+        return hero.round.spells:FilterEntities(function(ent)
+            return instanceof(ent, EntityTinkerE) and ent.primary == primary and ent:Alive() and ent.hero == hero
+        end)[1]
+    end
+
+    function ability:RemoveParticle()
+        if self.preParticle then
+            ParticleManager:DestroyParticle(self.preParticle, false)
+            ParticleManager:ReleaseParticleIndex(self.preParticle)
+        end
+    end
+
+    function ability:OnAbilityPhaseStart()
+        self:RemoveParticle()
+
+        self.preParticle = ParticleManager:CreateParticle(startEffect, PATTACH_WORLDORIGIN, self:GetCaster())
+        ParticleManager:SetParticleControl(self.preParticle, 0, self:GetCursorPosition())
+
+        self:GetCaster():EmitSound("Arena.Tinker.PreE")
+        return true
+    end
+
+    function ability:OnAbilityPhaseInterrupted()
+        self:RemoveParticle()
+    end
+
+    function ability:CastFilterResultLocation(location)
+        if not IsServer() then return UF_SUCCESS end
+
+        if not Spells.TestPoint(location) then
+            return UF_FAIL_CUSTOM
+        end
+
+        local portal = FindPortal(self:GetCaster().hero, not isPrimary)
+
+        if not portal then
+            return UF_SUCCESS
+        end
+
+        local pos = portal:GetPos()
+        if (pos - location):Length2D() <= 300 then
+            return UF_FAIL_CUSTOM
+        end
+
+        return UF_SUCCESS
+    end
+
+    function ability:GetCustomCastErrorLocation(location)
+        if not Spells.TestPoint(location) then
+            return "#dota_hud_error_tinker_portal_outside"
+        end
+
+        local result = self:CastFilterResultLocation(location)
+
+        if result == UF_FAIL_CUSTOM then
+            return "#dota_hud_error_tinker_portal_too_close"
+        end
+
+        return ""
+    end
+
+    function ability:OnSpellStart()
+        local hero = self:GetCaster().hero
+        local target = self:GetCursorPosition()
+        local first = FindPortal(self:GetCaster().hero, isPrimary)
+
+        self:RemoveParticle()
+
+        hero:EmitSound("Arena.Tinker.CastE")
+
+        if first then
+            first:Destroy()
+        end
+
+        local portal = EntityTinkerE(
+            hero.round,
+            hero,
+            target,
+            effect,
+            warpEffect,
+            isPrimary
+        ):Activate()
+
+        local second = FindPortal(self:GetCaster().hero, not isPrimary)
+
+        if second then
+            second:LinkTo(portal)
+            portal:LinkTo(second)
+        end
+
+        hero:SwapAbilities(self:GetName(), swapTo)
+    end
+
+    function ability:GetCastAnimation()
+        return ACT_DOTA_CAST_ABILITY_3
+    end
+
+    function ability:GetPlaybackRateOverride()
+        return 2.0
+    end
+end

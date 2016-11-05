@@ -1,6 +1,6 @@
 EntityTinkerE = EntityTinkerE or class({}, nil, DynamicEntity)
 
-function EntityTinkerE:constructor(round, owner, position, effect, warpEffect)
+function EntityTinkerE:constructor(round, owner, position, effect, warpEffect, primary)
     getbase(EntityTinkerE).constructor(self, round, nil, position, owner:GetUnit():GetTeamNumber())
 
     self.hero = owner
@@ -19,6 +19,7 @@ function EntityTinkerE:constructor(round, owner, position, effect, warpEffect)
     self:SetPos(position)
 
     self.arrived = {}
+    self.primary = primary
 end
 
 function EntityTinkerE:CollidesWith(target)
