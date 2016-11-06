@@ -148,8 +148,8 @@ function Hero:LoadWearables()
     self:LoadItems(unpack(result))
 end
 
-function Hero:StopSound(sound)
-    getbase(Hero).StopSound(self, sound)
+function Hero:EmitSound(sound, location)
+    getbase(Hero).EmitSound(self, sound, location)
 
     table.insert(self.soundsStarted, sound)
 end
