@@ -17,10 +17,10 @@ function cm_q:OnSpellStart()
         distance = 1500,
         hitSound = "Arena.CM.HitQ",
         hitFunction = function(projectile, target)
-            if CMUtil:IsFrozen(target) then
+            if CMUtil.IsFrozen(target) then
                 target:Damage(hero)
             else
-                CMUtil:Freeze(hero, target, self)
+                CMUtil.Freeze(hero, target, self)
             end
         end
     }):Activate()
