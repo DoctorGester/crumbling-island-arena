@@ -44,3 +44,7 @@ end
 function modifier_ursa_r:OnDamageReceived()
     return false
 end
+
+function modifier_ursa_r:OnDamageReceivedPriority()
+    return 1
+end

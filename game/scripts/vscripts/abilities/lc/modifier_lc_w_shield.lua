@@ -14,3 +14,7 @@ function modifier_lc_w_shield:OnDamageReceived(source, hero)
 
     return false
 end
+
+function modifier_lc_w_shield:OnDamageReceivedPriority()
+    return 0
+end

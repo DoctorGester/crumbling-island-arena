@@ -6,6 +6,10 @@ function self:OnDamageReceived(source, hero)
     return true
 end
 
+function self:OnDamageReceivedPriority()
+    return -1
+end
+
 function self:IsHidden()
     return true
 end

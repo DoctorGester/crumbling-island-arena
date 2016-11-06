@@ -11,6 +11,10 @@ function self:OnDamageReceived()
     return false
 end
 
+function self:OnDamageReceivedPriority()
+    return 1
+end
+
 function self:GetEffectName()
     return "particles/units/heroes/hero_omniknight/omniknight_guardian_angel_ally.vpcf"
 end

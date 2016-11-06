@@ -24,3 +24,7 @@ end
 function modifier_lc_r:OnDamageReceived(source, hero)
     return hero:GetHealth() ~= 1
 end
+
+function modifier_lc_r:OnDamageReceivedPriority()
+    return 1
+end
