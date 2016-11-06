@@ -14,10 +14,10 @@ function cm_e:OnSpellStart()
         distance = 1100,
         continueOnHit = true,
         hitFunction = function(projectile, target)
-            if hero:IsFrozen(target) then
+            if CMUtil:IsFrozen(target) then
                 target:Damage(hero)
             else
-                hero:Freeze(target, self)
+                CMUtil:Freeze(hero, target, self)
             end
 
             target:EmitSound("Arena.CM.HitE")
@@ -25,11 +25,13 @@ function cm_e:OnSpellStart()
         destroyFunction = function(projectile)
             hero:StopSound("Arena.CM.LoopE")
             hero:SwapAbilities("cm_e_sub", "cm_e")
-            hero:SetIcePath(nil)
+
+            self.icePath = nil
         end
     }):Activate()
 
-    hero:SetIcePath(icePath)
+    self.icePath = icePath
+
     hero:EmitSound("Arena.CM.CastE")
     hero:EmitSound("Arena.CM.LoopE")
     hero:SwapAbilities("cm_e", "cm_e_sub")

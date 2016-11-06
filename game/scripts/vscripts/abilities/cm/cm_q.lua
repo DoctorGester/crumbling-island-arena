@@ -1,5 +1,7 @@
 cm_q = class({})
 
+LinkLuaModifier("modifier_cm_frozen", "abilities/cm/modifier_cm_frozen", LUA_MODIFIER_MOTION_NONE)
+
 function cm_q:OnSpellStart()
     Wrappers.DirectionalAbility(self, 1500)
 
@@ -15,10 +17,10 @@ function cm_q:OnSpellStart()
         distance = 1500,
         hitSound = "Arena.CM.HitQ",
         hitFunction = function(projectile, target)
-            if hero:IsFrozen(target) then
+            if CMUtil:IsFrozen(target) then
                 target:Damage(hero)
             else
-                hero:Freeze(target, self)
+                CMUtil:Freeze(hero, target, self)
             end
         end
     }):Activate()

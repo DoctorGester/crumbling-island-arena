@@ -52,12 +52,10 @@ function cm_w:OnChannelThink(interval)
                 local hit = hero:AreaEffect({
                     filter = Filters.And(Filters.Area(target, 128), groupFilter),
                     action = function(victim)
-                        local frozen = hero:IsFrozen(victim)
-
-                        if frozen then
+                        if CMUtil:IsFrozen(victim) then
                             victim:Damage(hero)
                         else
-                            hero:Freeze(victim, ability)
+                            CMUtil:Freeze(hero, victim, ability)
                         end
                         
                         self.damaged[victim] = true

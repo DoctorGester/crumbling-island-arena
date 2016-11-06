@@ -2,7 +2,7 @@ cm_e_sub = class({})
 
 function cm_e_sub:OnSpellStart()
     local hero = self:GetCaster().hero
-    local icePath = hero:GetIcePath()
+    local icePath = hero:FindAbility("cm_e").icePath
 
     if icePath then
         local particle = "particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf"

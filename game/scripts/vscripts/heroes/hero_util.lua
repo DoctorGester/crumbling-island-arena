@@ -146,3 +146,13 @@ function TinkerUtil.PortalAbility(ability, isPrimary, swapTo, startEffect, effec
         return 2.0
     end
 end
+
+CMUtil = {}
+
+function CMUtil:IsFrozen(target)
+    return target:FindModifier("modifier_cm_frozen") or target:FindModifier("modifier_cm_r_slow")
+end
+
+function CMUtil:Freeze(hero, target, ability)
+    target:AddNewModifier(hero, ability, "modifier_cm_frozen", { duration = 1.65 })
+end
