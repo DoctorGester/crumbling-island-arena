@@ -1,11 +1,12 @@
 phoenix_r = class({})
 
+LinkLuaModifier("modifier_phoenix_fly", "abilities/phoenix/modifier_phoenix_fly", LUA_MODIFIER_MOTION_NONE)
+
 if IsClient() then
-    require("heroes/phoenix")
+    require('heroes/hero_util')
 end
 
-phoenix_r.CastFilterResultLocation = Phoenix.CastFilterResultLocation
-phoenix_r.GetCustomCastErrorLocation = Phoenix.GetCustomCastErrorLocation
+PhoenixUtil.CastFitersLocation(phoenix_r)
 
 function phoenix_r:GetChannelTime()
     return 6.0
@@ -65,6 +66,7 @@ if IsServer() then
             ParticleManager:SetParticleControl(self.marker, 2, Vector(radius, 0, 0))
 
             hero:EmitSound("Arena.Phoenix.CastR")
+            hero:AddNewModifier(hero, nil, "modifier_phoenix_fly", { duration = 6 })
         end
 
         if self.marker then
@@ -128,6 +130,7 @@ if IsServer() then
         hero:StopSound("Arena.Phoenix.LoopR")
         hero:StopSound("Arena.Phoenix.LoopR2")
         hero:EmitSound("Arena.Phoenix.EndR", target)
+        hero:RemoveModifier("modifier_phoenix_fly")
 
         if self.timePassed and self.timePassed > 0.5 and not hero:FindModifier(EGG_MODIFIER) then
             hero:SetHealth(1)

@@ -334,16 +334,17 @@ function Hero:Hide()
 end
 
 function Hero:CanFall()
-    local airborne = false
+    return not self:IsAirborne()
+end
 
+function Hero:IsAirborne()
     for _, modifier in pairs(self.unit:FindAllModifiers()) do
         if modifier.Airborne and modifier:Airborne() then
-            airborne = true
-            break
+            return true
         end
     end
 
-    return not airborne
+    return false
 end
 
 function Hero:AddKnockbackSource(source)

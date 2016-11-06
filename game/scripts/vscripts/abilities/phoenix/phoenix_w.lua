@@ -2,16 +2,15 @@ phoenix_w = class({})
 
 LinkLuaModifier("modifier_phoenix_w", "abilities/phoenix/modifier_phoenix_w", LUA_MODIFIER_MOTION_NONE)
 
-function phoenix_w:OnAbilityPhaseStart()
-    return not self:GetCaster():HasModifier("modifier_phoenix_egg")
-end
-
 if IsClient() then
-    require("heroes/phoenix")
+    require('heroes/hero_util')
 end
 
-phoenix_w.CastFilterResultLocation = Phoenix.CastFilterResultLocation
-phoenix_w.GetCustomCastErrorLocation = Phoenix.GetCustomCastErrorLocation
+function phoenix_w:OnAbilityPhaseStart()
+    return not self:GetCaster():HasModifier(PhoenixUtil.EGG_MODIFIER)
+end
+
+PhoenixUtil.CastFitersLocation(phoenix_w)
 
 function phoenix_w:OnSpellStart()
     Wrappers.DirectionalAbility(self, 1200)

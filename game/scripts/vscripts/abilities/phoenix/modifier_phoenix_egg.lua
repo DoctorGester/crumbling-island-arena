@@ -46,6 +46,9 @@ if IsServer() then
 
         unit:EmitSound("Arena.Phoenix.EndP")
 
+        local hero = unit:GetParentEntity()
+        hero:AddNewModifier(hero, nil, "modifier_phoenix_fly", { duration = 3 })
+
         -- Can't start a new animation earlier
         Timers:CreateTimer(.066,
             function()

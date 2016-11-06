@@ -1,14 +1,15 @@
 phoenix_q = class({})
 
+if IsClient() then
+    require('heroes/hero_util')
+end
+
+LinkLuaModifier(PhoenixUtil.EGG_MODIFIER, "abilities/phoenix/modifier_phoenix_egg", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_phoenix_egg_tooltip", "abilities/phoenix/modifier_phoenix_egg_tooltip", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_phoenix_q", "abilities/phoenix/modifier_phoenix_q", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_phoenix_q_slow", "abilities/phoenix/modifier_phoenix_q_slow", LUA_MODIFIER_MOTION_NONE)
 
-if IsClient() then
-    require("heroes/phoenix")
-end
-
-phoenix_q.CastFilterResultLocation = Phoenix.CastFilterResultLocation
-phoenix_q.GetCustomCastErrorLocation = Phoenix.GetCustomCastErrorLocation
+PhoenixUtil.CastFitersLocation(phoenix_q)
 
 function phoenix_q:OnSpellStart()
     Wrappers.DirectionalAbility(self, 900)

@@ -30,7 +30,7 @@ end
 
 if IsServer() then
     function modifier_hero:GetModifierMoveSpeed_Limit()
-        if self:IsForwardEmpty() then
+        if self:GetParent():GetParentEntity():CanFall() and self:IsForwardEmpty() then
             return 20
         end
     end

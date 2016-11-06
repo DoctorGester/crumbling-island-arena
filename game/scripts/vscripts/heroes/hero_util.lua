@@ -149,10 +149,24 @@ end
 
 CMUtil = {}
 
-function CMUtil:IsFrozen(target)
+function CMUtil.IsFrozen(target)
     return target:FindModifier("modifier_cm_frozen") or target:FindModifier("modifier_cm_r_slow")
 end
 
-function CMUtil:Freeze(hero, target, ability)
+function CMUtil.Freeze(hero, target, ability)
     target:AddNewModifier(hero, ability, "modifier_cm_frozen", { duration = 1.65 })
+end
+
+PhoenixUtil = {}
+
+PhoenixUtil.EGG_MODIFIER = "modifier_phoenix_egg"
+
+function PhoenixUtil.CastFitersLocation(ability)
+    function ability:CastFilterResultLocation()
+        return (self:GetCaster():HasModifier(EGG_MODIFIER) and UF_FAIL_CUSTOM or UF_SUCCESS)
+    end
+
+    function ability:GetCustomCastErrorLocation()
+        return (self:GetCaster():HasModifier(EGG_MODIFIER) and "#dota_hud_error_cant_cast_in_egg" or "")
+    end
 end

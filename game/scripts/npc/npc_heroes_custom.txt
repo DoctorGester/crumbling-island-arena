@@ -469,7 +469,7 @@
 	"npc_dota_hero_phoenix"
 	{
 		"override_hero"	"npc_dota_hero_phoenix"
-		"Class" "heroes/phoenix:Phoenix"
+		"DefaultMixin" "heroes/phoenix:Phoenix"
 		"ArmorPhysical"	"0"
 		"MagicalResistance"	"0"
 		"AttackCapabilities"	"DOTA_UNIT_CAP_NO_ATTACK"
