@@ -50,14 +50,14 @@ function sven_e:OnChannelFinish(interrupted)
         forceFacing = true,
         hitParams = {
             sound = "Arena.Sven.HitE",
-            damage = 1,
+            damage = self:GetDamage(),
             action = function(victim)
                 local pos = hero:GetPos()
                 local tp = victim:GetPos()
                 local between = ClosestPointToSegment(from, pos, tp)
                 local knockDirection = (tp - between):Normalized()
 
-                Knockback(victim, self, knockDirection, 650 * direction:Dot(knockDirection), 1000)
+                SoftKnockback(victim, hero, knockDirection, 10 + 60 * direction:Dot(knockDirection), { decrease = 4 })
 
                 local effect = ImmediateEffectPoint("particles/econ/items/earthshaker/earthshaker_gravelmaw/earthshaker_fissure_dust_gravelmaw.vpcf", PATTACH_ABSORIGIN, hero, tp)
                 ParticleManager:SetParticleControl(effect, 1, between + (tp - between):Normalized() * 300)
