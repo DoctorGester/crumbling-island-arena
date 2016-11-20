@@ -155,6 +155,22 @@ function CMUtil.Freeze(hero, target, ability)
     target:AddNewModifier(hero, ability, "modifier_cm_frozen", { duration = 1.65 })
 end
 
+function CMUtil.AbilityHit(hero)
+    local mod = hero:FindModifier("modifier_cm_a")
+
+    if mod then
+        if mod:GetStackCount() < 3 then
+            mod:Inc()
+        end
+    else
+        mod = hero:AddNewModifier(hero, hero:FindAbility("cm_a"), "modifier_cm_a")
+
+        if mod then
+            mod:SetStackCount(1)
+        end
+    end
+end
+
 PhoenixUtil = {}
 
 PhoenixUtil.EGG_MODIFIER = "modifier_phoenix_egg"

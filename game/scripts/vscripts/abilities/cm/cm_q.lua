@@ -16,9 +16,11 @@ function cm_q:OnSpellStart()
         graphics = "particles/cm/cm_q.vpcf",
         distance = 1500,
         hitSound = "Arena.CM.HitQ",
-        hitFunction = function(projectile, target)
+        hitFunction = function(_, target)
+            CMUtil.AbilityHit(hero)
+
             if CMUtil.IsFrozen(target) then
-                target:Damage(hero)
+                target:Damage(hero, self:GetDamage())
             else
                 CMUtil.Freeze(hero, target, self)
             end

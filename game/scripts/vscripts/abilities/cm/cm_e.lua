@@ -13,9 +13,11 @@ function cm_e:OnSpellStart()
         graphics = "particles/cm/cm_e.vpcf",
         distance = 1100,
         continueOnHit = true,
-        hitFunction = function(projectile, target)
+        hitFunction = function(_, target)
+            CMUtil.AbilityHit(hero)
+
             if CMUtil.IsFrozen(target) then
-                target:Damage(hero)
+                target:Damage(hero, self:GetDamage())
             else
                 CMUtil.Freeze(hero, target, self)
             end
