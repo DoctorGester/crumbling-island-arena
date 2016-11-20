@@ -3,7 +3,6 @@ brew_w = class({})
 function brew_w:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
-    local beer = hero:FindModifier("modifier_brew_beer")
     local stacks = hero:FindAbility("brew_q"):CountBeer(hero)
 
     local projectile = DistanceCappedProjectile(hero.round, {
@@ -17,8 +16,9 @@ function brew_w:OnSpellStart()
         hitSound = "Arena.Ember.HitQ",
         continueOnHit = true,
         hitFunction = function(projectile, target)
-            target:Damage(hero)
             local stacks = hero:FindAbility("brew_q"):CountBeer(target)
+
+            target:Damage(hero, stacks + 1)
 
             if stacks > 0 then
                 target:AddNewModifier(hero, self, "modifier_stunned_lua", { duration = stacks * 0.5 })

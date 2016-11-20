@@ -18,7 +18,7 @@ function brew_r:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
 
-    local projectile = ArcProjectile(self.round, {
+    ArcProjectile(self.round, {
         owner = hero,
         from = hero:GetPos(),
         to = target,
@@ -39,7 +39,7 @@ function brew_r:OnSpellStart()
                 Knockback(victim, self, victim:GetPos() - target, 350, 1500, DashParabola(80))
 
                 if victim.owner.team ~= hero.owner.team then
-                    victim:Damage(hero)
+                    victim:Damage(hero, self:GetDamage())
                 end
             end
         },
