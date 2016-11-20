@@ -24,6 +24,7 @@ require('quests')
 require('heroes/hero_util')
 
 require('spells')
+require('wrappers')
 require('projectile')
 require('arc_projectile')
 require('dash')
@@ -31,7 +32,7 @@ require('statistics')
 require('chat')
 require('debug_util')
 
-_G.GAME_VERSION = "1.6"
+_G.GAME_VERSION = "2.0"
 _G.STATE_NONE = 0
 _G.STATE_GAME_SETUP = 1
 _G.STATE_HERO_SELECTION = 2
@@ -148,7 +149,6 @@ function Activate()
 
     GameRules.GameMode = GameMode()
     GameRules.GameMode:SetupMode()
-    VectorTarget:Init({ noOrderFilter = true })
 end
 
 function WritePrefab()
@@ -425,6 +425,29 @@ function GameMode:FilterExecuteOrder(filterTable)
 
         -- Yes, that happened
         if unit ~= nil then
+            if orderType == DOTA_UNIT_ORDER_MOVE_TO_POSITION then
+                self.lastOrders[unit] = Vector(filterTable.position_x, filterTable.position_y)
+            end
+
+            if orderType == DOTA_UNIT_ORDER_CAST_POSITION and self.lastOrders[unit] then
+                local ability = EntIndexToHScript(filterTable.entindex_ability)
+
+                if ability:IsCooldownReady() and not ability:IsInAbilityPhase() then
+                    if unit:IsMoving() then
+                        Timers:CreateTimer(0.1, function()
+                            if IsValidEntity(unit) then
+                                ExecuteOrderFromTable({
+                                    UnitIndex = unitIndex, 
+                                    OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+                                    Position = self.lastOrders[unit],
+                                    Queue = true
+                                })
+                            end
+                        end)
+                    end
+                end
+            end
+
             local currentChanneling = nil
 
             local count = unit:GetAbilityCount()
@@ -493,6 +516,7 @@ function GameMode:InitModifiers()
     LinkLuaModifier("modifier_wearable_visuals", "abilities/modifier_wearable_visuals", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_wearable_visuals_status_fx", "abilities/modifier_wearable_visuals", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_wearable_visuals_activity", "abilities/modifier_wearable_visuals", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_attack_speed", "abilities/modifier_attack_speed", LUA_MODIFIER_MOTION_NONE)
 end
 
 function GameMode:SetupMode()
@@ -534,13 +558,14 @@ function GameMode:SetupMode()
 
     for team = 0, (DOTA_TEAM_COUNT-1) do
         GameRules:SetCustomGameTeamMaxPlayers(team, 3)
-        color = self.TeamColors[team]
+        local color = self.TeamColors[team]
         if color then
             SetTeamCustomHealthbarColor(team, color[1], color[2], color[3])
         end
     end
 
     self.cameraDummy = CreateUnitByName("npc_dummy_unit", Vector(-550, 500, 0), false, nil, nil, DOTA_TEAM_NOTEAM)
+    self.lastOrders = {}
 end
 
 function GameMode:GetTeamScore(team)
@@ -1206,6 +1231,7 @@ function GameMode:LoadCustomHeroes()
                     local ability = {}
                     ability.name = abilityName
                     ability.texture = customAbilities[ability.name].AbilityTextureName
+                    ability.damage = customAbilities[ability.name].Damage
 
                     table.insert(abilities, ability)
                 end
@@ -1415,4 +1441,6 @@ if IsInToolsMode() then
     end
 
     GameMode.InitModifiers()
+
+    GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(GameMode, "FilterExecuteOrder"), GameRules.GameMode)
 end
