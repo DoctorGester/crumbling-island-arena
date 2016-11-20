@@ -14,4 +14,8 @@ function pa_a:GetCastAnimation()
     return ACT_DOTA_ATTACK
 end
 
+if IsClient() then
+    require("wrappers")
+end
+
 Wrappers.AttackAbility(pa_a)

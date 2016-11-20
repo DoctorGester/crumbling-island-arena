@@ -29,4 +29,8 @@ function drow_a:GetPlaybackRateOverride()
     return 3
 end
 
+if IsClient() then
+    require("wrappers")
+end
+
 Wrappers.AttackAbility(drow_a)

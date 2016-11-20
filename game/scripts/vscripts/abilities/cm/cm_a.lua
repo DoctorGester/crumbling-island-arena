@@ -47,4 +47,8 @@ function cm_a:GetPlaybackRateOverride()
     return 3
 end
 
+if IsClient() then
+    require("wrappers")
+end
+
 Wrappers.AttackAbility(cm_a)
