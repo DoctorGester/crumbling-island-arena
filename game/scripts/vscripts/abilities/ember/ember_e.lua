@@ -13,7 +13,7 @@ function ember_e:OnSpellStart()
         hitParams = {
             action = function(target)
                 if EmberUtil.Burn(hero, target, self) then
-                    target:Damage(hero)
+                    target:Damage(hero, self:GetDamage())
                 end
             end
         }

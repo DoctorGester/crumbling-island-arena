@@ -61,6 +61,7 @@
 			m_nFieldOutput = 21
 			m_vecMax = [ 1.0, 1.0, 1.0 ]
 			m_vecMin = [ -1.0, -1.0, -1.0 ]
+			m_bDisableOperator = true
 		},
 	]
 	m_Emitters = 
