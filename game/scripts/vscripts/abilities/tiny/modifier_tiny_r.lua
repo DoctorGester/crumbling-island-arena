@@ -1,20 +1,5 @@
 modifier_tiny_r = class({})
 
-function modifier_tiny_r:ChangeModelLevel(previous, level)
-    local model = self:GetParent():FirstMoveChild()
-
-    level = tostring(level)
-    previous = tostring(previous)
-
-    while model ~= nil do
-        if model:GetClassname() == "npc_dota_creature" then
-            local newName = string.gsub(model:GetModelName(), previous, level)
-            model:SetModel(newName)
-        end
-        model = model:NextMovePeer()
-    end
-end
-
 if IsServer() then
     function modifier_tiny_r:Use()
         self.used = true
@@ -24,11 +9,11 @@ if IsServer() then
     function modifier_tiny_r:OnCreated(kv)
         self.used = false
 
-        self:ChangeModelLevel(1, 4)
+        TinyUtil.ChangeModelLevel(self:GetParent():GetParentEntity(), 2, 4)
     end
 
     function modifier_tiny_r:OnDestroy(kv)
-        self:ChangeModelLevel(4, 1)
+        TinyUtil.ChangeModelLevel(self:GetParent():GetParentEntity(), 4, 2)
 
         ImmediateEffect("particles/units/heroes/hero_tiny/tiny_transform.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster())
     end

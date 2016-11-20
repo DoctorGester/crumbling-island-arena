@@ -1,6 +1,6 @@
 TinyQ = TinyQ or class({}, nil, Projectile)
 
-function TinyQ:constructor(round, owner, ability, target, stun)
+function TinyQ:constructor(round, owner, ability, target, stun, damage)
     local modifierName = (stun and "modifier_stunned_lua" or "modifier_tiny_q")
 
     self.groundHeight = GetGroundHeight(target, nil)
@@ -14,7 +14,8 @@ function TinyQ:constructor(round, owner, ability, target, stun)
         graphics = "particles/tiny_q/tiny_q.vpcf",
         speed = 1800,
         continueOnHit = true,
-        disablePrediction = true
+        disablePrediction = true,
+        damage = damage
     })
 
     self.fell = false

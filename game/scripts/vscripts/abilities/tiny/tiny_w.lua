@@ -24,7 +24,7 @@ function tiny_w:OnSpellStart()
         mod:Use()
     end
 
-    TinyW(hero.round, hero, self, target, bounces, height):Activate()
+    TinyW(hero.round, hero, self, self:GetDamage(), target, bounces, height):Activate()
 end
 
 function tiny_w:GetCastAnimation()

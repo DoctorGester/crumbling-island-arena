@@ -1,6 +1,6 @@
 TinyW = TinyW or class({}, nil, UnitEntity)
 
-function TinyW:constructor(round, owner, ability, target, bounces, height)
+function TinyW:constructor(round, owner, ability, damage, target, bounces, height)
     getbase(TinyW).constructor(self, round, DUMMY_UNIT, owner:GetPos())
 
     self.owner = owner.owner
@@ -14,6 +14,7 @@ function TinyW:constructor(round, owner, ability, target, bounces, height)
     self.travelTime = 0.85
     self.effectRadius = 200
     self.fallingDirection = nil
+    self.damage = damage
 
     self:SetFacing(target - self.start)
 
@@ -64,7 +65,7 @@ function TinyW:Update()
 
         self.hero:AreaEffect({
             filter = Filters.Area(effectPosition, self.effectRadius),
-            damage = true,
+            damage = self.damage,
             modifier = { name = "modifier_stunned_lua", duration = 1.2, ability = self.ability },
         })
 

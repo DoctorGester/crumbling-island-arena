@@ -421,11 +421,6 @@
         }
     }
 
-    "tiny"
-    {
-        "ignore" "497"
-    }
-
     "queenofpain"
     {
         "1"

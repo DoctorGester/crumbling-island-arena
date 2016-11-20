@@ -18,7 +18,7 @@ function tiny_q:OnSpellStart()
         mod:Use()
     end
 
-    TinyQ(hero.round, hero, self, target, stun):Activate()
+    TinyQ(hero.round, hero, self, target, stun, self:GetDamage()):Activate()
     hero:EmitSound("Arena.Tiny.CastQ")
 
     local speed = hero:FindModifier("modifier_tiny_q_speed")
