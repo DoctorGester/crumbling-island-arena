@@ -3,23 +3,22 @@
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 16
-	m_flConstantRadius = 240.0
-	m_ConstantColor = [ 207, 237, 255, 255 ]
+	m_flConstantRadius = 1.0
+	m_ConstantColor = [ 248, 249, 255, 255 ]
 	m_bShouldSort = false
 	m_Renderers = 
 	[
 		{
-			_class = "C_OP_RenderSprites"
-			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
-			m_bAdditive = true
-			m_bDisableZBuffering = true
-			m_hTexture = resource:"materials/particle/particle_flares/aircraft_blue2.vtex"
-		},
-		{
-			_class = "C_OP_RenderDeferredLight"
-			m_flAlphaScale = 4.0
-			m_hTexture = resource:"materials/particle/particle_flares/aircraft_blue2.vtex"
-			m_ColorScale = [ 255, 255, 255 ]
+			_class = "C_OP_RenderModels"
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/projectiles/drow_arrow.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_nLOD = 1
+			m_bOrientZ = true
 		},
 	]
 	m_Operators = 
@@ -32,27 +31,28 @@
 			m_nOpEndCapState = 1
 		},
 		{
-			_class = "C_OP_PositionLock"
+			_class = "C_OP_InterpolateRadius"
+			m_flStartScale = 0.2
+			m_flEndTime = 2.0
 		},
 		{
-			_class = "C_OP_RemapCPOrientationToYaw"
-			m_nCP = 0
-			m_flRotOffset = 90.0
-		},
-		{
-			_class = "C_OP_SetChildControlPoints"
+			_class = "C_OP_SetControlPointsToParticle"
 			m_nFirstControlPoint = 3
 			m_bSetOrientation = true
 		},
 		{
-			_class = "C_OP_InterpolateRadius"
-			m_flStartScale = 0.2
+			_class = "C_OP_RampScalarLinear"
+			m_nField = 4
+			m_RateMin = -8.0
+			m_RateMax = 8.0
 		},
 		{
-			_class = "C_OP_Orient2DRelToCP"
-			m_nCP = 1
+			_class = "C_OP_RemapCPOrientationToYaw"
+			m_nCP = 0
 			m_flRotOffset = 180.0
-			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_PositionLock"
 		},
 	]
 	m_Initializers = 
@@ -62,8 +62,12 @@
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMin = 0.1
 			m_fLifetimeMax = 0.1
+			m_fLifetimeMin = 0.1
+		},
+		{
+			_class = "C_INIT_RandomVector"
+			m_nFieldOutput = 21
 		},
 	]
 	m_Emitters = 
@@ -76,17 +80,14 @@
 	m_Children = 
 	[
 		{
-			m_ChildRef = resource:"particles/drow_q/drow_q_model.vpcf"
-		},
-		{
-			m_ChildRef = resource:"particles/drow_q/drow_q_ice_trail.vpcf"
+			m_bEndCap = true
+			m_ChildRef = resource:"particles/drow_q/drow_q_explosion_flash.vpcf"
 		},
 		{
 			m_ChildRef = resource:"particles/drow_q/drow_q_launch.vpcf"
 		},
 		{
-			m_bEndCap = true
-			m_ChildRef = resource:"particles/drow_q/drow_q_explosion.vpcf"
+			m_ChildRef = resource:"particles/drow_q/drow_q_trail_c.vpcf"
 		},
 	]
 }

@@ -1,0 +1,100 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 64
+	m_BoundingBoxMin = [ -12.0, -12.0, -10.0 ]
+	m_BoundingBoxMax = [ 12.0, 12.0, 10.0 ]
+	m_flConstantRadius = 1.0
+	m_ConstantColor = [ 0, 0, 0, 200 ]
+	m_flMaxDrawDistance = 2000.0
+	m_bShouldSort = false
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_nModelCP = 0
+			m_bScaleAnimationRate = true
+			m_bIgnoreNormal = true
+			m_nAnimationScaleField = 19
+			m_nBodyGroupField = 19
+			m_nSubModelField = 19
+			m_nManualFrameField = 19
+			m_bAnimated = true
+			m_bForceDrawInterlevedWithSiblings = true
+			m_nLOD = 1
+			m_ActivityName = "ACT_DOTA_ATTACK"
+			m_flAnimationRate = 120.0
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+			m_flOpTimeOffsetMax = 1.0
+			m_flOpStrengthMinScale = 0.0
+		},
+		{
+			_class = "C_OP_FadeOutSimple"
+			m_flFadeOutTime = 0.85
+		},
+		{
+			_class = "C_OP_RemapCPOrientationToYaw"
+			m_nCP = 0
+			m_flRotOffset = 180.0
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_SequenceFromModel"
+			m_flOutputMax = 1000.0
+			m_nFieldOutput = 13
+			m_flInputMax = 1000.0
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_OP_FadeInSimple"
+			m_flFadeInTime = 0.125
+		},
+		{
+			_class = "C_OP_RampScalarLinearSimple"
+			m_Rate = 8.0
+			m_nField = 12
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 0.45
+			m_fLifetimeMax = 0.45
+			m_flOpTimeOffsetMax = 1.0
+			m_flOpStrengthMinScale = 0.0
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
+		{
+			_class = "C_INIT_RadiusFromCPObject"
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+			m_nFieldOutput = 12
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_ContinuousEmitter"
+			m_flEmitRate = 20.0
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/drow_e/drow_e_trail.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/drow_e/drow_e_smoke.vpcf"
+		},
+	]
+}
