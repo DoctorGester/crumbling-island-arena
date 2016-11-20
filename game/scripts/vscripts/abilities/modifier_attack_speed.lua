@@ -1,0 +1,1 @@
+modifier_attack_speed = class({})
