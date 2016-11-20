@@ -9,9 +9,10 @@ function shaker_w:OnSpellStart()
     local hero = self:GetCaster().hero
     local pos = hero:GetPos()
 
+    hero:AddNewModifier(hero, hero:FindAbility("shaker_a"), "modifier_shaker_a", { duration = 5 })
     hero:AreaEffect({
         filter = Filters.Area(pos, 350),
-        damage = true,
+        damage = self:GetDamage(),
         filterProjectiles = true,
         action = function(target)
             Knockback(target, self, target:GetPos() - pos, 250, 1300,

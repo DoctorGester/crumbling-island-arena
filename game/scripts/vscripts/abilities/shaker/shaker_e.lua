@@ -9,6 +9,8 @@ function shaker_e:OnSpellStart()
     local target = self:GetCursorPosition()
     local distance = (target - hero:GetPos()):Length2D() / 650
 
+    hero:AddNewModifier(hero, hero:FindAbility("shaker_a"), "modifier_shaker_a", { duration = 5 })
+
     local effect = ParticleManager:CreateParticle("particles/econ/items/earthshaker/earthshaker_gravelmaw/earthshaker_fissure_head_gravelmaw.vpcf", PATTACH_ABSORIGIN, hero:GetUnit())
     ParticleManager:SetParticleControl(effect, 0, target)
     ParticleManager:SetParticleControl(effect, 1, hero:GetPos() - self:GetDirection())

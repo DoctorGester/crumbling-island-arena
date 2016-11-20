@@ -24,6 +24,8 @@ function shaker_r:OnSpellStart()
     local damaged = {}
     local offsets = {}
 
+    hero:AddNewModifier(hero, hero:FindAbility("shaker_a"), "modifier_shaker_a", { duration = 5 })
+
     GameRules.GameMode.level:GroundAction(
         function(part)
             if (start - Vector(part.x, part.y, 0)):Length2D() > len then

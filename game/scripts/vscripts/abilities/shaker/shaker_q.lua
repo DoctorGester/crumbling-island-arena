@@ -23,6 +23,8 @@ function shaker_q:OnSpellStart()
     local damaged = {}
     local offsets = {}
 
+    hero:AddNewModifier(hero, hero:FindAbility("shaker_a"), "modifier_shaker_a", { duration = 5 })
+
     GameRules.GameMode.level:GroundAction(
         function(part)
             local closest = ClosestPointToSegment(start, target, Vector(part.x, part.y, 0))
@@ -105,7 +107,7 @@ function shaker_q:OnSpellStart()
             local hurt = hero:AreaEffect({
                 filter = Filters.Line(start + direction * (currentLen - speed), start + direction * currentLen, 100) + groupFilter,
                 sound = "Arena.Shaker.HitQ2",
-                damage = 1,
+                damage = self:GetDamage(),
                 filterProjectiles = true,
                 action = function(target)
                     damaged[target] = true
