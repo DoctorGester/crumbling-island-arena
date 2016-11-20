@@ -43,7 +43,7 @@ end
 
 TinkerUtil = {}
 
-function TinkerUtil.PortalAbility(ability, isPrimary, swapTo, startEffect, effect, warpEffect)
+function TinkerUtil.PortalAbility(ability, isPrimary, startEffect, effect, warpEffect)
     local function FindPortal(hero, primary)
         return hero.round.spells:FilterEntities(function(ent)
             return instanceof(ent, EntityTinkerE) and ent.primary == primary and ent:Alive() and ent.hero == hero
@@ -134,8 +134,6 @@ function TinkerUtil.PortalAbility(ability, isPrimary, swapTo, startEffect, effec
             second:LinkTo(portal)
             portal:LinkTo(second)
         end
-
-        hero:SwapAbilities(self:GetName(), swapTo)
     end
 
     function ability:GetCastAnimation()
@@ -168,5 +166,22 @@ function PhoenixUtil.CastFitersLocation(ability)
 
     function ability:GetCustomCastErrorLocation()
         return (self:GetCaster():HasModifier(EGG_MODIFIER) and "#dota_hud_error_cant_cast_in_egg" or "")
+    end
+end
+
+TinyUtil = {}
+
+function TinyUtil.ChangeModelLevel(hero, previous, level)
+    local model = hero:GetUnit():FirstMoveChild()
+
+    level = tostring(level)
+    previous = tostring(previous)
+
+    while model ~= nil do
+        if model:GetClassname() == "npc_dota_creature" and not model:GetModelName():ends("tree.vmdl") then
+            local newName = string.gsub(model:GetModelName(), previous, level)
+            model:SetModel(newName)
+        end
+        model = model:NextMovePeer()
     end
 end
