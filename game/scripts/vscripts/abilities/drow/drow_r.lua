@@ -38,7 +38,7 @@ function drow_r:OnChannelFinish(interrupted)
         graphics = "particles/drow_r/drow_r.vpcf",
         hitSound = "Arena.Drow.HitR",
         hitFunction = function(projectile, target)
-            target:Damage(projectile)
+            target:Damage(projectile, self:GetDamage())
             SoftKnockback(target, hero, projectile.vel, 100, {})
 
             local pos = projectile:GetPos()
@@ -50,7 +50,7 @@ function drow_r:OnChannelFinish(interrupted)
             ParticleManager:SetParticleControlForward(effect, 1, -direction)
 
             if instanceof(target, Hero) then
-                ScreenShake(pos, 5, 150, 0.25, 2000, 0, true)
+                ScreenShake(pos, 5, 150, 0.25, 3000, 0, true)
                 projectile:Destroy()
             end
         end,

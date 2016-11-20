@@ -1,29 +1,23 @@
 drow_q = class({})
 LinkLuaModifier("modifier_drow_q", "abilities/drow/modifier_drow_q", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_drow_q_recast", "abilities/drow/modifier_drow_q_recast", LUA_MODIFIER_MOTION_NONE)
 
 function drow_q:OnSpellStart()
+    Wrappers.DirectionalAbility(self, 400, 400)
+
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
 
-    DistanceCappedProjectile(hero.round, {
-        owner = hero,
-        from = hero:GetPos() + Vector(0, 0, 64),
-        to = target + Vector(0, 0, 64),
-        speed = 1450,
-        radius = 48,
-        graphics = "particles/drow_q/drow_q.vpcf",
-        distance = 1200,
-        hitModifier = { name = "modifier_drow_q", duration = 1.5, ability = self },
-        hitSound = "Arena.Drow.HitQ"
-    }):Activate()
+    Dash(hero, target, 1200, {
+        modifier = { name = "modifier_drow_q", ability = self },
+        forceFacing = true
+    })
 
-    hero:EmitSound("Arena.Drow.CastQ")
-end
-
-function drow_q:GetCastAnimation()
-    return ACT_DOTA_ATTACK
-end
-
-function drow_q:GetPlaybackRateOverride()
-    return 3
+    local mod = hero:FindModifier("modifier_drow_q_recast")
+    if mod then
+        mod:Destroy()
+    else
+        hero:AddNewModifier(hero, self, "modifier_drow_q_recast", { duration = 3.0 })
+        self:EndCooldown()
+    end
 end
