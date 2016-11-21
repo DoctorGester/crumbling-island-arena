@@ -81,7 +81,7 @@ end
 
 function Jugger:UseUltiCharge()
     self.swordLevel = self.swordLevel - 1
-    self:FindAbility("jugger_q"):EndCooldown()
+    self:FindAbility("jugger_a"):EndCooldown()
     self:UpdateSwordLevel()
 
     if self.swordLevel == 0 then

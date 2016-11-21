@@ -4,8 +4,6 @@ LinkLuaModifier("modifier_jugger_e", "abilities/jugger/modifier_jugger_e", LUA_M
 
 function jugger_e:OnSpellStart()
     local hero = self:GetCaster().hero
-    local target = self:GetCursorPosition()
-
     local particle = ParticleManager:CreateParticle("particles/jugger_e/jugger_e.vpcf", PATTACH_ABSORIGIN, self:GetCaster())
     ParticleManager:SetParticleControl(particle, 0, hero:GetPos() + Vector(0, 0, 64))
     ParticleManager:ReleaseParticleIndex(particle)

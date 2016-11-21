@@ -1,50 +1,17 @@
 jugger_q = class({})
 
-require('abilities/jugger/jugger_sword')
-
-function jugger_q:OnAbilityPhaseStart()
-    self:GetCaster():EmitSound("Arena.Jugger.PreQ")
-    return true
-end
+LinkLuaModifier("modifier_jugger_q", "abilities/jugger/modifier_jugger_q", LUA_MODIFIER_MOTION_NONE)
 
 function jugger_q:OnSpellStart()
     local hero = self:GetCaster().hero
-    local range = hero:GetSwordRange()
+    local particle = ParticleManager:CreateParticle("particles/jugger_e/jugger_e.vpcf", PATTACH_ABSORIGIN, self:GetCaster())
+    ParticleManager:SetParticleControl(particle, 0, hero:GetPos() + Vector(0, 0, 64))
+    ParticleManager:ReleaseParticleIndex(particle)
 
-    Wrappers.DirectionalAbility(self, range, range)
-
-    local target = self:GetCursorPosition()
-    local effect = ImmediateEffect(hero:GetAttackParticle(), PATTACH_ABSORIGIN, hero)
-    ParticleManager:SetParticleControl(effect, 2, hero:GetPos() + Vector(0, 0, 64))
-    ParticleManager:SetParticleControl(effect, 3, target + Vector(0, 0, 64))
-    ParticleManager:ReleaseParticleIndex(effect)
-
-    --hero:StopSound("Arena.Jugger.PreQ")
-
-    local hurt = hero:AreaEffect({
-        filter = Filters.Line(hero:GetPos(), target, 64),
-        sound = "Arena.TA.HitQ",
-        action = function(victim)
-            victim:Damage(hero)
-
-            ImmediateEffect("particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt.vpcf", PATTACH_ABSORIGIN, victim)
-        end
-    })
-
-    if hero:HasModifier("modifier_jugger_r") then
-        hero:UseUltiCharge()
-        hero:EmitSound("Arena.Jugger.CastQEmp")
-    else
-        hero:EmitSound("Arena.Jugger.CastQ")
-    end
-
-    ScreenShake(target, 5, 150, 0.25, 2000, 0, true)
+    hero:AddNewModifier(hero, self, "modifier_jugger_q", { duration = 2.5 })
+    hero:EmitSound("Arena.Jugger.CastQ.Voice")
 end
 
 function jugger_q:GetCastAnimation()
-    return ACT_DOTA_ATTACK_EVENT
-end
-
-function jugger_q:GetPlaybackRateOverride()
-    return 1.6
+    return ACT_DOTA_CAST_ABILITY_1
 end
