@@ -102,15 +102,15 @@
 .HealthBar
 {
     width: fill-parent-flow(1.0);
-    height: 24px;
-    background-color: #3A9B00;
+    height: 30px;
+    background-color: gradient(linear, 0% 0%, 0% 95%, from(#2eb31c), to(#1f721d));
     margin: 3px;
-    border: 1px solid #333333;
     /*box-shadow: inset #333333 2px 2px 4px 4px;*/
     box-shadow: black 0px 0px 4px 0px;
+    border: 1px solid #404040;
     border-radius: 2px;
     transition-property: background-color, opacity;
-    transition-duration: 0.5s;
+    transition-duration: 0.3s;
 }
 
 #KillLog

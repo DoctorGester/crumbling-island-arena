@@ -2,6 +2,7 @@
 {
     flow-children: right;
     horizontal-align: center;
+    margin-right: 40px;
 }
 
 .Buff
@@ -92,6 +93,20 @@
     opacity: 0.0;
     transition-property: opacity;
     transition-duration: 0.25s;
+}
+
+.AbilityAttack
+{
+    border-radius: 50%;
+    margin-right: 40px;
+    width: 56px;
+    height: 56px;
+    vertical-align: middle;
+}
+
+.AbilityDisarmed
+{
+    wash-color: #ff0000;
 }
 
 .AbilityButtonDeactivated

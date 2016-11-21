@@ -5,7 +5,7 @@
 function EmptyAbilityDataProvider() {
     this.GetAbilityData = function(slot) {
         return {};
-    }
+    };
 
     this.GetAbilityCount = function() {
         return 0;
@@ -21,7 +21,7 @@ function EntityAbilityDataProvider(entityId) {
         var cosmetic = (Abilities.GetBehavior(id) & nl) == nl;
 
         return !Abilities.IsAttributeBonus(id) && Abilities.IsDisplayedAbility(id) && !Abilities.IsPassive(id) && cosmetic == this.onlyCosmetic;
-    }
+    };
 
     this.FilterAbilities = function() {
         var abilities = [];
@@ -31,16 +31,20 @@ function EntityAbilityDataProvider(entityId) {
             var ability = Entities.GetAbility(this.entityId, i);
 
             if (this.FilterAbility(ability)) {
-                abilities.push(ability);
+                if (EndsWith(Abilities.GetAbilityName(ability), "_a")) {
+                    abilities.unshift(ability);
+                } else {
+                   abilities.push(ability); 
+                }
             }
         }
 
         return abilities;
-    }
+    };
 
     this.SetOnlyCosmetic = function(only) {
         this.onlyCosmetic = only;
-    }
+    };
 
     this.GetAbilityData = function(slot) {
         var ability = this.FilterAbilities()[slot];
@@ -60,25 +64,30 @@ function EntityAbilityDataProvider(entityId) {
         data.toggled = Abilities.IsToggle(ability) && Abilities.GetToggleState(ability);
         data.range = Abilities.GetCastRange(ability);
         data.cosmetic = (Abilities.GetBehavior(ability) & nl) == nl;
+        data.attack = EndsWith(Abilities.GetAbilityName(ability), "_a")
 
         if (data.cooldown == 0 || data.ready){
             data.cooldown = Abilities.GetCooldown(ability);
         }
 
         return data
-    }
+    };
 
     this.GetAbilityCount = function() {
         return this.FilterAbilities().length;
-    }
+    };
 
     this.IsSilenced = function() {
         return Entities.IsSilenced(this.entityId);
-    }
+    };
 
     this.IsStunned = function() {
         return Entities.IsStunned(this.entityId);
-    }
+    };
+
+    this.IsDisarmed = function() {
+        return Entities.IsDisarmed(this.entityId);
+    };
 
     this.ShowTooltip = function(element, data) {
         SetCurrentHoverSpell(data);
@@ -92,7 +101,7 @@ function EntityAbilityDataProvider(entityId) {
         element.SetDialogVariable("description", $.Localize("AbilityTooltip_" + data.name));
         element.SetDialogVariable("cooldown", data.cooldown.toFixed(1).toString());
         $.DispatchEvent("DOTAShowTextTooltip", element, $.Localize("AbilityTooltip", element))
-    }
+    };
 
     this.HideTooltip = function() {
         $.DispatchEvent("DOTAHideTextTooltip");
@@ -110,7 +119,7 @@ function AbilityBar(elementId) {
     this.SetProvider = function(provider) {
         this.provider = provider;
         this.Update();
-    }
+    };
 
     this.Update = function() {
         var count = this.provider.GetAbilityCount();
@@ -125,7 +134,7 @@ function AbilityBar(elementId) {
                 delete this.abilities[slot];
             }
         }
-    }
+    };
 
     this.UpdateSlot = function(slot) {
         var data = this.provider.GetAbilityData(slot);
@@ -141,15 +150,19 @@ function AbilityBar(elementId) {
         if (this.provider.IsSilenced && this.provider.IsStunned) {
             ability.SetDisabled(this.provider.IsSilenced(), this.provider.IsStunned());
         }
-    }
+
+        if (data.attack) {
+            ability.SetDisarmed(this.provider.IsDisarmed());
+        }
+    };
 
     this.AddCustomIcon = function(abilityName, iconPath) {
         this.customIcons[abilityName] = iconPath;
-    }
+    };
 
     this.AddCustomClass = function(abilityName, cl) {
         this.customClasses[abilityName] = cl;
-    }
+    };
 
     this.GetAbility = function(slot) {
         if (!this.abilities[slot]) {
@@ -166,7 +179,7 @@ function AbilityBar(elementId) {
         }
 
         return this.abilities[slot];
-    }
+    };
 
     this.RegisterEvents = function(clickable) {
         for (key in this.abilities) {
@@ -250,9 +263,10 @@ function AbilityButton(parent, hero, ability) {
 
         this.image.SetHasClass("AbilityBeingCast", data.beingCast);
         this.image.SetHasClass("AbilityButtonToggled", data.toggled);
+        this.image.SetHasClass("AbilityAttack", data.attack);
 
         this.data = data;
-    }
+    };
 
     this.SetCustomClass = function(prevCl, cl) {
         if (prevCl) {
@@ -262,7 +276,7 @@ function AbilityButton(parent, hero, ability) {
         if (cl) {
             this.custom.SetHasClass(cl, true);
         }
-    }
+    };
 
     this.SetCooldown = function(remaining, cd, ready, activated) {
         if (ready && activated) {
@@ -303,17 +317,21 @@ function AbilityButton(parent, hero, ability) {
 
         this.inside.style.clip = "radial(50% 50%, 0deg, " + progress + "deg)";
         this.cooldown.text = text;
-    }
+    };
 
     this.SetDisabled = function(silenced, stunned) {
         this.silence.style.opacity = (silenced && !stunned) ? "1.0" : "0.0";
         this.stun.style.opacity = stunned ? "1.0" : "0.0";
-    }
+    };
+
+    this.SetDisarmed = function(disarmed) {
+        this.image.SetHasClass("AbilityDisarmed", disarmed);
+    };
 
     this.Delete = function() {
         this.image.visible = false;
         this.image.DeleteAsync(0);
-    }
+    };
 
     this.SetDisabled(false, false);
 }

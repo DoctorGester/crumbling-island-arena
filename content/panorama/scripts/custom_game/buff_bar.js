@@ -1,11 +1,13 @@
 var modifiersWithStacks = [
     "modifier_charges",
+    "modifier_attack_speed",
     "modifier_wk_q",
     "modifier_pudge_meat",
     "modifier_qop_r",
     "modifier_am_damage",
     "modifier_gyro_q",
-    "modifier_gyro_q_slow"
+    "modifier_gyro_q_slow",
+    "modifier_cm_a"
 ];
 
 function ShowBuffTooltip(element, entityId, buffId) {

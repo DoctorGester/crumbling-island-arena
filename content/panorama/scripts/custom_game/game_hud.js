@@ -60,7 +60,7 @@ function OnCustomSystemMessage(args) {
 
     var label = $.CreatePanel("Label", line, "");
 
-    for (key in args.vars) {
+    for (var key in args.vars) {
         if (key === "player") {
             args.vars[key] = EscapeHtml(Players.GetPlayerName(args.vars[key]))
         }
@@ -513,6 +513,94 @@ function HeroesUpdate(data){
     DeathMatch.HeroesUpdated(data);
 }
 
+function MouseCallback(event, button) {
+    if (GameUI.GetClickBehaviors() !== CLICK_BEHAVIORS.DOTA_CLICK_BEHAVIOR_NONE) {
+        return false;
+    }
+
+    if (event === "pressed") {
+        var localHero = GetLocalHero();
+        var position = GameUI.GetScreenWorldPosition(GameUI.GetCursorPosition());
+
+        // TODO check if hero is dead
+        if (button === 0) {
+            var count = Entities.GetAbilityCount(localHero);
+            var castAbilityIndex = -1;
+
+            for (var i = 0; i < count; i++) {
+                var ability = Entities.GetAbility(localHero, i);
+
+                if (EndsWith(Abilities.GetAbilityName(ability), "_a")) {
+                    castAbilityIndex = ability;
+                }
+            }
+
+            if (castAbilityIndex == -1) {
+                return false;
+            }
+
+            var order = {
+                AbilityIndex: castAbilityIndex,
+                QueueBehavior: OrderQueueBehavior_t.DOTA_ORDER_QUEUE_NEVER,
+                ShowEffects: Entities.IsDisarmed(localHero),
+                OrderType: dotaunitorder_t.DOTA_UNIT_ORDER_CAST_POSITION,
+                Position: position
+            };
+
+            (function tick() {
+                if (GameUI.IsMouseDown(button)) {
+                    order.Position = GameUI.GetScreenWorldPosition(GameUI.GetCursorPosition());
+
+                    if (Abilities.IsCooldownReady(order.AbilityIndex) &&
+                        !Abilities.IsInAbilityPhase(order.AbilityIndex) &&
+                         Abilities.IsActivated(order.AbilityIndex)
+                    ) {
+                        Game.PrepareUnitOrders(order);
+                    }
+
+                    if (!Entities.IsDisarmed(localHero)) {
+                        $.Schedule(1 / 60.0, tick);
+                    }
+                }
+            })();
+
+            return true;
+        }
+
+        if (button === 1) {
+            var order = {
+                QueueBehavior: OrderQueueBehavior_t.DOTA_ORDER_QUEUE_NEVER,
+                ShowEffects: false,
+                OrderType: dotaunitorder_t.DOTA_UNIT_ORDER_MOVE_TO_POSITION,
+                Position: position
+            };
+
+            var first = true;
+
+            (function tick() {
+                var newPos = GameUI.GetScreenWorldPosition(GameUI.GetCursorPosition());
+                var len = Vector.FromArray(order.Position).minus(Vector.FromArray(newPos)).length();
+
+                if (GameUI.IsMouseDown(button)) {
+                    if (len >= 64 || first) {
+                        order.Position = newPos;
+
+                        Game.PrepareUnitOrders(order);
+                    }
+
+                    first = false;
+
+                    $.Schedule(1 / 60.0, tick);
+                }
+            })();
+
+            return true;
+        }
+    }
+
+    return false;
+}
+
 SetupUI();
 
 DelayStateInit(GAME_STATE_ROUND_IN_PROGRESS, function () {
@@ -547,4 +635,6 @@ DelayStateInit(GAME_STATE_ROUND_IN_PROGRESS, function () {
             $("#GameChat").RemoveClass("ChatHidden");
         }
     });
+
+    GameUI.SetMouseCallback(MouseCallback);
 });
