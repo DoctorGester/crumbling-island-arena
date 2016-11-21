@@ -34,7 +34,10 @@ function sk_e:OnSpellStart()
     hero:AreaEffect({
         filter = Filters.Line(casterPos, target, 64),
         filterProjectiles = true,
-        damage = true
+        damage = self:GetDamage(),
+        action = function(target)
+            SKUtil.AbilityHit(hero, target)
+        end
     })
 
     local effect = ImmediateEffect(hero:GetMappedParticle("particles/units/heroes/hero_sandking/sandking_burrowstrike.vpcf"), PATTACH_POINT, hero)

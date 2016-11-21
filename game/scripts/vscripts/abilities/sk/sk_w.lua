@@ -5,7 +5,7 @@ function sk_w:OnSpellStart()
     local target = self:GetCursorPosition()
 
     hero:EmitSound("Arena.SK.CastW")
-    SKWProjectile(hero.round, hero, target):Activate()
+    SKWProjectile(hero.round, hero, target, self:GetDamage()):Activate()
 end
 
 function sk_w:GetCastAnimation()
@@ -16,14 +16,18 @@ SKWProjectile = SKWProjectile or class({}, nil, DistanceCappedProjectile)
 
 SKWProjectile.EFFECT = "particles/units/heroes/hero_sandking/sandking_burrowstrike_eruption.vpcf"
 
-function SKWProjectile:constructor(round, hero, target)
+function SKWProjectile:constructor(round, hero, target, damage)
 	getbase(SKWProjectile).constructor(self, round, {
         owner = hero,
         from = hero:GetPos(),
         to = target,
         speed = 900,
         distance = 2000,
-        continueOnHit = true
+        continueOnHit = true,
+        hitFunction = function(_, target)
+            target:Damage(hero, damage)
+            SKUtil.AbilityHit(hero, target)
+        end
     })
 
     self.tick = 0

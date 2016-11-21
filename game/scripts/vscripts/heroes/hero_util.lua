@@ -201,3 +201,23 @@ function TinyUtil.ChangeModelLevel(hero, previous, level)
         model = model:NextMovePeer()
     end
 end
+
+SKUtil = {}
+
+function SKUtil.AbilityHit(hero, target)
+    local mod = target:FindModifier("modifier_sk_a")
+
+    if mod then
+        mod:Destroy()
+
+        target:EmitSound("Arena.SK.HitA2")
+        hero:AreaEffect({
+            filter = Filters.Area(target:GetPos(), 300),
+            damage = 1
+        })
+
+        FX("particles/units/heroes/hero_sandking/sandking_caustic_finale_explode.vpcf", PATTACH_ABSORIGIN, target, {
+            release = true
+        })
+    end
+end

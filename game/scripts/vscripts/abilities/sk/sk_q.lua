@@ -26,8 +26,11 @@ function sk_q:OnSpellStart()
         hero:AreaEffect({
             filter = Filters.Area(target, area),
             filterProjectiles = true,
-            damage = true,
-            modifier = { name = "modifier_sk_q", ability = self, duration = 1.2 }
+            damage = self:GetDamage(),
+            modifier = { name = "modifier_sk_q", ability = self, duration = 1.2 },
+            action = function(target)
+                SKUtil.AbilityHit(hero, target)
+            end
         })
 
         ScreenShake(target, 5, 150, 0.25, 2000, 0, true)
