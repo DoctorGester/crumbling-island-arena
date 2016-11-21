@@ -3,7 +3,6 @@ modifier_lycan_q = class({})
 function modifier_lycan_q:CheckState()
     local state = {
         [MODIFIER_STATE_NO_UNIT_COLLISION] = true,
-        [MODIFIER_STATE_NO_HEALTH_BAR] = true,
         [MODIFIER_STATE_UNSELECTABLE] = true,
         [MODIFIER_STATE_DISARMED] = true,
         [MODIFIER_STATE_BLIND] = true,

@@ -1,4 +1,4 @@
-WearableOwner = WearableOwner or class({}, nil, UnitEntity)
+WearableOwner = WearableOwner or class({}, nil, BreakableEntity)
 
 function WearableOwner:constructor(round, unitName, pos, team, findSpace)
     getbase(WearableOwner).constructor(self, round, unitName, pos, team, findSpace)
@@ -7,6 +7,7 @@ function WearableOwner:constructor(round, unitName, pos, team, findSpace)
     self.wearableParticles = {}
     self.mappedParticles = {}
     self.wearableSlots = {}
+    self.hideQueue = nil
 end
 
 function WearableOwner:LoadItem(id)
@@ -189,6 +190,20 @@ function WearableOwner:Update()
     local maxPriority = 0
     local minCreationTime = math.huge
 
+    if self.hideQueue ~= nil then
+        getbase(WearableOwner).SetHidden(self, self.hideQueue)
+
+        for _, wearable in pairs(self.wearables) do
+            if self.hideQueue then
+                wearable:AddNoDraw()
+            else
+                wearable:RemoveNoDraw()
+            end
+        end
+
+        self.hideQueue = nil
+    end
+
     for _, modifier in pairs(self:AllModifiers()) do
         if modifier.GetModifierInvisibilityLevel then
             invisLevel = math.max(invisLevel, math.min(modifier:GetModifierInvisibilityLevel(), 1.0))
@@ -252,15 +267,7 @@ function WearableOwner:Update()
 end
 
 function WearableOwner:SetHidden(hidden)
-    getbase(WearableOwner).SetHidden(self, hidden)
-
-    for _, wearable in pairs(self.wearables) do
-        if hidden then
-            wearable:AddNoDraw()
-        else
-            wearable:RemoveNoDraw()
-        end
-    end
+    self.hideQueue = hidden
 end
 
 function WearableOwner:AttachWearable(modelPath)

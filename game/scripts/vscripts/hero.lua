@@ -48,6 +48,8 @@ end
 function Hero:SetUnit(unit)
     getbase(Hero).SetUnit(self, unit)
     unit.hero = self
+
+    Wrappers.WrapAbilitiesFromHeroData(unit, self.data)
 end
 
 function Hero:GetShortName()
@@ -214,59 +216,9 @@ function Hero:IsInvulnerable()
     return self.invulnerable
 end
 
-function Hero:Damage(source)
-    if source == nil then source = self end
-
-    if not self:Alive() or self.protected or self.falling then
-        return
-    end
-
-    if self:IsInvulnerable() and source ~= self then
-        return
-    end
-
-    local all = self:AllModifiers()
-
-    table.sort(all, function(a, b)
-        local ap = a.OnDamageReceivedPriority and a:OnDamageReceivedPriority() or 0
-        local bp = b.OnDamageReceivedPriority and b:OnDamageReceivedPriority() or 0
-
-        return ap > bp
-    end)
-
-    for _, modifier in pairs(all) do
-        if modifier.OnDamageReceived then
-            local result = modifier:OnDamageReceived(source, self)
-
-            if result == false then -- == false so nil works
-                return
-            end
-        end
-    end
-
-    local damageTable = {
-        victim = self.unit,
-        attacker = source.unit,
-        damage = 1,
-        damage_type = DAMAGE_TYPE_PURE,
-    }
-
-    ApplyDamage(damageTable)
-
-    self:GetUnit():AddNewModifier(self:GetUnit(), nil, "modifier_damaged", { duration = 0.2 })
-
-    local sign = ParticleManager:CreateParticle("particles/msg_fx/msg_damage.vpcf", PATTACH_CUSTOMORIGIN, mode)
-    ParticleManager:SetParticleControl(sign, 0, self:GetPos())
-    ParticleManager:SetParticleControl(sign, 1, Vector(0, 1, 3))
-    ParticleManager:SetParticleControl(sign, 2, Vector(2, 2, 0))
-    ParticleManager:SetParticleControl(sign, 3, Vector(200, 0, 0))
-    ParticleManager:ReleaseParticleIndex(sign)
-
-    GameRules.GameMode:OnDamageDealt(self, source)
-
-    if not self:Alive() then
-        self:OnDeath()
-    end
+function Hero:Damage(...)
+    getbase(Hero).Damage(self, ...)
+    GameRules.GameMode:OnDamageDealt(self, ...)
 end
 
 function Hero:OnDeath()
@@ -289,9 +241,13 @@ function Hero:OnDeath()
     end
 end
 
-function Hero:Heal()
+function Hero:Heal(amount)
+    if amount == nil then
+        amount = 3
+    end
+
     if self.unit:IsAlive() then
-        self.unit:SetHealth(self.unit:GetHealth() + 1)
+        self.unit:SetHealth(self.unit:GetHealth() + amount)
 
         local sign = ParticleManager:CreateParticle("particles/msg_fx/msg_heal.vpcf", PATTACH_CUSTOMORIGIN, mode)
         ParticleManager:SetParticleControl(sign, 0, self:GetPos())

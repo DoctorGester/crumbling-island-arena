@@ -1,11 +1,10 @@
-JuggerWard = JuggerWard or class({}, nil, UnitEntity)
+JuggerWard = JuggerWard or class({}, nil, BreakableEntity)
 
 function JuggerWard:constructor(round, owner, target, ability)
     getbase(JuggerWard).constructor(self, round, "jugger_ward", target, owner.unit:GetTeamNumber())
 
     self.owner = owner.owner
     self.hero = owner
-    self.health = 1
     self.size = 64
     self.removeOnDeath = false
     self.collisionType = COLLISION_TYPE_RECEIVER
@@ -21,11 +20,16 @@ function JuggerWard:constructor(round, owner, target, ability)
     self:EmitSound("Arena.Jugger.CastW")
     self:EmitSound("Arena.Jugger.LoopW")
 
+    self:SetCustomHealth(3)
+    self:EnableHealthBar()
+
     if owner:IsAwardEnabled() then
         local model = "models/items/juggernaut/ward/dc_wardupate/dc_wardupate.vmdl"
         self:GetUnit():SetOriginalModel(model)
         self:GetUnit():SetModel(model)
     end
+
+    self.nextHealAt = GameRules:GetGameTime() + 0.9
 end
 
 function JuggerWard:CreateParticles()
@@ -40,14 +44,24 @@ function JuggerWard:CreateParticles()
     ParticleManager:SetParticleControlEnt(self.flameParticle, 2, self:GetUnit(), PATTACH_POINT_FOLLOW, "flame_attachment", self:GetUnit():GetAbsOrigin(), true)
 end
 
-function JuggerWard:Remove()
-    if not self.damaged and (self:GetPos() - self.hero:GetPos()):Length2D() <= 400 then
-        self.hero:EmitSound("Arena.Jugger.HitW")
-        local particle = ParticleManager:CreateParticle("particles/jugger_w/jugger_w_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.hero:GetUnit())
-        ParticleManager:ReleaseParticleIndex(particle)
-        self.hero:Heal()
-    end
+function JuggerWard:Update()
+    getbase(JuggerWard).Update(self)
 
+    if GameRules:GetGameTime() >= self.nextHealAt then
+        self:AreaEffect({
+            filter = Filters.Area(self:GetPos(), 400) + Filters.WrapFilter(function(v) return v.owner.team == self.owner.team end),
+            filterProjectiles = true,
+            hitAllies = true,
+            action = function(victim)
+                victim:Heal(1)
+            end
+        })
+
+        self.nextHealAt = self.nextHealAt + 0.9
+    end
+end
+
+function JuggerWard:Remove()
     self:StopSound("Arena.Jugger.LoopW")
     self:EmitSound("Arena.Jugger.EndW")
 
@@ -60,9 +74,8 @@ function JuggerWard:Remove()
     ParticleManager:ReleaseParticleIndex(self.flameParticle)
 end
 
-function JuggerWard:Damage(source)
+function JuggerWard:OnDeath()
     self.damaged = true
-    self:Destroy()
 end
 
 function JuggerWard:CollidesWith(source)

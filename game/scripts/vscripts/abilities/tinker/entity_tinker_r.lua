@@ -1,4 +1,4 @@
-EntityTinkerR = EntityTinkerR or class({}, nil, UnitEntity)
+EntityTinkerR = EntityTinkerR or class({}, nil, BreakableEntity)
 
 function EntityTinkerR:constructor(round, owner, position, ability)
     getbase(EntityTinkerR).constructor(self, round, "tinker_cog", position, owner:GetUnit():GetTeamNumber(), true)
@@ -10,8 +10,6 @@ function EntityTinkerR:constructor(round, owner, position, ability)
 
     self:AddNewModifier(owner.unit, ability, "modifier_tinker_r", {})
     self:EmitSound("Arena.Sniper.CastW")
-end
-
-function EntityTinkerR:Damage(source)
-    self:Destroy()
+    self:SetCustomHealth(3)
+    self:EnableHealthBar()
 end

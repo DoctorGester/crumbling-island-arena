@@ -154,6 +154,27 @@
 	    }
 	}
 
+	"venge_vengeance"
+	{
+	    "BaseClass"     "npc_dota_creature"
+	    "Model"         "models/heroes/vengeful/vengeful.vmdl"
+	    "HealthBarOffset"		"170"
+	    "ModelScale"    "0.98"
+	    "MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+	    "BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
+	}
+
+	"ember_remnant"
+	{
+		"BaseClass"     "npc_dota_creature"
+		"Model"         "models/heroes/ember_spirit/ember_spirit.vmdl"
+		"HealthBarOffset"		"200"
+		"ModelScale"    "1.2"
+		"MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+		"BoundsHullName"			"DOTA_HULL_SIZE_SMALL"
+		"DrawParticlesWhileHidden" "1"
+	}
+
 	"ld_bear"
 	{
 	    "BaseClass"     "npc_dota_creature"
@@ -185,7 +206,6 @@
 	    "Model"         "models/heroes/undying/undying_tower.vmdl"
 	    "ModelScale"    "1.0"
 	    "MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
-	    "StatusHealth" "2"
 	}
 
 	"pl_illusion"

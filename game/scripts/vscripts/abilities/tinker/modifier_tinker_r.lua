@@ -2,7 +2,6 @@ modifier_tinker_r = class({})
 
 function modifier_tinker_r:CheckState()
     local state = {
-        [MODIFIER_STATE_NO_HEALTH_BAR] = true,
         [MODIFIER_STATE_UNSELECTABLE] = true,
         [MODIFIER_STATE_ROOTED] = true
     }
@@ -36,7 +35,6 @@ if IsServer() then
             hero:FindAbility("tinker_q"):EndCooldown()
             hero:FindAbility("tinker_w"):EndCooldown()
             hero:FindAbility("tinker_e"):EndCooldown()
-            hero:FindAbility("tinker_e_sub"):EndCooldown()
 
             self:GetParent():EmitSound("Arena.Tinker.HitR")
         end

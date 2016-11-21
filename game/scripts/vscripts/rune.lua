@@ -1,10 +1,9 @@
-Rune = Rune or class({}, nil, UnitEntity)
+Rune = Rune or class({}, nil, BreakableEntity)
 
 function Rune:constructor(round)
     getbase(Rune).constructor(self, round, DUMMY_UNIT, Vector(0, 0, 0))
 
     self.owner = { team = 0 }
-    self.health = 3
     self.size = 64
     self.collisionType = COLLISION_TYPE_RECEIVER
 
@@ -12,7 +11,8 @@ function Rune:constructor(round)
     unit:SetModel("models/props_gameplay/rune_regeneration01.vmdl")
     unit:SetOriginalModel("models/props_gameplay/rune_regeneration01.vmdl")
     unit:StartGesture(ACT_DOTA_IDLE)
-    
+
+    self:SetCustomHealth(5)
     self:CreateParticles()
     self:EmitSound("Arena.RuneSpawn")
 end
@@ -36,27 +36,26 @@ function Rune:Remove()
     ParticleManager:ReleaseParticleIndex(self.particle)
 end
 
-function Rune:Damage(source)
-    self.health = self.health - 1
+function Rune:Damage(...)
+    getbase(Rune).Damage(self, ...)
 
     ParticleManager:SetParticleControl(self.healthCounter, 1, Vector(0, self.health, 0))
+end
 
-    if self.health == 0 then
-        FX("particles/items3_fx/warmage.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity(), { cp0 = self:GetPos() + Vector(0, 0, 64), release = true })
-        FX("particles/items3_fx/fish_bones_active.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity(), { cp0 = self:GetPos() + Vector(0, 0, 64), release = true })
+function Rune:OnDeath(source)
+    FX("particles/items3_fx/warmage.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity(), { cp0 = self:GetPos() + Vector(0, 0, 64), release = true })
+    FX("particles/items3_fx/fish_bones_active.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity(), { cp0 = self:GetPos() + Vector(0, 0, 64), release = true })
 
-        for _, hero in pairs(self.round.spells:FilterEntities(
-            function(target)
-                return instanceof(target, Hero) and target:Alive() and source.owner.team == target.owner.team
-            end)) do
-            hero:Heal()
+    for _, hero in pairs(self.round.spells:FilterEntities(
+        function(target)
+            return instanceof(target, Hero) and target:Alive() and source.owner.team == target.owner.team
+        end)) do
+        hero:Heal(3)
 
-            FX("particles/items3_fx/warmage_recipient.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero, { release = true })
-        end
-        
-        self:EmitSound("Arena.Rune")
-        self:Destroy()
+        FX("particles/items3_fx/warmage_recipient.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero, { release = true })
     end
+
+    self:EmitSound("Arena.Rune")
 end
 
 function Rune:CollidesWith(source)

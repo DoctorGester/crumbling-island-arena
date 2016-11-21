@@ -1,7 +1,7 @@
 EmberRemnant = class({}, nil, WearableOwner)
 
 function EmberRemnant:constructor(round, owner, target, ability)
-    getbase(EmberRemnant).constructor(self, round, "npc_dota_hero_ember_spirit", owner:GetPos(), owner.unit:GetTeamNumber())
+    getbase(EmberRemnant).constructor(self, round, "ember_remnant", owner:GetPos(), owner.unit:GetTeamNumber())
 
     self.owner = owner.owner
     self.hero = owner
@@ -15,9 +15,9 @@ function EmberRemnant:constructor(round, owner, target, ability)
         unit:SetControllableByPlayer(owner.owner.id, true)
     end
 
-    unit:FindAbilityByName("ember_q"):SetLevel(1)
-    unit:FindAbilityByName("ember_w"):SetLevel(1)
-    unit:FindAbilityByName("ember_e"):SetLevel(1)
+    unit:AddAbility("ember_q"):SetLevel(1)
+    unit:AddAbility("ember_w"):SetLevel(1)
+    unit:AddAbility("ember_e"):SetLevel(1)
     unit.hero = self
 
     self:AddNewModifier(self.hero, ability, "modifier_ember_r", { duration = 6 })
@@ -32,21 +32,19 @@ function EmberRemnant:constructor(round, owner, target, ability)
     })
 
     self:EmitSound("Arena.Ember.CastE")
+    self:SetCustomHealth(3)
+    self:EnableHealthBar()
     self:LoadItems()
+
+    Wrappers.WrapAbilitiesFromHeroData(unit, self.hero.data)
+end
+
+function EmberRemnant:GetName()
+    return "npc_dota_hero_ember_spirit"
 end
 
 function EmberRemnant:IsInvulnerable()
     return self.invulnerable or self:HasModifier("modifier_ember_e")
-end
-
-function EmberRemnant:Damage(source)
-    if source.owner.team ~= self.hero.team then
-        self.health = self.health - 1
-    end
-
-    if self.health == 0 then
-        self:Destroy()
-    end
 end
 
 function EmberRemnant:CollidesWith(source)

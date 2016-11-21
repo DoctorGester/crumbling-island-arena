@@ -1,4 +1,4 @@
-LycanWolf = LycanWolf or class({}, nil, UnitEntity)
+LycanWolf = LycanWolf or class({}, nil, BreakableEntity)
 
 function LycanWolf:constructor(round, owner, target, offsetModifier)
     local direction = (target - owner:GetPos()):Normalized()
@@ -20,6 +20,8 @@ function LycanWolf:constructor(round, owner, target, offsetModifier)
 
     self:SetFacing(target - self.start)
     self:AddNewModifier(self.hero, nil, "modifier_lycan_q", { duration = 3 })
+    self:SetCustomHealth(2)
+    self:EnableHealthBar()
 
     if owner:IsAwardEnabled() then
         local awardModel = "models/items/lycan/wolves/hunter_kings_wolves/hunter_kings_wolves.vmdl"
@@ -70,7 +72,7 @@ function LycanWolf:Update()
             local distance = (self.attacking:GetPos() - self:GetPos()):Length2D()
 
             if distance <= 250 then
-                self.attacking:Damage(self)
+                self.attacking:Damage(self, 2)
                 self:EmitSound("Arena.Lycan.HitQ2")
                 LycanUtil.MakeBleed(self.hero, self.attacking)
             end
@@ -104,8 +106,4 @@ function LycanWolf:Update()
     if self.i % 5 == 0 then
         ExecuteOrderFromTable({ UnitIndex = self:GetUnit():GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_MOVE_TO_DIRECTION, Position = result })
     end
-end
-
-function LycanWolf:Damage(source)
-    self:Destroy()
 end
