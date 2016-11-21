@@ -1,32 +1,37 @@
-drow_a = class({})
-LinkLuaModifier("modifier_drow_a", "abilities/drow/modifier_drow_a", LUA_MODIFIER_MOTION_NONE)
+invoker_a = class({})
 
-function drow_a:OnSpellStart()
+function invoker_a:OnAbilityPhaseStart()
+    self:GetCaster():GetParentEntity():EmitSound("Arena.Invoker.PreA")
+
+    return true
+end
+
+function invoker_a:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
-
-    DistanceCappedProjectile(hero.round, {
+    local p = DistanceCappedProjectile(hero.round, {
         owner = hero,
-        from = hero:GetPos() + Vector(0, 0, 64),
-        to = target + Vector(0, 0, 64),
+        from = hero:GetPos() + Vector(0, 0, 128),
+        to = target + Vector(0, 0, 128),
         damage = self:GetDamage(),
-        speed = 1450,
+        speed = 1250,
         radius = 48,
-        graphics = "particles/drow_a/drow_a.vpcf",
-        distance = 1200,
-        hitModifier = { name = "modifier_drow_a", duration = 0.45, ability = self },
-        hitSound = "Arena.Drow.HitA",
+        graphics = "particles/invoker_a/invoker_a.vpcf",
+        distance = 800,
+        hitSound = "Arena.Invoker.HitA",
         isPhysical = true
     }):Activate()
 
-    hero:EmitSound("Arena.Drow.CastA")
+    ParticleManager:SetParticleControl(p.particle, 9, hero:GetPos() + Vector(0, 0, 64))
+
+    hero:EmitSound("Arena.Invoker.CastA")
 end
 
-function drow_a:GetCastAnimation()
+function invoker_a:GetCastAnimation()
     return ACT_DOTA_ATTACK
 end
 
-function drow_a:GetPlaybackRateOverride()
+function invoker_a:GetPlaybackRateOverride()
     return 3
 end
 
@@ -34,4 +39,4 @@ if IsClient() then
     require("wrappers")
 end
 
-Wrappers.AttackAbility(drow_a)
+Wrappers.AttackAbility(invoker_a)

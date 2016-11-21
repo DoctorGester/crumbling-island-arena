@@ -26,11 +26,8 @@ function invoker_q:OnSpellStart()
             hero:AreaEffect({
                 filter = Filters.Area(target, 200),
                 filterProjectiles = true,
-                damage = true,
                 action = function(victim)
-                    if victim:HasModifier("modifier_invoker_w") then
-                        victim:Damage(hero)
-                    end
+                    victim:Damage(hero, self:GetDamage())
                 end
             })
 

@@ -16,6 +16,24 @@ function modifier_invoker_w:DeclareFunctions()
     return funcs
 end
 
+function modifier_invoker_w:CheckState()
+    return {
+        [MODIFIER_STATE_DISARMED] = true
+    }
+end
+
+function modifier_invoker_w:OnDamageReceived(source, hero, amount, isPhysical)
+    if not isPhysical then
+        return amount * 2
+    end
+
+    return false
+end
+
+function modifier_invoker_w:OnDamageReceivedPriority()
+    return 1
+end
+
 function modifier_invoker_w:IsDebuff()
     return true
 end
