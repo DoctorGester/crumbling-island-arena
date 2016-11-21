@@ -24,7 +24,7 @@ function Debug.OnCheckEnd()
 end
 
 function Debug.OnHealDebugHero()
-    Debug.debugHero.unit:SetHealth(5)
+    Debug.debugHero.unit:SetHealth(15)
 end
 
 function Debug.OnResetLevel(eventSourceIndex, args)

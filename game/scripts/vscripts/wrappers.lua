@@ -103,7 +103,9 @@ function Wrappers.GuidedAbility(ability, forceFacing, doNotSetFacing)
     end
 end
 
-function Wrappers.AttackAbility(ability)
+function Wrappers.AttackAbility(ability, staticDurationOffset)
+    staticDurationOffset = staticDurationOffset or 0
+
     local getCooldown = ability.GetCooldown
     local onSpellStart = ability.OnSpellStart
 
@@ -139,7 +141,7 @@ function Wrappers.AttackAbility(ability)
             local hero = self:GetCaster():GetParentEntity()
             local m = hero:FindModifier("modifier_attack_speed")
             local cd = self:GetCooldown(1)
-            local duration = cd * 1.75
+            local duration = cd * 1.75 + staticDurationOffset
 
             if not m then
                 m = hero:AddNewModifier(hero, self, "modifier_attack_speed", { duration = duration })
