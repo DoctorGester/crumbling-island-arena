@@ -22,6 +22,7 @@ function sniper_a:OnSpellStart()
         hitFunction = function(projectile, target)
             hero:StopSound("Arena.Sniper.FlyA")
             target:Damage(projectile, self:GetDamage())
+            SoftKnockback(target, hero, projectile.vel, 20, { decrease = 3 })
         end
     }):Activate()
 
