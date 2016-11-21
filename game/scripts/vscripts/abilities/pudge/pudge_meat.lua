@@ -25,7 +25,7 @@ function PudgeMeat:Remove()
     ParticleManager:ReleaseParticleIndex(self.particle)
 end
 
-function PudgeMeat:Damage(source)
+function PudgeMeat:Damage()
 end
 
 function PudgeMeat:CollidesWith(source)

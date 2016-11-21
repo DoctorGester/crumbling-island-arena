@@ -22,8 +22,8 @@ function Statistics:IncreaseRoundsWon(player)
 	self:IncreaseValue(player, "roundsWon", 1)
 end
 
-function Statistics:IncreaseDamageDealt(player)
-	self:IncreaseValue(player, "damageDealt", 1)
+function Statistics:IncreaseDamageDealt(player, amount)
+	self:IncreaseValue(player, "damageDealt", amount)
 end
 
 function Statistics:IncreaseGroundDamageDealt(player)

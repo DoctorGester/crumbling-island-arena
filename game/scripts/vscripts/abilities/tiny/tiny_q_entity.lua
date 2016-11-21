@@ -57,7 +57,7 @@ function TinyQ:MakeFall()
     self:RemoveGroundEffect()
 end
 
-function TinyQ:Damage(source) end
+function TinyQ:Damage() end
 
 function TinyQ:GetNextPosition(pos)
     local position = getbase(TinyQ).GetNextPosition(self, pos)

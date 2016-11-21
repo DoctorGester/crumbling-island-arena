@@ -99,6 +99,6 @@ function WKSkeleton:Update()
     end
 end
 
-function WKSkeleton:Damage(source)
+function WKSkeleton:Damage()
     self:Destroy()
 end

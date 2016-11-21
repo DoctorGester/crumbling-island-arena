@@ -96,4 +96,4 @@ function LDBear:Update()
     end
 end
 
-function LDBear:Damage(source) end
+function LDBear:Damage() end
