@@ -15,6 +15,9 @@ function pa_w:OnSpellStart()
             ParticleManager:SetParticleControlEnt(blood, 0, victim:GetUnit(), PATTACH_POINT_FOLLOW, "attach_hitloc", victim:GetPos(), true)
             ParticleManager:SetParticleControlForward(blood, 0, direction)
             ParticleManager:SetParticleControl(blood, 2, direction * 1000)
+
+            local effect = ImmediateEffectPoint("particles/econ/items/earthshaker/earthshaker_gravelmaw/earthshaker_fissure_dust_gravelmaw.vpcf", PATTACH_ABSORIGIN, hero, victim:GetPos())
+            ParticleManager:SetParticleControl(effect, 1, victim:GetPos() + direction * 120)
         end,
         knockback = { force = 80, decrease = 9 },
         damage = self:GetDamage(),
