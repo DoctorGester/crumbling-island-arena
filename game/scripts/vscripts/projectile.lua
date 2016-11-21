@@ -45,6 +45,8 @@ function Projectile:constructor(round, params)
     self:SetPos(self.from)
 
     self.hero.round.statistics:IncreaseProjectilesFired(self.owner)
+
+    self.isNew = 2
 end
 
 function Projectile:CanFall()
@@ -106,6 +108,8 @@ function Projectile:Update()
     end
 
     self:SetPos(self:GetNextPosition(pos))
+
+    self.isNew = self.isNew - 1
 end
 
 function Projectile:CollidesWith(target)
@@ -177,8 +181,17 @@ end
 
 function Projectile:SetGraphics(graphics)
     if self.particle then
-        ParticleManager:DestroyParticle(self.particle, false)
-        ParticleManager:ReleaseParticleIndex(self.particle)
+        local p = self.particle
+        local function cleaner()
+            ParticleManager:DestroyParticle(p, false)
+            ParticleManager:ReleaseParticleIndex(p)
+        end
+
+        if self.isNew > 0 then
+            Timers:CreateTimer(cleaner)
+        else
+            cleaner()
+        end
     end
 
     if graphics then
