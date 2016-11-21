@@ -1,46 +1,37 @@
 sniper_q = class({})
 
-function sniper_q:OnAbilityPhaseStart()
-    local hero = self:GetCaster().hero
-    hero:EmitSound("Arena.Sniper.PreQ")
+LinkLuaModifier("modifier_sniper_q", "abilities/sniper/modifier_sniper_q", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_sniper_q_target", "abilities/sniper/modifier_sniper_q_target", LUA_MODIFIER_MOTION_NONE)
 
-    return true
+require('abilities/sniper/sniper_shrapnel')
+
+function sniper_q:GroundEffect(position, target, effect)
+    local hero = self:GetCaster().hero
+    local effect = ImmediateEffect(effect or "particles/units/heroes/hero_sandking/sandking_burrowstrike_eruption.vpcf", PATTACH_POINT, hero)
+    ParticleManager:SetParticleControl(effect, 0, position)
+    ParticleManager:SetParticleControl(effect, 1, target or position)
 end
 
 function sniper_q:OnSpellStart()
+    Wrappers.DirectionalAbility(self, 1800)
+
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
-    local direction = target - hero:GetPos()
-    local ability = self
-
-    if direction:Length2D() == 0 then
-        direction = hero:GetFacing()
-    end
-
-    Projectile(hero.round, {
-        owner = hero,
-        from = hero:GetPos() + Vector(0, 0, 64),
-        to = target + Vector(0, 0, 64),
-        speed = 2300,
-        graphics = "particles/sniper_q/sniper_q.vpcf",
-        radius = 48,
-        hitSound = "Arena.Sniper.HitQ",
-        hitFunction = function(projectile, target)
-            hero:StopSound("Arena.Sniper.FlyQ")
-            target:Damage(projectile)
-        end
-    }):Activate()
 
     hero:EmitSound("Arena.Sniper.CastQ")
-    hero:EmitSound("Arena.Sniper.FlyQ")
 
-    ScreenShake(hero:GetPos(), 4, 50, 0.35, 2000, 0, true)
+    FX("particles/units/heroes/hero_sniper/sniper_shrapnel_launch.vpcf", PATTACH_POINT_FOLLOW, hero, {
+        cp0 = { ent = hero, point = "attach_attack1" },
+        cp1 = target + Vector(0, 0, 2048)
+    })
+
+    SniperShrapnel(hero.round, hero, target, self):Activate()
 end
 
 function sniper_q:GetCastAnimation()
-    return ACT_DOTA_CAST_ABILITY_4
+    return ACT_DOTA_CAST_ABILITY_1
 end
 
 function sniper_q:GetPlaybackRateOverride()
-    return 3.5
+    return 2.0
 end
