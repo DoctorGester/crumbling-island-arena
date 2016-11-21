@@ -54,8 +54,8 @@
 
 .AbilityButton
 {
-    width: 64px;
-    height: 64px;
+    width: 72px;
+    height: 72px;
     color: white;
     font-size: 16px;
     text-shadow: 2px 2px 2px #7b612b;
@@ -99,8 +99,8 @@
 {
     border-radius: 50%;
     margin-right: 40px;
-    width: 56px;
-    height: 56px;
+    width: 64px;
+    height: 64px;
     vertical-align: middle;
 }
 
@@ -150,19 +150,36 @@
 
 .ShortcutText
 {
-    font-size: 10;
-    margin: 8px;
+    font-size: 18;
+    margin: 4px;
     vertical-align: bottom;
     horizontal-align: center;
     text-shadow: 0px 0px 8px 8.0 #333333b0;
 }
 
+.AbilityAttack .ShortcutText
+{
+    width: 24px;
+    height: 24px;
+    margin-bottom: 4px;
+    background-image: url('file://{images}/custom_game/lmb.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
 .CooldownText
 {
-    font-size: 14;
-    vertical-align: middle;
+    font-size: 16;
+    vertical-align: top;
+    margin-top: 12px;
     horizontal-align: center;
     text-shadow: 0px 0px 8px 8.0 #333333b0;
+}
+
+.AbilityAttack .CooldownText
+{
+    font-size: 14;
+    padding-bottom: 20px;
 }
 
 /* Animation by Perry */
