@@ -49,7 +49,8 @@ function tinker_a:OnSpellStart()
         hero:AreaEffect({
             filter = Filters.Line(from, closestPoint, 64)..Filters.Line(portalStart, portalEnd, 64),
             damage = self:GetDamage(),
-            sound = "Arena.Tinker.HitQ"
+            sound = "Arena.Tinker.HitQ",
+            isPhysical = true
         })
     else
         local effect = ImmediateEffect("particles/units/heroes/hero_tinker/tinker_laser.vpcf", PATTACH_ABSORIGIN, hero)
@@ -59,7 +60,8 @@ function tinker_a:OnSpellStart()
         hero:AreaEffect({
             filter = Filters.Line(from, target, 64),
             damage = self:GetDamage(),
-            sound = "Arena.Tinker.HitQ"
+            sound = "Arena.Tinker.HitQ",
+            isPhysical = true
         })
     end
 

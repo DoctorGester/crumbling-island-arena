@@ -33,7 +33,8 @@ function cm_a:OnSpellStart()
         graphics = graphics,
         distance = 900,
         hitFunction = action,
-        hitSound = "Arena.CM.HitA"
+        hitSound = "Arena.CM.HitA",
+        isPhysical = true
     }):Activate()
 
     hero:EmitSound("Arena.CM.CastA")

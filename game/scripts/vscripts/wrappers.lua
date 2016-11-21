@@ -107,6 +107,22 @@ function Wrappers.AttackAbility(ability)
     local getCooldown = ability.GetCooldown
     local onSpellStart = ability.OnSpellStart
 
+    function ability:CastFilterResultLocation(loc)
+        if self:GetCaster():IsDisarmed() then
+            return UF_FAIL_CUSTOM
+        end
+
+        return UF_SUCCESS
+    end
+
+    function ability:GetCustomCastErrorLocation(loc)
+        if self:GetCaster():IsDisarmed() then
+            return "dota_hud_error_unit_disarmed"
+        end
+
+        return ""
+    end
+
     function ability:GetCooldown(level)
         local cd = getCooldown and getCooldown(self, level) or self.BaseClass.GetCooldown(self, level)
         local stackCount = self:GetCaster():GetModifierStackCount("modifier_attack_speed", self:GetCaster())
@@ -134,6 +150,25 @@ function Wrappers.AttackAbility(ability)
             end
 
             onSpellStart(self)
+        end
+    end
+end
+
+function Wrappers.WrapAbilitiesFromHeroData(unit, data)
+    local count = unit:GetAbilityCount() - 1
+    for i = 0, count do
+        local ability = unit:GetAbilityByIndex(i)
+
+        if ability ~= nil then
+            for _, abilityData in pairs((data or {}).abilities or {}) do
+                if abilityData.name == ability:GetName() and abilityData.damage then
+                    ability.GetDamage = function(a)
+                        return abilityData.damage
+                    end
+
+                    break
+                end
+            end
         end
     end
 end

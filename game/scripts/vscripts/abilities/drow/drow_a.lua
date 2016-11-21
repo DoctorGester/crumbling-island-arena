@@ -15,7 +15,8 @@ function drow_a:OnSpellStart()
         graphics = "particles/drow_a/drow_a.vpcf",
         distance = 1200,
         hitModifier = { name = "modifier_drow_a", duration = 0.45, ability = self },
-        hitSound = "Arena.Drow.HitA"
+        hitSound = "Arena.Drow.HitA",
+        isPhysical = true
     }):Activate()
 
     hero:EmitSound("Arena.Drow.CastA")

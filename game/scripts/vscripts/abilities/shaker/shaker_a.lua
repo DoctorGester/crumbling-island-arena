@@ -35,7 +35,8 @@ function shaker_a:OnSpellStart()
         filter = Filters.Cone(pos, range, forward, math.pi),
         sound = sound,
         damage = damage,
-        knockback = { force = force, decrease = 3 }
+        knockback = { force = force, decrease = 3 },
+        isPhysical = true
     })
 end
 

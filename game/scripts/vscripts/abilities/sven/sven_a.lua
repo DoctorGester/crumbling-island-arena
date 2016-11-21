@@ -27,6 +27,7 @@ function sven_a:OnSpellStart()
         filter = Filters.Cone(pos, range, forward, math.pi),
         sound = "Arena.Sven.HitA",
         damage = damage,
+        isPhysical = true,
         action = function(target)
             local effectPos = target:GetPos() + Vector(0, 0, 64)
             local direction = (pos - effectPos):Normalized()

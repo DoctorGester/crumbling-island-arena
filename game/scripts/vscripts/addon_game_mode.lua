@@ -8,6 +8,7 @@ require('stats')
 
 require('dynamic_entity')
 require('unit_entity')
+require('breakable_entity')
 require('wearable_owner')
 require('hero')
 require('player')
@@ -621,10 +622,10 @@ function GameMode:RecordKill(victim, source, fell)
     })
 end
 
-function GameMode:OnDamageDealt(hero, source)
+function GameMode:OnDamageDealt(hero, source, amount)
     if hero ~= source and source and source.owner and hero.owner and source.owner.team ~= hero.owner.team then
         if self.round then
-            self.round.statistics:IncreaseDamageDealt(source.owner)
+            self.round.statistics:IncreaseDamageDealt(source.owner, amount)
         end
     end
 

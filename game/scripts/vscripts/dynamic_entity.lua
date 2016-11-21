@@ -98,7 +98,7 @@ function DynamicEntity:TestFalling()
 end
 
 
-function DynamicEntity:Damage(source) end
+function DynamicEntity:Damage(source, amount, isPhysical) end
 function DynamicEntity:Heal() end
 function DynamicEntity:Remove() end
 function DynamicEntity:CollideWith(target) end
@@ -107,6 +107,9 @@ function DynamicEntity:HasModifier() return false end
 function DynamicEntity:FindModifier() end
 function DynamicEntity:AddNewModifier() end
 function DynamicEntity:RemoveModifier() end
+function DynamicEntity:IsAirbone()
+    return not self:CanFall()
+end
 
 function DynamicEntity:Activate()
     self.round.spells:AddDynamicEntity(self)
@@ -116,6 +119,14 @@ end
 
 function DynamicEntity:AreaEffect(params)
     local hurt = nil
+
+    params.filterProjectiles = true
+
+    if params.damage == true then
+        params.damage = 3
+    end
+
+    local soundPlayed = false
 
     for _, target in pairs(self.round.spells:GetValidTargets()) do
         local passes = not params.filterProjectiles or not instanceof(target, Projectile)
@@ -129,16 +140,32 @@ function DynamicEntity:AreaEffect(params)
                 target:AddNewModifier(self, m.ability, m.name, { duration = m.duration })
             end
 
-            if params.damage then
-                target:Damage(self)
+            if params.damage ~= nil then
+                target:Damage(self, params.damage, params.isPhysical)
+            end
+
+            if params.knockback then
+                local direction = params.knockback.direction and params.knockback.direction(target) or (target:GetPos() - self:GetPos())
+
+                SoftKnockback(target, self, direction, params.knockback.force or 20, {
+                    decrease = params.knockback.decrease
+                })
             end
 
             if params.action then
                 params.action(target)
             end
 
-            if params.sound then
-                target:EmitSound(params.sound)
+            if params.sound and not soundPlayed then
+                if type(params.sound) == "table" then
+                    for _, sound in pairs(params.sound) do
+                        target:EmitSound(sound)
+                    end
+                else
+                    target:EmitSound(params.sound)
+                end
+
+                soundPlayed = true
             end
 
             if not hurt then

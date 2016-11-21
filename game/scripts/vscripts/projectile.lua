@@ -34,6 +34,8 @@ function Projectile:constructor(round, params)
     self.disablePrediction = params.disablePrediction or false
     self.destroyOnDamage = params.destroyOnDamage
     self.invulnerable = params.invulnerable or false
+    self.damage = params.damage
+    self.isPhysical = params.isPhysical
 
     if self.destroyOnDamage == nil then
        self.destroyOnDamage = true 
@@ -111,7 +113,7 @@ function Projectile:CollidesWith(target)
         return self:hitCondition(target)
     end
 
-    return self.owner.team ~= target.owner.team or target.specialAlly
+    return (self.owner.team ~= target.owner.team or target.specialAlly) and not instanceof(target, Projectile)
 end
 
 function Projectile:CollideWith(target)
@@ -123,8 +125,8 @@ function Projectile:CollideWith(target)
 
     if self.hitFunction then
         self:hitFunction(target)
-    else
-        target:Damage(self)
+    elseif self.damage ~= nil then
+        target:Damage(self, self.damage, self.isPhysical)
     end
     
     if self.hitSound then

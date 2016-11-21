@@ -26,7 +26,8 @@ function ember_a:OnSpellStart()
                 target:Damage(hero, damage)
             end
         end,
-        knockback = { force = 20, decrease = 3 }
+        knockback = { force = 20, decrease = 3 },
+        isPhysical = true
     })
 end
 

@@ -8,7 +8,8 @@ function ProjectilePAA:constructor(round, hero, target, damage)
         speed = 5000,
         graphics = "particles/pa_q/pa_q.vpcf",
         continueOnHit = true,
-        disablePrediction = true
+        disablePrediction = true,
+        isPhysical = true
     })
 
     self.initialVel = Vector(self.vel.x, self.vel.y)
@@ -25,7 +26,7 @@ function ProjectilePAA:constructor(round, hero, target, damage)
             self:Destroy()
         else
             target:EmitSound("Arena.PA.HitQ")
-            target:Damage(self, damage)
+            target:Damage(self, damage, self.isPhysical)
 
             local direction = (target:GetPos() - self:GetPos()):Normalized()
             local blood = ImmediateEffect("particles/units/heroes/hero_riki/riki_backstab_hit_blood.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero)

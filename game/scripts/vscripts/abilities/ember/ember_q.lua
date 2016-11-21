@@ -15,9 +15,8 @@ function ember_q:OnSpellStart()
         distance = 1100,
         hitSound = "Arena.Ember.HitQ",
         continueOnHit = true,
-        damage = self:GetDamage(),
         hitFunction = function(projectile, target)
-            target:Damage(hero)
+            target:Damage(hero, self:GetDamage())
 
             if EmberUtil.Burn(hero, target, self) then
                 target:AddNewModifier(hero, self, "modifier_ember_q", { duration = 2.5 })

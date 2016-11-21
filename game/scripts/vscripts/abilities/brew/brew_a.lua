@@ -1,8 +1,6 @@
 brew_a = class({})
 
 function brew_a:OnAbilityPhaseStart()
-    local hero = self:GetCaster().hero
-
     local hero = self:GetCaster():GetParentEntity()
     local stacks = hero:FindAbility("brew_q"):CountBeer(hero)
 
@@ -33,7 +31,8 @@ function brew_a:OnSpellStart()
         damage = damage,
         action = function(target)
             SoftKnockback(target, hero, target:GetPos() - hero:GetPos(), force, { decrease = 3 })
-        end
+        end,
+        isPhysical = true
     })
 end
 

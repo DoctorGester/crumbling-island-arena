@@ -41,6 +41,7 @@ function tiny_a:OnSpellStart()
         damage = damage,
         knockback = { force = force, decrease = 3 },
         modifier = { name = "modifier_tiny_a", duration = duration, ability = self },
+        isPhysical = true,
         action = function(target)
             if mod then
                 local effectPos = target:GetPos() + Vector(0, 0, 64)
