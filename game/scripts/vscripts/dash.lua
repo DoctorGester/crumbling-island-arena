@@ -228,10 +228,11 @@ function SoftKnockback:constructor(hero, source, direction, force, params)
 
     params.forceFacing = nil
     params.modifier = nil
+    params.interruptedByStuns = false
 
     getbase(SoftKnockback).constructor(self, hero, nil, 0, params)
 
-    self.direction = direction
+    self.direction = direction:Normalized()
     self.force = force * multiplier
     self.decrease = params.decrease or 7
 
@@ -252,6 +253,11 @@ end
 
 function SoftKnockback:Update()
     self.force = math.max(0, self.force - self.decrease)
+
+    local next = self:PositionFunction(self.hero:GetPos())
+    if not GridNav:IsTraversable(next) or GridNav:IsBlocked(next) then
+        self.direction = -self.direction
+    end
 
     getbase(SoftKnockback).Update(self)
 end
