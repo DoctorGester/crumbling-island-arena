@@ -72,4 +72,4 @@ if IsClient() then
     require("wrappers")
 end
 
-Wrappers.AttackAbility(tiny_a)
+Wrappers.AttackAbility(tiny_a, nil, "particles/melee_attack_blur.vpcf")
