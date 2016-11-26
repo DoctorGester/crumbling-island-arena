@@ -103,7 +103,7 @@ function Wrappers.GuidedAbility(ability, forceFacing, doNotSetFacing)
     end
 end
 
-function Wrappers.AttackAbility(ability, staticDurationOffset)
+function Wrappers.AttackAbility(ability, staticDurationOffset, fx)
     staticDurationOffset = staticDurationOffset or 0
 
     local getCooldown = ability.GetCooldown
@@ -137,6 +137,20 @@ function Wrappers.AttackAbility(ability, staticDurationOffset)
     end
 
     if IsServer() then
+        if fx then
+            local onPhaseStart = ability.OnAbilityPhaseStart
+
+            function ability:OnAbilityPhaseStart()
+                FX(fx, PATTACH_ABSORIGIN, self:GetCaster():GetParentEntity(), { release = true })
+
+                if onPhaseStart then
+                    return onPhaseStart(self)
+                end
+
+                return true
+            end
+        end
+
         function ability:OnSpellStart()
             local hero = self:GetCaster():GetParentEntity()
             local m = hero:FindModifier("modifier_attack_speed")

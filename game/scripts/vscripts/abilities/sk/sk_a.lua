@@ -40,4 +40,4 @@ if IsClient() then
     require("wrappers")
 end
 
-Wrappers.AttackAbility(sk_a)
+Wrappers.AttackAbility(sk_a, nil, "particles/melee_attack_blur.vpcf")
