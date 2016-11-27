@@ -33,8 +33,8 @@ function qop_r:ExpendCharge(ability)
         
         local hero = self:GetCaster().hero
 
-        if hero:GetHealth() > 1 then
-            hero:Damage(hero)
+        if hero:GetHealth() > 2 then
+            hero:Damage(hero, 2)
         end
     end
 end
@@ -47,8 +47,6 @@ end
 
 function qop_r:OnSpellStart()
     local hero = self:GetCaster().hero
-    local target = self:GetCursorPosition()
-
     local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_queenofpain/queen_scream_of_pain_owner.vpcf", PATTACH_ABSORIGIN, hero:GetUnit())
     ParticleManager:ReleaseParticleIndex(particle)
 

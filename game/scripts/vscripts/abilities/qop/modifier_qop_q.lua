@@ -2,7 +2,7 @@ modifier_qop_q = class({})
 
 if IsServer() then
     function modifier_qop_q:OnCreated(kv)
-        self:StartIntervalThink(self:GetDuration())
+        self:StartIntervalThink(self:GetDuration() / 2)
 
         local effect = ParticleManager:CreateParticle("particles/units/heroes/hero_queenofpain/queen_shadow_strike_debuff.vpcf", PATTACH_POINT_FOLLOW, self:GetParent())
 
@@ -16,10 +16,10 @@ if IsServer() then
     end
 
     function modifier_qop_q:OnIntervalThink()
-        self:GetParent():GetParentEntity():Damage(self:GetCaster().hero)
+        self:GetParent():GetParentEntity():Damage(self:GetCaster().hero, self:GetAbility():GetDamage() / 2)
 
         if self.heals and self:GetCaster():GetParentEntity():Alive() then
-            self:GetCaster().hero:Heal()
+            self:GetCaster().hero:Heal(self:GetAbility():GetDamage() / 2)
             self:GetCaster():EmitSound("Arena.QOP.CastR.Heal")
         end
     end
