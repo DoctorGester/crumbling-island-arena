@@ -50,7 +50,9 @@ function BreakableEntity:Damage(source, amount, isPhysical)
                 return
             end
 
-            amount = result or amount;
+            if result ~= true then
+                amount = result or amount;
+            end
         end
     end
 
