@@ -37,7 +37,7 @@ function AddChatLine(hero, playerName, color, message, team, wasTopPlayer, hasPa
         trophy.AddClass("TopPlayerIcon");
         trophy.AddClass("GameChatImage");
     }
-    
+
     var label = $.CreatePanel("Label", line, "");
     label.SetDialogVariable("name", playerName);
     label.SetDialogVariable("color", color);
@@ -92,7 +92,7 @@ function OnKillMessage(args) {
 
 function OnCustomChatSay(args) {
     var color = LuaColor(args.color);
-    
+
     AddChatLine(args.hero, EscapeHtml(Players.GetPlayerName(args.player)), color, args.message, args.team, args.wasTopPlayer, args.hasPass);
 }
 
@@ -337,7 +337,7 @@ function GameStateChanged(data){
 
         $("#" + panel).SetHasClass(animation, data.state != GAME_STATE_ROUND_IN_PROGRESS);
     }
-    
+
     if (data.state == GAME_STATE_ROUND_IN_PROGRESS){
         $("#KillLog").RemoveAndDeleteChildren();
         $("#RoundMessageTop").AddClass("RoundMessageTopAnimation");
@@ -378,7 +378,7 @@ var DeathMatch = new (function() {
         var abilitiesToShow = ["Q", "W", "E", "R"];
 
         for (var ability of abilitiesToShow) {
-            var found = 
+            var found =
                 _(hero.abilities)
                     .chain()
                     .filter(function(a) {
@@ -522,6 +522,10 @@ function MouseCallback(event, button) {
         var localHero = GetLocalHero();
         var position = GameUI.GetScreenWorldPosition(GameUI.GetCursorPosition());
 
+        if (!position) {
+            return false;
+        }
+
         // TODO check if hero is dead
         if (button === 0) {
             var count = Entities.GetAbilityCount(localHero);
@@ -549,6 +553,10 @@ function MouseCallback(event, button) {
 
             (function tick() {
                 if (GameUI.IsMouseDown(button)) {
+                    if (!Entities.IsDisarmed(localHero)) {
+                        $.Schedule(1 / 60.0, tick);
+                    }
+
                     order.Position = GameUI.GetScreenWorldPosition(GameUI.GetCursorPosition());
 
                     if (Abilities.IsCooldownReady(order.AbilityIndex) &&
@@ -556,10 +564,6 @@ function MouseCallback(event, button) {
                          Abilities.IsActivated(order.AbilityIndex)
                     ) {
                         Game.PrepareUnitOrders(order);
-                    }
-
-                    if (!Entities.IsDisarmed(localHero)) {
-                        $.Schedule(1 / 60.0, tick);
                     }
                 }
             })();
@@ -578,19 +582,22 @@ function MouseCallback(event, button) {
             var first = true;
 
             (function tick() {
-                var newPos = GameUI.GetScreenWorldPosition(GameUI.GetCursorPosition());
-                var len = Vector.FromArray(order.Position).minus(Vector.FromArray(newPos)).length();
-
                 if (GameUI.IsMouseDown(button)) {
-                    if (len >= 64 || first) {
-                        order.Position = newPos;
-
-                        Game.PrepareUnitOrders(order);
-                    }
-
-                    first = false;
-
                     $.Schedule(1 / 60.0, tick);
+
+                    var newPos = GameUI.GetScreenWorldPosition(GameUI.GetCursorPosition());
+
+                    if (newPos && order.Position) {
+                        var len = Vector.FromArray(order.Position).minus(Vector.FromArray(newPos)).length();
+
+                        if (len >= 64 || first) {
+                            order.Position = newPos;
+
+                            Game.PrepareUnitOrders(order);
+                        }
+
+                        first = false;
+                    }
                 }
             })();
 
