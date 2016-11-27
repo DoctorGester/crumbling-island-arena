@@ -3,42 +3,39 @@ lc_q = class({})
 LinkLuaModifier("modifier_lc_q", "abilities/lc/modifier_lc_q", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_lc_q_animation", "abilities/lc/modifier_lc_q_animation", LUA_MODIFIER_MOTION_NONE)
 
-function lc_q:OnAbilityPhaseStart()
+function lc_q:OnSpellStart()
+    Wrappers.DirectionalAbility(self)
+
     local hero = self:GetCaster().hero
+    local dir = self:GetDirection()
+
     hero:EmitSound("Arena.LC.CastQ")
 
-    return true
-end
+    FunctionDash(hero, hero:GetPos() + dir * 300, 0.3, {
+        forceFacing = true,
+        heightFunction = DashParabola(50),
+        arrivalFunction = function(dash)
+            local target = hero:GetPos() + dir * 200
 
-function lc_q:OnSpellStart()
-    local hero = self:GetCaster().hero
-    local target = hero:GetPos() + hero:GetFacing() * 200
+            FX("particles/units/heroes/hero_centaur/centaur_warstomp.vpcf", PATTACH_ABSORIGIN, hero, {
+                cp0 = target,
+                cp1 = Vector(600, 1, 1),
+                cp2 = target,
+                cp3 = target,
+                release = true
+            })
 
-    local effect = ImmediateEffect("particles/units/heroes/hero_centaur/centaur_warstomp.vpcf", PATTACH_ABSORIGIN, hero)
-    ParticleManager:SetParticleControl(effect, 0, target)
-    ParticleManager:SetParticleControl(effect, 1, Vector(600, 1, 1))
-    ParticleManager:SetParticleControl(effect, 2, target)
-    ParticleManager:SetParticleControl(effect, 3, target)
+            hero:AreaEffect({
+                filter = Filters.Area(target, 200),
+                damage = self:GetDamage(),
+                modifier = { name = "modifier_lc_q", duration = 1.5, ability = self },
+            })
 
-    hero:AreaEffect({
-        filter = Filters.Area(target, 200),
-        damage = true,
-        modifier = { name = "modifier_lc_q", duration = 1.5, ability = self },
+            hero:EmitSound("Arena.LC.HitQ")
+
+            ScreenShake(target, 45 * 40, 45 * 40, 0.15, 1800, 0, true)
+            Spells:GroundDamage(target, 200, hero)
+        end,
+        modifier = { name = "modifier_lc_q_animation", ability = self },
     })
-    
-    ScreenShake(target, 5, 150, 0.25, 2000, 0, true)
-    Spells:GroundDamage(target, 200, hero)
-    hero:EmitSound("Arena.LC.HitQ")
-end
-
-function lc_q:GetCastAnimation()
-    return ACT_DOTA_ATTACK
-end
-
-function lc_q:GetPlaybackRateOverride()
-    return 2
-end
-
-function lc_q:GetIntrinsicModifierName()
-    return "modifier_lc_q_animation"
 end

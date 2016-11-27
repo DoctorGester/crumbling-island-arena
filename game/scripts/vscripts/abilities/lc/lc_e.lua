@@ -12,7 +12,8 @@ function lc_e:OnSpellStart()
         modifier = { name = "modifier_lc_e_animation", ability = self },
         hitParams = {
             modifier = { name = "modifier_stunned_lua", ability = self, duration = 0.7 }
-        }
+        },
+        forceFacing = true
     })
 
     hero:EmitSound("Arena.LC.CastE")

@@ -21,8 +21,8 @@ function modifier_lc_r:GetModifierPercentageCooldown(params)
     return 50
 end
 
-function modifier_lc_r:OnDamageReceived(source, hero)
-    return hero:GetHealth() ~= 1
+function modifier_lc_r:OnDamageReceived(source, hero, amount)
+    return hero:GetHealth() - amount > 0
 end
 
 function modifier_lc_r:OnDamageReceivedPriority()

@@ -14,6 +14,14 @@ function modifier_lc_e_animation:OnCreated(kv)
     end
 end
 
+function modifier_lc_e_animation:CheckState()
+    local state = {
+        [MODIFIER_STATE_STUNNED] = true
+    }
+
+    return state
+end
+
 function modifier_lc_e_animation:OnIntervalThink()
     if IsServer() then
         self:EmitDust()
