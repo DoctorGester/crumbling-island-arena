@@ -433,7 +433,7 @@ function GameMode:FilterExecuteOrder(filterTable)
             if orderType == DOTA_UNIT_ORDER_CAST_POSITION and self.lastOrders[unit] then
                 local ability = EntIndexToHScript(filterTable.entindex_ability)
 
-                if ability:IsCooldownReady() and not ability:IsInAbilityPhase() then
+                if ability:IsCooldownReady() and not ability:IsInAbilityPhase() and ability:GetName():ends("_a") then
                     if unit:IsMoving() then
                         Timers:CreateTimer(0.1, function()
                             if IsValidEntity(unit) then
@@ -1297,6 +1297,12 @@ function GameMode:NetworkCosmetics()
 end
 
 function GameMode:OnGameInProgress()
+    Timers:CreateTimer(5, function()
+        self:Start()
+    end)
+end
+
+function GameMode:Start()
     if not statCollection.sentStage2 and statCollection.sentStage1 then
         statCollection:sendStage2()
     end
