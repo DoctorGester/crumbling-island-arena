@@ -168,7 +168,7 @@ function Level:DebugCluster(clusterX, clusterY, time)
     self:DebugBounds(bounds, time)
 end
 
-function Level:GetPolygonAt(x, y)
+function Level:GetClusterAt(x, y)
     local clusterX = math.floor(x / self.cellSize)
     local clusterY = math.floor(y / self.cellSize)
 
@@ -178,7 +178,11 @@ function Level:GetPolygonAt(x, y)
         return nil
     end
 
-    local cluster = row[clusterX]
+    return row[clusterX]
+end
+
+function Level:GetPolygonAt(x, y)
+    local cluster = self:GetClusterAt(x, y)
 
     if not cluster then
         return nil
@@ -190,6 +194,42 @@ function Level:GetPolygonAt(x, y)
             return polygon
         end
     end
+end
+
+function Level:FindCirclePartIntersection(x, y, rad)
+    local clusters = {}
+
+    local function insertCluster(ox, oy)
+        local c = self:GetClusterAt(x + ox, y + oy)
+
+        if c then
+            clusters[c] = true
+        end
+    end
+
+    insertCluster(rad, rad)
+    insertCluster(rad, -rad)
+    insertCluster(-rad, rad)
+    insertCluster(-rad, -rad)
+    insertCluster(0, 0)
+
+    local result
+
+    for cluster, _ in pairs(clusters) do
+        for polygon, _ in pairs(cluster) do
+            if polygon.part.z > -50 and (polygon:contains(x, y) or polygon:intersectsCircle(x, y, rad)) then
+                --self:DebugPolygon(polygon, 0.1)
+
+                if not result then
+                    result = {}
+                end
+
+                result[polygon.part] = true
+            end
+        end
+    end
+
+    return result
 end
 
 function Level:SetPartOffset(part, offsetX, offsetY)

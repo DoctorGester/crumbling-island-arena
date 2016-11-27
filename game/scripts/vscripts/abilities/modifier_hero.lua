@@ -5,9 +5,8 @@ function modifier_hero:IsHidden()
 end
 
 function modifier_hero:IsForwardEmpty()
-    local parent = self:GetParent()
-    local forward = parent:GetForwardVector() * parent:GetBaseMoveSpeed() / 5 + parent:GetAbsOrigin()
-    return not Spells.TestPoint(forward, parent)
+    local hero = self:GetParent():GetParentEntity()
+    return not Spells.TestCircle(hero:GetPos() + hero:GetFacing() * hero:GetRad() * 2.0, hero:GetRad())
 end
 
 function modifier_hero:CheckState()

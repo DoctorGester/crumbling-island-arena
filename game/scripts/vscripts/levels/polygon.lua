@@ -1,4 +1,4 @@
-Polygon = class({})
+Polygon = Polygon or class({})
 
 function Polygon:constructor()
     self.x = {}
@@ -81,6 +81,49 @@ function Polygon:contains(mx, my)
     end
 
     return oddNodes
+end
+
+function Polygon:intersectsCircle(cx, cy, rad)
+    local pointAmount = #self.x
+    local j = pointAmount
+
+    local radSq = rad * rad
+
+    for i = 1, #self.x do
+        local xi = self.x[i]
+        local yi = self.y[i]
+        local xj = self.x[j]
+        local yj = self.y[j]
+    
+        local segX, segY = xj - xi, yj - yi
+        local pX, pY = cx - xi, cy - yi
+
+        local segL = math.sqrt(segX * segX + segY * segY)
+        local segnX, segnY = segX / segL, segY / segL
+
+        local dot = segnX * pX + segnY * pY
+
+        local resultX, resultY
+
+        if dot <= 0 then
+            resultX = xi
+            resultY = yi
+        elseif dot >= segL then
+            resultX = xj
+            resultY = yj
+        else
+            resultX = xi + (segnX * dot)
+            resultY = yi + (segnY * dot)
+        end
+
+        if (resultX - cx) ^ 2 + (resultY - cy) ^ 2 <= radSq then
+            return true
+        end
+
+        j = i
+    end
+
+    return false
 end
 
 function Polygon:GetName()

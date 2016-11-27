@@ -11,6 +11,10 @@ function Spells.TestPoint(point)
     return GameRules.GameMode.level:GetPartAt(point.x, point.y)
 end
 
+function Spells.TestCircle(point, rad)
+    return GameRules.GameMode.level:FindCirclePartIntersection(point.x, point.y, rad)
+end
+
 function Spells.WrapException(callback, ...)
     local status, err = pcall(callback, ...)
 

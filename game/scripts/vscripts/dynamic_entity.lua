@@ -77,24 +77,7 @@ function DynamicEntity:Update()
 end
 
 function DynamicEntity:TestFalling()
-    local pos = self:GetPos()
-    local hit = nil
-
-    for i = 0, 8 do
-        local an = math.pi / 4 * i
-        local point = pos + Vector(math.cos(an), math.sin(an)) * self:GetRad()
-        local enthit = Spells.TestPoint(point)
-
-        if enthit and enthit:GetName() == "map_part" then
-            if not hit then
-                hit = {}
-            end
-
-            hit[enthit] = true
-        end
-    end
-
-    return hit
+    return Spells.TestCircle(self:GetPos(), self:GetRad())
 end
 
 
