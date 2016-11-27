@@ -2,7 +2,7 @@ lc_a = class({})
 
 function lc_a:OnAbilityPhaseStart()
     local hero = self:GetCaster().hero
-    hero:EmitSound("Arena.Ember.CastA")
+    hero:EmitSound("Arena.PL.PreQ")
 
     return true
 end
@@ -23,7 +23,7 @@ function lc_a:OnSpellStart()
 
     hero:AreaEffect({
         filter = Filters.Cone(pos, 300, forward, math.pi),
-        sound = "Arena.Ember.HitA",
+        sound = "Arena.LC.HitA",
         damage = damage,
         knockback = { force = force, decrease = 3 },
         isPhysical = true
