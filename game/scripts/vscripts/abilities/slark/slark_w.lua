@@ -16,18 +16,18 @@ function slark_w:OnSpellStart()
 
             hero:GetUnit():StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 1.5)
 
-            if hero:GetHealth() > 1 then
-                hero:Damage(hero)
+            if hero:GetHealth() > self:GetDamage() then
+                hero:Damage(hero, self:GetDamage())
             end
 
             hero:AreaEffect({
                 filter = Filters.Area(hero:GetPos(), 300),
-                damage = true,
+                damage = self:GetDamage(),
                 filterProjectiles = true
             })
 
             for _, modifier in pairs(hero:AllModifiers()) do
-                if modifier:GetName() == "modifier_slark_q" then
+                if modifier:GetName() == "modifier_slark_a" then
                     modifier:SetPurged(true)
                 end
             end

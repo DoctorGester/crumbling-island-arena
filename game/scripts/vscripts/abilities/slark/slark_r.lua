@@ -8,7 +8,7 @@ function slark_r:OnSpellStart()
     hero:AddNewModifier(hero, self, "modifier_slark_r", { duration = 3 })
 
     for _, modifier in pairs(hero:AllModifiers()) do
-        if modifier:GetName() == "modifier_slark_q" then
+        if modifier:GetName() == "modifier_slark_a" then
             modifier:SetPurged(true)
         end
     end

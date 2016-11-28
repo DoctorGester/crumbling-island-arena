@@ -9,11 +9,11 @@ if IsServer() then
         ParticleManager:SetParticleControlEnt(index, 4, p, PATTACH_POINT_FOLLOW, "attach_eyeR", p:GetAbsOrigin(), true)
         self:AddParticle(index, false, false, -1, false, false)
 
-        self:StartIntervalThink(1)
+        self:StartIntervalThink(0.5)
     end
 
     function modifier_slark_r:OnIntervalThink()
-        self:GetParent().hero:Heal()
+        self:GetParent().hero:Heal(1)
     end
 end
 
