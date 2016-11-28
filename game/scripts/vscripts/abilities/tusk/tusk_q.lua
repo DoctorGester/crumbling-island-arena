@@ -10,18 +10,16 @@ function tusk_q:OnSpellStart()
     if hero:AreaEffect({
         filter = Filters.Cone(pos, 350, direction, math.pi),
         sound = "Arena.Tusk.HitQ",
-        damage = true,
+        damage = self:GetDamage(),
         action = function(target)
-            local effectPos = target:GetPos() + Vector(0, 0, 64)
-            local direction = (pos - effectPos):Normalized()
-            local effect = ParticleManager:CreateParticle("particles/units/heroes/hero_tusk/tusk_walruspunch_start.vpcf", PATTACH_ABSORIGIN_FOLLOW, target:GetUnit())
-            ParticleManager:ReleaseParticleIndex(effect)
-
-            Knockback(target, self, target:GetPos() - hero:GetPos(), 300, 1000)
-        end
+            FX("particles/units/heroes/hero_tusk/tusk_walruskick_tgt.vpcf", PATTACH_ABSORIGIN_FOLLOW, target, { release = true })
+        end,
+        knockback = { force = 40, decrease = 3 }
     }) then
         ScreenShake(pos, 5, 150, 0.45, 3000, 0, true)
     end
+
+    SoftKnockback(hero, hero, -direction, 40, { decrease = 3 })
 
     hero:EmitSound("Arena.Tusk.CastQ")
 end
