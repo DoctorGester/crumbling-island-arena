@@ -6,6 +6,8 @@ function storm_spirit_e:OnSpellStart()
     local target = self:GetCursorPosition()
     local remnant = hero:FindClosestRemnant(target)
 
+    hero:AddNewModifier(hero, hero:FindAbility("storm_spirit_a"), "modifier_storm_spirit_a", { duration = 5 })
+
     if remnant then
         hero:EmitSound("Arena.Storm.CastE")
 

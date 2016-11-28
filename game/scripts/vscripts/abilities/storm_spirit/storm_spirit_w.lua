@@ -5,11 +5,13 @@ function storm_spirit_w:OnSpellStart()
     local target = self:GetCursorPosition()
     local remnant = hero:FindClosestRemnant(target)
 
+    hero:AddNewModifier(hero, hero:FindAbility("storm_spirit_a"), "modifier_storm_spirit_a", { duration = 5 })
+
     if remnant then
         hero:AreaEffect({
             filter = Filters.Area(remnant:GetPos(), 300),
             filterProjectiles = true,
-            damage = true
+            damage = self:GetDamage()
         })
 
         remnant:Destroy()

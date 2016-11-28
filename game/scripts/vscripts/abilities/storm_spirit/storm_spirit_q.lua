@@ -16,12 +16,15 @@ function storm_spirit_q:OnSpellStart()
         direction = direction:Normalized()
     end
 
+    hero:AddNewModifier(hero, hero:FindAbility("storm_spirit_a"), "modifier_storm_spirit_a", { duration = 5 })
+
     PointTargetProjectile(hero.round, {
         owner = hero,
         from = hero:GetPos(),
         to = target,
         speed = 800,
         graphics = "particles/storm_q/storm_q2.vpcf",
+        damage = self:GetDamage(),
         continueOnHit = true,
         targetReachedFunction =
             function(self)

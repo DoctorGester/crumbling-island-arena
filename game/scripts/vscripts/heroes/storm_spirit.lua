@@ -1,7 +1,7 @@
 StormSpirit = class({}, nil, Hero)
 
-function StormSpirit:constructor()
-    self.__base__.constructor(self)
+function StormSpirit:constructor(data)
+    self.__base__.constructor(self, data)
 
     self.remnants = {}
     self.lastRemnants = {}
