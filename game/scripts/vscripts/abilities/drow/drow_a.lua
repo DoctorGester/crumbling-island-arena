@@ -27,7 +27,7 @@ function drow_a:GetCastAnimation()
 end
 
 function drow_a:GetPlaybackRateOverride()
-    return 3
+    return 4
 end
 
 if IsClient() then
