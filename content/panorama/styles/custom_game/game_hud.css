@@ -65,7 +65,13 @@
 
 #HeroCosmeticAbilities .AbilityButton .ShortcutText
 {
-    font-size: 14px;
+    font-size: 20px;
+    width: 24px;
+    height: 24px;
+    align: center bottom;
+    margin: 4px;
+    background-color: none;
+    color: white;
 }
 
 #HeroCosmeticAbilities .AbilityButton .CooldownText
