@@ -5,7 +5,7 @@ function invoker_q:OnSpellStart()
     local target = self:GetCursorPosition()
     local realTarget = target
 
-    local blank = not Spells.TestPoint(target)
+    local blank = not Spells.TestCircle(target, 16)
     if blank then
         realTarget = target - Vector(0, 0, MAP_HEIGHT / 2)
     end
@@ -15,7 +15,7 @@ function invoker_q:OnSpellStart()
     ParticleManager:ReleaseParticleIndex(particle)
 
     Timers:CreateTimer(0.7, function()
-        blank = not Spells.TestPoint(target)
+        blank = not Spells.TestCircle(target, 16)
 
         hero:StopSound("Arena.Invoker.CastQ")
         hero:EmitSound("Arena.Invoker.HitQ", realTarget)

@@ -87,6 +87,12 @@ function Polygon:intersectsCircle(cx, cy, rad)
     local pointAmount = #self.x
     local j = pointAmount
 
+    local bounds = self:getBounds()
+
+    if not (cx < bounds.maxX and cx + rad > bounds.minX and cy < bounds.maxY and cy + rad > bounds.minY) then
+        return false
+    end
+
     local radSq = rad * rad
 
     for i = 1, #self.x do

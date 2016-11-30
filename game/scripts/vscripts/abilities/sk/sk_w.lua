@@ -47,7 +47,7 @@ function SKWProjectile:Update()
         self.effectPrev = self:GetPos()
     end
 
-    if not Spells.TestPoint(self:GetNextPosition(self:GetPos())) then
+    if not Spells.TestCircle(self:GetNextPosition(self:GetPos()), 64) then
     	self:Destroy()
     end
 

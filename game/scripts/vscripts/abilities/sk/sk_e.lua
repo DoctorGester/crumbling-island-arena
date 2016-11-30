@@ -21,7 +21,7 @@ function sk_e:OnSpellStart()
     while (currentLen < len) do
         local point = casterPos + direction * currentLen
 
-        if not Spells.TestPoint(point) then
+        if not Spells.TestCircle(point, 32) then
             target = previousPoint
             break
         end
