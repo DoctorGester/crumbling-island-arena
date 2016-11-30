@@ -66,7 +66,7 @@ function WKSkeleton:Update()
                     modifier = self.attacking:AddNewModifier(self.hero, self.ability, "modifier_wk_q", { duration = 3 })
 
                     if modifier then
-                        self.attacking:Damage(self)
+                        self.attacking:Damage(self, self.ability:GetDamage())
                         modifier:SetStackCount(1)
                     end
                 else

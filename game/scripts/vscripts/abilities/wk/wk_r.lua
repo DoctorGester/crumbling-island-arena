@@ -55,7 +55,7 @@ function wk_r:OnChannelFinish(interrupted)
     while (currentLen < len) do
         local point = start + direction * currentLen
 
-        if not Spells.TestPoint(point) then
+        if not Spells.TestCircle(point, 64) then
             target = previousPoint
             break
         end
@@ -73,7 +73,7 @@ function wk_r:OnChannelFinish(interrupted)
     local hurt = hero:AreaEffect({
         filter = Filters.Line(hero:GetPos(), target, 128),
         sound = "Arena.WK.HitR",
-        damage = 1,
+        damage = self:GetDamage(),
         modifier = { name = "modifier_stunned_lua", duration = 1.5, ability = self }
     })
 

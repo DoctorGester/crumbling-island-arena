@@ -53,7 +53,7 @@ function WKArcher:Update()
             hitParams = {
                 filter = Filters.Area(self.target, 200),
                 filterProjectiles = true,
-                damage = true,
+                damage = self.ability:GetDamage(),
                 modifier = { name = "modifier_wk_w", duration = 2.0, ability = self.ability }
             },
             hitScreenShake = true,
