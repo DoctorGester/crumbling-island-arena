@@ -14,24 +14,31 @@ function wk_a:OnSpellStart()
     local pos = hero:GetPos()
     local forward = self:GetDirection()
     local range = 300
+    local heal = 0
 
     hero:AreaEffect({
         filter = Filters.Cone(pos, range, forward, math.pi),
         sound = "Arena.WK.HitA",
         action = function(victim)
-            hero:Heal(1)
+            if instanceof(victim, Hero) then
+                heal = heal + 1
 
-            FX("particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero, {
-                cp1 = { ent = victim, attach = PATTACH_ABSORIGIN_FOLLOW },
-                release = true
-            })
-
-            FX("particles/generic_gameplay/generic_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero, { release = true })
+                FX("particles/units/heroes/hero_skeletonking/wraith_king_vampiric_aura_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero, {
+                    cp1 = { ent = victim, attach = PATTACH_ABSORIGIN_FOLLOW },
+                    release = true
+                })
+            end
         end,
         knockback = { force = 20, decrease = 3 },
         damage = self:GetDamage(),
         isPhysical = true
     })
+
+    if heal > 0 then
+        hero:Heal(heal)
+
+        FX("particles/generic_gameplay/generic_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero, { release = true })
+    end
 end
 
 function wk_a:GetCastAnimation()
