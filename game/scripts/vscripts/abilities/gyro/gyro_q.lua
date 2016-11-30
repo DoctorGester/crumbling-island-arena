@@ -1,13 +1,43 @@
 gyro_q = class({})
 local self = gyro_q
 
-LinkLuaModifier("modifier_gyro_q", "abilities/gyro/modifier_gyro_q", LUA_MODIFIER_MOTION_NONE)
-
 function self:OnSpellStart()
-    local hero = self:GetCaster().hero
+    Wrappers.DirectionalAbility(self)
 
-    hero:AddNewModifier(hero, self, "modifier_gyro_q", { duration = 5.0 })
-    hero:EmitSound("Arena.Gyro.CastQ.Voice")
+    local hero = self:GetCaster():GetParentEntity()
+
+    for i = -1, 1 do
+        local dir = self:GetDirection()
+        local an = math.atan2(dir.y, dir.x) + 0.3 * i
+        local retarget = Vector(math.cos(an), math.sin(an)) + hero:GetPos()
+
+        DistanceCappedProjectile(hero.round, {
+            owner = hero,
+            from = hero:GetPos() + Vector(0, 0, 128),
+            to = retarget + Vector(0, 0, 128),
+            speed = 1700,
+            radius = 16,
+            graphics = "particles/gyro_q/gyro_q.vpcf",
+            distance = 550,
+            hitSound = "Arena.Gyro.HitQ",
+            hitFunction = function(projectile, victim)
+                FX("particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_guided_missile_explosion.vpcf", PATTACH_ABSORIGIN, victim, {
+                    cp0 = projectile:GetPos(),
+                    release = true
+                })
+
+                ScreenShake(projectile:GetPos(), 5, 150, 0.25, 1500, 0, true)
+                SoftKnockback(victim, hero, projectile.vel, 40, { decrease = 4.5 })
+
+                victim:Damage(hero, self:GetDamage())
+            end
+        }):Activate()
+    end
+
+    ScreenShake(hero:GetPos(), 5, 150, 0.25, 3000, 0, true)
+
+    --hero:AddNewModifier(hero, self, "modifier_gyro_q", { duration = 5.0 })
+    hero:EmitSound("Arena.Gyro.CastQ")
 end
 
 function self:GetCastAnimation()
@@ -15,5 +45,5 @@ function self:GetCastAnimation()
 end
 
 function self:GetPlaybackRateOverride()
-    return 1.33
+    return 1.5
 end

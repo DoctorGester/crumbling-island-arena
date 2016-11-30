@@ -90,6 +90,9 @@ indicatorTypes["TARGETING_INDICATOR_RANGE"] = function(data, unit) {
         if (this.offset) {
             cursor = Vector.FromArray(cursor);
             var pos = Vector.FromArray(Entities.GetAbsOrigin(this.unit));
+            cursor.z = 0;
+            pos.z = 0;
+
             var result = cursor.minus(pos).normalize().scale(this.offset).add(pos);
 
             Particles.SetParticleControl(this.particle, 0, result);
@@ -306,6 +309,42 @@ indicatorTypes["TARGETING_INDICATOR_DUSA_SNAKE"] = function(data, unit) {
         Particles.DestroyParticleEffect(this.particle, false);
         Particles.ReleaseParticleIndex(this.particle);
     }
+};
+
+indicatorTypes["TARGETING_INDICATOR_LINE_GYRO"] = function(data, unit) {
+    this.data = data;
+    this.unit = unit;
+    this.particles = [];
+
+    for (var i = 0; i < 3; i++) {
+        this.particles.push(Particles.CreateParticle("particles/targeting/line.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN_FOLLOW, unit));
+    }
+
+    this.Update = function(cursor){
+        var index = -1;
+
+        for (var particle of this.particles) {
+            var abs = Vector.FromArray(Entities.GetAbsOrigin(unit));
+            var dir = Vector.FromArray(cursor).minus(abs);
+            var len = dir.length();
+            dir = dir.normalize();
+            var angle = Math.atan2(dir.y, dir.x) + index * 0.3;
+            var retargetCursor = new Vector(Math.cos(angle), Math.sin(angle)).scale(len).add(abs).toArray();
+
+            var to = UpdateLine(particle, this.unit, this.data, retargetCursor);
+            var result = to.minus(abs).normalize().scale(150).add(to);
+            Particles.SetParticleControl(particle, 2, result);
+
+            index++;
+        }
+    };
+
+    this.Delete = function(){
+        for (var particle of this.particles) {
+            Particles.DestroyParticleEffect(particle, false);
+            Particles.ReleaseParticleIndex(particle);
+        }
+    };
 };
 
 function UpdatePosition() {

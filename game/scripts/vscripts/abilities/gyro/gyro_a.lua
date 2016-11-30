@@ -1,21 +1,11 @@
-gyro_q_sub = class({})
-local self = gyro_q_sub
+gyro_a = class({})
+local self = gyro_a
 
-LinkLuaModifier("modifier_gyro_q_slow", "abilities/gyro/modifier_gyro_q_slow", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_gyro_a_slow", "abilities/gyro/modifier_gyro_a_slow", LUA_MODIFIER_MOTION_NONE)
 
 function self:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
-
-    local modifier = hero:FindModifier("modifier_gyro_q")
-
-    if modifier then
-        modifier:DecrementStackCount()
-
-        if modifier:GetStackCount() == 0 then
-            modifier:Destroy()
-        end
-    end
 
     DistanceCappedProjectile(hero.round, {
         owner = hero,
@@ -24,7 +14,7 @@ function self:OnSpellStart()
         speed = 1500,
         graphics = "particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_guided_missile.vpcf",
         distance = 750,
-        hitSound = "Arena.Gyro.HitQ.Sub",
+        hitSound = "Arena.Gyro.HitA",
         hitFunction = function(projectile, victim)
             FX("particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_guided_missile_explosion.vpcf", PATTACH_ABSORIGIN, victim, {
                 cp0 = projectile:GetPos(),
@@ -33,25 +23,29 @@ function self:OnSpellStart()
 
             ScreenShake(projectile:GetPos(), 5, 150, 0.25, 1500, 0, true)
 
-            local modifier = victim:FindModifier("modifier_gyro_q_slow")
+            local damage = self:GetDamage()
+            local modifier = victim:FindModifier("modifier_gyro_a_slow")
 
             if not modifier then
-                modifier = victim:AddNewModifier(hero, self, "modifier_gyro_q_slow", { duration = 5 })
+                modifier = victim:AddNewModifier(hero, self, "modifier_gyro_a_slow", { duration = 3 })
                 modifier:SetStackCount(1)
             else
                 modifier:IncrementStackCount()
+                modifier:ForceRefresh()
 
                 if modifier:GetStackCount() == 3 then
-                    victim:Damage(hero)
-                    victim:EmitSound("Arena.Gyro.HitQ.Sub")
+                    damage = damage * 2
+                    victim:EmitSound("Arena.Gyro.HitA2")
                     modifier:Destroy()
                 end
             end
+
+            victim:Damage(hero, damage, true)
         end
     }):Activate()
 
-    SoftKnockback(hero, hero, (hero:GetPos() - target):Normalized(), 10, { decrease = 4 })
-    hero:EmitSound("Arena.Gyro.CastQ.Sub")
+    --SoftKnockback(hero, hero, (hero:GetPos() - target):Normalized(), 20, { decrease = 2 })
+    hero:EmitSound("Arena.Gyro.CastA")
 end
 
 function self:GetCastAnimation()
@@ -61,3 +55,9 @@ end
 function self:GetPlaybackRateOverride()
     return 2.0
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.AttackAbility(self)

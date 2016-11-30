@@ -31,7 +31,8 @@ function self:OnSpellStart()
                 ScreenShake(projectile:GetPos(), 5, 150, 0.25, 2000, 0, true)
 
                 projectile:EmitSound("Arena.Gyro.EndW.Sub")
-            end
+            end,
+            damage = self:GetDamage()
         }):Activate()
 
         projectile:GetUnit():SetModel("models/heroes/gyro/gyro_missile.vmdl")
@@ -41,6 +42,7 @@ function self:OnSpellStart()
         })
 
         SoftKnockback(hero, hero, (hero:GetPos() - target):Normalized(), 30, { decrease = 4 })
+        ScreenShake(hero:GetPos(), 5, 150, 0.25, 3000, 0, true)
 
         hero:EmitSound("Arena.Gyro.CastW.Sub")
     end

@@ -1,5 +1,5 @@
-modifier_gyro_q_slow = class({})
-local self = modifier_gyro_q_slow
+modifier_gyro_a_slow = class({})
+local self = modifier_gyro_a_slow
 
 function self:DeclareFunctions()
     local funcs = {
@@ -14,7 +14,7 @@ function self:IsDebuff()
 end
 
 function self:GetModifierMoveSpeedBonus_Percentage(params)
-    return -20 * self:GetStackCount()
+    return -15 * self:GetStackCount()
 end
 
 function self:GetEffectName()
