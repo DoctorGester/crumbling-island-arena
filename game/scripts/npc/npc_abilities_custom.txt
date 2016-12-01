@@ -1032,7 +1032,7 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/lc/lc_w"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityTextureName" "legion_commander_press_the_attack"
 		"AbilityCooldown" "6.0"
 		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
