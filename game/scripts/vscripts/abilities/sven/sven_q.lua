@@ -6,7 +6,7 @@ function sven_q:OnSpellStart()
     local force = 60
 
     if SvenUtil.IsEnraged(hero) then
-        force = 80
+        force = 100
     end
 
     DistanceCappedProjectile(hero.round, {
