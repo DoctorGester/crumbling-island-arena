@@ -20,7 +20,7 @@ function JuggerWard:constructor(round, owner, target, ability)
     self:EmitSound("Arena.Jugger.CastW")
     self:EmitSound("Arena.Jugger.LoopW")
 
-    self:SetCustomHealth(3)
+    self:SetCustomHealth(2)
     self:EnableHealthBar()
 
     if owner:IsAwardEnabled() then
