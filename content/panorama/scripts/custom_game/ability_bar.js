@@ -64,7 +64,7 @@ function EntityAbilityDataProvider(entityId) {
         data.toggled = Abilities.IsToggle(ability) && Abilities.GetToggleState(ability);
         data.range = Abilities.GetCastRange(ability);
         data.cosmetic = (Abilities.GetBehavior(ability) & nl) == nl;
-        data.attack = EndsWith(Abilities.GetAbilityName(ability), "_a")
+        data.attack = EndsWith(Abilities.GetAbilityName(ability), "_a");
 
         if (data.cooldown == 0 || data.ready){
             data.cooldown = Abilities.GetCooldown(ability);
@@ -100,7 +100,20 @@ function EntityAbilityDataProvider(entityId) {
 
         element.SetDialogVariable("description", $.Localize("AbilityTooltip_" + data.name));
         element.SetDialogVariable("cooldown", data.cooldown.toFixed(1).toString());
-        $.DispatchEvent("DOTAShowTextTooltip", element, $.Localize("AbilityTooltip", element))
+
+        var tableData = (CustomNetTables.GetTableValue("static", "abilities") || {})[data.name] || {};
+        var token = "AbilityTooltip";
+
+        if (tableData.damage) {
+            element.SetDialogVariable("damage", tableData.damage);
+            token = "AbilityTooltipDamage";
+        }
+
+        if (EndsWith(data.name, "_a")) {
+            token = "BasicAttackTooltip";
+        }
+
+        $.DispatchEvent("DOTAShowTextTooltip", element, $.Localize(token, element))
     };
 
     this.HideTooltip = function() {
