@@ -92,30 +92,41 @@ function ShowHeroAbilities(heroName) {
     
     $("#AchievementRow").SetHasClass("Hidden", !heroAwards[heroName])
 
-    var abilitiesToShow = ["Q", "W", "E", "R"];
+    var abilitiesToShow = [["A"], ["Q", 0], ["W", 1], ["E", 2], ["R", 5]];
 
-    for (var ability of abilitiesToShow) {
-        var found = 
+    for (var pair of abilitiesToShow) {
+        var ability = pair[0];
+
+        var found =
             _(hero.abilities)
                 .chain()
                 .filter(function(a) {
-                    return EndsWith(a.name, ability.toLowerCase());
+                    return EndsWith(a, ability.toLowerCase());
                 })
                 .first()
                 .value();
+
+        found = (CustomNetTables.GetTableValue("static", "abilities") || {})[found];
 
         var row = $("#AbilityRow" + ability);
 
         if (row && found) {
             var image = row.Children()[0];
             var label = row.Children()[1];
+            var shortcut = image.Children()[0];
 
             var icon = GetTexture(found, hero.customIcons);
             image.SetImage(icon);
 
             SetAbilityButtonTooltipEvents(image, found.name);
 
-            label.text = hero.name.substring("npc_dota_hero_".length) + "_Desc" + ability;
+            if (ability === "A") {
+                label.text = "HeroRange_" + hero.range;
+            } else {
+                label.text = hero.name.substring("npc_dota_hero_".length) + "_Desc" + ability;
+
+                shortcut.text = Game.GetKeybindForAbility(pair[1] || 0);
+            }
         }
     }
 }
@@ -377,6 +388,11 @@ function CreateHeroList(heroList, heroes, quests, selectedHeroes, achievements, 
             var notAvailable = !!allHeroes[hero].disabled;
             var banned = !!allHeroes[hero].banned;
             var hide = (!allHeroes[hero].forNewPlayers && questHeroes[hero] == undefined) && newPlayer;
+            /*var t = _.filter(_.values(allHeroes[hero].abilities), function(n) { return EndsWith(n, "_a") });
+
+            if (t.length != 0 || notAvailable) {
+                continue;
+            }*/
 
             var button = {
                 class: [
@@ -726,7 +742,7 @@ DelayStateInit(GAME_STATE_HERO_SELECTION, function () {
     GameEvents.Subscribe("timer_tick", OnTimerTick);
 
     heroSelectionAggregator = AggregateNetTables([
-        { table: "main", key: "heroes" },
+        { table: "static", key: "heroes" },
         { table: "main", key: "selectedHeroes" },
         { table: "pass", key: "quests"},
         { table: "ranks", key: "achievements" },

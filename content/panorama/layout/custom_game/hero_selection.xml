@@ -24,10 +24,11 @@
             </Panel>
 
             <Panel id="HeroAbilities">
-                <Panel id="AbilityRowR" class="AbilityRow"><Image/><Label html="true"/></Panel>
-                <Panel id="AbilityRowE" class="AbilityRow"><Image/><Label html="true"/></Panel>
-                <Panel id="AbilityRowW" class="AbilityRow"><Image/><Label html="true"/></Panel>
-                <Panel id="AbilityRowQ" class="AbilityRow"><Image/><Label html="true"/></Panel>
+                <Panel id="AbilityRowR" class="AbilityRow"><Image><Label/></Image><Label html="true"/></Panel>
+                <Panel id="AbilityRowE" class="AbilityRow"><Image><Label/></Image><Label html="true"/></Panel>
+                <Panel id="AbilityRowW" class="AbilityRow"><Image><Label/></Image><Label html="true"/></Panel>
+                <Panel id="AbilityRowQ" class="AbilityRow"><Image><Label/></Image><Label html="true"/></Panel>
+                <Panel id="AbilityRowA" class="AbilityRow"><Image><Panel/></Image><Label html="true"/></Panel>
                 <Panel id="AchievementRow" class="AbilityRow"><Image/><Label id="RankAwardText" text="#RankAward"/></Panel>
             </Panel>
 
