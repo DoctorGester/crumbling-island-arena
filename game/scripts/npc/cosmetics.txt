@@ -267,7 +267,14 @@
 
     "ember_spirit"
     {
-        "1"
+    	"1"
+    	{
+    		"type" "elite"
+    		"season" "5"
+    		"set" "order_of_the_wandering_flame"
+    	}
+
+        "2"
         {
             "type" "pass"
             "level" "3"

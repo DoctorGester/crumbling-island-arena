@@ -571,7 +571,7 @@ function MouseCallback(event, button) {
             return true;
         }
 
-        if (button === 1) {
+        /*if (button === 1) {
             var order = {
                 QueueBehavior: OrderQueueBehavior_t.DOTA_ORDER_QUEUE_NEVER,
                 ShowEffects: false,
@@ -602,7 +602,7 @@ function MouseCallback(event, button) {
             })();
 
             return true;
-        }
+        }*/
     }
 
     return false;
@@ -611,8 +611,8 @@ function MouseCallback(event, button) {
 SetupUI();
 
 DelayStateInit(GAME_STATE_ROUND_IN_PROGRESS, function () {
-    SubscribeToNetTableKey("main", "debug", true, DebugUpdate)
-    SubscribeToNetTableKey("main", "heroes", true, HeroesUpdate);
+    SubscribeToNetTableKey("main", "debug", true, DebugUpdate);
+    SubscribeToNetTableKey("static", "heroes", true, HeroesUpdate);
     SubscribeToNetTableKey("main", "gameState", true, GameStateChanged);
     SubscribeToNetTableKey("main", "gameInfo", true, GameInfoChanged);
     SubscribeToNetTableKey("main", "players", true, DeathMatch.PlayersUpdated);

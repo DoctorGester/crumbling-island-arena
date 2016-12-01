@@ -16,7 +16,8 @@ var seasonAwards = {
     1: "npc_dota_hero_juggernaut",
     2: "npc_dota_hero_invoker",
     3: "npc_dota_hero_vengefulspirit",
-    4: "npc_dota_hero_zuus"
+    4: "npc_dota_hero_zuus",
+    5: "npc_dota_hero_ember_spirit"
 };
 
 function PreloadPreview(hero, value, insertFirst) {
