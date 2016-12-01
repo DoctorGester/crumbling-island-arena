@@ -114,7 +114,7 @@
     transition-duration: 0.1s;
 }
 
-.AbilityRow Label, .CosmeticsRow Label
+.AbilityRow > Label, .CosmeticsRow Label
 {
     vertical-align: center;
     font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
@@ -122,6 +122,28 @@
     font-size: 14px;
     color: white;
     text-shadow: skyblue 0px 0px 4px 4px;
+}
+
+.AbilityRow > Image > Label
+{
+    align: left bottom;
+    margin: 4px 4px -4px;
+    color: white;
+    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+    font-size: 18px;
+    text-shadow: 0px 0px 4px 8.0 #000000;
+}
+
+.AbilityRow > Image > Panel
+{
+    width: 20px;
+    height: 20px;
+    align: center bottom;
+    margin: 2px;
+    background-color: none;
+    background-image: url('file://{images}/custom_game/lmb.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
 }
 
 .CosmeticsRow Label {
@@ -143,6 +165,16 @@
 #AchievementRow Label
 {
     text-shadow: gold 0px 0px 5px 4px;
+}
+
+#AbilityRowA Image
+{
+    border-radius: 50%;
+}
+
+#AbilityRowA > Label
+{
+    text-shadow: red 0px 0px 5px 4px;
 }
 
 #LeftSideHeroes

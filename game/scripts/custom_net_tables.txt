@@ -6,6 +6,7 @@
         "gameSetup",
         "ranks",
         "wearables",
-        "pass"
+        "pass",
+        "static"
     ]
 }

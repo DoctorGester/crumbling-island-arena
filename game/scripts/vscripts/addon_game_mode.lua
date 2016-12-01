@@ -426,6 +426,10 @@ function GameMode:FilterExecuteOrder(filterTable)
 
         -- Yes, that happened
         if unit ~= nil then
+            if orderType == DOTA_UNIT_ORDER_STOP or orderType == DOTA_UNIT_ORDER_HOLD_POSITION then
+                self.lastOrders[unit] = nil
+            end
+
             if orderType == DOTA_UNIT_ORDER_MOVE_TO_POSITION then
                 self.lastOrders[unit] = Vector(filterTable.position_x, filterTable.position_y)
             end
@@ -434,7 +438,7 @@ function GameMode:FilterExecuteOrder(filterTable)
                 local ability = EntIndexToHScript(filterTable.entindex_ability)
 
                 if ability:IsCooldownReady() and not ability:IsInAbilityPhase() and ability:GetName():ends("_a") then
-                    if unit:IsMoving() then
+                    --if unit:IsMoving() then
                         Timers:CreateTimer(0.1, function()
                             if IsValidEntity(unit) then
                                 ExecuteOrderFromTable({
@@ -445,7 +449,7 @@ function GameMode:FilterExecuteOrder(filterTable)
                                 })
                             end
                         end)
-                    end
+                    --end
                 end
             end
 
@@ -1010,13 +1014,15 @@ function GameMode:UpdateAvailableHeroesTable()
             name = name,
             abilities = data.abilities,
             banned = data.banned,
-            forNewPlayers = data.forNewPlayers
+            forNewPlayers = data.forNewPlayers,
+            range = data.range
         }
 
         table.insert(heroes, hero)
     end
 
-    CustomNetTables:SetTableValue("main", "heroes", heroes)
+    CustomNetTables:SetTableValue("static", "heroes", heroes)
+    CustomNetTables:SetTableValue("static", "abilities", self.AllAbilities)
 end
 
 function GameMode:IsDeathMatch()
@@ -1203,8 +1209,10 @@ function GameMode:LoadCustomHeroes()
     local customHeroes = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
     local customAbilities = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
 
-    local enableForDebug = IsInToolsMode() and PlayerResource:GetPlayerCount() == 1
+    local enableForDebug = false--IsInToolsMode() and PlayerResource:GetPlayerCount() == 1
     local order = 0
+
+    self.AllAbilities = {}
 
     for customName, data in pairs(customHeroes) do
         if data.override_hero ~= DUMMY_HERO then
@@ -1222,10 +1230,12 @@ function GameMode:LoadCustomHeroes()
                 removeWearablesOnDeath = data.RemoveWearablesOnDeath,
                 removeWearablesDelay = data.RemoveWearablesDelay,
                 hideOnDeathDelay = data.HideOnDeathDelay,
-                forNewPlayers = data.ForNewPlayers
+                forNewPlayers = data.ForNewPlayers,
+                range = data.Range
             }
 
             local abilities = {}
+
             for i = 0, 10 do
                 local abilityName = data["Ability"..tostring(i)]
                 if abilityName and #abilityName ~= 0 and not abilityName:starts("placeholder") then
@@ -1234,7 +1244,8 @@ function GameMode:LoadCustomHeroes()
                     ability.texture = customAbilities[ability.name].AbilityTextureName
                     ability.damage = customAbilities[ability.name].Damage
 
-                    table.insert(abilities, ability)
+                    table.insert(abilities, abilityName)
+                    self.AllAbilities[abilityName] = ability
                 end
             end
 
@@ -1297,7 +1308,10 @@ function GameMode:NetworkCosmetics()
 end
 
 function GameMode:OnGameInProgress()
-    Timers:CreateTimer(5, function()
+    self:UpdateAvailableHeroesTable()
+    self:NetworkCosmetics()
+
+    Timers:CreateTimer(2, function()
         self:Start()
     end)
 end
@@ -1341,8 +1355,6 @@ function GameMode:Start()
     self.level:AssociatePieces()
 
     self:AssignBannedHeroes()
-    self:UpdateAvailableHeroesTable()
-    self:NetworkCosmetics()
 
     self.heroSelection = HeroSelection(
         self.Players,
@@ -1448,6 +1460,8 @@ if IsInToolsMode() then
     end
 
     GameMode.InitModifiers()
+    GameRules.GameMode:LoadCustomHeroes()
+    GameRules.GameMode:UpdateAvailableHeroesTable()
 
     GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(GameMode, "FilterExecuteOrder"), GameRules.GameMode)
 end

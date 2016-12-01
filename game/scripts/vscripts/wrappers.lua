@@ -176,7 +176,9 @@ function Wrappers.WrapAbilitiesFromHeroData(unit, data)
         local ability = unit:GetAbilityByIndex(i)
 
         if ability ~= nil then
-            for _, abilityData in pairs((data or {}).abilities or {}) do
+            for _, abilityName in pairs((data or {}).abilities or {}) do
+                local abilityData = GameRules.GameMode.AllAbilities[abilityName] or {}
+
                 if abilityData.name == ability:GetName() and abilityData.damage then
                     ability.GetDamage = function(a)
                         return abilityData.damage

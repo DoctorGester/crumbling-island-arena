@@ -296,7 +296,7 @@ function BansChanged(bans) {
 }
 
 (function () {
-    SubscribeToNetTableKey("main", "heroes", true, HeroesChanged);
+    SubscribeToNetTableKey("static", "heroes", true, HeroesChanged);
 
     SubscribeToNetTableKey("main", "gameState", true, GameStateChanged);
     SubscribeToNetTableKey("gameSetup", "modes", true, GameModesChanges);
