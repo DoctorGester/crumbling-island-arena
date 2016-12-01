@@ -70,15 +70,39 @@
 		"AbilityCooldown" "8.0"
 	}
 
-	// Storm spirit
+	"storm_spirit_a"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/storm_spirit/storm_spirit_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "storm_spirit_overload"
+		"AbilityCooldown" "0.75"
+		"AbilityCastPoint" "0.1"
+		"Damage" "1"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "700"
+			"MinLength" "700"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "700"
+		}
+	}
 
 	"storm_spirit_q"
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/storm_spirit/storm_spirit_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName" "storm_spirit_overload"
+		"AbilityTextureName" "magnataur_shockwave"
 		"AbilityCooldown" "5.0"
+		"Damage" "2"
+
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_LINE"
@@ -107,6 +131,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "storm_spirit_static_remnant"
 		"AbilityCooldown" "0.1"
+		"Damage" "2"
 	}
 
 	"storm_spirit_e"
@@ -141,7 +166,7 @@
 		"ScriptFile" "abilities/zeus/zeus_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "storm_spirit_overload"
-		"AbilityCooldown" "2.5"
+		"AbilityCooldown" "1.8"
 		"AbilityCastPoint" "0.1"
 
 		"TargetingIndicator"
@@ -225,16 +250,28 @@
 
 	// PA
 
-	"pa_q"
+	"pa_a"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/pa/pa_q"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName" "luna_moon_glaive"
-		"AbilityCooldown" "0"
-		"AbilityCastPoint" "0.15"
+		"ScriptFile" "abilities/pa/pa_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "phantom_assassin_phantom_strike"
+		"AbilityCooldown" "1.5"
+		"AbilityCastPoint" "0.1"
+		"Damage" "1"
 
-		// TODO custom indicator
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "800"
+			"MaxLength" "800"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "800"
+		}
 
 		"precache"
 		{
@@ -243,13 +280,35 @@
 		}
 	}
 
-	"pa_q_sub"
+	"pa_q"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/pa/pa_q_sub"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOUR_HIDDEN"
-		"AbilityTextureName" "omniknight_degen_aura"
-		"AbilityCooldown" "0"
+		"ScriptFile" "abilities/pa/pa_q"
+		"AbilityType" "DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "phantom_assassin_stifling_dagger"
+		"AbilityCooldown" "2.5"
+		"AbilityCastPoint" "0.1"
+		"Damage" "1"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "900"
+			"MaxLength" "900"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "900"
+		}
+
+		"precache"
+		{
+			"particle" "particles/pa_w_sub/pa_w_sub.vpcf"
+			"particle" "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger_debuff.vpcf"
+		}
 	}
 
 	"pa_w"
@@ -260,47 +319,18 @@
 		"AbilityTextureName" "juggernaut_blade_fury"
 		"AbilityCooldown" "4"
 		"AbilityCastPoint" "0.15"
+		"Damage" "2"
 
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "256"
+			"Radius" "300"
 		}
 
 		"precache"
 		{
 			"particle" "particles/econ/items/axe/axe_weapon_bloodchaser/axe_attack_blur_counterhelix_bloodchaser_b.vpcf"
 			"particle" "particles/units/heroes/hero_riki/riki_backstab_hit_blood.vpcf"
-		}
-	}
-
-	"pa_w_sub"
-	{
-		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/pa/pa_w_sub"
-		"AbilityType" "DOTA_ABILITY_TYPE_BASIC"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOUR_HIDDEN"
-		"AbilityTextureName" "phantom_assassin_stifling_dagger"
-		"AbilityCooldown" "2.5"
-		"AbilityCastPoint" "0.15"
-
-		"TargetingIndicator"
-		{
-			"Type" "TARGETING_INDICATOR_LINE"
-			"MinLength" "1200"
-			"MaxLength" "1200"
-		}
-
-		"HoverIndicator"
-		{
-			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "1200"
-		}
-
-		"precache"
-		{
-			"particle" "particles/pa_w_sub/pa_w_sub.vpcf"
-			"particle" "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger_debuff.vpcf"
 		}
 	}
 
@@ -430,6 +460,30 @@
 		}
 	}
 
+	"cm_a"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/cm/cm_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "crystal_maiden_brilliance_aura"
+		"AbilityCooldown" "0.75"
+		"AbilityCastPoint" "0.1"
+		"Damage" "1"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "900"
+			"MinLength" "900"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "900"
+		}
+	}
+
 	"cm_q"
 	{
 		"BaseClass" "ability_lua"
@@ -437,6 +491,8 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "tusk_snowball"
 		"AbilityCooldown" "5.0"
+		"Damage" "2"
+
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_LINE"
@@ -464,6 +520,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "crystal_maiden_freezing_field"
 		"AbilityCooldown" "6.0"
+		"Damage" "2"
 
 		"precache"
 		{
@@ -479,6 +536,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "ancient_apparition_chilling_touch"
 		"AbilityCooldown" "5.0"
+		"Damage" "2"
 
 		"TargetingIndicator"
 		{
@@ -546,14 +604,15 @@
 		}
 	}
 
-	"sven_q"
+	"sven_a"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/sven/sven_q"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"ScriptFile" "abilities/sven/sven_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "sven_great_cleave"
-		"AbilityCooldown" "1.8"
-		"AbilityCastPoint" "0.2"
+		"AbilityCooldown" "0.6"
+		"AbilityCastPoint" "0.1"
+		"Damage" "1"
 
 		"HoverIndicator"
 		{
@@ -570,6 +629,29 @@
 		"precache"
 		{
 			"particle" "particles/units/heroes/hero_riki/riki_backstab_hit_blood.vpcf"
+		}
+	}
+
+	"sven_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/sven/sven_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "sven_storm_bolt"
+		"AbilityCooldown" "3.2"
+		"AbilityCastPoint" "0.2"
+		"Damage" "2"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "700"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "700"
 		}
 	}
 
@@ -608,8 +690,9 @@
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/sven/sven_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
-		"AbilityTextureName" "sven_storm_bolt"
+		"AbilityTextureName" "sven/cyclopean_marauder_ability_icons/sven_warcry"
 		"AbilityCooldown" "5.0"
+		"Damage" "2"
 
 		"TargetingIndicator"
 		{
@@ -649,14 +732,15 @@
 		}
 	}
 
-	"sniper_q"
+	"sniper_a"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/sniper/sniper_q"
+		"ScriptFile" "abilities/sniper/sniper_a"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "sniper_assassinate"
-		"AbilityCooldown" "2.0"
+		"AbilityCooldown" "0.6"
 		"AbilityCastPoint" "0.5"
+		"Damage" "2"
 
 		"TargetingIndicator"
 		{
@@ -669,6 +753,30 @@
 		}
 	}
 
+	"sniper_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/sniper/sniper_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "sniper_shrapnel"
+		"AbilityCooldown" "8.0"
+		"AbilityCastPoint" "0.1"
+		"Damage" "1"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "300"
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1800"
+		}
+	}
+
 	"sniper_w"
 	{
 		"BaseClass" "ability_lua"
@@ -676,7 +784,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "techies_stasis_trap"
 		"AbilityCooldown" "4.5"
-		"AbilityCastRange" "300"
+		"AbilityCastRange" "400"
 		"AbilityCastPoint" "0.3"
 
 		"TargetingIndicator"
@@ -687,7 +795,7 @@
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "300"
+			"Radius" "400"
 		}
 
 		"precache"
@@ -728,6 +836,29 @@
 		}
 	}
 
+	"sk_a"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/sk/sk_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "sandking_caustic_finale"
+		"AbilityCooldown" "0.6"
+		"AbilityCastPoint" "0.15"
+		"Damage" "1"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "300"
+		}
+	}
+
 	"sk_q"
 	{
 		"BaseClass" "ability_lua"
@@ -736,6 +867,7 @@
 		"AbilityTextureName" "sandking_epicenter"
 		"AbilityCooldown" "2.7"
 		"AbilityCastPoint" "0.4"
+		"Damage" "2"
 
 		"TargetingIndicator"
 		{
@@ -764,6 +896,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "earthshaker_aftershock_egset"
 		"AbilityCooldown" "8.0"
+		"Damage" "2"
 
 		"TargetingIndicator"
 		{
@@ -793,6 +926,7 @@
 		"AbilityTextureName" "sandking_burrowstrike"
 		"AbilityCooldown" "7.0"
 		"AbilityCastPoint" "0.2"
+		"Damage" "2"
 
 		"TargetingIndicator"
 		{
@@ -841,20 +975,50 @@
 		}
 	}
 
-	"lc_q"
+	"lc_a"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/lc/lc_q"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"ScriptFile" "abilities/lc/lc_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "legion_commander_moment_of_courage"
-		"AbilityCooldown" "1.8"
-		"AbilityCastPoint" "0.2"
+		"AbilityCooldown" "0.6"
+		"AbilityCastPoint" "0.1"
+		"Damage" "1"
 
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "200"
-			"Offset" "200"
+			"Radius" "300"
+		}
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "300"
+		}
+	}
+
+	"lc_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/lc/lc_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "legion_commander_overwhelming_odds"
+		"AbilityCooldown" "3.0"
+		"Damage" "2"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+            "Radius" "200"
+            "Offset" "500"
+            "DisplayRange" "1"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
 		}
 
 		"precache"
@@ -868,9 +1032,24 @@
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/lc/lc_w"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
 		"AbilityTextureName" "legion_commander_press_the_attack"
 		"AbilityCooldown" "6.0"
+		"AbilityUnitTargetTeam"	"DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+        "AbilityUnitTargetType"	"DOTA_UNIT_TARGET_HERO"
+        "AbilityCastPoint" "0.1"
+        "AbilityCastRange" "500"
+
+		"TargetingIndicator"
+		{
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "500"
+		}
 
 		"precache"
 		{
@@ -1130,8 +1309,8 @@
 		"ScriptFile" "abilities/ta/ta_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "templar_assassin_psi_blades"
-		"AbilityCooldown" "2.4"
-		"AbilityCastPoint" "0.2"
+		"AbilityCooldown" "0.75"
+		"AbilityCastPoint" "0.1"
 
 		"TargetingIndicator"
 		{
@@ -1223,6 +1402,29 @@
 		}
 	}
 
+	"tiny_a"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tiny/tiny_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "tiny_craggy_exterior"
+		"AbilityCooldown" "1.0"
+		"AbilityCastPoint" "0.175"
+		"Damage" "1"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "(function(){ if (HasModifier(unit, 'modifier_tiny_r')) return 500; return 400; })()"
+		}
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "(function(){ if (HasModifier(unit, 'modifier_tiny_r')) return 500; return 400; })()"
+		}
+	}
+
 	"tiny_q"
 	{
 		"BaseClass" "ability_lua"
@@ -1231,6 +1433,7 @@
 		"AbilityTextureName" "tiny_toss"
 		"AbilityCooldown" "9.0"
 		"AbilityCastPoint" "0.15"
+		"Damage" "2"
 
 		"TargetingIndicator"
 		{
@@ -1256,6 +1459,7 @@
 		"AbilityTextureName" "rubick_telekinesis_land"
 		"AbilityCooldown" "5.0"
 		"AbilityCastPoint" "0.15"
+		"Damage" "2"
 
 		"TargetingIndicator"
 		{
@@ -1399,14 +1603,39 @@
 		}
 	}
 
+	"venge_a"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/venge/venge_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "vengefulspirit/huangs_umbra_icons/vengefulspirit_magic_missile"
+		"AbilityCooldown" "0.75"
+		"AbilityCastPoint" "0.1"
+		"Damage" "1"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "1000"
+			"MinLength" "1000"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1000"
+		}
+	}
+
 	"venge_q"
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/venge/venge_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "vengefulspirit_magic_missile"
-		"AbilityCooldown" "2.4"
+		"AbilityCooldown" "3.4"
 		"AbilityCastPoint" "0.15"
+		"Damage" "2"
 
 		"TargetingIndicator"
 		{
@@ -1435,6 +1664,7 @@
 		"AbilityTextureName" "vengefulspirit_wave_of_terror"
 		"AbilityCooldown" "8.0"
 		"AbilityCastPoint" "0.15"
+		"Damage" "1"
 
 		"TargetingIndicator"
 		{
@@ -1518,14 +1748,15 @@
 		}
 	}
 
-	"drow_q"
+	"drow_a"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/drow/drow_q"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"ScriptFile" "abilities/drow/drow_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "drow_ranger_frost_arrows"
-		"AbilityCooldown" "2.4"
-		"AbilityCastPoint" "0.15"
+		"AbilityCooldown" "0.75"
+		"AbilityCastPoint" "0.1"
+		"Damage" "1"
 
 		"TargetingIndicator"
 		{
@@ -1544,6 +1775,29 @@
 		{
 			"particle" "particles/status_fx/status_effect_frost_lich.vpcf"
 			"particle" "particles/drow_q/drow_q.vpcf"
+		}
+	}
+
+	"drow_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/drow/drow_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINTT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "drow_ranger/dragons_touch_ability_icons/drow_ranger_wave_of_silence"
+		"AbilityCooldown" "8.0"
+		"Damage" "1"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "400"
+			"MinLength" "400"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "400"
 		}
 	}
 
@@ -1612,6 +1866,7 @@
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName" "drow_ranger_marksmanship"
 		"AbilityCooldown" "12.0"
+		"Damage" "2"
 
 		"TargetingIndicator"
 		{
@@ -1626,6 +1881,29 @@
 		}
 	}
 
+	"wk_a"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/wk/wk_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "skeleton_king_mortal_strike"
+		"AbilityCooldown" "0.6"
+		"AbilityCastPoint" "0.1"
+		"Damage" "1"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "300"
+		}
+	}
+
 	"wk_q"
 	{
 		"BaseClass" "ability_lua"
@@ -1634,6 +1912,7 @@
 		"AbilityTextureName" "undying_decay"
 		"AbilityCooldown" "6.0"
 		"AbilityCastPoint" "0.2"
+		"Damage" "2"
 
 		"TargetingIndicator"
 		{
@@ -1657,6 +1936,7 @@
 		"AbilityTextureName" "undying_decay"
 		"AbilityCooldown" "7.0"
 		"AbilityCastPoint" "0.2"
+		"Damage" "2"
 
 		"TargetingIndicator"
 		{
@@ -1707,6 +1987,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "undying_decay"
 		"AbilityCooldown" "14.0"
+		"Damage" "3"
 
 		"TargetingIndicator"
 		{
@@ -1812,6 +2093,29 @@
 		}
 	}
 
+	"shaker_a"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/shaker/shaker_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "earthshaker/sltv__earthshaker_ability_icons/earthshaker_aftershock"
+		"AbilityCooldown" "0.6"
+		"AbilityCastPoint" "0.15"
+		"Damage" "1"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "300"
+		}
+	}
+
 	"shaker_q"
 	{
 		"BaseClass" "ability_lua"
@@ -1820,6 +2124,7 @@
 		"AbilityTextureName" "earthshaker_fissure"
 		"AbilityCooldown" "4.5"
 		"AbilityCastPoint" "0.3"
+		"Damage" "2"
 
 		"TargetingIndicator"
 		{
@@ -1843,6 +2148,7 @@
 		"AbilityTextureName" "earthshaker_aftershock"
 		"AbilityCooldown" "4.0"
 		"AbilityCastPoint" "0.35"
+		"Damage" "2"
 
 		"HoverIndicator"
 		{
@@ -1906,6 +2212,29 @@
 		}
 	}
 
+	"ember_a"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ember/ember_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "sven_great_cleave"
+		"AbilityCooldown" "0.6"
+		"AbilityCastPoint" "0.1"
+		"Damage" "1"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "300"
+		}
+	}
+
 	"ember_q"
 	{
 		"BaseClass" "ability_lua"
@@ -1914,6 +2243,7 @@
 		"AbilityTextureName" "ember_spirit_sleight_of_fist"
 		"AbilityCooldown" "4.0"
 		"AbilityCastPoint" "0.15"
+		"Damage" "2"
 
 		"TargetingIndicator"
 		{
@@ -1974,6 +2304,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "ember_spirit_activate_fire_remnant"
 		"AbilityCooldown" "2.7"
+		"Damage" "2"
 
 		"TargetingIndicator"
 		{
@@ -2024,14 +2355,15 @@
 		}
 	}
 
-	"jugger_q"
+	"jugger_a"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/jugger/jugger_q"
+		"ScriptFile" "abilities/jugger/jugger_a"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "juggernaut_blade_dance"
-		"AbilityCooldown" "3.0"
+		"AbilityCooldown" "0.9"
 		"AbilityCastPoint" "0.15"
+		"Damage" "1"
 
 		"TargetingIndicator"
 		{
@@ -2039,6 +2371,28 @@
 			"MaxLength" "GetStackCount(unit, 'modifier_jugger_sword')"
 			"MinLength" "GetStackCount(unit, 'modifier_jugger_sword')"
 			"Width" "64"
+		}
+	}
+
+	"jugger_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/jugger/jugger_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "juggernaut_blade_fury"
+		"AbilityCooldown" "7.0"
+		"Damage" "1"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
 		}
 	}
 
@@ -2372,6 +2726,29 @@
 		"AbilityCooldown" "14.0"
 	}
 
+	"brew_a"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/brew/brew_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "brewmaster_drunken_brawler_active"
+		"AbilityCooldown" "0.6"
+		"AbilityCastPoint" "0.1"
+		"Damage" "1"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "300"
+		}
+	}
+
 	"brew_q"
 	{
 		"BaseClass" "ability_lua"
@@ -2403,6 +2780,7 @@
 		"AbilityTextureName" "dragon_knight_breathe_fire"
 		"AbilityCooldown" "5.0"
 		"AbilityCastPoint" "0.15"
+		"Damage" "2"
 
 		"TargetingIndicator"
 		{
@@ -2438,6 +2816,7 @@
 		"AbilityTextureName" "brewmaster_drunken_haze"
 		"AbilityCooldown" "14.0"
 		"AbilityCastPoint" "0.2"
+		"Damage" "3"
 
 		"TargetingIndicator"
 		{
@@ -2453,6 +2832,30 @@
 		}
 	}
 
+	"invoker_a"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/invoker/invoker_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "invoker_deafening_blast"
+		"AbilityCooldown" "0.6"
+		"AbilityCastPoint" "0.1"
+		"Damage" "1"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "800"
+			"MinLength" "800"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "800"
+		}
+	}
+
 	"invoker_q"
 	{
 		"BaseClass" "ability_lua"
@@ -2461,6 +2864,7 @@
 		"AbilityTextureName" "invoker_sun_strike"
 		"AbilityCooldown" "3.5"
 		"AbilityCastPoint" "0.15"
+		"Damage" "2"
 
 		"TargetingIndicator"
 		{
@@ -2532,14 +2936,15 @@
 		}
 	}
 
-	"tinker_q"
+	"tinker_a"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/tinker/tinker_q"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"ScriptFile" "abilities/tinker/tinker_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "tinker_laser"
-		"AbilityCooldown" "5.0"
-		"AbilityCastPoint" "0.2"
+		"AbilityCooldown" "1.0"
+		"AbilityCastPoint" "0.1"
+		"Damage" "1"
 
 		"TargetingIndicator"
 		{
@@ -2556,15 +2961,16 @@
 		}
 	}
 
-	"tinker_w"
+	"tinker_q"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/tinker/tinker_w"
+		"ScriptFile" "abilities/tinker/tinker_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "tinker_heat_seeking_missile"
 		"AbilityCooldown" "8.0"
 		"AbilityCastPoint" "0.2"
 		"AbilityCastRange" "1600"
+		"Damage" "2"
 
 		"TargetingIndicator"
 		{
@@ -2580,10 +2986,10 @@
 		}
 	}
 
-	"tinker_e"
+	"tinker_w"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/tinker/tinker_e"
+		"ScriptFile" "abilities/tinker/tinker_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "tinker_march_of_the_machines"
 		"AbilityCooldown" "4.0"
@@ -2602,10 +3008,10 @@
 		}
 	}
 
-	"tinker_e_sub"
+	"tinker_e"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/tinker/tinker_e_sub"
+		"ScriptFile" "abilities/tinker/tinker_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "tinker_march_of_the_machines"
 		"AbilityCooldown" "4.0"
@@ -2648,14 +3054,15 @@
 		}
 	}
 
-	"slark_q"
+	"slark_a"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/slark/slark_q"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"ScriptFile" "abilities/slark/slark_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "slark_essence_shift"
-		"AbilityCooldown" "2.0"
-		"AbilityCastPoint" "0.15"
+		"AbilityCooldown" "0.6"
+		"AbilityCastPoint" "0.1"
+		"Damage" "1"
 
 		"HoverIndicator"
 		{
@@ -2670,6 +3077,30 @@
 		}
 	}
 
+	"slark_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/slark/slark_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "slark_essence_shift"
+		"AbilityCooldown" "3.5"
+		"AbilityCastPoint" "0.15"
+		"Damage" "2"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "900"
+			"MaxLength" "900"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "900"
+		}
+	}
+
 	"slark_w"
 	{
 		"BaseClass" "ability_lua"
@@ -2677,6 +3108,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "slark_dark_pact"
 		"AbilityCooldown" "4.0"
+		"Damage" "2"
 
 		"HoverIndicator"
 		{
@@ -2711,14 +3143,39 @@
 		"AbilityCooldown" "16.0"
 	}
 
+	"qop_a"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/qop/qop_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "queenofpain_sanguine_shadow_strike"
+		"AbilityCooldown" "0.75"
+		"AbilityCastPoint" "0.1"
+		"Damage" "1"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "1000"
+			"MinLength" "1000"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1000"
+		}
+	}
+
 	"qop_q"
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/qop/qop_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "queenofpain_shadow_strike"
-		"AbilityCooldown" "2.2"
+		"AbilityCooldown" "3.5"
 		"AbilityCastPoint" "0.15"
+		"Damage" "2"
 
 		"TargetingIndicator"
 		{
@@ -2791,6 +3248,29 @@
 		"AbilityCastPoint" "0.15"
 	}
 
+	"tusk_a"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tusk/tusk_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "tusk_walrus_punch"
+		"AbilityCooldown" "0.6"
+		"AbilityCastPoint" "0.1"
+		"Damage" "1"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "300"
+		}
+	}
+
 	"tusk_q"
 	{
 		"BaseClass" "ability_lua"
@@ -2799,6 +3279,7 @@
 		"AbilityTextureName" "tusk_walrus_kick"
 		"AbilityCooldown" "3.2"
 		"AbilityCastPoint" "0.15"
+		"Damage" "2"
 
 		"HoverIndicator"
 		{
@@ -3133,8 +3614,8 @@
 		"ScriptFile" "abilities/pl/pl_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "phantom_lancer_spirit_lance"
-		"AbilityCooldown" "2.2"
-		"AbilityCastPoint" "0.15"
+		"AbilityCooldown" "0.65"
+		"AbilityCastPoint" "0.1"
 
 		"HoverIndicator"
 		{
@@ -3263,35 +3744,51 @@
 		}
 	}
 
-	"gyro_q"
+	"gyro_a"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/gyro/gyro_q"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"ScriptFile" "abilities/gyro/gyro_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "gyrocopter_flak_cannon"
-		"AbilityCooldown" "4.0"
-	}
-
-	"gyro_q_sub"
-	{
-		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/gyro/gyro_q_sub"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName" "gyrocopter_flak_cannon"
-		"AbilityCooldown" "0.08"
+		"AbilityCooldown" "0.6"
 		"AbilityCastPoint" "0.1"
+		"Damage" "1"
 
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_LINE"
-			"MinLength" "750"
 			"MaxLength" "750"
+			"MinLength" "750"
 		}
 
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
 			"Radius" "750"
+		}
+	}
+
+	"gyro_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/gyro/gyro_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "gyrocopter_skyhigh_flak_cannon"
+		"AbilityCooldown" "4.0"
+		"AbilityCastPoint" "0.1"
+		"Damage" "1"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE_GYRO"
+			"MinLength" "550"
+			"MaxLength" "550"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "550"
 		}
 	}
 
@@ -3302,6 +3799,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "gyrocopter_homing_missile"
 		"AbilityCooldown" "5.0"
+		"Damage" "2"
 	}
 
 	"gyro_w_sub"
@@ -3311,6 +3809,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "gyrocopter_homing_missile"
 		"AbilityCastPoint" "0.15"
+		"Damage" "2"
 
 		"TargetingIndicator"
 		{
