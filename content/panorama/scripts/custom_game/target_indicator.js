@@ -29,11 +29,16 @@ indicatorTypes[null] = function(data, unit) {
 };
 
 indicatorTypes["TARGETING_INDICATOR_DIRECTION_GLOBAL"] = function(data, unit) {
-    this.particle = Particles.CreateParticle("particles/targeting/global_target.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN_FOLLOW, unit);
+    this.particle = Particles.CreateParticle("particles/targeting/global_target.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN, unit);
 
     this.Update = function(position){
-        Particles.SetParticleControl(this.particle, 1, position);
-    }
+        var pos = Vector.FromArray(position);
+        var dir = pos.minus(Vector.FromArray(Entities.GetAbsOrigin(unit))).normalize();
+        pos = pos.add(dir.scale(500)).toArray();
+
+        Particles.SetParticleControl(this.particle, 0, position);
+        Particles.SetParticleControl(this.particle, 1, pos);
+    };
 
     this.Delete = function(){
         Particles.DestroyParticleEffect(this.particle, false);
