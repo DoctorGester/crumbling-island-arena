@@ -513,21 +513,43 @@ function HeroesUpdate(data){
     DeathMatch.HeroesUpdated(data);
 }
 
+function GetMouseCastTarget() {
+    var mouseEntities = GameUI.FindScreenEntities(GameUI.GetCursorPosition());
+    var localHeroIndex = GetLocalHero();
+
+    mouseEntities = mouseEntities.filter(function (e) {
+        return e.entityIndex !== localHeroIndex;
+    });
+
+    for (var e of mouseEntities) {
+        if (!e.accurateCollision)
+            continue;
+        return e.entityIndex;
+    }
+
+    for (var e of mouseEntities) {
+        return e.entityIndex;
+    }
+
+    return -1;
+}
+
 function MouseCallback(event, button) {
     if (GameUI.GetClickBehaviors() !== CLICK_BEHAVIORS.DOTA_CLICK_BEHAVIOR_NONE) {
         return false;
     }
 
-    if (event === "pressed") {
+    if (event === "pressed" || event === "doublepressed") {
         var localHero = GetLocalHero();
         var position = GameUI.GetScreenWorldPosition(GameUI.GetCursorPosition());
+        var target = GetMouseCastTarget();
 
-        if (!position) {
+        if (!position || !localHero) {
             return false;
         }
 
         // TODO check if hero is dead
-        if (button === 0) {
+        if (button === 0 || (button == 1 && target !== -1)) {
             var count = Entities.GetAbilityCount(localHero);
             var castAbilityIndex = -1;
 
