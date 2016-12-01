@@ -1402,41 +1402,6 @@
     }
 }
 
-"Arena.Zeus.CastQ"
-{
-	"operator_stacks"
-    {
-        "update_stack"
-        {
-            "reference_operator"
-            {
-                "operator"              "sos_reference_stack"
-                "reference_stack"       "dota_src1_3d"
-                "operator_variables"
-                {
-                    "vsnd_files"
-                    {
-                        "value"
-                        {
-                              "value0"        "sounds/weapons/hero/storm_spirit/attack1.vsnd"
-                              "value1"		  "sounds/weapons/hero/storm_spirit/attack2.vsnd"
-                              "value2"		  "sounds/weapons/hero/storm_spirit/attack3.vsnd"
-                              "value3"		  "sounds/weapons/hero/storm_spirit/attack4.vsnd"
-                        }
-                    }
-                    "volume"            {   "value"     "1.00000"  }
-                    "pitch_rand_min"    {   "value"     "-0.05000"  }
-                    "pitch_rand_max"    {   "value"     "0.050000"  }
-                    "pitch"             {   "value"     "1.000000"  }
-                    "soundlevel"        {   "value"     "95.00000" }
-                    
-                    "event_type"        {   "value"     "1.000000"  }
-                }
-            }
-        }
-    }
-}
-
 "Arena.Zeus.CastW"
 {
     "operator_stacks"
@@ -1518,102 +1483,6 @@
                         "value"
                         {
                               "value0"        "sounds/weapons/hero/zuus/arc_lightning.vsnd"
-                        }
-                    }
-                    "volume"            {   "value"     "1.00000"  }
-                    "pitch_rand_min"    {   "value"     "-0.05000"  }
-                    "pitch_rand_max"    {   "value"     "0.050000"  }
-                    "pitch"             {   "value"     "1.000000"  }
-                    "soundlevel"        {   "value"     "95.00000" }
-                    
-                    "event_type"        {   "value"     "1.000000"  }
-                }
-            }
-        }
-    }
-}
-
-"Arena.Zeus.EmpowerQ"
-{
-	"operator_stacks"
-    {
-        "update_stack"
-        {
-            "reference_operator"
-            {
-                "operator"              "sos_reference_stack"
-                "reference_stack"       "dota_src1_3d"
-                "operator_variables"
-                {
-                    "vsnd_files"
-                    {
-                        "value"
-                        {
-                              "value0"        "sounds/weapons/hero/sven/storm_bolt.vsnd"
-                        }
-                    }
-                    "volume"            {   "value"     "1.00000"  }
-                    "pitch_rand_min"    {   "value"     "-0.05000"  }
-                    "pitch_rand_max"    {   "value"     "0.050000"  }
-                    "pitch"             {   "value"     "1.000000"  }
-                    "soundlevel"        {   "value"     "95.00000" }
-                    
-                    "event_type"        {   "value"     "1.000000"  }
-                }
-            }
-        }
-    }
-}
-
-"Arena.Zeus.HitQ"
-{
-	"operator_stacks"
-    {
-        "update_stack"
-        {
-            "reference_operator"
-            {
-                "operator"              "sos_reference_stack"
-                "reference_stack"       "dota_src1_3d"
-                "operator_variables"
-                {
-                    "vsnd_files"
-                    {
-                        "value"
-                        {
-                              "value0"        "sounds/weapons/hero/storm_spirit/overload.vsnd"
-                        }
-                    }
-                    "volume"            {   "value"     "1.00000"  }
-                    "pitch_rand_min"    {   "value"     "-0.05000"  }
-                    "pitch_rand_max"    {   "value"     "0.050000"  }
-                    "pitch"             {   "value"     "1.000000"  }
-                    "soundlevel"        {   "value"     "95.00000" }
-                    
-                    "event_type"        {   "value"     "1.000000"  }
-                }
-            }
-        }
-    }
-}
-
-"Arena.Zeus.HitQ2"
-{
-    "operator_stacks"
-    {
-        "update_stack"
-        {
-            "reference_operator"
-            {
-                "operator"              "sos_reference_stack"
-                "reference_stack"       "dota_src1_3d"
-                "operator_variables"
-                {
-                    "vsnd_files"
-                    {
-                        "value"
-                        {
-                              "value0"        "sounds/weapons/hero/sven/storm_bolt_impact.vsnd"
                         }
                     }
                     "volume"            {   "value"     "1.00000"  }
@@ -1751,6 +1620,107 @@
                     "pitch"             {   "value"     "1.000000"  }
                     "soundlevel"        {   "value"     "95.00000" }
                     
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Storm.CastA"
+{
+	"operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/storm_spirit/attack1.vsnd"
+                              "value1"		  "sounds/weapons/hero/storm_spirit/attack2.vsnd"
+                              "value2"		  "sounds/weapons/hero/storm_spirit/attack3.vsnd"
+                              "value3"		  "sounds/weapons/hero/storm_spirit/attack4.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Storm.HitA"
+{
+	"operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/zuus/general_attack1.vsnd"
+                              "value1"        "sounds/weapons/hero/zuus/general_attack2.vsnd"
+                              "value2"        "sounds/weapons/hero/zuus/general_attack3.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Storm.HitA2"
+{
+	"operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/storm_spirit/overload.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
                     "event_type"        {   "value"     "1.000000"  }
                 }
             }
@@ -2279,6 +2249,73 @@
     }
 }
 
+"Arena.CM.CastA"
+{
+	"operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/crystal_maiden/attack01.vsnd"
+                              "value1"        "sounds/weapons/hero/crystal_maiden/attack02.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.CM.HitA"
+{
+	"operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/crystal_maiden/impact01.vsnd"
+                              "value1"        "sounds/weapons/hero/crystal_maiden/impact02.vsnd"
+                              "value2"        "sounds/weapons/hero/crystal_maiden/impact03.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
 "Arena.CM.CastQ"
 {
 	"operator_stacks"
@@ -2645,7 +2682,7 @@
     }
 }
 
-"Arena.Sven.CastQ"
+"Arena.Sven.CastA"
 {
 	"operator_stacks"
     {
@@ -2662,8 +2699,8 @@
                         "value"
                         {
                               "value0"        "sounds/weapons/hero/shared/large_blade/whoosh01.vsnd"
-                              "value0"        "sounds/weapons/hero/shared/large_blade/whoosh02.vsnd"
-                              "value0"        "sounds/weapons/hero/shared/large_blade/whoosh03.vsnd"
+                              "value1"        "sounds/weapons/hero/shared/large_blade/whoosh02.vsnd"
+                              "value2"        "sounds/weapons/hero/shared/large_blade/whoosh03.vsnd"
                         }
                     }
                     "volume"            {   "value"     "1.00000"  }
@@ -2679,7 +2716,7 @@
     }
 }
 
-"Arena.Sven.HitQ"
+"Arena.Sven.HitA"
 {
 	"operator_stacks"
     {
@@ -2696,7 +2733,7 @@
                         "value"
                         {
                               "value0"        "sounds/weapons/hero/abaddon/impact_01.vsnd"
-                              "value0"        "sounds/weapons/hero/abaddon/impact_02.vsnd"
+                              "value1"        "sounds/weapons/hero/abaddon/impact_02.vsnd"
                         }
                     }
                     "volume"            {   "value"     "1.00000"  }
@@ -2712,6 +2749,110 @@
     }
 }
 
+"Arena.Sven.CastQ"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/sven/storm_bolt.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "2.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+                    
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Sven.HitQ"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/sven/storm_bolt_impact.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Sven.CastQ.Voice"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/vo/sven/sven_ability_stormbolt_01.vsnd"
+                              "value1"        "sounds/vo/sven/sven_ability_stormbolt_02.vsnd"
+                              "value2"        "sounds/vo/sven/sven_ability_stormbolt_03.vsnd"
+                              "value3"        "sounds/vo/sven/sven_ability_stormbolt_04.vsnd"
+                              "value4"        "sounds/vo/sven/sven_ability_stormbolt_05.vsnd"
+                              "value5"        "sounds/vo/sven/sven_ability_stormbolt_11.vsnd"
+                              "value6"        "sounds/vo/sven/sven_ability_stormbolt_07.vsnd"
+                              "value7"        "sounds/vo/sven/sven_ability_stormbolt_08.vsnd"
+                              "value8"        "sounds/vo/sven/sven_ability_stormbolt_09.vsnd"
+                              "value9"        "sounds/vo/sven/sven_ability_stormbolt_10.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
 
 "Arena.Sven.CastW"
 {
@@ -2915,7 +3056,7 @@
     }
 }
 
-"Arena.Sniper.PreQ"
+"Arena.Sniper.PreA"
 {
     "operator_stacks"
     {
@@ -2947,7 +3088,7 @@
     }
 }
 
-"Arena.Sniper.CastQ"
+"Arena.Sniper.CastA"
 {
     "operator_stacks"
     {
@@ -2979,7 +3120,7 @@
     }
 }
 
-"Arena.Sniper.FlyQ"
+"Arena.Sniper.FlyA"
 {
     "operator_stacks"
     {
@@ -3011,7 +3152,7 @@
     }
 }
 
-"Arena.Sniper.HitQ"
+"Arena.Sniper.HitA"
 {
     "operator_stacks"
     {
@@ -3038,6 +3179,69 @@
                     "soundlevel"        {   "value"     "95.00000" }
                     
                     "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Sniper.CastQ"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/sniper/shrapnel_fire.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Sniper.LoopQ"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_update_default"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/sniper/shrapnel_shatter.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+                    "event_type"        {   "value"     "1.000000"  }
+                    "volume_fade_out"   {   "value"     "0.700000"  }
                 }
             }
         }
@@ -3204,6 +3408,103 @@
     }
 }
 
+"Arena.SK.CastA"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/sand_king/sand_king_attack_swing_01.vsnd"
+                              "value1"        "sounds/weapons/hero/sand_king/sand_king_attack_swing_02.vsnd"
+                              "value2"        "sounds/weapons/hero/sand_king/sand_king_attack_swing_03.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.SK.HitA"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/sand_king/sand_king_attack_01.vsnd"
+                              "value1"        "sounds/weapons/hero/sand_king/sand_king_attack_02.vsnd"
+                              "value2"        "sounds/weapons/hero/sand_king/sand_king_attack_03.vsnd"
+                              "value3"        "sounds/weapons/hero/sand_king/sand_king_attack_04.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.SK.HitA2"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/sand_king/sand_king_caustic_bodyexplode.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
 
 "Arena.SK.CastQ"
 {
@@ -3229,7 +3530,6 @@
                     "pitch_rand_max"    {   "value"     "0.050000"  }
                     "pitch"             {   "value"     "1.000000"  }
                     "soundlevel"        {   "value"     "95.00000" }
-                    
                     "event_type"        {   "value"     "1.000000"  }
                 }
             }
@@ -3427,6 +3727,41 @@
                     "pitch"             {   "value"     "1.000000"  }
                     "soundlevel"        {   "value"     "60.00000" }
                     
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.LC.HitA"
+{
+	"operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/sven/attack01.vsnd"
+                              "value1"        "sounds/weapons/hero/sven/attack02.vsnd"
+                              "value2"        "sounds/weapons/hero/sven/attack03.vsnd"
+                              "value3"        "sounds/weapons/hero/sven/attack04.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
                     "event_type"        {   "value"     "1.000000"  }
                 }
             }
@@ -4707,6 +5042,142 @@
     }
 }
 
+"Arena.Tiny.CastA"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/tiny/preattack01.vsnd"
+                              "value1"        "sounds/weapons/hero/tiny/preattack02.vsnd"
+                              "value2"        "sounds/weapons/hero/tiny/preattack03.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Tiny.HitA"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/tiny/tiny_tree_impact_01.vsnd"
+                              "value1"        "sounds/weapons/hero/tiny/tiny_tree_impact_02.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Tiny.HitA2"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_update_default"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/tiny/tree_rattle01.vsnd"
+                              "value1"        "sounds/weapons/hero/tiny/tree_rattle02.vsnd"
+                              "value2"        "sounds/weapons/hero/tiny/tree_rattle03.vsnd"
+                              "value3"        "sounds/weapons/hero/tiny/tree_rattle04.vsnd"
+                              "value4"        "sounds/weapons/hero/tiny/tree_rattle05.vsnd"
+                              "value5"        "sounds/weapons/hero/tiny/tree_rattle06.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "0.60000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+                    "volume_fade_in"    {   "value"     "0.200000"  }
+                    "volume_fade_out"   {   "value"     "0.200000"  }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Tiny.HitA3"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/earth_spirit/rolling_boulder_target.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
 "Arena.Tiny.CastQ"
 {
     "operator_stacks"
@@ -5322,6 +5793,73 @@
     }
 }
 
+"Arena.Venge.CastA"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/vengeful_spirit/attack1.vsnd"
+                              "value1"        "sounds/weapons/hero/vengeful_spirit/attack2.vsnd"
+                              "value2"        "sounds/weapons/hero/vengeful_spirit/attack3.vsnd"
+                              "value3"        "sounds/weapons/hero/vengeful_spirit/attack4.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "0.60000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Venge.HitA"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/vengeful_spirit/attack_impact1.vsnd"
+                              "value1"        "sounds/weapons/hero/vengeful_spirit/attack_impact2.vsnd"
+                              "value2"        "sounds/weapons/hero/vengeful_spirit/attack_impact3.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
 "Arena.Venge.CastQ"
 {
     "operator_stacks"
@@ -5624,7 +6162,7 @@
     }
 }
 
-"Arena.Drow.CastQ"
+"Arena.Drow.CastA"
 {
     "operator_stacks"
     {
@@ -5659,7 +6197,7 @@
     }
 }
 
-"Arena.Drow.HitQ"
+"Arena.Drow.HitA"
 {
     "operator_stacks"
     {
@@ -5687,6 +6225,41 @@
                     "soundlevel"        {   "value"     "95.00000" }
                     
                     "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Drow.CastQ2"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/drow_ranger/arrow_1.vsnd"
+                              "value1"        "sounds/weapons/hero/drow_ranger/arrow_2.vsnd"
+                              "value2"        "sounds/weapons/hero/drow_ranger/arrow_3.vsnd"
+                              "value3"        "sounds/weapons/hero/drow_ranger/arrow_4.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "0.80000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+                    "event_type"        {   "value"     "1.000000"  }
+                    "limiter_on"		{	"value"		"0.0"	}
                 }
             }
         }
@@ -5876,6 +6449,40 @@
                     "pitch_rand_max"    {   "value"     "0.050000"  }
                     "pitch"             {   "value"     "1.000000"  }
                     "soundlevel"        {   "value"     "95.00000" }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.WK.HitA"
+{
+	"operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/skeleton_king/attack01.vsnd"
+                              "value1"        "sounds/weapons/hero/skeleton_king/attack02.vsnd"
+                              "value2"        "sounds/weapons/hero/skeleton_king/attack03.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
                     "event_type"        {   "value"     "1.000000"  }
                 }
             }
@@ -6823,6 +7430,70 @@
     }
 }
 
+"Arena.Shaker.HitA"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/earthshaker/enchant_attack.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Shaker.HitA2"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/earth_spirit/boulder_smash_silence.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
 "Arena.Shaker.PreQ"
 {
     "operator_stacks"
@@ -7108,6 +7779,72 @@
                     "pitch"             {   "value"     "1.000000"  }
                     "soundlevel"        {   "value"     "95.00000" }
                     
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Ember.CastA"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/ember_spirit/preattack01.vsnd"
+                              "value1"        "sounds/weapons/hero/ember_spirit/preattack02.vsnd"
+                              "value1"        "sounds/weapons/hero/ember_spirit/preattack03.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Ember.HitA"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/shared/small_blade/attack_long01.vsnd"
+                              "value1"        "sounds/weapons/hero/shared/small_blade/attack_long02.vsnd"
+                              "value1"        "sounds/weapons/hero/shared/small_blade/attack_long03.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
                     "event_type"        {   "value"     "1.000000"  }
                 }
             }
@@ -7480,7 +8217,7 @@
     }
 }
 
-"Arena.Jugger.PreQ"
+"Arena.Jugger.PreA"
 {
     "operator_stacks"
     {
@@ -7512,7 +8249,7 @@
     }
 }
 
-"Arena.Jugger.CastQ"
+"Arena.Jugger.CastA"
 {
     "operator_stacks"
     {
@@ -7546,7 +8283,7 @@
     }
 }
 
-"Arena.Jugger.CastQEmp"
+"Arena.Jugger.CastAEmp"
 {
     "operator_stacks"
     {
@@ -7572,6 +8309,106 @@
                     "pitch"             {   "value"     "1.000000"  }
                     "soundlevel"        {   "value"     "95.00000" }
                     
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Jugger.CastQ.Voice"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/vo/juggernaut/jug_ability_bladefury_02.vsnd"
+                              "value1"        "sounds/vo/juggernaut/jug_ability_bladefury_09.vsnd"
+                              "value2"        "sounds/vo/juggernaut/jugg_ability_bladefury_11.vsnd"
+                              "value3"        "sounds/vo/juggernaut/jugg_ability_bladefury_12.vsnd"
+                              "value4"        "sounds/vo/juggernaut/jugg_ability_bladefury_16.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "2.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Jugger.LoopQ"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/juggernaut/bladefury_start_loop.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Jugger.EndQ"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/juggernaut/bladefury_stop.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
                     "event_type"        {   "value"     "1.000000"  }
                 }
             }
@@ -8882,6 +9719,106 @@
     }
 }
 
+"Arena.Brew.CastA"
+{
+	"operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/brewmaster/preattack01.vsnd"
+                              "value1"        "sounds/weapons/hero/brewmaster/preattack02.vsnd"
+                              "value2"        "sounds/weapons/hero/brewmaster/preattack03.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Brew.CastA2"
+{
+	"operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/brewmaster/brawl_crit.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Brew.HitA"
+{
+	"operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/brewmaster/attack01.vsnd"
+                              "value1"        "sounds/weapons/hero/brewmaster/attack02.vsnd"
+                              "value2"        "sounds/weapons/hero/brewmaster/attack03.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
 "Arena.Brew.CastQ"
 {
     "operator_stacks"
@@ -9177,6 +10114,102 @@
                     "pitch"             {   "value"     "1.000000"  }
                     "soundlevel"        {   "value"     "95.00000" }
                     
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Invoker.PreA"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/witch_doctor/preattack.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "0.50000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Invoker.CastA"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/witch_doctor/attack.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "0.50000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Invoker.HitA"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/witch_doctor/projectile_impact.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "0.50000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
                     "event_type"        {   "value"     "1.000000"  }
                 }
             }
@@ -9884,7 +10917,7 @@
     }
 }
 
-"Arena.Slark.PreQ"
+"Arena.Slark.PreA"
 {
     "operator_stacks"
     {
@@ -9917,7 +10950,7 @@
     }
 }
 
-"Arena.Slark.CastQ"
+"Arena.Slark.HitA"
 {
     "operator_stacks"
     {
@@ -9951,7 +10984,7 @@
     }
 }
 
-"Arena.Slark.EndQ"
+"Arena.Slark.EndA"
 {
     "operator_stacks"
     {
@@ -10207,6 +11240,40 @@
                     "pitch"             {   "value"     "1.000000"  }
                     "soundlevel"        {   "value"     "95.00000" }
                     
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.QOP.HitA"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/queenofpain/impact_1.vsnd"
+                              "value1"        "sounds/weapons/hero/queenofpain/impact_2.vsnd"
+                              "value2"        "sounds/weapons/hero/queenofpain/impact_3.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.000000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
                     "event_type"        {   "value"     "1.000000"  }
                 }
             }
@@ -10471,6 +11538,71 @@
                     "pitch"             {   "value"     "1.000000"  }
                     "soundlevel"        {   "value"     "95.00000" }
                     
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Tusk.HitA"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/beastmaster/attack01.vsnd"
+                              "value1"        "sounds/weapons/hero/beastmaster/attack02.vsnd"
+                              "value2"        "sounds/weapons/hero/beastmaster/attack03.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.000000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+"Arena.Tusk.LoopA"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/tusk/punch_cast.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "0.600000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
                     "event_type"        {   "value"     "1.000000"  }
                 }
             }
@@ -12406,7 +13538,7 @@
     }
 }
 
-"Arena.Gyro.CastQ.Sub"
+"Arena.Gyro.CastA"
 {
     "operator_stacks"
     {
@@ -12438,7 +13570,7 @@
     }
 }
 
-"Arena.Gyro.CastQ.Voice"
+"Arena.Gyro.HitA"
 {
     "operator_stacks"
     {
@@ -12454,18 +13586,14 @@
                     {
                         "value"
                         {
-                              "value0"          "sounds/vo/gyrocopter/gyro_flak_cannon_04.vsnd"
-                              "value1"          "sounds/vo/gyrocopter/gyro_flak_cannon_05.vsnd"
-                              "value2"          "sounds/vo/gyrocopter/gyro_flak_cannon_07.vsnd"
-
+                              "value0"       	"sounds/weapons/hero/bane/projectile_impact.vsnd"
                         }
                     }
-                    "volume"            {   "value"     "2.00000"  }
+                    "volume"            {   "value"     "1.00000"  }
                     "pitch_rand_min"    {   "value"     "-0.05000"  }
                     "pitch_rand_max"    {   "value"     "0.050000"  }
                     "pitch"             {   "value"     "1.000000"  }
-                    "soundlevel"        {   "value"     "93.00000" }
-                    
+                    "soundlevel"        {   "value"     "95.00000" }
                     "event_type"        {   "value"     "1.000000"  }
                 }
             }
@@ -12473,7 +13601,7 @@
     }
 }
 
-"Arena.Gyro.HitQ.Sub"
+"Arena.Gyro.HitA2"
 {
     "operator_stacks"
     {
@@ -12505,7 +13633,38 @@
     }
 }
 
-"Arena.Gyro.HitQ2.Sub"
+"Arena.Gyro.CastQ"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_update_default"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/gyrocopter/flack_cannon.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Gyro.HitQ"
 {
     "operator_stacks"
     {
@@ -12529,7 +13688,7 @@
                     "pitch_rand_max"    {   "value"     "0.050000"  }
                     "pitch"             {   "value"     "1.000000"  }
                     "soundlevel"        {   "value"     "93.00000" }
-                    
+
                     "event_type"        {   "value"     "1.000000"  }
                 }
             }
