@@ -4,6 +4,11 @@ function sven_a:OnAbilityPhaseStart()
     local hero = self:GetCaster().hero
     hero:EmitSound("Arena.Sven.CastA")
 
+    FX("particles/melee_attack_blur_configurable.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero, {
+        cp1 = Vector(SvenUtil.IsEnraged(hero) and 500 or 300, 0, 0),
+        release = true
+    })
+
     return true
 end
 
@@ -59,4 +64,4 @@ if IsClient() then
     require("wrappers")
 end
 
-Wrappers.AttackAbility(sven_a, nil, "particles/melee_attack_blur.vpcf")
+Wrappers.AttackAbility(sven_a)

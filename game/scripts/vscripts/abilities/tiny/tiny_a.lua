@@ -8,6 +8,11 @@ function tiny_a:OnAbilityPhaseStart()
 
     hero:EmitSound("Arena.Tiny.CastA")
 
+    FX("particles/melee_attack_blur_configurable.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero, {
+        cp1 = Vector(hero:FindModifier("modifier_tiny_r") and 500 or 400, 0, 0),
+        release = true
+    })
+
     return true
 end
 
@@ -72,4 +77,4 @@ if IsClient() then
     require("wrappers")
 end
 
-Wrappers.AttackAbility(tiny_a, nil, "particles/melee_attack_blur.vpcf")
+Wrappers.AttackAbility(tiny_a)
