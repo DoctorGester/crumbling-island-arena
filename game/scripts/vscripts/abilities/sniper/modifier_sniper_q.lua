@@ -5,7 +5,7 @@ function modifier_sniper_q:IsAura()
 end
 
 function modifier_sniper_q:GetAuraRadius()
-    return 300
+    return 400
 end
 
 function modifier_sniper_q:GetAuraDuration()

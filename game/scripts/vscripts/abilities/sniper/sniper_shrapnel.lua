@@ -19,7 +19,7 @@ function SniperShrapnel:constructor(round, owner, target, ability)
 
     self.particle = FX("particles/units/heroes/hero_sniper/sniper_shrapnel.vpcf", PATTACH_WORLDORIGIN, self.hero, {
         cp0 = target,
-        cp1 = Vector(300, 0, 0),
+        cp1 = Vector(400, 0, 0),
         cp2 = target,
         release = false
     })
@@ -33,7 +33,7 @@ function SniperShrapnel:Update()
             self:Destroy()
         else
             self:AreaEffect({
-                filter = Filters.Area(self:GetPos(), 300),
+                filter = Filters.Area(self:GetPos(), 400),
                 damage = self.ability:GetDamage()
             })
 
