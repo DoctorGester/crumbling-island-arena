@@ -131,7 +131,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "storm_spirit_static_remnant"
 		"AbilityCooldown" "0.1"
-		"Damage" "2"
+		"Damage" "3"
 	}
 
 	"storm_spirit_e"
@@ -319,7 +319,7 @@
 		"AbilityTextureName" "juggernaut_blade_fury"
 		"AbilityCooldown" "4"
 		"AbilityCastPoint" "0.15"
-		"Damage" "2"
+		"Damage" "3"
 
 		"HoverIndicator"
 		{
@@ -491,7 +491,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "tusk_snowball"
 		"AbilityCooldown" "5.0"
-		"Damage" "2"
+		"Damage" "3"
 
 		"TargetingIndicator"
 		{
@@ -520,7 +520,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "crystal_maiden_freezing_field"
 		"AbilityCooldown" "6.0"
-		"Damage" "2"
+		"Damage" "3"
 
 		"precache"
 		{
@@ -536,7 +536,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "ancient_apparition_chilling_touch"
 		"AbilityCooldown" "5.0"
-		"Damage" "2"
+		"Damage" "3"
 
 		"TargetingIndicator"
 		{
@@ -766,7 +766,7 @@
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_AOE"
-			"Radius" "300"
+			"Radius" "400"
 			"DisplayRange" "1"
 		}
 
@@ -867,7 +867,7 @@
 		"AbilityTextureName" "sandking_epicenter"
 		"AbilityCooldown" "2.7"
 		"AbilityCastPoint" "0.4"
-		"Damage" "2"
+		"Damage" "3"
 
 		"TargetingIndicator"
 		{
@@ -896,7 +896,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "earthshaker_aftershock_egset"
 		"AbilityCooldown" "8.0"
-		"Damage" "2"
+		"Damage" "3"
 
 		"TargetingIndicator"
 		{
@@ -1005,7 +1005,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "legion_commander_overwhelming_odds"
 		"AbilityCooldown" "3.0"
-		"Damage" "2"
+		"Damage" "3"
 
 		"TargetingIndicator"
 		{
@@ -1433,7 +1433,7 @@
 		"AbilityTextureName" "tiny_toss"
 		"AbilityCooldown" "9.0"
 		"AbilityCastPoint" "0.15"
-		"Damage" "2"
+		"Damage" "3"
 
 		"TargetingIndicator"
 		{
@@ -1459,7 +1459,7 @@
 		"AbilityTextureName" "rubick_telekinesis_land"
 		"AbilityCooldown" "5.0"
 		"AbilityCastPoint" "0.15"
-		"Damage" "2"
+		"Damage" "3"
 
 		"TargetingIndicator"
 		{
@@ -1866,7 +1866,7 @@
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName" "drow_ranger_marksmanship"
 		"AbilityCooldown" "12.0"
-		"Damage" "2"
+		"Damage" "3"
 
 		"TargetingIndicator"
 		{
@@ -1912,7 +1912,7 @@
 		"AbilityTextureName" "undying_decay"
 		"AbilityCooldown" "6.0"
 		"AbilityCastPoint" "0.2"
-		"Damage" "2"
+		"Damage" "3"
 
 		"TargetingIndicator"
 		{
@@ -1936,7 +1936,7 @@
 		"AbilityTextureName" "undying_decay"
 		"AbilityCooldown" "7.0"
 		"AbilityCastPoint" "0.2"
-		"Damage" "2"
+		"Damage" "3"
 
 		"TargetingIndicator"
 		{
@@ -1987,7 +1987,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "undying_decay"
 		"AbilityCooldown" "14.0"
-		"Damage" "3"
+		"Damage" "5"
 
 		"TargetingIndicator"
 		{
@@ -2243,7 +2243,7 @@
 		"AbilityTextureName" "ember_spirit_sleight_of_fist"
 		"AbilityCooldown" "4.0"
 		"AbilityCastPoint" "0.15"
-		"Damage" "2"
+		"Damage" "3"
 
 		"TargetingIndicator"
 		{
@@ -2780,7 +2780,7 @@
 		"AbilityTextureName" "dragon_knight_breathe_fire"
 		"AbilityCooldown" "5.0"
 		"AbilityCastPoint" "0.15"
-		"Damage" "2"
+		"Damage" "3"
 
 		"TargetingIndicator"
 		{
@@ -2816,7 +2816,7 @@
 		"AbilityTextureName" "brewmaster_drunken_haze"
 		"AbilityCooldown" "14.0"
 		"AbilityCastPoint" "0.2"
-		"Damage" "3"
+		"Damage" "4"
 
 		"TargetingIndicator"
 		{
@@ -2864,7 +2864,7 @@
 		"AbilityTextureName" "invoker_sun_strike"
 		"AbilityCooldown" "3.5"
 		"AbilityCastPoint" "0.15"
-		"Damage" "2"
+		"Damage" "3"
 
 		"TargetingIndicator"
 		{
@@ -2970,7 +2970,7 @@
 		"AbilityCooldown" "8.0"
 		"AbilityCastPoint" "0.2"
 		"AbilityCastRange" "1600"
-		"Damage" "2"
+		"Damage" "3"
 
 		"TargetingIndicator"
 		{
@@ -3085,7 +3085,7 @@
 		"AbilityTextureName" "slark_essence_shift"
 		"AbilityCooldown" "3.5"
 		"AbilityCastPoint" "0.15"
-		"Damage" "2"
+		"Damage" "3"
 
 		"TargetingIndicator"
 		{
@@ -3279,7 +3279,7 @@
 		"AbilityTextureName" "tusk_walrus_kick"
 		"AbilityCooldown" "3.2"
 		"AbilityCastPoint" "0.15"
-		"Damage" "2"
+		"Damage" "3"
 
 		"HoverIndicator"
 		{
@@ -3799,7 +3799,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "gyrocopter_homing_missile"
 		"AbilityCooldown" "5.0"
-		"Damage" "2"
+		"Damage" "3"
 	}
 
 	"gyro_w_sub"
@@ -3809,7 +3809,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "gyrocopter_homing_missile"
 		"AbilityCastPoint" "0.15"
-		"Damage" "2"
+		"Damage" "3"
 
 		"TargetingIndicator"
 		{
