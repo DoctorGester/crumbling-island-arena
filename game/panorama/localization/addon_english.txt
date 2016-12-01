@@ -63,7 +63,7 @@
 		"Available_on_npc_dota_hero_undying"			"Available on August 7-8!"
 		"AvailableSoon"									"Available soon!"
 
-		"phantom_assassin_DescQ" "Short ranged boomerang"
+		"phantom_assassin_DescQ" "Slowing projectile"
 		"phantom_assassin_DescW" "Melee AOE attack"
 		"phantom_assassin_DescE" "Short jump"
 		"phantom_assassin_DescR" "Invisibility"
@@ -88,23 +88,23 @@
 		"earth_spirit_DescE" "Short jump. Can jump on remnants"
 		"earth_spirit_DescR" "Swap health and position with remnant"
 
-		"sven_DescQ" "Melee attack"
+		"sven_DescQ" "Stunning projectile"
 		"sven_DescW" "Slow and silence in a cone"
 		"sven_DescE" "Dash + knockback + damage"
 		"sven_DescR" "Reset cooldowns. Power up"
 
-		"sniper_DescQ" "Global projectile"
+		"sniper_DescQ" "Slow + damage in the area"
 		"sniper_DescW" "Rooting trap"
 		"sniper_DescE" "Speed boost"
 		"sniper_DescR" "Invisibility when no enemies nearby"
 
 		"sand_king_DescQ" "AOE damage + slow after a delay"
-		"sand_king_DescW" "Damage in thick line"
+		"sand_king_DescW" "Damage in a thick line"
 		"sand_king_DescE" "Dash + damage"
 		"sand_king_DescR" "Area with invisibility"
 
-		"legion_commander_DescQ" "Melee slowing attack"
-		"legion_commander_DescW" "1 damage shield, speed boost"
+		"legion_commander_DescQ" "Short dash + damage in an area"
+		"legion_commander_DescW" "Damage shield, speed boost"
 		"legion_commander_DescE" "Dash + short stun"
 		"legion_commander_DescR" "AOE buff, immortality + reduced cooldowns"
 
@@ -138,7 +138,7 @@
 		"vengefulspirit_DescE" "Swapping projectile"
 		"vengefulspirit_DescR" "Summon spirit guardian"
 
-		"drow_ranger_DescQ" "Slowing projectile"
+		"drow_ranger_DescQ" "Short dash + damage. Recast"
 		"drow_ranger_DescW" "Knockback + silence wave"
 		"drow_ranger_DescE" "Dash + slow"
 		"drow_ranger_DescR" "Channeling, knockbacking arrow"
@@ -163,7 +163,7 @@
 		"ember_spirit_DescE" "Short dash"
 		"ember_spirit_DescR" "Create a copy of yourself"
 
-		"juggernaut_DescQ" "Attack in a line"
+		"juggernaut_DescQ" "Damage in an area"
 		"juggernaut_DescW" "AOE slow + heal"
 		"juggernaut_DescE" "Invis + blink"
 		"juggernaut_DescR" "Expend your swords without cooldown"
@@ -193,12 +193,12 @@
 		"invoker_DescE" "Delayed silence in AOE"
 		"invoker_DescR" "Global delayed ground damage"
 
-		"tinker_DescQ" "Damage in a line"
-		"tinker_DescW" "Homing missile"
-		"tinker_DescE" "Create two portals"
+		"tinker_DescQ" "Homing missile"
+		"tinker_DescW" "Blue portal"
+		"tinker_DescE" "Orange portal"
 		"tinker_DescR" "Refresh abilities when in AOE"
 
-		"slark_DescQ" "Melee attack + heal"
+		"slark_DescQ" "Slowing projectile"
 		"slark_DescW" "Purge debuffs + self damage + damage in AOE"
 		"slark_DescE" "Jump forward and leash enemy"
 		"slark_DescR" "Purge debuffs + speed + regenerate health"
@@ -238,7 +238,7 @@
 		"omniknight_DescE" "Invulnerability"
 		"omniknight_DescR" "Give all allies damage resistance"
 
-		"gyrocopter_DescQ" "Three slowing attacks, hit all to damage"
+		"gyrocopter_DescQ" "Three knocking back projectiles"
 		"gyrocopter_DescW" "Gain a shield, spend it to fire a rocket"
 		"gyrocopter_DescE" "Global dash"
 		"gyrocopter_DescR" "Fire many projectiles with knockback"
@@ -251,6 +251,8 @@
 		"RandomHero" "random hero"
 		"ShowAllHeroes" "show all heroes"
 		"LockedHeroes" "Not available for the first 3 rounds"
+		"HeroRange_melee" "Melee"
+		"HeroRange_ranged" "Ranged"
 		"RankAward" "Rank 1 reward (Season {d:season})"
 		"GameGoal" "Goal"
 		"PointsToWin" "point limit"
@@ -391,12 +393,9 @@
 
 		"RecentScore"									"+{d:score}"
 
-		"StageIslandFirst"								"An earthquake"
-		"StageIslandSecond"								"A landslide"
-		"StageSuddenDeath"								"Doom"
-		"StageFinal"									""
-
+		"BasicAttackTooltip"							"<font color=\"#DAFF7F\"><b>Basic Attack</b></font><br/><br/>{s:description}<br><br><font color=\"gold\">DAMAGE</font>: {s:damage}<br><font color=\"gold\">CD</font>: {s:cooldown}"
 		"AbilityTooltip"								"{s:description}<br><br><font color=\"gold\">CD</font>: {s:cooldown}"
+		"AbilityTooltipDamage"							"{s:description}<br><br><font color=\"gold\">DAMAGE</font>: {s:damage}<br><font color=\"gold\">CD</font>: {s:cooldown}"
 
 		"AbilityTooltip_taunt_static"					"Taunt your enemies! Show them your best moves and make them jelly!"
 		"AbilityTooltip_taunt_moving"					"Is that some kind of a dance? Nevermind, gimme gimme!"
@@ -407,6 +406,7 @@
 		"AbilityTooltip_earth_spirit_e"					"Perform a short jump. When targeting a <font color=\"#3A9B00\"><b>Remnant</b></font>, land on top of it, becoming invulnerable until leaving it."
 		"AbilityTooltip_earth_spirit_r"					"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Target a <font color=\"#3A9B00\"><b>Remnant</b></font>. After a short delay, emerge from it, leaving your old body behind."
 
+		"AbilityTooltip_cm_a"							"Hitting enemies with spells charges the weapon<br/>At 3 charges next attack <font color=\"skyblue\"><b>Freezes</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies take damage"
 		"AbilityTooltip_cm_q"							"Launch a projectile into a chosen direction<br>Enemies hit are <font color=\"skyblue\"><b>Frozen</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies take damage"
 		"AbilityTooltip_cm_w"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Enemies under the cursor are <font color=\"skyblue\"><b>Frozen</b></font> after a delay<br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies take damage"
 		"AbilityTooltip_cm_e"							"Launch a wave into a chosen direction<br>Reactivate to relocate to the wave\\\\'s position<br>Enemies hit are <font color=\"skyblue\"><b>Frozen</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies take damage"
@@ -418,34 +418,39 @@
 		"AbilityTooltip_zeus_e"							"Teleport to a target point<br><br>Teleporting through the lightning wall damages all enemies between teleport locations"
 		"AbilityTooltip_zeus_r"							"Target an area<br>After a 1.6 second delay all enemies in the area receive damage and slow"
 
-		"AbilityTooltip_sniper_q"						"Fire a global ranged projectile"
+		"AbilityTooltip_sniper_a"						"Global"
+		"AbilityTooltip_sniper_q"						"Fire shrapnel slowing enemies in the area over time"
 		"AbilityTooltip_sniper_w"						"Plant an invisible trap that roots enemies when triggered"
 		"AbilityTooltip_sniper_e"						"Gain a decaying speed boost"
 		"AbilityTooltip_sniper_r"						"<font color=\"#DAFF7F\"><b>Toggle</b></font><br>When active renders hero invisible while no enemies are near for the cost of speed"
 
-		"AbilityTooltip_sven_q"							"Strike to damage enemies in front of you<br><br><font color=\"#AE0000\"><b>Enrage</b></font> increased radius and pushes damaged targets back"
+		"AbilityTooltip_sven_a"							"Deals double damage when <font color=\"#AE0000\"><b>Enraged</b></font>"
+		"AbilityTooltip_sven_q"							"Launch a projectile which stuns and knocks back enemies in an area of impact<br><br><font color=\"#AE0000\"><b>Enrage</b></font> increased knockback"
 		"AbilityTooltip_sven_w"							"Silence and slow enemies in a cone<br><br><font color=\"#AE0000\"><b>Enrage</b></font> applies the effect in a circular area"
-		"AbilityTooltip_sven_e"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Rush to the target point, pushing back and damaging all enemies on the way<br><br><font color=\"#AE0000\"><b>Enrage</b></font> removes channeling time"
+		"AbilityTooltip_sven_e"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Rush to the target point, pushing back all enemies on the way<br><br><font color=\"#AE0000\"><b>Enrage</b></font> removes channeling time"
 		"AbilityTooltip_sven_r"							"Become <font color=\"#AE0000\"><b>Enraged</b></font> and reset your other cooldowns"
 
-		"AbilityTooltip_lc_q"							"Strike an area in front of you, briefly slowing enemies hit"
-		"AbilityTooltip_lc_w"							"Gain a temporary shield that protects you from the next incoming damage instance<br><br>When the shield pops, gain a speed bonus"
+		"AbilityTooltip_lc_a"							"Deals double damage when hero movespeed is higher than base"
+		"AbilityTooltip_lc_q"							"Dash to the target area and strike enemies in front, slowing them"
+		"AbilityTooltip_lc_w"							"Gain a temporary shield for 2 damage<br>Gain a speed bonus if the shield pops"
 		"AbilityTooltip_lc_e"							"Dash forward, briefly disabling enemies on the way<br><br>Dash distance depends on your current speed"
 		"AbilityTooltip_lc_r"							"Target an area<br>While in that area, you are immortal and your cooldowns are halved"
 
-		"AbilityTooltip_pa_q"							"Throw a boomerang glaive in the target direction<br><br>Reactivate to bring it back"
-		"AbilityTooltip_pa_q_sub"						"Bring the glaive back"
+		"AbilityTooltip_pa_a"							"Can't use W while the glaive is in the air"
+		"AbilityTooltip_pa_q"							"Throw a slowing projectile"
 		"AbilityTooltip_pa_w"							"Strike an area around you"
 		"AbilityTooltip_pa_w_sub"						"Throw a dagger which slows the first enemy hit<br><br>Doesn\\\\'t deal damage"
 		"AbilityTooltip_pa_e"							"Perform a short jump"
 		"AbilityTooltip_pa_e_sub"						"Perform a short jump, leaving your glaive behind"
 		"AbilityTooltip_pa_r"							"Become invisible for 5 seconds gaining bonus speed<br>Your glaive is also sped up<br><br>Casting spells briefly reveals you"
 
-		"AbilityTooltip_sk_q"							"Deal damage and slow enemies in the area after a 1.2 second delay"
-		"AbilityTooltip_sk_w"							"Deal damage in a line<br><br>Can't go though holes in the ground"
-		"AbilityTooltip_sk_e"							"Dash forward dealing damage to enemies on path<br><br>Can't go though holes in the ground"
+		"AbilityTooltip_sk_a"							"Places a debuff on targets hit<br/>Can be activated by other abilities, dealing damage in the area"
+		"AbilityTooltip_sk_q"							"Slow enemies in the area after a 1.2 second delay"
+		"AbilityTooltip_sk_w"							"Launch a projectile<br><br>Can't go though holes in the ground"
+		"AbilityTooltip_sk_e"							"Dash to the target point<br><br>Can't go though holes in the ground"
 		"AbilityTooltip_sk_r"							"Create a sandstorm for 7.5 seconds which renders your hero invisible and gives him bonus speed"
 
+		"AbilityTooltip_storm_spirit_a"					"Casting spells makes next attack deal double damage and slow enemies in the area of impact"
 		"AbilityTooltip_storm_spirit_q"					"Launch a wave that creates a <font color=\"#00EFEF\"><b>Remnant</b></font> at the target point"
 		"AbilityTooltip_storm_spirit_w"					"Target a <font color=\"#00EFEF\"><b>Remnant</b></font> making it explode, damaging enemies around it"
 		"AbilityTooltip_storm_spirit_e"					"Target a <font color=\"#00EFEF\"><b>Remnant</b></font> and quickly dash to it"
@@ -466,26 +471,30 @@
 		"AbilityTooltip_ta_e"							"Blink<br/><br/>Dealing or taking damage resets the cooldown"
 		"AbilityTooltip_ta_r"							"Receive a shield, which heals you in 3 seconds after taking damage"
 
+		"AbilityTooltip_tiny_a"							"Briefly slows enemies hit"
 		"AbilityTooltip_tiny_q"							"Throw a stone<br/>Pick it up to reset cooldown"
-		"AbilityTooltip_tiny_w"							"Throw a stone stunning and damaging all enemies in the target area"
+		"AbilityTooltip_tiny_w"							"Throw a stone stunning all enemies in the target area"
 		"AbilityTooltip_tiny_e"							"After a short delay, create an impassable ring of stones"
-		"AbilityTooltip_tiny_r"							"Empower next your next used ability<br><br><font color=\"gold\"><b>Q</b></font> Applies a stun<br><font color=\"gold\"><b>W</b></font> Bounces 2 times<br><font color=\"gold\"><b>E</b></font> Has no delay on cast"
+		"AbilityTooltip_tiny_r"							"Empower next your next used ability<br><br><font color=\"gold\"><b>A</b></font> Farther knockback, tripled damage<br><font color=\"gold\"><b>Q</b></font> Applies a stun<br><font color=\"gold\"><b>W</b></font> Bounces 2 times<br><font color=\"gold\"><b>E</b></font> Has no delay on cast"
 
 		"AbilityTooltip_pugna_q"						"Take damage<br/>Fire a projectile<br/>If it hits, fire back healing projectile"
 		"AbilityTooltip_pugna_w"						"Place a healing trap which activates in 1.5 seconds"
 		"AbilityTooltip_pugna_e"						"<font color=\"#DAFF7F\"><b>Toggle</b></font><br>Your healing and damage is swapped"
 		"AbilityTooltip_pugna_r"						"You can't be silenced or slowed<br/>Your health can't change<br/>Duration: 4.5s"
 
-		"AbilityTooltip_venge_q"						"Fire a projectile which stuns enemies for 1 second"
-		"AbilityTooltip_venge_w"						"Launch a wave of terror which slows enemies it hits"
-		"AbilityTooltip_venge_e"						"Fire a projectile which swaps positions between you and enemy hit"
+		"AbilityTooltip_venge_a"						""
+		"AbilityTooltip_venge_q"						"Fire stunning projectile"
+		"AbilityTooltip_venge_w"						"Launch a slowing wave<br/>Slowed enemies take 1 more damage from all incoming basic attacks"
+		"AbilityTooltip_venge_e"						"Fire a projectile which swaps positions between you and target hit"
 		"AbilityTooltip_venge_r"						"Summon a Spirit of Vengeance to guard target area<br/>Spirit fires stunning projectiles for every spell enemies cast<br/>Passively slows all enemies in the area<br/>Duration: 10.0s"
 
-		"AbilityTooltip_drow_q"							"Fire a slowing projectile"
+		"AbilityTooltip_drow_a"							"Briefly slows enemies hit"
+		"AbilityTooltip_drow_q"							"Dash towards the target point, launching arrows in a circle<br/>Can be recast in a short period of time"
 		"AbilityTooltip_drow_w"							"Launch a silencing and knocking back wave"
 		"AbilityTooltip_drow_e"							"Quickly dash to the target point slowing enemies on the way"
-		"AbilityTooltip_drow_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Fire a global arrow which damages and knocks back first enemy hit"
+		"AbilityTooltip_drow_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Fire a global arrow which knocks back the first enemy hit"
 
+		"AbilityTooltip_wk_a"							"Heals per each hero hit"
 		"AbilityTooltip_wk_q"							"Raise a squad of skeleton footmen<br/>Skeletons attack first enemy they encounter<br/>Every attack applies a stacking slow"
 		"AbilityTooltip_wk_w"							"Raise three skeleton archers who attack target area, slowing all enemies caught"
 		"AbilityTooltip_wk_e"							"Raise a wall of immortal zombies"
@@ -496,17 +505,20 @@
 		"AbilityTooltip_ogre_e"							"Mix a concoction with random effect<br/>It also deals damage or heals"
 		"AbilityTooltip_ogre_r"							"Enter bloodlust, mixing concoctions 10 times per second"
 
+		"AbilityTooltip_shaker_a"						"Each ability cast makes the next attack to deal double damage"
 		"AbilityTooltip_shaker_q"						"Launch a wave of damage and knockback"
 		"AbilityTooltip_shaker_w"						"Damage and knockback enemies around you"
 		"AbilityTooltip_shaker_e"						"Jump to the target area, stunning enemies on landing"
 		"AbilityTooltip_shaker_r"						"Destroy all damaged (red) ground around you, stunning all enemies caught"
 
+		"AbilityTooltip_ember_a"						"Deals double damage to <font color=\"#FF6A00\"><b>Burnt</b></font><br> enemies"
 		"AbilityTooltip_ember_q"						"Launch a damaging wave<br>Enemies hit are <font color=\"#FF6A00\"><b>Burnt</b></font><br>Already <font color=\"#FF6A00\"><b>Burnt</b></font> enemies are greatly slowed"
 		"AbilityTooltip_ember_w"						"Throw a rooting bola<br>Enemies hit are <font color=\"#FF6A00\"><b>Burnt</b></font><br>Already <font color=\"#FF6A00\"><b>Burnt</b></font> enemies are stunned"
 		"AbilityTooltip_ember_e"						"Short dash<br>Enemies on the way are <font color=\"#FF6A00\"><b>Burnt</b></font><br>Already <font color=\"#FF6A00\"><b>Burnt</b></font> enemies take damage"
 		"AbilityTooltip_ember_r"						"Create a clone of yourself at the target point<br/>Clone copies every ability you cast"
 
-		"AbilityTooltip_jugger_q"						"Attack in a line<br/><br/>Find a <font color=\"#FF6A00\"><b>Sword</b></font> to improve range"
+		"AbilityTooltip_jugger_a"						"Find <font color=\"#FF6A00\"><b>Swords</b></font> to increase range"
+		"AbilityTooltip_jugger_q"						"Spin dealing damage around you"
 		"AbilityTooltip_jugger_w"						"Create a ward, slowing enemies in the AOE<br/><br/>Receive a heal if your hero is near it when it expires"
 		"AbilityTooltip_jugger_e"						"Receive a short invisibility<br/><br/>Reactivate to teleport"
 		"AbilityTooltip_jugger_e_sub"					"Short blink"
@@ -530,33 +542,38 @@
 		"AbilityTooltip_ursa_e"							"Gain a speed boost<br/>Attacks have lower cooldown<br/>Heal on hit"
 		"AbilityTooltip_ursa_r"							"Become invulnerable to all damage and magic"
 
+		"AbilityTooltip_brew_a"							"Deals double damage if a hero has 2 or more <font color=\"#AF9200\"><b>Beer</b></font> debuffs"
 		"AbilityTooltip_brew_q"							"Receive a <font color=\"#AF9200\"><b>Beer</b></font> debuff<br/>Throw a beer to the target area, applying stacking <font color=\"#AF9200\"><b>Beer</b></font> debuff to every enemy hit"
 		"AbilityTooltip_brew_w"							"Unleash a damaging wave<br/>Wave range and thickness scale from your current <font color=\"#AF9200\"><b>Beer</b></font> stacks<br/>Enemies hit are stunned up to 3 seconds depending on their <font color=\"#AF9200\"><b>Beer</b></font> stacks"
 		"AbilityTooltip_brew_e"							"Heal and purge debuffs<br/><br/>Every stack of <font color=\"#AF9200\"><b>Beer</b></font> reduces cooldown by 1 second"
 		"AbilityTooltip_brew_r"							"Throw a bottle into the target area, knocking back and applying 2 stacks of <font color=\"#AF9200\"><b>Beer</b></font> to everyone hit<br/> Deals damage to enemies"
 
+		"AbilityTooltip_invoker_a"						""
 		"AbilityTooltip_invoker_q"						"Deal damage in an AOE after a 1.1 second delay"
 		"AbilityTooltip_invoker_w"						"Launch a slowing projectile<br/><br/>Enemies affected take double damage from your <font color=\"gold\"><b>Q</b></font>"
 		"AbilityTooltip_invoker_e"						"Set up an area which explodes after 4 seconds and silences nearby enemies<br/><br/>Explodes prematurely if an enemy uses a spell while in the area"
 		"AbilityTooltip_invoker_r"						"Launch a meteor, dealing <font color=\"gold\"><b>MASSIVE</b></font> damage to the ground"
 
-		"AbilityTooltip_tinker_q"						"Deal damage in a line<br/><br/>Can travel through portals"
-		"AbilityTooltip_tinker_w"						"Launch homing missiles towards every hero in the target area"
-		"AbilityTooltip_tinker_e"						"Create a blue portal"
-		"AbilityTooltip_tinker_e_sub"					"Create an orange portal"
+		"AbilityTooltip_tinker_a"						"Travels through portals"
+		"AbilityTooltip_tinker_q"						"Launch homing missiles towards every hero in the target area"
+		"AbilityTooltip_tinker_w"						"Create a blue portal"
+		"AbilityTooltip_tinker_e"						"Create an orange portal"
 		"AbilityTooltip_tinker_r"						"Create a device which refreshes cooldowns of your basic abilities every 4 seconds, if you stay in the area"
 
-		"AbilityTooltip_slark_q"						"Attack enemies in front of you, damaging them<br/><br/>If your health is lower than 5, steal one health instead of damaging and return it in 6 seconds"
+		"AbilityTooltip_slark_a"						"Steals health from each hero hit and places a debuff on himself<br/>Health is returned when debuff expires"
+		"AbilityTooltip_slark_q"						"Throw a slowing projectile"
 		"AbilityTooltip_slark_w"						"After a delay, purge debuffs from you, dealing damage to yourself and enemies around"
 		"AbilityTooltip_slark_e"						"Jump forward, leashing the first enemy encountered to the ground"
-		"AbilityTooltip_slark_r"						"Purge debuffs, gain speed boost, regenerate 1 health per second<br/><br/>Lasts <font color=\"gold\"><b>3</b></font> seconds"
+		"AbilityTooltip_slark_r"						"Purge debuffs, gain speed boost, regenerate 2 health per second<br/><br/>Lasts <font color=\"gold\"><b>3</b></font> seconds"
 
-		"AbilityTooltip_qop_q"							"Fire a slowing projectile, which deals damage after the slow ends<br/><br/>If fired while ult is active, heals after dealing damage"
+		"AbilityTooltip_qop_a"							"Deals double damage to slowed enemies"
+		"AbilityTooltip_qop_q"							"Fire a slowing projectile, dealing damage over time<br/><br/>If fired while ult is active, heals after dealing damage"
 		"AbilityTooltip_qop_w"							"Slow and attract all enemies facing you"
 		"AbilityTooltip_qop_e"							"Teleport to a target point"
 		"AbilityTooltip_qop_r"							"Your spells have 0.5 second cooldowns, but cost health<br/>Each spell can be used up to 3 times<br/><br/>Lasts for <font color=\"gold\"><b>6</b></font> seconds"
 
-		"AbilityTooltip_tusk_q"							"Attack enemies in front of you, knocking them back"
+		"AbilityTooltip_tusk_a"							"Charges for 5 second, charged attacks deal double damage"
+		"AbilityTooltip_tusk_q"							"Attack enemies in front of you, knocking them and you back"
 		"AbilityTooltip_tusk_w"							"Gain a buff slowing all enemies and enemy projectiles around you"
 		"AbilityTooltip_tusk_e"							"Gain invulnerability and roll to the target point, stunning enemies on your way"
 		"AbilityTooltip_tusk_r"							"<font color=\"gold\"><b>ALL</b></font> knockbacks are 2x stronger<br/>Your <font color=\"gold\"><b>E</b></font> is 2x faster<br/><br/>Lasts for <font color=\"gold\"><b>10</b></font> seconds"
@@ -588,10 +605,10 @@
 		"AbilityTooltip_omni_e"							"Gain invulnerability for a short period of time"
 		"AbilityTooltip_omni_r"							"Give yourself and all allies around damage resistance buff"
 
-		"AbilityTooltip_gyro_q"							"Gain 3 additional attacks for 5 seconds"
-		"AbilityTooltip_gyro_q_sub"						"Fire a projectile with stacking slow<br/>Deals damage when 3 stacks are reached"
-		"AbilityTooltip_gyro_w"							"Gain a shield<br/>Reactivate to fire a stunning and damaging rocket"
-		"AbilityTooltip_gyro_w_sub"						"Fire a stunning and damaging rocket"
+		"AbilityTooltip_gyro_a"							"Applies a stacking slow<br/>When 3 stacks are reached deals double damage"
+		"AbilityTooltip_gyro_q"							"Fire 3 knocking back projectiles"
+		"AbilityTooltip_gyro_w"							"Gain a shield<br/>Reactivate to fire a stunning rocket"
+		"AbilityTooltip_gyro_w_sub"						"Fire a stunning rocket"
 		"AbilityTooltip_gyro_e"							"Global dash<br/>Goes on a 3-second cooldown when damaged"
 		"AbilityTooltip_gyro_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Continiously launch knocking back projectiles"
 
@@ -599,6 +616,7 @@
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
 		"ModifierTooltip_modifier_silence_lua"					"Silenced"
 		"ModifierTooltip_modifier_knockback_lua"				"Knocked back"
+		"ModifierTooltip_modifier_attack_speed"					"Basic attack cooling down"
 
 		"ModifierTooltip_modifier_zeus_w"						"Sped up"
 		"ModifierTooltip_modifier_zeus_r"						"Slowed down"
@@ -607,16 +625,19 @@
 		"ModifierTooltip_modifier_sven_e"						"Angry and rushin"
 		"ModifierTooltip_modifier_sven_r"						"<font color=\"#AE0000\"><b>Enraged</b></font>"
 
+		"ModifierTooltip_modifier_storm_spirit_a"				"Next attack will deal double damage and slow enemies"
 		"ModifierTooltip_modifier_storm_spirit_e"				"Riding on the storm"
 
+		"ModifierTooltip_modifier_sniper_q_target"				"Slowed"
 		"ModifierTooltip_modifier_sniper_w"						"Movement disabled by trap"
 		"ModifierTooltip_modifier_sniper_e"						"Sprinting"
 		"ModifierTooltip_modifier_sniper_r"						"Stealthed movement"
 
+		"ModifierTooltip_modifier_sk_a"							"Will explode if gets hit by other abilities"
 		"ModifierTooltip_modifier_sk_q"							"Slowed down"
 		"ModifierTooltip_modifier_sk_r"							"Invisible in sandstorm"
 
-		"ModifierTooltip_modifier_pa_w_sub"						"Slowed down"
+		"ModifierTooltip_modifier_pa_q"							"Slowed down"
 		"ModifierTooltip_modifier_pa_e"							"Jumping"
 		"ModifierTooltip_modifier_pa_r"							"Invisible"
 
@@ -627,6 +648,7 @@
 		"ModifierTooltip_modifier_lycan_r"						"Transformed"
 
 		"ModifierTooltip_modifier_lc_q"							"Slowed down"
+		"ModifierTooltip_modifier_lc_q_animation"				"You will fall!"
 		"ModifierTooltip_modifier_lc_w_shield"					"Shielded from the next damage instance"
 		"ModifierTooltip_modifier_lc_w_speed"					"Sped up"
 		"ModifierTooltip_modifier_lc_e"							"Slidin"
@@ -635,6 +657,7 @@
 		"ModifierTooltip_modifier_earth_spirit_e"				"Flying Donatello style"
 		"ModifierTooltip_modifier_earth_spirit_stand"			"Invulnerable while on the <font color=\"#3A9B00\"><b>Remnant</b></font>"
 
+		"ModifierTooltip_modifier_cm_a"							"Next attack will <font color=\"skyblue\"><b>Freeze</b></font>"
 		"ModifierTooltip_modifier_cm_frozen"					"<font color=\"skyblue\"><b>Frozen</b></font>"
 		"ModifierTooltip_modifier_cm_r_slow"					"Slowed and considered <font color=\"skyblue\"><b>Frozen</b></font>"
 
@@ -648,6 +671,7 @@
 		"ModifierTooltip_modifier_ta_r_shield"					"Receives a heal after taking damage"
 		"ModifierTooltip_modifier_ta_r_heal"					"Will be healed"
 
+		"ModifierTooltip_modifier_tiny_a"						"Slowed"
 		"ModifierTooltip_modifier_tiny_q"						"Slowed"
 		"ModifierTooltip_modifier_tiny_q_speed"					"Moving faster while not carrying a stone"
 		"ModifierTooltip_modifier_tiny_r"						"Next ability you use will be empowered"
@@ -657,7 +681,8 @@
 		"ModifierTooltip_modifier_venge_w"						"Slowed and revealed"
 		"ModifierTooltip_modifier_venge_r_target"				"Slowed and revealed"
 
-		"ModifierTooltip_modifier_drow_q"						"Slowed"
+		"ModifierTooltip_modifier_drow_a"						"Slowed"
+		"ModifierTooltip_modifier_drow_q"						"Vault"
 		"ModifierTooltip_modifier_drow_e"						"Shadowsteppin"
 		"ModifierTooltip_modifier_drow_e_slow"					"Slowed"
 
@@ -672,6 +697,7 @@
 		"ModifierTooltip_modifier_ogre_6"						"A sheep"
 		"ModifierTooltip_modifier_ogre_r"						"Mixing concoctions non-stop"
 
+		"ModifierTooltip_modifier_shaker_a"						"Next attack will deal double damage"
 		"ModifierTooltip_modifier_shaker_e"						"Dunking"
 
 		"ModifierTooltip_modifier_ember_burning"				"<font color=\"#FF6A00\"><b>Burning</b></font>"
@@ -680,6 +706,7 @@
 		"ModifierTooltip_modifier_ember_e"						"Fireballin"
 
 		"ModifierTooltip_modifier_jugger_sword"					"Collect <font color=\"#FF6A00\"><b>Swords</b></font> around the map to get stronger"
+		"ModifierTooltip_modifier_jugger_q"						"Spinning"
 		"ModifierTooltip_modifier_jugger_e"						"Invisible"
 		"ModifierTooltip_modifier_jugger_w_target"				"Slowed"
 		"ModifierTooltip_modifier_jugger_r"						"Attacks have no cooldown but spend swords"
@@ -700,7 +727,8 @@
 
 		"ModifierTooltip_modifier_invoker_w"					"Slowed"
 
-		"ModifierTooltip_modifier_slark_q"						"Will return stolen health"
+		"ModifierTooltip_modifier_slark_a"						"Will return stolen health"
+		"ModifierTooltip_modifier_slark_q"						"Slowed"
 		"ModifierTooltip_modifier_slark_e"						"Nabbing"
 		"ModifierTooltip_modifier_slark_e_leash"				"You are bound!"
 		"ModifierTooltip_modifier_slark_r"						"Sped up and regenerating health"
@@ -709,6 +737,7 @@
 		"ModifierTooltip_modifier_qop_w"						"Attracted by pure beauty"
 		"ModifierTooltip_modifier_qop_r"						"Will pay health when casting this spell"
 
+		"ModifierTooltip_modifier_tusk_a"						"Next attack will deal double damage"
 		"ModifierTooltip_modifier_tusk_w"						"Slowed"
 		"ModifierTooltip_modifier_tusk_w_aura"					"Slowing all enemies and enemy projectiles"
 		"ModifierTooltip_modifier_tusk_e"						"They see me rolling"
@@ -742,8 +771,7 @@
 		"ModifierTooltip_modifier_omni_e"						"Invulnerable"
 		"ModifierTooltip_modifier_omni_r"						"Immune to damage"
 
-		"ModifierTooltip_modifier_gyro_q"						"Remaining attacks"
-		"ModifierTooltip_modifier_gyro_q_slow"					"Slowed"
+		"ModifierTooltip_modifier_gyro_a_slow"					"Slowed"
 		"ModifierTooltip_modifier_gyro_w"						"Shielded"
 		"ModifierTooltip_modifier_gyro_e"						"Sky High"
 	}

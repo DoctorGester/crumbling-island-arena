@@ -61,7 +61,7 @@
 		"Available_on_npc_dota_hero_undying"			"Доступно с 7-8 августа!"
 		"AvailableSoon"									"Доступно скоро!"
 
-		"phantom_assassin_DescQ" "Бумеранг"
+		"phantom_assassin_DescQ" "Замедляющий снаряд"
 		"phantom_assassin_DescW" "Атака вокруг себя"
 		"phantom_assassin_DescE" "Прыжок"
 		"phantom_assassin_DescR" "Невидимость"
@@ -86,12 +86,12 @@
 		"earth_spirit_DescE" "Прыжок. Можно забираться на копии"
 		"earth_spirit_DescR" "Поменяться местами и здоровьем с копией"
 
-		"sven_DescQ" "Атака перед собой"
+		"sven_DescQ" "Оглушающий снаряд"
 		"sven_DescW" "Безмолвие и замедление в конусе"
 		"sven_DescE" "Рывок, отталкивание, урон"
 		"sven_DescR" "Перезарядить способности и улучшить их"
 
-		"sniper_DescQ" "Дальнобойный выстрел"
+		"sniper_DescQ" "Замедление и урон в области"
 		"sniper_DescW" "Связывающая ловушка"
 		"sniper_DescE" "Ускорение"
 		"sniper_DescR" "Невидимость, когда рядом нет врагов"
@@ -101,7 +101,7 @@
 		"sand_king_DescE" "Рывок, урон"
 		"sand_king_DescR" "Область, дающая невидимость"
 
-		"legion_commander_DescQ" "Замедляющая атака перед собой"
+		"legion_commander_DescQ" "Короткий рывок и урон в области"
 		"legion_commander_DescW" "Щит, ускорение"
 		"legion_commander_DescE" "Рывок, оглушение"
 		"legion_commander_DescR" "Бессмертие и уменьшенная перезарядка в области"
@@ -136,7 +136,7 @@
 		"vengefulspirit_DescE" "Меняющий местами снаряд"
 		"vengefulspirit_DescR" "Вызов духа-защитника"
 
-		"drow_ranger_DescQ" "Замедляющая стрела"
+		"drow_ranger_DescQ" "Короткий рывок + урон. Переиспользование"
 		"drow_ranger_DescW" "Волна отбрасывания и безмолвия"
 		"drow_ranger_DescE" "Рывок + замедление"
 		"drow_ranger_DescR" "Прерываемое, отбрасывающая стрела"
@@ -161,7 +161,7 @@
 		"ember_spirit_DescE" "Короткий рывок"
 		"ember_spirit_DescR" "Создать копию себя"
 
-		"juggernaut_DescQ" "Атака по линии"
+		"juggernaut_DescQ" "Урон вокруг себя"
 		"juggernaut_DescW" "Замедление в области + лечение"
 		"juggernaut_DescE" "Невидимость + телепорт"
 		"juggernaut_DescR" "Использование мечей без перезарядки"
@@ -191,12 +191,12 @@
 		"invoker_DescE" "Безмолвие в области после задержки"
 		"invoker_DescR" "Урон по земле после задержки"
 
-		"tinker_DescQ" "Урон по линии"
-		"tinker_DescW" "Самонаводящаяся ракета"
-		"tinker_DescE" "Создать два портала"
+		"tinker_DescQ" "Самонаводящаяся ракета"
+		"tinker_DescW" "Синий портал"
+		"tinker_DescE" "Оранжевый портал"
 		"tinker_DescR" "Перезарядка способностей"
 
-		"slark_DescQ" "Атака перед собой + лечение"
+		"slark_DescQ" "Замедляющий снаряд"
 		"slark_DescW" "Снять дебаффы + урон себе и врагам вокруг"
 		"slark_DescE" "Прыжок вперед + привязать врага"
 		"slark_DescR" "Снять дебаффы + скорость + регенерация"
@@ -236,7 +236,7 @@
 		"omniknight_DescE" "Неуязвимость"
 		"omniknight_DescR" "Дать всей команде неуязвимость к урону"
 
-		"gyrocopter_DescQ" "Три замедляющие атаки, попасть всеми = урон"
+		"gyrocopter_DescQ" "Три отталкивающих снаряда"
 		"gyrocopter_DescW" "Получить щит, потратить его и выпустить снаряд"
 		"gyrocopter_DescE" "Глобальное перемещение"
 		"gyrocopter_DescR" "Выпустить много отталкивающих снарядов"
@@ -249,6 +249,8 @@
 		"RandomHero" "случайный выбор"
 		"ShowAllHeroes" "показать всех"
 		"LockedHeroes" "Недоступны первые 3 раунда"
+		"HeroRange_melee" "Ближний бой"
+        "HeroRange_ranged" "Дальний бой"
 		"RankAward" "Награда за 1 ранг ({d:season} сезон)"
 		"GameGoal" "Цель"
 		"PointsToWin" "максимум очков"
@@ -386,6 +388,10 @@
 		"SystemEveryoneLeft" "Все враги покинули игру! Игра закончится через <font color='#FF7F7F'>{s:time}</font> секунд, если они не вернутся"
 		"SystemPassLevel" "У <font color='{s:color}'><b>{s:player}</b></font> Пропуск <font color='gold'><b>{s:level}</b></font> уровня!"
 
+		"BasicAttackTooltip"							"<font color=\"#DAFF7F\"><b>Базовая атака</b></font><br/><br/>{s:description}<br><br><font color=\"gold\">УРОН</font>: {s:damage}<br><font color=\"gold\">ПЕРЕЗАРЯДКА</font>: {s:cooldown}"
+		"AbilityTooltip"								"{s:description}<br><br><font color=\"gold\">ПЕРЕЗАРЯДКА</font>: {s:cooldown}"
+		"AbilityTooltipDamage"							"{s:description}<br><br><font color=\"gold\">УРОН</font>: {s:damage}<br><font color=\"gold\">ПЕРЕЗАРЯДКА</font>: {s:cooldown}"
+
 		"AbilityTooltip"								"{s:description}<br><br><font color=\"gold\">Перезарядка</font>: {s:cooldown}"
 
 		"AbilityTooltip_taunt_static"					"Насмехайся над врагами! Покажи им, как ты двигаешься, пускай завидуют!"
@@ -397,6 +403,7 @@
 		"AbilityTooltip_earth_spirit_e"					"Короткий прыжок. Можно указать на <font color=\"#3A9B00\"><b>Копию</b></font> и забраться на неё, получив неуязвимость"
 		"AbilityTooltip_earth_spirit_r"					"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>Укажите на <font color=\"#3A9B00\"><b>Копию</b></font>. После короткой задержки поменяйтесь с ней местами и здоровьем."
 
+		"AbilityTooltip_cm_a"							"Попадания способностями по врагам заряжают посох<br/>При трех зарядах следующая атака <font color=\"skyblue\"><b>Замораживает</b></font><br><br>Уже <font color=\"skyblue\"><b>Замороженные</b></font> враги получают урон"
 		"AbilityTooltip_cm_q"							"Запустить <font color=\"skyblue\"><b>Замораживающий</b></font> снаряд<br><br>Уже <font color=\"skyblue\"><b>Замороженные</b></font> враги получают урон"
 		"AbilityTooltip_cm_w"							"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>После задержки <font color=\"skyblue\"><b>Замораживает</b></font> врагов у курсора<br><br>Уже <font color=\"skyblue\"><b>Замороженные</b></font> враги получают урон"
 		"AbilityTooltip_cm_e"							"Запустить <font color=\"skyblue\"><b>Замораживающую</b></font> волну<br>Примените еще раз, чтобы телепортироваться в волну<br><br>Уже <font color=\"skyblue\"><b>Замороженные</b></font> враги получают урон"
@@ -408,34 +415,38 @@
 		"AbilityTooltip_zeus_e"							"Телепортироваться в точку<br><br>Телепортация сквозь стену из молний наносит урон всем врагам на пути"
 		"AbilityTooltip_zeus_r"							"Нанести урон и замедлить врагов в области после 1.6 секунд задержки"
 
-		"AbilityTooltip_sniper_q"						"Запустить дальнобойный снаряд"
+		"AbilityTooltip_sniper_a"						"Глобальная"
+        "AbilityTooltip_sniper_q"						"Запустить шрапнель, замедляя врагов в области"
 		"AbilityTooltip_sniper_w"						"Поставить невидимую обездвиживающую ловушку"
 		"AbilityTooltip_sniper_e"						"Ускориться, постепенно замедляясь"
 		"AbilityTooltip_sniper_r"						"<font color=\"#DAFF7F\"><b>Переключаемое</b></font><br>Когда включено, стать невидимым, если рядом нет врагов"
 
-		"AbilityTooltip_sven_q"							"Атаковать перед собой<br><br><font color=\"#AE0000\"><b>Ярость</b></font> увеличенный радиус атаки и отбрасывание"
+		"AbilityTooltip_sven_a"							"Наносит двойной урон в <font color=\"#AE0000\"><b>Ярости</b></font>"
+		"AbilityTooltip_sven_q"							"Запустить снаряд, оглушающий и оттакливающий врагов в области столкновения<br><br><font color=\"#AE0000\"><b>Ярость</b></font> увеличивает отбрасывание"
 		"AbilityTooltip_sven_w"							"Безмолвие и замедление в конусе<br><br><font color=\"#AE0000\"><b>Ярость</b></font> конус становится кругом"
 		"AbilityTooltip_sven_e"							"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>Рвануться к цели, отталкивая и нанося урон врагам на пути<br><br><font color=\"#AE0000\"><b>Ярость</b></font> применяется мгновенно"
 		"AbilityTooltip_sven_r"							"Войти в <font color=\"#AE0000\"><b>Ярость</b></font> и перезарядить все способности"
 
-		"AbilityTooltip_lc_q"							"Атаковать перед собой, замедляя пораженных врагов"
-		"AbilityTooltip_lc_w"							"Получить временный щит, защищающий от одной атаки.<br><br>Получить бонус к скорости, когда щит срабатывает"
+		"AbilityTooltip_lc_a"							"Наносит двойной урон при скорости передвижения выше базовой"
+		"AbilityTooltip_lc_q"							"Прыгнуть в область и атаковать врагов перед собой, замедляя их"
+		"AbilityTooltip_lc_w"							"Получить временный щит, защищающий от 2 единиц урона<br><br>Получить бонус к скорости, когда щит срабатывает"
 		"AbilityTooltip_lc_e"							"Рвануться вперед, оглушая врагов на пути<br><br>Дистанция рывка зависит от текущей скорости"
 		"AbilityTooltip_lc_r"							"Укажите область<br>Пока герой находится в ней, он бессмертен и перезарядка его способностей быстрее в два раза"
 
+		"AbilityTooltip_pa_a"							"Не может использовать W когда бумеранг в воздухе"
+        "AbilityTooltip_pa_q"							"Замедляющий снаряд"
 		"AbilityTooltip_pa_q"							"Бросить наносящий урон бумеранг<br><br>Примените еще раз, чтобы вернуть его"
-		"AbilityTooltip_pa_q_sub"						"Вернуть бумеранг"
 		"AbilityTooltip_pa_w"							"Атаковать область вокруг себя"
-		"AbilityTooltip_pa_w_sub"						"Замедляющий снаряд<br><br>Не наносит урон"
 		"AbilityTooltip_pa_e"							"Короткий прыжок"
-		"AbilityTooltip_pa_e_sub"						"Perform a short jump, leaving your glaive behind"
 		"AbilityTooltip_pa_r"							"Стать невидимым на 5 секунд, получая ускорение<br>Бумеранг тоже ускорен<br><br>Применение способностей ненадолго сбивает невидимость"
 
+		"AbilityTooltip_sk_a"							"Накладывает дебафф на врагов<br/>Может быть активирован другими способностями, нанося урон в области"
 		"AbilityTooltip_sk_q"							"Нанести урон и замедлить врагов в области после задержки в 1.2 секунды"
 		"AbilityTooltip_sk_w"							"Нанести урон по линии<br><br>Не проходит сквозь дыры в земле"
 		"AbilityTooltip_sk_e"							"Рвануться вперед, нанося урон по пути<br><br>Не проходит сквозь дыры в земле"
 		"AbilityTooltip_sk_r"							"Создать песчаную бурю на 7.5 секунд, дающую герою невидимость и бонусную скорость"
 
+		"AbilityTooltip_storm_spirit_a"					"Применение способностей заряжает следующую атаку, которая наносит двойной урон и замедляет врагов в области"
 		"AbilityTooltip_storm_spirit_q"					"Запустить волну, создающую <font color=\"#00EFEF\"><b>Копию</b></font> в точке"
 		"AbilityTooltip_storm_spirit_w"					"Выбрать <font color=\"#00EFEF\"><b>Копию</b></font> и взорвать её, нанося урон вокруг"
 		"AbilityTooltip_storm_spirit_e"					"Выбрать <font color=\"#00EFEF\"><b>Копию</b></font> и быстро рвануться к ней"
@@ -456,6 +467,7 @@
 		"AbilityTooltip_ta_e"							"Телепортация<br/><br/>Нанесение или получение урона перезаряжает эту способность"
 		"AbilityTooltip_ta_r"							"Получить щит, восстанавливающие здоровье через 3 секунды после получения урона"
 
+		"AbilityTooltip_tiny_a"							"Замедляет врагов"
 		"AbilityTooltip_tiny_q"							"Бросить камень<br/>Можно подобрать, чтобы перезарядить"
 		"AbilityTooltip_tiny_w"							"Бросить камень, оглущающий и наносящий урон в области"
 		"AbilityTooltip_tiny_e"							"После задержки создать непроходимый каменный круг"
@@ -466,16 +478,19 @@
 		"AbilityTooltip_pugna_e"						"<font color=\"#DAFF7F\"><b>Переключаемое</b></font><br>Лечение заменяется на урон, урон на лечение"
 		"AbilityTooltip_pugna_r"						"Не может быть замедлен или обезмолвлен<br/>Здоровье не может измениться<br/>Продолжительность: 4.5s"
 
-		"AbilityTooltip_venge_q"						"Оглушающий на 1 секунду снаряд"
-		"AbilityTooltip_venge_w"						"Запустить замедляющую волну"
-		"AbilityTooltip_venge_e"						"Запустить снаряд, меняющий местами героя и противника, в которого попал"
+		"AbilityTooltip_venge_a"						""
+		"AbilityTooltip_venge_q"						"Оглушающий снаряд"
+		"AbilityTooltip_venge_w"						"Запустить замедляющую волну<br/>Замедленные враги получают повышенный урон от базовых атак"
+		"AbilityTooltip_venge_e"						"Запустить снаряд, меняющий местами героя и цель"
 		"AbilityTooltip_venge_r"						"Вызвать Духа Возмездия в указанную область<br/>Дух запускает оглушающие снаряды в ответ на применение противниками способностей<br/>Пассивно замедляет всех противников в области<br/>Продолжительность: 10.0s"
 
-		"AbilityTooltip_drow_q"							"Запустить замедляющую стрелу"
+		"AbilityTooltip_drow_a"							"Замедляет врагов"
+		"AbilityTooltip_drow_q"							"Рывок в сторону, запускающий стрелы по кругу<br/>Может быть использован еще раз в короткий период времени"
 		"AbilityTooltip_drow_w"							"Запустить волну безмолвия, отбрасывающую противников"
 		"AbilityTooltip_drow_e"							"Рвануться к указанной точке, замедляя врагов на пути"
 		"AbilityTooltip_drow_r"							"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>Запустить дальнобойную стрелу, наносяющую урон и отбрасывающую противника, в которого попадет"
 
+		"AbilityTooltip_wk_a"							"Восстанавливает здоровье за попадание по героям"
 		"AbilityTooltip_wk_q"							"Призвать отряд скелетов мечников<br/>Скелеты атакуют первого врага на пути<br/>Каждая атака накладывает замедление"
 		"AbilityTooltip_wk_w"							"Призвать трех скелетов-лучников, атакующих указанную область, замедляя противников при попадании"
 		"AbilityTooltip_wk_e"							"Призвать стену бессмертных зомби"
@@ -486,17 +501,20 @@
 		"AbilityTooltip_ogre_e"							"Замешать смесь со случайным эффектом<br/>Также наносит урон или восстанавливает здоровье"
 		"AbilityTooltip_ogre_r"							"Войти в безумие, замешивая по 10 смесей в секунду"
 
+		"AbilityTooltip_shaker_a"						"Применение способностей заряжает следующую атаку, заставляя ее наносить двойной урон"
 		"AbilityTooltip_shaker_q"						"Запустить отбрасывающую и наносящую урон волну"
 		"AbilityTooltip_shaker_w"						"Нанести урон и отбросить врагов вокруг"
 		"AbilityTooltip_shaker_e"						"Прыгнуть в указанную область, оглушая врагов при приземлении"
 		"AbilityTooltip_shaker_r"						"Уничтожить всю поврежденную (красную) землю вокруг, оглушая врагов"
 
+		"AbilityTooltip_ember_a"						"Наносит двойной урон <font color=\"#FF6A00\"><b>Горящим</b></font><br> целям"
 		"AbilityTooltip_ember_q"						"Запустить наносящую урон волну<br>Враги на пути <font color=\"#FF6A00\"><b>Горят</b></font><br>Уже <font color=\"#FF6A00\"><b>Горящие</b></font> враги сильно замедлены"
 		"AbilityTooltip_ember_w"						"Бросить связывающую сеть<br>Связанный враг <font color=\"#FF6A00\"><b>Горит</b></font><br>Уже <font color=\"#FF6A00\"><b>Горящие</b></font> враги оглушаются"
 		"AbilityTooltip_ember_e"						"Короткий рывок<br>Враги на пути <font color=\"#FF6A00\"><b>Горят</b></font><br>Уже <font color=\"#FF6A00\"><b>Горящие</b></font> враги получают урон"
 		"AbilityTooltip_ember_r"						"Создать копию себя в точке<br/>Копия повторяет все способности за героем"
-		
-		"AbilityTooltip_jugger_q"						"Атака по линии<br/><br/>Найди <font color=\"#FF6A00\"><b>Клинок</b></font> чтобы увеличить дальность"
+
+		"AbilityTooltip_jugger_a"						"Ищи <font color=\"#FF6A00\"><b>Мечи</b></font> чтобы увеличить дальность"
+        "AbilityTooltip_jugger_q"						"Начать крутиться и наносить урон врагам вокруг"
 		"AbilityTooltip_jugger_w"						"Создать вард, замедляющий врагов в области<br/><br/>Когда вард закончится, герой восстановит здоровье, если находится рядом с ним"
 		"AbilityTooltip_jugger_e"						"Короткая невидимость<br/><br/>Нажми еще раз, чтобы телепортироваться"
 		"AbilityTooltip_jugger_e_sub"					"Короткая телепортация"
@@ -520,32 +538,37 @@
 		"AbilityTooltip_ursa_e"							"Получить бонус скорости<br/>Атаки перезаряжаются быстрее<br/>Атаки восстанавливают здоровье"
 		"AbilityTooltip_ursa_r"							"Стать неуязвимым к урону и магии"
 
+		"AbilityTooltip_brew_a"							"Наносит двойной урон если у героя хотя бы 2 заряда <font color=\"#AF9200\"><b>Пива</b></font>"
 		"AbilityTooltip_brew_q"							"Получить заряд <font color=\"#AF9200\"><b>Пива</b></font><br/>Бросить пиво в область, прибавляя всем врагам заряд <font color=\"#AF9200\"><b>Пива</b></font>"
 		"AbilityTooltip_brew_w"							"Выпустить волну огня, наносящую урон<br/>Дальность и ширина волны зависят от зарядов <font color=\"#AF9200\"><b>Пива</b></font><br/>Оглушает врагов до 3 секунд, в зависимости от их зарядов <font color=\"#AF9200\"><b>Пива</b></font>"
 		"AbilityTooltip_brew_e"							"Восстановить здоровье и сбросить негативные баффы<br/><br/>Каждый заряд <font color=\"#AF9200\"><b>Пива</b></font> ускоряет перезарядку на 1 секунду"
 		"AbilityTooltip_brew_r"							"Бросить бутыль в область, отбрасывая всех в области и нанося урон противникам<br/>Все в области получают два заряда <font color=\"#AF9200\"><b>Пива</b></font>"
 
+		"AbilityTooltip_invoker_a"						""
 		"AbilityTooltip_invoker_q"						"Нанести урон в области после 1.1 секундной задержки"
 		"AbilityTooltip_invoker_w"						"Замедляющий снаряд<br/><br/>Враги под действием замедления получают двойной урон от <font color=\"gold\"><b>Q</b></font>"
 		"AbilityTooltip_invoker_e"						"Установить область, которая взорвется через 4 секунды, накладывая безмолвие на врагов вокруг<br/><br/>Взорвется раньше, если враг использует способность внутри области"
 		"AbilityTooltip_invoker_r"						"Запустить метеор, наносящий <font color=\"gold\"><b>ОГРОМНЫЙ</b></font> урон земле"
 
-		"AbilityTooltip_tinker_q"						"Нанести урон по линии<br/><br/>Проходит через порталы"
-		"AbilityTooltip_tinker_w"						"Запустить ракеты в каждого героя в области"
-		"AbilityTooltip_tinker_e"						"Создать голубой портал"
-		"AbilityTooltip_tinker_e_sub"					"Создать оранжевый портал"
+		"AbilityTooltip_tinker_a"						"Проходит через порталы"
+		"AbilityTooltip_tinker_q"						"Запустить ракеты в каждого героя в области"
+		"AbilityTooltip_tinker_w"						"Создать голубой портал"
+		"AbilityTooltip_tinker_e"						"Создать оранжевый портал"
 		"AbilityTooltip_tinker_r"						"Создать устройство, которое перезаряжает твои базовые способности каждые 4 секунды, если находиться вблизи него"
 
-		"AbilityTooltip_slark_q"						"Атаковать врагов перед собой, нанося урон<br/><br/>Если твоё здоровье меньше 5, украсть здоровье вместо урона и вернуть его через 6 секунд"
+		"AbilityTooltip_slark_a"						"Ворует здоровье у героев и накладывает на себя дебафф<br/>Здоровье возвращается по истечении дебаффа"
+        "AbilityTooltip_slark_q"						"Запустить замедляющий снаряд"
 		"AbilityTooltip_slark_w"						"Нанести урон себе и врагам вокруг и снять дебаффы с себя после задержки"
 		"AbilityTooltip_slark_e"						"Прыгнуть вперед, привязывая первого врага на пути к земле"
-		"AbilityTooltip_slark_r"						"Снять дебаффы, получить бонус скорости, восстанавливать 1 здоровья в секунду<br/><br/>Длится <font color=\"gold\"><b>3</b></font> секунды"
+		"AbilityTooltip_slark_r"						"Снять дебаффы, получить бонус скорости, восстанавливать 2 здоровья в секунду<br/><br/>Длится <font color=\"gold\"><b>3</b></font> секунды"
 
+		"AbilityTooltip_qop_a"							"Наносит двойной урон по замедленным врагам"
 		"AbilityTooltip_qop_q"							"Запустить замедляющий снаряд, наносящий урон после того, как замедление закончится<br/><br/>Если применить во время действия R, восстановит здоровье, после нанесения урона"
 		"AbilityTooltip_qop_w"							"Замедлить и привлечь к себе врагов, смотрящих на героя"
 		"AbilityTooltip_qop_e"							"Телепортироваться в указанную точку"
 		"AbilityTooltip_qop_r"							"Способности имеют 0.5 секунд перезарядки, но расходуют здоровье<br/>Каждую способность можно использовать трижды<br/><br/>Длится <font color=\"gold\"><b>6</b></font> секунд"
 
+		"AbilityTooltip_tusk_a"							"Заряжается 5 секунд, после наносит двойной урон"
 		"AbilityTooltip_tusk_q"							"Атаковать врагов перед собой, отбрасывая их"
 		"AbilityTooltip_tusk_w"							"Получить бафф, замедляющий всех врагов и вражеские снаряды вокруг"
 		"AbilityTooltip_tusk_e"							"Получить неуязвимость и перекатиться к указанной точке, оглушая врагов на пути"
@@ -578,8 +601,8 @@
 		"AbilityTooltip_omni_e"							"Получить неуязвимость на короткий промежуток времени"
 		"AbilityTooltip_omni_r"							"Дать себе и союзникам вокруг защиту от урона"
 
-		"AbilityTooltip_gyro_q"							"Получить 3 атаки на 5 секунд"
-		"AbilityTooltip_gyro_q_sub"						"Запустить снаряд со стакающимся замедлением<br/>Нанесёт урон когда на враге будет 3 стака"
+		"AbilityTooltip_gyro_a"							"Накладывает стакающееся замедление<br/>При достижении 3 стаков наносит двойной урон"
+		"AbilityTooltip_gyro_q"							"Выпускает 3 отталкивающих снаряда"
 		"AbilityTooltip_gyro_w"							"Получить щить<br/>Используй еще раз, чтобы запустить оглушающую и наносящую урон ракету"
 		"AbilityTooltip_gyro_w_sub"						"Запустить оглушающую и наносящую урон ракету"
 		"AbilityTooltip_gyro_e"							"Глобальное перемещение<br/>Уходит на 3-секундную перезарядку при получении урона"
@@ -589,6 +612,7 @@
 		"ModifierTooltip_modifier_stunned_lua"					"Оглушен"
 		"ModifierTooltip_modifier_silence_lua"					"Безмолвие"
 		"ModifierTooltip_modifier_knockback_lua"				"Отброшен"
+		"ModifierTooltip_modifier_attack_speed"					"Атака остывает"
 
 		"ModifierTooltip_modifier_zeus_w"						"Ускорен"
 		"ModifierTooltip_modifier_zeus_r"						"Замедлен"
@@ -597,16 +621,19 @@
 		"ModifierTooltip_modifier_sven_e"						"Топает от злости"
 		"ModifierTooltip_modifier_sven_r"						"<font color=\"#AE0000\"><b>Ярость</b></font>"
 
+		"ModifierTooltip_modifier_storm_spirit_a"				"Следующая атака нанесет двойной урон и замедлит"
 		"ModifierTooltip_modifier_storm_spirit_e"				"Быстр как молния"
 
+		"ModifierTooltip_modifier_sniper_q_target"				"Замедлен"
 		"ModifierTooltip_modifier_sniper_w"						"Не может двигаться"
 		"ModifierTooltip_modifier_sniper_e"						"Бежит"
 		"ModifierTooltip_modifier_sniper_r"						"Активная маскировка"
 
+		"ModifierTooltip_modifier_sk_a"							"Взорвется если попадет под другие способности"
 		"ModifierTooltip_modifier_sk_q"							"Замедлен"
 		"ModifierTooltip_modifier_sk_r"							"Невидим в песчаной буре"
 
-		"ModifierTooltip_modifier_pa_w_sub"						"Замедлен"
+		"ModifierTooltip_modifier_pa_q"							"Замедлен"
 		"ModifierTooltip_modifier_pa_e"							"Прыгает"
 		"ModifierTooltip_modifier_pa_r"							"Невидим"
 
@@ -625,6 +652,7 @@
 		"ModifierTooltip_modifier_earth_spirit_e"				"Летит как Донателло"
 		"ModifierTooltip_modifier_earth_spirit_stand"			"Неуязвим стоя на <font color=\"#3A9B00\"><b>Копии</b></font>"
 
+		"ModifierTooltip_modifier_cm_a"							"Следующая атака <font color=\"skyblue\"><b>Заморозит</b></font>"
 		"ModifierTooltip_modifier_cm_frozen"					"<font color=\"skyblue\"><b>Заморожен</b></font>"
 		"ModifierTooltip_modifier_cm_r_slow"					"Замедлен и считается <font color=\"skyblue\"><b>Замороженным</b></font>"
 
@@ -638,6 +666,7 @@
 		"ModifierTooltip_modifier_ta_r_shield"					"Получит лечение после получения урона"
 		"ModifierTooltip_modifier_ta_r_heal"					"Получит лечение"
 
+		"ModifierTooltip_modifier_tiny_a"						"Замедлен"
 		"ModifierTooltip_modifier_tiny_q"						"Замедлен"
 		"ModifierTooltip_modifier_tiny_q_speed"					"Движется быстрее, пока не носит камень"
 		"ModifierTooltip_modifier_tiny_r"						"Следующая использованная способность будет сильнее"
@@ -662,6 +691,7 @@
 		"ModifierTooltip_modifier_ogre_6"						"Овечка"
 		"ModifierTooltip_modifier_ogre_r"						"Делает смеси без остановки"
 
+		"ModifierTooltip_modifier_shaker_a"						"Следующая атака нанесет двойной урон"
 		"ModifierTooltip_modifier_shaker_e"						"Трехочковый"
 
 		"ModifierTooltip_modifier_ember_burning"				"<font color=\"#FF6A00\"><b>Горит</b></font>"
@@ -670,6 +700,7 @@
 		"ModifierTooltip_modifier_ember_e"						"Огненный шарик"
 
 		"ModifierTooltip_modifier_jugger_sword"					"Ищи <font color=\"#FF6A00\"><b>Клинки</b></font> на карте и становись сильнее"
+		"ModifierTooltip_modifier_jugger_q"						"Как юла"
 		"ModifierTooltip_modifier_jugger_e"						"Невидим"
 		"ModifierTooltip_modifier_jugger_w_target"				"Замедлен"
 		"ModifierTooltip_modifier_jugger_r"						"Атакует без перезарядки, тратя мечи"
@@ -690,7 +721,8 @@
 
 		"ModifierTooltip_modifier_invoker_w"					"Замедлен"
 
-		"ModifierTooltip_modifier_slark_q"						"Вернет украденное здоровье"
+		"ModifierTooltip_modifier_slark_a"						"Вернет украденное здоровье"
+		"ModifierTooltip_modifier_slark_q"						"Замедлен"
 		"ModifierTooltip_modifier_slark_e"						"Прыгает"
 		"ModifierTooltip_modifier_slark_e_leash"				"Вы арестованы!"
 		"ModifierTooltip_modifier_slark_r"						"Ускорен и восстанавливает здоровье"
@@ -699,6 +731,7 @@
 		"ModifierTooltip_modifier_qop_w"						"Привлечен красотой"
 		"ModifierTooltip_modifier_qop_r"						"Заплатит здоровье за применение этой способности"
 
+		"ModifierTooltip_modifier_tusk_a"						"Следующая атака нанесет двойной урон"
 		"ModifierTooltip_modifier_tusk_w"						"Замедлен"
 		"ModifierTooltip_modifier_tusk_w_aura"					"Замедляет врагов и вражеские снаряды"
 		"ModifierTooltip_modifier_tusk_e"						"They hatin"
@@ -732,6 +765,7 @@
 		"ModifierTooltip_modifier_omni_e"						"Неуязвим"
 		"ModifierTooltip_modifier_omni_r"						"Защищен от урона"
 
+		"ModifierTooltip_modifier_gyro_a_slow"					"Замедлен"
 		"ModifierTooltip_modifier_gyro_q"						"Оставшиеся атаки"
 		"ModifierTooltip_modifier_gyro_q_slow"					"Замедлен"
 		"ModifierTooltip_modifier_gyro_w"						"Защищен"
