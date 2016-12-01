@@ -179,7 +179,7 @@ function Hero:GetPos()
 end
 
 function Hero:GetRad()
-    return self.unit:BoundingRadius2D() * 2
+    return 64
 end
 
 function Hero:GetHealth()

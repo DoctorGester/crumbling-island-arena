@@ -6,7 +6,10 @@ end
 
 function modifier_hero:IsForwardEmpty()
     local hero = self:GetParent():GetParentEntity()
-    return not Spells.TestCircle(hero:GetPos() + hero:GetFacing() * hero:GetRad() * 2.0, hero:GetRad())
+    local rad = hero:GetRad()
+    local offset = hero:GetFacing() * rad
+
+    return not Spells.TestCircle(hero:GetPos() + offset, rad) or not Spells.TestCircle(hero:GetPos() + offset * 2, rad)
 end
 
 function modifier_hero:CheckState()
