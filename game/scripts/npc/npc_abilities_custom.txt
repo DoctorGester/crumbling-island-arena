@@ -77,7 +77,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "storm_spirit_overload"
 		"AbilityCooldown" "0.75"
-		"AbilityCastPoint" "0.1"
+		"AbilityCastPoint" "0.135"
 		"Damage" "1"
 
 		"TargetingIndicator"
@@ -257,7 +257,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "phantom_assassin_phantom_strike"
 		"AbilityCooldown" "1.5"
-		"AbilityCastPoint" "0.1"
+		"AbilityCastPoint" "0.135"
 		"Damage" "1"
 
 		"TargetingIndicator"
@@ -467,7 +467,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "crystal_maiden_brilliance_aura"
 		"AbilityCooldown" "0.75"
-		"AbilityCastPoint" "0.1"
+		"AbilityCastPoint" "0.135"
 		"Damage" "1"
 
 		"TargetingIndicator"
@@ -611,7 +611,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "sven_great_cleave"
 		"AbilityCooldown" "0.6"
-		"AbilityCastPoint" "0.1"
+		"AbilityCastPoint" "0.135"
 		"Damage" "1"
 
 		"HoverIndicator"
@@ -843,7 +843,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "sandking_caustic_finale"
 		"AbilityCooldown" "0.6"
-		"AbilityCastPoint" "0.15"
+		"AbilityCastPoint" "0.135"
 		"Damage" "1"
 
 		"HoverIndicator"
@@ -982,7 +982,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "legion_commander_moment_of_courage"
 		"AbilityCooldown" "0.6"
-		"AbilityCastPoint" "0.1"
+		"AbilityCastPoint" "0.135"
 		"Damage" "1"
 
 		"HoverIndicator"
@@ -1610,7 +1610,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "vengefulspirit/huangs_umbra_icons/vengefulspirit_magic_missile"
 		"AbilityCooldown" "0.75"
-		"AbilityCastPoint" "0.1"
+		"AbilityCastPoint" "0.135"
 		"Damage" "1"
 
 		"TargetingIndicator"
@@ -1755,7 +1755,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "drow_ranger_frost_arrows"
 		"AbilityCooldown" "0.75"
-		"AbilityCastPoint" "0.1"
+		"AbilityCastPoint" "0.135"
 		"Damage" "1"
 
 		"TargetingIndicator"
@@ -1888,7 +1888,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "skeleton_king_mortal_strike"
 		"AbilityCooldown" "0.6"
-		"AbilityCastPoint" "0.1"
+		"AbilityCastPoint" "0.135"
 		"Damage" "1"
 
 		"HoverIndicator"
@@ -2219,7 +2219,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "sven_great_cleave"
 		"AbilityCooldown" "0.6"
-		"AbilityCastPoint" "0.1"
+		"AbilityCastPoint" "0.135"
 		"Damage" "1"
 
 		"HoverIndicator"
@@ -2733,7 +2733,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "brewmaster_drunken_brawler_active"
 		"AbilityCooldown" "0.6"
-		"AbilityCastPoint" "0.1"
+		"AbilityCastPoint" "0.135"
 		"Damage" "1"
 
 		"HoverIndicator"
@@ -2839,7 +2839,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "invoker_deafening_blast"
 		"AbilityCooldown" "0.6"
-		"AbilityCastPoint" "0.1"
+		"AbilityCastPoint" "0.135"
 		"Damage" "1"
 
 		"TargetingIndicator"
@@ -2943,7 +2943,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "tinker_laser"
 		"AbilityCooldown" "1.0"
-		"AbilityCastPoint" "0.1"
+		"AbilityCastPoint" "0.135"
 		"Damage" "1"
 
 		"TargetingIndicator"
@@ -3061,7 +3061,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "slark_essence_shift"
 		"AbilityCooldown" "0.6"
-		"AbilityCastPoint" "0.1"
+		"AbilityCastPoint" "0.135"
 		"Damage" "1"
 
 		"HoverIndicator"
@@ -3150,7 +3150,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "queenofpain_sanguine_shadow_strike"
 		"AbilityCooldown" "0.75"
-		"AbilityCastPoint" "0.1"
+		"AbilityCastPoint" "0.135"
 		"Damage" "1"
 
 		"TargetingIndicator"
@@ -3255,7 +3255,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "tusk_walrus_punch"
 		"AbilityCooldown" "0.6"
-		"AbilityCastPoint" "0.1"
+		"AbilityCastPoint" "0.135"
 		"Damage" "1"
 
 		"HoverIndicator"
@@ -3751,7 +3751,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "gyrocopter_flak_cannon"
 		"AbilityCooldown" "0.6"
-		"AbilityCastPoint" "0.1"
+		"AbilityCastPoint" "0.135"
 		"Damage" "1"
 
 		"TargetingIndicator"
