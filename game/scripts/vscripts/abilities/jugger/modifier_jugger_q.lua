@@ -33,8 +33,13 @@ end
 
 function modifier_jugger_q:DeclareFunctions()
     return {
-        MODIFIER_PROPERTY_OVERRIDE_ANIMATION
+        MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
+        MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
     }
+end
+
+function modifier_jugger_q:GetModifierMoveSpeedBonus_Percentage()
+    return 40
 end
 
 function modifier_jugger_q:CheckState()
