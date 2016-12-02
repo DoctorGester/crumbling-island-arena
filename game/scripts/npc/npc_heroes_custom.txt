@@ -600,6 +600,11 @@
 		"Ability7" "tiny_a"
 
 		"Ultimate" "tiny_r"
+
+		"CustomIcons"
+		{
+			"tiny_a" "tiny_a.png"
+		}
 	}
 
 	"npc_dota_hero_vengefulspirit"
@@ -680,6 +685,11 @@
 		"Ability7" "drow_a"
 
 		"Ultimate" "drow_r"
+
+		"CustomIcons"
+		{
+			"drow_q" "drow_q.png"
+		}
 	}
 
 	"npc_dota_hero_skeleton_king"
