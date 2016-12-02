@@ -112,7 +112,7 @@ function DynamicEntity:AreaEffect(params)
     local soundPlayed = false
 
     for _, target in pairs(self.round.spells:GetValidTargets()) do
-        local passes = not params.filterProjectiles or not instanceof(target, Projectile)
+        local passes = not instanceof(target, Projectile) or (params.isPhysical and target.isPhysical)
         local heroPasses = not params.onlyHeroes or instanceof(target, Hero)
         local allyFilter = target.owner.team ~= self.owner.team or (params.hitAllies and (target ~= self or params.hitSelf))
 

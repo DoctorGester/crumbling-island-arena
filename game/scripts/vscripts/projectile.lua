@@ -117,7 +117,13 @@ function Projectile:CollidesWith(target)
         return self:hitCondition(target)
     end
 
-    return (self.owner.team ~= target.owner.team or target.specialAlly) and not instanceof(target, Projectile)
+    local areEnemies = (self.owner.team ~= target.owner.team or target.specialAlly)
+
+    if instanceof(target, Projectile) then
+        return self.isPhysical and target.isPhysical and areEnemies
+    else
+        return areEnemies
+    end
 end
 
 function Projectile:CollideWith(target)
