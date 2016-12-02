@@ -549,7 +549,7 @@ function MouseCallback(event, button) {
         }
 
         // TODO check if hero is dead
-        if (button === 0 || (button == 1 && target !== -1)) {
+        if (button === 0) {
             var count = Entities.GetAbilityCount(localHero);
             var castAbilityIndex = -1;
 
