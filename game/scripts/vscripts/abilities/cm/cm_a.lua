@@ -14,7 +14,7 @@ function cm_a:OnSpellStart()
 
         action = function(_, target)
             if CMUtil.IsFrozen(target) then
-                target:Damage(hero, self:GetDamage() * 2)
+                target:Damage(hero, self:GetDamage() * 3)
             else
                 CMUtil.Freeze(hero, target, self)
             end
