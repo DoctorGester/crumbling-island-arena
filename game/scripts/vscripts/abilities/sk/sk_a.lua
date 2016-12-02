@@ -11,12 +11,12 @@ function sk_a:OnAbilityPhaseStart()
 end
 
 function sk_a:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 300)
+    Wrappers.DirectionalAbility(self, 275)
 
     local hero = self:GetCaster().hero
     local pos = hero:GetPos()
     local forward = self:GetDirection()
-    local range = 300
+    local range = 275
 
     hero:AreaEffect({
         filter = Filters.Cone(pos, range, forward, math.pi),

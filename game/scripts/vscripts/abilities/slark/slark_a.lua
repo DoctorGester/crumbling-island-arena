@@ -19,7 +19,7 @@ function slark_a:OnSpellStart()
     local force = 20
 
     hero:AreaEffect({
-        filter = Filters.Cone(pos, 300, forward, math.pi),
+        filter = Filters.Cone(pos, 275, forward, math.pi),
         sound = "Arena.Slark.HitA",
         damage = damage,
         knockback = { force = force, decrease = 3 },

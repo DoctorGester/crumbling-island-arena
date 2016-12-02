@@ -617,13 +617,13 @@
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "(function(){ if (HasModifier(unit, 'modifier_sven_r')) return 500; return 300; })()"
+			"Radius" "(function(){ if (HasModifier(unit, 'modifier_sven_r')) return 500; return 275; })()"
 		}
 
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
-			"Radius" "(function(){ if (HasModifier(unit, 'modifier_sven_r')) return 500; return 300; })()"
+			"Radius" "(function(){ if (HasModifier(unit, 'modifier_sven_r')) return 500; return 275; })()"
 		}
 
 		"precache"
@@ -849,13 +849,13 @@
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "300"
+			"Radius" "275"
 		}
 
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
-			"Radius" "300"
+			"Radius" "275"
 		}
 	}
 
@@ -988,13 +988,13 @@
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "300"
+			"Radius" "275"
 		}
 
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
-			"Radius" "300"
+			"Radius" "275"
 		}
 	}
 
@@ -1894,13 +1894,13 @@
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "300"
+			"Radius" "275"
 		}
 
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
-			"Radius" "300"
+			"Radius" "275"
 		}
 	}
 
@@ -2106,13 +2106,13 @@
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "300"
+			"Radius" "275"
 		}
 
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
-			"Radius" "300"
+			"Radius" "275"
 		}
 	}
 
@@ -2225,13 +2225,13 @@
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "300"
+			"Radius" "275"
 		}
 
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
-			"Radius" "300"
+			"Radius" "275"
 		}
 	}
 
@@ -2739,13 +2739,13 @@
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "300"
+			"Radius" "275"
 		}
 
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
-			"Radius" "300"
+			"Radius" "275"
 		}
 	}
 
@@ -3067,13 +3067,13 @@
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "300"
+			"Radius" "275"
 		}
 
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
-			"Radius" "300"
+			"Radius" "275"
 		}
 	}
 
@@ -3261,13 +3261,13 @@
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "300"
+			"Radius" "275"
 		}
 
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
-			"Radius" "300"
+			"Radius" "275"
 		}
 	}
 

@@ -10,12 +10,12 @@ function brew_a:OnAbilityPhaseStart()
 end
 
 function brew_a:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 300)
+    Wrappers.DirectionalAbility(self, 275)
 
     local hero = self:GetCaster().hero
     local pos = hero:GetPos()
     local forward = self:GetDirection()
-    local range = 300
+    local range = 275
     local damage = self:GetDamage()
     local force = 20
     local stacks = hero:FindAbility("brew_q"):CountBeer(hero)

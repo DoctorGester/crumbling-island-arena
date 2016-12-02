@@ -8,12 +8,12 @@ function ember_a:OnAbilityPhaseStart()
 end
 
 function ember_a:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 300)
+    Wrappers.DirectionalAbility(self, 275)
 
     local hero = self:GetCaster().hero
     local pos = hero:GetPos()
     local forward = self:GetDirection()
-    local range = 300
+    local range = 275
     local damage = self:GetDamage()
 
     hero:AreaEffect({
