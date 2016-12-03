@@ -55,7 +55,7 @@ function SKWProjectile:Update()
 end
 
 function SKWProjectile:CollidesWith(target)
-	return getbase(SKWProjectile).CollidesWith(self, target) and target:CanFall()
+	return getbase(SKWProjectile).CollidesWith(self, target) and not target:IsAirborne()
 end
 
 function SKWProjectile:CanFall()

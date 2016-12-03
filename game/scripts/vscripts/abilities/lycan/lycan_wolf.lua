@@ -44,7 +44,7 @@ end
 function LycanWolf:CollideWith(target)
     local unit = self:GetUnit()
 
-    if not instanceof(target, Projectile) and not unit:IsStunned() and not unit:IsRooted() and not self.attacking then
+    if not instanceof(target, Projectile) and not unit:IsStunned() and not unit:IsRooted() and not self.attacking and not target:IsAirborne() then
         local direction = (target:GetPos() - self:GetPos())
         local distance = direction:Length2D()
 

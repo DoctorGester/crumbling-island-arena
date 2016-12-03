@@ -90,8 +90,8 @@ function DynamicEntity:HasModifier() return false end
 function DynamicEntity:FindModifier() end
 function DynamicEntity:AddNewModifier() end
 function DynamicEntity:RemoveModifier() end
-function DynamicEntity:IsAirbone()
-    return not self:CanFall()
+function DynamicEntity:IsAirborne()
+    return false
 end
 
 function DynamicEntity:Activate()
