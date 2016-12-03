@@ -1,6 +1,6 @@
 HeroSelection = HeroSelection or class({})
 
-function HeroSelection:constructor(players, availableHeroes, teamColors, chat, allowSameHeroPicks)
+function HeroSelection:constructor(players, availableHeroes, teamColors, chat, allowSameHeroPicks, hiddenPick)
     self.SelectionTimer = 0
     self.SelectionTimerTime = 20
     self.PreGameTimer = 0
@@ -11,6 +11,7 @@ function HeroSelection:constructor(players, availableHeroes, teamColors, chat, a
     self.PreviousRandomed = {}
     self.Chat = chat
     self.AllowSameHeroPicks = allowSameHeroPicks
+    self.HiddenPick = hiddenPick
 end
 
 function HeroSelection:UpdateSelectedHeroes()
@@ -22,7 +23,12 @@ function HeroSelection:UpdateSelectedHeroes()
         end
     end
 
-    CustomNetTables:SetTableValue("main", "selectedHeroes", { selected = selected, allowSame = self.AllowSameHeroPicks, locked = self.SelectionTimer <= 0 })
+    CustomNetTables:SetTableValue("main", "selectedHeroes", {
+        selected = selected,
+        allowSame = self.AllowSameHeroPicks,
+        locked = self.SelectionTimer <= 0,
+        hiddenPick = self.HiddenPick
+    })
 end
 
 function HeroSelection:CanBeSelectedBy(hero, who)

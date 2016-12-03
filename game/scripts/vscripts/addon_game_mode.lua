@@ -1361,7 +1361,8 @@ function GameMode:Start()
         self.AvailableHeroes,
         self.TeamColors, 
         self.chat,
-        true
+        true,
+        self.rankedMode == "duel"
     )
 
     if self.rankedMode == "duel" then

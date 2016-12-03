@@ -648,7 +648,7 @@ function HeroSelectionUpdated(data){
 
             var selectedTeam = Game.GetPlayerInfo(id).player_team_id;
 
-            if (data.allowSame) {
+            if (data.hiddenPick) {
                 if (!data.locked && selectedTeam != localTeam && !spectator) {
                     continue;
                 }
