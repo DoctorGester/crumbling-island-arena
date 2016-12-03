@@ -22,8 +22,7 @@ function slark_q:OnSpellStart()
         graphics = "particles/slark_q/slark_q.vpcf",
         distance = 900,
         hitModifier = { name = "modifier_slark_q", duration = 1.0, ability = self },
-        hitSound = "Arena.Slark.HitE",
-        isPhysical = true
+        hitSound = "Arena.Slark.HitE"
     }):Activate()
 end
 
