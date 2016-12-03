@@ -20,6 +20,7 @@ function pudge_a:OnSpellStart()
         distance = 1200,
         hitModifier = { name = "modifier_pudge_a", duration = 1.8, ability = self },
         hitSound = "Arena.Pudge.HitA",
+        screenShake = { 5, 150, 0.15, 3000, 0, true },
         isPhysical = true
     }):Activate()
 

@@ -36,6 +36,7 @@ function Projectile:constructor(round, params)
     self.invulnerable = params.invulnerable or false
     self.damage = params.damage
     self.isPhysical = params.isPhysical
+    self.screenShake = params.screenShake
 
     if self.destroyOnDamage == nil then
        self.destroyOnDamage = true 
@@ -145,6 +146,10 @@ function Projectile:CollideWith(target)
 
     if self.hitModifier then
         target:AddNewModifier(self.hero, self.hitModifier.ability, self.hitModifier.name, { duration = self.hitModifier.duration })
+    end
+
+    if self.screenShake then
+        ScreenShake(self:GetPos(), unpack(self.screenShake))
     end
 
     if self.continueOnHit then
