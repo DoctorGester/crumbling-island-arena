@@ -535,11 +535,13 @@ function GetMouseCastTarget() {
 }
 
 function MouseCallback(event, button) {
+    var debug = (CustomNetTables.GetTableValue("main", "debug") || {}).enabled;
+
     if (GameUI.GetClickBehaviors() !== CLICK_BEHAVIORS.DOTA_CLICK_BEHAVIOR_NONE) {
         return false;
     }
 
-    if (event === "pressed" || event === "doublepressed") {
+    if (event === "pressed" || (event === "doublepressed" && !debug)) {
         var localHero = GetLocalHero();
         var position = GameUI.GetScreenWorldPosition(GameUI.GetCursorPosition());
         var target = GetMouseCastTarget();
