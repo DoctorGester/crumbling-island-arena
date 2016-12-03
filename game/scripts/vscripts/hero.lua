@@ -182,6 +182,10 @@ function Hero:GetRad()
     return 64
 end
 
+function Hero:TestFalling()
+    return Spells.TestCircle(self:GetPos(), 80)
+end
+
 function Hero:GetHealth()
     return math.floor(self.unit:GetHealth())
 end

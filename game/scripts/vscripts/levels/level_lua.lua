@@ -148,7 +148,7 @@ function Level:DebugPolygon(poly, time)
 end
 
 function Level:DebugBounds(bounds, time)
-    local h = GetGroundHeight(Vector(0, 0, 0), nil)
+    local h = GetGroundHeight(Vector(0, 0, 0), nil) + 1
     local t = time or 6000
 
     DebugDrawLine(Vector(bounds.minX, bounds.minY, h), Vector(bounds.minX, bounds.maxY, h), 100, 255, 0, false, t)

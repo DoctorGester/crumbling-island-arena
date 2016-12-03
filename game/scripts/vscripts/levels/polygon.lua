@@ -83,13 +83,23 @@ function Polygon:contains(mx, my)
     return oddNodes
 end
 
+function Polygon:boundsIntersectRectangle(x, y, w, h)
+    local bounds = self:getBounds()
+    return x + w > bounds.minX and y + h > bounds.minY and x < bounds.maxX and y < bounds.maxY
+end
+
+function Polygon:boundsContainsRectangle(x, y, w, h)
+    local bounds = self:getBounds()
+    return x >= bounds.minX and y >= bounds.minY and (x + w) <= bounds.maxX and (y + h) <= bounds.maxY;
+end
+
 function Polygon:intersectsCircle(cx, cy, rad)
     local pointAmount = #self.x
     local j = pointAmount
 
-    local bounds = self:getBounds()
+    local circleBounds = { cx - rad, cy - rad, rad * 2, rad * 2 }
 
-    if not (cx < bounds.maxX and cx + rad > bounds.minX and cy < bounds.maxY and cy + rad > bounds.minY) then
+    if not (self:boundsIntersectRectangle(unpack(circleBounds)) or self:boundsContainsRectangle(unpack(circleBounds))) then
         return false
     end
 
