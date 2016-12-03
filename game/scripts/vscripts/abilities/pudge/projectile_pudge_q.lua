@@ -70,7 +70,7 @@ function ProjectilePudgeQ:CollideWith(target)
 end
 
 function ProjectilePudgeQ:CollidesWith(source)
-    return source ~= self.hero
+    return source ~= self.hero and not instanceof(source, Projectile)
 end
 
 function ProjectilePudgeQ:SetGraphics(graphics)

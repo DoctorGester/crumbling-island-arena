@@ -16,6 +16,8 @@ function PudgeMeat:constructor(round, owner, target)
 
     self.particle = ParticleManager:CreateParticle("particles/pudge_meat/pudge_meat.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.unit)
     self:SetPos(target)
+
+    self.spawnTime = GameRules:GetGameTime()
 end
 
 function PudgeMeat:Remove()
@@ -29,7 +31,8 @@ function PudgeMeat:Damage()
 end
 
 function PudgeMeat:CollidesWith(source)
-    return (instanceof(source, Hero) and source:FindAbility("pudge_w")) or instanceof(source, ProjectilePudgeQ)
+    local timePassed = GameRules:GetGameTime() - self.spawnTime > 1.0
+    return (instanceof(source, Hero) and source:FindAbility("pudge_w") and timePassed) or instanceof(source, ProjectilePudgeQ)
 end
 
 function PudgeMeat:CollideWith(target)
