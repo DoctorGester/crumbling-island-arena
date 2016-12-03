@@ -2586,6 +2586,30 @@
 		"AbilityCooldown" "2.0"
 	}
 
+	"pudge_a"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pudge/pudge_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "pudge_dismember"
+		"AbilityCooldown" "0.9"
+		"AbilityCastPoint" "0.15"
+		"Damage" "1"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_PUDGE_CLEAVER"
+			"MaxLength" "900"
+			"MinLength" "900"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "900"
+		}
+	}
+
 	"pudge_q"
 	{
 		"BaseClass" "ability_lua"
@@ -2594,6 +2618,7 @@
 		"AbilityTextureName" "pudge_meat_hook"
 		"AbilityCooldown" "6.0"
 		"AbilityCastPoint" "0.15"
+		"Damage" "3"
 
 		"TargetingIndicator"
 		{
@@ -2617,6 +2642,7 @@
 		"AbilityTextureName" "pudge_dismember"
 		"AbilityCooldown" "3.5"
 		"AbilityCastPoint" "0.15"
+		"Damage" "3"
 
 		"HoverIndicator"
 		{

@@ -120,6 +120,18 @@ model:CreateSequence(
 	}
 )
 
+model:CreateSequence(
+	{
+		name = "attack_a",
+		snap = true,
+		sequences = {
+			{ "pudge_attack1_anim" }
+		},
+		activities = {
+			{ name = "ACT_DOTA_CAST_ABILITY_3", weight = 1 }
+		}
+	}
+)
 -- Harpoon Immortal
 
 model:CreateSequence(

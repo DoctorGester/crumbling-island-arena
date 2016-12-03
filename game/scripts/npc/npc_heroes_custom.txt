@@ -976,9 +976,8 @@
 		"GameSoundsFile" ""
 		"VoiceFile"	""
 		"DisableWearables" "1"
-		"Range" "melee"
+		"Range" "ranged"
 		"Difficulty" "easy"
-		"Disabled" "true"
 		"ForNewPlayers" "1"
 		"Order" "22"
 
@@ -988,6 +987,7 @@
 		"Ability4" "placeholder_emote"
 		"Ability5" "placeholder_taunt"
 		"Ability6" "pudge_r"
+		"Ability7" "pudge_a"
 
 		"Ultimate" "pudge_r"
 	}

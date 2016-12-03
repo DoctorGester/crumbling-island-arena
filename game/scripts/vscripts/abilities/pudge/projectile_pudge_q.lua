@@ -40,7 +40,7 @@ function ProjectilePudgeQ:CollideWith(target)
     local ally = target.owner.team == self.hero.owner.team
 
     if not ally then
-        target:Damage(self)
+        target:Damage(self, self.ability:GetDamage())
     end
 
     if not instanceof(target, Projectile) then
@@ -59,6 +59,10 @@ function ProjectilePudgeQ:CollideWith(target)
             ParticleManager:ReleaseParticleIndex(blood)
 
             target:EmitSound("Arena.Pudge.HitQ.Voice")
+
+            if target:HasModifier("modifier_pudge_a") then
+                PudgeMeat(self.round, self.hero, target:GetPos()):Activate()
+            end
         end
 
         self:Destroy()

@@ -12,7 +12,7 @@ function pudge_w:OnSpellStart()
     hero:AreaEffect({
         filter = Filters.Cone(pos, 300, direction, math.pi),
         sound = "Arena.Pudge.HitW",
-        damage = true,
+        damage = self:GetDamage(),
         action = function(target)
             local effectPos = target:GetPos() + Vector(0, 0, 64)
             local direction = (pos - effectPos):Normalized()
@@ -20,7 +20,7 @@ function pudge_w:OnSpellStart()
             ParticleManager:SetParticleControlEnt(blood, 0, target.unit, PATTACH_POINT_FOLLOW, "attach_hitloc", effectPos, true)
             ParticleManager:SetParticleControl(blood, 2, direction)
 
-            if instanceof(target, Hero) then
+            if instanceof(target, Hero) and target:HasModifier("modifier_pudge_a") then
                 local meatDir = (target:GetPos() - hero:GetPos()):Normalized()
                 local meat = PudgeMeat(hero.round, hero, target:GetPos() + meatDir * 128):Activate()
 

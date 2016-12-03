@@ -226,6 +226,32 @@ indicatorTypes["TARGETING_INDICATOR_TINKER_LASER"] = function(data, unit) {
     }
 };
 
+indicatorTypes["TARGETING_INDICATOR_PUDGE_CLEAVER"] = function(data, unit) {
+    this.data = data;
+    this.unit = unit;
+    this.particle = Particles.CreateParticle("particles/targeting/line.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN, unit);
+
+    this.Update = function(cursor){
+        var abs = Vector.FromArray(Entities.GetAbsOrigin(unit));
+        var dir = Vector.FromArray(cursor).minus(abs).normalize();
+
+        var nd = new Vector(-dir.y, dir.x).scale(80);
+        var offset = abs.add(nd);
+
+        cursor = Vector.FromArray(cursor).add(nd).toArray();
+
+        var to = UpdateLineFromPos(this.particle, this.unit, this.data, cursor, offset);
+        var result = dir.scale(150).add(to);
+        Particles.SetParticleControl(this.particle, 0, offset);
+        Particles.SetParticleControl(this.particle, 2, result);
+    };
+
+    this.Delete = function(){
+        Particles.DestroyParticleEffect(this.particle, false);
+        Particles.ReleaseParticleIndex(this.particle);
+    }
+};
+
 indicatorTypes["TARGETING_INDICATOR_AM_DASH"] = function(data, unit) {
     this.data = data;
     this.unit = unit;
@@ -262,9 +288,7 @@ indicatorTypes["TARGETING_INDICATOR_AM_DASH"] = function(data, unit) {
         Particles.ReleaseParticleIndex(this.particle2);
     }
 };
-
-function UpdateLine(particle, unit, data, cursor) {
-    var pos = Vector.FromArray(Entities.GetAbsOrigin(unit));
+function UpdateLineFromPos(particle, unit, data, cursor, pos) {
     var to = Vector.FromArray(cursor);
 
     pos.z = 32;
@@ -281,6 +305,10 @@ function UpdateLine(particle, unit, data, cursor) {
     Particles.SetParticleControl(particle, 1, to);
 
     return to;
+}
+
+function UpdateLine(particle, unit, data, cursor) {
+    return UpdateLineFromPos(particle, unit, data, cursor, Vector.FromArray(Entities.GetAbsOrigin(unit)));
 }
 
 indicatorTypes["TARGETING_INDICATOR_DUSA_SNAKE"] = function(data, unit) {
