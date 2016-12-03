@@ -1,6 +1,6 @@
 HeroSelection = HeroSelection or class({})
 
-function HeroSelection:constructor(players, availableHeroes, teamColors, chat, ranked, allowSameHeroPicks)
+function HeroSelection:constructor(players, availableHeroes, teamColors, chat, allowSameHeroPicks)
     self.SelectionTimer = 0
     self.SelectionTimerTime = 20
     self.PreGameTimer = 0
