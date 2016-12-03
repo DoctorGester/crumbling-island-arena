@@ -17,6 +17,13 @@ function EntityStormQ:constructor(round, owner, position, facing)
     ParticleManager:SetParticleControl(self.rangeIndicator, 3, Vector(600, 0, 0))
     
     self:LoadItems()
+
+    self.playerParticle = ParticleManager:CreateParticleForTeam(
+        "particles/storm_q/storm_q_hat.vpcf",
+        PATTACH_ABSORIGIN_FOLLOW,
+        self:GetUnit(),
+        self.owner.team
+    )
 end
 
 function EntityStormQ:Update()
