@@ -134,7 +134,7 @@ end
 
 function Spells:GetValidTargets()
     return self:FilterEntities(function(ent)
-        return not ent:IsInvulnerable() and ent:Alive()
+        return not ent:IsInvulnerable() and ent:Alive() and not ent.falling
     end)
 end
 
