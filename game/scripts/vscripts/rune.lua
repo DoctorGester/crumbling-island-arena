@@ -50,7 +50,8 @@ function Rune:OnDeath(source)
         function(target)
             return instanceof(target, Hero) and target:Alive() and source.owner.team == target.owner.team
         end)) do
-        hero:Heal(3)
+
+        hero:Heal(5)
 
         FX("particles/items3_fx/warmage_recipient.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero, { release = true })
     end
