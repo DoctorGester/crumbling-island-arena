@@ -8,7 +8,7 @@ function EntityTinkerE:constructor(round, owner, position, effect, warpEffect, p
     self.collisionType = COLLISION_TYPE_INFLICTOR
     self.invulnerable = true
     self.removeOnDeath = false
-    self.particle = ParticleManager:CreateParticle(effect, PATTACH_ABSORIGIN, owner:GetUnit())
+    self.particle = ParticleManager:CreateParticle(effect, PATTACH_ABSORIGIN, GameRules:GetGameModeEntity())
     ParticleManager:SetParticleControl(self.particle, 0, position)
     ParticleManager:SetParticleControl(self.particle, 1, position)
     ParticleManager:SetParticleControl(self.particle, 3, position)
@@ -26,7 +26,24 @@ function EntityTinkerE:CollidesWith(target)
     return true
 end
 
+function EntityTinkerE:DestroyLine()
+    if self.lineParticle then
+        ParticleManager:DestroyParticle(self.lineParticle, true)
+        ParticleManager:ReleaseParticleIndex(self.lineParticle)
+    end
+end
+
 function EntityTinkerE:LinkTo(target)
+    if self.primary then
+        self:DestroyLine()
+
+        self.lineParticle = FX("particles/tinker_e/tinker_e_line.vpcf", PATTACH_CUSTOMORIGIN, GameRules:GetGameModeEntity(), {
+            cp0 = self:GetPos(),
+            cp1 = target:GetPos(),
+            release = false
+        })
+    end
+
     self.link = target
 end
 
@@ -91,6 +108,8 @@ end
 
 function EntityTinkerE:Remove()
     getbase(EntityTinkerE).Remove(self)
+
+    self:DestroyLine()
 
     ParticleManager:DestroyParticle(self.particle, false)
     ParticleManager:ReleaseParticleIndex(self.particle)
