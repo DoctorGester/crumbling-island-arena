@@ -412,7 +412,7 @@
                 "type" "moving"
                 "activity" "ACT_DOTA_TAUNT"
                 "translate" "taunt_quickdraw_gesture"
-                "sound" "Arena.Sniper.PreQ"
+                "sound" "Arena.Sniper.PreA"
                 "length" "0.8"
             }
         }
