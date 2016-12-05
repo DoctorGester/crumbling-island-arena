@@ -1308,6 +1308,7 @@ function GameMode:NetworkCosmetics()
 end
 
 function GameMode:OnGameInProgress()
+    self:AssignBannedHeroes()
     self:UpdateAvailableHeroesTable()
     self:NetworkCosmetics()
 
@@ -1353,8 +1354,6 @@ function GameMode:Start()
     self.level:LoadPolygons()
     self.level:Clusterize()
     self.level:AssociatePieces()
-
-    self:AssignBannedHeroes()
 
     self.heroSelection = HeroSelection(
         self.Players,
