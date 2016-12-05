@@ -363,7 +363,6 @@ function CreateHeroList(heroList, heroes, quests, selectedHeroes, achievements, 
     var questHeroes = !!quests ? FindQuestHeroes(quests[Game.GetLocalPlayerID()] || []) : {};
     var localInfo = Game.GetPlayerInfo(Game.GetLocalPlayerID()) || {};
     var localTeam = localInfo.player_team_id || -1;
-    var spectator = localTeam == -1;
     var eliteHeroes = [];
 
     if (achievements) {
@@ -420,7 +419,7 @@ function CreateHeroList(heroList, heroes, quests, selectedHeroes, achievements, 
                     var selectedTeam = Game.GetPlayerInfo(parseInt(id)).player_team_id;
                     var sHero = selectedHeroes.selected[id];
 
-                    if (!selectedHeroes.allowSame || (selectedHeroes.locked || selectedTeam == localTeam || spectator)) {
+                    if (!selectedHeroes.allowSame || selectedTeam == localTeam) {
                         if (sHero == hero) {
                             selected = true;
                             button.style = { boxShadow: (playerColors[id] || "#ff0000") + " -2px -2px 4px 4px" };
