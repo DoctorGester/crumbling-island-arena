@@ -1,10 +1,5 @@
 cm_w = class({})
 
-function cm_w:OnAbilityPhaseStart()
-    Wrappers.GuidedAbility(self, true, true)
-    return true
-end
-
 function cm_w:GetChannelTime()
     return 2.0
 end
@@ -91,4 +86,8 @@ end
 
 function cm_w:GetCastAnimation()
     return ACT_DOTA_ATTACK
+end
+
+if IsServer() then
+    Wrappers.GuidedAbility(cm_w, true, true)
 end

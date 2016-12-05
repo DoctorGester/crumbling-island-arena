@@ -39,14 +39,7 @@ function Wrappers.DirectionalAbility(ability, optionalRange, optionalMinRange)
 end
 
 function Wrappers.GuidedAbility(ability, forceFacing, doNotSetFacing)
-    if ability._guided then
-        return
-    else
-        ability._guided = true
-    end
-
     local onChannelThink = ability.OnChannelThink
-    local getCursorPosition = ability.GetCursorPosition
 
     function ability:OnChannelThink(interval)
         if interval == 0 then
@@ -57,7 +50,7 @@ function Wrappers.GuidedAbility(ability, forceFacing, doNotSetFacing)
                 self.lastGuidedPos = from
             end
 
-            updateLastFacing(self, getCursorPosition(self))
+            updateLastFacing(self, self.BaseClass.GetCursorPosition(self))
 
             self.listener = CustomGameEventManager:RegisterListener("guided_ability_cursor", function(_, args)
                 local eventAbility = EntIndexToHScript(args.ability)
@@ -75,7 +68,9 @@ function Wrappers.GuidedAbility(ability, forceFacing, doNotSetFacing)
             self:GetCaster():GetParentEntity():SetFacing(self.lastFacing)
         end
 
-        onChannelThink(self, interval)
+        if onChannelThink then
+            onChannelThink(self, interval)
+        end
     end
 
     local onChannelFinish = ability.OnChannelFinish
@@ -95,7 +90,9 @@ function Wrappers.GuidedAbility(ability, forceFacing, doNotSetFacing)
             end)
         end
 
-        onChannelFinish(self, interrupted)
+        if onChannelFinish then
+            onChannelFinish(self, interrupted)
+        end
     end
 
     function ability:GetCursorPosition()

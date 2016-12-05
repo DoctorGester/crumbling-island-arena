@@ -1,8 +1,6 @@
 wk_r = class({})
 
 function wk_r:OnAbilityPhaseStart()
-    Wrappers.GuidedAbility(self, true)
-
     self:GetCaster().hero:EmitSound("Arena.WK.PreR")
 
     if RandomInt(1, 100) == 1 then
@@ -115,4 +113,8 @@ end
 
 function wk_r:GetPlaybackRateOverride()
     return 1.2
+end
+
+if IsServer() then
+    Wrappers.GuidedAbility(wk_r, true)
 end

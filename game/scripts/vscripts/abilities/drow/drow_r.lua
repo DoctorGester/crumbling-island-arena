@@ -1,10 +1,5 @@
 drow_r = class({})
 
-function drow_r:OnAbilityPhaseStart()
-    Wrappers.GuidedAbility(self, true)
-    return true
-end
-
 function drow_r:OnChannelThink(interval)
     self.channelingTime = (self.channelingTime or 0) + interval
 
@@ -72,4 +67,8 @@ end
 
 function drow_r:GetPlaybackRateOverride()
     return 1.0
+end
+
+if IsServer() then
+    Wrappers.GuidedAbility(drow_r, true)
 end

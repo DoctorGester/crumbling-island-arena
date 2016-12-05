@@ -16,11 +16,6 @@ function phoenix_r:GetChannelAnimation()
     return ACT_DOTA_OVERRIDE_ABILITY_2
 end
 
-function phoenix_r:OnAbilityPhaseStart()
-    Wrappers.GuidedAbility(self, true, true)
-    return true
-end
-
 if IsServer() then
     function phoenix_r:DestroyMarker()
         if self.marker then
@@ -144,4 +139,8 @@ if IsServer() then
 
         hero:FindClearSpace(hero:GetPos(), true)
     end
+end
+
+if IsServer() then
+    Wrappers.GuidedAbility(phoenix_r, true, true)
 end

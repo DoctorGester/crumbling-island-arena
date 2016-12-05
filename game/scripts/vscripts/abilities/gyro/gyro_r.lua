@@ -9,16 +9,6 @@ function self:GetChannelAnimation()
     return ACT_DOTA_OVERRIDE_ABILITY_1
 end
 
-function self:OnAbilityPhaseStart()
-    Wrappers.GuidedAbility(self, true)
-    return true
-end
-
-function self:OnSpellStart()
-    local hero = self:GetCaster():GetParentEntity()
-    local target = self:GetCursorPosition()
-end
-
 if IsServer() then
     function self:OnChannelThink(interval)
         local hero = self:GetCaster():GetParentEntity()
@@ -64,4 +54,8 @@ if IsServer() then
         local hero = self:GetCaster():GetParentEntity()
         hero:StopSound("Arena.Gyro.LoopR")
     end
+end
+
+if IsServer() then
+    Wrappers.GuidedAbility(self, true)
 end

@@ -1,11 +1,6 @@
 sven_e = class({})
 LinkLuaModifier("modifier_sven_e", "abilities/sven/modifier_sven_e", LUA_MODIFIER_MOTION_NONE)
 
-function sven_e:OnAbilityPhaseStart()
-    Wrappers.GuidedAbility(self, true)
-    return true
-end
-
 function sven_e:GetChannelTime()
     local enraged = self:GetCaster():HasModifier("modifier_sven_r") -- Can't use IsEnraged on the client
 
@@ -64,6 +59,10 @@ function sven_e:OnChannelFinish(interrupted)
             end
         }
     })
+end
+
+if IsServer() then
+    Wrappers.GuidedAbility(sven_e, true)
 end
 
 SvenDash = SvenDash or class({}, nil, Dash)
