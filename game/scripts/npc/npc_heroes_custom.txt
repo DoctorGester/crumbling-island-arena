@@ -45,8 +45,8 @@
 		"VoiceFile"	""
 		"DisableWearables" "1"
 		"RoundEndActivity" "ACT_DOTA_CAPTURE"
+		"DrawParticlesWhileHidden" "1"
 		"Difficulty" "easy"
-		"Disabled" "true"
 		"ForNewPlayers" "1"
 		"Range" "ranged"
 		
@@ -56,16 +56,10 @@
 		"Ability4" "placeholder_emote"
 		"Ability5" "placeholder_taunt"
 		"Ability6" "zeus_r"
+		"Ability7" "zeus_a"
 		"Order" "0"
 
 		"Ultimate" "zeus_r"
-		"CustomIcons"
-		{
-			"zeus_q" "zeus_q.png"
-			"zeus_w" "zeus_w.png"
-			"zeus_e" "zeus_e.png"
-			"zeus_r" "zeus_r.png"
-		}
 	}
 
 	"npc_dota_hero_storm_spirit"

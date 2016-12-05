@@ -1,51 +1,75 @@
 zeus_q = class({})
 
+function zeus_q:DestroyParticle()
+    if self.particle then
+        ParticleManager:DestroyParticle(self.particle, false)
+        ParticleManager:ReleaseParticleIndex(self.particle)
+
+        self.particle = nil
+    end
+end
+
+function zeus_q:OnAbilityPhaseStart()
+    self.particle = FX("particles/zeus_q/zeus_q_target.vpcf", PATTACH_CUSTOMORIGIN, self:GetCaster(), {
+        cp0 = self:GetCursorPosition()
+    })
+
+    FX("particles/units/heroes/hero_zuus/zuus_lightning_bolt_start.vpcf", PATTACH_POINT, self:GetCaster(), {
+        cp0 = { ent = self:GetCaster(), point = "attach_attack1" },
+        release = true
+    })
+
+    self:GetCaster():EmitSound("Arena.Storm.HitA")
+
+    return true
+end
+
+function zeus_q:OnAbilityPhaseInterrupted()
+    self:DestroyParticle()
+end
+
 function zeus_q:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 800)
+    Wrappers.DirectionalAbility(self, 1200)
+
+    self:DestroyParticle()
 
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
 
-    ZeusQProjectile(self, hero.round, {
-        owner = hero,
-        from = hero:GetPos() + Vector(0, 0, 128),
-        to = target + Vector(0, 0, 128),
-        speed = 1200,
-        graphics = "particles/zeus_q/zeus_q.vpcf",
-        distance = 800,
-        hitSound = "Arena.Zeus.HitQ"
-    }):Activate()
+    local skies = target + Vector(0, 0, 2000)
+    local blank = not Spells.TestCircle(target, 16)
+    if blank then
+        target = target - Vector(0, 0, MAP_HEIGHT)
+    end
+
+    FX("particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", PATTACH_CUSTOMORIGIN, hero, {
+        cp0 = target,
+        cp1 = skies,
+        release = true
+    })
+
+    if not blank then
+        FX("particles/econ/items/zeus/lightning_weapon_fx/zuus_lightning_bolt_groundfx_crack.vpcf", PATTACH_CUSTOMORIGIN, hero, {
+            cp3 = target,
+            release = true
+        })
+
+        Spells:GroundDamage(target, 150, hero)
+    end
+
+    ScreenShake(target, 5, 150, 0.35, 4000, 0, true)
+
+    hero:AreaEffect({
+        filter = Filters.Area(target, 150),
+        damage = self:GetDamage(),
+        action = function(victim)
+            ZeusUtil.AbilityHit(hero, self, victim)
+        end
+    })
 
     hero:EmitSound("Arena.Zeus.CastQ")
 end
 
 function zeus_q:GetCastAnimation()
-    return ACT_DOTA_CAST_ABILITY_1
-end
-
-_G["ZeusQProjectile"] = ZeusQProjectile or class({}, nil, DistanceCappedProjectile)
-
-function ZeusQProjectile:constructor(ability, ...)
-    getbase(ZeusQProjectile).constructor(self, ...)
-
-    self.ability = ability
-    self.empowered = false
-end
-
-function ZeusQProjectile:Empower()
-    self.distance = 3000
-    self.empowered = true
-
-    self.hitModifier = { name = "modifier_stunned_lua", duration = 1.0, ability = self.ability }
-    self.hitSound = "Arena.Zeus.HitQ2"
-    self:EmitSound("Arena.Zeus.EmpowerQ")
-    self:SetGraphics("particles/zeus_q_emp/zeus_q_emp.vpcf")
-end
-
-function ZeusQProjectile:GetSpeed()
-    if self.empowered then
-        return 2500 * self.currentMultiplier
-    end
-
-    return 1200 * self.currentMultiplier
+    return ACT_DOTA_CAST_ABILITY_2
 end

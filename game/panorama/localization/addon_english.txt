@@ -78,10 +78,10 @@
 		"storm_spirit_DescE" "Dash to a remnant"
 		"storm_spirit_DescR" "Revive 3 dead remnants"
 
-		"zuus_DescQ" "Short ranged projectile"
-		"zuus_DescW" "Wall. Speeds up projectiles and allies"
+		"zuus_DescQ" "Damage in the AoE"
+		"zuus_DescW" "Wall. Speeds up allies"
 		"zuus_DescE" "Blink"
-		"zuus_DescR" "Global. Delayed AOE damage"
+		"zuus_DescR" "Channeling. Global. Teleport + damage"
 
 		"earth_spirit_DescQ" "Delayed remnant drop. AOE damage"
 		"earth_spirit_DescW" "Drag a remnant. Line damage"
@@ -413,10 +413,11 @@
 		"AbilityTooltip_cm_e_sub"						"Relocate to the wave\\\\'s position"
 		"AbilityTooltip_cm_r"							"Target an area<br>All enemies in the area are slowed and considered <font color=\"skyblue\"><b>Frozen</b></font>"
 
-		"AbilityTooltip_zeus_q"							"Launch a short ranged projectile<br><br><font color=\"#7FC9FF\"><b>Empowered</b></font> projectiles also stun"
-		"AbilityTooltip_zeus_w"							"Create a lightning wall, allies get bonus speed when passing through it<br><br><font color=\"#7FC9FF\"><b>Empowers</b></font> your passing projectiles"
+		"AbilityTooltip_zeus_a"							"Enemies hit are affected by <font color=\"#7FC9FF\"><b>Shock</b></font><br/>Damaging them with another ability will stun them"
+		"AbilityTooltip_zeus_q"							"Damage enemies in the area"
+		"AbilityTooltip_zeus_w"							"Create a lightning wall, allies get bonus speed when passing through it<br><br>Your basic attack is 2x longer when travelling through the wall"
 		"AbilityTooltip_zeus_e"							"Teleport to a target point<br><br>Teleporting through the lightning wall damages all enemies between teleport locations"
-		"AbilityTooltip_zeus_r"							"Target an area<br>After a 1.6 second delay all enemies in the area receive damage and slow"
+		"AbilityTooltip_zeus_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Become invulnerable during the channeling<br/>Reappear in the target area after the channeling ends, damaging enemies and applying <font color=\"#7FC9FF\"><b>Shock</b></font> to them"
 
 		"AbilityTooltip_sniper_a"						"Global"
 		"AbilityTooltip_sniper_q"						"Fire shrapnel slowing enemies in the area over time"
@@ -619,8 +620,8 @@
 		"ModifierTooltip_modifier_knockback_lua"				"Knocked back"
 		"ModifierTooltip_modifier_attack_speed"					"Basic attack cooling down"
 
+		"ModifierTooltip_modifier_zeus_a"						"Will be stunned if hit by another ability"
 		"ModifierTooltip_modifier_zeus_w"						"Sped up"
-		"ModifierTooltip_modifier_zeus_r"						"Slowed down"
 
 		"ModifierTooltip_modifier_sven_w_slow"					"Silenced and slowed down"
 		"ModifierTooltip_modifier_sven_e"						"Angry and rushin"

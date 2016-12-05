@@ -76,10 +76,10 @@
 		"storm_spirit_DescE" "Прыгнуть в копию"
 		"storm_spirit_DescR" "Возродить 3 копии"
 
-		"zuus_DescQ" "Слабый снаряд"
-		"zuus_DescW" "Стена, ускоряет союзников и снаряды"
+		"zuus_DescQ" "Урон в области"
+		"zuus_DescW" "Стена. ускоряет союзников"
 		"zuus_DescE" "Телепортация"
-		"zuus_DescR" "Глобальная. Урон и замедление с задержкой"
+		"zuus_DescR" "Прерываемая. Глобальная. Телепортация + урон"
 
 		"earth_spirit_DescQ" "Копия и урон в области с задержкой"
 		"earth_spirit_DescW" "Перетянуть копию, урон по линии"
@@ -410,10 +410,11 @@
 		"AbilityTooltip_cm_e_sub"						"Телепортироваться в волну"
 		"AbilityTooltip_cm_r"							"Укажите область<br>Все враги в области замедляются и считаются <font color=\"skyblue\"><b>Замороженными</b></font>"
 
-		"AbilityTooltip_zeus_q"							"Запустить снаряд<br><br><font color=\"#7FC9FF\"><b>Усиленные</b></font> снаряды оглушают врагов"
-		"AbilityTooltip_zeus_w"							"Создать стену из молний, дающую бонус к скорости, если через нее пройти<br><br><font color=\"#7FC9FF\"><b>Усиливает</b></font> снаряды героя"
+		"AbilityTooltip_zeus_a"							"Попадание по врагам накладывает <font color=\"#7FC9FF\"><b>Шок</b></font><br/>Нанесение урона по этим врагам оглушит их"
+		"AbilityTooltip_zeus_q"							"Нанести урон в области"
+		"AbilityTooltip_zeus_w"							"Создать стену из молний, дающую бонус к скорости, если через нее пройти<br><br>Увеличивает дальность атаки героя при прохождении через стену"
 		"AbilityTooltip_zeus_e"							"Телепортироваться в точку<br><br>Телепортация сквозь стену из молний наносит урон всем врагам на пути"
-		"AbilityTooltip_zeus_r"							"Нанести урон и замедлить врагов в области после 1.6 секунд задержки"
+		"AbilityTooltip_zeus_r"							"<font color=\"#DAFF7F\"><b>Прерываемая</b></font><br>Стать неуязвимым<br/>В конце применения телепортироваться в указанную область, нанося урон и накладывая <font color=\"#7FC9FF\"><b>Шок</b></font> на врагов"
 
 		"AbilityTooltip_sniper_a"						"Глобальная"
         "AbilityTooltip_sniper_q"						"Запустить шрапнель, замедляя врагов в области"
@@ -615,8 +616,8 @@
 		"ModifierTooltip_modifier_knockback_lua"				"Отброшен"
 		"ModifierTooltip_modifier_attack_speed"					"Атака остывает"
 
+		"ModifierTooltip_modifier_zeus_a"						"Будет оглушен если получит урон от другой способности"
 		"ModifierTooltip_modifier_zeus_w"						"Ускорен"
-		"ModifierTooltip_modifier_zeus_r"						"Замедлен"
 
 		"ModifierTooltip_modifier_sven_w_slow"					"Безмолвие и замедление"
 		"ModifierTooltip_modifier_sven_e"						"Топает от злости"

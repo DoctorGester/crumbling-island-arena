@@ -221,3 +221,14 @@ function SKUtil.AbilityHit(hero, target)
         })
     end
 end
+
+ZeusUtil = {}
+
+function ZeusUtil.AbilityHit(hero, ability, victim)
+    local mod = victim:FindModifier("modifier_zeus_a")
+
+    if mod then
+        victim:AddNewModifier(hero, ability, "modifier_stunned", { duration = 0.85 })
+        mod:Destroy()
+    end
+end

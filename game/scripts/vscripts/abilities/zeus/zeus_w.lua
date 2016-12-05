@@ -79,10 +79,6 @@ function EntityZeusW:CollideWith(target)
     if instanceof(target, Hero) then
         target:AddNewModifier(self.hero, self.ability, "modifier_zeus_w", { duration = 1.5 })
     end
-
-    if instanceof(target, ZeusQProjectile) and not target.empowered then
-        target:Empower()
-    end
 end
 
 function EntityZeusW:IntersectsWith(from, to)

@@ -1,17 +1,13 @@
 modifier_zeus_r = class({})
 
-function modifier_zeus_r:IsDebuff()
+function modifier_zeus_r:IsHidden()
     return true
 end
 
-function modifier_zeus_r:DeclareFunctions()
-    local funcs = {
-        MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
-    }
-
-    return funcs
+function modifier_zeus_r:IsInvulnerable()
+    return true
 end
 
-function modifier_zeus_r:GetModifierMoveSpeedBonus_Percentage(params)
-    return -50
+function modifier_zeus_r:Airborne()
+    return true
 end

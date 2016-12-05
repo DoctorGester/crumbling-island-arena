@@ -157,29 +157,50 @@
 		"AbilityCooldown" "12.0"
 	}
 
+	"zeus_a"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/zeus/zeus_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "zuus_arc_lightning"
+		"AbilityCooldown" "0.85"
+		"AbilityCastPoint" "0.15"
+		"Damage" "1"
 
-	// Zeus
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "600"
+			"MinLength" "600"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "600"
+		}
+	}
 
 	"zeus_q"
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/zeus/zeus_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName" "storm_spirit_overload"
-		"AbilityCooldown" "1.8"
-		"AbilityCastPoint" "0.1"
+		"AbilityTextureName" "zuus_lightning_bolt"
+		"AbilityCooldown" "3.2"
+		"AbilityCastPoint" "0.85"
+		"Damage" "3"
 
 		"TargetingIndicator"
 		{
-			"Type" "TARGETING_INDICATOR_LINE"
-			"MaxLength" "800"
-			"MinLength" "800"
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "150"
 		}
 
-		"precache"
+		"HoverIndicator"
 		{
-			"particle" "particles/zeus_q/zeus_q.vpcf"
-			"particle" "particles/zeus_q_emp/zeus_q_emp.vpcf"
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1200"
 		}
 	}
 
@@ -188,8 +209,8 @@
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/zeus/zeus_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName" "zuus_lightning_bolt"
-		"AbilityCooldown" "9.0"
+		"AbilityTextureName" "razor_plasma_field"
+		"AbilityCooldown" "7.0"
 		// TODO wall indicator
 
 		"precache"
@@ -203,9 +224,11 @@
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/zeus/zeus_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityTextureName" "storm_spirit_overload"
+		"AbilityTextureName" "zuus_static_field"
 		"AbilityCooldown" "7.0"
 		"AbilityCastPoint" "0.15"
+		"Damage" "2"
+
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_LINE"
@@ -230,14 +253,14 @@
 		"ScriptFile" "abilities/zeus/zeus_r"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName" "storm_spirit_overload"
+		"AbilityTextureName" "zuus_thundergods_wrath"
 		"AbilityCooldown" "12.0"
-		"AbilityCastPoint" "0.3"
+		"Damage" "4"
 
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_AOE"
-			"Radius" "256"
+			"Radius" "300"
 		}
 
 		"precache"

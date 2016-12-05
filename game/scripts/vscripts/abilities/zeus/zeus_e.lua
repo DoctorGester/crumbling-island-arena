@@ -23,11 +23,13 @@ function zeus_e:OnSpellStart()
         hero:AreaEffect({
             filter = Filters.Line(casterPos, target, 64),
             filterProjectiles = true,
-            damage = true,
+            damage = self:GetDamage(),
             sound = "Arena.Zeus.HitE",
             action = function(target)
                 local pos = target:GetPos()
                 self:CreateLightning(self, pos + Vector(0, 0, 800), pos)
+
+                ZeusUtil.AbilityHit(hero, self, target)
             end
         })
 
