@@ -164,6 +164,8 @@ function ShowHeroCosmetics(heroName) {
         }
     }
 
+    toShow = _.sortBy(toShow, function(a) { return a.type });
+
     for (var asset of toShow) {
         var row = $.CreatePanel("Panel", parent, undefined);
         var image = $.CreatePanel("Image", row, undefined);
