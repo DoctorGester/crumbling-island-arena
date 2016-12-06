@@ -158,7 +158,10 @@ function Wrappers.AttackAbility(ability, staticDurationOffset, fx)
                 m = hero:AddNewModifier(hero, self, "modifier_attack_speed", { duration = duration })
                 m:SetStackCount(1)
             else
-                m:IncrementStackCount()
+                if m:GetStackCount() < 7 then
+                    m:IncrementStackCount()
+                end
+                
                 m:SetDuration(duration, true)
             end
 
