@@ -2,7 +2,7 @@ zeus_r = class({})
 LinkLuaModifier("modifier_zeus_r", "abilities/zeus/modifier_zeus_r", LUA_MODIFIER_MOTION_NONE)
 
 function zeus_r:GetChannelTime()
-    return 2.5
+    return 2.0
 end
 
 function zeus_r:OnAbilityPhaseStart()
