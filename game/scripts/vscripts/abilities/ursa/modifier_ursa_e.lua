@@ -16,33 +16,44 @@ end
 
 function modifier_ursa_e:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
-        MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
+        MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
+        MODIFIER_PROPERTY_OVERRIDE_ANIMATION_WEIGHT,
+        MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE
     }
 
     return funcs
 end
 
-function modifier_ursa_e:GetActivityTranslationModifiers()
-    return "overpower"
-end
-
-function modifier_ursa_e:GetModifierMoveSpeedBonus_Percentage(params)
-    return 20 + self:GetElapsedTime() / self:GetDuration() * 80
-end
 
 function modifier_ursa_e:GetEffectName()
     return "particles/units/heroes/hero_ursa/ursa_fury_swipes_debuff.vpcf"
-end
-
-function modifier_ursa_e:GetEffectAttachType()
-    return PATTACH_OVERHEAD_FOLLOW
 end
 
 function modifier_ursa_e:StatusEffectPriority()
     return 2
 end
 
-function modifier_ursa_e:GetStatusEffectName()
-    return "particles/status_fx/status_effect_overpower.vpcf"
+function modifier_ursa_e:CheckState()
+    local state = {
+        [MODIFIER_STATE_STUNNED] = true,
+        [MODIFIER_STATE_NO_HEALTH_BAR] = true
+    }
+
+    return state
+end
+
+function modifier_ursa_e:IsInvulnerable()
+    return true
+end
+
+function modifier_ursa_e:GetOverrideAnimation(params)
+    return ACT_DOTA_CAST_ABILITY_3
+end
+
+function modifier_ursa_e:GetOverrideAnimationWeight(params)
+    return 1.0
+end
+
+function modifier_ursa_e:GetOverrideAnimationRate(params)
+    return 9.0
 end

@@ -9750,7 +9750,7 @@
     }
 }
 
-"Arena.Ursa.HitQ"
+"Arena.Ursa.HitA"
 {
     "operator_stacks"
     {
@@ -9784,7 +9784,7 @@
     }
 }
 
-"Arena.Ursa.CastW"
+"Arena.Ursa.CastQ"
 {
     "operator_stacks"
     {
@@ -9816,7 +9816,7 @@
     }
 }
 
-"Arena.Ursa.CastE"
+"Arena.Ursa.CastW"
 {
     "operator_stacks"
     {
@@ -9841,6 +9841,136 @@
                     "pitch"             {   "value"     "1.000000"  }
                     "soundlevel"        {   "value"     "95.00000" }
                     
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Ursa.CastE"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_update_default"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/physics/deaths/common/death_common_flyersfall_01.vsnd"
+                              "value1"        "sounds/physics/deaths/common/death_common_flyersfall_02.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Ursa.LoopE"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_update_default"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/batrider/batrider_firefly_loop.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+                    "volume_fade_in"	{	"value"		"0.1"	}
+                    "volume_fade_out"	{	"value"		"0.6"	}
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Ursa.EndE"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_update_default"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                        	"value0"        "sounds/physics/deaths/common/body_impact_medium_01.vsnd"
+                        	"value1"        "sounds/physics/deaths/common/body_impact_medium_02.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.Ursa.EndE.Voice"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_update_default"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                        	"value0"        "sounds/vo/ursa/ursa_enrage_04.vsnd"
+                        	"value1"        "sounds/vo/ursa/ursa_spawn_09.vsnd"
+                        	"value2"        "sounds/vo/ursa/ursa_anger_06.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "2.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
                     "event_type"        {   "value"     "1.000000"  }
                 }
             }

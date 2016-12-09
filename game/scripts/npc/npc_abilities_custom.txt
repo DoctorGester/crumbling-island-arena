@@ -2718,14 +2718,15 @@
 		}
 	}
 
-	"ursa_q"
+	"ursa_a"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/ursa/ursa_q"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"ScriptFile" "abilities/ursa/ursa_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "ursa_overpower"
-		"AbilityCooldown" "3.0"
+		"AbilityCooldown" "1.2"
 		"AbilityCastPoint" "0.15"
+		"Damage" "1"
 
 		"HoverIndicator"
 		{
@@ -2740,14 +2741,15 @@
 		}
 	}
 
-	"ursa_w"
+	"ursa_q"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/ursa/ursa_w"
+		"ScriptFile" "abilities/ursa/ursa_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName" "ursa_earthshock"
 		"AbilityCooldown" "7.0"
 		"AbilityCastPoint" "0.15"
+		"Damage" "3"
 
 		"HoverIndicator"
 		{
@@ -2756,13 +2758,34 @@
 		}
 	}
 
+	"ursa_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ursa/ursa_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "ursa_fury_swipes"
+		"AbilityCooldown" "6.0"
+	}
+
 	"ursa_e"
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/ursa/ursa_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityTextureName" "ursa_fury_swipes"
-		"AbilityCooldown" "6.0"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "nevermore_necromastery"
+		"AbilityCooldown" "5.0"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "600"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "600"
+		}
 	}
 
 	"ursa_r"

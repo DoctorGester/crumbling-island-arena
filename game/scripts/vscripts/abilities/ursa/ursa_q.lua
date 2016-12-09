@@ -1,35 +1,25 @@
 ursa_q = class({})
 
 function ursa_q:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 300)
-
     local hero = self:GetCaster().hero
-    local target = self:GetCursorPosition()
-    local direction = self:GetDirection()
-    local overpower = hero:HasModifier("modifier_ursa_e")
+    local pos = hero:GetPos()
 
     hero:AreaEffect({
-        filter = Filters.Cone(hero:GetPos(), 300, direction, math.pi),
-        sound = "Arena.Ursa.HitQ",
-        damage = true,
-        action = function(victim)
-            if overpower and instanceof(victim, Hero) then
-                hero:Heal()
-
-                local index = ParticleManager:CreateParticle("particles/generic_gameplay/generic_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero:GetUnit())
-                ParticleManager:ReleaseParticleIndex(index)
-            end
-        end
+        filter = Filters.Area(pos, 350),
+        filterProjectiles = true,
+        modifier = { name = "modifier_stunned_lua", duration = 1.3, ability = self },
+        damage = self:GetDamage()
     })
 
-    if overpower then
-        self:EndCooldown()
-        self:StartCooldown(0.35)
-    end
+    ImmediateEffect("particles/units/heroes/hero_ursa/ursa_earthshock.vpcf", PATTACH_ABSORIGIN, hero)
+
+    hero:EmitSound("Arena.Ursa.CastQ")
+
+    ScreenShake(pos, 5, 150, 0.45, 3000, 0, true)
 end
 
 function ursa_q:GetCastAnimation()
-    return ACT_DOTA_ATTACK
+    return ACT_DOTA_CAST_ABILITY_1
 end
 
 function ursa_q:GetPlaybackRateOverride()

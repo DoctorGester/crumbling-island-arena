@@ -3,11 +3,34 @@ ursa_e = class({})
 LinkLuaModifier("modifier_ursa_e", "abilities/ursa/modifier_ursa_e", LUA_MODIFIER_MOTION_NONE)
 
 function ursa_e:OnSpellStart()
+    Wrappers.DirectionalAbility(self, 600)
+
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
 
-    hero:GetUnit():StartGesture(ACT_DOTA_OVERRIDE_ABILITY_3)
-    hero:AddNewModifier(hero, self, "modifier_ursa_e", { duration = 2.5 })
+    Dash(hero, target, 1000, {
+        modifier = { name = "modifier_ursa_e", ability = self },
+        forceFacing = true,
+        hitParams = {
+            --modifier = { name = "modifier_drow_e_slow", ability = self, duration = 2.0 },
+        },
+        arrivalFunction = function()
+            hero:GetUnit():StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1_END, 1.5)
+            hero:EmitSound("Arena.Ursa.EndE")
+            hero:EmitSound("Arena.Ursa.EndE.Voice")
+            ScreenShake(hero:GetPos(), 5, 150, 0.45, 3000, 0, true)
+        end,
+        noFixedDuration = true,
+        loopingSound = "Arena.Ursa.LoopE"
+    })
+
     hero:EmitSound("Arena.Ursa.CastE")
-    hero:FindAbility("ursa_q"):EndCooldown()
+end
+
+function ursa_e:GetCastAnimation()
+    return ACT_DOTA_CAST_ABILITY_1
+end
+
+function ursa_e:GetPlaybackRateOverride()
+    return 1.5
 end

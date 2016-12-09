@@ -806,6 +806,11 @@
 		"Ability7" "shaker_a"
 
 		"Ultimate" "shaker_r"
+
+		"CustomIcons"
+		{
+			"shaker_a" "shaker_a.png"
+		}
 	}
 
 	"npc_dota_hero_ember_spirit"
@@ -984,6 +989,11 @@
 		"Ability7" "pudge_a"
 
 		"Ultimate" "pudge_r"
+
+		"CustomIcons"
+		{
+			"pudge_a" "pudge_a.png"
+		}
 	}
 
 	"npc_dota_hero_ursa"
@@ -1011,7 +1021,6 @@
 		"DisableWearables" "1"
 		"Range" "melee"
 		"Difficulty" "easy"
-		"Disabled" "true"
 		"Order" "23"
 
 		"Ability1" "ursa_q"
@@ -1020,6 +1029,7 @@
 		"Ability4" "placeholder_emote"
 		"Ability5" "placeholder_taunt"
 		"Ability6" "ursa_r"
+		"Ability7" "ursa_a"
 
 		"Ultimate" "ursa_r"
 	}

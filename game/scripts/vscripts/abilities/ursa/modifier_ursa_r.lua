@@ -38,7 +38,7 @@ function modifier_ursa_r:GetEffectAttachType()
 end
 
 function modifier_ursa_r:OnModifierAdded(source, ability, name)
-    return name == "modifier_ursa_e"
+    return source == self:GetParent():GetParentEntity()
 end
 
 function modifier_ursa_r:OnDamageReceived()
