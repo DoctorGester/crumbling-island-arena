@@ -217,17 +217,15 @@ function FunctionDash:PositionFunction(current)
         return t*(2-t) 
     end
 
-    local function f(t)
-        return -1 * (math.sqrt(1 - t*t) - 1)
-    end
+    --local function f(t)
+        --return -1 * (math.sqrt(1 - t*t) - 1)
+    --end
 
     local progress = math.min((GameRules:GetGameTime() - self.startTime) / self.time, 1.0)
     progress = f(progress)
 
     return self.from + (self.to - self.from) * progress
 end
-
-FunctionDash.HeightFunction = nil
 
 VelocityFunctionDash = VelocityFunctionDash or class({}, nil, Dash)
 
