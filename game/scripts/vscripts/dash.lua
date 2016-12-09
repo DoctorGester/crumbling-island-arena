@@ -41,7 +41,10 @@ function Dash:constructor(hero, to, speed, params)
         if facing:Length2D() == 0 then
             facing = self.hero:GetFacing()
         end
-        
+
+        self.forcedFacing = true
+
+        self.hero:GetUnit():Interrupt()
         self.hero:SetFacing(facing:Normalized() * Vector(1, 1, 0))
     end
 
@@ -84,6 +87,11 @@ end
 function Dash:Update()
     local result = nil
     if self.hero:Alive() and not self.cantStart then
+        if self.forcedFacing then
+            self.forcedFacing = nil
+            self.hero:GetUnit():Interrupt()
+        end
+
         local origin = self.hero:GetPos()
         result = self:PositionFunction(origin)
 
@@ -209,10 +217,30 @@ function FunctionDash:PositionFunction(current)
         return t*(2-t) 
     end
 
+    local function f(t)
+        return -1 * (math.sqrt(1 - t*t) - 1)
+    end
+
     local progress = math.min((GameRules:GetGameTime() - self.startTime) / self.time, 1.0)
     progress = f(progress)
 
     return self.from + (self.to - self.from) * progress
+end
+
+FunctionDash.HeightFunction = nil
+
+VelocityFunctionDash = VelocityFunctionDash or class({}, nil, Dash)
+
+function VelocityFunctionDash:constructor(hero, to, speedLimit, params)
+    getbase(VelocityFunctionDash).constructor(self, hero, to, speedLimit, params)
+end
+
+function VelocityFunctionDash:PositionFunction(current)
+    local t = (self.from - current):Length2D() / (self.from - self.to):Length2D() - 0.2
+    local currentVelocity = (4 * self.velocity) * (0.3 +  ((1 - t) * (t)))
+
+    local diff = self.to - current
+    return current + (diff:Normalized() * currentVelocity)
 end
 
 SoftKnockback = SoftKnockback or class({}, nil, Dash)
