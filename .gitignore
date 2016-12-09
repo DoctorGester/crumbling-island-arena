@@ -9,6 +9,10 @@
 *.vjs_c
 *.vxml_c
 *.vcss_c
+*.vmdl_c
+*.vanim_c
+*.vmesh_c
+*.vagrp_c
 
 # Panorama debugger
 *.cfg
@@ -29,3 +33,6 @@ game/resource/overviews/*
 
 #Github dump
 *.stackdump
+
+/.idea
+*.iml
