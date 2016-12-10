@@ -641,8 +641,8 @@ function UpdateAttackTip() {
     $("#AttackTipContainer").SetHasClass("Hidden", !newPlayer || attacksRequested > 200);
 }
 
-function PlayersUpdated(data) {
-    var players = data.players || {}
+function UpdateLocalNewPlayer(data) {
+    var players = data.players || {};
     var localPlayer = {};
 
     for (var key in players) {
@@ -667,7 +667,7 @@ DelayStateInit(GAME_STATE_ROUND_IN_PROGRESS, function () {
     SubscribeToNetTableKey("main", "gameState", true, GameStateChanged);
     SubscribeToNetTableKey("main", "gameInfo", true, GameInfoChanged);
     SubscribeToNetTableKey("main", "players", true, DeathMatch.PlayersUpdated);
-    SubscribeToNetTableKey("main", "players", true, PlayersUpdated);
+    SubscribeToNetTableKey("main", "players", true, UpdateLocalNewPlayer);
 
     UpdateUI();
 
