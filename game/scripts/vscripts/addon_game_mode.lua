@@ -686,14 +686,14 @@ function GameMode:CheckEveryoneAbandoned()
         self.abandonTimer = (self.abandonTimer or 0) + 1
 
         if self.abandonTimer == 1 then
-            SystemMessage("SystemEveryoneLeft", { time = 20 })
+            SystemMessage("SystemEveryoneLeft", { time = 40 })
         end
 
-        if self.abandonTimer == 10 then
+        if self.abandonTimer == 30 then
             SystemMessage("SystemEveryoneLeft", { time = 10 })
         end
 
-        if self.abandonTimer > 20 then
+        if self.abandonTimer > 40 then
             if self.State == STATE_ROUND_IN_PROGRESS and self.round then
                 self.generalStatistics:Add(self.round.statistics)
                 self:SubmitRoundInfo(self.round, connectedTeam, true)
