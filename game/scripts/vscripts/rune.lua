@@ -22,7 +22,7 @@ function Rune:CreateParticles()
     ParticleManager:SetParticleControl(self.healthCounter, 1, Vector(0, self.health, 0))
     ParticleManager:SetParticleControl(self.healthCounter, 2, Vector(255, 255, 255))
 
-    self.particle = ParticleManager:CreateParticle("particles/generic_gameplay/rune_regeneration.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.unit)
+    self.particle = ParticleManager:CreateParticle("particles/rune_particle.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.unit)
     ParticleManager:SetParticleControl(self.particle, 1, Vector(0, 255, 0))
 end
 

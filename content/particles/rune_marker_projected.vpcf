@@ -1,0 +1,65 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_ConstantColor = [ 149, 246, 3, 255 ]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = 1
+		},
+		{
+			_class = "C_OP_LerpScalar"
+			m_nFieldOutput = 7
+			m_flOutput = 0.5
+			m_flEndTime = 3.0
+		},
+		{
+			_class = "C_OP_LerpEndCapScalar"
+			m_nFieldOutput = 7
+			m_flOutput = 0.0
+			m_flLerpTime = 0.2
+		},
+		{
+			_class = "C_OP_PositionLock"
+		},
+	]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderProjected"
+			m_hProjectedMaterial = resource:"materials/particle/items/disruptor/pinfold_fx_large_ring_projected.vmat"
+		},
+		{
+			_class = "C_OP_RenderDeferredLight"
+			m_flRadiusScale = 2.0
+			m_flAlphaScale = 10.0
+			m_flStartFalloff = 0.125
+			m_ColorScale = [ 103, 224, 11 ]
+			m_hTexture = resource:"materials/particle/particle_modulate_01.vtex"
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
+		{
+			_class = "C_INIT_RandomScalar"
+			m_nFieldOutput = 7
+		},
+		{
+			_class = "C_INIT_RandomScalar"
+			m_flMin = 200.0
+			m_flMax = 200.0
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 1
+		},
+	]
+	m_flConstantRadius = 200.0
+}

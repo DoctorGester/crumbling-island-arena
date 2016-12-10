@@ -17,6 +17,12 @@ function Round:constructor(players, teams, availableHeroes, callback)
     self.statistics = Statistics(players)
     self.runeTimer = 25 * 30
     self.rune = nil
+    self.runeParticleParams = {"particles/rune_marker.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity(), {
+        cp0 = Vector(0, 0, 32),
+        cp1 = Vector(200, 0, 0),
+        release = false
+    }}
+    self.runeParticle = FX(unpack(self.runeParticleParams))
 end
 
 function Round:CheckEndConditions()
@@ -75,8 +81,16 @@ function Round:Update()
         end
 
         if self.rune and not self.rune:Alive() then
+            if self.runeParticle then
+                ParticleManager:DestroyParticle(self.runeParticle, false)
+                ParticleManager:ReleaseParticleIndex(self.runeParticle)
+
+                self.runeParticle = nil
+            end
+
             self.rune = nil
             self.runeTimer = 25 * 30
+            self.runeParticle = FX(unpack(self.runeParticleParams))
         end
     end
 
@@ -192,4 +206,9 @@ function Round:Destroy()
     end
 
     self:Update()
+
+    if self.runeParticle then
+        ParticleManager:DestroyParticle(self.runeParticle, false)
+        ParticleManager:ReleaseParticleIndex(self.runeParticle)
+    end
 end
