@@ -328,6 +328,35 @@
     vertical-align: center;
 }
 
+#AttackTipContainer
+{
+    flow-children: right;
+    align: center bottom;
+    margin-bottom: 310px;
+}
+
+#AttackTipContainer > Panel
+{
+    width: 32px;
+    height: 32px;
+    margin: 0 8px 0 8px;
+    background-color: none;
+    background-image: url('file://{images}/custom_game/lmb.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    hue-rotation: 130deg;
+    contrast: 1.5;
+}
+
+#AttackTipContainer > Label
+{
+    color: white;
+    vertical-align: center;
+    font-family: Goudy Trajan Medium, FZKai-Z03, TH Sarabun New;
+    font-size: 28px;
+    text-shadow: -1px 1px 4px 2.0 #000000;
+}
+
 @keyframes 'roundTop'
 {
     0% {

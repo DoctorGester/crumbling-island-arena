@@ -9,6 +9,8 @@ var buffBar = null;
 var healthBar = null;
 var chatLines = [];
 var cosmeticAbilityBar = null;
+var attacksRequested = 0;
+var newPlayer = false;
 
 GameUI.SetCameraPitchMin(60);
 GameUI.SetCameraPitchMax(60);
@@ -588,6 +590,9 @@ function MouseCallback(event, button) {
                          Abilities.IsActivated(order.AbilityIndex)
                     ) {
                         Game.PrepareUnitOrders(order);
+
+                        attacksRequested++;
+                        UpdateAttackTip();
                     }
                 }
             })();
@@ -632,6 +637,28 @@ function MouseCallback(event, button) {
     return false;
 }
 
+function UpdateAttackTip() {
+    $("#AttackTipContainer").SetHasClass("Hidden",  attacksRequested > 200);
+}
+
+function PlayersUpdated(data) {
+    var players = data.players || {}
+    var localPlayer = {};
+
+    for (var key in players) {
+        var player = players[key];
+
+        if (player.id == Game.GetLocalPlayerID()) {
+            localPlayer = player;
+            break;
+        }
+    }
+
+    newPlayer = ((localPlayer.gamesPlayed || 6) <= 5);
+
+    UpdateAttackTip();
+}
+
 SetupUI();
 
 DelayStateInit(GAME_STATE_ROUND_IN_PROGRESS, function () {
@@ -640,6 +667,7 @@ DelayStateInit(GAME_STATE_ROUND_IN_PROGRESS, function () {
     SubscribeToNetTableKey("main", "gameState", true, GameStateChanged);
     SubscribeToNetTableKey("main", "gameInfo", true, GameInfoChanged);
     SubscribeToNetTableKey("main", "players", true, DeathMatch.PlayersUpdated);
+    SubscribeToNetTableKey("main", "players", true, PlayersUpdated);
 
     UpdateUI();
 

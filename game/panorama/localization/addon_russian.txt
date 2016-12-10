@@ -266,6 +266,8 @@
 		"Round" "Раунд"
 		"FirstBlood" "<b><font color='red'>Первую кровь</font></b> пролил <b><font color='{s:color}'>{s:name}</font></b>"
 		"MVP" "<b><font color='gold'>Игрок раунда</font></b>: <b><font color='{s:color}'>{s:name}</font></b>"
+		"AttackTipLeft" "НАЖМИ"
+        "AttackTipRight" "ЧТОБЫ ИСПОЛЬЗОВАТЬ АТАКУ"
 
 		"ChatLine" "<b><font color='{s:color}'>{s:name}</font></b>: {s:message}"
 		"ChatRandomed" "<b><font color='{s:color}'>{s:name}</font></b> случайно выбрал <font color='gold'>{s:hero}</font>"

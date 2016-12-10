@@ -38,9 +38,9 @@
                 </Panel>
                 <Panel id="Scoreboard"/>
             </Panel>
-            <Panel id="HeroDetails">
-                <Panel id="HeroPortraitContainer">
-                    <DOTAHeroMovie id="HeroPortrait" onactivate="CenterCamera()"/>
+            <Panel id="HeroDetails" hittest="false">
+                <Panel id="HeroPortraitContainer" hittest="false">
+                    <DOTAHeroMovie id="HeroPortrait" hittest="false"/>
                 </Panel>
                 <Panel id="HeroNameContainer" hittest="false">
                     <Label id="HeroNameLabel" class="UILabel" hittest="false"/>
@@ -76,6 +76,12 @@
                 <Panel class="KillMessageContainer" id="KillMessageIconContainerBottom">
                     <DOTAHeroImage id="KillMessageIconBottom" heroimagestyle="icon" hittest="false"/>
                 </Panel>
+            </Panel>
+
+            <Panel id="AttackTipContainer" hittest="false" hittestchildren="false">
+                <Label text="#AttackTipLeft"/>
+                <Panel/>
+                <Label text="#AttackTipRight"/>
             </Panel>
 
             <Panel id="DeathMatchContainer" class="Hidden">
