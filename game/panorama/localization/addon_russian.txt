@@ -72,7 +72,7 @@
 		"crystal_maiden_DescR" "Заморозка и замедление в области"
 
 		"storm_spirit_DescQ" "Волна, создаёт копию"
-		"storm_spirit_DescW" "Взорвать копию"
+		"storm_spirit_DescW" "Притянуть врага к себе"
 		"storm_spirit_DescE" "Прыгнуть в копию"
 		"storm_spirit_DescR" "Возродить 3 копии"
 
@@ -450,8 +450,8 @@
 		"AbilityTooltip_sk_r"							"Создать песчаную бурю на 7.5 секунд, дающую герою невидимость и бонусную скорость"
 
 		"AbilityTooltip_storm_spirit_a"					"Применение способностей заряжает следующую атаку, которая наносит двойной урон и замедляет врагов в области"
-		"AbilityTooltip_storm_spirit_q"					"Запустить волну, создающую <font color=\"#00EFEF\"><b>Копию</b></font> в точке"
-		"AbilityTooltip_storm_spirit_w"					"Выбрать <font color=\"#00EFEF\"><b>Копию</b></font> и взорвать её, нанося урон вокруг"
+		"AbilityTooltip_storm_spirit_q"					"Запустить волну, создающую <font color=\"#00EFEF\"><b>Копию</b></font> в точке<br/><font color=\"#00EFEF\"><b>Копия</b></font> взорвется после задержки, если к ней подойдет враг"
+		"AbilityTooltip_storm_spirit_w"					"Запустить снаряд притягивающий первого врага на пути к герою"
 		"AbilityTooltip_storm_spirit_e"					"Выбрать <font color=\"#00EFEF\"><b>Копию</b></font> и быстро рвануться к ней"
 		"AbilityTooltip_storm_spirit_r"					"Возродить три последние уничтоженные <font color=\"#00EFEF\"><b>Копии</b></font>"
 

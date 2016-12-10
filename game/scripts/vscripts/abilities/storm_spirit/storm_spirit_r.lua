@@ -10,7 +10,7 @@ function storm_spirit_r:OnSpellStart()
     hero:AddNewModifier(hero, hero:FindAbility("storm_spirit_a"), "modifier_storm_spirit_a", { duration = 5 })
 
     for _, data in pairs(hero.lastRemnants) do
-        hero:AddRemnant(EntityStormQ(hero.round, hero, data.position, data.facing):Activate())
+        hero:AddRemnant(EntityStormQ(hero.round, hero, data.position, data.facing, hero:FindAbility("storm_spirit_q")):Activate())
     end
 
     hero.lastRemnants = {}

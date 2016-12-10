@@ -74,7 +74,7 @@
 		"crystal_maiden_DescR" "AOE slow + freeze"
 
 		"storm_spirit_DescQ" "Wave, creates remnant"
-		"storm_spirit_DescW" "Explode a remnant"
+		"storm_spirit_DescW" "Pull enemy towards you"
 		"storm_spirit_DescE" "Dash to a remnant"
 		"storm_spirit_DescR" "Revive 3 dead remnants"
 
@@ -454,8 +454,8 @@
 		"AbilityTooltip_sk_r"							"Create a sandstorm for 7.5 seconds which renders your hero invisible and gives him bonus speed"
 
 		"AbilityTooltip_storm_spirit_a"					"Casting spells makes next attack deal double damage and slow enemies in the area of impact"
-		"AbilityTooltip_storm_spirit_q"					"Launch a wave that creates a <font color=\"#00EFEF\"><b>Remnant</b></font> at the target point"
-		"AbilityTooltip_storm_spirit_w"					"Target a <font color=\"#00EFEF\"><b>Remnant</b></font> making it explode, damaging enemies around it"
+		"AbilityTooltip_storm_spirit_q"					"Launch a wave that creates a <font color=\"#00EFEF\"><b>Remnant</b></font> at the target point<br/><font color=\"#00EFEF\"><b>Remnant</b></font> auto detonates after a delay when an enemy comes near it"
+		"AbilityTooltip_storm_spirit_w"					"Launch a projectile pulling first enemy hit towards you"
 		"AbilityTooltip_storm_spirit_e"					"Target a <font color=\"#00EFEF\"><b>Remnant</b></font> and quickly dash to it"
 		"AbilityTooltip_storm_spirit_r"					"Ressurect up to 3 last dead <font color=\"#00EFEF\"><b>Remnants</b></font>"
 
