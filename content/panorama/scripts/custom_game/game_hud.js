@@ -695,5 +695,11 @@ DelayStateInit(GAME_STATE_ROUND_IN_PROGRESS, function () {
         }
     });
 
-    GameUI.SetMouseCallback(MouseCallback);
+    var localInfo = Game.GetPlayerInfo(Game.GetLocalPlayerID()) || {};
+    var localTeam = localInfo.player_team_id || -1;
+    var spectator = localTeam == -1;
+
+    if (!spectator) {
+        GameUI.SetMouseCallback(MouseCallback);
+    }
 });
