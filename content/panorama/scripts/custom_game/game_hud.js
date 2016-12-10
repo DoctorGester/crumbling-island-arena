@@ -638,7 +638,7 @@ function MouseCallback(event, button) {
 }
 
 function UpdateAttackTip() {
-    $("#AttackTipContainer").SetHasClass("Hidden",  attacksRequested > 200);
+    $("#AttackTipContainer").SetHasClass("Hidden", !newPlayer || attacksRequested > 200);
 }
 
 function PlayersUpdated(data) {
