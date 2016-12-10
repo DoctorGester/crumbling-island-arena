@@ -44,6 +44,7 @@
 			m_flAddSelfAmount = 2.0
 			m_flOverbrightFactor = 6.0
 			m_hTexture = resource:"materials/particle/electrical_arc2/electrical_arc_2_05.vtex"
+			m_bDisableOperator = true
 		},
 	]
 	m_Initializers = 

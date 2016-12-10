@@ -100,5 +100,5 @@
 			m_flEmitRate = 151.0
 		},
 	]
-	m_ConstantColor = [ 60, 87, 226, 255 ]
+	m_ConstantColor = [ 59, 114, 226, 255 ]
 }
