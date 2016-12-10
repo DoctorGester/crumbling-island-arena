@@ -17,9 +17,17 @@ if IsServer() then
         hero:FindAbility("gyro_w"):StartCooldown(hero:FindAbility("gyro_w"):GetCooldown(1))
     end
 
-    function self:OnDamageReceived(source, hero)
-        hero:EmitSound("Arena.Gyro.HitW")
-        self:Destroy()
+    function self:OnDamageReceived(source, hero, amount)
+        self.health = (self.health or 2) - amount
+
+        if self.health <= 0 then
+            hero:EmitSound("Arena.Gyro.HitW")
+            self:Destroy()
+        end
+
+        if self.health < 0 then
+            return -self.health
+        end
 
         return false
     end
