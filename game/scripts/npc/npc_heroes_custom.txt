@@ -1032,6 +1032,11 @@
 		"Ability7" "ursa_a"
 
 		"Ultimate" "ursa_r"
+
+		"CustomIcons"
+		{
+			"ursa_e" "ursa_e.png"
+		}
 	}
 
 	"npc_dota_hero_brewmaster"
