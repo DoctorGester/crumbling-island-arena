@@ -50,6 +50,7 @@ function EntityStormQ:CollideWith()
     self.collisionType = COLLISION_TYPE_NONE
     self.explosionStart = GameRules:GetGameTime()
     self:GetUnit():StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 0.7)
+    self:EmitSound("Arena.Storm.LoopQ")
 end
 
 function EntityStormQ:Remove()
@@ -60,6 +61,8 @@ function EntityStormQ:Remove()
         ParticleManager:DestroyParticle(self.rangeIndicator, false)
         ParticleManager:ReleaseParticleIndex(self.rangeIndicator)
     end
+
+    self:StopSound("Arena.Storm.LoopQ")
 
     getbase(EntityStormQ).Remove(self)
 end
