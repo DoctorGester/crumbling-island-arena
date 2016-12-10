@@ -1,5 +1,11 @@
 ursa_a = class({})
 
+function ursa_a:OnAbilityPhaseStart()
+    self:GetCaster():GetParentEntity():EmitSound("Arena.Ursa.PreA")
+
+    return true
+end
+
 function ursa_a:GetCooldown(level)
     return self:GetCaster():HasModifier("modifier_ursa_w") and 0.1 or self.BaseClass.GetCooldown(self, level)
 end
