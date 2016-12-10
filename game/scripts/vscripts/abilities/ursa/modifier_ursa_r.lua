@@ -10,8 +10,7 @@ end
 
 function modifier_ursa_r:CheckState()
     local state = {
-        [MODIFIER_STATE_MAGIC_IMMUNE] = true,
-        [MODIFIER_STATE_NO_HEALTH_BAR] = true
+        [MODIFIER_STATE_MAGIC_IMMUNE] = true
     }
 
     return state
