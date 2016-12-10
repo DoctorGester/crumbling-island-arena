@@ -52,7 +52,6 @@
 		},
 		{
 			_class = "C_INIT_CreateWithinSphere"
-			m_nControlPointNumber = 3
 		},
 		{
 			_class = "C_INIT_PositionOffset"
