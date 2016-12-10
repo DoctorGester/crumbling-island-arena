@@ -49,6 +49,7 @@ function EntityStormQ:CollideWith()
 
     self.collisionType = COLLISION_TYPE_NONE
     self.explosionStart = GameRules:GetGameTime()
+    self:GetUnit():StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 0.7)
 end
 
 function EntityStormQ:Remove()
