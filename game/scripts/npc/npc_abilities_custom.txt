@@ -129,9 +129,22 @@
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/storm_spirit/storm_spirit_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName" "storm_spirit_static_remnant"
-		"AbilityCooldown" "0.1"
+		"AbilityTextureName" "storm_spirit_electric_vortex"
+		"AbilityCooldown" "5.0"
 		"Damage" "3"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "600"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "600"
+		}
+
 	}
 
 	"storm_spirit_e"
@@ -140,6 +153,7 @@
 		"ScriptFile" "abilities/storm_spirit/storm_spirit_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "storm_spirit_ball_lightning"
+		"AbilityCooldown" "2.0"
 
 		"precache"
 		{
@@ -153,7 +167,7 @@
 		"ScriptFile" "abilities/storm_spirit/storm_spirit_r"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName" "storm_spirit_electric_vortex"
+		"AbilityTextureName" "storm_spirit_static_remnant"
 		"AbilityCooldown" "12.0"
 	}
 
