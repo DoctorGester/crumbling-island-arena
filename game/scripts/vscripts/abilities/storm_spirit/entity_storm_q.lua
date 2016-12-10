@@ -39,6 +39,8 @@ function EntityStormQ:Update()
             damage = self.ability:GetDamage()
         })
 
+        ScreenShake(self:GetPos(), 5, 150, 0.15, 3000, 0, true)
+
         self:Destroy()
     end
 end
