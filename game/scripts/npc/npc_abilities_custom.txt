@@ -177,7 +177,7 @@
 		"ScriptFile" "abilities/zeus/zeus_a"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "zuus_arc_lightning"
-		"AbilityCooldown" "0.85"
+		"AbilityCooldown" "0.7"
 		"AbilityCastPoint" "0.15"
 		"Damage" "1"
 
@@ -202,7 +202,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "zuus_lightning_bolt"
 		"AbilityCooldown" "3.2"
-		"AbilityCastPoint" "0.75"
+		"AbilityCastPoint" "0.6"
 		"Damage" "3"
 
 		"TargetingIndicator"

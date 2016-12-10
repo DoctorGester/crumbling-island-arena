@@ -73,8 +73,7 @@ function zeus_r:OnChannelFinish(interrupted)
     local target = self.target
 
     hero:SetHidden(false)
-    hero:FindClearSpace(target, true)
-    hero:EmitSound("Arena.Zeus.HitR")
+    hero:GetUnit():StartGestureWithPlaybackRate(ACT_DOTA_TELEPORT_END, 1.5)
 
     if self.marker then
         ParticleManager:DestroyParticle(self.marker, false)
@@ -82,6 +81,13 @@ function zeus_r:OnChannelFinish(interrupted)
     end
 
     self.marker = nil
+
+    if interrupted then
+        return
+    end
+
+    hero:FindClearSpace(target, true)
+    hero:EmitSound("Arena.Zeus.HitR")
 
     FX("particles/units/heroes/hero_zuus/zuus_thundergods_wrath.vpcf", PATTACH_CUSTOMORIGIN, hero, {
         cp0 = hero:GetPos() + Vector(0, 0, 2000),
@@ -97,13 +103,11 @@ function zeus_r:OnChannelFinish(interrupted)
 
     ScreenShake(hero:GetPos(), 5, 150, 0.35, 4000, 0, true)
 
-    hero:GetUnit():StartGestureWithPlaybackRate(ACT_DOTA_TELEPORT_END, 1.5)
-
     hero:AreaEffect({
         filter = Filters.Area(target, 300),
         damage = self:GetDamage(),
         sound = "Arena.Zeus.HitE",
-        modifier = { name = "modifier_zeus_a", duration = 1.6, ability = self }
+        modifier = { name = "modifier_zeus_a", duration = 2.5, ability = self }
     })
 end
 

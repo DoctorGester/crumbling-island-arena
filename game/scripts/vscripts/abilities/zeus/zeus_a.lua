@@ -27,7 +27,7 @@ function zeus_a:OnSpellStart()
         filter = Filters.Line(hero:GetPos(), target, 32),
         damage = self:GetDamage(),
         sound = "Arena.Zeus.HitE",
-        modifier = { name = "modifier_zeus_a", duration = 1.6, ability = self },
+        modifier = { name = "modifier_zeus_a", duration = 2.5, ability = self },
         isPhysical = true
     })
 
