@@ -151,7 +151,7 @@ function HeroSelection:AssignRandomHero(player)
     player.selectedHero = table[RandomInt(0, index - 1)]
 
     self.PreviousRandomed[player.id] = player.selectedHero
-    self.Chat:PlayerRandomed(player.id, player.selectedHero, self.AllowSameHeroPicks and self.SelectionTimer > 0)
+    self.Chat:PlayerRandomed(player.id, player.selectedHero, self.HiddenPick and self.SelectionTimer > 0)
 end
 
 function HeroSelection:AssignRandomHeroes()
