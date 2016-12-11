@@ -105,6 +105,11 @@ function Hero:LoadWearables()
             if passBase or elite or passLevel then
                 processIgnore(entry)
 
+                if entry.style then
+                    local pair = entry.style:split(":")
+                    table.insert(result, { id = tonumber(pair[1]), style = tonumber(pair[2]) })
+                end
+
                 if entry.set then
                     table.insert(result, entry.set)
                 end

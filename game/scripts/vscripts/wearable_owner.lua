@@ -21,6 +21,7 @@ end
 function WearableOwner:LoadItems(...)
     local items = self:FindDefaultItems()
     local ignored = {}
+    local styles = {}
 
     for _, arg in pairs({ ... }) do
         if type(arg) == "number" then
@@ -41,7 +42,9 @@ function WearableOwner:LoadItems(...)
         end
 
         if type(arg) == "table" then
-            if type(arg.ignore) == "number" then
+            if type(arg.style) == "number" and type(arg.id) == "number" then
+                styles[arg.id] = arg.style
+            elseif type(arg.ignore) == "number" then
                 ignored[arg.ignore] = true
             else
                 for slot, item in pairs(arg) do
@@ -52,17 +55,17 @@ function WearableOwner:LoadItems(...)
     end
 
     local sessionWearables = {}
-
+PrintTable(styles)
     for slot, item in pairs(items) do
         if not item.id or not ignored[item.id] then
             if item.model_player then
                 local wearable = self:AttachWearable(item.model_player)
-                self:AttachVisuals(wearable, item.visuals or {})
+                self:AttachVisuals(wearable, item.visuals or {}, styles[item.id])
 
                 table.insert(sessionWearables, wearable)
                 self.wearableSlots[slot] = wearable
             else
-                self:AttachVisuals(self:GetUnit(), item.visuals or {})
+                self:AttachVisuals(self:GetUnit(), item.visuals or {}, styles[item.id])
             end
         end
     end
@@ -70,17 +73,17 @@ function WearableOwner:LoadItems(...)
     return sessionWearables
 end
 
-function WearableOwner:AttachVisuals(wearable, visuals)
+function WearableOwner:AttachVisuals(wearable, visuals, style)
     local attachTypes = {
         customorigin = PATTACH_CUSTOMORIGIN,
         point_follow = PATTACH_POINT_FOLLOW,
         absorigin_follow = PATTACH_ABSORIGIN_FOLLOW
     }
-
+print("style", style)
     local particleCreateQueue = {}
 
     for name, visual in pairs(visuals) do
-        if string.find(name, "asset_modifier") then
+        if string.find(name, "asset_modifier") and (style == nil or visual.style == style) then
             local t = visual.type
 
             if t == "particle_create" then

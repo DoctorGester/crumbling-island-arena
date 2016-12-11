@@ -44,6 +44,7 @@
             "type" "elite"
             "season" "2"
             "set" "invoker_dark_artistry"
+            "style" "7986:0"
         }
 
         "2"
