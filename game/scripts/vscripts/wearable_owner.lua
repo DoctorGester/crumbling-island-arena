@@ -79,7 +79,7 @@ function WearableOwner:AttachVisuals(wearable, visuals, style)
         point_follow = PATTACH_POINT_FOLLOW,
         absorigin_follow = PATTACH_ABSORIGIN_FOLLOW
     }
-print("style", style)
+
     local particleCreateQueue = {}
 
     for name, visual in pairs(visuals) do

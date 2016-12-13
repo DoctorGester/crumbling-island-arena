@@ -1311,10 +1311,7 @@ function GameMode:OnGameInProgress()
     self:AssignBannedHeroes()
     self:UpdateAvailableHeroesTable()
     self:NetworkCosmetics()
-
-    Timers:CreateTimer(2, function()
-        self:Start()
-    end)
+    self:Start()
 end
 
 function GameMode:Start()

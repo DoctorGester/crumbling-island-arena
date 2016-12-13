@@ -265,7 +265,7 @@
 {
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 240);
+    background-color: rgba(0, 0, 0, 0.94);
     font-size: 16px;
     padding: 6px 3px 5px 3px;
     color: white;

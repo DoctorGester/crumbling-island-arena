@@ -12,9 +12,9 @@ var cosmeticAbilityBar = null;
 var attacksRequested = 0;
 var newPlayer = false;
 
-GameUI.SetCameraPitchMin(60);
-GameUI.SetCameraPitchMax(60);
-GameUI.SetCameraLookAtPositionHeightOffset(100);
+//GameUI.SetCameraPitchMin(0);
+//GameUI.SetCameraPitchMax(0);
+//GameUI.SetCameraLookAtPositionHeightOffset(0);
 GameUI.GameChat = $("#GameChat");
 
 function AddChatLine(hero, playerName, color, message, team, wasTopPlayer, hasPass) {
@@ -105,7 +105,7 @@ function OnKillLogEntry(args) {
     var entry = $.CreatePanel("Panel", log, "");
     entry.AddClass("KillLogEntry");
     entry.AddClass("KillLogEntryAppear");
-    entry.style.backgroundColor = LuaColorA(args.color, 128);
+    entry.style.backgroundColor = LuaColorA(args.color, 0.5);
 
     if (last != null) {
         log.MoveChildBefore(entry, last);
@@ -153,9 +153,6 @@ function SetupUI(){
     GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_MENU_BUTTONS, false);
     GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_ENDGAME, false);
     GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_ENDGAME_CHAT, false);
-
-    GameUI.SetRenderBottomInsetOverride(0);
-    GameUI.SetRenderTopInsetOverride(0);
 }
 
 function GetLocalHero(){
@@ -224,7 +221,7 @@ function LoadCustomIcons(){
 }
 
 function UpdateUI(){
-    $.Schedule(0.025, UpdateUI);
+    $.Schedule(1 / 144, UpdateUI);
 
     var localHero = GetLocalHero();
 

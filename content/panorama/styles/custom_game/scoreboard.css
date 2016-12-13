@@ -112,7 +112,7 @@
     color: gold;
     border-radius: 3px;
     padding: 2px 40px 2px 40px;
-    background-color: rgba(0, 0, 0, 100);
+    background-color: rgba(0, 0, 0, 0.4);
     /*width: 100%;*/
     text-align: center;
 }

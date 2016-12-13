@@ -292,6 +292,8 @@ function AbilityButton(parent, hero, ability) {
     };
 
     this.SetCooldown = function(remaining, cd, ready, activated) {
+        this.inside.SetHasClass("AbilityButtonInsideOnCooldown", !ready);
+
         if (ready && activated) {
             this.image.SetHasClass("AbilityButtonEnabled", true);
             this.image.SetHasClass("AbilityButtonDeactivated", false);
@@ -315,6 +317,10 @@ function AbilityButton(parent, hero, ability) {
 
         if (!ready){
             text = remaining.toFixed(1);
+        }
+
+        if (progress == 0) {
+            progress = -360;
         }
 
         if (remaining == 0 && activated) {

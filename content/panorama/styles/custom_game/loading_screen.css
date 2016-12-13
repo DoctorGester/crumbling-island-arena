@@ -32,7 +32,7 @@ Label
     align: center bottom;
     margin-bottom: 180px;
     height: 80px;
-    background-color: rgba(0, 0, 0, 130);
+    background-color: rgba(0, 0, 0, 0.51);
     width: 100%;
 }
 
@@ -48,7 +48,7 @@ Label
     border-radius: 3px;
     //box-shadow: #111111 -2px -2px 4px 4px;
     //border: 1px solid skyblue;
-    background-color: rgba(0, 0, 0, 190);
+    background-color: rgba(0, 0, 0, 0.75);
     margin: 10px;
 }
 
@@ -313,7 +313,7 @@ Label
 {
     align: center bottom;
     width: 100%;
-    background-color: rgba(0, 0, 0, 220);
+    background-color: rgba(0, 0, 0, 0.86);
 }
 
 .RankedModeName
@@ -405,5 +405,5 @@ Label
     border-radius: 50%;
     tooltip-position: top;
     tooltip-body-position: 50% 100%;
-    background-color: rgba(0, 255, 255, 5);
+    background-color: rgba(0, 255, 255, 0.02);
 }

@@ -75,7 +75,7 @@
 
 .GameSetupDialog
 {
-    background-color: rgba(29, 39, 46, 240);
+    background-color: rgba(29, 39, 46, 0.94);
     width: 50%;
     border-radius: 3px;
     box-shadow: -4px -4px 8px 8px black;
@@ -206,7 +206,7 @@
     border-radius: 50%;
     tooltip-position: left;
     tooltip-body-position: 100% 50%;
-    background-color: rgba(0, 255, 255, 5);
+    background-color: rgba(0, 255, 255, 0.02);
 
     animation-duration: 0.3s;
     animation-timing-function: ease-out;

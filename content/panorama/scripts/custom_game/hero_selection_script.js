@@ -397,12 +397,14 @@ function CreateHeroList(heroList, heroes, quests, selectedHeroes, achievements, 
             }*/
 
             var button = {
+                tag: "Button",
                 class: [
                     "HeroButtonContainer",
                     newPlayer ? "NewPlayer" : null,
                     eliteHeroes.indexOf(hero) !== -1 ? "HeroButtonElite" : null,
                     hide ? "Hidden" : null
-                ]
+                ],
+                tabindex: "auto"
             };
 
             if (currentRow == randomButtonRow - 1 && (j - i) == Math.floor(heroesInRow / 2) && !randomAdded) {

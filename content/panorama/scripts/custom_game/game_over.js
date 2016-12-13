@@ -16,7 +16,7 @@ function AddTableHeaders(row, cl) {
 function AddTableCell(row, color, callback) {
     var panel = $.CreatePanel("Panel", row, "");
     panel.AddClass("TableCell");
-    panel.style.backgroundColor = LuaColorA(color, 200);
+    panel.style.backgroundColor = LuaColorA(color, 0.78);
 
     callback(panel);
 
