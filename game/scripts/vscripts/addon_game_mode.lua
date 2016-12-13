@@ -54,20 +54,10 @@ if GameMode == nil then
 end
 
 function Precache(context)
-    PrecacheResource("particle", "particles/cracks.vpcf", context)
-    PrecacheResource("particle", "particles/targeting/aoe.vpcf", context)
-    PrecacheResource("particle", "particles/targeting/cone.vpcf", context)
-    PrecacheResource("particle", "particles/targeting/line.vpcf", context)
-    PrecacheResource("particle", "particles/targeting/thick_line.vpcf", context)
-    PrecacheResource("particle", "particles/targeting/half_circle.vpcf", context)
-    PrecacheResource("particle", "particles/targeting/range.vpcf", context)
-    PrecacheResource("particle", "particles/targeting/global_target.vpcf", context)
-    PrecacheResource("particle", "particles/aoe_marker.vpcf", context)
-    PrecacheResource("particle", "particles/econ/courier/courier_kunkka_parrot/courier_kunkka_parrot_splash.vpcf", context)
-    PrecacheResource("particle", "particles/dire_fx/bad_ancient_ambient.vpcf", context)
-
-    PrecacheResource("particle", "particles/pugna/weapon_glow.vpcf", context)
-    PrecacheResource("particle", "particles/pugna/ambient.vpcf", context)
+    for _, path in pairs(require('particles')) do
+        PrecacheResource("particle", path, context)
+        print("Precaching", path)
+    end
 
     PrecacheResource("model", "models/development/invisiblebox.vmdl", context)
     PrecacheResource("particle", "particles/ui/ui_generic_treasure_impact.vpcf", context)
