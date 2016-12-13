@@ -85,53 +85,55 @@ function Precache(context)
     for _, data in pairs(heroes) do
         PrecacheUnitByNameSync(data.override_hero, context)
 
-        local allItems = {}
-        local wearableOwnerProxy = {
-            GetName = function() return data.override_hero end
-        }
+        if not data.Disabled or data.Disabled == "false" then
+            local allItems = {}
+            local wearableOwnerProxy = {
+                GetName = function() return data.override_hero end
+            }
 
-        for _, item in pairs(WearableOwner.FindDefaultItems(wearableOwnerProxy)) do
-            table.insert(allItems, item)
-        end
+            for _, item in pairs(WearableOwner.FindDefaultItems(wearableOwnerProxy)) do
+                table.insert(allItems, item)
+            end
 
-        local shortName = data.override_hero:sub(("npc_dota_hero_"):len() + 1)
-        local cosmetics = Cosmetics[shortName]
+            local shortName = data.override_hero:sub(("npc_dota_hero_"):len() + 1)
+            local cosmetics = Cosmetics[shortName]
 
-        if cosmetics then
-            for _, entry in pairs(cosmetics) do
-                if type(entry) == "table" then
-                    if entry.set then
-                        for _, item in pairs(WearableOwner.FindSetItems(nil, entry.set) or {}) do
-                            table.insert(allItems, item)
-                        end
-                    end
-
-                    if entry.item then
-                        for _, item in pairs(tostring(entry.item):split(",")) do
-                            local realItem = GameItems.items[item]
-
-                            if realItem then
-                                table.insert(allItems, realItem)
+            if cosmetics then
+                for _, entry in pairs(cosmetics) do
+                    if type(entry) == "table" then
+                        if entry.set then
+                            for _, item in pairs(WearableOwner.FindSetItems(nil, entry.set) or {}) do
+                                table.insert(allItems, item)
                             end
                         end
-                    end
 
-                    for _, path in pairs(entry.particles or {}) do
-                        cosmeticsParticles[path] = true
+                        if entry.item then
+                            for _, item in pairs(tostring(entry.item):split(",")) do
+                                local realItem = GameItems.items[item]
+
+                                if realItem then
+                                    table.insert(allItems, realItem)
+                                end
+                            end
+                        end
+
+                        for _, path in pairs(entry.particles or {}) do
+                            cosmeticsParticles[path] = true
+                        end
                     end
                 end
             end
-        end
 
-        for _, item in pairs(allItems) do
-            if item.model_player then
-                PrecacheModel(item.model_player, context)
-                print("Precaching", item.model_player)
-            end
+            for _, item in pairs(allItems) do
+                if item.model_player then
+                    PrecacheModel(item.model_player, context)
+                    print("Precaching", item.model_player)
+                end
 
-            for name, visual in pairs(item.visuals or {}) do
-                if string.find(name, "asset_modifier") and visual.type == "particle" then
-                    cosmeticsParticles[visual.modifier] = true
+                for name, visual in pairs(item.visuals or {}) do
+                    if string.find(name, "asset_modifier") and visual.type == "particle" then
+                        cosmeticsParticles[visual.modifier] = true
+                    end
                 end
             end
         end
