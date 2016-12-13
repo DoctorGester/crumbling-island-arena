@@ -131,8 +131,15 @@ function Precache(context)
                 end
 
                 for name, visual in pairs(item.visuals or {}) do
-                    if string.find(name, "asset_modifier") and visual.type == "particle" then
-                        cosmeticsParticles[visual.modifier] = true
+                    if string.find(name, "asset_modifier") then
+                        if visual.type == "particle" or visual.type == "particle_create" then
+                            cosmeticsParticles[visual.modifier] = true
+                        end
+
+                        if visual.type == "additional_wearable" then
+                            PrecacheModel(visual.asset, context)
+                            print("Precaching additional", visual.asset)
+                        end
                     end
                 end
             end
