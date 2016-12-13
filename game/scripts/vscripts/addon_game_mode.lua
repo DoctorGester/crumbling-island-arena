@@ -54,6 +54,8 @@ if GameMode == nil then
 end
 
 function Precache(context)
+    print("Precaching code particles")
+
     for _, path in pairs(require('particles')) do
         PrecacheResource("particle", path, context)
         print("Precaching", path)
@@ -76,6 +78,9 @@ function Precache(context)
     _G.Cosmetics = LoadKeyValues("scripts/npc/cosmetics.txt")
 
     local heroes = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
+    local cosmeticsParticles = {}
+
+    print("Precaching cosmetic models")
 
     for _, data in pairs(heroes) do
         PrecacheUnitByNameSync(data.override_hero, context)
@@ -110,6 +115,10 @@ function Precache(context)
                             end
                         end
                     end
+
+                    for _, path in pairs(entry.particles or {}) do
+                        cosmeticsParticles[path] = true
+                    end
                 end
             end
         end
@@ -119,7 +128,19 @@ function Precache(context)
                 PrecacheModel(item.model_player, context)
                 print("Precaching", item.model_player)
             end
+
+            for name, visual in pairs(item.visuals or {}) do
+                if string.find(name, "asset_modifier") and visual.type == "particle" then
+                    cosmeticsParticles[visual.modifier] = true
+                end
+            end
         end
+    end
+
+    print("Precaching cosmetic particles")
+    for path, _ in pairs(cosmeticsParticles) do
+        PrecacheResource("particle", path, context)
+        print("Precaching", path)
     end
 
     local units = LoadKeyValues("scripts/npc/npc_units_custom.txt")
