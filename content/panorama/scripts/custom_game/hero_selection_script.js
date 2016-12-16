@@ -49,7 +49,7 @@ function PreloadPreview(hero, value, insertFirst) {
 }
 
 function PreloadHeroPreview(hero) {
-    heroPreviews[hero] = PreloadPreview(hero, "<DOTAScenePanel antialias='true' class='HeroPreviewScene' unit='" + hero + "'/>");
+    heroPreviews[hero] = PreloadPreview(hero, "<DOTAScenePanel antialias='true' class='HeroPreviewScene' unit='" + hero + "' always-cache-composition-layer='true'/>");
 }
 
 function PreloadHeroPreviews(heroes) {
@@ -63,7 +63,7 @@ function PreloadHeroPreviews(heroes) {
 function PreloadAwardPreview(hero, season) {
     HidePreview(hero);
 
-    heroAwards[hero] = PreloadPreview(hero, "<DOTAScenePanel antialias='true' class='HeroPreviewScene' light='light' camera='default' map='maps/rewards/" + season + "'/>", true);
+    heroAwards[hero] = PreloadPreview(hero, "<DOTAScenePanel antialias='true' class='HeroPreviewScene' light='light' camera='default' map='maps/rewards/" + season + "' always-cache-composition-layer='true'/>", true);
     heroPreviews[hero] = heroAwards[hero];
 }
 

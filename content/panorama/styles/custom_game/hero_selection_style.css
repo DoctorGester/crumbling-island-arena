@@ -19,7 +19,6 @@
 
 #HeroSelectionBackgroundScene
 {
-    blur: gaussian( 2, 2, 1 );
     width: 50%;
     height: 51%;
     pre-transform-scale2d: 2;

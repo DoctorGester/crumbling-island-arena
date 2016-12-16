@@ -356,6 +356,8 @@ function GameStateChanged(data){
         $("#RoundMessageTop").RemoveClass("RoundMessageTopAnimation");
         $("#RoundMessageBottom").RemoveClass("RoundMessageBottomAnimation");
     }
+
+    UpdateAttackTip();
 }
 
 function GameInfoChanged(data){
@@ -641,7 +643,9 @@ function MouseCallback(event, button) {
 }
 
 function UpdateAttackTip() {
-    $("#AttackTipContainer").SetHasClass("Hidden", !newPlayer || attacksRequested > 200);
+    var state = CustomNetTables.GetTableValue("main", "gameState").state;
+
+    $("#AttackTipContainer").SetHasClass("Hidden", !newPlayer || attacksRequested > 200 || state != GAME_STATE_ROUND_IN_PROGRESS);
 }
 
 function UpdateLocalNewPlayer(data) {
