@@ -621,11 +621,11 @@ end
 
 function GameMode:OnCustomPing(_, args)
     if self.State == STATE_ROUND_IN_PROGRESS and args.position then
-        local path = "particles/ui_mouseactions/ping_world.vpcf"
+        local path = "particles/ping_world_custom.vpcf"
         local sound = "General.Ping"
 
         if args.danger == 1 then
-            path = "particles/ui_mouseactions/ping_danger.vpcf"
+            path = "particles/ping_danger_custom.vpcf"
             sound = "General.PingWarning"
         end
 
@@ -660,7 +660,7 @@ function GameMode:OnCustomPing(_, args)
         local p = args.position
         local target = Vector(p["0"], p["1"], 0)
 
-        local index = ParticleManager:CreateParticleForTeam(path, PATTACH_CUSTOMORIGIN, PlayerResource:GetSelectedHeroEntity(args.PlayerID), team)
+        local index = ParticleManager:CreateParticleForTeam(path, PATTACH_CUSTOMORIGIN, GameRules:GetGameModeEntity(), team)
         ParticleManager:SetParticleControl(index, 0, target)
         ParticleManager:SetParticleControl(index, 1, Vector(color[1], color[2], color[3]) / 255)
         ParticleManager:ReleaseParticleIndex(index)
