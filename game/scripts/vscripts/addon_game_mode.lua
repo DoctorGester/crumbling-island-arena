@@ -524,6 +524,10 @@ function GameMode:InitEvents()
     ListenToGameEvent('game_rules_state_change', Dynamic_Wrap(self, 'EventStateChanged'), self)
     ListenToGameEvent('npc_spawned', Dynamic_Wrap(self, 'OnNpcSpawned'), self)
     ListenToGameEvent('entity_killed', Dynamic_Wrap(self, 'OnEntityKilled'), self)
+
+    CustomGameEventManager:RegisterListener("custom_ping", function(...)
+        self:OnCustomPing(...);
+    end)
 end
 
 function GameMode:InitModifiers()
@@ -591,6 +595,8 @@ function GameMode:SetupMode()
 
     self.cameraDummy = CreateUnitByName("npc_dummy_unit", Vector(-550, 500, 0), false, nil, nil, DOTA_TEAM_NOTEAM)
     self.lastOrders = {}
+    self.lastPings = {}
+    self.lastPingTimes = {}
 end
 
 function GameMode:GetTeamScore(team)
@@ -611,6 +617,56 @@ end
 
 function GameMode:SendFirstBloodMessage(victim)
     CustomGameEventManager:Send_ServerToAllClients("kill_message", { victim = victim, token = "KMFirstBlood", sound = "UI.FirstBlood" })
+end
+
+function GameMode:OnCustomPing(_, args)
+    if self.State == STATE_ROUND_IN_PROGRESS and args.position then
+        local path = "particles/ui_mouseactions/ping_world.vpcf"
+        local sound = "General.Ping"
+
+        if args.danger == 1 then
+            path = "particles/ui_mouseactions/ping_danger.vpcf"
+            sound = "General.PingWarning"
+        end
+
+        local lastPing = self.lastPings[args.PlayerID] or {}
+        local amount = lastPing.amount or 0
+        local now = Time()
+        local time = lastPing.time or now
+        local lastTime = self.lastPingTimes[args.PlayerID] or 0
+
+        if now - lastTime < 0.2 then
+            return
+        end
+
+        self.lastPingTimes[args.PlayerID] = now
+
+        if now - time < 3 then
+            if amount > 5 then
+                return
+            end
+        else
+            time = now
+            amount = 0
+        end
+
+        lastPing.time = time
+        lastPing.amount = amount + 1
+
+        self.lastPings[args.PlayerID] = lastPing
+
+        local team = self.Players[args.PlayerID].team
+        local color = self.TeamColors[team]
+        local p = args.position
+        local target = Vector(p["0"], p["1"], 0)
+
+        local index = ParticleManager:CreateParticleForTeam(path, PATTACH_CUSTOMORIGIN, GameRules:GetGameModeEntity(), team)
+        ParticleManager:SetParticleControl(index, 0, target)
+        ParticleManager:SetParticleControl(index, 1, Vector(color[1], color[2], color[3]) / 255)
+        ParticleManager:ReleaseParticleIndex(index)
+
+        EmitSoundOnLocationForAllies(target, sound, PlayerResource:GetSelectedHeroEntity(args.PlayerID))
+    end
 end
 
 function GameMode:RecordKill(victim, source, fell)

@@ -540,9 +540,15 @@ function MouseCallback(event, button) {
         return false;
     }
 
+    var position = GameUI.GetScreenWorldPosition(GameUI.GetCursorPosition());
+
+    if (GameUI.IsAltDown() && position) {
+        GameEvents.SendCustomGameEventToServer("custom_ping", { position: position, danger: GameUI.IsControlDown() });
+        return true;
+    }
+
     if (event === "pressed" || (event === "doublepressed" && !debug)) {
         var localHero = GetLocalHero();
-        var position = GameUI.GetScreenWorldPosition(GameUI.GetCursorPosition());
         var target = GetMouseCastTarget();
 
         if (!position || !localHero) {
