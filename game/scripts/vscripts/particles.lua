@@ -447,5 +447,7 @@ return {
     "particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf",
     "particles/units/heroes/hero_zuus/zuus_thundergods_wrath.vpcf",
     "particles/zeus_r/zeus_r.vpcf",
-    "particles/zeus_w2/zeus_w2.vpcf"
+    "particles/zeus_w2/zeus_w2.vpcf",
+    "particles/ping_world_custom.vpcf",
+    "particles/ping_danger_custom.vpcf"
 }
