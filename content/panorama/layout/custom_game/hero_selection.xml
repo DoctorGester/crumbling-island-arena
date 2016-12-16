@@ -14,8 +14,8 @@
         <include src="file://{resources}/scripts/custom_game/hero_selection_script.js" />
     </scripts>
     <Panel class="MainPanel" hittest="false">
-        <Panel id="HeroSelectionBackground">
-            <DOTAScenePanel id="HeroSelectionBackgroundScene" map="maps/backgrounds/dashboard_test.vmap" camera="shot_cameraC"/>
+        <Button id="HeroSelectionBackground">
+            <DOTAScenePanel id="HeroSelectionBackgroundScene" map="maps/backgrounds/dashboard_test.vmap" camera="shot_cameraC" onactivate="DropInputFocus()"/>
             <Panel id="HeroSelectionTopGradient" hittest="false"/>
 
             <DOTAScenePanel id="HeroSelectedRays" class="Hidden" hittest="false" map="scenes/loadout_preview_rays" camera="camera_1"/>
@@ -45,7 +45,7 @@
                 <Label class="BlueLabel" text="#HeroListHeader" hittest="false"></Label>
                 <Panel id="DifficultyList" hittest="false">
                     <Panel id="EasyHeroes" class="HeroButtons" hittest="false"/>
-                    <Panel id="HardHeroes" class="HeroButtons" hittest="false"/>
+                    <Panel id="HardHeroes" class="HeroButtons" hittest="false" disallowedstyleflags="hover,descendantfocus"/>
                 </Panel>
                 <Button id="ShowAllHeroesButton" onactivate="ShowAllHeroes()"><Label text="#ShowAllHeroes"></Label></Button>
                 <Label id="TimerText" hittest="false"></Label>
@@ -65,14 +65,8 @@
             <DOTAStoreItem id="PassNotOwned" itemdef="17172"/>
 
             <Panel id="HeroSelectionChat"/>
-            <Panel id="PauseOverlay">
-                <Panel>
-                    <Label id="PauseText" text="#GamePaused"/>
-                    <Label id="PauseTip" text="#PauseTip"/>
-                </Panel>
-            </Panel>
 
             <DOTAHudMenuButtons/>
-        </Panel>
+        </Button>
     </Panel>
 </root>

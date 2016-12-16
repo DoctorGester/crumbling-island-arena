@@ -652,44 +652,6 @@
     sound: "UI.SelectHero";
 }
 
-#PauseOverlay
-{
-    y: 64px;
-    width: 100%;
-    height: 100%;
-    background-color: #33333344;
-    visibility: collapse;
-}
-
-#PauseOverlay Panel
-{
-    flow-children: down;
-    align: center center;
-    background-color: rgba(33, 33, 33, 0.92);
-    padding: 40px;
-    border-radius: 3px;
-    //border: 1px solid #77;
-    box-shadow: 0px 0px 4px #555555;
-}
-
-#PauseText
-{
-    font-size: 96;
-    align: center center;
-    color: red;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
-}
-
-#PauseTip
-{
-    font-size: 36;
-    align: center center;
-    color: white;
-    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
-}
-
 @keyframes 'PointsAnimation'
 {
     0%

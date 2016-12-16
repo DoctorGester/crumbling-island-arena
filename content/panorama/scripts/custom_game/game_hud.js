@@ -656,6 +656,37 @@ function UpdateLocalNewPlayer(data) {
     UpdateAttackTip();
 }
 
+var lastShowTime;
+
+function ShowGameChat() {
+    lastShowTime = Game.Time();
+    $.DispatchEvent("SetInputFocus", $("#GameChatEntry"));
+    $("#GameChat").SetHasClass("Hidden", false);
+    $("#GameChatTarget").text = $.Localize(GameUI.IsShiftDown() ? "#ChatAll" : "#ChatTeam");
+}
+
+function HideGameChat() {
+    $("#GameChat").SetHasClass("Hidden", true);
+    $.DispatchEvent("DropInputFocus", $("#GameChat"));
+}
+
+function SubmitGameChat() {
+    var time = Game.Time();
+    var entry = $("#GameChatEntry");
+    if (entry.text.length == 0 && entry.BCanSeeInParentScroll() && Game.Time() - (lastShowTime || time) > 0.1) {
+        HideGameChat();
+        return;
+    }
+
+    if (entry.text === "-ping") {
+        Game.ServerCmd("dota_ping");
+    } else {
+        GameEvents.SendCustomGameEventToServer("custom_chat_say", { message: entry.text, team: !GameUI.GameChat.shiftHeld });
+    }
+
+    entry.text = "";
+}
+
 SetupUI();
 
 DelayStateInit(GAME_STATE_ROUND_IN_PROGRESS, function () {
@@ -680,15 +711,11 @@ DelayStateInit(GAME_STATE_ROUND_IN_PROGRESS, function () {
     GameEvents.Subscribe("dm_respawn_event", DeathMatch.OnRespawn);
     GameEvents.Subscribe("dm_death_event", DeathMatch.OnDeath);
 
-    // We can't completely lose focus without deleting the element which has it
     AddEnterListener("GameHudChatEnter", function() {
         var state = CustomNetTables.GetTableValue("main", "gameState").state;
 
         if (state == GAME_STATE_ROUND_IN_PROGRESS || state == GAME_STATE_ROUND_ENDED) {
-            GameUI.GameChat.shiftHeld = GameUI.IsShiftDown();
-            $("#GameChatEntryContainer").BLoadLayout("file://{resources}/layout/custom_game/chat.xml", true, true);
-            $("#GameChatEntry").SetFocus();
-            $("#GameChat").RemoveClass("ChatHidden");
+            ShowGameChat();
         }
     });
 

@@ -58,10 +58,6 @@
                 </Panel>
             </Panel>
             <Panel id="KillLog" class="KillLogTransform" hittest="false" hittestchildren="false"/>
-            <Panel id="GameChat" hittestchildren="false" hittest="false">
-                <Panel id="GameChatContent" class="ChatHidden" hittest="false"/>
-                <Panel id="GameChatEntryContainer"/>
-            </Panel>
             <Label id="RoundMessageTop" class="RoundMessage" text="#Round" hittest="false"/>
             <Label id="RoundMessageBottom" class="RoundMessage" hittest="false"/>
 
@@ -117,6 +113,20 @@
                         <Panel id="DeathMatchHeroesContentHard" class="DeathMatchHeroList"/>
                     </Panel>
                 </Panel>
+            </Panel>
+            <Panel id="GameChat" class="Hidden" hittest="false">
+                <Panel id="GameChatContent" hittest="false"/>
+                <TextEntry
+                        id="GameChatEntry"
+                        multiline="false"
+                        textmode="normal"
+                        oninputsubmit="SubmitGameChat()"
+                        maxchars="256"
+                        oncancel="HideGameChat()"
+                        onblur="HideGameChat()"
+                >
+                    <Label id="GameChatTarget" text="[TEAM]"/>
+                </TextEntry>
             </Panel>
         </Panel>
     </Panel>

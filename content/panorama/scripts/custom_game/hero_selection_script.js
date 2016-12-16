@@ -403,8 +403,7 @@ function CreateHeroList(heroList, heroes, quests, selectedHeroes, achievements, 
                     newPlayer ? "NewPlayer" : null,
                     eliteHeroes.indexOf(hero) !== -1 ? "HeroButtonElite" : null,
                     hide ? "Hidden" : null
-                ],
-                tabindex: "auto"
+                ]
             };
 
             if (currentRow == randomButtonRow - 1 && (j - i) == Math.floor(heroesInRow / 2) && !randomAdded) {
@@ -685,12 +684,6 @@ function GameInfoChanged(gameInfo) {
     }
 }
 
-function CheckPause() {
-    $.Schedule(0.3, CheckPause);
-    $("#HeroSelectionBackground").SetHasClass("PauseBackground", Game.IsGamePaused());
-    $("#PauseOverlay").style.visibility = Game.IsGamePaused() ? "visible" : "collapse";
-}
-
 function CheckPreviews() {
     $.Schedule(0.01, CheckPreviews);
 
@@ -768,7 +761,6 @@ DelayStateInit(GAME_STATE_HERO_SELECTION, function () {
     $("#HeroSelectionChat").RegisterListener("HeroSelectionEnter");
 
     CheckConnectionState();
-    CheckPause();
     CheckPreviews();
 
     var hasTicket = Players.HasCustomGameTicketForPlayerID(Game.GetLocalPlayerID());

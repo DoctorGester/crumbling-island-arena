@@ -95,7 +95,7 @@
     <Panel class="Chat" hittest="false">
         <Panel id="ChatContent" hittest="false">
         </Panel>
-        <TextEntry id="ChatEntry" multiline="false" textmode="normal" oninputsubmit="SubmitChat()" maxchars="256" placeholder="#ChatPlaceholder">
+        <TextEntry id="ChatEntry" multiline="false" textmode="normal" oninputsubmit="SubmitChat()" oncancel="DropInputFocus()" maxchars="256" placeholder="#ChatPlaceholder">
             <Label id="ChatTarget" />
         </TextEntry>
     </Panel>
