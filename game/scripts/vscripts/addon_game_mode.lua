@@ -660,7 +660,7 @@ function GameMode:OnCustomPing(_, args)
         local p = args.position
         local target = Vector(p["0"], p["1"], 0)
 
-        local index = ParticleManager:CreateParticleForTeam(path, PATTACH_CUSTOMORIGIN, GameRules:GetGameModeEntity(), team)
+        local index = ParticleManager:CreateParticleForTeam(path, PATTACH_CUSTOMORIGIN, PlayerResource:GetSelectedHeroEntity(args.PlayerID), team)
         ParticleManager:SetParticleControl(index, 0, target)
         ParticleManager:SetParticleControl(index, 1, Vector(color[1], color[2], color[3]) / 255)
         ParticleManager:ReleaseParticleIndex(index)
