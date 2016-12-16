@@ -32,6 +32,10 @@ function StartEndCamera() {
                 diff = ((1 - Math.min((45 - yaw) / slowOver, 1.0)) * (startSpeed - slowTo)) + slowTo;
             }
 
+            if (Game.IsGamePaused()) {
+                diff = 0;
+            }
+
             $.Schedule(0.01, function() { SetCam(yaw - diff); });
         } else {
             GameUI.SetCameraYaw(0);
