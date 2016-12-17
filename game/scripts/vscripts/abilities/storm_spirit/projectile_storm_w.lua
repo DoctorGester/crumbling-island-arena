@@ -47,6 +47,11 @@ end
 
 function DashStormW:PositionFunction(current)
     local diff = self.caster:GetPos() - current
+
+    if diff:Length2D() < 128 then
+        return current
+    end
+
     return current + (diff:Normalized() * self.velocity)
 end
 
