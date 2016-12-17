@@ -24,7 +24,7 @@ function jugger_a:OnSpellStart()
     hero:AreaEffect({
         filter = Filters.Line(hero:GetPos(), target, 64),
         sound = "Arena.TA.HitQ",
-        damage = hero:HasModifier("modifier_jugger_r") and 3 or self:GetDamage(),
+        damage = hero:HasModifier("modifier_jugger_r") and 4 or self:GetDamage(),
         isPhysical = true,
         action = function(victim)
             ImmediateEffect("particles/units/heroes/hero_juggernaut/juggernaut_omni_slash_tgt.vpcf", PATTACH_ABSORIGIN, victim)

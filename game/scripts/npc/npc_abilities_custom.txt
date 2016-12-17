@@ -2398,9 +2398,9 @@
 		"ScriptFile" "abilities/jugger/jugger_a"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "juggernaut_blade_dance"
-		"AbilityCooldown" "0.9"
+		"AbilityCooldown" "1.0"
 		"AbilityCastPoint" "0.15"
-		"Damage" "1"
+		"Damage" "2"
 
 		"TargetingIndicator"
 		{
