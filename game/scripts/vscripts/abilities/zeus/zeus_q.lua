@@ -54,13 +54,13 @@ function zeus_q:OnSpellStart()
             release = true
         })
 
-        Spells:GroundDamage(target, 150, hero)
+        Spells:GroundDamage(target, 175, hero)
     end
 
     ScreenShake(target, 5, 150, 0.35, 4000, 0, true)
 
     hero:AreaEffect({
-        filter = Filters.Area(target, 150),
+        filter = Filters.Area(target, 175),
         damage = self:GetDamage(),
         action = function(victim)
             ZeusUtil.AbilityHit(hero, self, victim)

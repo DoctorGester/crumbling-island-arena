@@ -208,7 +208,7 @@
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_AOE"
-			"Radius" "150"
+			"Radius" "175"
 		}
 
 		"HoverIndicator"
