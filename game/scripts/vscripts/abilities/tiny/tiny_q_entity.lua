@@ -7,8 +7,8 @@ function TinyQ:constructor(round, owner, ability, target, stun, damage)
 
     getbase(TinyQ).constructor(self, round, {
         owner = owner,
-        from = owner:GetPos() * Vector(1, 1, 0) + Vector(0, 0, 64) + self.groundHeight,
-        to = target,
+        from = owner:GetPos() + Vector(0, 0, 32) + self.groundHeight,
+        to = target + Vector(0, 0, 32) + self.groundHeight,
         hitModifier = { name = modifierName, duration = 1.5, ability = ability },
         hitSound = "Arena.Tiny.HitQ",
         graphics = "particles/tiny_q/tiny_q.vpcf",
