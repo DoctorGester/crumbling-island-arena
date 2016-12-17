@@ -41,7 +41,7 @@ function AbilityTooltip(data, element) {
     }
 
     if (EndsWith(data.name, "_a")) {
-        description = $.Localize("AbilityBasicAttack") + "<br/><br/>" + description;
+        description = $.Localize("AbilityBasicAttack") + (description.length > 0 ? ("<br/><br/>" + description) : "");
     }
 
     $.DispatchEvent("DOTAShowTextTooltip", element, description + bottom)
