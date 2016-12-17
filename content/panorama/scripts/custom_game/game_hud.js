@@ -673,6 +673,7 @@ function ShowGameChat() {
     $.DispatchEvent("SetInputFocus", $("#GameChatEntry"));
     $("#GameChat").SetHasClass("Hidden", false);
     $("#GameChatTarget").text = $.Localize(GameUI.IsShiftDown() ? "#ChatAll" : "#ChatTeam");
+    $("#GameChat").shiftHeld = GameUI.IsShiftDown();
 }
 
 function HideGameChat() {
@@ -691,7 +692,7 @@ function SubmitGameChat() {
     if (entry.text === "-ping") {
         Game.ServerCmd("dota_ping");
     } else {
-        GameEvents.SendCustomGameEventToServer("custom_chat_say", { message: entry.text, team: !GameUI.GameChat.shiftHeld });
+        GameEvents.SendCustomGameEventToServer("custom_chat_say", { message: entry.text, team: !$("#GameChat").shiftHeld });
     }
 
     entry.text = "";
