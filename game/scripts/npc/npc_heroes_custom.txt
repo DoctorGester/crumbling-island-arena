@@ -264,6 +264,11 @@
 		"Ability7" "sven_a"
 
 		"Ultimate" "sven_r"
+
+		"CustomIcons"
+		{
+			"sven_e" "sven_e.png"
+		}
 	}
 
 	"npc_dota_hero_sniper"
@@ -683,6 +688,7 @@
 		"CustomIcons"
 		{
 			"drow_q" "drow_q.png"
+			"drow_e" "drow_e.png"
 		}
 	}
 
