@@ -7,8 +7,7 @@ function ursa_q:OnSpellStart()
     hero:AreaEffect({
         filter = Filters.Area(pos, 350),
         filterProjectiles = true,
-        modifier = { name = "modifier_stunned_lua", duration = 1.3, ability = self },
-        damage = self:GetDamage()
+        modifier = { name = "modifier_stunned_lua", duration = 1.3, ability = self }
     })
 
     ImmediateEffect("particles/units/heroes/hero_ursa/ursa_earthshock.vpcf", PATTACH_ABSORIGIN, hero)
