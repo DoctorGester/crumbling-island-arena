@@ -25,7 +25,7 @@ var Pass = new (function(){
         }
 
         if (index > 0) {
-            Game.EmitSound("announcer_ann_custom_adventure_alerts_09");
+            Game.EmitSound("Announcer.QuestReceived");
         }
     }
 
@@ -64,7 +64,7 @@ var Pass = new (function(){
         });
 
 
-        Game.EmitSound("announcer_ann_custom_adventure_alerts_11");
+        Game.EmitSound("Announcer.QuestComplete");
     }
 
     this.CreateQuestStructure = function(quest, showCompletion) {
@@ -212,7 +212,7 @@ var Pass = new (function(){
                 Game.EmitSound("UI.LevelUp");
 
                 $.Schedule(0, function() {
-                    Game.EmitSound("announcer_ann_custom_adventure_alerts_01");
+                    Game.EmitSound("Announcer.QuestLevelUp");
 
                     barParent.SetHasClass("Animated", true);
                     bar.value = remaining;

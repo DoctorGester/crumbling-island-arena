@@ -181,7 +181,7 @@ function DeathMatch:Activate(GameMode, inst)
                 self.round.statistics:IncreaseFBs(source.owner)
                 self:SendFirstBloodMessage(victim:GetName())
             else
-                self:SendKillMessageToTeam(source.owner.team, victim:GetName())
+                self:SendKillMessageToTeam(source.owner.team, victim:GetName(), fell)
             end
 
             source.owner.score = source.owner.score + 1

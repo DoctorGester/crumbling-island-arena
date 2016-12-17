@@ -185,7 +185,7 @@ function HeroSelection:Start(callback)
 
     self:UpdateSelectedHeroes()
 
-    EmitAnnouncerSound("announcer_announcer_choose_hero")
+    EmitAnnouncerSound("Announcer.SelectionChoose")
 
     self.HoverListener = CustomGameEventManager:RegisterListener("selection_hero_hover", function(id, ...) Dynamic_Wrap(self, "OnHover")(self, ...) end)
     self.ClickListener = CustomGameEventManager:RegisterListener("selection_hero_click", function(id, ...) Dynamic_Wrap(self, "OnClick")(self, ...) end)
@@ -208,10 +208,13 @@ function HeroSelection:Update()
         self:AssignRandomHeroes()
     end
 
+    if self.SelectionTimer == 5 then
+        EmitAnnouncerSound("Announcer.SelectionSoon")
+    end
+
     if self.SelectionTimer == -1 then
         if self.PreGameTimer == self.PreGameTimerTime then
-            EmitAnnouncerSound("announcer_announcer_battle_prepare_01")
-            --EmitAnnouncerSound("announcer_ann_custom_round_begin_01")
+            EmitAnnouncerSound("Announcer.SelectionPrepare")
         end
 
         self.PreGameTimer = self.PreGameTimer - 1

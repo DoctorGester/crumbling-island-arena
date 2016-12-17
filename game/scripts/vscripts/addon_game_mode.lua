@@ -65,7 +65,7 @@ function Precache(context)
     PrecacheResource("particle", "particles/ui/ui_generic_treasure_impact.vpcf", context)
     PrecacheResource("soundfile", "soundevents/custom_sounds.vsndevts", context)
     PrecacheResource("soundfile", "soundevents/emotes.vsndevts", context)
-    PrecacheResource("soundfile", "soundevents/voscripts/game_sounds_vo_announcer.vsndevts", context)
+    PrecacheResource("soundfile", "soundevents/announcer.vsndevts", context)
     PrecacheResource("soundfile", "soundevents/music/dsadowski_01/soundevents_music.vsndevts", context)
 
     PrecacheResource("model", "models/items/lycan/wolves/hunter_kings_wolves/hunter_kings_wolves.vmdl", context)
@@ -350,10 +350,10 @@ function GameMode:OnGameSetup()
     end
 
     local modes = {
-        ["ffa"] = { playersInTeam = 1, announce = "announcer_ann_custom_mode_06", spawns = roundSpawnPointsBig },
-        ["dm"] = { playersInTeam = 1, announce = "announcer_announcer_type_death_match", spawns = roundSpawnPointsBig },
-        ["2v2"] = { playersInTeam = 2, announce = "announcer_ann_custom_mode_07", spawns = roundSpawnPoints },
-        ["3v3"] = { playersInTeam = 3, announce = "announcer_ann_custom_mode_07", spawns = teamSpawnPoints }
+        ["ffa"] = { playersInTeam = 1, announce = "Announcer.SetupFFA", spawns = roundSpawnPointsBig },
+        ["dm"] = { playersInTeam = 1, announce = "Announcer.SetupDeathmatch", spawns = roundSpawnPointsBig },
+        ["2v2"] = { playersInTeam = 2, announce = "Announcer.Setup2v2", spawns = roundSpawnPoints },
+        ["3v3"] = { playersInTeam = 3, announce = "Announcer.Setup3v3", spawns = teamSpawnPoints }
     }
 
     local forcedMode = nil
@@ -611,12 +611,18 @@ function GameMode:GetTeamScore(team)
     return score
 end
 
-function GameMode:SendKillMessageToTeam(team, victim)
-    CustomGameEventManager:Send_ServerToTeam(team, "kill_message", { victim = victim, token = "KMNormal" })
+function GameMode:SendKillMessageToTeam(team, victim, fell)
+    local sound = "Announcer.RoundKill"
+
+    if fell then
+        sound = "Announcer.RoundDrop"
+    end
+
+    CustomGameEventManager:Send_ServerToTeam(team, "kill_message", { victim = victim, token = "KMNormal", sound = sound })
 end
 
 function GameMode:SendFirstBloodMessage(victim)
-    CustomGameEventManager:Send_ServerToAllClients("kill_message", { victim = victim, token = "KMFirstBlood", sound = "UI.FirstBlood" })
+    CustomGameEventManager:Send_ServerToAllClients("kill_message", { victim = victim, token = "KMFirstBlood", sound = "Announcer.RoundFirstBlood" })
 end
 
 function GameMode:OnCustomPing(_, args)
@@ -683,7 +689,7 @@ function GameMode:RecordKill(victim, source, fell)
                 self:SendFirstBloodMessage(victim:GetName())
             end
         elseif heroCount > 3 then
-            self:SendKillMessageToTeam(source.owner.team, victim:GetName())
+            self:SendKillMessageToTeam(source.owner.team, victim:GetName(), fell)
         end
     end
 
@@ -725,7 +731,7 @@ function GameMode:EndGame()
 
     Stats.SubmitQuestProgress(self.Players, function(...) self:OnQuestResultsReceived(...) end)
 
-    EmitAnnouncerSound("announcer_ann_custom_end_08")
+    EmitAnnouncerSound("Announcer.GameOver")
     self:UpdateGameInfo()
     self:SetState(STATE_GAME_OVER)
     GameRules:SetGameWinner(self.winner)
@@ -1001,8 +1007,6 @@ function GameMode:OnRoundEnd(round)
 end
 
 function GameMode:OnHeroSelectionEnd()
-    GameRules:GetGameModeEntity():EmitSound("dsadowski_01.music.battle_01")
-
     self.level:Reset()
     self.currentScoreAddition = 1
     self.scoreEarned = {}
@@ -1026,11 +1030,29 @@ function GameMode:OnHeroSelectionEnd()
         function()
             local roundSoundNumber = self.roundNumber - 1
 
-            if roundSoundNumber <= 10 and not self:IsDeathMatch() then
-                EmitAnnouncerSound(string.format("announcer_ann_custom_round_%02d", roundSoundNumber))
-            else
-                EmitAnnouncerSound("announcer_announcer_battle_begin_01")
+            if (roundSoundNumber == 1) then
+                EmitAnnouncerSound("Announcer.RoundWelcome")
             end
+
+            local musicDelay = 1.0
+
+            if roundSoundNumber <= 8 and not self:IsDeathMatch() then
+                if (roundSoundNumber == 1) then
+                    musicDelay = 5.0
+
+                    Timers:CreateTimer(4.0, function()
+                        EmitAnnouncerSound("Announcer.RoundNumber1")
+                    end)
+                else
+                    EmitAnnouncerSound("Announcer.RoundNumber"..tostring(roundSoundNumber))
+                end
+            else
+                EmitAnnouncerSound("Announcer.RoundBattleBegins")
+            end
+
+            Timers:CreateTimer(musicDelay, function()
+                GameRules:GetGameModeEntity():EmitSound("dsadowski_01.music.battle_01")
+            end)
         end
     )
 end

@@ -12,16 +12,24 @@ function GameSetup:constructor(modes, players, teams, forcedMode)
     self.outputs = {}
     self.timer = 0
 
+    self.nextStageTimer = 0
+
     if forcedMode then
         self.outputs["stage_mode"] = {}
         self.outputs["stage_mode"].selectedMode = forcedMode
         self.outputs["stage_mode"].playersInTeam = self.modes[forcedMode].playersInTeam
-        EmitAnnouncerSound(modes[forcedMode].announce)
+        --EmitAnnouncerSound(modes[forcedMode].announce)
     end
 end
 
 function GameSetup:Start()
     self:StageAdvance()
+
+    if GameRules.GameMode.rankedMode ~= nil then
+        EmitAnnouncerSound("Announcer.SetupRanked")
+    else
+        EmitAnnouncerSound("Announcer.SetupUnranked")
+    end
 end
 
 function GameSetup:AddPlayer( ... )
@@ -32,7 +40,6 @@ end
 
 function GameSetup:GetNextStageAndTime()
     if self.currentStage == nil and self:GetSelectedMode() == nil then
-        EmitAnnouncerSound("announcer_ann_custom_vote_begun")
         return ModeSelectionStage("stage_mode", self.players, self.modes), IsInToolsMode() and 5 or 15
     end
 
@@ -43,7 +50,7 @@ function GameSetup:GetNextStageAndTime()
 
         if self:GetSelectedMode() == "ffa" then
             if GameRules.GameMode.rankedMode ~= nil then
-                EmitAnnouncerSound("Announcer.BanMode")
+                EmitAnnouncerSound("Announcer.SetupBanStage")
                 return BanStage("stage_bans", self.players, 1), IsInToolsMode() and 5 or 15
             end
 
@@ -62,6 +69,7 @@ function GameSetup:GetNextStageAndTime()
             end
         end)
 
+        EmitAnnouncerSound("Announcer.SetupTeam")
         return TeamSelectionStage("stage_team", self.players, self:GetPlayersInTeam()), IsInToolsMode() and 10 or 15
     end
 
@@ -79,7 +87,7 @@ function GameSetup:GetNextStageAndTime()
     end
 
     if self.currentStage:Is("stage_team") and GameRules.GameMode.rankedMode ~= nil then
-        EmitAnnouncerSound("Announcer.BanMode")
+        EmitAnnouncerSound("Announcer.SetupBanStage")
         return BanStage("stage_bans", self.players, 1), IsInToolsMode() and 5 or 15
     end
 end
@@ -97,18 +105,7 @@ function GameSetup:StageAdvance()
         self.outputs[self.currentStage:GetName()] = results
     end
 
-    local stage, time = self:GetNextStageAndTime()
-    self.currentStage = stage
-
-    if self.currentStage ~= nil then
-        self.currentStage:Activate()
-        self.timer = time
-        self:SendTimeToPlayers()
-    else
-        self.timer = 0
-        self:SendTimeToPlayers()
-    end
-
+    self.nextStageTimer = 2
     self:UpdateNetworkState()
 end
 
@@ -139,6 +136,29 @@ function GameSetup:SendTimeToPlayers()
 end
 
 function GameSetup:Update()
+    if self.nextStageTimer > 0 then
+        self.nextStageTimer = math.max(self.nextStageTimer - 1, -1)
+
+        if self.nextStageTimer == 0 then
+            local stage, time = self:GetNextStageAndTime()
+
+            self.currentStage = stage
+
+            if self.currentStage ~= nil then
+                self.currentStage:Activate()
+                self.timer = time
+                self:SendTimeToPlayers()
+            else
+                self.timer = 0
+                self:SendTimeToPlayers()
+            end
+
+            self:UpdateNetworkState()
+        end
+
+        return
+    end
+
     self.timer = math.max(self.timer - 1, -1)
     self:SendTimeToPlayers()
 

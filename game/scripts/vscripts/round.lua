@@ -61,8 +61,6 @@ function Round:EndRound()
 
     self.ended = true
 
-    EmitAnnouncerSound("announcer_ann_custom_round_complete")
-
     Timers:CreateTimer(GRACE_TIME, function()
         self:callback()
     end)

@@ -81,6 +81,7 @@ function StartRoundEndAnimation(data){
 
         if (player.id == Game.GetLocalPlayerID()) {
             $("#RoundResult").text = $.Localize(player.winner ? "RoundWon" : "RoundLost").toUpperCase();
+            Game.EmitSound(player.winner ? "Announcer.RoundWon" : "Announcer.RoundLost");
             break;
         }
     }

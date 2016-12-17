@@ -57,6 +57,8 @@ function Rune:OnDeath(source)
     end
 
     self:EmitSound("Arena.Rune")
+
+    EmitAnnouncerSound("Announcer.RoundRune")
 end
 
 function Rune:CollidesWith(source)

@@ -1,0 +1,354 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+
+{
+    Announcer.SetupRanked = {
+        type = "dota_update_vo_switch"
+        vsnd_files =
+        [
+            "sounds/announcer/announcer_ranked.vsnd"
+        ]
+    }
+
+	Announcer.SetupUnranked = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_unranked.vsnd"
+		]
+	}
+
+    Announcer.Setup1v1 = {
+        type = "dota_update_vo_switch"
+        vsnd_files = 
+        [
+            "sounds/announcer/announcer_1v1.vsnd"
+        ]
+    }
+
+    Announcer.Setup2v2 = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_2v2.vsnd"
+		]
+    }
+
+	Announcer.Setup3v3 = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_2v2.vsnd"
+		]
+	}
+
+    Announcer.SetupTeam = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_choose_team.vsnd"
+		]
+	}
+
+    Announcer.SetupDeathmatch = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_deathmatch.vsnd"
+		]
+	}
+
+    Announcer.SetupFFA = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_ffa.vsnd"
+		]
+	}
+
+    Announcer.SetupBanStage = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_ban_1.vsnd",
+			"sounds/announcer/announcer_ban_2.vsnd",
+			"sounds/announcer/announcer_ban_3.vsnd"
+		]
+	}
+
+    Announcer.SelectionSoon = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_5_seconds.vsnd"
+		]
+	}
+
+    Announcer.SelectionChoose = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_choose_hero_1.vsnd",
+			"sounds/announcer/announcer_choose_hero_2.vsnd"
+		]
+	}
+
+    Announcer.SelectionPrepare = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_prepare_4_battle.vsnd",
+		]
+	}
+
+	Announcer.RoundDodge = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_avoid_1.vsnd",
+			"sounds/announcer/announcer_avoid_2.vsnd",
+			"sounds/announcer/announcer_avoid_3.vsnd",
+			"sounds/announcer/announcer_avoid_4.vsnd",
+			"sounds/announcer/announcer_avoid_5.vsnd"
+		]
+	}
+
+    Announcer.RoundBattleBegins = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_battle_begins_1.vsnd",
+			"sounds/announcer/announcer_battle_begins_2.vsnd"
+		]
+	}
+
+    Announcer.RoundDraw = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_draw_1.vsnd",
+			"sounds/announcer/announcer_draw_2.vsnd",
+			"sounds/announcer/announcer_draw_3.vsnd",
+			"sounds/announcer/announcer_draw_4.vsnd"
+		]
+	}
+
+    Announcer.RoundKill = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_enemyslain_1.vsnd",
+			"sounds/announcer/announcer_enemyslain_2.vsnd",
+			"sounds/announcer/announcer_enemyslain_3.vsnd",
+			"sounds/announcer/announcer_enemyslain_4.vsnd",
+			"sounds/announcer/announcer_enemyslain_5.vsnd",
+			"sounds/announcer/announcer_enemyslain_6.vsnd",
+			"sounds/announcer/announcer_enemyslain_7.vsnd",
+			"sounds/announcer/announcer_enemyslain_8.vsnd"
+		]
+	}
+
+    Announcer.RoundDrop = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_throwenemy_1.vsnd",
+			"sounds/announcer/announcer_throwenemy_2.vsnd",
+			"sounds/announcer/announcer_throwenemy_3.vsnd",
+			"sounds/announcer/announcer_throwenemy_4.vsnd",
+			"sounds/announcer/announcer_throwenemy_5.vsnd"
+		]
+	}
+
+    Announcer.RoundDropSelf = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_throwenemy_6.vsnd",
+			"sounds/announcer/announcer_throwenemy_7.vsnd",
+			"sounds/announcer/announcer_throwenemy_8.vsnd",
+		]
+	}
+
+    Announcer.RoundSuicide = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_enemysuicide_1.vsnd",
+			"sounds/announcer/announcer_enemysuicide_2.vsnd",
+			"sounds/announcer/announcer_enemysuicide_3.vsnd",
+			"sounds/announcer/announcer_enemysuicide_4.vsnd",
+			"sounds/announcer/announcer_enemysuicide_5.vsnd",
+			"sounds/announcer/announcer_enemysuicide_6.vsnd",
+		]
+	}
+
+    Announcer.RoundFirstBlood = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_firstblood_1.vsnd",
+			"sounds/announcer/announcer_firstblood_2.vsnd",
+			"sounds/announcer/announcer_firstblood_3.vsnd",
+			"sounds/announcer/announcer_firstblood_4.vsnd",
+		]
+	}
+
+    Announcer.RoundWon = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_round_won_1.vsnd",
+			"sounds/announcer/announcer_round_won_2.vsnd",
+			"sounds/announcer/announcer_round_won_3.vsnd",
+			"sounds/announcer/announcer_round_won_4.vsnd",
+			"sounds/announcer/announcer_round_won_5.vsnd",
+			"sounds/announcer/announcer_round_won_6.vsnd"
+
+		]
+	}
+
+    Announcer.RoundLost = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_round_lost_1.vsnd",
+			"sounds/announcer/announcer_round_lost_2.vsnd",
+			"sounds/announcer/announcer_round_lost_3.vsnd",
+			"sounds/announcer/announcer_round_lost_4.vsnd",
+			"sounds/announcer/announcer_round_lost_5.vsnd"
+		]
+	}
+
+    Announcer.RoundRune = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_rune_taken_1.vsnd",
+			"sounds/announcer/announcer_rune_taken_2.vsnd",
+			"sounds/announcer/announcer_rune_taken_3.vsnd",
+			"sounds/announcer/announcer_rune_taken_4.vsnd"
+		]
+	}
+
+    Announcer.RoundWelcome = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_welcome_1.vsnd",
+			"sounds/announcer/announcer_welcome_2.vsnd",
+			"sounds/announcer/announcer_welcome_3.vsnd",
+			"sounds/announcer/announcer_welcome_4.vsnd",
+			"sounds/announcer/announcer_welcome_5.vsnd",
+		]
+	}
+
+    Announcer.RoundNumber1 = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_round_1.vsnd"
+		]
+	}
+
+    Announcer.RoundNumber2 = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_round_2.vsnd"
+		]
+	}
+
+    Announcer.RoundNumber3 = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_round_3.vsnd"
+		]
+	}
+
+    Announcer.RoundNumber4 = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_round_4.vsnd"
+		]
+	}
+
+    Announcer.RoundNumber5 = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_round_5.vsnd"
+		]
+	}
+
+    Announcer.RoundNumber6 = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_round_6.vsnd"
+		]
+	}
+
+    Announcer.RoundNumber7 = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_round_7.vsnd"
+		]
+	}
+
+    Announcer.RoundNumber8 = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_round_8.vsnd"
+		]
+	}
+
+    Announcer.GameOver = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_game_over_1.vsnd",
+			"sounds/announcer/announcer_game_over_2.vsnd",
+			"sounds/announcer/announcer_game_over_3.vsnd",
+			"sounds/announcer/announcer_game_over_4.vsnd"
+		]
+	}
+
+    Announcer.QuestLevelUp = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_levelup_1.vsnd",
+			"sounds/announcer/announcer_levelup_2.vsnd",
+		]
+	}
+
+    Announcer.QuestComplete = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_quest_complete_1.vsnd",
+			"sounds/announcer/announcer_quest_complete_2.vsnd",
+		]
+	}
+
+    Announcer.QuestReceived = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_quest_received.vsnd"
+		]
+	}
+
+    Announcer.QuestUpdated = {
+		type = "dota_update_vo_switch"
+		vsnd_files =
+		[
+			"sounds/announcer/announcer_quest_updated.vsnd"
+		]
+	}
+
+}
