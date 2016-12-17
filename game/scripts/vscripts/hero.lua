@@ -56,7 +56,7 @@ function Hero:GetShortName()
     return self:GetName():sub(("npc_dota_hero_"):len() + 1)
 end
 
-function Hero:LoadWearables()
+function Hero:BuildWearableStack()
     local cosmetics = Cosmetics[self:GetShortName()]
     local result = {}
 
@@ -152,7 +152,11 @@ function Hero:LoadWearables()
         end
     end
 
-    self:LoadItems(unpack(result))
+    return result
+end
+
+function Hero:LoadWearables()
+    self:LoadItems(unpack(self:BuildWearableStack()))
 end
 
 function Hero:EmitSound(sound, location)

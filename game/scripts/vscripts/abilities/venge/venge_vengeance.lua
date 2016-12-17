@@ -24,7 +24,7 @@ function Vengeance:constructor(round, owner, target, facing, ability)
     self:SetPos(target)
     self:SetCustomHealth(3)
     self:EnableHealthBar()
-    self:LoadItems()
+    self:LoadItems(unpack(owner:BuildWearableStack()))
 
     Wrappers.WrapAbilitiesFromHeroData(unit, self.hero.data)
 end

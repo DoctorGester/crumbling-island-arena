@@ -14,7 +14,7 @@ function EntityStormQ:constructor(round, owner, position, facing, ability)
     self:EmitSound("Arena.Storm.HitQ")
     self:SetFacing(facing)
 
-    self:LoadItems()
+    self:LoadItems(unpack(owner:BuildWearableStack()))
 
     self.playerParticle = ParticleManager:CreateParticleForTeam(
         "particles/storm_q/storm_q_hat.vpcf",
