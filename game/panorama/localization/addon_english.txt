@@ -395,9 +395,9 @@
 
 		"RecentScore"									"+{d:score}"
 
-		"BasicAttackTooltip"							"<font color=\"#DAFF7F\"><b>Basic Attack</b></font><br/><br/>{s:description}<br><br><font color=\"gold\">DAMAGE</font>: {s:damage}<br><font color=\"gold\">CD</font>: {s:cooldown}"
-		"AbilityTooltip"								"{s:description}<br><br><font color=\"gold\">CD</font>: {s:cooldown}"
-		"AbilityTooltipDamage"							"{s:description}<br><br><font color=\"gold\">DAMAGE</font>: {s:damage}<br><font color=\"gold\">CD</font>: {s:cooldown}"
+		"AbilityBasicAttack"							"<font color=\"#DAFF7F\"><b>Basic Attack</b></font>"
+		"AbilityCooldown"								"<font color=\"gold\">CD</font>: {s:cooldown}"
+		"AbilityDamage"									"<font color=\"gold\">DAMAGE</font>: {s:damage}"
 
 		"AbilityTooltip_taunt_static"					"Taunt your enemies! Show them your best moves and make them jelly!"
 		"AbilityTooltip_taunt_moving"					"Is that some kind of a dance? Nevermind, gimme gimme!"

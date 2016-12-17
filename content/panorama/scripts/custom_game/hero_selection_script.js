@@ -69,67 +69,12 @@ function PreloadAwardPreview(hero, season) {
 
 function SetAbilityButtonTooltipEvents(button, name) {
     button.SetPanelEvent("onmouseover", function() {
-        $.DispatchEvent("DOTAShowTextTooltip", button, $.Localize("AbilityTooltip_" + name));
+        AbilityTooltip({ name: name }, button);
     });
 
     button.SetPanelEvent("onmouseout", function() {
         $.DispatchEvent("DOTAHideTextTooltip");
     });
-}
-
-function ShowHeroAbilities(heroName) {
-    var hero = allHeroes[heroName];
-    var customIcons = {};
-
-    if (hero.customIcons) {
-        for (var ability in hero.customIcons) {
-            customIcons[ability] = hero.customIcons[ability];
-        }
-    }
-
-    if (!!heroAwards[heroName]) {
-        $("#RankAwardText").SetDialogVariableInt("season", parseInt(_.invert(seasonAwards)[heroName]) + 1);
-    }
-    
-    $("#AchievementRow").SetHasClass("Hidden", !heroAwards[heroName])
-
-    var abilitiesToShow = [["A"], ["Q", 0], ["W", 1], ["E", 2], ["R", 5]];
-
-    for (var pair of abilitiesToShow) {
-        var ability = pair[0];
-
-        var found =
-            _(hero.abilities)
-                .chain()
-                .filter(function(a) {
-                    return EndsWith(a, ability.toLowerCase());
-                })
-                .first()
-                .value();
-
-        found = (CustomNetTables.GetTableValue("static", "abilities") || {})[found];
-
-        var row = $("#AbilityRow" + ability);
-
-        if (row && found) {
-            var image = row.Children()[0];
-            var label = row.Children()[1];
-            var shortcut = image.Children()[0];
-
-            var icon = GetTexture(found, hero.customIcons);
-            image.SetImage(icon);
-
-            SetAbilityButtonTooltipEvents(image, found.name);
-
-            if (ability === "A") {
-                label.text = "HeroRange_" + hero.range;
-            } else {
-                label.text = hero.name.substring("npc_dota_hero_".length) + "_Desc" + ability;
-
-                shortcut.text = Game.GetKeybindForAbility(pair[1] || 0);
-            }
-        }
-    }
 }
 
 function ShowHeroCosmetics(heroName) {
@@ -250,6 +195,61 @@ function HidePreview(hero) {
     if (heroPreviews[hero]) {
         heroPreviews[hero].RemoveClass("HeroPreviewIn");
         heroPreviews[hero].style.visibility = "collapse";
+    }
+}
+
+function ShowHeroAbilities(heroName) {
+    var hero = allHeroes[heroName];
+    var customIcons = {};
+
+    if (hero.customIcons) {
+        for (var ability in hero.customIcons) {
+            customIcons[ability] = hero.customIcons[ability];
+        }
+    }
+
+    if (!!heroAwards[heroName]) {
+        $("#RankAwardText").SetDialogVariableInt("season", parseInt(_.invert(seasonAwards)[heroName]) + 1);
+    }
+
+    $("#AchievementRow").SetHasClass("Hidden", !heroAwards[heroName])
+
+    var abilitiesToShow = [["A"], ["Q", 0], ["W", 1], ["E", 2], ["R", 5]];
+
+    for (var pair of abilitiesToShow) {
+        var ability = pair[0];
+
+        var found =
+            _(hero.abilities)
+                .chain()
+                .filter(function(a) {
+                    return EndsWith(a, ability.toLowerCase());
+                })
+                .first()
+                .value();
+
+        found = (CustomNetTables.GetTableValue("static", "abilities") || {})[found];
+
+        var row = $("#AbilityRow" + ability);
+
+        if (row && found) {
+            var image = row.Children()[0];
+            var label = row.Children()[1];
+            var shortcut = image.Children()[0];
+
+            var icon = GetTexture(found, hero.customIcons);
+            image.SetImage(icon);
+
+            SetAbilityButtonTooltipEvents(image, found.name);
+
+            if (ability === "A") {
+                label.text = "HeroRange_" + hero.range;
+            } else {
+                label.text = hero.name.substring("npc_dota_hero_".length) + "_Desc" + ability;
+
+                shortcut.text = Game.GetKeybindForAbility(pair[1] || 0);
+            }
+        }
     }
 }
 

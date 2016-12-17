@@ -79,8 +79,8 @@
 
 .CosmeticsRow Image
 {
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
     margin: 4px;
 }
@@ -101,8 +101,8 @@
 
 .AbilityRow Image
 {
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
     margin: 4px;
     border-radius: 3px;
     background-color: black;

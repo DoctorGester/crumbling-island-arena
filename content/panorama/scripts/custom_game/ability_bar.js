@@ -92,28 +92,7 @@ function EntityAbilityDataProvider(entityId) {
     this.ShowTooltip = function(element, data) {
         SetCurrentHoverSpell(data);
 
-        var range = data.range.toString();
-
-        if (data.range == 0) {
-            range = "None";
-        }
-
-        element.SetDialogVariable("description", $.Localize("AbilityTooltip_" + data.name));
-        element.SetDialogVariable("cooldown", data.cooldown.toFixed(1).toString());
-
-        var tableData = (CustomNetTables.GetTableValue("static", "abilities") || {})[data.name] || {};
-        var token = "AbilityTooltip";
-
-        if (tableData.damage) {
-            element.SetDialogVariable("damage", tableData.damage);
-            token = "AbilityTooltipDamage";
-        }
-
-        if (EndsWith(data.name, "_a")) {
-            token = "BasicAttackTooltip";
-        }
-
-        $.DispatchEvent("DOTAShowTextTooltip", element, $.Localize(token, element))
+        AbilityTooltip(data, element);
     };
 
     this.HideTooltip = function() {

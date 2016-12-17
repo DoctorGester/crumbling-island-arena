@@ -14,6 +14,37 @@ Game.OnEnterPressed = function() {
     for (var key in Game.enterListeners) {
         Game.enterListeners[key]();
     }
+};
+
+function AbilityTooltip(data, element) {
+    var description = $.Localize("AbilityTooltip_" + data.name);
+    var bottom = "";
+
+    if (data.cooldown != null){
+        if (bottom.length == 0) {
+            bottom = "<br/>"
+        }
+
+        element.SetDialogVariable("cooldown", data.cooldown.toFixed(1).toString());
+        bottom += "<br/>" + $.Localize("AbilityCooldown", element);
+    }
+
+    var tableData = (CustomNetTables.GetTableValue("static", "abilities") || {})[data.name] || {};
+
+    if (tableData.damage) {
+        if (bottom.length == 0) {
+            bottom = "<br/>"
+        }
+
+        element.SetDialogVariable("damage", tableData.damage);
+        bottom += "<br/>" + $.Localize("AbilityDamage", element);
+    }
+
+    if (EndsWith(data.name, "_a")) {
+        description = $.Localize("AbilityBasicAttack") + "<br/><br/>" + description;
+    }
+
+    $.DispatchEvent("DOTAShowTextTooltip", element, description + bottom)
 }
 
 function Label(id, cl, text) {
