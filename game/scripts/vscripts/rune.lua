@@ -12,7 +12,7 @@ function Rune:constructor(round)
     unit:SetOriginalModel("models/props_gameplay/rune_regeneration01.vmdl")
     unit:StartGesture(ACT_DOTA_IDLE)
 
-    self:SetCustomHealth(5)
+    self:SetCustomHealth(6)
     self:CreateParticles()
     self:EmitSound("Arena.RuneSpawn")
 end
