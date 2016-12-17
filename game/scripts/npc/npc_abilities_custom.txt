@@ -2763,7 +2763,6 @@
 		"AbilityTextureName" "ursa_earthshock"
 		"AbilityCooldown" "7.0"
 		"AbilityCastPoint" "0.15"
-		"Damage" "3"
 
 		"HoverIndicator"
 		{
