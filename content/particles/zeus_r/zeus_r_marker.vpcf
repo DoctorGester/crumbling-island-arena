@@ -14,7 +14,7 @@
 			_class = "C_OP_RenderSprites"
 			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
 			m_bDisableZBuffering = true
-			m_hTexture = resource:"materials/particle/particle_ring_soft_inner.vtex"
+			m_hTexture = resource:"materials/particle/circle_hollow03.vtex"
 			m_nOrientationType = 2
 			m_bAdditive = true
 		},
