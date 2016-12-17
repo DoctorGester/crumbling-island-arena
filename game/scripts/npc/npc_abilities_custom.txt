@@ -209,6 +209,7 @@
 		{
 			"Type" "TARGETING_INDICATOR_AOE"
 			"Radius" "175"
+			"DisplayRange" "1"
 		}
 
 		"HoverIndicator"
@@ -682,6 +683,7 @@
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "700"
 			"MaxLength" "700"
 		}
 
@@ -1113,6 +1115,7 @@
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "Entities.GetIdealSpeed(unit)"
 			"MaxLength" "Entities.GetIdealSpeed(unit)"
 		}
 
@@ -1477,6 +1480,12 @@
 			"Type" "TARGETING_INDICATOR_LINE"
 			"MaxLength" "1000"
 			"MinLength" "1000"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1000"
 		}
 
 		"precache"
@@ -3147,7 +3156,7 @@
 		"AbilityTextureName" "slark_essence_shift"
 		"AbilityCooldown" "0.6"
 		"AbilityCastPoint" "0.135"
-		"Damage" "1"
+		"Damage" "2"
 
 		"HoverIndicator"
 		{

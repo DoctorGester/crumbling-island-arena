@@ -24,6 +24,8 @@ function slark_q:OnSpellStart()
         hitModifier = { name = "modifier_slark_q", duration = 1.0, ability = self },
         hitSound = "Arena.Slark.HitE"
     }):Activate()
+
+    hero:FindAbility("slark_a"):StartCooldown(2.0)
 end
 
 function slark_q:GetCastAnimation()
@@ -31,5 +33,5 @@ function slark_q:GetCastAnimation()
 end
 
 function slark_q:GetPlaybackRateOverride()
-    return 2
+    return 3
 end

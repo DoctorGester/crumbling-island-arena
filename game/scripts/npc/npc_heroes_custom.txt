@@ -1218,6 +1218,11 @@
 		"Ability7" "slark_a"
 
 		"Ultimate" "slark_r"
+
+		"CustomIcons"
+		{
+			"slark_q" "slark_q.png"
+		}
 	}
 
 	"npc_dota_hero_queenofpain"

@@ -13,6 +13,7 @@
 *.vanim_c
 *.vmesh_c
 *.vagrp_c
+*.vsnd_c
 
 # Panorama debugger
 *.cfg
