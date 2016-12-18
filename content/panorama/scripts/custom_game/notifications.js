@@ -15,7 +15,7 @@ var NotificationQueue = new (function() {
 
         this.busy = true;
 
-        $("#GameOverBlur").SetHasClass("Blurred", true);
+        //$("#GameOverBlur").SetHasClass("Blurred", true);
         $("#NotificationArea").SetHasClass("Hidden", false);
         $("#NotificationArea").BLoadLayoutSnippet(notification.snippet);
         notification.callback(notification.data);
