@@ -166,9 +166,9 @@ indicatorTypes["TARGETING_INDICATOR_LINE_EMBER"] = function(data, unit) {
     this.particle = Particles.CreateParticle("particles/targeting/line.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN_FOLLOW, unit);
 
     this.FindRemnant = function(){
-        for (var unit of Entities.GetAllEntitiesByName(Entities.GetUnitName(this.unit))) {
+        for (var unit of Entities.GetAllEntitiesByClassname("npc_dota_creature")) {
             // There is no Entities.GetOwnerPlayer. Sad.
-            if (unit != this.unit && Entities.IsCommandRestricted(unit) && Entities.GetTeamNumber(unit) == Players.GetTeam(Players.GetLocalPlayer())) {
+            if (unit != this.unit && Entities.GetUnitName(unit) == "ember_remnant" && Entities.GetTeamNumber(unit) == Players.GetTeam(Players.GetLocalPlayer())) {
                 return unit;
             }
         }
@@ -186,6 +186,15 @@ indicatorTypes["TARGETING_INDICATOR_LINE_EMBER"] = function(data, unit) {
         var to = UpdateLine(this.particle, this.unit, this.data, cursor);
         var result = to.minus(Vector.FromArray(Entities.GetAbsOrigin(unit))).normalize().scale(150).add(to);
         Particles.SetParticleControl(this.particle, 2, result);
+
+        if (this.remnant && !Entities.IsValidEntity(this.remnant)) {
+            this.remnant = null;
+
+            Particles.DestroyParticleEffect(this.remnantParticle, false);
+            Particles.ReleaseParticleIndex(this.remnantParticle);
+
+            this.remnantParticle = null;
+        }
 
         if (this.remnantParticle && this.remnant) {
             var to = UpdateLine(this.remnantParticle, this.remnant, this.data, cursor);
@@ -420,6 +429,10 @@ function UpdateTargetIndicator(){
     if (hoverAbility == -1) {
         if (HasModifier(unit, "modifier_gyro_w")) {
             newHover = Entities.GetAbilityByName(unit, "gyro_w_sub");
+        }
+
+        if (HasModifier(unit, "modifier_sniper_r")) {
+            newHover = Entities.GetAbilityByName(unit, "sniper_r");
         }
     }
 
