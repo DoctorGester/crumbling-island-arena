@@ -1068,7 +1068,7 @@ function GameMode:OnEntityKilled(event)
             self.currentScoreAddition = self.currentScoreAddition + 1
         end
 
-        --layerResource:SetOverrideSelectionEntity(entity.hero.owner.id, nil)
+        --PlayerResource:SetOverrideSelectionEntity(entity.hero.owner.id, nil)
 
         if entity:GetAbsOrigin().z <= -MAP_HEIGHT then
             local lastKnockbackCaster = entity.hero.lastKnockbackSource
@@ -1520,56 +1520,6 @@ function GameMode:Start()
     self.heroSelection:Start(function() self:OnHeroSelectionEnd() end)
 
     GameRules:GetGameModeEntity():EmitSound("dsadowski_01.music.countdown")
-
-    if true then return end
-    Timers:CreateTimer(2, function()
-        DoEntFire("round_end_layer_entity", "ShowWorldLayerAndSpawnEntities", "", 0.0, nil, nil)
-        self.level:Hide()
-
-        local positions = {
-            { Vector(100, -400, 17), Vector(1, -0.4, 0), true },
-            { Vector(300, -300, 17), Vector(0.8, -1, 0) },
-            { Vector(100, -170, 17), Vector(0.25, -0.5, 0) }
-        }
-
-        local index = 1
-        local tempPlayers = {}
-        local tempHeroes = {}
-
-        for _, player in pairs(self.Players) do
-            if player.selectedHero and player.team == winner then
-                table.insert(tempPlayers, player)
-            end
-
-            PlayerResource:SetOverrideSelectionEntity(player.id, nil)
-            PlayerResource:SetCameraTarget(player.id, self.cameraDummy)
-        end
-
-        Shuffle(tempPlayers)
-
-        self:UpdatePlayerTable()
-        CustomNetTables:SetTableValue("main", "roundState", { roundData = {}, goal = self.gameGoal, firstBlood = {}, mvp = {} })
-
-        self:SetState(STATE_ROUND_ENDED)
-
-        Timers:CreateTimer(ROUND_ENDING_TIME, function ()
-            for _, hero in pairs(tempHeroes) do
-                hero:GetUnit():RemoveSelf()
-            end
-
-            DoEntFire("round_end_layer_entity", "HideWorldLayerAndDestroyEntities", "", 0.0, nil, nil)
-            self.level:Show()
-
-            self.round = nil
-
-            for _, player in pairs(self.Players) do
-                PlayerResource:SetCameraTarget(player.id, nil)
-            end
-
-            self.winner = DOTA_TEAM_CUSTOM_1
-            self:EndGame()
-        end)
-    end)
 end
 
 function GameMode:OnNpcSpawned(keys)
