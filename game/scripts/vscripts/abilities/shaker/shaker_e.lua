@@ -17,7 +17,7 @@ function shaker_e:OnSpellStart()
     ParticleManager:SetParticleControl(effect, 2, Vector(0.3, 0, 0))
     ParticleManager:ReleaseParticleIndex(effect)
 
-    local dash = FunctionDash(hero, target, 0.4, {
+    FunctionDash(hero, target, 0.4, {
         forceFacing = true,
         heightFunction = function(dash, current)
             local d = (dash.from - dash.to):Length2D()
@@ -41,10 +41,9 @@ function shaker_e:OnSpellStart()
         modifier = { name = "modifier_shaker_e", ability = self },
     })
 
+    hero:Animate(ACT_DOTA_OVERRIDE_ABILITY_2, 2.5 / distance)
     hero:EmitSound("Arena.Shaker.CastE")
     Spells:GroundDamage(hero:GetPos(), 200, hero)
-
-    dash.modifierHandle:SetStackCount(25 / distance)
 end
 
 function shaker_e:GetPlaybackRateOverride()
