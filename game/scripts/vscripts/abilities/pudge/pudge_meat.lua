@@ -43,6 +43,7 @@ function PudgeMeat:CollideWith(target)
 
         target:EmitSound("Arena.Pudge.Meat.Voice")
         target:EmitSound("Arena.Pudge.Meat")
+        target:EmitSound("Arena.Pudge.MeatEat")
         target:Heal()
         self:Destroy()
     end
