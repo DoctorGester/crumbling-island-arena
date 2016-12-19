@@ -38,4 +38,6 @@ function lc_q:OnSpellStart()
         end,
         modifier = { name = "modifier_lc_q_animation", ability = self },
     })
+
+    hero:Animate(ACT_DOTA_ATTACK2, 1.5)
 end
