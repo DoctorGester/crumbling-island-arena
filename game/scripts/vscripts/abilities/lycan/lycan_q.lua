@@ -7,18 +7,13 @@ LinkLuaModifier("modifier_lycan_bleed", "abilities/lycan/modifier_lycan_bleed", 
 require('abilities/lycan/lycan_wolf')
 
 function lycan_q:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 1600)
+    Wrappers.DirectionalAbility(self, 1600, 500)
 
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition() * Vector(1, 1, 0)
-    local direction = self:GetDirection()
 
-    if direction:Length2D() < 500 then
-        target = hero:GetPos() + direction:Normalized() * 500
-    end
-
-    LycanWolf(hero.round, hero, target, 1):Activate()
-    LycanWolf(hero.round, hero, target, -1):Activate()
+    LycanWolf(hero.round, hero, target, 1, self):Activate()
+    LycanWolf(hero.round, hero, target, -1, self):Activate()
 
     hero:EmitSound("Arena.Lycan.CastQ")
     hero:EmitSound("Arena.Lycan.CastQ.Voice")

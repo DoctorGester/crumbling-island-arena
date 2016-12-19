@@ -1,6 +1,6 @@
 LycanWolf = LycanWolf or class({}, nil, BreakableEntity)
 
-function LycanWolf:constructor(round, owner, target, offsetModifier)
+function LycanWolf:constructor(round, owner, target, offsetModifier, ability)
     local direction = (target - owner:GetPos()):Normalized()
     direction = Vector(direction.y, -direction.x, 0)
     local pos = owner:GetPos() + direction * 200 * offsetModifier
@@ -17,6 +17,7 @@ function LycanWolf:constructor(round, owner, target, offsetModifier)
     self.attacking = nil
     self.collisionType = COLLISION_TYPE_INFLICTOR
     self.startTime = GameRules:GetGameTime()
+    self.ability = ability
 
     self:SetFacing(target - self.start)
     self:AddNewModifier(self.hero, nil, "modifier_lycan_q", { duration = 3 })
@@ -72,7 +73,7 @@ function LycanWolf:Update()
             local distance = (self.attacking:GetPos() - self:GetPos()):Length2D()
 
             if distance <= 250 then
-                self.attacking:Damage(self, 2)
+                self.attacking:Damage(self, self.ability:GetDamage())
                 self:EmitSound("Arena.Lycan.HitQ2")
                 LycanUtil.MakeBleed(self.hero, self.attacking)
             end
@@ -97,7 +98,7 @@ function LycanWolf:Update()
     local projected = (currentPosition:Length2D() + 300) * normal
 
     local progress = projected:Length2D() / direction:Length2D() - 2 -- graph shifting
-    local y = (progress * progress) * 256
+    local y = (progress * progress) * 200
     local offset = Vector(normal.y, -normal.x) * y * self.offsetModifier
     local result = self.start + projected + offset
 

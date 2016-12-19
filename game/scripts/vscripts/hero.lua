@@ -56,6 +56,14 @@ function Hero:GetShortName()
     return self:GetName():sub(("npc_dota_hero_"):len() + 1)
 end
 
+function Hero:Animate(gesture, rate)
+    if rate ~= nil then
+        self:GetUnit():StartGestureWithPlaybackRate(gesture, rate)
+    else
+        self:GetUnit():StartGesture(gesture)
+    end
+end
+
 function Hero:BuildWearableStack()
     local cosmetics = Cosmetics[self:GetShortName()]
     local result = {}
@@ -316,9 +324,9 @@ function Hero:IsAirborne()
     return false
 end
 
-function Hero:AddKnockbackSource(source)
+function Hero:AddKnockbackSource(source, duration)
     self.lastKnockbackSource = source
-    self.lastKnockbackTimer = 45
+    self.lastKnockbackTimer = math.floor((duration or 1.5) * 30)
 end
 
 function Hero:AddNewModifier(source, ability, name, params)

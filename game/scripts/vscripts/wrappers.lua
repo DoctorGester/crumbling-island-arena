@@ -152,7 +152,7 @@ function Wrappers.AttackAbility(ability, staticDurationOffset, fx)
             local hero = self:GetCaster():GetParentEntity()
             local m = hero:FindModifier("modifier_attack_speed")
             local cd = self:GetCooldown(1)
-            local duration = cd * 2.2 + staticDurationOffset
+            local duration = cd * 1.9 + staticDurationOffset
 
             if not m then
                 m = hero:AddNewModifier(hero, self, "modifier_attack_speed", { duration = duration })

@@ -9,7 +9,12 @@ function lycan_e:OnSpellStart()
     hero:AreaEffect({
         filter = Filters.Area(hero:GetPos(), 350),
         onlyHeroes = true,
-        modifier = { name = "modifier_lycan_e", ability = self, duration = 2.0 }
+        modifier = { name = "modifier_lycan_e", ability = self, duration = 2.0 },
+        action = function(target)
+            if instanceof(target, Hero) then
+                target:AddKnockbackSource(hero, 2.0)
+            end
+        end
     })
 
     ImmediateEffect("particles/units/heroes/hero_lycan/lycan_howl_cast.vpcf", PATTACH_ABSORIGIN, hero)
