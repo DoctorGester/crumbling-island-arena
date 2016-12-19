@@ -109,7 +109,7 @@
 		"legion_commander_DescR" "AOE buff, immortality + reduced cooldowns"
 
 		"lycan_DescQ" "2 wolves run to the target point"
-		"lycan_DescW" "Melee attack"
+		"lycan_DescW" "AOE damage"
 		"lycan_DescE" "AOE fear"
 		"lycan_DescR" "Transform. Speed bonus. Power up"
 
@@ -459,10 +459,11 @@
 		"AbilityTooltip_storm_spirit_e"					"Target a <font color=\"#00EFEF\"><b>Remnant</b></font> and quickly dash to it"
 		"AbilityTooltip_storm_spirit_r"					"Ressurect up to 3 last dead <font color=\"#00EFEF\"><b>Remnants</b></font>"
 
+		"AbilityTooltip_lycan_a"						"Inflicts <font color=\"#D10000\"><b>Bleed</b></font>"
 		"AbilityTooltip_lycan_q"						"Summon two wolves running to the target point<br><br>Enemies bitten start <font color=\"#D10000\"><b>Bleeding</b></font>"
-		"AbilityTooltip_lycan_w"						"Strike an area in front of you, making enemies hit <font color=\"#D10000\"><b>Bleed</b></font>"
+		"AbilityTooltip_lycan_w"						"Target an area, damage enemies and apply <font color=\"#D10000\"><b>Bleed</b></font> after a delay"
 		"AbilityTooltip_lycan_e"						"Causes enemies around you to flee"
-		"AbilityTooltip_lycan_r"						"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Transform, gaining huge base movement speed<br><br><font color=\"gold\"><b>Q</b></font> Your Wolves move faster<br><font color=\"gold\"><b>W</b></font> <font color=\"#D10000\"><b>Bleeding</b></font> enemies are greatly slowed<br><font color=\"gold\"><b>E</b></font> Fleeing and <font color=\"#D10000\"><b>Bleeding</b></font> enemies are silenced"
+		"AbilityTooltip_lycan_r"						"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Transform, gaining huge base movement speed<br><br><font color=\"gold\"><b>A</b></font> <font color=\"#D10000\"><b>Bleeding</b></font> enemies take double damage<br><font color=\"gold\"><b>Q</b></font> Your Wolves move faster<br><font color=\"gold\"><b>W</b></font> Applies a major slow<br><font color=\"gold\"><b>E</b></font> Fleeing and <font color=\"#D10000\"><b>Bleeding</b></font> enemies are silenced"
 
 		"AbilityTooltip_phoenix_q"						"Dash forward, damaging and slowing enemies on your path"
 		"AbilityTooltip_phoenix_w"						"<font color=\"#DAFF7F\"><b>Charged</b></font><br/>Launch a slowing and damaging projectile to the target area"

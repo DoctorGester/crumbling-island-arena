@@ -4155,6 +4155,40 @@
     }
 }
 
+"Arena.Lycan.HitA"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/lycan/attack01.vsnd"
+                              "value0"        "sounds/weapons/hero/lycan/attack02.vsnd"
+                              "value0"        "sounds/weapons/hero/lycan/attack03.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
 "Arena.Lycan.CastQ"
 {
     "operator_stacks"
@@ -4309,8 +4343,7 @@
                     {
                         "value"
                         {
-                              "value0"        "sounds/weapons/hero/bloodseeker/preattack01.vsnd"
-                              "value0"        "sounds/weapons/hero/bloodseeker/preattack02.vsnd"
+                              "value0"        "sounds/weapons/hero/bloodseeker/blood_rite.vsnd"
                         }
                     }
                     "volume"            {   "value"     "1.00000"  }
@@ -4318,7 +4351,6 @@
                     "pitch_rand_max"    {   "value"     "0.050000"  }
                     "pitch"             {   "value"     "1.000000"  }
                     "soundlevel"        {   "value"     "95.00000" }
-                    
                     "event_type"        {   "value"     "1.000000"  }
                 }
             }
@@ -4326,7 +4358,7 @@
     }
 }
 
-"Arena.Lycan.HitW"
+"Arena.Lycan.EndW"
 {
     "operator_stacks"
     {
@@ -4342,9 +4374,7 @@
                     {
                         "value"
                         {
-                              "value0"        "sounds/weapons/hero/lycan/attack01.vsnd"
-                              "value0"        "sounds/weapons/hero/lycan/attack02.vsnd"
-                              "value0"        "sounds/weapons/hero/lycan/attack03.vsnd"
+                              "value0"        "sounds/weapons/hero/bloodseeker/blood_rite_silence.vsnd"
                         }
                     }
                     "volume"            {   "value"     "1.00000"  }
@@ -4352,7 +4382,6 @@
                     "pitch_rand_max"    {   "value"     "0.050000"  }
                     "pitch"             {   "value"     "1.000000"  }
                     "soundlevel"        {   "value"     "95.00000" }
-                    
                     "event_type"        {   "value"     "1.000000"  }
                 }
             }
@@ -9698,7 +9727,8 @@
                     {
                         "value"
                         {
-                              "value0"        "sounds/weapons/hero/bloodseeker/blood_rite_silence.vsnd"
+                              "value0"        "sounds/weapons/hero/bloodseeker/bloodbath01.vsnd"
+                              "value1"        "sounds/weapons/hero/bloodseeker/bloodbath02.vsnd"
                         }
                     }
                     "volume"            {   "value"     "1.00000"  }

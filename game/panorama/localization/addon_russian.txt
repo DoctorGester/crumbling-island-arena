@@ -107,7 +107,7 @@
 		"legion_commander_DescR" "Бессмертие и уменьшенная перезарядка в области"
 
 		"lycan_DescQ" "Запустить 2 волков к цели"
-		"lycan_DescW" "Атака перед собой"
+		"lycan_DescW" "Урон в области"
 		"lycan_DescE" "Страх в области"
 		"lycan_DescR" "Трансформация, скорость, улучшенные способности"
 
@@ -453,10 +453,11 @@
 		"AbilityTooltip_storm_spirit_e"					"Выбрать <font color=\"#00EFEF\"><b>Копию</b></font> и быстро рвануться к ней"
 		"AbilityTooltip_storm_spirit_r"					"Возродить три последние уничтоженные <font color=\"#00EFEF\"><b>Копии</b></font>"
 
+		"AbilityTooltip_lycan_a"						"Накладывает <font color=\"#D10000\"><b>Кровотечение</b></font>"
 		"AbilityTooltip_lycan_q"						"Вызвать двух волков, бегущих к цели<br><br>Укушенные враги начинают <font color=\"#D10000\"><b>Кровоточить</b></font>"
-		"AbilityTooltip_lycan_w"						"Ударить перед собой, заставляя поврежденных врагов <font color=\"#D10000\"><b>Кровоточить</b></font>"
+		"AbilityTooltip_lycan_w"						"После задержки нанести урон и наложить <font color=\"#D10000\"><b>Кровотечение</b></font> в области"
 		"AbilityTooltip_lycan_e"						"Заставить врагов вокруг себя бежать в страхе"
-		"AbilityTooltip_lycan_r"						"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>Обратиться, получив огромный бонус к скорости<br><br><font color=\"gold\"><b>Q</b></font> Волки бегут быстрее<br><font color=\"gold\"><b>W</b></font> <font color=\"#D10000\"><b>Кровоточащие</b></font> враги сильно замедлены<br><font color=\"gold\"><b>E</b></font> Бегущие в страхе <font color=\"#D10000\"><b>Кровоточащие</b></font> враги обезмолвлены"
+		"AbilityTooltip_lycan_r"						"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>Обратиться, получив огромный бонус к скорости<br><br><font color=\"gold\"><b>A</b></font> Двойной урон по <font color=\"#D10000\"><b>Кровоточащим</b></font> врагам<br><font color=\"gold\"><b>Q</b></font> Волки бегут быстрее<br><font color=\"gold\"><b>W</b></font> Накладывает сильное замедление<br><font color=\"gold\"><b>E</b></font> Бегущие в страхе <font color=\"#D10000\"><b>Кровоточащие</b></font> враги обезмолвлены"
 
 		"AbilityTooltip_phoenix_q"						"Рвануться вперед, нанося урон и замедляя противников на пути"
 		"AbilityTooltip_phoenix_w"						"<font color=\"#DAFF7F\"><b>С зарядами</b></font><br/>Запустить замедляющий и наносящий урон снаряд в область"
