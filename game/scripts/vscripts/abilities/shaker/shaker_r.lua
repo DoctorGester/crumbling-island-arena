@@ -56,7 +56,7 @@ function shaker_r:OnSpellStart()
             local working = false
 
             for _, part in ipairs(pieces) do
-                if part.z >= part.defaultZ - 8 then
+                if not part.launched then
                     local distance = (start - Vector(part.x, part.y, 0)):Length2D()
 
                     if distance > currentLen and distance <= currentLen + speed then

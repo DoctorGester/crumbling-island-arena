@@ -59,7 +59,7 @@ function shaker_q:OnSpellStart()
             local working = false
 
             for _, part in ipairs(pieces) do
-                if part.z >= part.defaultZ - 8 then
+                if not part.launched then
                     local closest = ClosestPointToSegment(start, target, Vector(part.x, part.y, 0))
                     local distance = (start - closest):Length2D()
 
