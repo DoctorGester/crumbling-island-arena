@@ -190,8 +190,8 @@ function Level:DamageGround(part, damage, source)
         table.insert(self.shakingParts, part)
     end
 
-    if part.health <= 20 and part.z >= part.defaultZ - 8 then
-        part.z = part.defaultZ + (part.health / 20 - 1) * 8
+    if part.health <= 50 and not part.launched then
+        part.z = part.defaultZ + (part.health / 20 - 1) * 12 - 12
         part:SetAbsOrigin(Vector(part.x, part.y, part.z))
     end
 
@@ -435,7 +435,7 @@ end
 
 function Level:GroundAction(action)
     for _, part in ipairs(self.parts) do
-        if part.z >= part.defaultZ - 8 then
+        if not part.launched then
             action(part)
         end
     end
