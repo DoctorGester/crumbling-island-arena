@@ -74,6 +74,14 @@
 			m_OffsetMax = [ 0.0, 0.0, 64.0 ]
 			m_OffsetMin = [ 0.0, 0.0, 64.0 ]
 		},
+		{
+			_class = "C_INIT_RemapCPtoScalar"
+			m_nCPInput = 1
+			m_nField = 1
+			m_flInputMax = 10.0
+			m_flOutputMin = 16.0
+			m_flOutputMax = 80.0
+		},
 	]
 	m_Emitters = 
 	[
