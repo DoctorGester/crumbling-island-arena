@@ -37,7 +37,7 @@
 		type = "dota_update_vo_switch"
 		vsnd_files =
 		[
-			"sounds/announcer/announcer_2v2.vsnd"
+			"sounds/announcer/announcer_3v3.vsnd"
 		]
 	}
 
