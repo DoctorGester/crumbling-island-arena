@@ -1068,7 +1068,7 @@ function GameMode:OnEntityKilled(event)
             self.currentScoreAddition = self.currentScoreAddition + 1
         end
 
-        --PlayerResource:SetOverrideSelectionEntity(entity.hero.owner.id, nil)
+        PlayerResource:SetOverrideSelectionEntity(entity.hero.owner.id, nil)
 
         if entity:GetAbsOrigin().z <= -MAP_HEIGHT then
             local lastKnockbackCaster = entity.hero.lastKnockbackSource
