@@ -35,6 +35,12 @@ function Dash:constructor(hero, to, speed, params)
         self.hero:EmitSound(self.loopingSound)
     end
 
+    if params.gesture then
+        hero:Animate(params.gesture, params.gestureRate)
+
+        self.gesture = params.gesture
+    end
+
     if params.forceFacing then
         local facing = self.to - self.from
 
@@ -136,6 +142,10 @@ function Dash:End(at, reachedDestination)
             self.hero:FindClearSpace(at, false)
         else
             self.hero:SetPos(at)
+        end
+
+        if self.gesture then
+            self.hero:GetUnit():FadeGesture(self.gesture)
         end
     end
 

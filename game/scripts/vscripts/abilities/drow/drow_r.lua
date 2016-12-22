@@ -23,7 +23,7 @@ function drow_r:OnChannelFinish(interrupted)
 
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
-    local direction = (target - hero:GetPos()):Normalized()
+    local direction = self:GetDirection()
 
     Projectile(hero.round, {
         owner = hero,

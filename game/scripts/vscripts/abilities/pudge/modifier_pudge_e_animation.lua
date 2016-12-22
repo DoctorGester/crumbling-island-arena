@@ -31,8 +31,6 @@ end
 
 function modifier_pudge_e_animation:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
-        MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE,
         MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
     }
 
@@ -45,12 +43,4 @@ end
 
 function modifier_pudge_e_animation:IsHidden()
     return true
-end
-
-function modifier_pudge_e_animation:GetOverrideAnimation(params)
-    return ACT_DOTA_RUN
-end
-
-function modifier_pudge_e_animation:GetOverrideAnimationRate(params)
-    return 2.5
 end

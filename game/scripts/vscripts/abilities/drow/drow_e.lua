@@ -14,6 +14,8 @@ function drow_e:OnSpellStart()
         hitParams = {
             modifier = { name = "modifier_drow_e_slow", ability = self, duration = 2.0 },
         },
-        loopingSound = "Arena.Drow.CastE"
+        loopingSound = "Arena.Drow.CastE",
+        gesture = ACT_DOTA_RUN,
+        gestureRate = 2.4
     })
 end

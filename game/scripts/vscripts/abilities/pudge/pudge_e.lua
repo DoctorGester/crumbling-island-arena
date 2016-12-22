@@ -11,7 +11,9 @@ function pudge_e:OnSpellStart()
 
     local dash = Dash(hero, target, 800, {
         modifier = { name = "modifier_pudge_e_animation", ability = self },
-        forceFacing = true
+        forceFacing = true,
+        gesture = ACT_DOTA_RUN,
+        gestureRate = 2.5
     })
 
     dash.hitParams = {
