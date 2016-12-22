@@ -47,7 +47,6 @@
 		"RoundEndActivity" "ACT_DOTA_CAPTURE"
 		"DrawParticlesWhileHidden" "1"
 		"Difficulty" "easy"
-		"ForNewPlayers" "1"
 		"Range" "ranged"
 		
 		"Ability1" "zeus_q"
@@ -548,7 +547,7 @@
 		"DisableWearables" "1"
 		"Range" "melee"
 		"Difficulty" "easy"
-		"Disabled" "true"
+		"Disabled" "false"
 		"Order" "12"
 		
 		"Ability1" "ta_q"
@@ -557,6 +556,7 @@
 		"Ability4" "placeholder_emote"
 		"Ability5" "placeholder_taunt"
 		"Ability6" "ta_r"
+		"Ability7" "ta_a"
 
 		"Ultimate" "ta_r"
 	}
@@ -718,6 +718,7 @@
 		"DisableWearables" "1"
 		"Range" "melee"
 		"Difficulty" "easy"
+		"ForNewPlayers" "1"
 		"Order" "16"
 		
 		"Ability1" "wk_q"
