@@ -5,7 +5,6 @@ LinkLuaModifier("modifier_slark_e_leash", "abilities/slark/modifier_slark_e_leas
 
 function slark_e:OnSpellStart()
     local hero = self:GetCaster().hero
-    local target = self:GetCursorPosition()
     local index = ParticleManager:CreateParticle("particles/units/heroes/hero_slark/slark_pounce_start.vpcf", PATTACH_ABSORIGIN, hero:GetUnit())
     ParticleManager:ReleaseParticleIndex(index)
 
@@ -14,6 +13,9 @@ function slark_e:OnSpellStart()
     local dash = Dash(hero, hero:GetPos() + hero:GetFacing() * 600, 1000, {
         heightFunction = DashParabola(150),
         modifier = { name = "modifier_slark_e", ability = self },
+        gesture = ACT_DOTA_SLARK_POUNCE,
+        gestureRate = 0.9,
+        forceFacing = true
     })
 
     hero:EmitSound("Arena.Slark.CastE")
