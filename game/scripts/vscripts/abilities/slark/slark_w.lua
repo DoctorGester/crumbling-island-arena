@@ -8,7 +8,7 @@ function slark_w:OnSpellStart()
 
     hero:EmitSound("Arena.Slark.PreW")
 
-    Timers:CreateTimer(1.5, function()
+    TimedEntity(1.5, function()
         if hero:Alive() then
             local index = ParticleManager:CreateParticle("particles/units/heroes/hero_slark/slark_dark_pact_pulses.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero:GetUnit())
             ParticleManager:SetParticleControlEnt(index, 1, hero:GetUnit(), PATTACH_ABSORIGIN_FOLLOW, nil, hero:GetPos(), true)
@@ -35,5 +35,5 @@ function slark_w:OnSpellStart()
             hero:GetUnit():Purge(false, true, false, true, false)
             hero:EmitSound("Arena.Slark.CastW")
         end
-    end)
+    end):Activate()
 end

@@ -20,7 +20,7 @@ function sk_q:OnSpellStart()
 
     CreateAOEMarker(hero, target, area, 1.2, Vector(212, 212, 144))
 
-    Timers:CreateTimer(1.2, function()
+    TimedEntity(1.2, function()
         hero:StopSound("Arena.SK.CastQ")
         hero:EmitSound("Arena.SK.EndQ", target)
         hero:AreaEffect({
@@ -37,7 +37,7 @@ function sk_q:OnSpellStart()
         Spells:GroundDamage(target, area, hero)
         local index = ImmediateEffectPoint("particles/units/heroes/hero_sandking/sandking_epicenter.vpcf", PATTACH_ABSORIGIN, hero, target)
         ParticleManager:SetParticleControl(index, 1, Vector(area, area, area))
-    end)
+    end):Activate()
 end
 
 function sk_q:GetCastAnimation()

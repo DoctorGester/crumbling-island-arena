@@ -21,7 +21,7 @@ function lycan_w:OnSpellStart()
         modifier = { name = "modifier_lycan_w", duration = 2.5, ability = self }
     end
 
-    Timers:CreateTimer(2.0, function()
+    TimedEntity(2.0, function()
         ParticleManager:DestroyParticle(particle, false)
         ParticleManager:ReleaseParticleIndex(particle)
 
@@ -39,7 +39,7 @@ function lycan_w:OnSpellStart()
                 LycanUtil.MakeBleed(hero, target)
             end
         })
-    end)
+    end):Activate()
 end
 
 function lycan_w:GetCastAnimation()

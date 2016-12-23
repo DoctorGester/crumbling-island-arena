@@ -16,14 +16,14 @@ function tiny_e:OnSpellStart()
 
     CreateAOEMarker(hero, target, radius, delay, Vector(127, 106, 0))
 
-    Timers:CreateTimer(delay,
+    TimedEntity(delay,
         function()
-            local particle = ParticleManager:CreateParticle("particles/tiny_e/tiny_e.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity())
-
-            ParticleManager:SetParticleControl(particle, 0, target)
-            ParticleManager:SetParticleControl(particle, 1, Vector(radius, 1, 1))
-            ParticleManager:SetParticleControl(particle, 2, Vector(duration, 0, 0))
-            ParticleManager:ReleaseParticleIndex(particle)
+            local particle = FX("particles/tiny_e/tiny_e.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity(), {
+                cp0 = target,
+                cp1 = Vector(radius, 1, 1),
+                cp2 = Vector(duration, 0, 0),
+                release = false
+            })
 
             local obstructions = {}
             local amount = 16
@@ -40,16 +40,20 @@ function tiny_e:OnSpellStart()
 
             hero:EmitSound("Arena.Tiny.CastE", target)
 
-            Timers:CreateTimer(duration,
+            TimedEntity(duration,
                 function()
-                    hero:EmitSound("Arena.Tiny.EndE", target)
                     for _, pso in ipairs(obstructions) do
                         pso:RemoveSelf()
                     end
+
+                    ParticleManager:DestroyParticle(particle, false)
+                    ParticleManager:ReleaseParticleIndex(particle)
+
+                    hero:EmitSound("Arena.Tiny.EndE", target)
                 end
-            )
+            ):Activate()
         end
-    )
+    ):Activate()
 end
 
 function tiny_e:GetCastAnimation()

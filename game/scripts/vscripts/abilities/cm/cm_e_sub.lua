@@ -13,7 +13,7 @@ function cm_e_sub:OnSpellStart()
         })
         deathSim:SetForwardVector(hero:GetFacing())
         ImmediateEffectPoint(particle, PATTACH_CUSTOMORIGIN, hero, hero:GetPos())
-        Timers:CreateTimer(5, function() deathSim:RemoveSelf() end)
+        TimedEntity(5, function() deathSim:RemoveSelf() end):Activate()
 
         hero:FindClearSpace(icePath:GetPos(), true)
         hero:SwapAbilities("cm_e_sub", "cm_e")

@@ -7,12 +7,12 @@ function pa_e:OnSpellStart()
     local modifier = hero:AddNewModifier(hero, self, "modifier_pa_e", { duration = 0.55 })
     hero:Animate(ACT_DOTA_CAST_ABILITY_2, 1.5)
 
-    Timers:CreateTimer(0.1,
+    TimedEntity(0.1,
         function()
             self:GetCaster():Interrupt()
             Dash(hero, hero:GetPos() + hero:GetFacing() * 500, 1250, {
                 heightFunction = DashParabola(80)
             }):SetModifierHandle(modifier)
         end
-    )
+    ):Activate()
 end

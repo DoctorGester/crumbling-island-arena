@@ -14,7 +14,7 @@ function invoker_q:OnSpellStart()
     ParticleManager:SetParticleControl(particle, 0, realTarget)
     ParticleManager:ReleaseParticleIndex(particle)
 
-    Timers:CreateTimer(0.7, function()
+    TimedEntity(0.7, function()
         blank = not Spells.TestCircle(target, 16)
 
         hero:StopSound("Arena.Invoker.CastQ")
@@ -38,7 +38,7 @@ function invoker_q:OnSpellStart()
         local index =  ParticleManager:CreateParticle("particles/invoker_q/invoker_q.vpcf", PATTACH_ABSORIGIN, self:GetCaster())
         ParticleManager:SetParticleControl(index, 0, realTarget)
         ParticleManager:ReleaseParticleIndex(index)
-    end)
+    end):Activate()
 
     hero:EmitSound("Arena.Invoker.CastQ", realTarget)
 end
