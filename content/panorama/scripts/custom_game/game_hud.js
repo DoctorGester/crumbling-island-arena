@@ -11,6 +11,7 @@ var chatLines = [];
 var cosmeticAbilityBar = null;
 var attacksRequested = 0;
 var newPlayer = false;
+var attackOff = false;
 
 //GameUI.SetCameraPitchMin(0);
 //GameUI.SetCameraPitchMax(0);
@@ -312,6 +313,9 @@ function FillDebugPanel(){
     AddDebugButton("Switch end check", "debug_switch_end_check");
     AddDebugButton("Switch debug display", "debug_switch_debug_display");
     AddDebugButton("Reset level", "debug_reset_level");
+    AddDebugButton("Toggle attack", null).SetPanelEvent("onactivate", function(){
+        attackOff = !attackOff;
+    });
     AddDebugButton("ALL HEROES", "debug_test_everything");
 }
 
@@ -537,6 +541,10 @@ function GetMouseCastTarget() {
 
 function MouseCallback(event, button) {
     var debug = (CustomNetTables.GetTableValue("main", "debug") || {}).enabled;
+
+    if (debug && attackOff) {
+        return false;
+    }
 
     if (GameUI.GetClickBehaviors() !== CLICK_BEHAVIORS.DOTA_CLICK_BEHAVIOR_NONE) {
         return false;
