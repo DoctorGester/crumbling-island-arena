@@ -4873,7 +4873,7 @@
     }
 }
 
-"Arena.TA.CastQ"
+"Arena.TA.CastA"
 {
     "operator_stacks"
     {
@@ -4910,7 +4910,7 @@
     }
 }
 
-"Arena.TA.HitQ"
+"Arena.TA.HitA"
 {
     "operator_stacks"
     {
@@ -4946,6 +4946,104 @@
     }
 }
 
+"Arena.TA.CastQ"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/templar_assassin/trigger_trap.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.TA.CastQ2"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/templar_assassin/meld_attack.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.TA.HitQ"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/sven/gods_strength_heavy_sword_impact1.vsnd"
+                              "value1"        "sounds/weapons/hero/sven/gods_strength_heavy_sword_impact2.vsnd"
+                              "value2"        "sounds/weapons/hero/sven/gods_strength_heavy_sword_impact3.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
 "Arena.TA.CastW"
 {
     "operator_stacks"
@@ -4962,7 +5060,7 @@
                     {
                         "value"
                         {
-                              "value0"        "sounds/weapons/hero/riki/riki_smokescreen.vsnd"
+                              "value0"        "sounds/weapons/hero/templar_assassin/trap_spawn.vsnd"
                         }
                     }
                     "volume"            {   "value"     "1.00000"  }
@@ -4971,6 +5069,38 @@
                     "pitch"             {   "value"     "1.000000"  }
                     "soundlevel"        {   "value"     "95.00000" }
                     
+                    "event_type"        {   "value"     "1.000000"  }
+                }
+            }
+        }
+    }
+}
+
+"Arena.TA.EndW"
+{
+    "operator_stacks"
+    {
+        "update_stack"
+        {
+            "reference_operator"
+            {
+                "operator"              "sos_reference_stack"
+                "reference_stack"       "dota_src1_3d"
+                "operator_variables"
+                {
+                    "vsnd_files"
+                    {
+                        "value"
+                        {
+                              "value0"        "sounds/weapons/hero/templar_assassin/trap_explode.vsnd"
+                        }
+                    }
+                    "volume"            {   "value"     "1.00000"  }
+                    "pitch_rand_min"    {   "value"     "-0.05000"  }
+                    "pitch_rand_max"    {   "value"     "0.050000"  }
+                    "pitch"             {   "value"     "1.000000"  }
+                    "soundlevel"        {   "value"     "95.00000" }
+
                     "event_type"        {   "value"     "1.000000"  }
                 }
             }
@@ -5155,38 +5285,6 @@
                         "value"
                         {
                               "value0"        "sounds/weapons/hero/templar_assassin/refraction_absorb.vsnd"
-                        }
-                    }
-                    "volume"            {   "value"     "0.80000"  }
-                    "pitch_rand_min"    {   "value"     "-0.05000"  }
-                    "pitch_rand_max"    {   "value"     "0.050000"  }
-                    "pitch"             {   "value"     "1.000000"  }
-                    "soundlevel"        {   "value"     "95.00000" }
-                    
-                    "event_type"        {   "value"     "1.000000"  }
-                }
-            }
-        }
-    }
-}
-
-"Arena.TA.HitR2"
-{
-    "operator_stacks"
-    {
-        "update_stack"
-        {
-            "reference_operator"
-            {
-                "operator"              "sos_reference_stack"
-                "reference_stack"       "dota_src1_3d"
-                "operator_variables"
-                {
-                    "vsnd_files"
-                    {
-                        "value"
-                        {
-                              "value0"        "sounds/items/faerie_spark.vsnd"
                         }
                     }
                     "volume"            {   "value"     "0.80000"  }

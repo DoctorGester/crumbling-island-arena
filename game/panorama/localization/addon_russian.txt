@@ -116,10 +116,10 @@
 		"phoenix_DescE" "Прерываемое. Лечение"
 		"phoenix_DescR" "Прерываемое. Большой урон в области"
 
-		"templar_assassin_DescQ" "Урон по линии"
-		"templar_assassin_DescW" "Замедление в конусе"
+		"templar_assassin_DescQ" "Прерываемое. Наносящий урон снаряд"
+		"templar_assassin_DescW" "Замедление в области после задержки"
 		"templar_assassin_DescE" "Телепортация. Перезаряжается от урона"
-		"templar_assassin_DescR" "Лечение с задержкой после получения урона"
+		"templar_assassin_DescR" "Щит + двойной урон от атак"
 
 		"tiny_DescQ" "Бросок камня. Можно подобрать CD"
 		"tiny_DescW" "Оглушение в области с задержкой"
@@ -464,10 +464,11 @@
 		"AbilityTooltip_phoenix_e"						"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>Восстановить 1 здоровья<br>Возродиться, если применено в яйце"
 		"AbilityTooltip_phoenix_r"						"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>После секундной задержки начать наносить периодический урон в области<br>Заклинатель всегда умирает после применения этой способности"
 
-		"AbilityTooltip_ta_q"							"Нанести урон по линии"
-		"AbilityTooltip_ta_w"							"Замедлить врагов в конусе<br/><br/>Восстановить здоровье при нанесении урона замедленным врагам"
-		"AbilityTooltip_ta_e"							"Телепортация<br/><br/>Нанесение или получение урона перезаряжает эту способность"
-		"AbilityTooltip_ta_r"							"Получить щит, восстанавливающие здоровье через 3 секунды после получения урона"
+		"AbilityTooltip_ta_a"							""
+		"AbilityTooltip_ta_q"							"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>Запустить снаряд повышающий урон от атак по врагу на 1"
+		"AbilityTooltip_ta_w"							"После задержки замедлить врагов в области, замедленные враги вылечат героя при получении урона"
+		"AbilityTooltip_ta_e"							"Скачок<br/><br/>Нанесение урона по врагам сокращает перезарядку за каждую единицу урона"
+		"AbilityTooltip_ta_r"							"Отразить урон трижды, герой наносит двойной урон от атак пока щит не сбит"
 
 		"AbilityTooltip_tiny_a"							"Замедляет врагов"
 		"AbilityTooltip_tiny_q"							"Бросить камень<br/>Можно подобрать, чтобы перезарядить"
@@ -666,9 +667,9 @@
 		"ModifierTooltip_modifier_phoenix_egg_tooltip"			"Превратится в яйцо после смерти<br>Если яйцо останется цело, возродится с единицей здоровья"
 		"ModifierTooltip_modifier_phoenix_egg"					"Возрождается"
 
-		"ModifierTooltip_modifier_ta_w"							"Замедлен, вылечит врага, если использует заклинание"
-		"ModifierTooltip_modifier_ta_r_shield"					"Получит лечение после получения урона"
-		"ModifierTooltip_modifier_ta_r_heal"					"Получит лечение"
+		"ModifierTooltip_modifier_ta_q"							"Получает повышенный урон от атак"
+		"ModifierTooltip_modifier_ta_w"							"Замедлен, при получении урона от врага вылечит его"
+		"ModifierTooltip_modifier_ta_r"							"Защищен, наносит двойной урон"
 
 		"ModifierTooltip_modifier_tiny_a"						"Замедлен"
 		"ModifierTooltip_modifier_tiny_q"						"Замедлен"

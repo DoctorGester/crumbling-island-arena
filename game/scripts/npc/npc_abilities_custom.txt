@@ -1364,14 +1364,15 @@
 		}
 	}
 
-	"ta_q"
+	"ta_a"
 	{
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/ta/ta_q"
+		"ScriptFile" "abilities/ta/ta_a"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName" "templar_assassin_psi_blades"
+		"AbilityTextureName" "templar_assassin_self_trap"
 		"AbilityCooldown" "0.75"
 		"AbilityCastPoint" "0.1"
+		"Damage" "1"
 
 		"TargetingIndicator"
 		{
@@ -1380,11 +1381,29 @@
 			"MinLength" "500"
 			"Width" "64"
 		}
+	}
 
-		"precache"
+	"ta_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ta/ta_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "templar_assassin_psi_blades"
+		"AbilityCooldown" "6"
+		"AbilityCastPoint" "0.2"
+		"Damage" "3"
+
+		"TargetingIndicator"
 		{
-			"particle" "particles/units/heroes/hero_templar_assassin/templar_assassin_psi_blade.vpcf"
-			"particle" "particles/units/heroes/hero_templar_assassin/templar_assassin_meld_hit.vpcf"
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "750"
+			"MaxLength" "750"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "750"
 		}
 	}
 
@@ -1393,23 +1412,21 @@
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/ta/ta_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName" "templar_assassin_self_trap"
-		"AbilityCooldown" "9.0"
+		"AbilityTextureName" "templar_assassin_psionic_trap"
+		"AbilityCooldown" "7.0"
 		"AbilityCastPoint" "0.2"
 
 		"TargetingIndicator"
 		{
-			"Type" "TARGETING_INDICATOR_CONE"
-			"MaxLength" "550"
-			"MinLength" "550"
-			"Width" "400"
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "200"
 			"DisplayRange" "1"
 		}
 
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "500"
+			"Radius" "900"
 		}
 
 		"precache"

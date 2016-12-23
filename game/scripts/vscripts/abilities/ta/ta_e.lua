@@ -8,18 +8,10 @@ function ta_e:OnAbilityPhaseStart()
 end
 
 function ta_e:OnSpellStart()
+    Wrappers.DirectionalAbility(self, 400)
+
     local hero = self:GetCaster().hero
-    local casterPos = hero:GetPos()
     local target = self:GetCursorPosition()
-    local direction = (target - casterPos):Normalized()
-
-    if direction:Length2D() == 0 then
-        direction = hero:GetFacing()
-    end
-
-    if (target - casterPos):Length2D() > 400 then
-        target = casterPos + direction * 400
-    end
 
     ImmediateEffectPoint("particles/econ/events/ti4/blink_dagger_start_ti4.vpcf", PATTACH_ABSORIGIN, hero, hero:GetPos() + Vector(0, 0, 32))
 

@@ -251,6 +251,7 @@
             "item" "9318"
             "particles"
             {
+            	"particles/ta_q/ta_q.vpcf" "particles/econ/ta_q/ta_q.vpcf"
                 "particles/units/heroes/hero_templar_assassin/templar_assassin_meld_hit.vpcf" "particles/econ/items/templar_assassin/templar_assassin_focal/templar_assassin_meld_focal_attack_hit.vpcf"
             }
         }

@@ -20,7 +20,7 @@ function Projectile:constructor(round, params)
     self.currentMultiplier = 1.0
 
     self:GetUnit():SetNeverMoveToClearSpace(true)
-    self:SetFacing(self.to - self.from)
+    self:SetFacing(self.vel)
     self:SetGraphics(params.graphics)
 
     self.hitModifier = params.hitModifier -- { name, duration, ability }
@@ -137,7 +137,7 @@ function Projectile:CollideWith(target)
     if self.hitFunction then
         self:hitFunction(target)
     elseif self.damage ~= nil then
-        target:Damage(self, self.damage, self.isPhysical)
+        target:Damage(self.hero, self.damage, self.isPhysical)
     end
     
     if self.hitSound then

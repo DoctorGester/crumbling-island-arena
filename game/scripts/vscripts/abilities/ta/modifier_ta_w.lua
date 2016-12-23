@@ -14,13 +14,28 @@ function modifier_ta_w:DeclareFunctions()
 end
 
 function modifier_ta_w:GetModifierMoveSpeedBonus_Percentage(params)
-    return -20
+    return -50
 end
 
 function modifier_ta_w:GetEffectName()
-    return "particles/ta_w/ta_w_debuff.vpcf"
+    return "particles/units/heroes/hero_templar_assassin/templar_assassin_trap_slow.vpcf"
 end
 
 function modifier_ta_w:GetEffectAttachType()
     return PATTACH_ABSORIGIN_FOLLOW
+end
+
+function modifier_ta_w:OnDamageReceived(source, entity, amount)
+    local hero = self:GetCaster():GetParentEntity()
+
+    if hero == source then
+        hero:Heal(amount)
+        hero:EmitSound("Arena.TA.HitW")
+
+        FX("particles/ta_w_heal/ta_w_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero, { release = true })
+    end
+end
+
+function modifier_ta_w:OnDamageReceivedPriority()
+    return -1
 end

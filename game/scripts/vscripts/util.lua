@@ -135,6 +135,13 @@ function FX(path, attach, parent, options)
     end
 end
 
+function DFX(index, force)
+    force = force ~= nil
+
+    ParticleManager:DestroyParticle(index, force)
+    ParticleManager:ReleaseParticleIndex(index)
+end
+
 function SplashEffect(point)
     local id = ParticleManager:CreateParticle("particles/econ/courier/courier_kunkka_parrot/courier_kunkka_parrot_splash.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity())
     ParticleManager:SetParticleControl(id, 0, Vector(point.x, point.y, -3500))

@@ -1,52 +1,79 @@
 ta_q = class({})
+LinkLuaModifier("modifier_ta_q", "abilities/ta/modifier_ta_q", LUA_MODIFIER_MOTION_NONE)
 
-function ta_q:OnSpellStart()
-    local hero = self:GetCaster().hero
-    local target = self:GetCursorPosition()
-    local direction = target - hero:GetPos()
+function ta_q:OnChannelThink(interval)
+    self.timePassed = (self.timePassed or 0) + interval
 
-    if direction:Length2D() == 0 then
-        direction = hero:GetFacing()
+    local hero = self:GetCaster():GetParentEntity()
+
+    if interval == 0 then
+        local path = hero:GetMappedParticle("particles/units/heroes/hero_templar_assassin/templar_assassin_meld.vpcf")
+        self.particle = FX(path, PATTACH_ABSORIGIN_FOLLOW, hero, {
+            cp1 = { ent = hero, attach = PATTACH_ABSORIGIN_FOLLOW },
+            release = false
+        })
+
+        hero:EmitSound("Arena.TA.CastQ")
     end
 
-    local target = hero:GetPos() + direction:Normalized() * 500
-    local height = Vector(0, 0, 64)
+    if self.timePassed > 0.3 and not self.animationStarted then
+        hero:Animate(ACT_DOTA_CAST_ABILITY_4, 2.0)
 
-    local effect = ImmediateEffect(hero:GetMappedParticle("particles/units/heroes/hero_templar_assassin/templar_assassin_psi_blade.vpcf"), PATTACH_ABSORIGIN, hero)
-    ParticleManager:SetParticleControl(effect, 0, hero:GetPos() + height)
-    ParticleManager:SetParticleControl(effect, 1, target + height)
-    ParticleManager:SetParticleControl(effect, 3, target + height)
+        self.animationStarted = true
+    end
 
-    local hurt = hero:AreaEffect({
-        filter = Filters.Line(hero:GetPos(), target, 64),
-        sound = "Arena.TA.HitQ",
-        action = function(victim)
-            if victim:HasModifier("modifier_ta_w") then
-                hero:Heal()
-                hero:EmitSound("Arena.TA.HitW")
+    if (not self.animationStarted and self.timePassed < 0.2) or self.timePassed > 0.35 then
+        hero:SetFacing(self:GetDirection())
+    end
+end
 
-                ImmediateEffect("particles/ta_w_heal/ta_w_heal.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero)
-            end
+function ta_q:OnChannelFinish(interrupted)
+    self.timePassed = 0
+    self.animationStarted = false
 
-            victim:Damage(hero)
+    if self.particle then
+        ParticleManager:DestroyParticle(self.particle, false)
+        ParticleManager:ReleaseParticleIndex(self.particle)
+    end
 
-            local effect = ImmediateEffect(hero:GetMappedParticle("particles/units/heroes/hero_templar_assassin/templar_assassin_meld_hit.vpcf"), PATTACH_ABSORIGIN, hero)
-            ParticleManager:SetParticleControlForward(effect, 0, direction:Normalized())
-            ParticleManager:SetParticleControl(effect, 3, victim:GetPos())
-        end
-    })
+    if interrupted then
+        return
+    end
 
-    hero:EmitSound("Arena.TA.CastQ")
+    local hero = self:GetCaster():GetParentEntity()
+    local target = self:GetCursorPosition()
 
-    if hurt then
+    DistanceCappedProjectile(hero.round, {
+        owner = hero,
+        from = hero:GetPos() + Vector(0, 0, 128),
+        to = target + Vector(0, 0, 128),
+        speed = 1550,
+        graphics = hero:GetMappedParticle("particles/ta_q/ta_q.vpcf"),
+        distance = 750,
+        hitModifier = { name = "modifier_ta_q", duration = 3.0, ability = self },
+        hitSound = "Arena.TA.HitQ",
+        damage = self:GetDamage()
+    }):Activate()
+
+    hero:EmitSound("Arena.TA.CastQ2")
+
+    if hurt and hero:HasModifier("modifier_ta_r_shield") then
         hero:FindAbility("ta_e"):EndCooldown()
     end
 end
 
+function ta_q:GetChannelTime()
+    return 0.7
+end
+
 function ta_q:GetCastAnimation()
-    return ACT_DOTA_ATTACK2
+    return ACT_DOTA_CAST_ABILITY_2
 end
 
 function ta_q:GetPlaybackRateOverride()
-    return 1.33
+    return 1.5
+end
+
+if IsServer() then
+    Wrappers.GuidedAbility(ta_q, true, true)
 end

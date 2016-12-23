@@ -46,6 +46,11 @@ function Wrappers.GuidedAbility(ability, forceFacing, doNotSetFacing)
             local function updateLastFacing(self, from)
                 local delta = from - self:GetCaster():GetParentEntity():GetPos()
                 delta = (delta * Vector(1, 1, 0)):Normalized()
+
+                if delta:Length2D() == 0 then
+                    delta = self:GetCaster():GetForwardVector()
+                end
+
                 self.lastFacing = delta
                 self.lastGuidedPos = from
             end
@@ -65,7 +70,11 @@ function Wrappers.GuidedAbility(ability, forceFacing, doNotSetFacing)
         end
 
         if not doNotSetFacing then
-            self:GetCaster():GetParentEntity():SetFacing(self.lastFacing)
+            local hero = self:GetCaster():GetParentEntity()
+
+            if (hero:GetFacing() - self.lastFacing):Length2D() ~= 0 then
+                hero:SetFacing(self.lastFacing)
+            end
         end
 
         if onChannelThink then
@@ -97,6 +106,17 @@ function Wrappers.GuidedAbility(ability, forceFacing, doNotSetFacing)
 
     function ability:GetCursorPosition()
         return self.lastGuidedPos
+    end
+
+    function ability:GetDirection()
+        local casterPos = self:GetCaster():GetAbsOrigin()
+        local direction = (self.lastGuidedPos - casterPos):Normalized() * Vector(1, 1, 0)
+
+        if direction:Length2D() == 0 then
+            direction = self:GetCaster():GetForwardVector()
+        end
+
+        return direction
     end
 end
 

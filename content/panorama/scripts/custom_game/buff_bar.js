@@ -7,7 +7,8 @@ var modifiersWithStacks = [
     "modifier_am_damage",
     "modifier_gyro_q",
     "modifier_gyro_q_slow",
-    "modifier_cm_a"
+    "modifier_cm_a",
+    "modifier_ta_r"
 ];
 
 function ShowBuffTooltip(element, entityId, buffId) {
