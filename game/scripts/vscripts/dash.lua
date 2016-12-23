@@ -87,7 +87,7 @@ function Dash:SetModifierHandle(modifier)
 end
 
 function Dash:HasEnded()
-    return (self.to - self.hero:GetPos()):Length2D() <= self.velocity
+    return (self.to - self.hero:GetPos()):Length2D() <= self.velocity / 2
 end
 
 function Dash:Update()
