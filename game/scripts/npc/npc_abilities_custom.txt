@@ -3307,7 +3307,7 @@
 		"AbilityTextureName" "queenofpain_shadow_strike"
 		"AbilityCooldown" "3.5"
 		"AbilityCastPoint" "0.15"
-		"Damage" "2"
+		"Damage" "3"
 
 		"TargetingIndicator"
 		{
