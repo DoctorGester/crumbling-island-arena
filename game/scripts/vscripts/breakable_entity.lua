@@ -80,7 +80,7 @@ function BreakableEntity:Damage(source, amount, isPhysical)
     local sign = ParticleManager:CreateParticle("particles/msg_damage.vpcf", PATTACH_CUSTOMORIGIN, mode)
     ParticleManager:SetParticleControl(sign, 0, self:GetPos())
     ParticleManager:SetParticleControl(sign, 1, Vector(0, amount, 0))
-    ParticleManager:SetParticleControl(sign, 2, Vector(1, 1, 0))
+    ParticleManager:SetParticleControl(sign, 2, Vector(math.max(1, amount / 1.5), 1, 0))
     ParticleManager:SetParticleControl(sign, 3, Vector(255, 255, 255))
     ParticleManager:ReleaseParticleIndex(sign)
 
