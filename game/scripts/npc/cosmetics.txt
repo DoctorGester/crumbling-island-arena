@@ -37,6 +37,16 @@
         }
     }
 
+    "sven"
+    {
+        "1"
+        {
+            "type" "elite"
+            "season" "2"
+            "set" "stormwrought_arbiter"
+        }
+    }
+
     "invoker"
     {
         "1"
