@@ -118,7 +118,7 @@
 		"phoenix_DescE" "Channeling. Heal"
 		"phoenix_DescR" "Channeling. AOE damage"
 
-		"templar_assassin_DescQ" "Channeling. Damaging projectile"
+		"templar_assassin_DescQ" "Damage amplifying projectile"
 		"templar_assassin_DescW" "Slow after a delay"
 		"templar_assassin_DescE" "Blink"
 		"templar_assassin_DescR" "Shield, 2x attack damage"
@@ -471,9 +471,9 @@
 		"AbilityTooltip_phoenix_r"						"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Target an area, after a 1 second delay periodically deal damage in that area<br>Caster always dies at the end of that ability"
 
 		"AbilityTooltip_ta_a"							""
-		"AbilityTooltip_ta_q"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Fire a projectile which amplifies incoming physical damage by 1"
+		"AbilityTooltip_ta_q"							"Fire a projectile which amplifies incoming physical damage by 1"
 		"AbilityTooltip_ta_w"							"After a delay slow all enemies in the area, damaging these enemies will heal your hero"
-		"AbilityTooltip_ta_e"							"Blink<br/><br/>Dealing damage to enemies will reduce the cooldown per each point of damage"
+		"AbilityTooltip_ta_e"							"Blink<br/><br/>Dealing 3 damage to a single enemy resets the cooldown"
 		"AbilityTooltip_ta_r"							"Deflect 3 damage instances, deal double damage from basic attack while shielded"
 
 		"AbilityTooltip_tiny_a"							"Briefly slows enemies hit"
