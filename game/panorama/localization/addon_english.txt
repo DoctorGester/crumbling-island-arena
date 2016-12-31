@@ -417,7 +417,7 @@
 
 		"AbilityTooltip_zeus_a"							"Enemies hit are affected by <font color=\"#7FC9FF\"><b>Shock</b></font><br/>Damaging them with another ability will stun them"
 		"AbilityTooltip_zeus_q"							"Damage enemies in the area"
-		"AbilityTooltip_zeus_w"							"Create a lightning wall, allies get bonus speed when passing through it<br><br>Your basic attack is 2x longer when travelling through the wall"
+		"AbilityTooltip_zeus_w"							"Create a lightning wall, allies get bonus speed when passing through it<br><br>Your basic attack is 2x longer and deals more damage when travelling through the wall"
 		"AbilityTooltip_zeus_e"							"Teleport to a target point<br><br>Teleporting through the lightning wall damages all enemies between teleport locations"
 		"AbilityTooltip_zeus_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Become invulnerable during the channeling<br/>Reappear in the target area after the channeling ends, damaging enemies and applying <font color=\"#7FC9FF\"><b>Shock</b></font> to them"
 
