@@ -1950,7 +1950,7 @@
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName" "drow_ranger_marksmanship"
 		"AbilityCooldown" "12.0"
-		"Damage" "3"
+		"Damage" "4"
 
 		"TargetingIndicator"
 		{
