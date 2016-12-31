@@ -8,6 +8,7 @@ function zeus_a:OnSpellStart()
     local target = self:GetCursorPosition()
     local dir = self:GetDirection()
     local walls = {}
+    local damage = self:GetDamage()
 
     while true do
         local wall = hero.round.spells:FilterEntities(function(t)
@@ -21,11 +22,12 @@ function zeus_a:OnSpellStart()
         walls[wall] = true
 
         target = target + dir * 600
+        damage = damage + 1
     end
 
     hero:AreaEffect({
         filter = Filters.Line(hero:GetPos(), target, 32),
-        damage = self:GetDamage(),
+        damage = damage,
         sound = "Arena.Zeus.HitE",
         modifier = { name = "modifier_zeus_a", duration = 2.5, ability = self },
         isPhysical = true
