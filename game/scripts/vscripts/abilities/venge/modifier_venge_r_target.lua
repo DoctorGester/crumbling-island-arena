@@ -31,3 +31,9 @@ end
 function modifier_venge_r_target:GetEffectAttachType()
     return PATTACH_ABSORIGIN_FOLLOW
 end
+
+function modifier_venge_r_target:OnDamageReceived(_, _, amount, isPhysical)
+    if isPhysical then
+        return amount + 1
+    end
+end

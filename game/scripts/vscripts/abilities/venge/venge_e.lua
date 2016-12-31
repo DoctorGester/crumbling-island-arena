@@ -43,7 +43,8 @@ function venge_e:OnSpellStart()
         end,
         hitCondition = function(projectile, target)
             return target ~= hero
-        end
+        end,
+        hitProjectiles = true
     }):Activate()
 
     hero:EmitSound("Arena.Venge.CastE")
@@ -51,4 +52,8 @@ end
 
 function venge_e:GetCastAnimation()
     return ACT_DOTA_ATTACK
+end
+
+function venge_e:GetPlaybackRateOverride()
+    return 2.0
 end
