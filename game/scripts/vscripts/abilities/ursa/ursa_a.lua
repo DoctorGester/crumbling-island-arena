@@ -29,7 +29,8 @@ function ursa_a:OnSpellStart()
                 local index = ParticleManager:CreateParticle("particles/generic_gameplay/generic_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero:GetUnit())
                 ParticleManager:ReleaseParticleIndex(index)
             end
-        end
+        end,
+        isPhysical = true
     })
 end
 
