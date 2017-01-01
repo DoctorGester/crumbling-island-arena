@@ -305,7 +305,7 @@
 		"GameTip3" "You can use twitch emotes in chat (after game mode and teams are selected)"
 		"GameTip4" "Good luck, have fun!"
 		"GameTip5" "Enabling quick-cast might enhance your experience"
-		"GameTip6" "Damaging projectiles destroy other projectiles upon collision"
+		"GameTip6" "Join our Discord! discord.me/cia"
 		"GameTip7" "To play 1v1 simply start the game on any map with 1 opponent"
 		"GameSetupModeSelect" "Select a game mode"
 		"GameSetupDM" "Deathmatch"
