@@ -42,7 +42,7 @@
         "1"
         {
             "type" "elite"
-            "season" "2"
+            "season" "6"
             "set" "stormwrought_arbiter"
         }
     }
