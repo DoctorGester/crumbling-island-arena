@@ -23,7 +23,6 @@ function jugger_a:OnSpellStart()
 
     hero:AreaEffect({
         filter = Filters.Line(hero:GetPos(), target, 64),
-        sound = "Arena.TA.HitQ",
         damage = hero:HasModifier("modifier_jugger_r") and 4 or self:GetDamage(),
         isPhysical = true,
         action = function(victim)
