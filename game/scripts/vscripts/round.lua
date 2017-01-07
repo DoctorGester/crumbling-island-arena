@@ -186,24 +186,34 @@ function Round:CreateHeroes(spawnPoints)
 end
 
 function Round:Destroy()
-    for _, player in pairs(self.players) do
-        if player.hero then
-            self.spells:InterruptDashes(player.hero)
-            player.hero:Hide()
+    local loops = 0
+
+    while #self.spells.entities > 0 do
+        for _, player in pairs(self.players) do
+            if player.hero then
+                self.spells:InterruptDashes(player.hero)
+                player.hero:Hide()
+            end
+        end
+
+        self:Update() -- To stop dashes
+
+        for _, entity in pairs(self.spells.entities) do
+            if instanceof(entity, Hero) then
+                entity.removeOnDeath = true
+            end
+
+            entity:Destroy()
+        end
+
+        self:Update()
+
+        loops = loops + 1
+
+        if loops > 100 then
+            print("Round:Destroy looped 100 times, aborting")
         end
     end
-
-    self:Update() -- To stop dashes
-
-    for _, entity in pairs(self.spells.entities) do
-        if instanceof(entity, Hero) then
-            entity.removeOnDeath = true
-        end
-        
-        entity:Destroy()
-    end
-
-    self:Update()
 
     if self.runeParticle then
         ParticleManager:DestroyParticle(self.runeParticle, false)
