@@ -114,10 +114,11 @@
                     </Panel>
                 </Panel>
             </Panel>
-            <Panel id="GameChat" class="Hidden" hittest="false">
+            <Panel id="GameChat" hittest="false">
                 <Panel id="GameChatContent" hittest="false"/>
                 <TextEntry
                         id="GameChatEntry"
+                        class="Hidden"
                         multiline="false"
                         textmode="normal"
                         oninputsubmit="SubmitGameChat()"

@@ -679,14 +679,17 @@ var lastShowTime;
 function ShowGameChat() {
     lastShowTime = Game.Time();
     $.DispatchEvent("SetInputFocus", $("#GameChatEntry"));
-    $("#GameChat").SetHasClass("Hidden", false);
+    $("#GameChatEntry").SetHasClass("Hidden", false);
     $("#GameChatTarget").text = $.Localize(GameUI.IsShiftDown() ? "#ChatAll" : "#ChatTeam");
     $("#GameChat").shiftHeld = GameUI.IsShiftDown();
 }
 
 function HideGameChat() {
-    $("#GameChat").SetHasClass("Hidden", true);
+    $("#GameChatEntry").SetHasClass("Hidden", true);
     $.DispatchEvent("DropInputFocus", $("#GameChat"));
+
+    $("#GameChatContent").ToggleClass("Hidden"); // A hack to update css selector behaviour
+    $("#GameChatContent").ToggleClass("Hidden");
 }
 
 function SubmitGameChat() {

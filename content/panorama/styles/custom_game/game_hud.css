@@ -303,6 +303,11 @@
     opacity: 1.0;
 }
 
+#GameChat:not(:descendantfocus) #GameChatContent
+{
+    margin-bottom: 34px;
+}
+
 .GameChatLine Label
 {
     vertical-align: center;
