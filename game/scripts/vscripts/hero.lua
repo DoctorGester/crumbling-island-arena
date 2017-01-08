@@ -277,7 +277,7 @@ function Hero:Heal(amount)
         ParticleManager:SetParticleControl(sign, 3, Vector(100, 255, 50))
         ParticleManager:ReleaseParticleIndex(sign)
 
-        self.round.statistics:IncreaseHealingReceived(self.owner)
+        self.round.statistics:IncreaseHealingReceived(self.owner, amount)
     end
 end
 

@@ -30,8 +30,8 @@ function Statistics:IncreaseGroundDamageDealt(player)
 	self:IncreaseValue(player, "groundDamageDealt", 1)
 end
 
-function Statistics:IncreaseHealingReceived(player)
-	self:IncreaseValue(player, "healingReceived", 1)
+function Statistics:IncreaseHealingReceived(player, amount)
+	self:IncreaseValue(player, "healingReceived", amount)
 end
 
 function Statistics:IncreaseProjectilesFired(player)
