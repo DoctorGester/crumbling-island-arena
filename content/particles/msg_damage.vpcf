@@ -33,7 +33,19 @@
 		},
 		{
 			_class = "C_OP_FadeOutSimple"
-			m_flFadeOutTime = 1.0
+			m_flFadeOutTime = 1.5
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flEndTime = 0.1
+			m_flStartScale = 0.0
+			m_flEndScale = 1.8
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flStartTime = 0.1
+			m_flEndTime = 0.3
+			m_flStartScale = 1.8
 		},
 	]
 	m_Initializers = 
@@ -49,11 +61,21 @@
 			m_vecDistanceBiasAbs = [ 0.0, 0.0, 1.0 ]
 			m_LocalCoordinateSystemSpeedMax = [ 0.0, 0.0, 150.0 ]
 			m_LocalCoordinateSystemSpeedMin = [ 0.0, 0.0, 50.0 ]
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+			m_vecDistanceBias = [ 0.0, 0.0, -1.0 ]
+			m_vecDistanceBiasAbs = [ 0.0, 0.0, 1.0 ]
+			m_fSpeedMin = 400.0
+			m_fSpeedMax = 400.0
+			m_LocalCoordinateSystemSpeedMin = [ 0.0, 0.0, 100.0 ]
+			m_LocalCoordinateSystemSpeedMax = [ 0.0, 0.0, 100.0 ]
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMax = 1.0
-			m_fLifetimeMin = 1.0
+			m_fLifetimeMax = 1.5
+			m_fLifetimeMin = 1.5
 		},
 		{
 			_class = "C_INIT_RemapCPtoScalar"
@@ -61,6 +83,7 @@
 			m_flInputMax = 10.0
 			m_nFieldOutput = 1
 			m_flOutputMax = 10.0
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_INIT_RemapCPtoVector"
@@ -71,8 +94,9 @@
 		},
 		{
 			_class = "C_INIT_PositionOffset"
-			m_OffsetMax = [ 0.0, 0.0, 64.0 ]
-			m_OffsetMin = [ 0.0, 0.0, 64.0 ]
+			m_OffsetMax = [ 0.0, 0.0, 200.0 ]
+			m_OffsetMin = [ 0.0, 0.0, 200.0 ]
+			m_bDisableOperator = true
 		},
 		{
 			_class = "C_INIT_RemapCPtoScalar"
