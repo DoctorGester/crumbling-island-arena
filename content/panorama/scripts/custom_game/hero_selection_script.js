@@ -397,6 +397,17 @@ function CreateHeroList(heroList, heroes, quests, selectedHeroes, achievements, 
                 continue;
             }*/
 
+            var dateAdded = allHeroes[hero].dateAdded;
+            var recentlyAdded = false;
+
+            if (dateAdded) {
+                var date = moment(dateAdded, "DD.MM.YYYY");
+
+                if (date.add(5, "days").isAfter(moment.now())) {
+                    recentlyAdded = true;
+                }
+            }
+
             var button = {
                 tag: "Button",
                 class: [
@@ -445,7 +456,19 @@ function CreateHeroList(heroList, heroes, quests, selectedHeroes, achievements, 
                     scaling: "stretch-to-fit-x-preserve-aspect",
                 };
 
-                button.children = [ mainChild ];
+                button.children = [
+                    mainChild,
+                    recentlyAdded ? {
+                        class: "RecentTag",
+                        hittest: false,
+                        hittestchildren: false,
+                        children: {
+                            tag: "Label",
+                            class: "RecentText",
+                            text: "#RecentlyAdded"
+                        }
+                    } : null
+                ];
 
                 if (notAvailable) {
                     AddDisabledButtonEvents(mainChild, hero);

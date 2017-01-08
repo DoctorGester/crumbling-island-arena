@@ -11,6 +11,7 @@
         <include src="file://{resources}/scripts/custom_game/underscore-min.js" />
         <include src="file://{resources}/scripts/custom_game/util.js" />
         <include src="file://{resources}/scripts/custom_game/pass.js" />
+        <include src="file://{resources}/scripts/custom_game/moment.min.js" />
         <include src="file://{resources}/scripts/custom_game/hero_selection_script.js" />
     </scripts>
     <Panel class="MainPanel" hittest="false">

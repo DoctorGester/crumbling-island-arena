@@ -171,7 +171,6 @@ function Activate()
 
     GameRules.GameMode = GameMode()
     GameRules.GameMode:SetupMode()
-    SendToServerConsole("dota_create_fake_clients 5")
 end
 
 function WritePrefab()
@@ -1115,7 +1114,8 @@ function GameMode:UpdateAvailableHeroesTable()
             abilities = data.abilities,
             banned = data.banned,
             forNewPlayers = data.forNewPlayers,
-            range = data.range
+            range = data.range,
+            dateAdded = data.dateAdded
         }
 
         table.insert(heroes, hero)
@@ -1331,7 +1331,8 @@ function GameMode:LoadCustomHeroes()
                 removeWearablesDelay = data.RemoveWearablesDelay,
                 hideOnDeathDelay = data.HideOnDeathDelay,
                 forNewPlayers = data.ForNewPlayers,
-                range = data.Range
+                range = data.Range,
+                dateAdded = data.DateAdded
             }
 
             local abilities = {}

@@ -20,9 +20,9 @@ function storm_spirit_a:OnSpellStart()
         graphics = "particles/storm_a/storm_a.vpcf",
         distance = 700,
         hitSound = charged and "Arena.Storm.HitA2" or "Arena.Storm.HitA",
-        hitFunction = function(projectile, victim)
+        destroyFunction = function(projectile, victim)
             if charged then
-                hero:AreaEffect({
+                projectile:AreaEffect({
                     filter = Filters.Area(projectile:GetPos(), 350),
                     damage = self:GetDamage() * 2,
                     modifier = { name = "modifier_storm_spirit_a_slow", duration = 1.2, ability = self }

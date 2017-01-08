@@ -6,8 +6,10 @@ Debug = Debug or {
 }
 
 function Debug.OnTestEverything()
-    for name, _ in pairs(GameRules.GameMode.AvailableHeroes) do
-        Debug.OnCreateTestHero(nil, { name = name })
+    for name, data in pairs(GameRules.GameMode.AvailableHeroes) do
+        if not data.disabled then
+            Debug.OnCreateTestHero(nil, { name = name })
+        end
     end
 end
 

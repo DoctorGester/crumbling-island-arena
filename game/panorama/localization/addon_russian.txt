@@ -42,6 +42,7 @@
 		"HeroName_npc_dota_hero_phantom_lancer"			"Близнецы"
 		"HeroName_npc_dota_hero_gyrocopter"				"Черепаха"
 		"HeroName_npc_dota_hero_rubick"					"Зависть"
+		"HeroName_npc_dota_hero_windrunner"				"Аура"
 
 		"Available_on_npc_dota_hero_lone_druid"			"Доступно с 4 июня!"
 		"Available_on_npc_dota_hero_drow_ranger"		"Доступено с 23 апреля!"
@@ -240,6 +241,11 @@
 		"gyrocopter_DescW" "Получить щит, потратить его и выпустить снаряд"
 		"gyrocopter_DescE" "Глобальное перемещение"
 		"gyrocopter_DescR" "Выпустить много отталкивающих снарядов"
+
+		"windrunner_DescQ" "Прерываемое. Снаряд + урон"
+		"windrunner_DescW" "Снаряд. Отбрасывание + оглушение"
+		"windrunner_DescE" "Отбрасывание врагов вокруг"
+		"windrunner_DescR" "Прерываемое. 4 снаряда"
 
 		"HeroBanned" "Этот герой забанен"
 		"PlayerHeader" "Игроки"
@@ -551,7 +557,7 @@
 
 		"AbilityTooltip_invoker_a"						""
 		"AbilityTooltip_invoker_q"						"Нанести урон в области после 1.1 секундной задержки"
-		"AbilityTooltip_invoker_w"						"Замедляющий снаряд<br/><br/>Враги под действием не могут атаковать, не получают урона от атак и получают двойной урон от способностей и"
+		"AbilityTooltip_invoker_w"						"Замедляющий снаряд<br/><br/>Враги под действием не могут атаковать, не получают урона от атак и получают двойной урон от способностей"
 		"AbilityTooltip_invoker_e"						"Установить область, которая взорвется через 4 секунды, накладывая безмолвие на врагов вокруг<br/><br/>Взорвется раньше, если враг использует способность внутри области"
 		"AbilityTooltip_invoker_r"						"Запустить метеор, наносящий <font color=\"gold\"><b>ОГРОМНЫЙ</b></font> урон земле"
 
@@ -612,6 +618,12 @@
 		"AbilityTooltip_gyro_w_sub"						"Запустить оглушающую и наносящую урон ракету"
 		"AbilityTooltip_gyro_e"							"Глобальное перемещение<br/>Уходит на 3-секундную перезарядку при получении урона"
 		"AbilityTooltip_gyro_r"							"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>Выпустить поток отталкивающих снарядов"
+
+		"AbilityTooltip_wr_a"							"Попадание по врагам генерирует <font color='#36B500'><b>Спешку</b></font><br/>Герой двигается быстрее во время <font color='#36B500'><b>Спешки</b></font><br/>Расходуется только во время движения"
+		"AbilityTooltip_wr_q"							"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br/>Запустить наносящий урон снаряд<br/>Проходит сквозь врагов"
+		"AbilityTooltip_wr_w"							"Запустить отталкивающий и оглушающий снаряд<br/>Перенаправляет вражеские снаряды"
+		"AbilityTooltip_wr_e"							"Отбросить врагов вокруг<br/>Следующие 2.5 секунды <font color='#36B500'><b>Спешка</b></font> не расходуется при движении"
+		"AbilityTooltip_wr_r"							"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br/>Запустить до 4 взрывающихся стрел, наносящие урон и отбрасывающие врагов при контакте"
 
 		"ModifierTooltip_modifier_charges"						"Заряды способности"
 		"ModifierTooltip_modifier_stunned_lua"					"Оглушен"
@@ -774,6 +786,9 @@
 		"ModifierTooltip_modifier_gyro_q"						"Оставшиеся атаки"
 		"ModifierTooltip_modifier_gyro_q_slow"					"Замедлен"
 		"ModifierTooltip_modifier_gyro_w"						"Защищен"
+
+		"ModifierTooltip_modifier_wr_a"							"<font color='#36B500'><b>Спешка</b></font><br/>Ускорен и расходует заряд пока двигается"
+        "ModifierTooltip_modifier_wr_e"							"Не расходует заряд <font color='#36B500'><b>Спешки</b></font> когда двигается"
 	}
 }
 

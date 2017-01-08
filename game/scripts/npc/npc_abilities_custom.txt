@@ -3989,4 +3989,113 @@
 			"Radius" "1500"
 		}
 	}
+	
+	"wr_a"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/wr/wr_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "windrunner_focusfire"
+		"AbilityCooldown" "0.75"
+		"AbilityCastPoint" "0.135"
+		"Damage" "1"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "1200"
+			"MinLength" "1200"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1200"
+		}
+	}
+
+	"wr_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/wr/wr_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "windrunner_powershot"
+		"AbilityCooldown" "8.0"
+		"Damage" "3"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "1800"
+			"MinLength" "1800"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1800"
+		}
+	}
+
+	"wr_w"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/wr/wr_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "windrunner_shackleshot"
+		"AbilityCooldown" "4.0"
+		"AbilityCastPoint" "0.1"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "1000"
+			"MinLength" "1000"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1000"
+		}
+	}
+
+	"wr_e"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/wr/wr_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "windrunner_windrun"
+		"AbilityCooldown" "4.0"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "400"
+		}
+	}
+
+	"wr_r"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/wr/wr_r"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName" "windrunner/peregrine_flight/windrunner_powershot"
+		"AbilityCooldown" "16.0"
+		"Damage" "2"
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "2000"
+			"MinLength" "2000"
+		}
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "2000"
+		}
+	}
 }

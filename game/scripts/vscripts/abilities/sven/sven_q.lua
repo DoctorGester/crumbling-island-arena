@@ -17,7 +17,7 @@ function sven_q:OnSpellStart()
         graphics = "particles/sven_q/sven_q.vpcf",
         distance = 700,
         destroyFunction = function(projectile)
-            hero:AreaEffect({
+            projectile:AreaEffect({
                 filter = Filters.Area(projectile:GetPos(), 275),
                 damage = self:GetDamage(),
                 modifier = { name = "modifier_stunned_lua", duration = 0.6, ability = self },

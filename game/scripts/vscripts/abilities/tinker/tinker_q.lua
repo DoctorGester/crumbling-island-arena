@@ -60,6 +60,10 @@ function ProjectileTinkerQ:Update()
     end
 end
 
+function ProjectileTinkerQ:Deflect(by, direction)
+    self.vel = direction:Normalized() * self.vel:Length()
+end
+
 function ProjectileTinkerQ:GetNextPosition(pos)
     local function PortalFilter(p)
         return instanceof(p, EntityTinkerE) and p:Alive() and p.link and p.link:Alive() and p.primary

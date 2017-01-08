@@ -45,6 +45,7 @@
 		"HeroName_npc_dota_hero_phantom_lancer"			"Gemini"
 		"HeroName_npc_dota_hero_gyrocopter"				"The Turtle"
 		"HeroName_npc_dota_hero_rubick"					"Envy"
+		"HeroName_npc_dota_hero_windrunner"				"Aura"
 
 		"Available_on_npc_dota_hero_drow_ranger"		"Available on April 23!"
 		"Available_on_npc_dota_hero_skeleton_king"		"Available on April 30!"
@@ -243,6 +244,11 @@
 		"gyrocopter_DescE" "Global dash"
 		"gyrocopter_DescR" "Fire many projectiles with knockback"
 
+		"windrunner_DescQ" "Channeling. Damaging projectile"
+		"windrunner_DescW" "Projectile. Knockback + stun"
+		"windrunner_DescE" "Knockback enemies around"
+		"windrunner_DescR" "Channeling. Fire 4 projectiles"
+
 		"HeroBanned" "This hero is banned"
 		"PlayerHeader" "Players"
 		"SelectionHeader" "selection"
@@ -265,6 +271,7 @@
 		"ScoreboardClose" "{d:kills} to win"
 		"RespawnAs" "Respawn as"
 		"ChangeHero" "Change hero"
+		"RecentlyAdded" "NEW"
 		"Round" "Round"
 		"FirstBlood" "<b><font color='red'>First blood</font></b> by <b><font color='{s:color}'>{s:name}</font></b>"
 		"MVP" "<b><font color='gold'>MVP</font></b> is <b><font color='{s:color}'>{s:name}</font></b>"
@@ -619,6 +626,12 @@
 		"AbilityTooltip_gyro_e"							"Global dash<br/>Goes on a 3-second cooldown when damaged"
 		"AbilityTooltip_gyro_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Continiously launch knocking back projectiles"
 
+		"AbilityTooltip_wr_a"							"Hitting enemies generates <font color='#36B500'><b>Haste</b></font><br/>Hero moves faster while <font color='#36B500'><b>Hasted</b></font><br/>Stacks are spent only while moving"
+		"AbilityTooltip_wr_q"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br/>Fire a damaging projectile<br/>Passes through enemies"
+		"AbilityTooltip_wr_w"							"Launch a projectile knocking back and stunning first enemy hit<br/>Redirects projectiles on contact"
+		"AbilityTooltip_wr_e"							"Knock back enemies around<br/>For the next 2.5 seconds stacks of <font color='#36B500'><b>Haste</b></font> can't be spent"
+		"AbilityTooltip_wr_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br/>Fire up to 4 exploding arrows, damaging and knocking back enemies on contact"
+
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
 		"ModifierTooltip_modifier_silence_lua"					"Silenced"
@@ -783,6 +796,9 @@
 		"ModifierTooltip_modifier_gyro_a_slow"					"Slowed"
 		"ModifierTooltip_modifier_gyro_w"						"Shielded"
 		"ModifierTooltip_modifier_gyro_e"						"Sky High"
+
+		"ModifierTooltip_modifier_wr_a"							"<font color='#36B500'><b>Haste</b></font><br/>Moving faster and spending stacks while moving"
+		"ModifierTooltip_modifier_wr_e"							"Does not spend <font color='#36B500'><b>Haste</b></font> stacks while moving"
 	}
 }
 

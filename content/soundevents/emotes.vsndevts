@@ -491,4 +491,14 @@
             "sounds/vo/gyrocopter/gyro_kill_01.vsnd"
         ]
     }
+
+    Round.windrunner = {
+        type = "dota_update_default"
+        vsnd_files =
+        [
+            "sounds/vo/windrunner/wind_lasthit_04.vsnd"
+        ]
+        volume = "3"
+        distance_max = "3500"
+    }
 }

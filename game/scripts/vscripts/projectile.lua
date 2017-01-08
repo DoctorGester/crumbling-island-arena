@@ -77,6 +77,13 @@ function Projectile:FindClearSpace(position, force)
     self:GetUnit():SetNeverMoveToClearSpace(true)
 end
 
+function Projectile:Deflect(by, direction)
+    self.vel = direction:Normalized()
+    self.owner = by.owner
+
+    self:SetFacing(self.vel)
+end
+
 function Projectile:Update()
     getbase(Projectile).Update(self)
 
@@ -270,6 +277,14 @@ function PointTargetProjectile:Update()
 
         self:Destroy()
     end
+end
+
+function PointTargetProjectile:Deflect(by, direction)
+    local len = (self.target - self:GetPos()):Length2D()
+    self.target = self:GetPos() + direction:Normalized() * len
+    self.owner = by.owner
+
+    self:SetFacing(direction)
 end
 
 function PointTargetProjectile:GetNextPosition(pos)

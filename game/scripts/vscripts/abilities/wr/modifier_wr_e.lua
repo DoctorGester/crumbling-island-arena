@@ -1,0 +1,1 @@
+modifier_wr_e = class({})

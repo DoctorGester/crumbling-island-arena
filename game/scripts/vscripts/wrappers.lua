@@ -53,6 +53,8 @@ function Wrappers.GuidedAbility(ability, forceFacing, doNotSetFacing)
 
                 self.lastFacing = delta
                 self.lastGuidedPos = from
+
+                self:GetCaster():SetCursorPosition(self.lastGuidedPos)
             end
 
             updateLastFacing(self, self.BaseClass.GetCursorPosition(self))

@@ -60,6 +60,11 @@ function ProjectilePAA:Remove()
     getbase(ProjectilePAA).Remove(self)
 end
 
+function ProjectilePAA:Deflect(by, direction)
+    self.vel = direction:Normalized() * self.vel:Length()
+    self.owner = by.owner
+end
+
 function ProjectilePAA:GetNextPosition(pos)
     local v = self.speed * ((self.hero:GetPos() - pos) * Vector(1, 1, 0)):Normalized()
     self.vel = 0.95 * self.vel + self.attraction * v
