@@ -23,7 +23,15 @@ function storm_spirit_a:OnSpellStart()
     }
 
     if charged then
+        data.hitFunction = function(projectile, _)
+            projectile.hitSomething = true
+        end
+
         data.destroyFunction = function(projectile)
+            if not projectile.hitSomething then
+                return
+            end
+
             projectile:AreaEffect({
                 filter = Filters.Area(projectile:GetPos(), 350),
                 damage = self:GetDamage() * 2,
