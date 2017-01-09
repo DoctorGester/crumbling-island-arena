@@ -28,9 +28,6 @@ function wr_w:OnSpellStart()
 
             ScreenShake(projectile:GetPos(), 5, 150, 0.25, 3000, 0, true)
         end,
-        hitCondition = function(projectile, target)
-            return target ~= hero
-        end,
         hitProjectiles = true
     }):Activate()
 
