@@ -24,7 +24,7 @@ function wr_a:OnSpellStart()
             end
 
             if haste then
-                haste:SetStackCount(haste:GetStackCount() + 30)
+                haste:SetStackCount(haste:GetStackCount() + 60)
             end
         end,
         isPhysical = true

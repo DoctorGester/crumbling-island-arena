@@ -4020,7 +4020,7 @@
 		"ScriptFile" "abilities/wr/wr_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "windrunner_powershot"
-		"AbilityCooldown" "8.0"
+		"AbilityCooldown" "6.0"
 		"Damage" "3"
 
 		"TargetingIndicator"
@@ -4066,7 +4066,7 @@
 		"ScriptFile" "abilities/wr/wr_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "windrunner_windrun"
-		"AbilityCooldown" "4.0"
+		"AbilityCooldown" "3.0"
 
 		"HoverIndicator"
 		{
