@@ -5,7 +5,7 @@ function sven_a:OnAbilityPhaseStart()
     hero:EmitSound("Arena.Sven.CastA")
 
     FX("particles/melee_attack_blur_configurable.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero, {
-        cp1 = Vector(SvenUtil.IsEnraged(hero) and 500 or 275, 0, 0),
+        cp1 = Vector(SvenUtil.IsEnraged(hero) and 500 or 300, 0, 0),
         release = true
     })
 
@@ -13,12 +13,12 @@ function sven_a:OnAbilityPhaseStart()
 end
 
 function sven_a:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 275)
+    Wrappers.DirectionalAbility(self, 300)
 
     local hero = self:GetCaster().hero
     local pos = hero:GetPos()
     local forward = self:GetDirection()
-    local range = 275
+    local range = 300
     local damage = self:GetDamage()
     local force = 20
 

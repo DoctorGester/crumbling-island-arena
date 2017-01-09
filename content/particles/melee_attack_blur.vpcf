@@ -97,7 +97,7 @@
 			m_flYaw = 180.0
 			m_flParticlesPerOrbit = 10.0
 			m_bEvenDistribution = true
-			m_flInitialRadius = 225.0
+			m_flInitialRadius = 250.0
 		},
 		{
 			_class = "C_INIT_NormalAlignToCP"

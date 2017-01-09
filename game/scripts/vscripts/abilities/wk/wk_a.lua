@@ -8,12 +8,12 @@ function wk_a:OnAbilityPhaseStart()
 end
 
 function wk_a:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 275)
+    Wrappers.DirectionalAbility(self, 300)
 
     local hero = self:GetCaster().hero
     local pos = hero:GetPos()
     local forward = self:GetDirection()
-    local range = 275
+    local range = 300
     local heal = 0
 
     hero:AreaEffect({

@@ -12,12 +12,12 @@ function shaker_a:OnAbilityPhaseStart()
 end
 
 function shaker_a:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 275)
+    Wrappers.DirectionalAbility(self, 300)
 
     local hero = self:GetCaster().hero
     local pos = hero:GetPos()
     local forward = self:GetDirection()
-    local range = 275
+    local range = 300
     local damage = self:GetDamage()
     local force = 20
     local mod = hero:FindModifier("modifier_shaker_a")
