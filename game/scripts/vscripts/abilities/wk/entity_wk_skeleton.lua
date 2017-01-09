@@ -64,13 +64,14 @@ function WKSkeleton:Update()
 
                 if not modifier then
                     modifier = self.attacking:AddNewModifier(self.hero, self.ability, "modifier_wk_q", { duration = 3 })
+                end
 
-                    if modifier then
-                        self.attacking:Damage(self, self.ability:GetDamage())
-                        modifier:SetStackCount(1)
-                    end
-                else
+                if modifier then
                     modifier:IncrementStackCount()
+
+                    if modifier:GetStackCount() <= 3 then
+                        self.attacking:Damage(self, self.ability:GetDamage() / 3)
+                    end
                 end
 
                 self:EmitSound("Arena.WK.HitQ2")
