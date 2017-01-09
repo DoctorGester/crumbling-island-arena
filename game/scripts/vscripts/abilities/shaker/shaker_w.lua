@@ -11,11 +11,13 @@ function shaker_w:OnSpellStart()
 
     hero:AddNewModifier(hero, hero:FindAbility("shaker_a"), "modifier_shaker_a", { duration = 5 })
     hero:AreaEffect({
-        filter = Filters.Area(pos, 350),
+        filter = Filters.Area(pos, 400),
         damage = self:GetDamage(),
         filterProjectiles = true,
         action = function(target)
-            Knockback(target, self, target:GetPos() - pos, 250, 1300,
+            local dir = pos - target:GetPos()
+
+            Knockback(target, self, dir, math.max(20, dir:Length2D() - 96), 1300,
                 function(dash, current)
                     local d = (dash.from - dash.to):Length2D()
                     local x = (dash.from - current):Length2D()

@@ -155,7 +155,7 @@
 		"ogre_magi_DescR" "Use concoctions without mixing"
 
 		"earthshaker_DescQ" "Damage in a line + knockback"
-		"earthshaker_DescW" "Damage + knockback around you"
+		"earthshaker_DescW" "Damage + pull enemies"
 		"earthshaker_DescE" "Jump + stun in area"
 		"earthshaker_DescR" "Stun + destroy damaged ground"
 
@@ -519,7 +519,7 @@
 
 		"AbilityTooltip_shaker_a"						"Each ability cast makes the next attack deal double damage"
 		"AbilityTooltip_shaker_q"						"Launch a wave of damage and knockback"
-		"AbilityTooltip_shaker_w"						"Damage and knockback enemies around you"
+		"AbilityTooltip_shaker_w"						"Damage and pull enemies around you"
 		"AbilityTooltip_shaker_e"						"Jump to the target area, stunning enemies on landing"
 		"AbilityTooltip_shaker_r"						"Destroy all damaged (red) ground around you, stunning all enemies caught"
 
