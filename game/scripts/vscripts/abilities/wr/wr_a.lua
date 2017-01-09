@@ -17,14 +17,16 @@ function wr_a:OnSpellStart()
         hitFunction = function(_, target)
             target:Damage(hero, self:GetDamage(), true)
 
-            local haste = hero:FindModifier("modifier_wr_a")
+            if instanceof(target, Hero) then
+                local haste = hero:FindModifier("modifier_wr_a")
 
-            if not haste then
-                haste = hero:AddNewModifier(hero, self, "modifier_wr_a", {})
-            end
+                if not haste then
+                    haste = hero:AddNewModifier(hero, self, "modifier_wr_a", {})
+                end
 
-            if haste then
-                haste:SetStackCount(haste:GetStackCount() + 60)
+                if haste then
+                    haste:SetStackCount(haste:GetStackCount() + 60)
+                end
             end
         end,
         isPhysical = true
