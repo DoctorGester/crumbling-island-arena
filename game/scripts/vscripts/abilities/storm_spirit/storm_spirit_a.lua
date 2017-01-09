@@ -11,7 +11,7 @@ function storm_spirit_a:OnSpellStart()
         charged:Destroy()
     end
 
-    DistanceCappedProjectile(hero.round, {
+    local data = {
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 64),
         to = target + Vector(0, 0, 64),
@@ -19,26 +19,29 @@ function storm_spirit_a:OnSpellStart()
         radius = 48,
         graphics = "particles/storm_a/storm_a.vpcf",
         distance = 700,
-        hitSound = charged and "Arena.Storm.HitA2" or "Arena.Storm.HitA",
-        destroyFunction = function(projectile, victim)
-            if charged then
-                projectile:AreaEffect({
-                    filter = Filters.Area(projectile:GetPos(), 350),
-                    damage = self:GetDamage() * 2,
-                    modifier = { name = "modifier_storm_spirit_a_slow", duration = 1.2, ability = self }
-                })
+        hitSound = charged and "Arena.Storm.HitA2" or "Arena.Storm.HitA"
+    }
 
-                FX("particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf", PATTACH_WORLDORIGIN, projectile, {
-                    cp0 = projectile:GetPos(),
-                    release = true
-                })
+    if charged then
+        data.destroyFunction = function(projectile)
+            projectile:AreaEffect({
+                filter = Filters.Area(projectile:GetPos(), 350),
+                damage = self:GetDamage() * 2,
+                modifier = { name = "modifier_storm_spirit_a_slow", duration = 1.2, ability = self }
+            })
 
-                ScreenShake(projectile:GetPos(), 5, 150, 0.15, 3000, 0, true)
-            else
-                victim:Damage(hero, self:GetDamage(), true)
-            end
+            FX("particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf", PATTACH_WORLDORIGIN, projectile, {
+                cp0 = projectile:GetPos(),
+                release = true
+            })
+
+            ScreenShake(projectile:GetPos(), 5, 150, 0.15, 3000, 0, true)
         end
-    }):Activate()
+    else
+        data.damage = self:GetDamage()
+    end
+
+    DistanceCappedProjectile(hero.round, data):Activate()
 
     hero:EmitSound("Arena.Storm.CastA")
 end
