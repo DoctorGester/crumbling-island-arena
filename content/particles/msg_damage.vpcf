@@ -33,7 +33,6 @@
 		},
 		{
 			_class = "C_OP_FadeOutSimple"
-			m_flFadeOutTime = 1.5
 		},
 		{
 			_class = "C_OP_InterpolateRadius"
@@ -105,6 +104,16 @@
 			m_flInputMax = 10.0
 			m_flOutputMin = 16.0
 			m_flOutputMax = 80.0
+		},
+		{
+			_class = "C_INIT_VelocityRandom"
+			m_LocalCoordinateSystemSpeedMin = [ -800.0, 0.0, 200.0 ]
+			m_LocalCoordinateSystemSpeedMax = [ 800.0, 0.0, 300.0 ]
+		},
+		{
+			_class = "C_INIT_RandomAlpha"
+			m_nAlphaMin = 220
+			m_nAlphaMax = 220
 		},
 	]
 	m_Emitters = 
