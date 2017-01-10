@@ -91,7 +91,6 @@
             <Image id="GameOverBackgroundImage" src="file://{images}/custom_game/loadscreen.png" hittest="false" scaling="stretch-to-cover-preserve-aspect"/>
             <Panel hittest="false" id="GameOverScoreboard">
             </Panel>
-            <Panel id="GameOverChat"/>
         </Panel>
         <Panel id="NotificationArea" class="Hidden">
         </Panel>

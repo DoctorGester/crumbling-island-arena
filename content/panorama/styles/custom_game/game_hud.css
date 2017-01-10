@@ -298,7 +298,7 @@
     opacity: 0.0;
 }
 
-#GameChat:descendantfocus .GameChatLine
+#GameChat.ChatVisible .GameChatLine
 {
     opacity: 1.0;
 }

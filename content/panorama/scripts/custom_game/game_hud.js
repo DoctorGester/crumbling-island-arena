@@ -674,42 +674,95 @@ function UpdateLocalNewPlayer(data) {
     UpdateAttackTip();
 }
 
-var lastShowTime;
+function SetupChat() {
+    var top = $.GetContextPanel().GetParent().GetParent().GetParent();
+    var hud = top.FindChild("HUDElements");
+    hud.style.zIndex = 10;
 
-function ShowGameChat() {
-    lastShowTime = Game.Time();
-    $.DispatchEvent("SetInputFocus", $("#GameChatEntry"));
-    $("#GameChatEntry").SetHasClass("Hidden", false);
-    $("#GameChatTarget").text = $.Localize(GameUI.IsShiftDown() ? "#ChatAll" : "#ChatTeam");
-    $("#GameChat").shiftHeld = GameUI.IsShiftDown();
-}
+    hud.FindChild("topbar").FindChild("DayGlow").style.visibility = "collapse";
+    hud.FindChild("quickstats").style.visibility = "collapse";
 
-function HideGameChat() {
-    $("#GameChatEntry").SetHasClass("Hidden", true);
-    $.DispatchEvent("DropInputFocus", $("#GameChat"));
+    var hudChat = hud.FindChild("HudChat");
+    var controls = hudChat.FindChildTraverse("ChatControls");
+    var chat = hudChat.FindChildTraverse("ChatInput");
 
-    $("#GameChatContent").ToggleClass("Hidden"); // A hack to update css selector behaviour
-    $("#GameChatContent").ToggleClass("Hidden");
-}
+    hudChat.style.width = "25%";
 
-function SubmitGameChat() {
-    var time = Game.Time();
-    var entry = $("#GameChatEntry");
-    if (entry.text.length == 0 && entry.BCanSeeInParentScroll() && Game.Time() - (lastShowTime || time) > 0.1) {
-        HideGameChat();
-        return;
+    for (var child of hudChat.FindChildTraverse("ChatMainPanel").Children()) {
+        if (child != controls) {
+            child.style.visibility = "collapse";
+        }
     }
 
-    if (entry.text === "-ping") {
-        Game.ServerCmd("dota_ping");
-    } else {
-        GameEvents.SendCustomGameEventToServer("custom_chat_say", { message: entry.text, team: !$("#GameChat").shiftHeld });
+    hudChat.style.height = "fit-children";
+    hudChat.style.y = "-350px";
+
+    controls.style.border = "0";
+
+    var chatVisible = false;
+    var chatVisibleAt = undefined;
+
+    for (var child of controls.Children()) {
+        if (child.id == "ChatTargetLabel" || child == chat) {
+            continue;
+        }
+
+        child.style.visibility = "collapse";
     }
 
-    entry.text = "";
+    function UpdateChatState() {
+        var nowVisible = hudChat.BHasClass("Active");
+
+        if (!chatVisible && nowVisible) {
+            chatVisibleAt = Game.Time();
+        }
+
+        if (chatVisible && !nowVisible) {
+            chatVisibleAt = undefined;
+        }
+
+        if (chatVisible != nowVisible) {
+            $("#GameChat").SetHasClass("ChatVisible", nowVisible);
+        }
+
+        chatVisible = nowVisible;
+
+        $.Schedule(0, UpdateChatState);
+    }
+
+    UpdateChatState();
+
+    chat.SetPanelEvent("oninputsubmit", function() {
+        if (chat.text === "-ping") {
+            Game.ServerCmd("dota_ping");
+        } else {
+            GameEvents.SendCustomGameEventToServer("custom_chat_say", {
+                message: chat.text,
+                team: !chat.BHasClass("GameAllChat")
+            });
+        }
+
+        chat.text = "";
+
+        var time = Game.Time();
+        if (Game.Time() - (chatVisibleAt || time) > 0.1) {
+            $.DispatchEvent("DropInputFocus", chat);
+            chatVisibleAt = undefined;
+            return;
+        }
+    });
+
+    SubscribeToNetTableKey("main", "gameState", true, function(data) {
+        if (data.state == GAME_STATE_HERO_SELECTION) {
+            hudChat.style.y = "0px";
+        } else {
+            hudChat.style.y = "-350px";
+        }
+    });
 }
 
 SetupUI();
+SetupChat();
 
 DelayStateInit(GAME_STATE_ROUND_IN_PROGRESS, function () {
     SubscribeToNetTableKey("main", "debug", true, DebugUpdate);
@@ -751,7 +804,6 @@ DelayStateInit(GAME_STATE_ROUND_IN_PROGRESS, function () {
 
     // HAX
     var top = $.GetContextPanel().GetParent().GetParent().GetParent();
-    top.FindChild("HUDElements").FindChild("quickstats").style.visibility = "collapse";
     var channel = top.FindChild("ChannelBar");
 
     channel.FindChildTraverse("BuffIcon").style.visibility = "collapse";

@@ -12,6 +12,7 @@
     overflow: squish clip;
     vertical-align: bottom;
     transform: scaleY(-1.0);
+    margin-bottom: 32px;
 }
 
 #ChatEntry

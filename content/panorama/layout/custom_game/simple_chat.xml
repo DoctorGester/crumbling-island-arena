@@ -8,28 +8,6 @@
         <include src="file://{resources}/scripts/custom_game/util.js" />
     </scripts>
     <script>
-        $.GetContextPanel().RegisterListener = function(uniqueName) {
-            AddEnterListener(uniqueName, function() {
-                var contentPanel = $("#ChatContent");
-                var entry = $("#ChatEntry");
-
-                if (contentPanel && contentPanel.BCanSeeInParentScroll()) {
-                    entry.SetFocus();
-                    entry.shiftHeld = GameUI.IsShiftDown();
-
-                    $("#ChatTarget").text = $.Localize(entry.shiftHeld ? "#ChatAll" : "#ChatTeam");
-                }
-            });
-        }
-
-        $("#ChatTarget").text = $.Localize("#ChatTeam");
-
-        function SubmitChat() {
-            GameEvents.SendCustomGameEventToServer("custom_chat_say", { message: $("#ChatEntry").text, team: !$("#ChatEntry").shiftHeld });
-
-            $("#ChatEntry").text = "";
-        }
-
         function AddChatLine(token, vars, team, wasTopPlayer, system) {
             var lineParent = $.CreatePanel("Panel", $("#ChatContent"), "");
             lineParent.AddClass("ChatLine");
@@ -95,8 +73,5 @@
     <Panel class="Chat" hittest="false">
         <Panel id="ChatContent" hittest="false">
         </Panel>
-        <TextEntry id="ChatEntry" multiline="false" textmode="normal" oninputsubmit="SubmitChat()" oncancel="DropInputFocus()" maxchars="256" placeholder="#ChatPlaceholder">
-            <Label id="ChatTarget" />
-        </TextEntry>
     </Panel>
 </root>
