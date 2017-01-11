@@ -782,7 +782,6 @@ DelayStateInit(GAME_STATE_HERO_SELECTION, function () {
     SubscribeToNetTableKey("pass", "quests", true, Pass.QuestsUpdated);
 
     $("#HeroSelectionChat").BLoadLayout("file://{resources}/layout/custom_game/simple_chat.xml", false, false);
-    $("#HeroSelectionChat").RegisterListener("HeroSelectionEnter");
 
     CheckConnectionState();
     CheckPreviews();

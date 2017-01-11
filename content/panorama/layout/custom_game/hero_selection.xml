@@ -66,8 +66,6 @@
             <DOTAStoreItem id="PassNotOwned" itemdef="17172"/>
 
             <Panel id="HeroSelectionChat"/>
-
-            <DOTAHudMenuButtons/>
         </Button>
     </Panel>
 </root>

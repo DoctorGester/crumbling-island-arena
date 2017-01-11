@@ -88,7 +88,7 @@
 
     <Panel class="GameOverBackground" style="visibility: visible;" hittest="false">
         <Panel id="GameOverBlur" hittest="false">
-            <Image id="GameOverBackgroundImage" src="file://{images}/custom_game/loadscreen.png" hittest="false" scaling="stretch-to-cover-preserve-aspect"/>
+            <Image id="GameOverBackgroundImage" src="file://{images}/custom_game/loadscreen.png" hittest="false" scaling="none"/>
             <Panel hittest="false" id="GameOverScoreboard">
             </Panel>
         </Panel>
