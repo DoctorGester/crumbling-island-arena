@@ -210,8 +210,9 @@ function Round:Destroy()
 
         loops = loops + 1
 
-        if loops > 100 then
+        if loops > 50 then
             print("Round:Destroy looped 100 times, aborting")
+            break
         end
     end
 
