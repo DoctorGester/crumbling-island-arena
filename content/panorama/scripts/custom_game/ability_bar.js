@@ -50,6 +50,7 @@ function EntityAbilityDataProvider(entityId) {
         var ability = this.FilterAbilities()[slot];
         var data = {};
         var nl = DOTA_ABILITY_BEHAVIOR.DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE;
+        var rootDisables = DOTA_ABILITY_BEHAVIOR.DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES;
 
         data.id = ability;
         data.key = Abilities.GetKeybind(ability);
@@ -65,6 +66,7 @@ function EntityAbilityDataProvider(entityId) {
         data.range = Abilities.GetCastRange(ability);
         data.cosmetic = (Abilities.GetBehavior(ability) & nl) == nl;
         data.attack = EndsWith(Abilities.GetAbilityName(ability), "_a");
+        data.rootDisables = (Abilities.GetBehavior(ability) & rootDisables) == rootDisables;
 
         if (data.cooldown == 0 || data.ready){
             data.cooldown = Abilities.GetCooldown(ability);
@@ -87,6 +89,10 @@ function EntityAbilityDataProvider(entityId) {
 
     this.IsDisarmed = function() {
         return Entities.IsDisarmed(this.entityId);
+    };
+
+    this.IsRooted = function() {
+        return Entities.IsRooted(this.entityId);
     };
 
     this.ShowTooltip = function(element, data) {
@@ -139,8 +145,9 @@ function AbilityBar(elementId) {
         ability.SetData(data);
         ability.SetCustomClass(prevCl, cl);
 
-        if (this.provider.IsSilenced && this.provider.IsStunned) {
-            ability.SetDisabled(this.provider.IsSilenced(), this.provider.IsStunned());
+        if (this.provider.IsSilenced && this.provider.IsStunned && this.provider.IsRooted) {
+            var rooted = this.provider.IsRooted() && data.rootDisables;
+            ability.SetDisabled(this.provider.IsSilenced(), this.provider.IsStunned(), rooted);
         }
 
         if (data.attack) {
@@ -317,9 +324,10 @@ function AbilityButton(parent, hero, ability) {
         this.cooldown.text = text;
     };
 
-    this.SetDisabled = function(silenced, stunned) {
+    this.SetDisabled = function(silenced, stunned, rooted) {
         this.silence.style.opacity = (silenced && !stunned) ? "1.0" : "0.0";
         this.stun.style.opacity = stunned ? "1.0" : "0.0";
+        this.image.SetHasClass("AbilityDisarmed", rooted);
     };
 
     this.SetDisarmed = function(disarmed) {
@@ -331,5 +339,5 @@ function AbilityButton(parent, hero, ability) {
         this.image.DeleteAsync(0);
     };
 
-    this.SetDisabled(false, false);
+    this.SetDisabled(false, false, false);
 }
