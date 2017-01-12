@@ -738,15 +738,11 @@ function GameMode:EndGame()
     GameRules:SetGameWinner(self.winner)
 end
 
-function GameMode:CheckEveryoneAbandoned()
-    if self.State == STATE_GAME_OVER then
-        return
-    end
-
+function GameMode:FindTheOnlyConnectedTeam()
     local teams = {}
     local teamCount = 0
     local playerCount = 0
-    
+
     for _, player in pairs(self.Players) do
         local con = PlayerResource:GetConnectionState(player.id)
 
@@ -766,6 +762,18 @@ function GameMode:CheckEveryoneAbandoned()
     end
 
     if playerCount > 1 and connectedTeamCount == 1 then
+        return connectedTeam
+    end
+end
+
+function GameMode:CheckEveryoneAbandoned()
+    if self.State == STATE_GAME_OVER then
+        return
+    end
+
+    local connectedTeam = self:FindTheOnlyConnectedTeam()
+
+    if connectedTeam then
         self.abandonTimer = (self.abandonTimer or 0) + 1
 
         if self.abandonTimer == 1 then

@@ -201,6 +201,13 @@ function HeroSelection:End()
 end
 
 function HeroSelection:Update()
+    if GameRules.GameMode:FindTheOnlyConnectedTeam() then
+        self.SelectionTimer = 10
+        self.PreGameTimer = self.PreGameTimerTime
+        self:SendTimeToPlayers()
+        return
+    end
+
     self.SelectionTimer = math.max(self.SelectionTimer - 1, -1)
     self:SendTimeToPlayers()
 
