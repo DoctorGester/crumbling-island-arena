@@ -430,7 +430,7 @@
 
 		"AbilityTooltip_sniper_a"						"Global"
 		"AbilityTooltip_sniper_q"						"Fire shrapnel slowing enemies in the area over time"
-		"AbilityTooltip_sniper_w"						"Plant an invisible trap that roots enemies when triggered"
+		"AbilityTooltip_sniper_w"						"Plant a short-living trap that roots enemies when triggered"
 		"AbilityTooltip_sniper_e"						"Gain a decaying speed boost"
 		"AbilityTooltip_sniper_r"						"<font color=\"#DAFF7F\"><b>Toggle</b></font><br>When active renders hero invisible while no enemies are near for the cost of speed"
 

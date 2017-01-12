@@ -424,7 +424,7 @@
 
 		"AbilityTooltip_sniper_a"						"Глобальная"
         "AbilityTooltip_sniper_q"						"Запустить шрапнель, замедляя врагов в области"
-		"AbilityTooltip_sniper_w"						"Поставить невидимую обездвиживающую ловушку"
+		"AbilityTooltip_sniper_w"						"Поставить обездвиживающую ловушку"
 		"AbilityTooltip_sniper_e"						"Ускориться, постепенно замедляясь"
 		"AbilityTooltip_sniper_r"						"<font color=\"#DAFF7F\"><b>Переключаемое</b></font><br>Когда включено, стать невидимым, если рядом нет врагов"
 
