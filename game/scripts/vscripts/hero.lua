@@ -200,7 +200,7 @@ function Hero:GetRad()
 end
 
 function Hero:TestFalling()
-    return Spells.TestCircle(self:GetPos(), 80)
+    return Spells.TestCircle(self:GetPos(), 100)
 end
 
 function Hero:GetHealth()
