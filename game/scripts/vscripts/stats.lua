@@ -34,7 +34,11 @@ function Stats.SubmitMatch(players, mode, version, winner, callback)
     data.map = Stats.maps[GetMapName()]
     data.gameLength = math.ceil(GameRules:GetGameTime())
     data.winnerTeam = winner
-    data.rounds = Stats.roundInfo
+    data.rounds = {}
+
+    for _, roundData in pairs(Stats.roundInfo) do
+        table.insert(data.rounds, roundData)
+    end
 
     for _, player in pairs(players) do
         local playerData = {}
@@ -86,7 +90,7 @@ function Stats.SubmitRoundInfo(players, roundNumber, roundWinner, statistics)
         table.insert(data.players, playerData)
     end
 
-    table.insert(Stats.roundInfo, data)
+    Stats.roundInfo[roundNumber] = data
 end
 
 function Stats.RequestTopPlayers(callback)
