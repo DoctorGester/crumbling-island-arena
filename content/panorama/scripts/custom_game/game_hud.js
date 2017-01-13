@@ -18,7 +18,7 @@ var attackOff = false;
 //GameUI.SetCameraLookAtPositionHeightOffset(0);
 GameUI.GameChat = $("#GameChat");
 
-function AddChatLine(hero, playerName, color, message, team, wasTopPlayer, hasPass) {
+function AddChatLine(hero, playerName, color, message, team, wasTopPlayer, hasPass, wheel) {
     var line = $.CreatePanel("Panel", $("#GameChatContent"), "");
     var last = $("#GameChatContent").GetChild(0);
     line.AddClass("GameChatLine");
@@ -44,7 +44,7 @@ function AddChatLine(hero, playerName, color, message, team, wasTopPlayer, hasPa
     var label = $.CreatePanel("Label", line, "");
     label.SetDialogVariable("name", playerName);
     label.SetDialogVariable("color", color);
-    label.SetDialogVariable("message", InsertEmotes(message, wasTopPlayer));
+    label.SetDialogVariable("message", InsertEmotes(message, wasTopPlayer, wheel));
     label.html = true;
     label.text = (team ? ($.Localize("#ChatTeam") + " ") : "") + $.Localize(hasPass ? "#ChatLinePass" : "#ChatLine", label);
 
@@ -685,6 +685,8 @@ function SetupChat() {
     var hudChat = hud.FindChild("HudChat");
     var controls = hudChat.FindChildTraverse("ChatControls");
     var chat = hudChat.FindChildTraverse("ChatInput");
+    var linesContainer = hudChat.FindChildTraverse("ChatLinesPanel");
+    var lastChatWheelElement = null;
 
     hudChat.style.width = "25%";
 
@@ -728,6 +730,50 @@ function SetupChat() {
         chatVisible = nowVisible;
 
         $.Schedule(0, UpdateChatState);
+
+        for (var child of linesContainer.Children().reverse()) {
+            if (child.FindChildrenWithClassTraverse("ChatWheelIcon").length > 0) {
+                if (child != lastChatWheelElement) {
+                    lastChatWheelElement = child;
+
+                    var allyPattern = /\[.*]\s(.*):\s\s(.*)/g;
+                    var allPattern = /\s\s(.*):\s\s(.*)/g;
+
+                    var team = false;
+                    var data = allyPattern.exec(child.text);
+
+                    if (data != null) {
+                        team = true;
+                    } else {
+                        data = allPattern.exec(child.text);
+                    }
+
+                    var playerName = data[1];
+                    var message = data[2];
+                    var color = null;
+                    var hero = "";
+
+                    var selectedHeroes = (CustomNetTables.GetTableValue("main", "selectedHeroes") || {}).selected;
+
+                    for (var i = 0; i < Players.GetMaxPlayers(); i++) {
+                        if (Players.IsValidPlayerID(i) && Players.GetPlayerName(i) == playerName) {
+                            color = "#" + Players.GetPlayerColor(i).toString(16);
+                            hero = selectedHeroes[i.toString()];
+                        }
+                    }
+
+                    GameEvents.SendEventClientSide("custom_chat_wheel", {
+                        hero: hero,
+                        playerName: EscapeHtml(playerName),
+                        color: color,
+                        message: message,
+                        team: team
+                    });
+                }
+
+                break;
+            }
+        }
     }
 
     UpdateChatState();
@@ -779,20 +825,16 @@ DelayStateInit(GAME_STATE_ROUND_IN_PROGRESS, function () {
         GameEvents.SendEventClientSide("dota_hud_error_message", eventData);
     });
 
+    GameEvents.Subscribe("custom_chat_wheel", function(data) {
+        AddChatLine(data.hero, data.playerName, data.color, data.message, data.team, false, false, true);
+    });
+
     GameEvents.Subscribe("custom_chat_say", OnCustomChatSay);
     GameEvents.Subscribe("custom_system_message", OnCustomSystemMessage);
     GameEvents.Subscribe("kill_log_entry", OnKillLogEntry);
     GameEvents.Subscribe("kill_message", OnKillMessage);
     GameEvents.Subscribe("dm_respawn_event", DeathMatch.OnRespawn);
     GameEvents.Subscribe("dm_death_event", DeathMatch.OnDeath);
-
-    AddEnterListener("GameHudChatEnter", function() {
-        var state = CustomNetTables.GetTableValue("main", "gameState").state;
-
-        if (state == GAME_STATE_ROUND_IN_PROGRESS || state == GAME_STATE_ROUND_ENDED) {
-            ShowGameChat();
-        }
-    });
 
     var localInfo = Game.GetPlayerInfo(Game.GetLocalPlayerID()) || {};
     var localTeam = localInfo.player_team_id || -1;

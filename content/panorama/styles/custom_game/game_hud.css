@@ -319,6 +319,15 @@
     height: 24px;
 }
 
+.GameChatLine Label .InlineImage.ChatWheelIcon
+{
+    width: 20px;
+    height: 16px;
+    margin-top: 3px;
+    margin-bottom: -3px;
+    vertical-align: top;
+}
+
 .GameChatImage
 {
     height: 24px;

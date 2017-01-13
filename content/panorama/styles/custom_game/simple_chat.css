@@ -50,6 +50,15 @@
     transform: translateX(-100%) scaleY(-1.0);
 }
 
+.ChatLine .ChatWheelIcon
+{
+    width: 20px;
+    height: 16px !important;
+    margin-top: 3px;
+    margin-bottom: -3px;
+    vertical-align: top;
+}
+
 .ChatLineText
 {
     font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;

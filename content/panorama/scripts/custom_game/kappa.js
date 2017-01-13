@@ -264,7 +264,7 @@ function ProcessEmote(input, template, emote, id) {
     return input.replace(new RegExp("\\b" + emote + "\\b", "g"), "<img src='" + url + "'/>");
 }
 
-function InsertEmotes(input, wasTopPlayer) {
+function InsertEmotes(input, wasTopPlayer, wheel) {
     input = EscapeHtml(input);
 
     if (wasTopPlayer) {
@@ -277,6 +277,10 @@ function InsertEmotes(input, wasTopPlayer) {
 
     for (var emote in bttvEmotes) {
         input = ProcessEmote(input, bttvTemplate, emote, bttvEmotes[emote])
+    }
+
+    if (wheel) {
+        input = "<img src='file://{images}/control_icons/chat_wheel_icon.png' class='ChatWheelIcon'/>" + input;
     }
 
     return input;

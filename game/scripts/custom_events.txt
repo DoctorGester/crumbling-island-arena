@@ -1,0 +1,11 @@
+"CustomEvents"
+{
+	"custom_chat_wheel"
+	{
+		"hero"		"string"
+		"playerName"		"string"
+		"color"		"string"
+		"message"		"string"
+		"team"		"boolean"
+	}
+}

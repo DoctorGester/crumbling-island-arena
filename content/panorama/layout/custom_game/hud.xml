@@ -18,13 +18,13 @@
         <include src="file://{resources}/scripts/custom_game/buff_bar.js" />
         <include src="file://{resources}/scripts/custom_game/ability_bar.js" />
         <include src="file://{resources}/scripts/custom_game/health_bar.js" />
+        <include src="file://{resources}/scripts/custom_game/kappa.js" />
         <include src="file://{resources}/scripts/custom_game/game_hud.js" />
         <include src="file://{resources}/scripts/custom_game/scoreboard.js" />
         <include src="file://{resources}/scripts/custom_game/hero_detector.js" />
         <!--include src="file://{resources}/scripts/custom_game/hero_bars.js" /-->
         <include src="file://{resources}/scripts/custom_game/message_queue.js" />
         <include src="file://{resources}/scripts/custom_game/vector_target.js" />
-        <include src="file://{resources}/scripts/custom_game/kappa.js" />
     </scripts>
     <Panel class="MainPanel" hittest="false">
         <Image src="file://{images}/custom_game/pl_r.png" style="opacity:0.0;"/>

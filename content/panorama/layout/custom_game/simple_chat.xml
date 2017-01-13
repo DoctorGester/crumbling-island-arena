@@ -69,6 +69,13 @@
         GameEvents.Subscribe("custom_chat_say", OnChatSay);
         GameEvents.Subscribe("custom_randomed_message", OnRandomedMessage);
         GameEvents.Subscribe("custom_system_message", OnSystemMessage);
+        GameEvents.Subscribe("custom_chat_wheel", function(args) {
+            AddChatLine("#ChatLine", {
+                name: args.playerName,
+                color:  args.color,
+                message: InsertEmotes(args.message, false, true)
+            }, args.team);
+        });
     </script>
     <Panel class="Chat" hittest="false">
         <Panel id="ChatContent" hittest="false">
