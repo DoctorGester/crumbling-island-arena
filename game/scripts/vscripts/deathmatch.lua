@@ -154,7 +154,7 @@ function DeathMatch:OnRoundEnd(round)
     local winner = GameRules.GameMode.winner
 
     GameRules.GameMode:SubmitRoundInfo(round, winner, winner ~= nil)
-    Stats.SubmitRoundInfo(self.players, GameRules.GameMode.roundNumber - 2, winner, round.statistics)
+    Stats.SubmitRoundInfo(self.players, winner, round.statistics)
 
     GameRules.GameMode.generalStatistics:Add(round.statistics)
     GameRules.GameMode:SetState(STATE_GAME_OVER_DM)
