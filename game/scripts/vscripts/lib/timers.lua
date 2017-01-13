@@ -68,7 +68,7 @@ if TimerEntity == nil then
 end
 
 function Timers:Think()
-    if GameRules:State_Get() >= DOTA_GAMERULES_STATE_POST_GAME then
+    if GameRules:State_Get() > DOTA_GAMERULES_STATE_POST_GAME then
         return
     end
 

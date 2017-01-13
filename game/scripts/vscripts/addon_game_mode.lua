@@ -722,15 +722,16 @@ function GameMode:OnDamageDealt(hero, source, amount)
 end
 
 function GameMode:EndGame()
-    if self.winner then
-        Stats.SubmitMatchResult(self.winner, self.Players, function(...) self:OnMatchResultsReceived(...) end)
-    end
-
     for _, player in pairs(self.Players) do
         Quests.IncreaseProgress(player, "gamesPlayed")
     end
 
-    Stats.SubmitQuestProgress(self.Players, function(...) self:OnQuestResultsReceived(...) end)
+    if self.winner then
+        Stats.SubmitMatch(self.Players, self.gameSetup:GetSelectedMode(), GAME_VERSION, self.winner, function(data)
+            self:OnMatchResultsReceived(data.rankDetails)
+            self:OnQuestResultsReceived(data.questResults)
+        end)
+    end
 
     EmitAnnouncerSound("Announcer.GameOver")
     self:UpdateGameInfo()
@@ -1293,9 +1294,7 @@ function GameMode:IsAwardedForSeason(playerId, season)
     return false
 end
 
-function GameMode:OnMatchResultsReceived(data)
-    local ranks = data.rankDetails
-
+function GameMode:OnMatchResultsReceived(ranks)
     if ranks and ranks.previous and ranks.updated then
         CustomNetTables:SetTableValue("ranks", "update", {
             previous = self:ParseSteamId64Table(ranks.previous),
@@ -1428,7 +1427,7 @@ function GameMode:Start()
         statCollection:sendStage2()
     end
 
-    Stats.SubmitMatchInfo(self.Players, self.gameSetup:GetSelectedMode(), GAME_VERSION,
+    Stats.RequestMatchAchievements(self.Players,
         function(data)
             self.currentSeason = data.currentSeason
 

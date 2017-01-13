@@ -8,6 +8,8 @@ Stats.maps = {
     unranked = "UNRANKED"
 }
 
+Stats.roundInfo = {}
+
 if IsInToolsMode() then
     Stats.host = "http://127.0.0.1:5141/"
 
@@ -24,12 +26,15 @@ if IsInToolsMode() then
     end
 end
 
-function Stats.SubmitMatchInfo(players, mode, version, callback)
+function Stats.SubmitMatch(players, mode, version, winner, callback)
     local data = {}
     data.mode = mode
     data.version = version
     data.players = {}
     data.map = Stats.maps[GetMapName()]
+    data.gameLength = math.ceil(GameRules:GetGameTime())
+    data.winnerTeam = winner
+    data.rounds = Stats.roundInfo
 
     for _, player in pairs(players) do
         local playerData = {}
@@ -39,14 +44,33 @@ function Stats.SubmitMatchInfo(players, mode, version, callback)
         table.insert(data.players, playerData)
     end
 
-    Stats.SendData(string.format("match/%s", GameRules:GetMatchID()), data)
-    Stats.SendData(string.format("match/info/%s", GameRules:GetMatchID()), data, callback, 30)
+    local questProgress = Quests.GetProgressReport()
+
+    setmetatable(questProgress, { __jsontype = "object" })
+
+    data.questProgress = {
+        questProgress = questProgress,
+        passPlayers = FilterPassPlayers(players)
+    }
+
+    Stats.SendData(string.format("match/%s", GameRules:GetMatchID()), data, callback, 30)
+end
+
+function Stats.RequestMatchAchievements(players, callback)
+    local result = {}
+
+    for _, player in pairs(players) do
+        table.insert(result, tostring(PlayerResource:GetSteamID(player.id)))
+    end
+
+    Stats.SendData("match/achievements", { players = result }, callback, 30)
 end
 
 function Stats.SubmitRoundInfo(players, roundNumber, roundWinner, statistics)
     local data = {}
 
     data.winner = roundWinner
+    data.roundNumber = roundNumber
     data.players = {}
 
     for _, player in pairs(players) do
@@ -62,26 +86,7 @@ function Stats.SubmitRoundInfo(players, roundNumber, roundWinner, statistics)
         table.insert(data.players, playerData)
     end
 
-    Stats.SendData(string.format("match/%s/%s", GameRules:GetMatchID(), roundNumber), data)
-end
-
-function Stats.SubmitMatchResult(winner, players, callback)
-    Stats.SendData(string.format("winner/%s", GameRules:GetMatchID(), roundNumber), {
-        winnerTeam = winner,
-        gameLength = math.ceil(GameRules:GetGameTime())
-    }, callback)
-end
-
-function Stats.SubmitQuestProgress(players, callback)
-    local questProgress = Quests.GetProgressReport()
-
-    setmetatable(questProgress, { __jsontype = "object" })
-
-    Stats.SendData(string.format("quests/report/%s", GameRules:GetMatchID(), roundNumber), {
-        gameLength = math.ceil(GameRules:GetGameTime()),
-        questProgress = questProgress,
-        passPlayers = FilterPassPlayers(players)
-    }, callback, 20)
+    table.insert(Stats.roundInfo, data)
 end
 
 function Stats.RequestTopPlayers(callback)

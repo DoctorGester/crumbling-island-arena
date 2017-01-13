@@ -58,7 +58,7 @@ function GameSetup:GetNextStageAndTime()
         end
 
         local gameMode = GameRules.GameMode
-        Stats.SubmitMatchInfo(gameMode.Players, self:GetSelectedMode(), GAME_VERSION, function(data)
+        Stats.RequestMatchAchievements(gameMode.Players, function(data)
             if data and data.gamesPlayed then
                 local result = gameMode:ParseSteamId64Table(data.gamesPlayed)
                 PrintTable(result)
