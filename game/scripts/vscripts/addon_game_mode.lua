@@ -789,10 +789,10 @@ function GameMode:CheckEveryoneAbandoned()
             if self.State == STATE_ROUND_IN_PROGRESS and self.round then
                 self.generalStatistics:Add(self.round.statistics)
                 self:SubmitRoundInfo(self.round, connectedTeam, true)
-                Stats.SubmitRoundInfo(self.Players, self.roundNumber - 2, connectedTeam, self.round.statistics)
+                Stats.SubmitRoundInfo(self.Players, connectedTeam, self.round.statistics)
             else
                 self:SubmitRoundInfo({ statistics = Statistics(self.Players) }, connectedTeam, true)
-                Stats.SubmitRoundInfo(self.Players, self.roundNumber - 2, connectedTeam, Statistics(self.Players))
+                Stats.SubmitRoundInfo(self.Players, connectedTeam, Statistics(self.Players))
             end
 
             self.winner = connectedTeam
@@ -984,7 +984,7 @@ function GameMode:OnRoundEnd(round)
     self:UpdatePlayerTable()
     self.generalStatistics:Add(round.statistics)
     self:SubmitRoundInfo(round, winner, self.winner ~= nil)
-    Stats.SubmitRoundInfo(self.Players, self.roundNumber - 2, winner, round.statistics)
+    Stats.SubmitRoundInfo(self.Players, winner, round.statistics)
 
     CustomNetTables:SetTableValue("main", "roundState", { roundData = roundData, goal = self.gameGoal, firstBlood = firstBloodData, mvp = mvpData })
 

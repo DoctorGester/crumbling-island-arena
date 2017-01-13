@@ -9,6 +9,7 @@ Stats.maps = {
 }
 
 Stats.roundInfo = {}
+Stats.roundNumber = 0
 
 if IsInToolsMode() then
     Stats.host = "http://127.0.0.1:5141/"
@@ -34,11 +35,7 @@ function Stats.SubmitMatch(players, mode, version, winner, callback)
     data.map = Stats.maps[GetMapName()]
     data.gameLength = math.ceil(GameRules:GetGameTime())
     data.winnerTeam = winner
-    data.rounds = {}
-
-    for _, roundData in pairs(Stats.roundInfo) do
-        table.insert(data.rounds, roundData)
-    end
+    data.rounds = Stats.roundInfo
 
     for _, player in pairs(players) do
         local playerData = {}
@@ -70,12 +67,14 @@ function Stats.RequestMatchAchievements(players, callback)
     Stats.SendData("match/achievements", { players = result }, callback, 30)
 end
 
-function Stats.SubmitRoundInfo(players, roundNumber, roundWinner, statistics)
+function Stats.SubmitRoundInfo(players, roundWinner, statistics)
     local data = {}
 
     data.winner = roundWinner
-    data.roundNumber = roundNumber
+    data.roundNumber = Stats.roundNumber
     data.players = {}
+
+    Stats.roundNumber = Stats.roundNumber + 1
 
     for _, player in pairs(players) do
         local stats = statistics.stats[player.id]
@@ -90,7 +89,7 @@ function Stats.SubmitRoundInfo(players, roundNumber, roundWinner, statistics)
         table.insert(data.players, playerData)
     end
 
-    Stats.roundInfo[roundNumber] = data
+    table.insert(Stats.roundInfo, data)
 end
 
 function Stats.RequestTopPlayers(callback)
