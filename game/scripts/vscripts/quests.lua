@@ -21,7 +21,9 @@ function Quests.Init(players)
         players = FilterPassPlayers(players)
     }
 
-    Stats.SendData("quests/update", data, function(...) Quests.UpdateQuests(...) end, 30)
+    if #data.players > 0 then
+        Stats.SendData("quests/update", data, function(...) Quests.UpdateQuests(...) end, 30)
+    end
 end
 
 function Quests.UpdateQuests(data)
