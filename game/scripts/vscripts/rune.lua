@@ -13,15 +13,13 @@ function Rune:constructor(round)
     unit:StartGesture(ACT_DOTA_IDLE)
 
     self:SetCustomHealth(6)
+    self:EnableHealthBar()
     self:CreateParticles()
     self:EmitSound("Arena.RuneSpawn")
+    self:AddNewModifier(self, nil, "modifier_custom_healthbar", {})
 end
 
 function Rune:CreateParticles()
-    self.healthCounter = ParticleManager:CreateParticle("particles/generic_counter.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.unit)
-    ParticleManager:SetParticleControl(self.healthCounter, 1, Vector(0, self.health, 0))
-    ParticleManager:SetParticleControl(self.healthCounter, 2, Vector(255, 255, 255))
-
     self.particle = ParticleManager:CreateParticle("particles/rune_particle.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.unit)
     ParticleManager:SetParticleControl(self.particle, 1, Vector(0, 255, 0))
 end
@@ -29,22 +27,14 @@ end
 function Rune:Remove()
     getbase(Rune).Remove(self)
 
-    ParticleManager:DestroyParticle(self.healthCounter, false)
-    ParticleManager:ReleaseParticleIndex(self.healthCounter)
-
     ParticleManager:DestroyParticle(self.particle, false)
     ParticleManager:ReleaseParticleIndex(self.particle)
-end
-
-function Rune:Damage(...)
-    getbase(Rune).Damage(self, ...)
-
-    ParticleManager:SetParticleControl(self.healthCounter, 1, Vector(0, self.health, 0))
 end
 
 function Rune:OnDeath(source)
     FX("particles/items3_fx/warmage.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity(), { cp0 = self:GetPos() + Vector(0, 0, 64), release = true })
     FX("particles/items3_fx/fish_bones_active.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity(), { cp0 = self:GetPos() + Vector(0, 0, 64), release = true })
+    ScreenShake(self:GetPos(), 5, 150, 0.45, 3000, 0, true)
 
     for _, hero in pairs(self.round.spells:FilterEntities(
         function(target)

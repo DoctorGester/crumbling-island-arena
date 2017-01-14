@@ -547,6 +547,7 @@ function GameMode:InitModifiers()
     LinkLuaModifier("modifier_wearable_visuals_status_fx", "abilities/modifier_wearable_visuals", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_wearable_visuals_activity", "abilities/modifier_wearable_visuals", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_attack_speed", "abilities/modifier_attack_speed", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_custom_healthbar", "abilities/modifier_custom_healthbar", LUA_MODIFIER_MOTION_NONE)
 end
 
 function GameMode:SetupMode()
@@ -1124,7 +1125,8 @@ function GameMode:UpdateAvailableHeroesTable()
             banned = data.banned,
             forNewPlayers = data.forNewPlayers,
             range = data.range,
-            dateAdded = data.dateAdded
+            dateAdded = data.dateAdded,
+            barOffset = data.barOffset
         }
 
         table.insert(heroes, hero)
@@ -1315,6 +1317,7 @@ function GameMode:LoadCustomHeroes()
 
     local customHeroes = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
     local customAbilities = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
+    local defaultHeroes = LoadKeyValues("scripts/npc/npc_heroes.txt")
 
     local enableForDebug = false--IsInToolsMode() and PlayerResource:GetPlayerCount() == 1
     local order = 0
@@ -1339,7 +1342,8 @@ function GameMode:LoadCustomHeroes()
                 hideOnDeathDelay = data.HideOnDeathDelay,
                 forNewPlayers = data.ForNewPlayers,
                 range = data.Range,
-                dateAdded = data.DateAdded
+                dateAdded = data.DateAdded,
+                barOffset = defaultHeroes[data.override_hero].HealthBarOffset
             }
 
             local abilities = {}

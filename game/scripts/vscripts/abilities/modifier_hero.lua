@@ -14,7 +14,8 @@ end
 
 function modifier_hero:CheckState()
     local state = {
-        [MODIFIER_STATE_BLIND] = true
+        [MODIFIER_STATE_BLIND] = true,
+        [MODIFIER_STATE_NO_HEALTH_BAR] = true
     }
 
     return state

@@ -7,6 +7,7 @@ if IsServer() then
 
         hero:SwapAbilities("gyro_w", "gyro_w_sub")
         hero:EmitSound("Arena.Gyro.CastW")
+        self:SetStackCount(2)
     end
 
     function self:OnDestroy()
@@ -18,15 +19,15 @@ if IsServer() then
     end
 
     function self:OnDamageReceived(source, hero, amount)
-        self.health = (self.health or 2) - amount
+        self:SetStackCount(self:GetStackCount() - amount)
 
-        if self.health <= 0 then
+        if self:GetStackCount() <= 0 then
             hero:EmitSound("Arena.Gyro.HitW")
             self:Destroy()
         end
 
-        if self.health < 0 then
-            return -self.health
+        if self:GetStackCount() < 0 then
+            return -self:GetStackCount()
         end
 
         return false

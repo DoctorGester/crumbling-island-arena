@@ -8,16 +8,22 @@ function modifier_lc_w_shield:GetEffectAttachType()
     return PATTACH_ROOTBONE_FOLLOW
 end
 
-function modifier_lc_w_shield:OnDamageReceived(source, hero, amount)
-    self.health = (self.health or 2) - amount
+if IsServer() then
+    function modifier_lc_w_shield:OnCreated()
+        self:SetStackCount(2)
+    end
+end
 
-    if self.health <= 0 then
+function modifier_lc_w_shield:OnDamageReceived(source, hero, amount)
+    self:SetStackCount(self:GetStackCount() - amount)
+
+    if self:GetStackCount() <= 0 then
         self:Destroy()
         hero:AddNewModifier(hero, self:GetAbility(), "modifier_lc_w_speed", { duration = 4 })
     end
 
-    if self.health < 0 then
-        return -self.health
+    if self:GetStackCount() < 0 then
+        return -self:GetStackCount()
     end
 
     return false

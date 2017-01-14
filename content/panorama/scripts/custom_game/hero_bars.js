@@ -1,167 +1,93 @@
 var dummy = "npc_dota_hero_wisp";
 var heroBars = {};
+var heroes = null;
+
+var colors = {
+    2: [ 255, 82, 66 ],
+    3: [ 52, 85, 255 ] ,
+    6: [ 197, 77, 168 ],
+    7: [ 199, 228, 13 ],
+    8: [ 199, 228, 13 ],
+    9: [ 101, 212, 19 ]
+};
+
+var shieldModifiers = [
+    "modifier_gyro_w",
+    "modifier_lc_w_shield"
+];
+
+var hideBarModifiers = [
+    "modifier_tusk_e",
+    "modifier_ember_e",
+    "modifier_hidden",
+    "modifier_omni_e",
+    "modifier_gyro_e",
+    "modifier_storm_spirit_e",
+    "modifier_ursa_e"
+];
+
+var etherealModifiers = [
+    "modifier_invoker_w"
+];
 
 function GetUnitOwner(unit) {
-    var team = Entities.GetTeamNumber(unit);
-
     for (var i = 0; i < Players.GetMaxPlayers(); i++) {
         if (Players.IsValidPlayerID(i) && Entities.IsControllableByPlayer(unit, i)) {
             return i;
         }
     }
-    
+
     return null;
 }
 
-function multiply(a, b) {
-    var aNumRows = a.length, aNumCols = a[0].length,
-        bNumRows = b.length, bNumCols = b[0].length,
-        m = new Array(aNumRows);  // initialize array of rows
-    for (var r = 0; r < aNumRows; ++r) {
-        m[r] = new Array(bNumCols); // initialize the current row
-        for (var c = 0; c < bNumCols; ++c) {
-            m[r][c] = 0;             // initialize the current cell
-            for (var i = 0; i < aNumCols; ++i) {
-                m[r][c] += a[r][i] * b[i][c];
-            }
-        }
-    }
-    return m;
-}
-function multiply(m1, m2) {
-    var result = [];
-    for (var i = 0; i < m1.length; i++) {
-        result[i] = [];
-        for (var j = 0; j < m2[0].length; j++) {
-            var sum = 0;
-            for (var k = 0; k < m1[0].length; k++) {
-                sum += m1[i][k] * m2[k][j];
-            }
-            result[i][j] = sum;
-        }
-    }
-    return result;
-}
-function multiplyMatrixAndPoint(matrix, point) {
-
-    //Give a simple variable name to each part of the matrix, a column and row number
-    var c0r0 = matrix[ 0], c1r0 = matrix[ 1], c2r0 = matrix[ 2], c3r0 = matrix[ 3];
-    var c0r1 = matrix[ 4], c1r1 = matrix[ 5], c2r1 = matrix[ 6], c3r1 = matrix[ 7];
-    var c0r2 = matrix[ 8], c1r2 = matrix[ 9], c2r2 = matrix[10], c3r2 = matrix[11];
-    var c0r3 = matrix[12], c1r3 = matrix[13], c2r3 = matrix[14], c3r3 = matrix[15];
-
-    //Now set some simple names for the point
-    var x = point[0];
-    var y = point[1];
-    var z = point[2];
-    var w = point[3];
-
-    //Multiply the point against each part of the 1st column, then add together
-    var resultX = (x * c0r0) + (y * c0r1) + (z * c0r2) + (w * c0r3);
-
-    //Multiply the point against each part of the 2nd column, then add together
-    var resultY = (x * c1r0) + (y * c1r1) + (z * c1r2) + (w * c1r3);
-
-    //Multiply the point against each part of the 3rd column, then add together
-    var resultZ = (x * c2r0) + (y * c2r1) + (z * c2r2) + (w * c2r3);
-
-    //Multiply the point against each part of the 4th column, then add together
-    var resultW = (x * c3r0) + (y * c3r1) + (z * c3r2) + (w * c3r3);
-
-    return [resultX, resultY, resultZ, resultW]
-}
-function multiplyMatrices(matrixA, matrixB) {
-
-    // Slice the second matrix up into columns
-    var column0 = [matrixB[0], matrixB[4], matrixB[8], matrixB[12]];
-    var column1 = [matrixB[1], matrixB[5], matrixB[9], matrixB[13]];
-    var column2 = [matrixB[2], matrixB[6], matrixB[10], matrixB[14]];
-    var column3 = [matrixB[3], matrixB[7], matrixB[11], matrixB[15]];
-
-    // Multiply each column by the matrix
-    var result0 = multiplyMatrixAndPoint( matrixA, column0 );
-    var result1 = multiplyMatrixAndPoint( matrixA, column1 );
-    var result2 = multiplyMatrixAndPoint( matrixA, column2 );
-    var result3 = multiplyMatrixAndPoint( matrixA, column3 );
-
-    // Turn the result columns back into a single matrix
-    return [
-        result0[0], result1[0], result2[0], result3[0],
-        result0[1], result1[1], result2[1], result3[1],
-        result0[2], result1[2], result2[2], result3[2],
-        result0[3], result1[3], result2[3], result3[3]
-    ]
-}
-function projM() {
-    var aspectRatio = 1920.0 / 1080.0;
-    var zNear = 1;
-    var zFar = 1000;
-    var zRange = zFar - zNear;
-    var fov = Math.tan(Math.PI / 4.0);
-
-    return [
-        1.0 / (fov * aspectRatio), 0, 0, 0,
-        0, 1.0 / fov, 0, 0,
-        0, 0, (-zNear - zFar) / zRange, 2 * zFar * zNear / zRange,
-        0, 0, 1, 0
-    ]
+function darken(color, percent) {
+    return [ color[0] * percent, color[1] * percent, color[2] * percent ];
 }
 
-function trM(pos) {
-    return [
-        1, 0, 0, pos[0],
-        0, 1, 0, pos[1],
-        0, 0, 1, pos[2],
-        0, 0, 0, 1
-    ]
-}
-
-function cM() {
-    return [
-        1, 0, 0, 0,
-        0, 1, 0, 0,
-        0, 0, 1, pos[2],
-        0, 0, 0, 1
-    ]
-}
-
-function lookAt(eye, target, up) {
-    eye = Vector.FromArray(eye);
-    target = Vector.FromArray(target);
-    up = Vector.FromArray(up);
-
-    var zaxis = eye.minus(target).normalize();    // The "forward" vector.
-    var xaxis = up.cross(zaxis).normalize();// The "right" vector.
-    var yaxis = zaxis.cross(xaxis);     // The "up" vector.
-
-    // Create a 4x4 view matrix from the right, up, forward and eye position vectors
-    return [
-        xaxis.x, yaxis.x, zaxis.x, 0,
-        xaxis.y, yaxis.y, zaxis.y, 0,
-        xaxis.z, yaxis.z, zaxis.z, 0,
-        -xaxis.dot(eye), -yaxis.dot(eye), -zaxis.dot(eye), 1
-    ];
+function clr(color) {
+    return "rgb(" + color[0] + "," + color[1] + "," + color[2]+ ")";
 }
 
 function UpdateHeroBars(){
     $.Schedule(1 / 120, UpdateHeroBars);
 
-    var mainPanel = $("#MainPanel");
-    var all = Entities.GetAllHeroEntities();
+    var mainPanel = $("#HeroBarsContainer");
+    var all = Entities.GetAllHeroEntities().filter(function(entity) {
+        return !Entities.IsUnselectable(entity);
+    });
+
+    all = all.concat(Entities.GetAllEntitiesByClassname("npc_dota_creep_neutral").filter(function(entity) {
+        return HasModifier(entity, "modifier_custom_healthbar");
+    }));
+
+    if (heroes == null) {
+        heroes = CustomNetTables.GetTableValue("static", "heroes");
+
+        if (heroes == null) {
+            return;
+        }
+    }
+
     var onScreen = _
         .chain(all)
-        .reject(function(entity) {
-            return Entities.IsUnselectable(entity);
-        })
         .filter(function(entity) {
             return Entities.IsAlive(entity);
         })
         .map(function(entity) {
             var abs = Entities.GetAbsOrigin(entity);
-            var x = Game.WorldToScreenX(abs[0], abs[1], abs[2] + 300);
-            var y = Game.WorldToScreenY(abs[0], abs[1], abs[2] + 300);
+            var lightBar = HasModifier(entity, "modifier_custom_healthbar");
+            var offset;
 
-            return { id: entity, x: x, y: y, abs: abs };
+            if (lightBar) {
+                offset = 150;
+            } else {
+                offset = heroes[Entities.GetUnitName(entity)].barOffset;
+            }
+
+            var x = Game.WorldToScreenX(abs[0], abs[1], abs[2] + offset);
+            var y = Game.WorldToScreenY(abs[0], abs[1], abs[2] + offset);
+
+            return { id: entity, x: x, y: y, abs: abs, light: lightBar };
         })
         .reject(function(mapped) {
             return mapped.x == -1 || mapped.y == -1;
@@ -171,42 +97,144 @@ function UpdateHeroBars(){
         })
         .each(function(entity) {
             if (_.has(heroBars, entity.id)) {
-                var panel = heroBars[entity.id]
+                var panel = heroBars[entity.id];
+                var w = 100;
 
-                if (panel.actuallayoutwidth != Infinity) {
-                    //entity.x -= panel.actuallayoutwidth / 2;
+                var shieldAmount = 0;
+                var hidden = false;
+                var ethereal = false;
+
+                for (var i = 0; i < Entities.GetNumBuffs(entity.id); i++) {
+                    var buff = Entities.GetBuff(entity.id, i);
+                    var name = Buffs.GetName(entity.id, buff);
+
+                    if (shieldModifiers.indexOf(name) != -1){
+                        shieldAmount += Buffs.GetStackCount(entity.id, buff);
+                    }
+
+                    if (hideBarModifiers.indexOf(name) != -1) {
+                        hidden = true;
+                    }
+
+                    if (etherealModifiers.indexOf(name) != -1) {
+                        ethereal = true;
+                    }
                 }
 
-                var camPos = GameUI.GetScreenWorldPosition(Game.GetScreenWidth() / 2, Game.GetScreenHeight() / 2);
-                //multiplyMatrices(projM(), trM(entity.abs));
+                var health = Entities.GetHealth(entity.id) + shieldAmount;
+                var max = Entities.GetMaxHealth(entity.id) + shieldAmount;
 
-                var cam = lookAt([camPos[0], camPos[1] - 800, 1515], [camPos[0], camPos[1], 128], [0, 0, 1]);
+                if (entity.light) {
+                    panel.style.x = (Math.floor(entity.x) - 40) + "px";
+                    panel.style.y = (Math.floor(entity.y) - 48) + "px";
 
-                var mv = multiplyMatrices(projM(), cam);
-                var mvp = multiplyMatrices(mv, trM(entity.abs));
+                    var bar = panel.FindChild("HealthBar");
+                    bar.max = max;
+                    bar.value = health;
+                    panel.SetHasClass("Ethereal", ethereal);
+                    panel.FindChild("HealthValue").SetHasClass("Low", health <= max / 2);
+                    panel.FindChild("HealthValue").text = health.toString();
 
-                //var P = multiplyMatrixAndPoint(mv, [entity.abs[0], entity.abs[1], entity.abs[2], 0]);
-                var pos = multiplyMatrixAndPoint(mvp, [entity.abs[0], entity.abs[1], entity.abs[2], 1]);
-                //var pos = [mvp[0] / mvp[3], mvp[1] / mvp[3], mvp[2] / mvp[3]];
-                //$.Msg(Math.floor(pos[0]) + " " + Math.floor(pos[1]));
-                panel.style.x = Math.floor(pos[0]) + "px";
-                panel.style.y = Math.floor(pos[1]) + "px";
-//$.Msg(pos);
-                //panel.style.position = parseInt(realW * 100) + "% " + parseInt(realH * 100) + "% 0px";
+                    return;
+                }
 
-                /*if (!panel.BHasClass("HeroMarkerTransition")) {
-                    panel.AddClass("HeroMarkerTransition");
-                }*/
+                var bar = panel.FindChildTraverse("HealthBar");
+                var teamColor = colors[Entities.GetTeamNumber(entity.id)];
+                var pieceSize = Math.round(w / max);
+
+                var name = panel.FindChild("PlayerName");
+                name.text = Players.GetPlayerName(GetUnitOwner(entity.id));
+                name.style.color = clr(teamColor);
+
+                bar.SetHasClass("Ethereal", ethereal);
+                bar.SetHasClass("NotVisible", hidden);
+                panel.FindChildTraverse("HealthNumber").SetHasClass("NotVisible", hidden);
+
+                var valueMaxColor = [ 142, 231, 45 ];
+                var valueLabel = panel.FindChildTraverse("HealthValue");
+                var pc = (1 - health / max);
+                valueLabel.text = health.toString();
+                valueMaxColor[0] = valueMaxColor[0] + (255 - valueMaxColor[0]) * pc;
+                valueMaxColor[1] = valueMaxColor[1] - valueMaxColor[1] * pc;
+
+                valueLabel.style.color = clr(valueMaxColor);
+
+                var healthChildren = bar.FindChildrenWithClassTraverse("Health");
+                var shieldChildren = bar.FindChildrenWithClassTraverse("Shield");
+                var diff = (health - shieldAmount) - healthChildren.length;
+                var shieldDiff = shieldAmount - shieldChildren.length;;
+
+                var missing = bar.FindChild("MissingHealth");
+
+                // To go in line with .DeleteAsync
+                $.Schedule(0, function() {
+                    missing.style.width = ((max - health) * pieceSize).toString() + "px";
+                });
+
+                missing.style.backgroundColor =
+                    "gradient(linear, 0% 0%, 0% 95%, from(" +
+                    clr(darken(teamColor, 0.1)) +
+                    "), to(" +
+                    clr(darken(teamColor, 0.2)) +
+                    "));";
+
+                panel.style.x = (Math.floor(entity.x) - pieceSize * max / 2) + "px";
+                panel.style.y = (Math.floor(entity.y) - 70) + "px";
+
+                for (var child of healthChildren) {
+                    child.style.width = pieceSize.toString() + "px";
+                }
+
+                if (diff > 0) {
+                    for (var i = 0; i < diff; i++) {
+                        $.Schedule(0, function() {
+                            var p = $.CreatePanel("Panel", bar, "");
+                            p.AddClass("Health");
+                            p.style.width = pieceSize.toString() + "px";
+                            p.style.backgroundColor =
+                                "gradient(linear, 0% 0%, 0% 95%, from(" +
+                                clr(teamColor) +
+                                "), to(" +
+                                clr(darken(teamColor, 0.5)) +
+                                "));";
+
+                            bar.MoveChildBefore(p, missing);
+                        });
+                    }
+                } else if (diff < 0) {
+                    var i = 0;
+                    for (var child of healthChildren) {
+                        if (i >= -diff) { break; }
+                        child.DeleteAsync(0);
+                        i++;
+                    }
+                }
+
+                for (var child of shieldChildren) {
+                    child.style.width = pieceSize.toString() + "px";
+                }
+
+                if (shieldDiff > 0) {
+                    for (var i = 0; i < shieldDiff; i++) {
+                        $.Schedule(0, function() {
+                            var p = $.CreatePanel("Panel", bar, "");
+                            p.AddClass("Shield");
+                            p.style.width = pieceSize.toString() + "px";
+
+                            bar.MoveChildBefore(p, missing);
+                        })
+                    }
+                } else if (shieldDiff < 0) {
+                    var i = 0;
+                    for (var child of shieldChildren) {
+                        if (i >= -shieldDiff) { break; }
+                        child.DeleteAsync(0);
+                        i++;
+                    }
+                }
             } else {
-                var panel = $.CreatePanel("Label", mainPanel, "");
-                /*panel.heroname = Entities.GetUnitName(entity.id);
-                panel.heroimagestyle = "icon";*/
-                //panel.text = Players.GetPlayerName(GetUnitOwner(entity.id));
-                panel.hittest = false;
-
-                panel.style.width = "8px";
-                panel.style.height = "8px";
-                panel.style.backgroundColor = "red";
+                var panel = $.CreatePanel("Panel", mainPanel, "");
+                panel.BLoadLayoutSnippet(entity.light ? "HealthBarLight" : "HealthBar");
 
                 heroBars[entity.id] = panel;
             }

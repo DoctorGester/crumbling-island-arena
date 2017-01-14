@@ -6,6 +6,7 @@
         <include src="file://{resources}/styles/custom_game/scoreboard.css" />
         <include src="file://{resources}/styles/custom_game/kill_message.css" />
         <include src="file://{resources}/styles/custom_game/deathmatch.css" />
+        <include src="file://{resources}/styles/custom_game/hero_bars.css" />
         <include src="file://{resources}/styles/custom_game/util.css" />
     </styles>
     <scripts>
@@ -22,12 +23,33 @@
         <include src="file://{resources}/scripts/custom_game/game_hud.js" />
         <include src="file://{resources}/scripts/custom_game/scoreboard.js" />
         <include src="file://{resources}/scripts/custom_game/hero_detector.js" />
-        <!--include src="file://{resources}/scripts/custom_game/hero_bars.js" /-->
+        <include src="file://{resources}/scripts/custom_game/hero_bars.js" />
         <include src="file://{resources}/scripts/custom_game/message_queue.js" />
         <include src="file://{resources}/scripts/custom_game/vector_target.js" />
     </scripts>
+    <snippets>
+        <snippet name="HealthBar">
+            <Panel class="HeroBar" hittest="false" hittestchildren="false">
+                <Label id="PlayerName"/>
+                <Panel id="HealthNumber">
+                    <Label id="HealthValue"/>
+                </Panel>
+                <Panel id="HealthBar">
+                    <Panel id="MissingHealth"/>
+                </Panel>
+            </Panel>
+        </snippet>
+
+        <snippet name="HealthBarLight">
+            <Panel class="HeroBarLight" hittest="false" hittestchildren="false">
+                <Label id="HealthValue"/>
+                <ProgressBar id="HealthBar"/>
+            </Panel>
+        </snippet>
+    </snippets>
     <Panel class="MainPanel" hittest="false">
         <Image src="file://{images}/custom_game/pl_r.png" style="opacity:0.0;"/>
+        <Panel id="HeroBarsContainer" hittest="false" class="MainPanel"/>
         <Panel id="MainPanel" class="MainPanel" hittest="false">
             <Panel id="DebugPanel" hittest="false">
             </Panel>
