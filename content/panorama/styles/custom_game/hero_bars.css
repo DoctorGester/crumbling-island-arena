@@ -11,7 +11,7 @@
     font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
     margin-bottom: 10px;
     font-size: 15px;
-    text-shadow: 0px 0px 4px 2.0 black;
+    text-shadow: 0px 0px 5px 4.0 black;
     font-weight: bold;
 }
 
@@ -43,7 +43,6 @@
 .HeroBar #HealthBar
 {
     height: 10px;
-    background-color: red;
     flow-children: right;
     box-shadow: black 0px 0px 8px 0px;
     transition-property: opacity, box-shadow;

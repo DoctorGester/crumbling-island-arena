@@ -142,6 +142,11 @@ function UpdateHeroBars(){
                     }
                 }
 
+                var screenHR = Game.GetScreenHeight() / 1080;
+
+                entity.x /= screenHR;
+                entity.y /= screenHR;
+
                 var health = Entities.GetHealth(entity.id) + shieldAmount;
                 var max = Entities.GetMaxHealth(entity.id) + shieldAmount;
 
@@ -191,19 +196,17 @@ function UpdateHeroBars(){
                     missing.style.width = ((max - health) * pieceSize).toString() + "px";
                 });
 
-                missing.style.backgroundColor =
-                    "gradient(linear, 0% 0%, 0% 95%, from(" +
+                var bg = "gradient(linear, 0% 0%, 0% 95%, from(" +
                     clr(darken(teamColor, 0.1)) +
                     "), to(" +
                     clr(darken(teamColor, 0.2)) +
                     "));";
 
+                missing.style.backgroundColor = bg;
+                bar.style.backgroundColor = bg;
+
                 panel.style.x = (Math.floor(entity.x) - pieceSize * max / 2) + "px";
                 panel.style.y = (Math.floor(entity.y) - 70) + "px";
-
-                for (var child of healthChildren) {
-                    child.style.width = pieceSize.toString() + "px";
-                }
 
                 if (diff > 0) {
                     for (var i = 0; i < diff; i++) {
@@ -230,10 +233,6 @@ function UpdateHeroBars(){
                     }
                 }
 
-                for (var child of shieldChildren) {
-                    child.style.width = pieceSize.toString() + "px";
-                }
-
                 if (shieldDiff > 0) {
                     for (var i = 0; i < shieldDiff; i++) {
                         $.Schedule(0, function() {
@@ -251,6 +250,13 @@ function UpdateHeroBars(){
                         child.DeleteAsync(0);
                         i++;
                     }
+                }
+
+                healthChildren = bar.FindChildrenWithClassTraverse("Health");
+                shieldChildren = bar.FindChildrenWithClassTraverse("Shield");
+
+                for (var child of healthChildren.concat(shieldChildren)) {
+                    child.style.width = pieceSize.toString() + "px";
                 }
 
                 var callback = specialLayoutCallbacks[Entities.GetUnitName(entity.id)];
