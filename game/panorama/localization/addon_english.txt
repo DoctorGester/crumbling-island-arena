@@ -530,7 +530,7 @@
 		"AbilityTooltip_ember_r"						"Create a clone of yourself at the target point<br/>Clone copies every ability you cast"
 
 		"AbilityTooltip_jugger_a"						"Find <font color=\"#FF6A00\"><b>Swords</b></font> to increase range"
-		"AbilityTooltip_jugger_q"						"Spin dealing damage around you"
+		"AbilityTooltip_jugger_q"						"Gain a speed boost, spin dealing damage around you"
 		"AbilityTooltip_jugger_w"						"Create a ward, slowing enemies in the AOE<br/><br/>Receive a heal if your hero is near it when it expires"
 		"AbilityTooltip_jugger_e"						"Receive a short invisibility<br/><br/>Reactivate to teleport"
 		"AbilityTooltip_jugger_e_sub"					"Short blink"
