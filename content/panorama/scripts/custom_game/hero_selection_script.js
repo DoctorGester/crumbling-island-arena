@@ -768,7 +768,7 @@ DelayStateInit(GAME_STATE_HERO_SELECTION, function () {
         { table: "pass", key: "quests"},
         { table: "ranks", key: "achievements" },
         { table: "main", key: "players" }
-    ], UpdateHeroSelectionButtons)
+    ], UpdateHeroSelectionButtons);
 
     //SubscribeToNetTableKey("main", "heroes", true, HeroesUpdated);
     SubscribeToNetTableKey("main", "players", true, PlayersUpdated);
@@ -786,7 +786,15 @@ DelayStateInit(GAME_STATE_HERO_SELECTION, function () {
     CheckConnectionState();
     CheckPreviews();
 
-    var hasTicket = Players.HasCustomGameTicketForPlayerID(Game.GetLocalPlayerID());
-    $("#PassNotOwned").SetHasClass("Hidden", hasTicket);
-    $("#PassContent").SetHasClass("Hidden", !hasTicket);
+    function PassCheck(){
+        var hasTicket = Players.HasCustomGameTicketForPlayerID(Game.GetLocalPlayerID());
+        $("#PassNotOwned").SetHasClass("Hidden", hasTicket);
+        $("#PassContent").SetHasClass("Hidden", !hasTicket);
+
+        if (!hasTicket) {
+            $.Schedule(1, PassCheck);
+        }
+    }
+
+    PassCheck();
 });
