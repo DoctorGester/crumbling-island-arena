@@ -753,12 +753,15 @@ function SetupChat() {
                     var color = null;
                     var hero = "";
 
-                    var selectedHeroes = (CustomNetTables.GetTableValue("main", "selectedHeroes") || {}).selected;
+                    var players = (CustomNetTables.GetTableValue("main", "players") || {}).players;
 
-                    for (var i = 0; i < Players.GetMaxPlayers(); i++) {
-                        if (Players.IsValidPlayerID(i) && Players.GetPlayerName(i) == playerName) {
-                            color = "#" + Players.GetPlayerColor(i).toString(16);
-                            hero = selectedHeroes[i.toString()];
+                    for (var i in players) {
+                        var player = players[i];
+                        if (Players.GetPlayerName(player.id) == playerName) {
+                            color = LuaColor(player.color);
+                            hero = player.hero;
+
+                            break;
                         }
                     }
 
