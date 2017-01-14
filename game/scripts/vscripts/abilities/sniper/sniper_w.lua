@@ -17,6 +17,8 @@ function sniper_w:OnSpellStart()
         graphics = "particles/sniper_w/sniper_w.vpcf",
         hitScreenShake = true,
         hitFunction = function(projectile, hit)
+            ScreenShake(target, 4, 50, 0.35, 2000, 0, true)
+
             EntitySniperW(hero.round, hero, target, self):Activate()
         end
     }):Activate()
