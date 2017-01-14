@@ -149,7 +149,7 @@ function Wrappers.AttackAbility(ability, staticDurationOffset, fx)
         local stackCount = self:GetCaster():GetModifierStackCount("modifier_attack_speed", self:GetCaster())
 
         if stackCount > 2 then
-            return cd + cd * 0.7 * stackCount
+            return cd + cd * 0.4 * stackCount
         end
 
         return cd
