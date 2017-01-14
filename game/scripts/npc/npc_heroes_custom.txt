@@ -1027,6 +1027,7 @@
 		"GameSoundsFile" ""
 		"VoiceFile"	""
 		"DisableWearables" "1"
+		"DateAdded" "14.01.2017"
 		"Range" "melee"
 		"Difficulty" "easy"
 		"Order" "23"

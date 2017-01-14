@@ -177,9 +177,9 @@
 		"pudge_DescE" "Рывок + отбрасывание"
 		"pudge_DescR" "Замедление в области"
 
-		"ursa_DescQ" "Оглушение в области"
+		"ursa_DescQ" "Замедление в области"
 		"ursa_DescW" "Быстрые атаки, лечение при ударе, ускорение"
-		"ursa_DescE" "Короткий перекат"
+		"ursa_DescE" "Короткий перекат + оглушение"
 		"ursa_DescR" "Неуязвимость"
 
 		"brewmaster_DescQ" "Замедляющий снаряд"
@@ -543,11 +543,11 @@
 		"AbilityTooltip_pudge_e"						"Рвануться к цели, останавливаясь встречая первого врага на пути, отбрасывая его назад"
 		"AbilityTooltip_pudge_r"						"Замедлить всех врагов вокруг себя на 5 секунд"
 
-		"AbilityTooltip_ursa_a"							"Попадания лечат под эффектом W"
-		"AbilityTooltip_ursa_q"							"Оглушить врагов вокруг себя"
-		"AbilityTooltip_ursa_w"							"Получить бонус скорости<br/>Атаки перезаряжаются быстрее"
-		"AbilityTooltip_ursa_e"							"Перекат в указанную точку"
-		"AbilityTooltip_ursa_r"							"Стать неуязвимым к урону и магии"
+		"AbilityTooltip_ursa_a"							"Нанесение и получение урона генерирует <font color='#FF6A00'><b>Ярость</b></font><br/>При достижении максимума войти в <font color='#FF2700'><b>Бешенство</b></font><br/>Наносит двойной урон в <font color='#FF2700'><b>Бешенстве</b></font>"
+		"AbilityTooltip_ursa_q"							"Замедлить врагов вокруг себя<br/>Перезаряжается при входе в <font color='#FF2700'><b>Бешенство</b></font>"
+		"AbilityTooltip_ursa_w"							"Получить бонус скорости<br/>Атаки перезаряжаются быстрее и лечат<br/>Во время <font color='#FF2700'><b>Бешенства</b></font> лечение удвоено"
+		"AbilityTooltip_ursa_e"							"Перекат в указанную точку, оглушает врагов на пути"
+		"AbilityTooltip_ursa_r"							"Стать неуязвимым к урону и магии и сразу же войти в <font color='#FF2700'><b>Бешенство</b></font> или продлить его"
 
 		"AbilityTooltip_brew_a"							"Наносит двойной урон если у героя хотя бы 2 заряда <font color=\"#AF9200\"><b>Пива</b></font>"
 		"AbilityTooltip_brew_q"							"Получить заряд <font color=\"#AF9200\"><b>Пива</b></font><br/>Бросить пиво в область, прибавляя всем врагам заряд <font color=\"#AF9200\"><b>Пива</b></font>"
@@ -732,6 +732,8 @@
 		"ModifierTooltip_modifier_pudge_r"						"Замедлен"
 		"ModifierTooltip_modifier_pudge_r_aura"					"Гниёт"
 
+		"ModifierTooltip_modifier_ursa_frenzy"					"<font color='#FF2700'><b>Бешенство</b></font>"
+		"ModifierTooltip_modifier_ursa_q"						"Замедлен"
 		"ModifierTooltip_modifier_ursa_r"						"Неуязвим"
 
 		"ModifierTooltip_modifier_brew_beer"					"Замедлен"

@@ -4478,6 +4478,22 @@
 		event_type = "1.0"
 	}
 
+	Arena.Ursa.Frenzy = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/vo/ursa/ursa_attack_13.vsnd",
+			"sounds/vo/ursa/ursa_attack_14.vsnd",
+			"sounds/vo/ursa/ursa_attack_15.vsnd"
+		]
+		volume = "2.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
 	Arena.Ursa.PreA = {
 		type = "dota_src1_3d"
 		vsnd_files = 

@@ -179,9 +179,9 @@
 		"pudge_DescE" "Dash + knockback"
 		"pudge_DescR" "AOE slow"
 
-		"ursa_DescQ" "AOE stun"
+		"ursa_DescQ" "AOE slow and damage"
 		"ursa_DescW" "Faster attacks, heal on hit, speed boost"
-		"ursa_DescE" "Short roll"
+		"ursa_DescE" "Short roll + stun"
 		"ursa_DescR" "Invulnerability"
 
 		"brewmaster_DescQ" "Slowing projectile"
@@ -550,11 +550,11 @@
 		"AbilityTooltip_pudge_e"						"Dash to the target point, stop after encountering an enemy and knock him back"
 		"AbilityTooltip_pudge_r"						"Slow enemies around you for 5 seconds"
 
-		"AbilityTooltip_ursa_a"							"Heal under the effect of W"
-		"AbilityTooltip_ursa_q"							"Stun enemies around you"
-		"AbilityTooltip_ursa_w"							"Gain a speed boost<br/>Attacks have lower cooldown"
-		"AbilityTooltip_ursa_e"							"Short roll"
-		"AbilityTooltip_ursa_r"							"Become invulnerable to all damage and magic"
+		"AbilityTooltip_ursa_a"							"Dealing and taking damage generates <font color='#FF6A00'><b>Fury</b></font><br/>When maximum is reached gain <font color='#FF2700'><b>Frenzy</b></font><br/>Deals double damage under <font color='#FF2700'><b>Frenzy</b></font>"
+		"AbilityTooltip_ursa_q"							"Slow enemies around you<br/>Resets on entering <font color='#FF2700'><b>Frenzy</b></font>"
+		"AbilityTooltip_ursa_w"							"Gain a speed boost<br/>Attacks have lower cooldown and heal<br/>Healing in <font color='#FF2700'><b>Frenzy</b></font> is doubled"
+		"AbilityTooltip_ursa_e"							"Short roll, stuns enemies on the way"
+		"AbilityTooltip_ursa_r"							"Become invulnerable to all damage and magic, immediately enter <font color='#FF2700'><b>Frenzy</b></font> or refresh its duration"
 
 		"AbilityTooltip_brew_a"							"Deals double damage if a hero has 2 or more <font color=\"#AF9200\"><b>Beer</b></font> debuffs"
 		"AbilityTooltip_brew_q"							"Receive a <font color=\"#AF9200\"><b>Beer</b></font> debuff<br/>Throw a beer to the target area, applying stacking <font color=\"#AF9200\"><b>Beer</b></font> debuff to every enemy hit"
@@ -741,6 +741,8 @@
 		"ModifierTooltip_modifier_pudge_r"						"Slowed"
 		"ModifierTooltip_modifier_pudge_r_aura"					"Rotten"
 
+		"ModifierTooltip_modifier_ursa_frenzy"					"<font color='#FF2700'><b>Frenzy</b></font>"
+		"ModifierTooltip_modifier_ursa_q"						"Slowed"
 		"ModifierTooltip_modifier_ursa_w"						"Fast and furious"
 		"ModifierTooltip_modifier_ursa_e"						"Rolling/hating"
 		"ModifierTooltip_modifier_ursa_r"						"Invulnerable"

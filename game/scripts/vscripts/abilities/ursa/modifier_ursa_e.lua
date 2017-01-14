@@ -24,11 +24,6 @@ function modifier_ursa_e:DeclareFunctions()
     return funcs
 end
 
-
-function modifier_ursa_e:GetEffectName()
-    return "particles/units/heroes/hero_ursa/ursa_fury_swipes_debuff.vpcf"
-end
-
 function modifier_ursa_e:StatusEffectPriority()
     return 2
 end

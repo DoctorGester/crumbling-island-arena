@@ -1,5 +1,7 @@
 ursa_q = class({})
 
+LinkLuaModifier("modifier_ursa_q", "abilities/ursa/modifier_ursa_q", LUA_MODIFIER_MOTION_NONE)
+
 function ursa_q:OnSpellStart()
     local hero = self:GetCaster().hero
     local pos = hero:GetPos()
@@ -7,7 +9,8 @@ function ursa_q:OnSpellStart()
     hero:AreaEffect({
         filter = Filters.Area(pos, 350),
         filterProjectiles = true,
-        modifier = { name = "modifier_stunned_lua", duration = 1.3, ability = self }
+        damage = self:GetDamage(),
+        modifier = { name = "modifier_ursa_q", duration = 1.0, ability = self }
     })
 
     ImmediateEffect("particles/units/heroes/hero_ursa/ursa_earthshock.vpcf", PATTACH_ABSORIGIN, hero)

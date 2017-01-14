@@ -12,7 +12,7 @@ function ursa_e:OnSpellStart()
         modifier = { name = "modifier_ursa_e", ability = self },
         forceFacing = true,
         hitParams = {
-            --modifier = { name = "modifier_drow_e_slow", ability = self, duration = 2.0 },
+            modifier = { name = "modifier_stunned_lua", ability = self, duration = 1.0 }
         },
         arrivalFunction = function()
             hero:GetUnit():StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1_END, 1.5)

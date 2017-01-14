@@ -50,7 +50,7 @@
     transition-duration: 0.2s;
 }
 
-.HeroBar #HealthBar.NotVisible, #HealthNumber.NotVisible
+.HeroBar.NotVisible #HealthBar, .HeroBar.NotVisible #HealthNumber
 {
     opacity: 0.5;
     box-shadow: none;
@@ -163,4 +163,33 @@
         opacity: 1.0;
         transform: translateY(0px);
     }
+}
+
+/* Special content */
+#UrsaRage
+{
+    width: 100%;
+    height: 4px;
+    margin-top: 1px;
+    box-shadow: black 0px 0px 4px 0px;
+    background-color: gradient(linear, 0% 0%, 0% 95%, from(#3F1500), to(#632200));
+    transition-property: opacity;
+    transition-duration: 0.05s;
+}
+
+#UrsaRage .ProgressBarLeft.UrsaFrenzy
+{
+    background-color: gradient(linear, 0% 0%, 0% 95%, from(#FF2700), to(#AF1A00));
+}
+
+#UrsaRage .ProgressBarLeft {
+    background-color: gradient(linear, 0% 0%, 0% 98%, from(#FF6A00), to(#BC4B00));
+    transition-property: width, background-color;
+    transition-duration: 0.05s;
+}
+
+.HeroBar.NotVisible #UrsaRage
+{
+    opacity: 0.5;
+    box-shadow: none;
 }

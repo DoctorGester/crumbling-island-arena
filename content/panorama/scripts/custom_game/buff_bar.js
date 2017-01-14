@@ -9,7 +9,8 @@ var modifiersWithStacks = [
     "modifier_gyro_q_slow",
     "modifier_cm_a",
     "modifier_ta_r",
-    "modifier_wr_a"
+    "modifier_wr_a",
+    "modifier_ursa_fury"
 ];
 
 function ShowBuffTooltip(element, entityId, buffId) {

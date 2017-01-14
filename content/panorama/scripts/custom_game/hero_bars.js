@@ -23,12 +23,33 @@ var hideBarModifiers = [
     "modifier_omni_e",
     "modifier_gyro_e",
     "modifier_storm_spirit_e",
-    "modifier_ursa_e"
+    "modifier_ursa_e",
+    "modifier_ursa_r"
 ];
 
 var etherealModifiers = [
     "modifier_invoker_w"
 ];
+
+var specialLayouts = {
+    "npc_dota_hero_ursa": "UrsaBar"
+};
+
+var specialLayoutCallbacks = {};
+
+specialLayoutCallbacks.npc_dota_hero_ursa = function(entity, panel) {
+    var fury = FindModifier(entity.id, "modifier_ursa_fury");
+    var frenzy = FindModifier(entity.id, "modifier_ursa_frenzy");
+    var bar = panel.FindChildTraverse("UrsaRage");
+
+    panel.FindChildTraverse("UrsaRage_Left").SetHasClass("UrsaFrenzy", !!frenzy);
+
+    if (frenzy) {
+        bar.value = 100;
+    } else if (fury) {
+        bar.value = Buffs.GetStackCount(entity.id, fury);
+    }
+};
 
 function GetUnitOwner(unit) {
     for (var i = 0; i < Players.GetMaxPlayers(); i++) {
@@ -147,8 +168,7 @@ function UpdateHeroBars(){
                 name.style.color = clr(teamColor);
 
                 bar.SetHasClass("Ethereal", ethereal);
-                bar.SetHasClass("NotVisible", hidden);
-                panel.FindChildTraverse("HealthNumber").SetHasClass("NotVisible", hidden);
+                panel.SetHasClass("NotVisible", hidden);
 
                 var valueMaxColor = [ 142, 231, 45 ];
                 var valueLabel = panel.FindChildTraverse("HealthValue");
@@ -232,9 +252,21 @@ function UpdateHeroBars(){
                         i++;
                     }
                 }
+
+                var callback = specialLayoutCallbacks[Entities.GetUnitName(entity.id)];
+
+                if (callback) {
+                    callback(entity, panel);
+                }
             } else {
                 var panel = $.CreatePanel("Panel", mainPanel, "");
-                panel.BLoadLayoutSnippet(entity.light ? "HealthBarLight" : "HealthBar");
+                var layout = specialLayouts[Entities.GetUnitName(entity.id)];
+
+                if (!layout) {
+                    layout = entity.light ? "HealthBarLight" : "HealthBar";
+                }
+
+                panel.BLoadLayoutSnippet(layout);
 
                 heroBars[entity.id] = panel;
             }

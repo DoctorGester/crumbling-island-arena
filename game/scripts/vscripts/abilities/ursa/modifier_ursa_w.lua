@@ -31,14 +31,6 @@ function modifier_ursa_w:GetModifierMoveSpeedBonus_Percentage(params)
     return 40 + self:GetElapsedTime() / self:GetDuration() * 60
 end
 
-function modifier_ursa_w:GetEffectName()
-    return "particles/units/heroes/hero_ursa/ursa_fury_swipes_debuff.vpcf"
-end
-
-function modifier_ursa_w:GetEffectAttachType()
-    return PATTACH_OVERHEAD_FOLLOW
-end
-
 function modifier_ursa_w:StatusEffectPriority()
     return 2
 end
