@@ -577,7 +577,7 @@ function GameMode:SetupMode()
 
     self.TeamColors = {}
     self.TeamColors[DOTA_TEAM_GOODGUYS] = { 255, 82, 66 }
-    self.TeamColors[DOTA_TEAM_BADGUYS]  = { 52, 85, 255 }   --      Blue
+    self.TeamColors[DOTA_TEAM_BADGUYS]  = { 48, 168, 255 }   --      Blue
     self.TeamColors[DOTA_TEAM_CUSTOM_1] = { 197, 77, 168 }  --      Pink
     self.TeamColors[DOTA_TEAM_CUSTOM_2] = { 199, 228, 13 }   --      Olive
     self.TeamColors[DOTA_TEAM_CUSTOM_3] = { 161, 127, 255 }
