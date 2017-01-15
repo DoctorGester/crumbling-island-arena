@@ -131,7 +131,6 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "storm_spirit_electric_vortex"
 		"AbilityCooldown" "5.0"
-		"Damage" "3"
 
 		"TargetingIndicator"
 		{
