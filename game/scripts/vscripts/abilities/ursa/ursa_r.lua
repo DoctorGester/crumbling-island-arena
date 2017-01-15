@@ -13,9 +13,9 @@ function ursa_r:OnSpellStart()
     local frenzy = hero:FindModifier("modifier_ursa_frenzy")
 
     if fury then
-        fury:IncreaseStacks(5)
+        fury:IncreaseStacks(10)
     elseif frenzy then
-        frenzy:SetDuration(3, true)
+        frenzy:SetDuration(6, true)
     end
 
     ScreenShake(hero:GetPos(), 5, 150, 0.45, 3000, 0, true)

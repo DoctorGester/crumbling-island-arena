@@ -2,7 +2,7 @@ modifier_ursa_fury = class({})
 
 if IsServer() then
     function modifier_ursa_fury:OnCreated()
-        self:StartIntervalThink(0)
+        self:StartIntervalThink(0.2)
     end
 
     function modifier_ursa_fury:OnIntervalThink()
@@ -17,14 +17,14 @@ function modifier_ursa_fury:IsHidden()
 end
 
 function modifier_ursa_fury:IncreaseStacks(amount)
-    self:SetStackCount(math.min(100, self:GetStackCount() + amount * 35))
+    self:SetStackCount(math.min(100, self:GetStackCount() + amount * 18))
 
     if self:GetStackCount() == 100 then
         self:Destroy()
 
         local hero = self:GetParent():GetParentEntity()
 
-        hero:AddNewModifier(hero, hero:FindAbility("ursa_a"), "modifier_ursa_frenzy", { duration = 3.0 })
+        hero:AddNewModifier(hero, hero:FindAbility("ursa_a"), "modifier_ursa_frenzy", { duration = 6.0 })
     end
 end
 

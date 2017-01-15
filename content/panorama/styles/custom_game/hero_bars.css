@@ -173,7 +173,7 @@
     box-shadow: black 0px 0px 4px 0px;
     background-color: gradient(linear, 0% 0%, 0% 95%, from(#3F1500), to(#632200));
     transition-property: opacity;
-    transition-duration: 0.05s;
+    transition-duration: 0.1s;
 }
 
 #UrsaRage .ProgressBarLeft.UrsaFrenzy
