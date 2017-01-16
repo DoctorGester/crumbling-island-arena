@@ -56,7 +56,38 @@
                 <Panel id="HealthBar">
                     <Panel id="MissingHealth"/>
                 </Panel>
-                <ProgressBar id="UrsaRage" value="0" max="100"/>
+                <ProgressBar id="UrsaRage" class="SpecialBar" value="0" max="100"/>
+            </Panel>
+        </snippet>
+
+        <snippet name="JuggBar">
+            <Panel class="HeroBar" hittest="false" hittestchildren="false">
+                <Label id="PlayerName"/>
+                <Panel id="HealthNumber">
+                    <Label id="HealthValue"/>
+                </Panel>
+                <Panel id="HealthBar">
+                    <Panel id="MissingHealth"/>
+                </Panel>
+                <Panel id="JuggSwordBar" class="SpecialBar">
+                    <ProgressBar id="JuggSword0" value="100" max="100"/>
+                    <ProgressBar id="JuggSword1" value="100" max="100"/>
+                    <ProgressBar id="JuggSword2" value="100" max="100"/>
+                    <ProgressBar id="JuggSword3" value="100" max="100"/>
+                </Panel>
+            </Panel>
+        </snippet>
+
+        <snippet name="UndyingBar">
+            <Panel class="HeroBar" hittest="false" hittestchildren="false">
+                <Label id="PlayerName"/>
+                <Panel id="HealthNumber">
+                    <Label id="HealthValue"/>
+                </Panel>
+                <Panel id="HealthBar">
+                    <Panel id="MissingHealth"/>
+                </Panel>
+                <ProgressBar id="UndyingShield" class="SpecialBar" value="0" max="100"/>
             </Panel>
         </snippet>
     </snippets>

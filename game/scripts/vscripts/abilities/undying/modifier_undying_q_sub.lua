@@ -1,5 +1,5 @@
-modifier_undying_w_sub = class({})
-local self = modifier_undying_w_sub
+modifier_undying_q_sub = class({})
+local self = modifier_undying_q_sub
 
 function self:CheckState()
     local state = {
@@ -20,9 +20,7 @@ end
 
 function self:DeclareFunctions()
     local funcs = {
-        MODIFIER_PROPERTY_OVERRIDE_ANIMATION,
-        MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS,
-        MODIFIER_PROPERTY_OVERRIDE_ANIMATION_RATE
+        MODIFIER_PROPERTY_TRANSLATE_ACTIVITY_MODIFIERS
     }
 
     return funcs
@@ -30,12 +28,4 @@ end
 
 function self:GetActivityTranslationModifiers()
     return "forcestaff_friendly"
-end
-
-function self:GetOverrideAnimation(params)
-    return ACT_DOTA_FLAIL
-end
-
-function self:GetOverrideAnimationRate(params)
-    return 1.66
 end

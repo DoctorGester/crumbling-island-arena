@@ -214,10 +214,10 @@
 		"tusk_DescE" "Long range dash + stun"
 		"tusk_DescR" "Empower ALL knockbacks"
 
-		"undying_DescQ" "Slow, increase your health"
+		"undying_DescQ" "Slow, damage shield"
 		"undying_DescW" "Rooting wave"
 		"undying_DescE" "Tombstone, damage in AOE"
-		"undying_DescR" "Permanently transform"
+		"undying_DescR" "Transform"
 
 		"medusa_DescQ" "Damage in an AOE"
 		"medusa_DescW" "Mana restoring projectile"
@@ -592,12 +592,12 @@
 		"AbilityTooltip_tusk_e"							"Gain invulnerability and roll to the target point, stunning enemies on your way"
 		"AbilityTooltip_tusk_r"							"<font color=\"gold\"><b>ALL</b></font> knockbacks are 2x stronger<br/>Your <font color=\"gold\"><b>E</b></font> is 2x faster<br/><br/>Lasts for <font color=\"gold\"><b>10</b></font> seconds"
 
-		"AbilityTooltip_undying_q"						"Slow enemies in the target area<br/>Increase your max health for each enemy hit"
-		"AbilityTooltip_undying_q_sub"					"Attack enemies in front of you"
+		"AbilityTooltip_undying_a"						"Range and knockback increase with <font color='#279225'><b>Decay</b></font> stacks<br/>Damage increases at 3 and 6 stacks"
+		"AbilityTooltip_undying_q"						"Slow enemies in the target area<br/>Receive a <font color='#279225'><b>Decay</b></font> stack per each enemy hit, shielding from damage"
+		"AbilityTooltip_undying_q_sub"					"Jump to the target area, stunning enemies on landing<br/>Range and stun duration scale from <font color='#279225'><b>Decay</b></font> stacks"
 		"AbilityTooltip_undying_w"						"Launch a rooting and damaging wave"
-		"AbilityTooltip_undying_w_sub"					"Jump to the target area, stunning enemies on landing"
 		"AbilityTooltip_undying_e"						"Summon a Tombstone, which damages enemies for being in the area for 2.5 seconds"
-		"AbilityTooltip_undying_r"						"Permanently transform, setting your health to 3, losing all abilities and gaining two new"
+		"AbilityTooltip_undying_r"						"Transform, gain a new ability and disable all the other ones<br/><font color='#279225'><b>Decay</b></font> stacks can't be lost for the duration<br/>Lose all stacks after transformation ends"
 
 		"AbilityTooltip_dusa_q"							"Launch a barrage of arrows, damaging all enemies in the target area"
 		"AbilityTooltip_dusa_w"							"Launch a projectile slowing every enemy on it's way and restoring mana for each enemy hit"
@@ -769,9 +769,9 @@
 		"ModifierTooltip_modifier_tusk_r"						"Knocked back two times stronger"
 
 		"ModifierTooltip_modifier_undying_q"					"Slowed"
-		"ModifierTooltip_modifier_undying_q_health"				"Maximum health increased"
+		"ModifierTooltip_modifier_undying_q_health"				"Shielded"
+		"ModifierTooltip_modifier_undying_q_sub"				"Jumping zombies?"
 		"ModifierTooltip_modifier_undying_w"					"Rooted"
-		"ModifierTooltip_modifier_undying_w_sub"				"Jumping zombies?"
 		"ModifierTooltip_modifier_undying_e_target"				"Will take damage if stays near the Tombstone"
 		"ModifierTooltip_modifier_undying_r"					"Transformed"
 

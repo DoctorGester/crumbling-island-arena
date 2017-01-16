@@ -165,15 +165,25 @@
 }
 
 /* Special content */
-#UrsaRage
+.SpecialBar
 {
     width: 100%;
-    height: 4px;
-    margin-top: 1px;
     box-shadow: black 0px 0px 4px 0px;
-    background-color: gradient(linear, 0% 0%, 0% 95%, from(#3F1500), to(#632200));
     transition-property: opacity;
     transition-duration: 0.1s;
+    height: 4px;
+    margin-top: 1px;
+}
+
+.SpecialBar .ProgressBarLeft
+{
+    transition-property: width, background-color;
+    transition-duration: 0.05s;
+}
+
+#UrsaRage
+{
+    background-color: gradient(linear, 0% 0%, 0% 95%, from(#3F1500), to(#632200));
 }
 
 #UrsaRage .ProgressBarLeft.UrsaFrenzy
@@ -183,12 +193,54 @@
 
 #UrsaRage .ProgressBarLeft {
     background-color: gradient(linear, 0% 0%, 0% 98%, from(#FF6A00), to(#BC4B00));
-    transition-property: width, background-color;
-    transition-duration: 0.05s;
 }
 
-.HeroBar.NotVisible #UrsaRage
+.HeroBar.NotVisible .SpecialBar
 {
     opacity: 0.5;
     box-shadow: none;
+}
+
+#JuggSwordBar
+{
+    height: 4px;
+    margin-top: 1px;
+    flow-children: right;
+}
+
+#JuggSwordBar ProgressBar
+{
+    width: fill-parent-flow(1.0);
+    height: 100%;
+    background-color: black;
+}
+
+#JuggSwordBar ProgressBar#JuggSword0 .ProgressBarLeft
+{
+    background-color: gradient(linear, 0% 0%, 0% 98%, from(rgb(255, 85, 0)), to(rgb(160, 55, 0)));
+}
+
+#JuggSwordBar ProgressBar#JuggSword1 .ProgressBarLeft
+{
+    background-color: gradient(linear, 0% 0%, 0% 98%, from(rgb(170, 85, 255)), to(rgb(93, 67, 160)));
+}
+
+#JuggSwordBar ProgressBar#JuggSword2 .ProgressBarLeft
+{
+    background-color: gradient(linear, 0% 0%, 0% 98%, from(rgb(0, 244, 255)), to(rgb(0, 149, 160)));
+}
+
+#JuggSwordBar ProgressBar#JuggSword3 .ProgressBarLeft
+{
+    background-color: gradient(linear, 0% 0%, 0% 98%, from(rgb(170, 0, 0)), to(rgb(109, 0, 0)));
+}
+
+#UndyingShield
+{
+    background-color: gradient(linear, 0% 0%, 0% 95%, from(#154c13), to(#11350f));
+}
+
+#UndyingShield .ProgressBarLeft
+{
+    background-color: gradient(linear, 0% 0%, 0% 95%, from(#279225), to(#154913));
 }

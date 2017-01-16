@@ -3476,6 +3476,29 @@
 		"AbilityCastPoint" "0.15"
 	}
 
+	"undying_a"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/undying/undying_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "undying_soul_rip"
+		"AbilityCooldown" "0.7"
+		"AbilityCastPoint" "0.135"
+		"Damage" "1"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300 + GetStackCount(unit, 'modifier_undying_q_health') * 30"
+		}
+
+		"TargetingIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "300 + GetStackCount(unit, 'modifier_undying_q_health') * 30"
+		}
+	}
+
 	"undying_q"
 	{
 		"BaseClass" "ability_lua"
@@ -3507,6 +3530,7 @@
 		"AbilityTextureName" "undying_soul_rip"
 		"AbilityCooldown" "5.0"
 		"AbilityCastPoint" "0.15"
+		"Damage" "3"
 
 		"TargetingIndicator"
 		{
@@ -3531,6 +3555,7 @@
 		"AbilityTextureName" "undying_tombstone"
 		"AbilityCooldown" "10.0"
 		"AbilityCastPoint" "0.15"
+		"Damage" "2"
 
 		"TargetingIndicator"
 		{
@@ -3554,48 +3579,27 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "undying_flesh_golem"
 		"AbilityCastPoint" "0.15"
+		"AbilityCooldown" "22.0"
 	}
 
 	"undying_q_sub"
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/undying/undying_q_sub"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName" "undying_soul_rip"
-		"AbilityCooldown" "2.4"
-		"AbilityCastPoint" "0.15"
-
-		"HoverIndicator"
-		{
-			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "350"
-		}
-
-		"TargetingIndicator"
-		{
-			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
-			"Radius" "350"
-		}
-	}
-
-	"undying_w_sub"
-	{
-		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/undying/undying_w_sub"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "undying_flesh_golem"
-		"AbilityCooldown" "4.0"
+		"AbilityCooldown" "2.5"
 
 		"TargetingIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_LINE_EMBER"
-			"MaxLength" "400"
+			"MaxLength" "400 + GetStackCount(unit, 'modifier_undying_q_health') * 60"
 		}
 
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "400"
+			"Radius" "400 + GetStackCount(unit, 'modifier_undying_q_health') * 60"
 		}
 	}
 

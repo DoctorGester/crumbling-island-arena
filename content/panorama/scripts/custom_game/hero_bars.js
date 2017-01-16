@@ -13,7 +13,8 @@ var colors = {
 
 var shieldModifiers = [
     "modifier_gyro_w",
-    "modifier_lc_w_shield"
+    "modifier_lc_w_shield",
+    "modifier_undying_q_health"
 ];
 
 var hideBarModifiers = [
@@ -32,7 +33,9 @@ var etherealModifiers = [
 ];
 
 var specialLayouts = {
-    "npc_dota_hero_ursa": "UrsaBar"
+    "npc_dota_hero_ursa": "UrsaBar",
+    //"npc_dota_hero_juggernaut": "JuggBar",
+    "npc_dota_hero_undying": "UndyingBar"
 };
 
 var specialLayoutCallbacks = {};
@@ -48,6 +51,21 @@ specialLayoutCallbacks.npc_dota_hero_ursa = function(entity, panel) {
         bar.value = 100;
     } else if (fury) {
         bar.value = Buffs.GetStackCount(entity.id, fury);
+    }
+};
+
+specialLayoutCallbacks.npc_dota_hero_juggernaut = function(entity, panel) {
+
+};
+
+specialLayoutCallbacks.npc_dota_hero_undying = function(entity, panel) {
+    var shield = FindModifier(entity.id, "modifier_undying_q_health");
+    var bar = panel.FindChildTraverse("UndyingShield");
+
+    if (shield) {
+        bar.value = Math.round(Buffs.GetRemainingTime(entity.id, shield) / Buffs.GetDuration(entity.id, shield) * 100);
+    } else {
+        bar.value = 0;
     }
 };
 
@@ -77,9 +95,13 @@ function UpdateHeroBars(){
         return !Entities.IsUnselectable(entity);
     });
 
-    all = all.concat(Entities.GetAllEntitiesByClassname("npc_dota_creep_neutral").filter(function(entity) {
-        return HasModifier(entity, "modifier_custom_healthbar");
-    }));
+    var classes = [ "npc_dota_creep_neutral", "npc_dota_creature" ];
+
+    for (var cl of classes) {
+        all = all.concat(Entities.GetAllEntitiesByClassname(cl).filter(function(entity) {
+            return HasModifier(entity, "modifier_custom_healthbar");
+        }));
+    }
 
     if (heroes == null) {
         heroes = CustomNetTables.GetTableValue("static", "heroes");
@@ -91,6 +113,9 @@ function UpdateHeroBars(){
 
     var onScreen = _
         .chain(all)
+        .reject(function(entity) {
+            return Entities.IsOutOfGame(entity);
+        })
         .filter(function(entity) {
             return Entities.IsAlive(entity);
         })
@@ -154,6 +179,7 @@ function UpdateHeroBars(){
                     panel.style.x = (Math.floor(entity.x) - 40) + "px";
                     panel.style.y = (Math.floor(entity.y) - 48) + "px";
 
+                    var team = Entities.GetTeamNumber(entity.id);
                     var bar = panel.FindChild("HealthBar");
                     bar.max = max;
                     bar.value = health;
@@ -161,12 +187,31 @@ function UpdateHeroBars(){
                     panel.FindChild("HealthValue").SetHasClass("Low", health <= max / 2);
                     panel.FindChild("HealthValue").text = health.toString();
 
+                    if (team != DOTATeam_t.DOTA_TEAM_NOTEAM) {
+                        var teamColor = colors[team];
+                        panel.FindChildTraverse("HealthBar_Left").style.backgroundColor =
+                            "gradient(linear, 0% 0%, 0% 95%, from(" +
+                            clr(teamColor) +
+                            "), to(" +
+                            clr(darken(teamColor, 0.3)) +
+                            "));";
+                    }
+
                     return;
                 }
 
                 var bar = panel.FindChildTraverse("HealthBar");
                 var teamColor = colors[Entities.GetTeamNumber(entity.id)];
                 var pieceSize = Math.round(w / max);
+                pieceSize = 5;
+
+                if (max >= 30) {
+                    pieceSize = 4;
+                }
+
+                if (max >= 40) {
+                    pieceSize = 3;
+                }
 
                 var name = panel.FindChild("PlayerName");
                 name.text = Players.GetPlayerName(GetUnitOwner(entity.id));

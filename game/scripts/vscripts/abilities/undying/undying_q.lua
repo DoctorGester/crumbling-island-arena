@@ -7,7 +7,7 @@ LinkLuaModifier("modifier_undying_q_health", "abilities/undying/modifier_undying
 function self:OnSpellStart()
     Wrappers.DirectionalAbility(self, 900)
 
-    local hero = self:GetCaster().hero
+    local hero = self:GetCaster():GetParentEntity()
     local target = self:GetCursorPosition()
 
     FX("particles/units/heroes/hero_undying/undying_decay.vpcf", PATTACH_WORLDORIGIN, hero, {
@@ -36,8 +36,15 @@ function self:OnSpellStart()
         end
     })
 
-    for i = 1, stacks do
-        hero:AddNewModifier(hero, self, "modifier_undying_q_health", { duration = 7 })
+    local modifier = hero:FindModifier("modifier_undying_q_health")
+
+    if not modifier then
+        modifier = hero:AddNewModifier(hero, self, "modifier_undying_q_health", { duration = 5 })
+    end
+
+    if modifier then
+        modifier:SetStackCount(math.min(modifier:GetStackCount() + stacks, 8))
+        modifier:ForceRefresh()
     end
 
     hero:EmitSound("Arena.Undying.CastQ", target)

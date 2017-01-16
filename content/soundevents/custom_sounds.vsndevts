@@ -5650,7 +5650,7 @@
 		event_type = "1.0"
 	}
 
-	Arena.Undying.PreQ.Sub = {
+	Arena.Undying.PreA = {
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[
@@ -5666,7 +5666,7 @@
 		event_type = "1.0"
 	}
 
-	Arena.Undying.HitQ.Sub = {
+	Arena.Undying.HitA = {
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[
@@ -5682,7 +5682,7 @@
 		event_type = "1.0"
 	}
 
-	Arena.Undying.CastQ.Sub = {
+	Arena.Undying.CastA.Sub = {
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[

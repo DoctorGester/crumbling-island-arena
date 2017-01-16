@@ -8,11 +8,23 @@ function EntityUndyingE:constructor(round, owner, position, ability)
     self.collisionType = COLLISION_TYPE_RECEIVER
     self.removeOnDeath = false
     self.size = 96
+    self.startTime = GameRules:GetGameTime()
 
-    self:AddNewModifier(owner.unit, ability, "modifier_undying_e", { duration = 6.0 })
+    self:AddNewModifier(owner.unit, ability, "modifier_undying_e", {})
     self:AddNewModifier(self:GetUnit(), ability, "modifier_undying_e_aura", {})
+    self:AddNewModifier(self, nil, "modifier_custom_healthbar", {})
     self:EmitSound("Arena.Undying.CastE")
 
-    self:SetCustomHealth(5)
+    self:SetCustomHealth(4)
     self:EnableHealthBar()
+
+    self:GetUnit():SetControllableByPlayer(self.owner.id, true)
+end
+
+function EntityUndyingE:Update()
+    getbase(EntityUndyingE).Update(self)
+
+    if GameRules:GetGameTime() - (self.startTime or 0) > 6 then
+        self:Destroy()
+    end
 end

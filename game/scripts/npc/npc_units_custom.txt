@@ -206,6 +206,7 @@
 	    "Model"         "models/heroes/undying/undying_tower.vmdl"
 	    "ModelScale"    "1.0"
 	    "MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+	    "StatusHealth" "4"
 	}
 
 	"pl_illusion"

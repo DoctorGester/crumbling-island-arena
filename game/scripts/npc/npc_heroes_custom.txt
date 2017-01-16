@@ -1332,7 +1332,8 @@
 		"DisableWearables" "1"
 		"Range" "melee"
 		"Difficulty" "hard"
-		"Disabled" "true"
+		"Disabled" "false"
+		"DateAdded" "16.01.2017"
 		"Order" "30"
 
 		"Ability1" "undying_q"
@@ -1342,7 +1343,7 @@
 		"Ability5" "placeholder_taunt"
 		"Ability6" "undying_r"
 		"Ability7" "undying_q_sub"
-		"Ability8" "undying_w_sub"
+		"Ability8" "undying_a"
 
 		"Ultimate" "undying_r"
 	}

@@ -15,10 +15,8 @@ function undying_w:OnSpellStart()
         graphics = "particles/undying_w/undying_w.vpcf",
         continueOnHit = true,
         invulnerable = true,
-        hitModifier = { name = "modifier_undying_w", duration = 1.5, ability = self },
-        hitCondition = function(projectile, target)
-            return projectile.owner.team ~= target.owner.team and not instanceof(target, Projectile)
-        end
+        damage = self:GetDamage(),
+        hitModifier = { name = "modifier_undying_w", duration = 1.5, ability = self }
     }):Activate()
 
     projectile.Update = function(self)
