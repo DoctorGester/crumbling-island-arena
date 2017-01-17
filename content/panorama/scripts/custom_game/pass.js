@@ -79,7 +79,7 @@ var Pass = new (function(){
                     children: [
                         {
                             id: "QuestPointsScene",
-                            custom: "<DOTAScenePanel id='QuestPointsScene' map='maps/scenes/battlepass_ti6_rewardintro.vmap'/>"
+                            custom: "<DOTAScenePanel id='QuestPointsScene' particleonly='false' map='maps/scenes/battlepass_ti6_rewardintro.vmap'/>"
                         },
                         {
                             class: "QuestTextContainer",

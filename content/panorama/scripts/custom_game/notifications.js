@@ -114,7 +114,7 @@ function RewardNotification(data) {
     var season = data.season;
     var area = $("#RewardArea");
 
-    area.BCreateChildren("<DOTAScenePanel id='RewardModel' map='maps/rewards/" + season + ".vmap' camera='default' light='light'/>");
+    area.BCreateChildren("<DOTAScenePanel id='RewardModel' particleonly='false' map='maps/rewards/" + season + ".vmap' camera='default' light='light'/>");
     area.MoveChildBefore($("#RewardModel"), $("#RewardTip"));
     area.SetHasClass("RewardHidden", true);
 
