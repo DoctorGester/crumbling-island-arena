@@ -293,7 +293,7 @@
 		"ScriptFile" "abilities/pa/pa_a"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "phantom_assassin_phantom_strike"
-		"AbilityCooldown" "1.5"
+		"AbilityCooldown" "1.0"
 		"AbilityCastPoint" "0.135"
 		"Damage" "1"
 

@@ -1,7 +1,7 @@
 PA = class({}, {}, Hero)
 
 function PA:GetSpeedMultiplier()
-    return self:HasModifier("modifier_pa_r") and 2 or 1
+    return self:HasModifier("modifier_pa_r") and 1.6 or 1
 end
 
 function PA:SetWeaponVisible(visible)
