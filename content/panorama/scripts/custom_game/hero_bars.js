@@ -213,7 +213,7 @@ function UpdateHeroBars(){
                     pieceSize = 3;
                 }
 
-                var name = panel.FindChild("PlayerName");
+                var name = panel.FindChildTraverse("PlayerName");
                 name.text = Players.GetPlayerName(GetUnitOwner(entity.id));
                 name.style.color = clr(teamColor);
 

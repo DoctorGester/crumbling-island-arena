@@ -3,15 +3,24 @@
     flow-children: down;
 }
 
-.HeroBar #PlayerName
+.HeroBar #PlayerNameContainer
 {
     max-width: 100px;
+    overflow: clip clip;
+    align: center center;
+}
+
+.HeroBar #PlayerName
+{
+    width: 100px;
+    height: 20px;
+    text-overflow: clip;
     align: center center;
     text-align: center;
     font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
     margin-bottom: 10px;
-    font-size: 15px;
-    text-shadow: 0px 0px 5px 4.0 black;
+    font-size: 14px;
+    text-shadow: 0px 0px 5px 2.0 black;
     font-weight: bold;
 }
 

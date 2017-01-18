@@ -30,7 +30,9 @@
     <snippets>
         <snippet name="HealthBar">
             <Panel class="HeroBar" hittest="false" hittestchildren="false">
-                <Label id="PlayerName"/>
+                <Panel id="PlayerNameContainer">
+                    <Label id="PlayerName"/>
+                </Panel>
                 <Panel id="HealthNumber">
                     <Label id="HealthValue"/>
                 </Panel>
@@ -50,7 +52,9 @@
 
         <snippet name="UrsaBar">
             <Panel class="HeroBar" hittest="false" hittestchildren="false">
-                <Label id="PlayerName"/>
+                <Panel id="PlayerNameContainer">
+                    <Label id="PlayerName"/>
+                </Panel>
                 <Panel id="HealthNumber">
                     <Label id="HealthValue"/>
                 </Panel>
@@ -64,7 +68,9 @@
 
         <snippet name="JuggBar">
             <Panel class="HeroBar" hittest="false" hittestchildren="false">
-                <Label id="PlayerName"/>
+                <Panel id="PlayerNameContainer">
+                    <Label id="PlayerName"/>
+                </Panel>
                 <Panel id="HealthNumber">
                     <Label id="HealthValue"/>
                 </Panel>
@@ -83,7 +89,9 @@
 
         <snippet name="UndyingBar">
             <Panel class="HeroBar" hittest="false" hittestchildren="false">
-                <Label id="PlayerName"/>
+                <Panel id="PlayerNameContainer">
+                    <Label id="PlayerName"/>
+                </Panel>
                 <Panel id="HealthNumber">
                     <Label id="HealthValue"/>
                 </Panel>
