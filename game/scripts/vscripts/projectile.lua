@@ -38,6 +38,7 @@ function Projectile:constructor(round, params)
     self.isPhysical = params.isPhysical
     self.screenShake = params.screenShake
     self.hitProjectiles = params.hitProjectiles
+    self.considersGround = params.considersGround
 
     if self.destroyOnDamage == nil then
        self.destroyOnDamage = true 
@@ -52,7 +53,11 @@ function Projectile:constructor(round, params)
 end
 
 function Projectile:CanFall()
-    return false
+    return self.considersGround
+end
+
+function Projectile:MakeFall()
+    self:Destroy()
 end
 
 function Projectile:GetRad()

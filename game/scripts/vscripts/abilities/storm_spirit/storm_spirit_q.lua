@@ -20,6 +20,7 @@ function storm_spirit_q:OnSpellStart()
         graphics = "particles/storm_q/storm_q2.vpcf",
         damage = self:GetDamage(),
         continueOnHit = true,
+        considersGround = true,
         targetReachedFunction =
             function(proj)
                 hero:AddRemnant(EntityStormQ(proj.round, hero, proj:GetPos(), direction, self):Activate())

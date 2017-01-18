@@ -15,6 +15,7 @@ function undying_w:OnSpellStart()
         graphics = "particles/undying_w/undying_w.vpcf",
         continueOnHit = true,
         invulnerable = true,
+        considersGround = true,
         damage = self:GetDamage(),
         hitModifier = { name = "modifier_undying_w", duration = 1.5, ability = self }
     }):Activate()

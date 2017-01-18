@@ -24,6 +24,7 @@ function SKWProjectile:constructor(round, hero, target, damage)
         speed = 900,
         distance = 2000,
         continueOnHit = true,
+        considersGround = true,
         hitFunction = function(_, target)
             target:Damage(hero, damage)
             SKUtil.AbilityHit(hero, target)
@@ -45,10 +46,6 @@ function SKWProjectile:Update()
     	ParticleManager:SetParticleControl(effect, 1, self:GetPos())
 
         self.effectPrev = self:GetPos()
-    end
-
-    if not Spells.TestCircle(self:GetNextPosition(self:GetPos()), 64) then
-    	self:Destroy()
     end
 
     self.tick = self.tick + 1
