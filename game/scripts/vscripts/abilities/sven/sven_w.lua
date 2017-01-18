@@ -24,10 +24,7 @@ function sven_w:Shout(direction)
 
     hero:AreaEffect({
         filter = Filters.Cone(pos, 500, direction, math.pi / 2),
-        modifier = { name = "modifier_sven_w_slow", duration = 1.0, ability = self },
-        action = function(victim)
-            SoftKnockback(victim, hero, victim:GetPos() - pos, 40, { decrease = 4 })
-        end
+        modifier = { name = "modifier_sven_w_slow", duration = 1.0, ability = self }
     })
 end
 
