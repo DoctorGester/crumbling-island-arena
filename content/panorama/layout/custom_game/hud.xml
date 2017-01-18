@@ -35,6 +35,7 @@
                     <Label id="HealthValue"/>
                 </Panel>
                 <Panel id="HealthBar">
+                    <Panel id="ShieldDelim"/>
                     <Panel id="MissingHealth"/>
                 </Panel>
             </Panel>
@@ -54,6 +55,7 @@
                     <Label id="HealthValue"/>
                 </Panel>
                 <Panel id="HealthBar">
+                    <Panel id="ShieldDelim"/>
                     <Panel id="MissingHealth"/>
                 </Panel>
                 <ProgressBar id="UrsaRage" class="SpecialBar" value="0" max="100"/>
@@ -67,6 +69,7 @@
                     <Label id="HealthValue"/>
                 </Panel>
                 <Panel id="HealthBar">
+                    <Panel id="ShieldDelim"/>
                     <Panel id="MissingHealth"/>
                 </Panel>
                 <Panel id="JuggSwordBar" class="SpecialBar">
@@ -85,6 +88,7 @@
                     <Label id="HealthValue"/>
                 </Panel>
                 <Panel id="HealthBar">
+                    <Panel id="ShieldDelim"/>
                     <Panel id="MissingHealth"/>
                 </Panel>
                 <ProgressBar id="UndyingShield" class="SpecialBar" value="0" max="100"/>

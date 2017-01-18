@@ -235,6 +235,7 @@ function UpdateHeroBars(){
                 var shieldDiff = shieldAmount - shieldChildren.length;;
 
                 var missing = bar.FindChild("MissingHealth");
+                var delim = bar.FindChild("ShieldDelim");
 
                 // To go in line with .DeleteAsync
                 $.Schedule(0, function() {
@@ -266,7 +267,7 @@ function UpdateHeroBars(){
                                 clr(darken(teamColor, 0.5)) +
                                 "));";
 
-                            bar.MoveChildBefore(p, missing);
+                            bar.MoveChildBefore(p, delim);
                         });
                     }
                 } else if (diff < 0) {
