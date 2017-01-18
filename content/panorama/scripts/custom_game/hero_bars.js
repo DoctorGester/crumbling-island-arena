@@ -251,7 +251,7 @@ function UpdateHeroBars(){
                 missing.style.backgroundColor = bg;
                 bar.style.backgroundColor = bg;
 
-                panel.style.x = (Math.floor(entity.x) - pieceSize * max / 2) + "px";
+                panel.style.x = (Math.floor(entity.x) - Math.round(pieceSize * max / 2)) + "px";
                 panel.style.y = (Math.floor(entity.y) - 70) + "px";
 
                 if (diff > 0) {
