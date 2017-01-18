@@ -32,7 +32,7 @@ function EmberRemnant:constructor(round, owner, target, ability)
     })
 
     self:EmitSound("Arena.Ember.CastE")
-    self:SetCustomHealth(3)
+    self:SetCustomHealth(2)
     self:EnableHealthBar()
     self:LoadItems(unpack(owner:BuildWearableStack()))
 
