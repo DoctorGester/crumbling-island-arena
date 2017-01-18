@@ -2071,7 +2071,7 @@
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "undying_decay"
-		"AbilityCooldown" "14.0"
+		"AbilityCooldown" "18.0"
 		"Damage" "4"
 
 		"TargetingIndicator"
@@ -4088,7 +4088,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName" "windrunner/peregrine_flight/windrunner_powershot"
-		"AbilityCooldown" "16.0"
+		"AbilityCooldown" "18.0"
 		"Damage" "2"
 
 		"TargetingIndicator"
