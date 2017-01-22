@@ -67,6 +67,16 @@ function modifier_wearable_visuals_status_fx:StatusEffectPriority()
     return 1
 end
 
+modifier_wearable_visuals_hero_fx = class({})
+
+function modifier_wearable_visuals_hero_fx:GetHeroEffectName()
+    return CustomNetTables:GetTableValue("wearables", tostring(self:GetParent():GetEntityIndex())).fx
+end
+
+function modifier_wearable_visuals_hero_fx:HeroEffectPriority()
+    return 1
+end
+
 modifier_wearable_visuals_activity = class({})
 
 function modifier_wearable_visuals_activity:IsHidden()
