@@ -12,6 +12,7 @@ function storm_spirit_a:OnSpellStart()
     end
 
     local data = {
+        ability = self,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 64),
         to = target + Vector(0, 0, 64),

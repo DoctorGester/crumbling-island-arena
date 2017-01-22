@@ -12,6 +12,7 @@ function self:OnSpellStart()
         local retarget = Vector(math.cos(an), math.sin(an)) + hero:GetPos()
 
         DistanceCappedProjectile(hero.round, {
+            ability = self,
             owner = hero,
             from = hero:GetPos() + Vector(0, 0, 128),
             to = retarget + Vector(0, 0, 128),

@@ -8,6 +8,7 @@ function pa_w:OnSpellStart()
     ImmediateEffect(particle, PATTACH_ABSORIGIN_FOLLOW, hero)
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Area(hero:GetPos(), 300),
         action = function(victim)
             local direction = (victim:GetPos() - hero:GetPos()):Normalized()

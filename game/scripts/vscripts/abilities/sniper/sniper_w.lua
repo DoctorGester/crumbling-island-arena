@@ -9,6 +9,7 @@ function sniper_w:OnSpellStart()
     local target = self:GetCursorPosition()
 
     ArcProjectile(self.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 64),
         to = target,

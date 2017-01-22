@@ -7,7 +7,7 @@ function pa_a:OnSpellStart()
     local target = self:GetCursorPosition()
 
     hero:EmitSound("Arena.PA.Throw")
-    hero:WeaponLaunched(ProjectilePAA(hero.round, hero, target, self:GetDamage()):Activate())
+    hero:WeaponLaunched(ProjectilePAA(hero.round, hero, target, self:GetDamage(), self):Activate())
 end
 
 function pa_a:GetCastAnimation()

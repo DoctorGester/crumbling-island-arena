@@ -33,6 +33,7 @@ function SniperShrapnel:Update()
             self:Destroy()
         else
             self:AreaEffect({
+                ability = self.ability,
                 filter = Filters.Area(self:GetPos(), 400),
                 damage = self.ability:GetDamage()
             })

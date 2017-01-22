@@ -6,6 +6,7 @@ function undying_w:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
     local projectile = DistanceCappedProjectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos(),
         to = target ,

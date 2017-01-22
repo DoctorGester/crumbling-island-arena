@@ -1,6 +1,6 @@
 ProjectilePAA = ProjectilePAA or class({}, nil, Projectile)
 
-function ProjectilePAA:constructor(round, hero, target, damage)
+function ProjectilePAA:constructor(round, hero, target, damage, ability)
 	getbase(ProjectilePAA).constructor(self, round, {
         owner = hero,
         from = hero:GetPos() * Vector(1, 1, 0) + Vector(0, 0, 100),
@@ -9,7 +9,8 @@ function ProjectilePAA:constructor(round, hero, target, damage)
         graphics = "particles/pa_q/pa_q.vpcf",
         continueOnHit = true,
         disablePrediction = true,
-        isPhysical = true
+        isPhysical = true,
+        ability = ability
     })
 
     self.initialVel = Vector(self.vel.x, self.vel.y)

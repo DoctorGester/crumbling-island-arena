@@ -12,6 +12,7 @@ function sniper_a:OnSpellStart()
     local target = self:GetCursorPosition()
 
     Projectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 64),
         to = target + Vector(0, 0, 64),

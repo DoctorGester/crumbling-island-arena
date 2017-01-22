@@ -47,6 +47,7 @@ function tinker_a:OnSpellStart()
         ParticleManager:SetParticleControl(effect, 1, portalEnd + height / 2)
 
         hero:AreaEffect({
+            ability = self,
             filter = Filters.Line(from, closestPoint, 64)..Filters.Line(portalStart, portalEnd, 64),
             damage = self:GetDamage(),
             sound = "Arena.Tinker.HitQ",
@@ -58,6 +59,7 @@ function tinker_a:OnSpellStart()
         ParticleManager:SetParticleControl(effect, 1, target)
 
         hero:AreaEffect({
+            ability = self,
             filter = Filters.Line(from, target, 64),
             damage = self:GetDamage(),
             sound = "Arena.Tinker.HitQ",

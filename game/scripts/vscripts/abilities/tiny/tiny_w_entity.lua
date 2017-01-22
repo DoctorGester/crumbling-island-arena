@@ -64,6 +64,7 @@ function TinyW:Update()
         GridNav:DestroyTreesAroundPoint(result, self.effectRadius, false)
 
         self.hero:AreaEffect({
+            ability = self.ability,
             filter = Filters.Area(effectPosition, self.effectRadius),
             damage = self.damage,
             modifier = { name = "modifier_stunned_lua", duration = 1.2, ability = self.ability },

@@ -25,6 +25,7 @@ function brew_q:OnSpellStart()
     local target = self:GetCursorPosition()
 
     local projectile = ArcProjectile(self.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos(),
         to = target,
@@ -32,6 +33,7 @@ function brew_q:OnSpellStart()
         arc = 600,
         graphics = "particles/brew_q/brew_q.vpcf",
         hitParams = {
+            ability = self,
             filter = Filters.Area(target, 200),
             filterProjectiles = true,
             onlyHeroes = true,

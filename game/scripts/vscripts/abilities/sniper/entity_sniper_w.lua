@@ -29,7 +29,12 @@ function EntitySniperW:CollidesWith(target)
 end
 
 function EntitySniperW:CollideWith(target)
-    target:AddNewModifier(self.hero, self.ability, "modifier_sniper_w", { duration = 2.5 })
+    local blocked = target:AllowAbilityEffect(self, self.ability) == false
+
+    if not blocked then
+        target:AddNewModifier(self.hero, self.ability, "modifier_sniper_w", { duration = 2.5 })
+    end
+
     target:EmitSound("Arena.Sniper.HitW")
     FX("particles/units/heroes/hero_techies/techies_stasis_trap_explode.vpcf", PATTACH_WORLDORIGIN, GameRules:GetGameModeEntity(), {
         cp0 = self:GetPos(),

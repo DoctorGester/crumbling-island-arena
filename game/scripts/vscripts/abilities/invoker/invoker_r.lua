@@ -10,6 +10,7 @@ function invoker_r:OnSpellStart()
     hero:EmitSound("Arena.Invoker.CastR.Voice")
 
     ArcProjectile(self.round, {
+        ability = self,
         owner = hero,
         from = target + Vector(0, 0, 3000) - self:GetDirection() * 2000,
         to = target,

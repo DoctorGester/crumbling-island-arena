@@ -10,6 +10,7 @@ function pudge_w:OnSpellStart()
     ScreenShake(pos, 5, 150, 0.45, 3000, 0, true)
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Cone(pos, 300, direction, math.pi),
         sound = "Arena.Pudge.HitW",
         damage = self:GetDamage(),

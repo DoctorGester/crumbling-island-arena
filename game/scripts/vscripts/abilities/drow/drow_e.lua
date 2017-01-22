@@ -12,6 +12,7 @@ function drow_e:OnSpellStart()
         modifier = { name = "modifier_drow_e", ability = self },
         forceFacing = true,
         hitParams = {
+            ability = self,
             modifier = { name = "modifier_drow_e_slow", ability = self, duration = 2.0 },
         },
         loopingSound = "Arena.Drow.CastE",

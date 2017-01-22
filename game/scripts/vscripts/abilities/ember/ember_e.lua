@@ -11,6 +11,7 @@ function ember_e:OnSpellStart()
         modifier = { name = "modifier_ember_e", ability = self },
         forceFacing = true,
         hitParams = {
+            ability = self,
             action = function(target)
                 if EmberUtil.Burn(hero, target, self) then
                     target:Damage(hero, self:GetDamage())

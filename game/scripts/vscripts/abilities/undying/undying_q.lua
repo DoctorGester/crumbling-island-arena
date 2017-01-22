@@ -20,6 +20,7 @@ function self:OnSpellStart()
     local stacks = 0
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Area(target, 300),
         filterProjectiles = true,
         onlyHeroes = true,
@@ -36,15 +37,17 @@ function self:OnSpellStart()
         end
     })
 
-    local modifier = hero:FindModifier("modifier_undying_q_health")
+    if stacks > 0 then
+        local modifier = hero:FindModifier("modifier_undying_q_health")
 
-    if not modifier then
-        modifier = hero:AddNewModifier(hero, self, "modifier_undying_q_health", { duration = 5 })
-    end
+        if not modifier then
+            modifier = hero:AddNewModifier(hero, self, "modifier_undying_q_health", { duration = 5 })
+        end
 
-    if modifier then
-        modifier:SetStackCount(math.min(modifier:GetStackCount() + stacks, 8))
-        modifier:ForceRefresh()
+        if modifier then
+            modifier:SetStackCount(math.min(modifier:GetStackCount() + stacks, 8))
+            modifier:ForceRefresh()
+        end
     end
 
     hero:EmitSound("Arena.Undying.CastQ", target)

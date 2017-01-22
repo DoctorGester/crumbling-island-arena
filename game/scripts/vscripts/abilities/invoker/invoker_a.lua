@@ -10,6 +10,7 @@ function invoker_a:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
     local p = DistanceCappedProjectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 128),
         to = target + Vector(0, 0, 128),

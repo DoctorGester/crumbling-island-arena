@@ -35,6 +35,7 @@ function EntityStormQ:Update()
         self:Destroy()
     elseif self.explosionStart ~= nil and GameRules:GetGameTime() - self.explosionStart > 1.0 then
         self.hero:AreaEffect({
+            ability = self.ability,
             filter = Filters.Area(self:GetPos(), 275),
             damage = self.ability:GetDamage()
         })

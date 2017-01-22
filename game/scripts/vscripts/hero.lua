@@ -315,7 +315,7 @@ function Hero:CanFall()
 end
 
 function Hero:IsAirborne()
-    for _, modifier in pairs(self.unit:FindAllModifiers()) do
+    for _, modifier in pairs(self:AllModifiers()) do
         if modifier.Airborne and modifier:Airborne() then
             return true
         end

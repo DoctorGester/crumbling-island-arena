@@ -32,6 +32,7 @@ function cm_w:OnChannelThink(interval)
         self.projectileCounter = (self.projectileCounter or 0) + 1
 
         ArcProjectile(hero.round, {
+            ability = self,
             owner = hero,
             from = target + Vector(0, 0, 1600) - hero:GetFacing() * 400,
             to = target,
@@ -45,6 +46,7 @@ function cm_w:OnChannelThink(interval)
                 end
 
                 local hit = hero:AreaEffect({
+                    ability = self,
                     filter = Filters.And(Filters.Area(target, 128), groupFilter),
                     action = function(victim)
                         CMUtil.AbilityHit(hero)

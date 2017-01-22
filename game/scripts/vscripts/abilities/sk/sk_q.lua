@@ -24,6 +24,7 @@ function sk_q:OnSpellStart()
         hero:StopSound("Arena.SK.CastQ")
         hero:EmitSound("Arena.SK.EndQ", target)
         hero:AreaEffect({
+            ability = self,
             filter = Filters.Area(target, area),
             filterProjectiles = true,
             damage = self:GetDamage(),

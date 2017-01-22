@@ -10,7 +10,14 @@ if IsServer() then
     function self:OnIntervalThink()
         self:CreateParticle()
 
-        self:GetParent():GetParentEntity():Damage(self:GetCaster():GetParentEntity(), self:GetAbility():GetDamage())
+        local parent = self:GetParent():GetParentEntity()
+        local caster = self:GetCaster():GetParentEntity()
+        local blocked = parent:AllowAbilityEffect(caster, self:GetAbility()) == false
+
+        if not blocked then
+            parent:Damage(caster, self:GetAbility():GetDamage())
+        end
+
         FX("particles/undying_e/undying_e_hit.vpcf", PATTACH_CUSTOMORIGIN, self:GetCaster(), {
             cp0 = self:GetCaster():GetAbsOrigin() + Vector(0, 0, 200),
             cp1 = { ent = self:GetParent(), point = "attach_hitloc" },

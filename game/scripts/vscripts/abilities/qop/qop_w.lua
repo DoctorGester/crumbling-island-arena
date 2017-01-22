@@ -15,6 +15,7 @@ function qop_w:OnSpellStart()
     end
 
     hero:AreaEffect({
+        ability = self,
         onlyHeroes = true,
         filter = Filters.Cone(hero:GetPos(), 700, direction, math.pi / 2) + faceFilter,
         modifier = { name = "modifier_qop_w", duration = 1.5, ability = self }

@@ -35,6 +35,7 @@ function ArcProjectile:constructor(round, params)
     self.hitScreenShake = params.hitScreenShake
     self.hitFunction = params.hitFunction
     self.loopingSound = params.loopingSound
+    self.ability = params.ability
 
     if self.loopingSound then
         self:EmitSound(self.loopingSound)

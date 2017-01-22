@@ -105,6 +105,7 @@ function shaker_q:OnSpellStart()
             )
 
             local hurt = hero:AreaEffect({
+                ability = self,
                 filter = Filters.Line(start + direction * (currentLen - speed), start + direction * currentLen, 100) + groupFilter,
                 sound = "Arena.Shaker.HitQ2",
                 damage = self:GetDamage(),

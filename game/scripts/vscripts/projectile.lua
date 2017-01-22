@@ -27,6 +27,7 @@ function Projectile:constructor(round, params)
     self.hitSound = params.hitSound
     self.hitFunction = params.hitFunction
     self.hitCondition = params.hitCondition
+    self.nonBlockedHitAction = params.nonBlockedHitAction
     self.destroyFunction = params.destroyFunction
     self.continueOnHit = params.continueOnHit or false
     self.gracePeriod = params.gracePeriod or 30
@@ -39,6 +40,7 @@ function Projectile:constructor(round, params)
     self.screenShake = params.screenShake
     self.hitProjectiles = params.hitProjectiles
     self.considersGround = params.considersGround
+    self.ability = params.ability
 
     if self.destroyOnDamage == nil then
        self.destroyOnDamage = true 
@@ -147,18 +149,26 @@ function Projectile:CollideWith(target)
 
     local invulnerableTarget = target:IsInvulnerable()
 
-    if self.hitFunction then
-        self:hitFunction(target)
-    elseif self.damage ~= nil then
-        target:Damage(self.hero, self.damage, self.isPhysical)
-    end
-    
-    if self.hitSound then
-        target:EmitSound(self.hitSound)
+    local blocked = self.ability and target:AllowAbilityEffect(self, self.ability) == false
+
+    if not blocked then
+        if self.hitFunction then
+            self:hitFunction(target)
+        elseif self.damage ~= nil then
+            target:Damage(self.hero, self.damage, self.isPhysical)
+        end
+
+        if self.hitModifier then
+            target:AddNewModifier(self.hero, self.hitModifier.ability, self.hitModifier.name, { duration = self.hitModifier.duration })
+        end
     end
 
-    if self.hitModifier then
-        target:AddNewModifier(self.hero, self.hitModifier.ability, self.hitModifier.name, { duration = self.hitModifier.duration })
+    if self.nonBlockedHitAction then
+        self:nonBlockedHitAction(target, blocked)
+    end
+
+    if self.hitSound then
+        target:EmitSound(self.hitSound)
     end
 
     if self.screenShake then

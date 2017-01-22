@@ -56,7 +56,9 @@ function WKSkeleton:Update()
     end
 
     if self:FindModifier("modifier_wk_skeleton"):GetRemainingTime() <= 0 then
-        if self.attacking and self.attacking:Alive() then
+        local blocked = self.attacking and self.attacking:AllowAbilityEffect(self, self.ability) == false
+
+        if self.attacking and self.attacking:Alive() and not blocked then
             local distance = (self.attacking:GetPos() - self:GetPos()):Length2D()
 
             if distance <= 250 then

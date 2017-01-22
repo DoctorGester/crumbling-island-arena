@@ -12,6 +12,7 @@ function self:OnSpellStart()
 
         local particle = -1
         local projectile = DistanceCappedProjectile(hero.round, {
+            ability = self,
             owner = hero,
             from = hero:GetPos(),
             to = target,

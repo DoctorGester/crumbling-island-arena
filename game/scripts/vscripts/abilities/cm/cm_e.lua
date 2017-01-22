@@ -6,6 +6,7 @@ function cm_e:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
     local icePath = DistanceCappedProjectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos(),
         to = target,

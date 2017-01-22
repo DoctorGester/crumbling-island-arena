@@ -26,6 +26,7 @@ if IsServer() then
         local parent = self:GetParent()
 
         parent.hero:AreaEffect({
+            ability = self:GetAbility(),
             filter = Filters.Area(parent:GetAbsOrigin(), 400),
             filterProjectiles = true,
             onlyHeroes = true,

@@ -93,6 +93,19 @@ function DynamicEntity:RemoveModifier() end
 function DynamicEntity:IsAirborne()
     return false
 end
+function DynamicEntity:AllModifiers()
+    return {}
+end
+
+function DynamicEntity:AllowAbilityEffect(source, ability)
+    for _, modifier in pairs(self:AllModifiers()) do
+        if modifier.AllowAbilityEffect and modifier:AllowAbilityEffect(source, ability) == false then
+            return false
+        end
+    end
+
+    return true
+end
 
 function DynamicEntity:Activate()
     self.round.spells:AddDynamicEntity(self)
@@ -115,19 +128,20 @@ function DynamicEntity:AreaEffect(params)
         local passes = not instanceof(target, Projectile) or (params.isPhysical and target.isPhysical)
         local heroPasses = not params.onlyHeroes or instanceof(target, Hero)
         local allyFilter = target.owner.team ~= self.owner.team or (params.hitAllies and (target ~= self or params.hitSelf))
+        local blocked = params.ability and target:AllowAbilityEffect(self, params.ability) == false
 
         if allyFilter and passes and heroPasses and params.filter(target) then
-            if params.modifier then
+            if params.modifier and not blocked then
                 local m = params.modifier
 
                 target:AddNewModifier(self, m.ability, m.name, { duration = m.duration })
             end
 
-            if params.damage ~= nil then
+            if params.damage ~= nil and not blocked then
                 target:Damage(self, params.damage, params.isPhysical)
             end
 
-            if params.knockback then
+            if params.knockback and not blocked then
                 local direction = params.knockback.direction and params.knockback.direction(target) or (target:GetPos() - self:GetPos())
 
                 SoftKnockback(target, self, direction, params.knockback.force or 20, {
@@ -135,8 +149,12 @@ function DynamicEntity:AreaEffect(params)
                 })
             end
 
-            if params.action then
+            if params.action and not blocked then
                 params.action(target)
+            end
+
+            if params.notBlockedAction then
+                params.notBlockedAction(target, blocked)
             end
 
             if params.sound and not soundPlayed then

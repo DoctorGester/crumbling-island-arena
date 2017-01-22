@@ -26,6 +26,7 @@ function brew_a:OnSpellStart()
     end
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Cone(pos, range, forward, math.pi),
         sound = "Arena.Brew.HitA",
         damage = damage,

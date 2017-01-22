@@ -7,6 +7,7 @@ function ember_q:OnSpellStart()
     local target = self:GetCursorPosition()
 
     DistanceCappedProjectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos(),
         to = target,

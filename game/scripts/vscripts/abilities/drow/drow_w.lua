@@ -12,6 +12,7 @@ function drow_w:OnSpellStart()
     ParticleManager:SetParticleControl(particle, 1, direction * 2000)
 
     DistanceCappedProjectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos(),
         to = target ,

@@ -12,7 +12,6 @@ end
 
 function brew_e:OnSpellStart()
     local hero = self:GetCaster().hero
-    local target = self:GetCursorPosition()
 
     hero:GetUnit():Purge(false, true, false, false, false)
     hero:Heal()

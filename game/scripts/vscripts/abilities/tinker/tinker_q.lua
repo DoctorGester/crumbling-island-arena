@@ -31,6 +31,7 @@ ProjectileTinkerQ = ProjectileTinkerQ or class({}, nil, HomingProjectile)
 
 function ProjectileTinkerQ:constructor(round, hero, target, pos, damage)
     getbase(ProjectileTinkerQ).constructor(self, round, {
+        ability = self,
         owner = hero,
         from = pos + Vector(0, 0, 64),
         radius = 32,

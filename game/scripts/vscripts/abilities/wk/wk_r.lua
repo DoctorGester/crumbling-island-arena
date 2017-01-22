@@ -69,6 +69,7 @@ function wk_r:OnChannelFinish(interrupted)
     ParticleManager:SetParticleControl(effect, 1, target)
 
     local hurt = hero:AreaEffect({
+        ability = self,
         filter = Filters.Line(hero:GetPos(), target, 128),
         sound = "Arena.WK.HitR",
         damage = self:GetDamage(),

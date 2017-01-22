@@ -28,6 +28,7 @@ function ta_a:OnSpellStart()
     end
 
     local hurt = hero:AreaEffect({
+        ability = self,
         filter = Filters.Line(hero:GetPos(), target, 64),
         sound = "Arena.TA.HitA",
         isPhysical = true,

@@ -32,6 +32,7 @@ function sk_e:OnSpellStart()
 
     hero:FindClearSpace(target, true)
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Line(casterPos, target, 64),
         filterProjectiles = true,
         damage = self:GetDamage(),

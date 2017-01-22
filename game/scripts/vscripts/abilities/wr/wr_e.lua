@@ -7,6 +7,7 @@ function wr_e:OnSpellStart()
     FX("particles/wr_e/wr_e.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero, { release = true })
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Area(hero:GetPos(), 400),
         knockback = { force = 60, decrease = 4 },
     })

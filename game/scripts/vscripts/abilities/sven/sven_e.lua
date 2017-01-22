@@ -46,6 +46,7 @@ function sven_e:OnChannelFinish(interrupted)
         gesture = ACT_DOTA_CHANNEL_ABILITY_3,
         gestureRate = 1.8,
         hitParams = {
+            ability = self,
             sound = "Arena.Sven.HitE",
             damage = self:GetDamage(),
             action = function(victim)

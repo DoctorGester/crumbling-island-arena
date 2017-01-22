@@ -23,6 +23,7 @@ function sven_w:Shout(direction)
     ParticleManager:SetParticleControlForward(effect, 0, direction)
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Cone(pos, 500, direction, math.pi / 2),
         modifier = { name = "modifier_sven_w_slow", duration = 1.0, ability = self }
     })

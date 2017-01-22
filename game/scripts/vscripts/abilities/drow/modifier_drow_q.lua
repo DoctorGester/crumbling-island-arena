@@ -29,6 +29,7 @@ if IsServer() then
         hero:EmitSound("Arena.Drow.CastQ2")
 
         DistanceCappedProjectile(hero.round, {
+            ability = self:GetAbility(),
             owner = hero,
             from = hero:GetPos() + Vector(0, 0, 64),
             to = hero:GetPos() + direction * 100 + Vector(0, 0, 64),

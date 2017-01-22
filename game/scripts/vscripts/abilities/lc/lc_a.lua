@@ -22,6 +22,7 @@ function lc_a:OnSpellStart()
     end
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Cone(pos, 300, forward, math.pi),
         sound = "Arena.LC.HitA",
         damage = damage,

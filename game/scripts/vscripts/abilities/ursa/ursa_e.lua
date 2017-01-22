@@ -12,6 +12,7 @@ function ursa_e:OnSpellStart()
         modifier = { name = "modifier_ursa_e", ability = self },
         forceFacing = true,
         hitParams = {
+            ability = self,
             modifier = { name = "modifier_stunned_lua", ability = self, duration = 1.0 }
         },
         arrivalFunction = function()

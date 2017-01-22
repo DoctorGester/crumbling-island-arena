@@ -60,6 +60,7 @@ function zeus_q:OnSpellStart()
     ScreenShake(target, 5, 150, 0.35, 4000, 0, true)
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Area(target, 175),
         damage = self:GetDamage(),
         action = function(victim)

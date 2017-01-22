@@ -17,13 +17,15 @@ function pudge_e:OnSpellStart()
     })
 
     dash.hitParams = {
+        ability = self,
         modifier = { name = "modifier_stunned_lua", ability = self, duration = 0.7 },
         action = function(target)
             Knockback(target, self, direction, 500, 1500, DashParabola(50))
+
+        end,
+        notBlockedAction = function(target)
             ScreenShake(target:GetPos(), 5, 150, 0.45, 3000, 0, true)
-
             hero:EmitSound("Arena.Pudge.HitE")
-
             dash:Interrupt()
         end
     }

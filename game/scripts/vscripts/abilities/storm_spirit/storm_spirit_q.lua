@@ -13,6 +13,7 @@ function storm_spirit_q:OnSpellStart()
     hero:AddNewModifier(hero, hero:FindAbility("storm_spirit_a"), "modifier_storm_spirit_a", { duration = 5 })
 
     PointTargetProjectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos(),
         to = target,

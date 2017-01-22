@@ -95,6 +95,7 @@ function shaker_r:OnSpellStart()
             )
 
             local hurt = hero:AreaEffect({
+                ability = self,
                 filter = Filters.Area(start, currentLen + speed) + -Filters.Area(start, currentLen) + groupFilter,
                 modifier = { name = "modifier_stunned_lua", duration = 1.2, ability = self },
                 action = function(target)

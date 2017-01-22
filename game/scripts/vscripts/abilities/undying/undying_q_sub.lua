@@ -18,6 +18,7 @@ function undying_q_sub:OnSpellStart()
         gesture = ACT_DOTA_FLAIL,
         arrivalFunction = function(dash)
             hero:AreaEffect({
+                ability = self,
                 filter = Filters.Area(target, 256),
                 modifier = { name = "modifier_stunned_lua", duration = 0.4 + 0.2 * stacks, ability = self },
             })

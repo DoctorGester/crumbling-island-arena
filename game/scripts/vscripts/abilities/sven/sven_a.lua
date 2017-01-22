@@ -29,6 +29,7 @@ function sven_a:OnSpellStart()
     end
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Cone(pos, range, forward, math.pi),
         sound = "Arena.Sven.HitA",
         damage = damage,

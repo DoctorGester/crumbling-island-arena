@@ -32,6 +32,7 @@ function shaker_a:OnSpellStart()
     end
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Cone(pos, range, forward, math.pi),
         sound = sound,
         damage = damage,

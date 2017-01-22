@@ -26,6 +26,7 @@ function lc_q:OnSpellStart()
             })
 
             hero:AreaEffect({
+                ability = self,
                 filter = Filters.Area(target, 200),
                 damage = self:GetDamage(),
                 modifier = { name = "modifier_lc_q", duration = 1.5, ability = self },

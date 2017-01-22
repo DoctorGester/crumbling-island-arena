@@ -2,6 +2,7 @@ ProjectileStormW = ProjectileStormW or class({}, nil, DistanceCappedProjectile)
 
 function ProjectileStormW:constructor(round, hero, target, ability)
     getbase(ProjectileStormW).constructor(self, round, {
+        ability = ability,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 64),
         to = target + Vector(0, 0, 64),

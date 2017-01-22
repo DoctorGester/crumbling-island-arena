@@ -32,6 +32,7 @@ function lycan_w:OnSpellStart()
         end
 
         hero:AreaEffect({
+            ability = self,
             filter = Filters.Area(target, 500),
             damage = self:GetDamage(),
             modifier = modifier,

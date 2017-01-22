@@ -21,6 +21,7 @@ function wr_q:OnChannelFinish(interrupted)
     hero:EmitSound("Arena.WR.CastQ")
 
     DistanceCappedProjectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 128),
         to = target + Vector(0, 0, 128),

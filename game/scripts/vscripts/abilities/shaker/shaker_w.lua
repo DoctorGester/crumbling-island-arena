@@ -11,6 +11,7 @@ function shaker_w:OnSpellStart()
 
     hero:AddNewModifier(hero, hero:FindAbility("shaker_a"), "modifier_shaker_a", { duration = 5 })
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Area(pos, 400),
         damage = self:GetDamage(),
         filterProjectiles = true,

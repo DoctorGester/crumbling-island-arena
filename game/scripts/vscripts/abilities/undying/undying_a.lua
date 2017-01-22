@@ -45,6 +45,7 @@ function undying_a:OnSpellStart()
     end
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Cone(pos, 300 + stacks * 30, forward, math.pi),
         sound = "Arena.Undying.HitA",
         damage = damage,

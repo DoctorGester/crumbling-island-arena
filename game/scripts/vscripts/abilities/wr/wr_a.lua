@@ -6,6 +6,7 @@ function wr_a:OnSpellStart()
     local target = self:GetCursorPosition()
 
     DistanceCappedProjectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 128),
         to = target + Vector(0, 0, 128),

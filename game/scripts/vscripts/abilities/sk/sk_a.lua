@@ -19,6 +19,7 @@ function sk_a:OnSpellStart()
     local range = 300
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Cone(pos, range, forward, math.pi),
         sound = "Arena.SK.HitA",
         damage = self:GetDamage(),

@@ -25,6 +25,7 @@ if IsServer() then
             self.timePassed = self.timePassed % 0.15
 
             DistanceCappedProjectile(hero.round, {
+                ability = self,
                 owner = hero,
                 from = hero:GetPos() + Vector(0, 0, 128),
                 to = target + Vector(0, 0, 128),

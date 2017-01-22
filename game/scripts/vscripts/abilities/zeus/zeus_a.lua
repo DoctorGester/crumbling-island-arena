@@ -26,6 +26,7 @@ function zeus_a:OnSpellStart()
     end
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Line(hero:GetPos(), target, 32),
         damage = damage,
         sound = "Arena.Zeus.HitE",

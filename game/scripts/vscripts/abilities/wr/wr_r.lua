@@ -12,6 +12,7 @@ function wr_r:OnChannelThink(interval)
         hero:Animate(ACT_DOTA_ATTACK, 2.0)
 
         DistanceCappedProjectile(hero.round, {
+            ability = self,
             owner = hero,
             from = hero:GetPos() + Vector(0, 0, 128),
             to = target + Vector(0, 0, 128),
@@ -20,6 +21,7 @@ function wr_r:OnChannelThink(interval)
             graphics = "particles/wr_r/wr_r.vpcf",
             destroyFunction = function(projectile)
                 projectile:AreaEffect({
+                    ability = self,
                     filter = Filters.Area(projectile:GetPos(), 300),
                     damage = self:GetDamage(),
                     knockback = {

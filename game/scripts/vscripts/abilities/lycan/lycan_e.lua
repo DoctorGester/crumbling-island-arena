@@ -7,6 +7,7 @@ function lycan_e:OnSpellStart()
     local hero = self:GetCaster().hero
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Area(hero:GetPos(), 350),
         onlyHeroes = true,
         modifier = { name = "modifier_lycan_e", ability = self, duration = 2.0 },

@@ -18,6 +18,7 @@ SKWProjectile.EFFECT = "particles/units/heroes/hero_sandking/sandking_burrowstri
 
 function SKWProjectile:constructor(round, hero, target, damage)
 	getbase(SKWProjectile).constructor(self, round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos(),
         to = target,

@@ -24,6 +24,7 @@ function cm_a:OnSpellStart()
     end
 
     DistanceCappedProjectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 96),
         to = target + Vector(0, 0, 96),

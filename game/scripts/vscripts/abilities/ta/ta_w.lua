@@ -23,6 +23,7 @@ function ta_w:OnSpellStart()
         hero:EmitSound("Arena.TA.EndW", target)
 
         hero:AreaEffect({
+            ability = self,
             onlyHeroes = true,
             filter = Filters.Area(target, 200),
             modifier = { name = "modifier_ta_w", duration = 3.5, ability = self }

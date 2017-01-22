@@ -7,6 +7,7 @@ function ursa_q:OnSpellStart()
     local pos = hero:GetPos()
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Area(pos, 350),
         filterProjectiles = true,
         damage = self:GetDamage(),
