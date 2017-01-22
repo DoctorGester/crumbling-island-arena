@@ -20,11 +20,11 @@ function modifier_ursa_r:GetModifierModelScale()
     return 30
 end
 
-function modifier_ursa_r:GetStatusEffectName()
-    return "particles/status_fx/status_effect_beserkers_call.vpcf"
+function modifier_ursa_r:GetHeroEffectName()
+    return "particles/units/heroes/hero_ursa/ursa_enrage_hero_effect.vpcf"
 end
 
-function modifier_ursa_r:StatusEffectPriority()
+function modifier_ursa_r:HeroEffectPriority()
     return 10
 end
 
@@ -36,8 +36,8 @@ function modifier_ursa_r:GetEffectAttachType()
     return PATTACH_ABSORIGIN_FOLLOW
 end
 
-function modifier_ursa_r:OnModifierAdded(source, ability, name)
-    return source == self:GetParent():GetParentEntity()
+function modifier_ursa_r:AllowAbilityEffect(source)
+    return source.owner.team == self:GetParent():GetParentEntity().owner.team
 end
 
 function modifier_ursa_r:OnDamageReceived()
