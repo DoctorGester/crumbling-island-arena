@@ -184,14 +184,67 @@ function WearableOwner:HasModelChanged()
     return false
 end
 
+function WearableOwner:FindCurrentEffect(mainFunction, priorityFunction)
+    local statusFx
+    local maxStatusPriority = 0
+    local minCreationTime = math.huge
+
+    for _, modifier in pairs(self:AllModifiers()) do
+        if modifier[mainFunction] then
+            local priority = 0
+
+            if modifier[priorityFunction] then
+                priority = modifier[priorityFunction](modifier)
+            end
+
+            if priority >= maxStatusPriority then
+                local creationTime = modifier:GetCreationTime()
+
+                if priority == maxStatusPriority then
+                    if creationTime < minCreationTime then
+                        minCreationTime = creationTime
+
+                        statusFx = modifier[mainFunction](modifier)
+                    end
+                else
+                    statusFx = modifier[mainFunction](modifier)
+                end
+
+                maxStatusPriority = priority
+                minCreationTime = creationTime
+            end
+        end
+    end
+
+    return statusFx
+end
+
+function WearableOwner:UpdateEffect(wearable, effect, modifier)
+    local visualsStatusFx = wearable:FindModifierByName(modifier)
+
+    if visualsStatusFx ~= nil then
+        visualsStatusFx:Destroy()
+    end
+
+    if effect ~= nil then
+        CustomNetTables:SetTableValue("wearables", tostring(wearable:GetEntityIndex()), { fx = effect })
+        wearable:AddNewModifier(wearable, nil, modifier, {})
+    end
+end
+
 function WearableOwner:Update()
     getbase(WearableOwner).Update(self)
 
     local invisLevel = 0.0
     local modelChanged = self:HasModelChanged()
-    local statusFx = nil
-    local maxPriority = 0
-    local minCreationTime = math.huge
+    local statusFx = self:FindCurrentEffect("GetStatusEffectName", "StatusEffectPriority")
+    local heroFx = self:FindCurrentEffect("GetHeroEffectName", "HeroEffectPriority")
+
+    for _, modifier in pairs(self:AllModifiers()) do
+        if modifier.GetModifierInvisibilityLevel then
+            invisLevel = math.max(invisLevel, math.min(modifier:GetModifierInvisibilityLevel(), 1.0))
+        end
+    end
 
     if self.hideQueue ~= nil then
         getbase(WearableOwner).SetHidden(self, self.hideQueue)
@@ -207,39 +260,12 @@ function WearableOwner:Update()
         self.hideQueue = nil
     end
 
-    for _, modifier in pairs(self:AllModifiers()) do
-        if modifier.GetModifierInvisibilityLevel then
-            invisLevel = math.max(invisLevel, math.min(modifier:GetModifierInvisibilityLevel(), 1.0))
-        end
-
-        if modifier.GetStatusEffectName then
-            local priority = 0
-
-            if modifier.StatusEffectPriority then
-                priority = modifier:StatusEffectPriority()
-            end
-
-            if priority >= maxPriority then
-                local creationTime = modifier:GetCreationTime()
-
-                if priority == maxPriority then
-                    if creationTime < minCreationTime then
-                        minCreationTime = creationTime
-
-                        statusFx = modifier:GetStatusEffectName()
-                    end
-                else
-                    statusFx = modifier:GetStatusEffectName()
-                end
-
-                maxPriority = priority
-                minCreationTime = creationTime
-            end
-        end
-    end
 
     local statusFxChanged = self.lastStatusFx ~= statusFx
     self.lastStatusFx = statusFx
+
+    local heroFxChanged = self.lastHeroFx ~= heroFx
+    self.lastHeroFx = heroFx
 
     for _, wearable in pairs(self.wearables) do
         local visuals = wearable:FindModifierByName("modifier_wearable_visuals")
@@ -255,16 +281,11 @@ function WearableOwner:Update()
         end
 
         if statusFxChanged then
-            local visualsStatusFx = wearable:FindModifierByName("modifier_wearable_visuals_status_fx")
+            WearableOwner:UpdateEffect(wearable, statusFx, "modifier_wearable_visuals_status_fx")
+        end
 
-            if visualsStatusFx ~= nil then
-                visualsStatusFx:Destroy()
-            end
-
-            if statusFx ~= nil then
-                CustomNetTables:SetTableValue("wearables", tostring(wearable:GetEntityIndex()), { fx = statusFx })
-                wearable:AddNewModifier(wearable, nil, "modifier_wearable_visuals_status_fx", {})
-            end
+        if heroFxChanged then
+            WearableOwner:UpdateEffect(wearable, heroFx, "modifier_wearable_visuals_hero_fx")
         end
     end
 end
