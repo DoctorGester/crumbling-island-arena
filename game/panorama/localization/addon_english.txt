@@ -442,7 +442,7 @@
 
 		"AbilityTooltip_lc_a"							"Deals double damage when hero movespeed is higher than base"
 		"AbilityTooltip_lc_q"							"Dash to the target area and strike enemies in front, slowing them"
-		"AbilityTooltip_lc_w"							"Gain a temporary shield for 2 damage<br>Gain a speed bonus if the shield pops"
+		"AbilityTooltip_lc_w"							"Gain a temporary shield for 2 damage<br>Gain a speed bonus if the shield pops<br>This ability can be given to allies"
 		"AbilityTooltip_lc_e"							"Dash forward, briefly disabling enemies on the way<br><br>Dash distance depends on your current speed"
 		"AbilityTooltip_lc_r"							"Target an area<br>While in that area, you are immortal and your cooldowns are halved"
 
@@ -498,7 +498,7 @@
 		"AbilityTooltip_venge_q"						"Fire stunning projectile"
 		"AbilityTooltip_venge_w"						"Launch a slowing wave<br/>Slowed enemies take 1 more damage from all incoming basic attacks"
 		"AbilityTooltip_venge_e"						"Fire a projectile which swaps positions between you and target hit"
-		"AbilityTooltip_venge_r"						"Summon a Spirit of Vengeance to guard target area<br/>Spirit fires stunning projectiles for every spell enemies cast<br/>Passively slows all enemies in the area<br/>Duration: 10.0s"
+		"AbilityTooltip_venge_r"						"Summon a Spirit of Vengeance to guard target area<br/>Spirit fires stunning projectiles for every spell enemies cast<br/>Passively slows all enemies in the area<br/>Slowed enemies take 1 more damage from all incoming basic attacks<br/>Duration: 10.0s"
 
 		"AbilityTooltip_drow_a"							"Briefly slows enemies hit"
 		"AbilityTooltip_drow_q"							"Dash towards the target point, launching arrows in a circle<br/>Can be recast in a short period of time"
@@ -531,10 +531,10 @@
 
 		"AbilityTooltip_jugger_a"						"Find <font color=\"#FF6A00\"><b>Swords</b></font> to increase range"
 		"AbilityTooltip_jugger_q"						"Gain a speed boost, spin dealing damage around you"
-		"AbilityTooltip_jugger_w"						"Create a ward, slowing enemies in the AOE<br/><br/>Receive a heal if your hero is near it when it expires"
+		"AbilityTooltip_jugger_w"						"Create a ward, healing allies and slowing enemies in the AOE"
 		"AbilityTooltip_jugger_e"						"Receive a short invisibility<br/><br/>Reactivate to teleport"
 		"AbilityTooltip_jugger_e_sub"					"Short blink"
-		"AbilityTooltip_jugger_r"						"Your attacks have no cooldown but spend a sword when used"
+		"AbilityTooltip_jugger_r"						"Your attacks have no cooldown and deal double damage, but spend a sword when used. No effect if you haven't any swords collected"
 
 		"AbilityTooltip_ld_q"							"Launch a slowing projectile<br/>Only damages <font color=\"#3A9B00\"><b>Rooted</b></font> enemies"
 		"AbilityTooltip_ld_w"							"After a short delay, <font color=\"#3A9B00\"><b>Root</b></font> enemies in a line"
