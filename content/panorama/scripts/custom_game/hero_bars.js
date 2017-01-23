@@ -205,6 +205,12 @@ function UpdateHeroBars(){
                 panel.style.x = (Math.floor(entity.x) - Math.round(pieceSize * max / 2)) + "px";
                 panel.style.y = (Math.floor(entity.y) - 70) + "px";
 
+                var callback = specialLayoutCallbacks[Entities.GetUnitName(entity.id)];
+
+                if (callback) {
+                    callback(entity, panel);
+                }
+
                 if (panel.cached.health === health && panel.cached.max === max && panel.cached.shieldAmount === shieldAmount) {
                     return;
                 }
@@ -287,12 +293,6 @@ function UpdateHeroBars(){
 
                 for (var child of healthChildren.concat(shieldChildren)) {
                     child.style.width = pieceSize.toString() + "px";
-                }
-
-                var callback = specialLayoutCallbacks[Entities.GetUnitName(entity.id)];
-
-                if (callback) {
-                    callback(entity, panel);
                 }
             } else {
                 var panel = $.CreatePanel("Panel", mainPanel, "");
