@@ -137,7 +137,7 @@ function Projectile:CollidesWith(target)
     local areEnemies = (self.owner.team ~= target.owner.team or target.specialAlly)
 
     if instanceof(target, Projectile) then
-        return ((self.isPhysical and target.isPhysical) or (self.hitProjectiles or target.hitProjectiles)) and areEnemies
+        return ((IsAttackAbility(self.ability) and IsAttackAbility(target.ability)) or (self.hitProjectiles or target.hitProjectiles)) and areEnemies
     else
         return areEnemies
     end

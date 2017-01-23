@@ -263,6 +263,10 @@ function AddLevelOneAbility(hero, abilityName)
     hero:AddAbility(abilityName):SetLevel(1)
 end
 
+function IsAttackAbility(ability)
+    return ability and ability:GetName():ends("_a")
+end
+
 function ImmediateEffect(path, attach, owner, time)
     local id = ParticleManager:CreateParticle(path, attach, owner.unit or owner)
 

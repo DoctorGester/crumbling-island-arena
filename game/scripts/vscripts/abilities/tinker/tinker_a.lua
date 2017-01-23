@@ -6,7 +6,7 @@ function tinker_a:OnSpellStart()
     local facing = hero:GetFacing()
     local from = hero:GetPos() + Vector(-facing.y, facing.x, 0) * 96
 
-    ProjectileTinkerA(hero.round, hero, target, from, self:GetDamage()):Activate()
+    ProjectileTinkerA(hero.round, hero, target, from, self:GetDamage(), self):Activate()
 
     hero:EmitSound("Arena.Tinker.CastW")
 end
@@ -21,9 +21,9 @@ end
 
 ProjectileTinkerA = ProjectileTinkerA or class({}, nil, DistanceCappedProjectile)
 
-function ProjectileTinkerA:constructor(round, hero, target, pos, damage)
+function ProjectileTinkerA:constructor(round, hero, target, pos, damage, ability)
     getbase(ProjectileTinkerA).constructor(self, round, {
-        ability = self,
+        ability = ability,
         owner = hero,
         from = pos + Vector(0, 0, 64),
         to = target,
@@ -38,7 +38,8 @@ function ProjectileTinkerA:constructor(round, hero, target, pos, damage)
             if self.distancePassed > self.distance then
                 self:EmitSound(self.hitSound)
             end
-        end
+        end,
+        isPhysical = true
     })
 
     self.homingDistance = 5000

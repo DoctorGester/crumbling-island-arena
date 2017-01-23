@@ -458,7 +458,7 @@ function GameMode:FilterExecuteOrder(filterTable)
             if orderType == DOTA_UNIT_ORDER_CAST_POSITION and self.lastOrders[unit] then
                 local ability = EntIndexToHScript(filterTable.entindex_ability)
 
-                if ability:IsCooldownReady() and not ability:IsInAbilityPhase() and ability:GetName():ends("_a") then
+                if ability:IsCooldownReady() and not ability:IsInAbilityPhase() and IsAttackAbility(ability) then
                     --if unit:IsMoving() then
                         Timers:CreateTimer(0.1, function()
                             if IsValidEntity(unit) then

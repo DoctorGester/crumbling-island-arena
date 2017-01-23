@@ -66,8 +66,7 @@ function tinker_q:OnSpellStart()
             filter = Filters.Line(from, target, 64),
             modifier = { name = "modifier_tinker_q", duration = 1.5, ability = self },
             damage = self:GetDamage(),
-            sound = "Arena.Tinker.HitQ",
-            isPhysical = true
+            sound = "Arena.Tinker.HitQ"
         })
     end
 
