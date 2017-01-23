@@ -179,7 +179,6 @@ function UpdateHeroBars(){
                     panel.style.x = (Math.floor(entity.x) - 40) + "px";
                     panel.style.y = (Math.floor(entity.y) - 48) + "px";
 
-                    var team = Entities.GetTeamNumber(entity.id);
                     var bar = panel.FindChild("HealthBar");
                     bar.max = max;
                     bar.value = health;
@@ -187,20 +186,10 @@ function UpdateHeroBars(){
                     panel.FindChild("HealthValue").SetHasClass("Low", health <= max / 2);
                     panel.FindChild("HealthValue").text = health.toString();
 
-                    if (team != DOTATeam_t.DOTA_TEAM_NOTEAM) {
-                        var teamColor = colors[team];
-                        panel.FindChildTraverse("HealthBar_Left").style.backgroundColor =
-                            "gradient(linear, 0% 0%, 0% 95%, from(" +
-                            clr(teamColor) +
-                            "), to(" +
-                            clr(darken(teamColor, 0.3)) +
-                            "));";
-                    }
-
                     return;
                 }
 
-                var bar = panel.FindChildTraverse("HealthBar");
+                var bar = panel.FindChild("HealthBar");
                 var teamColor = colors[Entities.GetTeamNumber(entity.id)];
                 var pieceSize = Math.round(w / max);
                 pieceSize = 5;
@@ -213,9 +202,16 @@ function UpdateHeroBars(){
                     pieceSize = 3;
                 }
 
-                var name = panel.FindChildTraverse("PlayerName");
-                name.text = Players.GetPlayerName(GetUnitOwner(entity.id));
-                name.style.color = clr(teamColor);
+                panel.style.x = (Math.floor(entity.x) - Math.round(pieceSize * max / 2)) + "px";
+                panel.style.y = (Math.floor(entity.y) - 70) + "px";
+
+                if (panel.cached.health === health && panel.cached.max === max && panel.cached.shieldAmount === shieldAmount) {
+                    return;
+                }
+
+                panel.cached.health = health;
+                panel.cached.max = max;
+                panel.cached.shieldAmount = shieldAmount;
 
                 bar.SetHasClass("Ethereal", ethereal);
                 panel.SetHasClass("NotVisible", hidden);
@@ -241,18 +237,6 @@ function UpdateHeroBars(){
                 $.Schedule(0, function() {
                     missing.style.width = ((max - health) * pieceSize).toString() + "px";
                 });
-
-                var bg = "gradient(linear, 0% 0%, 0% 95%, from(" +
-                    clr(darken(teamColor, 0.1)) +
-                    "), to(" +
-                    clr(darken(teamColor, 0.2)) +
-                    "));";
-
-                missing.style.backgroundColor = bg;
-                bar.style.backgroundColor = bg;
-
-                panel.style.x = (Math.floor(entity.x) - Math.round(pieceSize * max / 2)) + "px";
-                panel.style.y = (Math.floor(entity.y) - 70) + "px";
 
                 if (diff > 0) {
                     for (var i = 0; i < diff; i++) {
@@ -319,6 +303,38 @@ function UpdateHeroBars(){
                 }
 
                 panel.BLoadLayoutSnippet(layout);
+
+                if (!entity.light) {
+                    panel.cached = {};
+
+                    var bar = panel.FindChild("HealthBar");
+                    var teamColor = colors[Entities.GetTeamNumber(entity.id)];
+                    var name = panel.FindChildTraverse("PlayerName");
+                    name.text = Players.GetPlayerName(GetUnitOwner(entity.id));
+                    name.style.color = clr(teamColor);
+
+                    var missing = bar.FindChild("MissingHealth");
+                    var bg = "gradient(linear, 0% 0%, 0% 95%, from(" +
+                        clr(darken(teamColor, 0.1)) +
+                        "), to(" +
+                        clr(darken(teamColor, 0.2)) +
+                        "));";
+
+                    missing.style.backgroundColor = bg;
+                    bar.style.backgroundColor = bg;
+                } else {
+                    var team = Entities.GetTeamNumber(entity.id);
+
+                    if (team != DOTATeam_t.DOTA_TEAM_NOTEAM) {
+                        var teamColor = colors[team];
+                        panel.FindChildTraverse("HealthBar_Left").style.backgroundColor =
+                            "gradient(linear, 0% 0%, 0% 95%, from(" +
+                            clr(teamColor) +
+                            "), to(" +
+                            clr(darken(teamColor, 0.3)) +
+                            "));";
+                    }
+                }
 
                 heroBars[entity.id] = panel;
             }
