@@ -51,7 +51,13 @@ function BreakableEntity:Damage(source, amount, isPhysical)
             end
 
             if result ~= true then
+                local prevAmount = amount
                 amount = result or amount;
+
+                -- Never amplify self damage
+                if source == self then
+                    amount = math.min(amount, prevAmount)
+                end
             end
         end
     end
