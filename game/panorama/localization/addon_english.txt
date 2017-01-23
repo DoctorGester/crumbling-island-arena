@@ -194,10 +194,10 @@
 		"invoker_DescE" "Delayed silence in AOE"
 		"invoker_DescR" "Global delayed ground damage"
 
-		"tinker_DescQ" "Homing missile"
+		"tinker_DescQ" "Damage in a line + disarm"
 		"tinker_DescW" "Blue portal"
 		"tinker_DescE" "Orange portal"
-		"tinker_DescR" "Refresh abilities when in AOE"
+		"tinker_DescR" "Protecting device"
 
 		"slark_DescQ" "Slowing projectile"
 		"slark_DescW" "Purge debuffs + self damage + damage in AOE"
@@ -568,11 +568,11 @@
 		"AbilityTooltip_invoker_e"						"Set up an area which explodes after 4 seconds and silences nearby enemies<br/><br/>Explodes prematurely if an enemy uses a spell while in the area"
 		"AbilityTooltip_invoker_r"						"Launch a meteor, dealing <font color=\"gold\"><b>MASSIVE</b></font> damage to the ground"
 
-		"AbilityTooltip_tinker_a"						"Travels through portals"
-		"AbilityTooltip_tinker_q"						"Launch homing missiles towards every hero in the target area"
+		"AbilityTooltip_tinker_a"						"Detects nearby enemies and automatically follows them"
+		"AbilityTooltip_tinker_q"						"Deal damage in a line and disarm enemies hit<br/>Travels through portals"
 		"AbilityTooltip_tinker_w"						"Create a blue portal"
 		"AbilityTooltip_tinker_e"						"Create an orange portal"
-		"AbilityTooltip_tinker_r"						"Create a device which refreshes cooldowns of your basic abilities every 4 seconds, if you stay in the area"
+		"AbilityTooltip_tinker_r"						"Create a device which reflects all incoming projectiles and pushes out nearby enemies, damaging them"
 
 		"AbilityTooltip_slark_a"						"Steals health from each hero hit and places a debuff on himself<br/>Health is returned when debuff expires"
 		"AbilityTooltip_slark_q"						"Throw a slowing projectile"
@@ -750,6 +750,8 @@
 		"ModifierTooltip_modifier_brew_beer"					"Slowed"
 
 		"ModifierTooltip_modifier_invoker_w"					"Slowed"
+
+		"ModifierTooltip_modifier_tinker_q"						"Disarmed"
 
 		"ModifierTooltip_modifier_slark_a"						"Will return stolen health"
 		"ModifierTooltip_modifier_slark_q"						"Slowed"

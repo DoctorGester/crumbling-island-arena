@@ -192,10 +192,10 @@
 		"invoker_DescE" "Безмолвие в области после задержки"
 		"invoker_DescR" "Урон по земле после задержки"
 
-		"tinker_DescQ" "Самонаводящаяся ракета"
+		"tinker_DescQ" "Урон по линии"
 		"tinker_DescW" "Синий портал"
 		"tinker_DescE" "Оранжевый портал"
-		"tinker_DescR" "Перезарядка способностей"
+		"tinker_DescR" "Защищающее устройство"
 
 		"slark_DescQ" "Замедляющий снаряд"
 		"slark_DescW" "Снять дебаффы + урон себе и врагам вокруг"
@@ -560,11 +560,11 @@
 		"AbilityTooltip_invoker_e"						"Установить область, которая взорвется через 4 секунды, накладывая безмолвие на врагов вокруг<br/><br/>Взорвется раньше, если враг использует способность внутри области"
 		"AbilityTooltip_invoker_r"						"Запустить метеор, наносящий <font color=\"gold\"><b>ОГРОМНЫЙ</b></font> урон земле"
 
-		"AbilityTooltip_tinker_a"						"Проходит через порталы"
-		"AbilityTooltip_tinker_q"						"Запустить ракеты в каждого героя в области"
+		"AbilityTooltip_tinker_a"						"Определяют ближайших врагов и самонаводятся на них"
+		"AbilityTooltip_tinker_q"						"Нанести урон по линии и обезоружить врагов<br/>Проходит через порталы"
 		"AbilityTooltip_tinker_w"						"Создать голубой портал"
 		"AbilityTooltip_tinker_e"						"Создать оранжевый портал"
-		"AbilityTooltip_tinker_r"						"Создать устройство, которое перезаряжает твои базовые способности каждые 4 секунды, если находиться вблизи него"
+		"AbilityTooltip_tinker_r"						"Создать устройство с защитным барьером, отталкивающим врагов и отражающим снаряды"
 
 		"AbilityTooltip_slark_a"						"Ворует здоровье у героев и накладывает на себя дебафф<br/>Здоровье возвращается по истечении дебаффа"
         "AbilityTooltip_slark_q"						"Запустить замедляющий снаряд"
@@ -738,6 +738,8 @@
 		"ModifierTooltip_modifier_brew_beer"					"Замедлен"
 
 		"ModifierTooltip_modifier_invoker_w"					"Замедлен"
+
+		"ModifierTooltip_modifier_tinker_q"						"Обезоружен"
 
 		"ModifierTooltip_modifier_slark_a"						"Вернет украденное здоровье"
 		"ModifierTooltip_modifier_slark_q"						"Замедлен"

@@ -114,9 +114,7 @@ function DynamicEntity:Activate()
 end
 
 function DynamicEntity:AreaEffect(params)
-    local hurt = nil
-
-    params.filterProjectiles = true
+    local hurt
 
     if params.damage == true then
         params.damage = 3
@@ -125,7 +123,7 @@ function DynamicEntity:AreaEffect(params)
     local soundPlayed = false
 
     for _, target in pairs(self.round.spells:GetValidTargets()) do
-        local passes = not instanceof(target, Projectile) or (params.isPhysical and target.isPhysical)
+        local passes = not instanceof(target, Projectile) or ((params.isPhysical and target.isPhysical) or params.targetProjectiles)
         local heroPasses = not params.onlyHeroes or instanceof(target, Hero)
         local allyFilter = target.owner.team ~= self.owner.team or (params.hitAllies and (target ~= self or params.hitSelf))
         local blocked = params.ability and target:AllowAbilityEffect(self, params.ability) == false

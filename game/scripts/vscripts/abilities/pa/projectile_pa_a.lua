@@ -62,6 +62,7 @@ function ProjectilePAA:Remove()
 end
 
 function ProjectilePAA:Deflect(by, direction)
+    direction.z = 0
     self.vel = direction:Normalized() * self.vel:Length()
     self.owner = by.owner
 end

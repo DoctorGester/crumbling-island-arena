@@ -109,7 +109,15 @@ end
 function EntityTinkerE:Remove()
     getbase(EntityTinkerE).Remove(self)
 
-    self:DestroyLine()
+    if self.primary then
+        self.hero:SwapAbilities("tinker_w_sub", "tinker_w")
+        self:DestroyLine()
+    else
+        self.hero:SwapAbilities("tinker_e_sub", "tinker_e")
+        if self.link then
+            self.link:DestroyLine()
+        end
+    end
 
     ParticleManager:DestroyParticle(self.particle, false)
     ParticleManager:ReleaseParticleIndex(self.particle)

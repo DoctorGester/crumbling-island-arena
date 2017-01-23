@@ -198,6 +198,7 @@
 	    "Model"         "models/items/rattletrap/cog_tesla/cog_tesla.vmdl"
 	    "ModelScale"    "1.5"
 	    "MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_NONE"
+	    "StatusHealth" "3"
 	}
 
 	"undying_tombstone"

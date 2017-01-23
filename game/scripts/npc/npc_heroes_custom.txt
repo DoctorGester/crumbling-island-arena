@@ -1163,6 +1163,7 @@
 		"SoundSet"	""
 		"GameSoundsFile" ""
 		"VoiceFile"	""
+		"DateAdded" "23.01.2017"
 		"DisableWearables" "1"
 		"Range" "ranged"
 		"Difficulty" "easy"
@@ -1174,12 +1175,16 @@
 		"Ability4" "placeholder_emote"
 		"Ability5" "placeholder_taunt"
 		"Ability6" "tinker_r"
-		"Ability7" "tinker_a"
+		"Ability7" "tinker_w_sub"
+        "Ability8" "tinker_e_sub"
+		"Ability9" "tinker_a"
 
 		"CustomIcons"
 		{
 			"tinker_w" "tinker_e.png"
 			"tinker_e" "tinker_e_sub.png"
+			"tinker_w_sub" "tinker_e.png"
+            "tinker_e_sub" "tinker_e_sub.png"
 		}
 
 		"Ultimate" "tinker_r"

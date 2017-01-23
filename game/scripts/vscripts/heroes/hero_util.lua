@@ -43,13 +43,13 @@ end
 
 TinkerUtil = {}
 
-function TinkerUtil.PortalAbility(ability, isPrimary, startEffect, effect, warpEffect)
-    local function FindPortal(hero, primary)
-        return hero.round.spells:FilterEntities(function(ent)
-            return instanceof(ent, EntityTinkerE) and ent.primary == primary and ent:Alive() and ent.hero == hero
-        end)[1]
-    end
+function TinkerUtil.FindPortal(hero, primary)
+    return hero.round.spells:FilterEntities(function(ent)
+        return instanceof(ent, EntityTinkerE) and ent.primary == primary and ent:Alive() and ent.hero == hero
+    end)[1]
+end
 
+function TinkerUtil.PortalAbility(ability, isPrimary, swapTo, startEffect, effect, warpEffect)
     function ability:RemoveParticle()
         if self.preParticle then
             ParticleManager:DestroyParticle(self.preParticle, false)
@@ -78,7 +78,7 @@ function TinkerUtil.PortalAbility(ability, isPrimary, startEffect, effect, warpE
             return UF_FAIL_CUSTOM
         end
 
-        local portal = FindPortal(self:GetCaster().hero, not isPrimary)
+        local portal = TinkerUtil.FindPortal(self:GetCaster().hero, not isPrimary)
 
         if not portal then
             return UF_SUCCESS
@@ -109,11 +109,14 @@ function TinkerUtil.PortalAbility(ability, isPrimary, startEffect, effect, warpE
     function ability:OnSpellStart()
         local hero = self:GetCaster().hero
         local target = self:GetCursorPosition()
-        local first = FindPortal(self:GetCaster().hero, isPrimary)
+        local first = TinkerUtil.FindPortal(self:GetCaster().hero, isPrimary)
+
+        ScreenShake(target, 5, 150, 0.25, 3000, 0, true)
 
         self:RemoveParticle()
 
         hero:EmitSound("Arena.Tinker.CastE")
+        hero:SwapAbilities(self:GetName(), swapTo)
 
         if first then
             first:Destroy()
@@ -128,7 +131,7 @@ function TinkerUtil.PortalAbility(ability, isPrimary, startEffect, effect, warpE
             isPrimary
         ):Activate()
 
-        local second = FindPortal(self:GetCaster().hero, not isPrimary)
+        local second = TinkerUtil.FindPortal(self:GetCaster().hero, not isPrimary)
 
         if second then
             second:LinkTo(portal)
@@ -142,6 +145,17 @@ function TinkerUtil.PortalAbility(ability, isPrimary, startEffect, effect, warpE
 
     function ability:GetPlaybackRateOverride()
         return 2.0
+    end
+end
+
+function TinkerUtil.PortalCancelAbility(ability, isPrimary, swapTo)
+    function ability:OnSpellStart()
+        local hero = self:GetCaster():GetParentEntity()
+        local portal = TinkerUtil.FindPortal(hero, isPrimary)
+
+        if portal then
+            portal:Destroy()
+        end
     end
 end
 

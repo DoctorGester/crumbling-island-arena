@@ -85,6 +85,7 @@ function Projectile:FindClearSpace(position, force)
 end
 
 function Projectile:Deflect(by, direction)
+    direction.z = 0
     self.vel = direction:Normalized()
     self.owner = by.owner
 
@@ -295,6 +296,8 @@ function PointTargetProjectile:Update()
 end
 
 function PointTargetProjectile:Deflect(by, direction)
+    direction.z = 0
+
     local len = (self.target - self:GetPos()):Length2D()
     self.target = self:GetPos() + direction:Normalized() * len
     self.owner = by.owner
