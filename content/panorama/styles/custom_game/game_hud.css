@@ -154,6 +154,7 @@
 .KillLogEntryAppear
 {
     transform: translateX(0px) scaleY(-1.0);
+    sound: "UI.Kill";
 }
 
 .KillLogEntry Image, .KillLogEntry DOTAHeroImage

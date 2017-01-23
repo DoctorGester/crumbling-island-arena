@@ -15,6 +15,16 @@
 		event_type = "1.0"
 	}
 
+	UI.Kill = {
+		type = "dota_src1_2d"
+		vsnd_files =
+		[
+			"sounds/ui/notification_team_kill.vsnd",
+		]
+		pitch = "1.000000"
+		volume = "1.000000"
+	}
+
 	UI.DeathMatchHeroClick = {
 		type = "dota_src1_3d"
 		vsnd_files = 
