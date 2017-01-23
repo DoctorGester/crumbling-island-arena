@@ -100,7 +100,7 @@
                         <Panel id="PassRewardRight">
                             <Label class="PassHeader" text="#InfoPassQuests"/>
                             <Panel class="QuestPanel">
-                                <DOTAScenePanel id='QuestPointsScene' map='maps/scenes/battlepass_ti6_rewardintro.vmap'/>
+                                <DOTAScenePanel id='QuestPointsScene' map='maps/scenes/battlepass_ti6_rewardintro.vmap' particleonly='false'/>
                                 <Label id="QuestReward" text="150"/>
                                 <Panel class="QuestTextContainer">
                                     <Label id="QuestText" html="true" text="#InfoQuestSample"/>
