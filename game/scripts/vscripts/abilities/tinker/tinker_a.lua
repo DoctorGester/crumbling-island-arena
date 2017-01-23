@@ -62,6 +62,8 @@ function ProjectileTinkerA:Update()
             self.target = closest
             self.distance = self.homingDistance
         end
+    elseif not self.target:Alive() then
+        self:Destroy()
     end
 
     self:SetFacing(self:GetPos() - old)
