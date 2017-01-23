@@ -60,6 +60,8 @@ function tiny_a:OnSpellStart()
             end
         end
     })
+
+    ScreenShake(pos, 5, 150, mod and 0.5 or 0.25, 3000, 0, true)
 end
 
 function tiny_a:GetCastAnimation()
