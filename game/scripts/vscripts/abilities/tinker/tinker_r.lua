@@ -1,7 +1,6 @@
 tinker_r = class({})
 
 LinkLuaModifier("modifier_tinker_r", "abilities/tinker/modifier_tinker_r", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_tinker_r_target", "abilities/tinker/modifier_tinker_r_target", LUA_MODIFIER_MOTION_NONE)
 
 require("abilities/tinker/entity_tinker_r")
 

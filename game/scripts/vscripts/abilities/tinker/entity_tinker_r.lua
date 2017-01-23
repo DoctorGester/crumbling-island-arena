@@ -9,6 +9,7 @@ function EntityTinkerR:constructor(round, owner, position, ability)
     self.removeOnDeath = false
     self.startTime = GameRules:GetGameTime()
     self.ability = ability
+    self.ignoreGroup = {}
 
     self:AddNewModifier(owner.unit, ability, "modifier_tinker_r", {})
     self:AddNewModifier(self, nil, "modifier_custom_healthbar", {})
@@ -20,15 +21,16 @@ end
 function EntityTinkerR:Update()
     getbase(EntityTinkerR).Update(self)
 
+    local time = GameRules:GetGameTime()
+
     self.hero:AreaEffect({
         ability = self.ability,
         targetProjectiles = true,
         filter = Filters.Area(self:GetPos(), 400) + Filters.WrapFilter(
             function(target)
-                return not target:HasModifier("modifier_tinker_r_target")
+                return time - (self.ignoreGroup[target] or 0) >= 1
             end
         ),
-        modifier = { name = "modifier_tinker_r_target", duration = 1.0, ability = self.ability },
         action = function(target)
             local dir = target:GetPos() - self:GetPos()
 
@@ -48,6 +50,7 @@ function EntityTinkerR:Update()
             })
 
             target:EmitSound("Arena.Tinker.HitR")
+            self.ignoreGroup[target] = time
         end
     })
 
