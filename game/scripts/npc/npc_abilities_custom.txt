@@ -326,7 +326,7 @@
 		"AbilityTextureName" "phantom_assassin_stifling_dagger"
 		"AbilityCooldown" "2.5"
 		"AbilityCastPoint" "0.1"
-		"Damage" "1"
+		"Damage" "2"
 
 		"TargetingIndicator"
 		{
@@ -730,7 +730,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "sven/cyclopean_marauder_ability_icons/sven_warcry"
 		"AbilityCooldown" "5.0"
-		"Damage" "2"
+		"Damage" "3"
 
 		"TargetingIndicator"
 		{
