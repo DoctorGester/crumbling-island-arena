@@ -571,7 +571,9 @@
 		"AbilityTooltip_tinker_a"						"Detects nearby enemies and automatically follows them"
 		"AbilityTooltip_tinker_q"						"Deal damage in a line and disarm enemies hit<br/>Travels through portals"
 		"AbilityTooltip_tinker_w"						"Create a blue portal"
+		"AbilityTooltip_tinker_w_sub"					"Destroy blue portal"
 		"AbilityTooltip_tinker_e"						"Create an orange portal"
+		"AbilityTooltip_tinker_e_sub"					"Destroy orange portal"
 		"AbilityTooltip_tinker_r"						"Create a device which reflects all incoming projectiles and pushes out nearby enemies, damaging them"
 
 		"AbilityTooltip_slark_a"						"Steals health from each hero hit and places a debuff on himself<br/>Health is returned when debuff expires"
