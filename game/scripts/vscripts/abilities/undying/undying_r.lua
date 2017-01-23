@@ -11,8 +11,6 @@ function undying_r:OnSpellStart()
 
     hero:AddNewModifier(hero, self, "modifier_undying_r", { duration = 8.0 })
     hero:EmitSound("Arena.Undying.CastR")
-
-    FX("particles/units/heroes/hero_undying/undying_fg_transform.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero, {})
 end
 
 function undying_r:GetCastAnimation()
