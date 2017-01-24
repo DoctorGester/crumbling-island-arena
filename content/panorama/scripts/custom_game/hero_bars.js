@@ -108,10 +108,12 @@ function UpdateHeroBars(){
                     var fx = statusEffects[name];
 
                     if (fx && fx.priority >= statusEffectPriority && Buffs.GetCreationTime(entity.id, buff) >= statusEffectTime) {
+                        var dur = Buffs.GetDuration(entity.id, buff);
+
                         statusEffect = fx;
                         statusEffectPriority = fx.priority;
                         statusEffectTime = Buffs.GetCreationTime(entity.id, buff);
-                        statusEffectProgress = Math.round(Buffs.GetRemainingTime(entity.id, buff) / Buffs.GetDuration(entity.id, buff) * 100);
+                        statusEffectProgress = dur <= 0 ? 0 : Math.round(Buffs.GetRemainingTime(entity.id, buff) / dur * 100);
                     }
                 }
 
@@ -146,7 +148,7 @@ function UpdateHeroBars(){
                     return;
                 }
 
-                var bar = panel.FindChild("HealthBar");
+                var bar = panel.FindChildTraverse("HealthBar");
                 var teamColor = colors[Entities.GetTeamNumber(entity.id)];
                 var pieceSize = Math.round(w / max);
                 pieceSize = 5;
@@ -279,14 +281,14 @@ function UpdateHeroBars(){
                 panel.BLoadLayoutSnippet(entity.light ? "HealthBarLight" : "HealthBar");
 
                 if (special) {
-                    panel.FindChild("SpecialBar").BLoadLayoutSnippet(special);
-                    panel.FindChild("SpecialBar").SetHasClass("Hidden", false);
+                    panel.FindChildTraverse("SpecialBar").BLoadLayoutSnippet(special);
+                    panel.FindChildTraverse("SpecialBar").SetHasClass("Hidden", false);
                 }
 
                 if (!entity.light) {
                     panel.cached = {};
 
-                    var bar = panel.FindChild("HealthBar");
+                    var bar = panel.FindChildTraverse("HealthBar");
                     var teamColor = colors[Entities.GetTeamNumber(entity.id)];
                     var name = panel.FindChildTraverse("PlayerName");
                     name.text = Players.GetPlayerName(GetUnitOwner(entity.id));

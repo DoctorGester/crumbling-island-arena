@@ -105,11 +105,16 @@
     font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
 }
 
+.HeroBar #BarContainer
+{
+    align: center center;
+    flow-children: down;
+}
+
 .HeroBar #HealthBar
 {
     height: 10px;
     flow-children: right;
-    align: center center;
     box-shadow: black 0px 0px 8px 0px;
     transition-property: opacity, box-shadow;
     transition-duration: 0.2s;
