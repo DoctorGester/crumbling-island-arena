@@ -13,7 +13,7 @@ function ursa_e:OnSpellStart()
         forceFacing = true,
         hitParams = {
             ability = self,
-            modifier = { name = "modifier_stunned_lua", ability = self, duration = 1.0 }
+            modifier = { name = "modifier_stunned_lua", ability = self, duration = 0.4 }
         },
         arrivalFunction = function()
             hero:GetUnit():StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1_END, 1.5)
