@@ -64,7 +64,7 @@ function Hero:Animate(gesture, rate)
     end
 end
 
-function Hero:BuildWearableStack()
+function Hero:BuildWearableStack(adjustState)
     local cosmetics = Cosmetics[self:GetShortName()]
     local result = {}
 
@@ -134,27 +134,29 @@ function Hero:BuildWearableStack()
                     end
                 end
 
-                if entry.emote then
-                    self:GetUnit():RemoveAbility("placeholder_emote")
-                    self:GetUnit():AddAbility("emote"):SetLevel(1)
-                end
-
-                if entry.taunt then
-                    self:GetUnit():RemoveAbility("placeholder_taunt")
-
-                    local ability = entry.taunt.type == "static" and "taunt_static" or "taunt_moving"
-                    local taunt = self:GetUnit():AddAbility(ability)
-                    local length = entry.taunt.length
-
-                    if length == nil then
-                        length = 1.5
+                if adjustState then
+                    if entry.emote then
+                        self:GetUnit():RemoveAbility("placeholder_emote")
+                        self:GetUnit():AddAbility("emote"):SetLevel(1)
                     end
 
-                    taunt:SetLevel(1)
-                    taunt.length = length
-                    taunt.activity = entry.taunt.activity
-                    taunt.sound = entry.taunt.sound
-                    taunt.translate = entry.taunt.translate
+                    if entry.taunt then
+                        self:GetUnit():RemoveAbility("placeholder_taunt")
+
+                        local ability = entry.taunt.type == "static" and "taunt_static" or "taunt_moving"
+                        local taunt = self:GetUnit():AddAbility(ability)
+                        local length = entry.taunt.length
+
+                        if length == nil then
+                            length = 1.5
+                        end
+
+                        taunt:SetLevel(1)
+                        taunt.length = length
+                        taunt.activity = entry.taunt.activity
+                        taunt.sound = entry.taunt.sound
+                        taunt.translate = entry.taunt.translate
+                    end
                 end
             end
         end
@@ -164,7 +166,7 @@ function Hero:BuildWearableStack()
 end
 
 function Hero:LoadWearables()
-    self:LoadItems(unpack(self:BuildWearableStack()))
+    self:LoadItems(unpack(self:BuildWearableStack(true)))
 end
 
 function Hero:EmitSound(sound, location)
