@@ -10,16 +10,13 @@ function modifier_lycan_instinct:OnIntervalThink()
     local feelingBlood = false
     local hero = self:GetParent().hero
     local heroFacing = hero:GetFacing()
-    local facing = VectorToAngles(heroFacing)
 
     for _, target in pairs(hero.round.spells:GetHeroTargets()) do
 
         if target ~= hero then
             local direction = (target:GetPos() - hero:GetPos()):Normalized()
-            local angle = VectorToAngles(direction)
-            local delta = RotationDelta(facing, angle).y
 
-            if LycanUtil.IsBleeding(target) and delta < 30 and delta > -30 then
+            if LycanUtil.IsBleeding(target) and heroFacing:Normalized():Dot(direction) > 0 then
                 feelingBlood = true
                 break
             end

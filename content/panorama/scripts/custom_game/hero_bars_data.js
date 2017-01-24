@@ -124,3 +124,4 @@ AddUltimateAbility("wk_r", "#49f299");
 AddUltimateAbility("gyro_r", "#ff6d10");
 AddUltimateAbility("wr_r", "#8cff27");
 AddUltimateAbility("drow_r",  "#6aace7");
+AddUltimateAbility("lycan_r",  "#ff2b12");

@@ -58,5 +58,5 @@ end
 
 
 function modifier_lycan_e:GetModifierMoveSpeedBonus_Percentage(params)
-    return 20
+    return -20
 end
