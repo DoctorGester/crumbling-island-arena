@@ -5145,6 +5145,20 @@
 		event_type = "1.0"
 	}
 
+	Arena.Tinker.CastR.Voice = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/vo/tinker/tink_attack_10.vsnd"
+		]
+		volume = "2.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
 	Arena.Tinker.LoopR = {
 		type = "dota_src1_3d"
 		vsnd_files = 

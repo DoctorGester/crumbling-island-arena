@@ -10,8 +10,8 @@ function tinker_r:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
 
+    hero:EmitSound("Arena.Tinker.CastR.Voice")
     EntityTinkerR(hero.round, hero, target, self):Activate()
-
     ScreenShake(target, 5, 150, 0.25, 3000, 0, true)
 end
 
