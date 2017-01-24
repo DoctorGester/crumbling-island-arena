@@ -23,6 +23,7 @@
         <include src="file://{resources}/scripts/custom_game/game_hud.js" />
         <include src="file://{resources}/scripts/custom_game/scoreboard.js" />
         <include src="file://{resources}/scripts/custom_game/hero_detector.js" />
+        <include src="file://{resources}/scripts/custom_game/hero_bars_data.js" />
         <include src="file://{resources}/scripts/custom_game/hero_bars.js" />
         <include src="file://{resources}/scripts/custom_game/message_queue.js" />
         <include src="file://{resources}/scripts/custom_game/vector_target.js" />
@@ -30,16 +31,23 @@
     <snippets>
         <snippet name="HealthBar">
             <Panel class="HeroBar" hittest="false" hittestchildren="false">
-                <Panel id="PlayerNameContainer">
-                    <Label id="PlayerName"/>
-                </Panel>
-                <Panel id="HealthNumber">
-                    <Label id="HealthValue"/>
+                <Panel id="TopBarContainer">
+                    <Panel id="PlayerNameContainer">
+                        <Label id="PlayerName"/>
+                    </Panel>
+                    <Panel id="HealthNumber">
+                        <Label id="HealthValue"/>
+                    </Panel>
+                    <Panel id="StatusEffectContainer">
+                        <Label id="StatusEffectName" text="MERGE"/>
+                        <Panel id="StatusEffectProgress"/>
+                    </Panel>
                 </Panel>
                 <Panel id="HealthBar">
                     <Panel id="ShieldDelim"/>
                     <Panel id="MissingHealth"/>
                 </Panel>
+                <Panel id="SpecialBar" class="Hidden" hittest="false" hittestchildren="false"/>
             </Panel>
         </snippet>
 
@@ -51,18 +59,8 @@
         </snippet>
 
         <snippet name="UrsaBar">
-            <Panel class="HeroBar" hittest="false" hittestchildren="false">
-                <Panel id="PlayerNameContainer">
-                    <Label id="PlayerName"/>
-                </Panel>
-                <Panel id="HealthNumber">
-                    <Label id="HealthValue"/>
-                </Panel>
-                <Panel id="HealthBar">
-                    <Panel id="ShieldDelim"/>
-                    <Panel id="MissingHealth"/>
-                </Panel>
-                <ProgressBar id="UrsaRage" class="SpecialBar" value="0" max="100"/>
+            <Panel class="HeroBar">
+                <ProgressBar id="UrsaRage" value="0" max="100"/>
             </Panel>
         </snippet>
 
@@ -88,18 +86,8 @@
         </snippet>
 
         <snippet name="UndyingBar">
-            <Panel class="HeroBar" hittest="false" hittestchildren="false">
-                <Panel id="PlayerNameContainer">
-                    <Label id="PlayerName"/>
-                </Panel>
-                <Panel id="HealthNumber">
-                    <Label id="HealthValue"/>
-                </Panel>
-                <Panel id="HealthBar">
-                    <Panel id="ShieldDelim"/>
-                    <Panel id="MissingHealth"/>
-                </Panel>
-                <ProgressBar id="UndyingShield" class="SpecialBar" value="0" max="100"/>
+            <Panel class="HeroBar">
+                <ProgressBar id="UndyingShield" value="0" max="100"/>
             </Panel>
         </snippet>
     </snippets>

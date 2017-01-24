@@ -794,6 +794,20 @@
 
 		"ModifierTooltip_modifier_wr_a"							"<font color='#36B500'><b>Спешка</b></font><br/>Ускорен и расходует заряд пока двигается"
         "ModifierTooltip_modifier_wr_e"							"Не расходует заряд <font color='#36B500'><b>Спешки</b></font> когда двигается"
+
+		"StatusStunned" "Оглушен"
+		"StatusCharmed" "Шарм"
+		"StatusFear" "Страх"
+		"StatusFrozen" "Заморожен"
+		"StatusSilenced" "Безмолвие"
+		"StatusFrenzy" "Бешенство"
+		"StatusEthereal" "Астрал"
+		"StatusBurning" "Горение"
+		"StatusDisarmed" "Обезоружен"
+		"StatusShock" "Шок"
+		"StatusRooted" "Обездвижен"
+		"StatusBreak" "Уязвимость"
+		"StatusUltimate" "Ультимейт"
 	}
 }
 

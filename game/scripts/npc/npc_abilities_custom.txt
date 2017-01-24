@@ -3115,7 +3115,7 @@
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "700"
+			"Radius" "850"
 		}
 	}
 
@@ -3667,19 +3667,35 @@
 		}
 	}
 
-	"am_q"
+	"am_a"
 	{
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/am/am_q"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "antimage_mana_break"
-		"AbilityCooldown" "0.45"
+		"AbilityCooldown" "0.6"
 		"AbilityCastPoint" "0.1"
 
 		"HoverIndicator"
 		{
 			"Type" "TARGETING_INDICATOR_RANGE"
 			"Radius" "300"
+		}
+	}
+
+	"am_q"
+	{
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/am/am_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "antimage_mana_break"
+		"AbilityCooldown" "6.5"
+		"AbilityCastPoint" "0.2"
+
+		"HoverIndicator"
+		{
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "800"
 		}
 	}
 

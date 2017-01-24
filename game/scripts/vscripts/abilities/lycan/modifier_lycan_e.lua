@@ -26,7 +26,7 @@ function modifier_lycan_e:OnDestroy()
         local target = self:GetParent().hero
 
         if LycanUtil.IsTransformed(hero) then
-            target:AddNewModifier(hero, self:GetAbility(), "modifier_lycan_e_silence", { duration = 2.5 })
+            target:AddNewModifier(hero, self:GetAbility(), "modifier_silence_lua", { duration = 2.5 })
         end
     end
 end

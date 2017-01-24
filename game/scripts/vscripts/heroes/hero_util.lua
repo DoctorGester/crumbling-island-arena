@@ -242,7 +242,7 @@ function ZeusUtil.AbilityHit(hero, ability, victim)
     local mod = victim:FindModifier("modifier_zeus_a")
 
     if mod then
-        victim:AddNewModifier(hero, ability, "modifier_stunned", { duration = 0.85 })
+        victim:AddNewModifier(hero, ability, "modifier_stunned_lua", { duration = 0.85 })
         mod:Destroy()
     end
 end

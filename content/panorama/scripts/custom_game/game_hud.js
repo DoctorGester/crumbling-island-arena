@@ -552,7 +552,7 @@ function MouseCallback(event, button) {
 
     var position = GameUI.GetScreenWorldPosition(GameUI.GetCursorPosition());
 
-    if (GameUI.IsAltDown() && position) {
+    if (GameUI.IsAltDown() && position && button == 0) {
         GameEvents.SendCustomGameEventToServer("custom_ping", { position: position, danger: GameUI.IsControlDown() });
         return true;
     }

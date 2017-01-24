@@ -5,36 +5,92 @@
 
 .HeroBar #PlayerNameContainer
 {
-    max-width: 100px;
+    max-width: 140px;
     overflow: clip clip;
     align: center center;
 }
 
+.HeroBar #TopBarContainer
+{
+    margin-bottom: 6px;
+    width: 140px;
+}
+
+.HeroBar #StatusEffectContainer
+{
+    flow-children: down;
+    width: 100%;
+    opacity: 0;
+}
+
+.HeroBar.StatusEffect #StatusEffectContainer
+{
+    opacity: 1.0;
+}
+
+.AltPressed .HeroBar.StatusEffect #StatusEffectContainer
+{
+    opacity: 0.0;
+}
+
+.HeroBar #StatusEffectName
+{
+    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 0px 0px 3px 2.0 black;
+    letter-spacing: 1px;
+    align: center center;
+    text-align: center;
+    transition-property: opacity;
+    transition-duration: 0.2s;
+}
+
+.HeroBar #StatusEffectProgress
+{
+    height: 3px;
+    width: 100px;
+    margin-left: 20px;
+    background-color: red;
+    box-shadow: black 0px 0px 5px 0px;
+    transition-property: width;
+}
+
 .HeroBar #PlayerName
 {
-    width: 100px;
+    width: 140px;
     height: 20px;
-    text-overflow: clip;
     align: center center;
     text-align: center;
     font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
-    margin-bottom: 10px;
     font-size: 14px;
     text-shadow: 0px 0px 5px 2.0 black;
     font-weight: bold;
+    transition-property: opacity;
+    transition-duration: 0.1s;
 }
 
 .HeroBar #HealthNumber
 {
     background-color: gradient(linear, 0% 0%, 0% 98%, from(black), to(#23479D));
-    height: 18px;
     width: 28px;
+    height: 18px;
     horizontal-align: center;
-    margin-bottom: 4px;
     border-radius: 2px;
     box-shadow: black 0px 0px 8px 0px;
     transition-property: opacity, box-shadow;
-    transition-duration: 0.2s;
+    transition-duration: 0.1s;
+    opacity: 0.0;
+}
+
+.AltPressed .HeroBar #HealthNumber
+{
+    opacity: 1.0;
+}
+
+.AltPressed .HeroBar #PlayerName, .HeroBar.StatusEffect #PlayerName
+{
+    opacity: 0.0;
 }
 
 .HeroBar #HealthNumber #HealthValue
@@ -53,15 +109,10 @@
 {
     height: 10px;
     flow-children: right;
+    align: center center;
     box-shadow: black 0px 0px 8px 0px;
     transition-property: opacity, box-shadow;
     transition-duration: 0.2s;
-}
-
-.HeroBar.NotVisible #HealthBar, .HeroBar.NotVisible #HealthNumber
-{
-    opacity: 0.5;
-    box-shadow: none;
 }
 
 #HealthBar.Ethereal, .HeroBarLight.Ethereal #HealthBar
@@ -174,7 +225,7 @@
 }
 
 /* Special content */
-.SpecialBar
+#SpecialBar
 {
     width: 100%;
     box-shadow: black 0px 0px 4px 0px;
@@ -184,7 +235,13 @@
     margin-top: 1px;
 }
 
-.SpecialBar .ProgressBarLeft
+#SpecialBar ProgressBar
+{
+    width: 100%;
+    height: 100%;
+}
+
+#SpecialBar .ProgressBarLeft
 {
     transition-property: width, background-color;
     transition-duration: 0.05s;
@@ -204,7 +261,7 @@
     background-color: gradient(linear, 0% 0%, 0% 98%, from(#FF6A00), to(#BC4B00));
 }
 
-.HeroBar.NotVisible .SpecialBar
+.HeroBar.NotVisible #SpecialBar, .HeroBar.NotVisible #HealthBar
 {
     opacity: 0.5;
     box-shadow: none;

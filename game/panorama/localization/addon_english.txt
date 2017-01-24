@@ -805,6 +805,20 @@
 
 		"ModifierTooltip_modifier_wr_a"							"<font color='#36B500'><b>Haste</b></font><br/>Moving faster and spending stacks while moving"
 		"ModifierTooltip_modifier_wr_e"							"Does not spend <font color='#36B500'><b>Haste</b></font> stacks while moving"
+
+		"StatusStunned" "Stunned"
+		"StatusCharmed" "Charmed"
+		"StatusFear" "Fear"
+		"StatusFrozen" "Frozen"
+		"StatusSilenced" "Silenced"
+		"StatusFrenzy" "Frenzy"
+		"StatusEthereal" "Ethereal"
+		"StatusBurning" "Burning"
+		"StatusDisarmed" "Disarmed"
+		"StatusShock" "Shock"
+		"StatusRooted" "Rooted"
+		"StatusBreak" "Break"
+		"StatusUltimate" "Ultimate"
 	}
 }
 

@@ -2,73 +2,6 @@ var dummy = "npc_dota_hero_wisp";
 var heroBars = {};
 var heroes = null;
 
-var colors = {
-    2: [ 255, 82, 66 ],
-    3: [ 48, 168, 255 ] ,
-    6: [ 197, 77, 168 ],
-    7: [ 199, 228, 13 ],
-    8: [ 161, 127, 255 ],
-    9: [ 101, 212, 19 ]
-};
-
-var shieldModifiers = [
-    "modifier_gyro_w",
-    "modifier_lc_w_shield",
-    "modifier_undying_q_health"
-];
-
-var hideBarModifiers = [
-    "modifier_tusk_e",
-    "modifier_ember_e",
-    "modifier_hidden",
-    "modifier_omni_e",
-    "modifier_gyro_e",
-    "modifier_storm_spirit_e",
-    "modifier_ursa_e",
-    "modifier_ursa_r"
-];
-
-var etherealModifiers = [
-    "modifier_invoker_w"
-];
-
-var specialLayouts = {
-    "npc_dota_hero_ursa": "UrsaBar",
-    //"npc_dota_hero_juggernaut": "JuggBar",
-    "npc_dota_hero_undying": "UndyingBar"
-};
-
-var specialLayoutCallbacks = {};
-
-specialLayoutCallbacks.npc_dota_hero_ursa = function(entity, panel) {
-    var fury = FindModifier(entity.id, "modifier_ursa_fury");
-    var frenzy = FindModifier(entity.id, "modifier_ursa_frenzy");
-    var bar = panel.FindChildTraverse("UrsaRage");
-
-    panel.FindChildTraverse("UrsaRage_Left").SetHasClass("UrsaFrenzy", !!frenzy);
-
-    if (frenzy) {
-        bar.value = 100;
-    } else if (fury) {
-        bar.value = Buffs.GetStackCount(entity.id, fury);
-    }
-};
-
-specialLayoutCallbacks.npc_dota_hero_juggernaut = function(entity, panel) {
-
-};
-
-specialLayoutCallbacks.npc_dota_hero_undying = function(entity, panel) {
-    var shield = FindModifier(entity.id, "modifier_undying_q_health");
-    var bar = panel.FindChildTraverse("UndyingShield");
-
-    if (shield) {
-        bar.value = Math.round(Buffs.GetRemainingTime(entity.id, shield) / Buffs.GetDuration(entity.id, shield) * 100);
-    } else {
-        bar.value = 0;
-    }
-};
-
 function GetUnitOwner(unit) {
     for (var i = 0; i < Players.GetMaxPlayers(); i++) {
         if (Players.IsValidPlayerID(i) && Entities.IsControllableByPlayer(unit, i)) {
@@ -111,6 +44,8 @@ function UpdateHeroBars(){
         }
     }
 
+    mainPanel.SetHasClass("AltPressed", GameUI.IsAltDown());
+
     var onScreen = _
         .chain(all)
         .reject(function(entity) {
@@ -149,6 +84,10 @@ function UpdateHeroBars(){
                 var shieldAmount = 0;
                 var hidden = false;
                 var ethereal = false;
+                var statusEffect;
+                var statusEffectPriority = 0;
+                var statusEffectTime = 0;
+                var statusEffectProgress;
 
                 for (var i = 0; i < Entities.GetNumBuffs(entity.id); i++) {
                     var buff = Entities.GetBuff(entity.id, i);
@@ -164,6 +103,24 @@ function UpdateHeroBars(){
 
                     if (etherealModifiers.indexOf(name) != -1) {
                         ethereal = true;
+                    }
+
+                    var fx = statusEffects[name];
+
+                    if (fx && fx.priority >= statusEffectPriority && Buffs.GetCreationTime(entity.id, buff) >= statusEffectTime) {
+                        statusEffect = fx;
+                        statusEffectPriority = fx.priority;
+                        statusEffectTime = Buffs.GetCreationTime(entity.id, buff);
+                        statusEffectProgress = Math.round(Buffs.GetRemainingTime(entity.id, buff) / Buffs.GetDuration(entity.id, buff) * 100);
+                    }
+                }
+
+                for (var name of Object.keys(ultimateAbilities)) {
+                    var ability = Entities.GetAbilityByName(entity.id, name);
+
+                    if (ability && Abilities.GetChannelStartTime(ability) > 0) {
+                        statusEffect = ultimateAbilities[name];
+                        statusEffectProgress = Math.round(100 - (Game.GetGameTime() - Abilities.GetChannelStartTime(ability)) / Abilities.GetChannelTime(ability) * 100);
                     }
                 }
 
@@ -202,13 +159,37 @@ function UpdateHeroBars(){
                     pieceSize = 3;
                 }
 
-                panel.style.x = (Math.floor(entity.x) - Math.round(pieceSize * max / 2)) + "px";
-                panel.style.y = (Math.floor(entity.y) - 70) + "px";
+                panel.style.x = (Math.floor(entity.x) - Math.round(Math.max(pieceSize * max, 140) / 2)) + "px";
+                panel.style.y = (Math.floor(entity.y) - 50) + "px";
 
                 var callback = specialLayoutCallbacks[Entities.GetUnitName(entity.id)];
 
                 if (callback) {
                     callback(entity, panel);
+                }
+
+                bar.SetHasClass("Ethereal", ethereal);
+                panel.SetHasClass("NotVisible", hidden);
+
+                if (panel.cached.statusFx !== statusEffect) {
+                    panel.cached.statusFx = statusEffect;
+
+                    var prog = panel.FindChildTraverse("StatusEffectProgress");
+
+                    if (statusEffect) {
+                        var name = panel.FindChildTraverse("StatusEffectName");
+                        name.text = $.Localize(statusEffect.token).toUpperCase();
+                        name.style.color = statusEffect.color;
+                        prog.style.backgroundColor = statusEffect.color;
+                    } else {
+                        prog.style.width = "100px";
+                    }
+
+                    panel.SetHasClass("StatusEffect", !!statusEffect);
+                }
+
+                if (statusEffect) {
+                    panel.FindChildTraverse("StatusEffectProgress").style.width = statusEffectProgress + "px"
                 }
 
                 if (panel.cached.health === health && panel.cached.max === max && panel.cached.shieldAmount === shieldAmount) {
@@ -218,9 +199,6 @@ function UpdateHeroBars(){
                 panel.cached.health = health;
                 panel.cached.max = max;
                 panel.cached.shieldAmount = shieldAmount;
-
-                bar.SetHasClass("Ethereal", ethereal);
-                panel.SetHasClass("NotVisible", hidden);
 
                 var valueMaxColor = [ 142, 231, 45 ];
                 var valueLabel = panel.FindChildTraverse("HealthValue");
@@ -296,13 +274,14 @@ function UpdateHeroBars(){
                 }
             } else {
                 var panel = $.CreatePanel("Panel", mainPanel, "");
-                var layout = specialLayouts[Entities.GetUnitName(entity.id)];
+                var special = specialLayouts[Entities.GetUnitName(entity.id)];
 
-                if (!layout) {
-                    layout = entity.light ? "HealthBarLight" : "HealthBar";
+                panel.BLoadLayoutSnippet(entity.light ? "HealthBarLight" : "HealthBar");
+
+                if (special) {
+                    panel.FindChild("SpecialBar").BLoadLayoutSnippet(special);
+                    panel.FindChild("SpecialBar").SetHasClass("Hidden", false);
                 }
-
-                panel.BLoadLayoutSnippet(layout);
 
                 if (!entity.light) {
                     panel.cached = {};
