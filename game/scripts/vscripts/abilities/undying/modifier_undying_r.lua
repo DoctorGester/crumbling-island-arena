@@ -49,7 +49,11 @@ function self:GetModifierMoveSpeedOverride(params)
 end
 
 function self:GetModifierModelChange()
-    return "models/heroes/undying/undying_flesh_golem.vmdl"
+    if self:GetParent():GetParentEntity():IsAwardEnabled() then
+        return "models/undying_reward/golem.vmdl"
+    else
+        return "models/heroes/undying/undying_flesh_golem.vmdl"
+    end
 end
 
 function self:GetActivityTranslationModifiers()

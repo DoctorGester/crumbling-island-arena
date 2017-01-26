@@ -1,0 +1,67 @@
+// THIS FILE IS AUTO-GENERATED
+
+Layer0
+{
+	shader "hero.vfx"
+
+	//---- Masks ----
+	F_MASKS_1 1
+	F_MASKS_2 1
+
+	//---- Blend To Full ----
+	g_flEnvMapBlendToFull "0.000"
+	g_flMetalnessBlendToFull "0.000"
+	g_flReflectionsTintByBaseBlendToNone "0.000"
+	g_flSelfIllumBlendToFull "0.000"
+	g_flSpecularBlendToFull "0.000"
+	g_flSpecularExponentBlendToFull "0.000"
+
+	//---- Cloak ----
+	g_flCloakBlurAmount "0.005"
+	g_flCloakIntensity "0.850"
+	g_flCloakRefractAmount "0.100"
+	g_flMaterialCloakFactor "0.000"
+	g_vCloakColorTint "[1.000 1.000 1.000]"
+
+	//---- Color ----
+	g_flDiffuseModulationAmount "1.000"
+	g_flTexCoordRotation "0.000"
+	g_vTexCoordOffset "[0.000 0.000]"
+	g_vTexCoordScale "[1.000 1.000]"
+	TextureColor "materials/undying_reward/ultitrung/ulti_color.tga"
+
+	//---- Fresnel ----
+	TextureFresnelWarpColor "materials/default/default_fresnelwarpcolor.tga"
+	TextureFresnelWarpRim "materials/default/default_fresnelwarprim.tga"
+	TextureFresnelWarpSpec "materials/default/default_fresnelwarpspec.tga"
+
+	//---- Lighting ----
+	g_flAmbientScale "1.000"
+	g_flBloomScale "0.000"
+	g_flBloomShift "0.000"
+	g_vBloomColor "[1.000000 1.000000 1.000000 0.000000]"
+
+	//---- Mask 1 ----
+	TextureDetailMask "materials/undying_reward/ultitrung/ulti_mask1_detailmask.tga"
+	TextureDiffuseWarpMask "materials/undying_reward/ultitrung/ulti_mask1_diffusemask.tga"
+	TextureMetalnessMask "materials/undying_reward/ultitrung/ulti_mask1_metalnessmask.tga"
+	TextureSelfIllumMask "materials/undying_reward/ultitrung/ulti_mask1_selfillummask.tga"
+
+	//---- Mask 2 ----
+	TextureRimMask "materials/undying_reward/ultitrung/ulti_mask2_rimmask.tga"
+	TextureSpecularExponent "materials/undying_reward/ultitrung/ulti_mask2_specexp.tga"
+	TextureSpecularMask "materials/undying_reward/ultitrung/ulti_mask2_specmask.tga"
+	TextureTintByBaseMask "materials/undying_reward/ultitrung/ulti_mask2_basetintmask.tga"
+
+	//---- Normal Map ----
+	TextureNormal "materials/undying_reward/ultitrung/ulti_normal.tga"
+
+	//---- Rim ----
+	g_flRimLightScale "1.000"
+	g_vRimLightColor "[1.000000 1.000000 1.000000 0.000000]"
+
+	//---- Specular ----
+	g_flSpecularExponent "32.000"
+	g_flSpecularScale "1.000"
+	g_vSpecularColor "[1.000000 1.000000 1.000000 0.000000]"
+}

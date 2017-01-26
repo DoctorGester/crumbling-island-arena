@@ -35,6 +35,16 @@ var specialLayouts = {
     "npc_dota_hero_undying": "UndyingBar"
 };
 
+var specialOffsetModifiers = {};
+
+specialOffsetModifiers.npc_dota_hero_undying = function(entity) {
+    if (HasModifier(entity, "modifier_undying_r")) {
+        return GetStackCount(entity, "modifier_undying_q_health") * 40;
+    }
+
+    return GetStackCount(entity, "modifier_undying_q_health") * 20;
+};
+
 var statusEffects = {};
 
 function AddStatusEffect(modifier, token, color, priority) {

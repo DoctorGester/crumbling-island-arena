@@ -124,6 +124,18 @@
                 "length" "3.0"
             }
         }
+
+        "2"
+        {
+            "type" "elite"
+            "raw"
+            {
+            	"1" "armor:models/undying_reward/armor.vmdl"
+            	"2" "arms:models/undying_reward/bracer.vmdl"
+            	"3" "head:models/undying_reward/helmet.vmdl"
+            }
+            "season" "7"
+        }
     }
     
     "drow_ranger"

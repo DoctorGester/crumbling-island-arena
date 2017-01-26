@@ -14,6 +14,7 @@
 *.vmesh_c
 *.vagrp_c
 *.vsnd_c
+*.vseq_c
 
 # Panorama debugger
 *.cfg

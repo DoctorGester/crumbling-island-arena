@@ -29,6 +29,7 @@ function undying_a:OnSpellStart()
     local shield = hero:FindModifier("modifier_undying_q_health")
     local stacks = 0
     local force = 20
+    local specialSound = hero:IsAwardEnabled() and hero:HasModifier("modifier_undying_r")
 
     if shield then
         stacks = shield:GetStackCount()
@@ -47,7 +48,7 @@ function undying_a:OnSpellStart()
     hero:AreaEffect({
         ability = self,
         filter = Filters.Cone(pos, 300 + stacks * 30, forward, math.pi),
-        sound = "Arena.Undying.HitA",
+        sound = specialSound and "Arena.Pudge.HitA" or "Arena.Undying.HitA",
         damage = damage,
         knockback = { force = force, decrease = 3 },
         isPhysical = true
@@ -66,10 +67,6 @@ end
 
 function undying_a:GetPlaybackRateOverride()
     return 2.0
-end
-
-function undying_a:GetIntrinsicModifierName()
-    return "modifier_tiny_a_animation"
 end
 
 if IsClient() then

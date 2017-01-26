@@ -134,6 +134,12 @@ function Hero:BuildWearableStack(adjustState)
                     end
                 end
 
+                if entry.raw then
+                    for _, model in pairs(entry.raw) do
+                        table.insert(result, model)
+                    end
+                end
+
                 if adjustState then
                     if entry.emote then
                         self:GetUnit():RemoveAbility("placeholder_emote")

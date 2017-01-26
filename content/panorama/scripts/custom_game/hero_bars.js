@@ -62,7 +62,14 @@ function UpdateHeroBars(){
             if (lightBar) {
                 offset = 150;
             } else {
-                offset = heroes[Entities.GetUnitName(entity)].barOffset;
+                var nm = Entities.GetUnitName(entity);
+                offset = heroes[nm].barOffset;
+
+                var specialModifier = specialOffsetModifiers[nm];
+
+                if (specialModifier) {
+                    offset += (specialModifier(entity) || 0);
+                }
             }
 
             var x = Game.WorldToScreenX(abs[0], abs[1], abs[2] + offset);

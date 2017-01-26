@@ -34,10 +34,18 @@ function WearableOwner:LoadItems(...)
         end
 
         if type(arg) == "string" then
-            local set = self:FindSetItems(arg)
+            if arg:ends(".vmdl") then
+                local split = arg:split(":")
 
-            for slot, item in pairs(set) do
-                items[slot] = item
+                items[split[1]] = {
+                    model_player = split[2]
+                }
+            else
+                local set = self:FindSetItems(arg)
+
+                for slot, item in pairs(set) do
+                    items[slot] = item
+                end
             end
         end
 
@@ -55,7 +63,7 @@ function WearableOwner:LoadItems(...)
     end
 
     local sessionWearables = {}
-PrintTable(styles)
+
     for slot, item in pairs(items) do
         if not item.id or not ignored[item.id] then
             if item.model_player then
