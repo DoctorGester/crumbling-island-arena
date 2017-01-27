@@ -23,9 +23,9 @@ function invoker_r:OnSpellStart()
             ParticleManager:SetParticleControl(particle, 3, target)
             ParticleManager:ReleaseParticleIndex(particle)
 
-            Spells:GroundDamage(target, 500, hero)
-            Spells:GroundDamage(target, 500, hero)
-            Spells:GroundDamage(target, 500, hero)
+            --Spells:GroundDamage(target, 500, hero, true)
+            Spells:GroundDamage(target, 500, hero, true)
+            Spells:GroundDamage(target, 500, hero, true)
             Spells:GroundDamage(target, 500, hero)
 
             ScreenShake(target, 5, 150, 0.5, 4000, 0, true)

@@ -29,7 +29,7 @@ function pudge_a:OnSpellStart()
 end
 
 function pudge_a:GetCastAnimation()
-    return ACT_DOTA_CAST_ABILITY_3
+    return ACT_DOTA_ATTACK
 end
 
 function pudge_a:GetPlaybackRateOverride()

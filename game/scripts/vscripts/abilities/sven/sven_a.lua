@@ -54,7 +54,7 @@ function sven_a:OnSpellStart()
 end
 
 function sven_a:GetCastAnimation()
-    return ACT_DOTA_ATTACK2
+    return ACT_DOTA_ATTACK
 end
 
 function sven_a:GetPlaybackRateOverride()

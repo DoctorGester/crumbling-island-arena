@@ -15,5 +15,5 @@ function cm_r:OnSpellStart()
 end
 
 function cm_r:GetCastAnimation()
-    return ACT_DOTA_CAST_ABILITY_3
+    return ACT_DOTA_CAST_ABILITY_1
 end

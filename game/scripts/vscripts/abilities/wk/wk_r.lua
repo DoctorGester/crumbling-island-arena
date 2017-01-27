@@ -1,5 +1,11 @@
 wk_r = class({})
 
+LinkLuaModifier("modifier_wk_r_animation", "abilities/wk/modifier_wk_r_animation", LUA_MODIFIER_MOTION_NONE)
+
+function wk_r:GetIntrinsicModifierName()
+    return "modifier_wk_r_animation"
+end
+
 function wk_r:OnAbilityPhaseStart()
     self:GetCaster().hero:EmitSound("Arena.WK.PreR")
 
@@ -17,7 +23,7 @@ function wk_r:OnChannelThink(interval)
 
     local hero = self:GetCaster().hero
     local pos = hero:GetPos() + interval * Vector(0, 0, self.speed)
-    pos.z = math.max(pos.z, 0)
+    pos.z = math.max(pos.z, 32)
     hero:SetPos(pos)
 end
 
@@ -27,7 +33,7 @@ function wk_r:OnChannelFinish(interrupted)
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
 
-    hero:SetPos(hero:GetPos() * Vector(1, 1, 0))
+    hero:SetPos(hero:GetPos() * Vector(1, 1, 0) + Vector(0, 0, 32))
 
     if interrupted then
         hero:StopSound("Arena.WK.PreR")
@@ -109,7 +115,7 @@ function wk_r:GetChannelTime()
 end
 
 function wk_r:GetCastAnimation()
-    return ACT_DOTA_ATTACK2
+    return 1736
 end
 
 function wk_r:GetPlaybackRateOverride()
