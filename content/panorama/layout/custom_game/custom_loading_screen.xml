@@ -41,6 +41,11 @@
                 <Image class="RewardImage" src="file://{images}/custom_game/rewards/6.png" scaling="stretch-to-fit-y-preserve-aspect"/>
             </Panel>
         </snippet>
+        <snippet name="reward7">
+            <Panel>
+                <Image class="RewardImage" src="file://{images}/custom_game/rewards/7.png" scaling="stretch-to-fit-y-preserve-aspect"/>
+            </Panel>
+        </snippet>
     </snippets>
     <Panel style="width:100%;height:100%;overflow:clip;background-color:black;" hittest="false">
         <Image src="file://{images}/custom_game/loadscreen.png" hittest="false"/>
