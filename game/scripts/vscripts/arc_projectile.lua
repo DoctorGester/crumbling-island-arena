@@ -6,7 +6,7 @@ function ArcProjectile:constructor(round, params)
     self.collisionType = COLLISION_TYPE_NONE
     self.modifierImmune = true
     self.hero = params.owner
-    self.owner = self.hero.owner
+    self.owner = self.hero and self.hero.owner or nil
     self.from = params.from
     self.to = params.to
     self.vel = (self.to - self.from):Normalized()
@@ -44,7 +44,7 @@ function ArcProjectile:constructor(round, params)
     self:SetSpeed(params.speed or 600)
     self:SetPos(self.from)
 
-    if not params.disableStats then
+    if not params.disableStats and self.hero then
         self.hero.round.statistics:IncreaseProjectilesFired(self.owner)
     end
 end

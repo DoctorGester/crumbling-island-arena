@@ -1,5 +1,4 @@
-SECOND_STAGE_OBSTRUCTOR = "Layer2Obstructor"
-THIRD_STAGE_OBSTRUCTOR = "Layer3Obstructor"
+require("level_piece")
 
 MAP_HEIGHT = 7000
 FINISHING_DISTANCE = 900
@@ -160,18 +159,44 @@ function Level:BuildIndex()
     end
 end
 
-function Level:DamageGroundInRadius(point, radius, source)
+function Level:DamageGroundInRadius(point, radius, source, suppressParticles)
     -- TODO index points with cluster grid
+    local damageQueue = {}
     for _, part in ipairs(self.parts) do
-        if part.velocity == 0 and part.health > 0 then
+        if part.velocity == 0 and part.health > 0 and not part.launched then
             local distance = (part:GetAbsOrigin() - point):Length2D()
 
             if distance <= radius then
-                local proportion = 1 - distance / radius
-
-                self:DamageGround(part, 60 * proportion, source)
+                table.insert(damageQueue, { part, distance })
             end
         end
+    end
+
+    if not suppressParticles then
+        local amount = math.floor(radius / 100)
+
+        for i = 1, RandomInt(amount, amount + 2) do
+            ArcProjectile(nil, {
+                from = point + RandomVector(RandomInt(0, radius / 2)),
+                to = point + RandomVector(RandomInt(radius, radius * 3)),
+                speed = 1200,
+                arc = RandomInt(300, 600),
+                graphics = "particles/debris/debris.vpcf"
+            }):Activate()
+        end
+    end
+
+    local function compare(a, b)
+        return a[2] < b[2]
+    end
+
+    table.sort(damageQueue, compare)
+
+    for i, d in ipairs(damageQueue) do
+        --Timers:CreateTimer(i * 0.003, function()
+            local proportion = 1 - d[2] / radius
+            self:DamageGround(d[1], 100 * proportion, source, point, radius)
+        --end)
     end
 
     if not self.enableRegeneration then
@@ -183,7 +208,11 @@ function Level:DamageGroundInRadius(point, radius, source)
     end
 end
 
-function Level:DamageGround(part, damage, source)
+function Level:DamageGround(part, damage, source, point, radius)
+    if part.launched then
+        return
+    end
+
     part.health = part.health - damage
 
     if part.health <= 50 then
@@ -196,7 +225,7 @@ function Level:DamageGround(part, damage, source)
     end
 
     if part.health <= 0 then
-        self:LaunchPart(part, source)
+        self:LaunchPart(part, source, point, radius)
     end
 end
 
@@ -237,12 +266,30 @@ function Level:Reset()
     GridNav:RegrowAllTrees()
 end
 
-function Level:LaunchPart(part, by)
+function Level:LaunchPart(part, by, point, radius)
+    local dist
+    local dir
+
+    if point == nil then
+        dir = Vector(part.x, part.y, 0):Normalized()
+        radius = RandomInt(200, 500)
+        dist = RandomInt(0, radius)
+    else
+        dist = (point * Vector(1, 1, 0) - Vector(part.x, part.y, 0))
+        dir = dist:Normalized()
+        dist = dist:Length2D()
+    end
+
+    -- No idea how I figured this out
+    local anx = -Vector(dir.y, -dir.x):Dot(Vector(0, 1, 0)) * 6
+    local anz = -Vector(dir.y, -dir.x):Dot(Vector(1, 0, 0)) * 6
+
     table.insert(self.fallingParts, part)
-    part.angleVel = Vector(RandomFloat(0, 2), RandomFloat(0, 2), 0)
+    part.angleVel = Vector(anx, 0, anz)
     part.launched = true
     part.launchedBy = by
     part.launchedAt = GameRules:GetGameTime()
+    part.velocity = math.max(-50, (radius / 10 - dist / 3))
 
     if by and self.enableRegeneration then
         table.insert(self.regeneratingParts, part)
@@ -255,7 +302,7 @@ function Level:Update()
     if currentIndex and self.running then
         for _, part in ipairs(currentIndex) do
             if not part.launched then
-                self:LaunchPart(part)
+                self:LaunchPart(part, nil, Vector(part.x, part.y) * 1.01, 0)
             end
         end
     end
@@ -384,7 +431,7 @@ function Level:Update()
 
     for i = #self.fallingParts, 1, -1 do
         local part = self.fallingParts[i]
-        part.velocity = part.velocity + 6
+        part.velocity = part.velocity + 3
         part.z = part.z - part.velocity
         part.angles = part.angles + part.angleVel
         part:SetAngles(part.angles.x, part.angles.y, part.angles.z)

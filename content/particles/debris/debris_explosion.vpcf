@@ -1,0 +1,94 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 4
+	m_ConstantColor = [ 139, 69, 19, 255 ]
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderSprites"
+			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
+			m_flStartFadeSize = 0.2
+			m_flEndFadeSize = 0.25
+			m_bDisableZBuffering = true
+			m_flAddSelfAmount = 1.0
+			m_bSaturateColorPreAlphaBlend = false
+			m_hTexture = resource:"materials/particle/smoke/maya_wispy/wispy_v2.vtex"
+			m_flAnimationRate = 2.0
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_BasicMovement"
+			m_Gravity = [ 0.0, 0.0, 500.0 ]
+			m_fDrag = 0.1
+		},
+		{
+			_class = "C_OP_FadeAndKill"
+			m_flStartAlpha = 0.0
+			m_flEndFadeInTime = 0.15
+		},
+		{
+			_class = "C_OP_InterpolateRadius"
+			m_flBias = 0.7
+			m_flEndScale = 3.0
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_RandomLifeTime"
+			m_fLifetimeMin = 0.4
+			m_fLifetimeMax = 0.4
+		},
+		{
+			_class = "C_INIT_CreateWithinSphere"
+			m_LocalCoordinateSystemSpeedMax = [ -240.0, 0.0, 0.0 ]
+			m_LocalCoordinateSystemSpeedMin = [ -230.0, 0.0, 0.0 ]
+			m_fSpeedMax = 100.0
+			m_nControlPointNumber = 3
+		},
+		{
+			_class = "C_INIT_RandomRadius"
+			m_flRadiusMax = 22.0
+			m_flRadiusMin = 18.0
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+		},
+		{
+			_class = "C_INIT_RandomYawFlip"
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 3
+		},
+	]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/debris/debris_explosion_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/debris/debris_ember_b.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/debris/debris_explosion_d.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/debris/debris_explosion_e.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/debris/debris_explosion_f.vpcf"
+			m_bDisableChild = true
+		},
+		{
+			m_ChildRef = resource:"particles/debris/debris_ember.vpcf"
+		},
+	]
+}

@@ -128,8 +128,8 @@ function Spells:InterruptDashes(hero)
     end
 end
 
-function Spells:GroundDamage(point, radius, source)
-    GameRules.GameMode.level:DamageGroundInRadius(point, radius, source)
+function Spells:GroundDamage(point, radius, source, suppress)
+    GameRules.GameMode.level:DamageGroundInRadius(point, radius, source, suppress)
 end
 
 function Spells:GetValidTargets()

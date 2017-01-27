@@ -25,3 +25,7 @@ function modifier_falling:CheckState()
 
     return state
 end
+
+function modifier_falling:GetPriority()
+    return MODIFIER_PRIORITY_SUPER_ULTRA
+end
