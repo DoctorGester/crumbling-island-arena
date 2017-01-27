@@ -109,7 +109,7 @@ end
 function Level:GetPartAt(x, y)
     local polygon = self:GetPolygonAt(x, y)
 
-    if polygon and polygon.part.z > -1000 then
+    if polygon and not polygon.part.launched then
         return polygon.part
     end
 end

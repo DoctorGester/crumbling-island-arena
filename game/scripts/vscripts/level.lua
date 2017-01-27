@@ -162,12 +162,14 @@ end
 function Level:DamageGroundInRadius(point, radius, source, suppressParticles)
     -- TODO index points with cluster grid
     local damageQueue = {}
+    local justParts = {}
     for _, part in ipairs(self.parts) do
         if part.velocity == 0 and part.health > 0 and not part.launched then
             local distance = (part:GetAbsOrigin() - point):Length2D()
 
             if distance <= radius then
                 table.insert(damageQueue, { part, distance })
+                table.insert(justParts, part)
             end
         end
     end
@@ -206,6 +208,8 @@ function Level:DamageGroundInRadius(point, radius, source, suppressParticles)
 
         table.insert(self.particles, particle)
     end
+
+    return justParts
 end
 
 function Level:DamageGround(part, damage, source, point, radius)
