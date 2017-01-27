@@ -44,3 +44,7 @@ function modifier_venge_w:OnDamageReceived(_, _, amount, isPhysical)
         return amount + 1
     end
 end
+
+function modifier_venge_w:GetPriority()
+    return MODIFIER_PRIORITY_SUPER_ULTRA
+end

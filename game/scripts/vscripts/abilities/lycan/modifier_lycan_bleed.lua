@@ -23,3 +23,7 @@ function modifier_lycan_bleed:CheckState()
 
     return state
 end
+
+function modifier_lycan_bleed:GetPriority()
+    return MODIFIER_PRIORITY_SUPER_ULTRA
+end

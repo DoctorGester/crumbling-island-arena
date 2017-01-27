@@ -56,7 +56,10 @@ function modifier_lycan_e:CheckState()
     return state
 end
 
-
 function modifier_lycan_e:GetModifierMoveSpeedBonus_Percentage(params)
     return -20
+end
+
+function modifier_lycan_e:GetPriority()
+    return MODIFIER_PRIORITY_SUPER_ULTRA
 end
