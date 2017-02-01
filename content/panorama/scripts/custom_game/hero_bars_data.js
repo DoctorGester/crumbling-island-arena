@@ -111,6 +111,7 @@ AddStatusEffect("modifier_ember_burning", "#StatusBurning", "#FF6A00");
 AddStatusEffect("modifier_tinker_q", "#StatusDisarmed", "#b4dbe7");
 AddStatusEffect("modifier_zeus_a", "#StatusShock", "#95dbe7");
 AddStatusEffect("modifier_sniper_w", "#StatusRooted", "#a6e7e2");
+AddStatusEffect("modifier_ember_w", "#StatusRooted", "#a6e7e2");
 AddStatusEffect("modifier_venge_w", "#StatusBreak", "#b2e7c8");
 AddStatusEffect("modifier_ta_q", "#StatusBreak", "#b2e7c8");
 AddStatusEffect("modifier_venge_r_target", "#StatusBreak", "#b2e7c8");

@@ -517,8 +517,8 @@
 
 		"AbilityTooltip_ember_a"						"Наносит двойной урон <font color=\"#FF6A00\"><b>Горящим</b></font><br> целям"
 		"AbilityTooltip_ember_q"						"Запустить наносящую урон волну<br>Враги на пути <font color=\"#FF6A00\"><b>Горят</b></font><br>Уже <font color=\"#FF6A00\"><b>Горящие</b></font> враги сильно замедлены"
-		"AbilityTooltip_ember_w"						"Бросить связывающую сеть<br>Связанный враг <font color=\"#FF6A00\"><b>Горит</b></font><br>Уже <font color=\"#FF6A00\"><b>Горящие</b></font> враги оглушаются"
-		"AbilityTooltip_ember_e"						"Короткий рывок<br>Враги на пути <font color=\"#FF6A00\"><b>Горят</b></font><br>Уже <font color=\"#FF6A00\"><b>Горящие</b></font> враги получают урон"
+		"AbilityTooltip_ember_w"						"Бросить связывающую сеть<br>Связанный враг <font color=\"#FF6A00\"><b>Горит</b></font><br>Уже <font color=\"#FF6A00\"><b>Горящие</b></font> получают урон"
+		"AbilityTooltip_ember_e"						"Короткий рывок<br>Враги на пути <font color=\"#FF6A00\"><b>Горят</b></font><br>Уже <font color=\"#FF6A00\"><b>Горящие</b></font> враги враги оглушаются"
 		"AbilityTooltip_ember_r"						"Создать копию себя в точке<br/>Копия повторяет все способности за героем"
 
 		"AbilityTooltip_jugger_a"						"Ищи <font color=\"#FF6A00\"><b>Мечи</b></font> чтобы увеличить дальность"

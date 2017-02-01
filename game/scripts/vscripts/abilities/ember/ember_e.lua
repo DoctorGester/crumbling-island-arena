@@ -14,7 +14,7 @@ function ember_e:OnSpellStart()
             ability = self,
             action = function(target)
                 if EmberUtil.Burn(hero, target, self) then
-                    target:Damage(hero, self:GetDamage())
+                    target:AddNewModifier(hero, self, "modifier_stunned_lua", { duration = 1.0 })
                 end
             end
         }

@@ -525,8 +525,8 @@
 
 		"AbilityTooltip_ember_a"						"Deals double damage to <font color=\"#FF6A00\"><b>Burnt</b></font><br> enemies"
 		"AbilityTooltip_ember_q"						"Launch a damaging wave<br>Enemies hit are <font color=\"#FF6A00\"><b>Burnt</b></font><br>Already <font color=\"#FF6A00\"><b>Burnt</b></font> enemies are greatly slowed"
-		"AbilityTooltip_ember_w"						"Throw a rooting bola<br>Enemies hit are <font color=\"#FF6A00\"><b>Burnt</b></font><br>Already <font color=\"#FF6A00\"><b>Burnt</b></font> enemies are stunned"
-		"AbilityTooltip_ember_e"						"Short dash<br>Enemies on the way are <font color=\"#FF6A00\"><b>Burnt</b></font><br>Already <font color=\"#FF6A00\"><b>Burnt</b></font> enemies take damage"
+		"AbilityTooltip_ember_w"						"Throw a rooting bola<br>Enemies hit are <font color=\"#FF6A00\"><b>Burnt</b></font><br>Already <font color=\"#FF6A00\"><b>Burnt</b></font> enemies take damage"
+		"AbilityTooltip_ember_e"						"Short dash<br>Enemies on the way are <font color=\"#FF6A00\"><b>Burnt</b></font><br>Already <font color=\"#FF6A00\"><b>Burnt</b></font> enemies are stunned"
 		"AbilityTooltip_ember_r"						"Create a clone of yourself at the target point<br/>Clone copies every ability you cast"
 
 		"AbilityTooltip_jugger_a"						"Find <font color=\"#FF6A00\"><b>Swords</b></font> to increase range"
