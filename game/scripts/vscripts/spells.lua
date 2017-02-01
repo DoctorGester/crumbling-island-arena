@@ -104,7 +104,10 @@ function Spells:Update()
                     if not GameRules.GameMode:IsDeathMatch() then
                         if hit and not level.running and instanceof(entity, Hero) then
                             for enthit, _ in pairs(hit) do
-                                level:DamageGround(enthit, 0.35, entity)
+                                local p = Vector(enthit.x, enthit.y)
+                                local dir = (entity:GetPos() - p):Normalized() * 20
+
+                                level:DamageGround(enthit, 0.35, entity, p + dir, 0)
                             end
                         end
                     end
