@@ -61,7 +61,7 @@ function shaker_r:OnSpellStart()
 
                     if distance > currentLen and distance <= currentLen + speed then
                         if part.health <= 50 then
-                            GameRules.GameMode.level:LaunchPart(part, hero)
+                            GameRules.GameMode.level:LaunchPart(part, hero, start, len)
                         else 
                             offsets[part] = 7 + currentLen / len * RandomFloat(7, 25)
 
