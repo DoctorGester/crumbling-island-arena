@@ -1,0 +1,19 @@
+"DOTAAbilities" {
+	"drow_r" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/drow/drow_r"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName" "drow_ranger_marksmanship"
+		"AbilityCooldown" "12.0"
+		"Damage" "4"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_DIRECTION_GLOBAL"
+		}
+
+		"precache" {
+			"particle" "particles/econ/items/earthshaker/earthshaker_gravelmaw/earthshaker_fissure_dust_gravelmaw.vpcf"
+		}
+	}
+}

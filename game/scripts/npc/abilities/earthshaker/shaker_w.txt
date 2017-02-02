@@ -1,0 +1,20 @@
+"DOTAAbilities" {
+	"shaker_w" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/shaker/shaker_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "earthshaker_aftershock"
+		"AbilityCooldown" "4.0"
+		"AbilityCastPoint" "0.35"
+		"Damage" "2"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "400"
+		}
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_brewmaster/brewmaster_thunder_clap.vpcf"
+		}
+	}
+}

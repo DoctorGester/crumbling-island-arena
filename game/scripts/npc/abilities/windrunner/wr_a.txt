@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"wr_a" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/wr/wr_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "windrunner_focusfire"
+		"AbilityCooldown" "0.75"
+		"AbilityCastPoint" "0.135"
+		"Damage" "1"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "1200"
+			"MinLength" "1200"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1200"
+		}
+	}
+}

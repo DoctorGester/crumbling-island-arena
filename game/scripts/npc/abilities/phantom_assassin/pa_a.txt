@@ -1,0 +1,26 @@
+"DOTAAbilities" {
+	"pa_a" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pa/pa_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "phantom_assassin_phantom_strike"
+		"AbilityCooldown" "1.0"
+		"AbilityCastPoint" "0.135"
+		"Damage" "1"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "800"
+			"MaxLength" "800"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "800"
+		}
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_riki/riki_backstab.vpcf"
+		}
+	}
+}

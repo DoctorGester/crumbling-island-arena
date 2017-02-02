@@ -1,0 +1,21 @@
+"DOTAAbilities" {
+	"tusk_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tusk/tusk_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "tusk_walrus_kick"
+		"AbilityCooldown" "3.2"
+		"AbilityCastPoint" "0.15"
+		"Damage" "3"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "350"
+		}
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "350"
+		}
+	}
+}

@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"wk_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/wk/wk_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "undying_decay"
+		"AbilityCooldown" "6.0"
+		"AbilityCastPoint" "0.2"
+		"Damage" "3"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_THICK_LINE"
+			"MaxLength" "1700"
+			"MinLength" "1700"
+			"Width" "320"
+		}
+
+		"precache" {
+			"particle" "particles/neutral_fx/skeleton_spawn_c.vpcf"
+		}
+	}
+}

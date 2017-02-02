@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"invoker_a" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/invoker/invoker_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "invoker_deafening_blast"
+		"AbilityCooldown" "0.6"
+		"AbilityCastPoint" "0.135"
+		"Damage" "1"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "800"
+			"MinLength" "800"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "800"
+		}
+	}
+}

@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"zeus_a" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/zeus/zeus_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "zuus_arc_lightning"
+		"AbilityCooldown" "0.7"
+		"AbilityCastPoint" "0.15"
+		"Damage" "1"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "600"
+			"MinLength" "600"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "600"
+		}
+	}
+}

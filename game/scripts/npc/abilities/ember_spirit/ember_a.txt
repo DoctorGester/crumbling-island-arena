@@ -1,0 +1,21 @@
+"DOTAAbilities" {
+	"ember_a" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ember/ember_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "sven_great_cleave"
+		"AbilityCooldown" "0.6"
+		"AbilityCastPoint" "0.135"
+		"Damage" "1"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "300"
+		}
+	}
+}

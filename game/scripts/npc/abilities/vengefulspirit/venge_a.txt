@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"venge_a" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/venge/venge_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "vengefulspirit/huangs_umbra_icons/vengefulspirit_magic_missile"
+		"AbilityCooldown" "0.75"
+		"AbilityCastPoint" "0.135"
+		"Damage" "1"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "1000"
+			"MinLength" "1000"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1000"
+		}
+	}
+}

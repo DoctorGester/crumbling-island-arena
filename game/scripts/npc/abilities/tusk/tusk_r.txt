@@ -1,0 +1,11 @@
+"DOTAAbilities" {
+	"tusk_r" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tusk/tusk_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "crystal_maiden_crystal_nova"
+		"AbilityCooldown" "20.0"
+		"AbilityCastPoint" "0.15"
+	}
+}

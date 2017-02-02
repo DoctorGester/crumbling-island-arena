@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"pudge_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pudge/pudge_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "pudge_meat_hook"
+		"AbilityCooldown" "6.0"
+		"AbilityCastPoint" "0.15"
+		"Damage" "3"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "1300"
+			"MaxLength" "1300"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1300"
+		}
+	}
+}

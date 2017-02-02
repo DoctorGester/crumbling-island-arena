@@ -1,0 +1,25 @@
+"DOTAAbilities" {
+	"venge_e" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/venge/venge_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "vengefulspirit_nether_swap"
+		"AbilityCooldown" "3.0"
+		"AbilityCastPoint" "0.1"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "950"
+			"MinLength" "950"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "950"
+		}
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_vengeful/vengeful_nether_swap_target.vpcf"
+		}
+	}
+}

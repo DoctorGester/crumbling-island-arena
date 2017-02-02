@@ -1,0 +1,10 @@
+"DOTAAbilities" {
+	"gyro_w" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/gyro/gyro_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "gyrocopter_homing_missile"
+		"AbilityCooldown" "5.0"
+		"Damage" "3"
+	}
+}

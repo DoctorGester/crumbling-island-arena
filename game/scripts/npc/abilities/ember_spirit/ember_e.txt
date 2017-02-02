@@ -1,0 +1,24 @@
+"DOTAAbilities" {
+	"ember_e" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ember/ember_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "ember_spirit_activate_fire_remnant"
+		"AbilityCooldown" "2.7"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE_EMBER"
+			"MinLength" "400"
+			"MaxLength" "400"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "400"
+		}
+
+		"precache" {
+			"particle" "particles/ember_e/ember_e.vpcf"
+		}
+	}
+}

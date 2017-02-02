@@ -1,0 +1,42 @@
+"DOTAHeroes" {
+	"npc_dota_hero_skeleton_king" {
+		"override_hero" "npc_dota_hero_skeleton_king"
+		"ArmorPhysical" "0"
+		"MagicalResistance" "0"
+		"AttackCapabilities" "DOTA_UNIT_CAP_NO_ATTACK"
+		"AttributePrimary" "DOTA_ATTRIBUTE_STRENGTH"
+		"BountyXP" "0"
+		"MovementSpeed" "375"
+		"MovementTurnRate" "10"
+		"StatusHealth" "20"
+		"StatusHealthRegen" "0"
+		"StatusManaRegen" "0"
+		"StatusStartingMana" "0"
+		"AttributeBaseStrength" "0"
+		"AttributeBaseIntelligence" "0"
+		"VisionDaytimeRange" "0"
+		"VisionNighttimeRange" "0"
+		"Portrait" ""
+		"SoundSet" ""
+		"GameSoundsFile" ""
+		"VoiceFile" ""
+		"DisableWearables" "1"
+		"Range" "melee"
+		"Difficulty" "easy"
+		"ForNewPlayers" "1"
+		"Order" "16"
+		"Ability1" "wk_q"
+		"Ability2" "wk_w"
+		"Ability3" "wk_e"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "wk_r"
+		"Ability7" "wk_a"
+		"Ultimate" "wk_r"
+
+		"CustomIcons" {
+			"wk_q" "wk_q.png"
+			"wk_w" "wk_w.png"
+		}
+	}
+}

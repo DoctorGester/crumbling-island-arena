@@ -1,0 +1,21 @@
+"DOTAAbilities" {
+	"undying_a" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/undying/undying_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "undying_soul_rip"
+		"AbilityCooldown" "0.7"
+		"AbilityCastPoint" "0.135"
+		"Damage" "1"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300 + GetStackCount(unit, 'modifier_undying_q_health') * 30"
+		}
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "300 + GetStackCount(unit, 'modifier_undying_q_health') * 30"
+		}
+	}
+}

@@ -1,0 +1,13 @@
+"DOTAAbilities" {
+	"storm_spirit_e" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/storm_spirit/storm_spirit_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "storm_spirit_ball_lightning"
+		"AbilityCooldown" "2.0"
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_stormspirit/stormspirit_ball_lightning.vpcf"
+		}
+	}
+}

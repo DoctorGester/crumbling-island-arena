@@ -1,0 +1,26 @@
+"DOTAAbilities" {
+	"venge_w" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/venge/venge_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "vengefulspirit_wave_of_terror"
+		"AbilityCooldown" "8.0"
+		"AbilityCastPoint" "0.15"
+		"Damage" "1"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "1400"
+			"MinLength" "1400"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1400"
+		}
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_vengeful/vengeful_wave_of_terror_recipient.vpcf"
+		}
+	}
+}

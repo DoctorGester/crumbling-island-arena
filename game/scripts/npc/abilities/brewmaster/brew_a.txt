@@ -1,0 +1,21 @@
+"DOTAAbilities" {
+	"brew_a" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/brew/brew_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "brewmaster_drunken_brawler_active"
+		"AbilityCooldown" "0.6"
+		"AbilityCastPoint" "0.135"
+		"Damage" "1"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "300"
+		}
+	}
+}

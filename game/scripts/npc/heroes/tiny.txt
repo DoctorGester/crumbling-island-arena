@@ -1,0 +1,43 @@
+"DOTAHeroes" {
+	"npc_dota_hero_tiny" {
+		"override_hero" "npc_dota_hero_tiny"
+		"Class" "heroes/tiny:Tiny"
+		"ArmorPhysical" "0"
+		"MagicalResistance" "0"
+		"AttackCapabilities" "DOTA_UNIT_CAP_NO_ATTACK"
+		"AttributePrimary" "DOTA_ATTRIBUTE_STRENGTH"
+		"BountyXP" "0"
+		"MovementSpeed" "355"
+		"MovementTurnRate" "10"
+		"StatusHealth" "20"
+		"StatusHealthRegen" "0"
+		"StatusManaRegen" "0"
+		"StatusStartingMana" "0"
+		"AttributeBaseStrength" "0"
+		"AttributeBaseIntelligence" "0"
+		"VisionDaytimeRange" "0"
+		"VisionNighttimeRange" "0"
+		"Portrait" ""
+		"SoundSet" ""
+		"GameSoundsFile" ""
+		"VoiceFile" ""
+		"DisableWearables" "1"
+		"RemoveWearablesOnDeath" "1"
+		"RoundEndActivity" "ACT_DOTA_IDLE"
+		"Range" "melee"
+		"Difficulty" "easy"
+		"Order" "13"
+		"Ability1" "tiny_q"
+		"Ability2" "tiny_w"
+		"Ability3" "tiny_e"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "tiny_r"
+		"Ability7" "tiny_a"
+		"Ultimate" "tiny_r"
+
+		"CustomIcons" {
+			"tiny_a" "tiny_a.png"
+		}
+	}
+}

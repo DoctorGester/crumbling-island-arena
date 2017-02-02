@@ -1,0 +1,11 @@
+"DOTAAbilities" {
+	"qop_r" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/qop/qop_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "queenofpain_scream_of_pain"
+		"AbilityCooldown" "14.0"
+		"AbilityCastPoint" "0.15"
+	}
+}

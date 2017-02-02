@@ -1,0 +1,13 @@
+"DOTAAbilities" {
+	"cm_e_sub" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/cm/cm_e_sub"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityTextureName" "ancient_apparition_cold_feet"
+		"AbilityCooldown" "0"
+
+		"precache" {
+			"model" "models/heroes/crystal_maiden/crystal_maiden_deathsim.vmdl"
+		}
+	}
+}

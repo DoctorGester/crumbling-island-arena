@@ -1,0 +1,26 @@
+"DOTAAbilities" {
+	"drow_w" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/drow/drow_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "drow_ranger_silence"
+		"AbilityCooldown" "7.0"
+		"AbilityCastPoint" "0.2"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_THICK_LINE"
+			"MinLength" "1500"
+			"MaxLength" "1500"
+			"Width" "200"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1500"
+		}
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_drow/drow_silence_wave.vpcf"
+		}
+	}
+}

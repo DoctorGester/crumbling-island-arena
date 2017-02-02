@@ -1,0 +1,26 @@
+"DOTAAbilities" {
+	"tiny_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tiny/tiny_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "tiny_toss"
+		"AbilityCooldown" "9.0"
+		"AbilityCastPoint" "0.15"
+		"Damage" "3"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "1000"
+			"MinLength" "1000"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1000"
+		}
+
+		"precache" {
+			"particle" "particles/tiny_q/tiny_q_fly_smoke.vpcf"
+		}
+	}
+}

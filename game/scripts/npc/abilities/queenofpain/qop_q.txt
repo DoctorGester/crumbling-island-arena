@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"qop_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/qop/qop_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "queenofpain_shadow_strike"
+		"AbilityCooldown" "3.5"
+		"AbilityCastPoint" "0.15"
+		"Damage" "3"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "950"
+			"MaxLength" "950"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "950"
+		}
+	}
+}

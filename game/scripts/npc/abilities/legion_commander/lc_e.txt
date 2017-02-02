@@ -1,0 +1,24 @@
+"DOTAAbilities" {
+	"lc_e" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/lc/lc_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "legion_commander_press_the_attack"
+		"AbilityCooldown" "6.0"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "Entities.GetIdealSpeed(unit)"
+		}
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "Entities.GetIdealSpeed(unit)"
+			"MaxLength" "Entities.GetIdealSpeed(unit)"
+		}
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_earthshaker/earthshaker_fissure_dust.vpcf"
+		}
+	}
+}

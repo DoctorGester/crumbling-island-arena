@@ -1,0 +1,21 @@
+"DOTAAbilities" {
+	"invoker_w" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/invoker/invoker_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "invoker_cold_snap"
+		"AbilityCooldown" "7.0"
+		"AbilityCastPoint" "0.15"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "1200"
+			"MaxLength" "1200"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1200"
+		}
+	}
+}

@@ -1,0 +1,21 @@
+"DOTAAbilities" {
+	"wr_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/wr/wr_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "windrunner_powershot"
+		"AbilityCooldown" "6.0"
+		"Damage" "3"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "1800"
+			"MinLength" "1800"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1800"
+		}
+	}
+}

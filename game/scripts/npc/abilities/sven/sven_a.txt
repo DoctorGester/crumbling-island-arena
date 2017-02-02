@@ -1,0 +1,25 @@
+"DOTAAbilities" {
+	"sven_a" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/sven/sven_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "sven_great_cleave"
+		"AbilityCooldown" "0.6"
+		"AbilityCastPoint" "0.135"
+		"Damage" "1"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "(function(){ if (HasModifier(unit, 'modifier_sven_r')) return 500; return 300; })()"
+		}
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "(function(){ if (HasModifier(unit, 'modifier_sven_r')) return 500; return 300; })()"
+		}
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_riki/riki_backstab_hit_blood.vpcf"
+		}
+	}
+}

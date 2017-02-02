@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"tinker_a" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tinker/tinker_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "tinker_heat_seeking_missile"
+		"AbilityCooldown" "0.9"
+		"AbilityCastPoint" "0.135"
+		"Damage" "1"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "1800"
+			"MaxLength" "1800"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1800"
+		}
+	}
+}

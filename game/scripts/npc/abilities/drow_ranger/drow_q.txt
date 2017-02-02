@@ -1,0 +1,21 @@
+"DOTAAbilities" {
+	"drow_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/drow/drow_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINTT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "drow_ranger/dragons_touch_ability_icons/drow_ranger_wave_of_silence"
+		"AbilityCooldown" "8.0"
+		"Damage" "1"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "400"
+			"MinLength" "400"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "400"
+		}
+	}
+}

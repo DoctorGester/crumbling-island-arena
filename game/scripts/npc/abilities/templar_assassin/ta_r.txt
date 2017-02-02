@@ -1,0 +1,14 @@
+"DOTAAbilities" {
+	"ta_r" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ta/ta_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "templar_assassin_refraction"
+		"AbilityCooldown" "16.0"
+
+		"precache" {
+			"particle" "particles/items3_fx/fish_bones_active.vpcf"
+		}
+	}
+}

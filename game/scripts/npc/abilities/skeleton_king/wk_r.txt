@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"wk_r" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/wk/wk_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "undying_decay"
+		"AbilityCooldown" "18.0"
+		"Damage" "4"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_THICK_LINE"
+			"MaxLength" "2500"
+			"MinLength" "2500"
+			"Width" "128"
+		}
+
+		"precache" {
+			"particle" "particles/wk_r/wk_r.vpcf"
+		}
+	}
+}

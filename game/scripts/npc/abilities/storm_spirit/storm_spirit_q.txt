@@ -1,0 +1,25 @@
+"DOTAAbilities" {
+	"storm_spirit_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/storm_spirit/storm_spirit_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "magnataur_shockwave"
+		"AbilityCooldown" "5.0"
+		"Damage" "2"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "1100"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1100"
+		}
+
+		"precache" {
+			"model_folder" "models/heroes/storm_spirit"
+			"particle" "particles/status_fx/status_effect_ancestral_spirit.vpcf"
+		}
+	}
+}

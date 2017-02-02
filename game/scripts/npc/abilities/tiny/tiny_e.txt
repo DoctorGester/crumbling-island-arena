@@ -1,0 +1,26 @@
+"DOTAAbilities" {
+	"tiny_e" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tiny/tiny_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "tiny_avalanche"
+		"AbilityCooldown" "9.0"
+		"AbilityCastRange" "800"
+		"AbilityCastPoint" "0.25"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "250"
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "800"
+		}
+
+		"precache" {
+			"particle" "particles/tiny_e/tiny_e.vpcf"
+		}
+	}
+}

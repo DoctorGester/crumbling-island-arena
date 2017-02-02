@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"gyro_a" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/gyro/gyro_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "gyrocopter_flak_cannon"
+		"AbilityCooldown" "0.6"
+		"AbilityCastPoint" "0.135"
+		"Damage" "1"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "750"
+			"MinLength" "750"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "750"
+		}
+	}
+}

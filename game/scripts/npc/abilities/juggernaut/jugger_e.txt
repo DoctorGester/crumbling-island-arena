@@ -1,0 +1,9 @@
+"DOTAAbilities" {
+	"jugger_e" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/jugger/jugger_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "ember_spirit_activate_fire_remnant"
+		"AbilityCooldown" "5.5"
+	}
+}

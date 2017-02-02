@@ -1,0 +1,23 @@
+"DOTAAbilities" {
+	"undying_w" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/undying/undying_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "undying_soul_rip"
+		"AbilityCooldown" "5.0"
+		"AbilityCastPoint" "0.15"
+		"Damage" "3"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_THICK_LINE"
+			"MinLength" "1500"
+			"MaxLength" "1500"
+			"Width" "200"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1500"
+		}
+	}
+}

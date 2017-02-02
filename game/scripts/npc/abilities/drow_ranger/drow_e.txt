@@ -1,0 +1,23 @@
+"DOTAAbilities" {
+	"drow_e" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/drow/drow_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "drow_ranger_trueshot"
+		"AbilityCooldown" "8.0"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "700"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "700"
+		}
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_visage/status_effect_visage_chill_slow.vpcf"
+		}
+	}
+}

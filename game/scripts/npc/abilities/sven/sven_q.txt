@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"sven_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/sven/sven_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "sven_storm_bolt"
+		"AbilityCooldown" "4"
+		"AbilityCastPoint" "0.2"
+		"Damage" "2"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "700"
+			"MaxLength" "700"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "700"
+		}
+	}
+}

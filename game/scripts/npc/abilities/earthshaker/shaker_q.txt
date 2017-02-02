@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"shaker_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/shaker/shaker_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "earthshaker_fissure"
+		"AbilityCooldown" "4.5"
+		"AbilityCastPoint" "0.3"
+		"Damage" "2"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_THICK_LINE"
+			"MaxLength" "1200"
+			"MinLength" "1200"
+			"Width" "200"
+		}
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_juggernaut/juggernaut_healing_ward_eruption_dust.vpcf"
+		}
+	}
+}

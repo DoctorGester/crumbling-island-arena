@@ -1,0 +1,23 @@
+"DOTAAbilities" {
+	"wk_e" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/wk/wk_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "undying_tombstone_zombie_deathstrike"
+		"AbilityCooldown" "8.0"
+		"AbilityCastPoint" "0.3"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_DIRECTION_GLOBAL"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "256"
+		}
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_undying/undying_zombie_spawn.vpcf"
+		}
+	}
+}

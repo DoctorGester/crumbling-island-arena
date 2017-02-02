@@ -1,0 +1,27 @@
+"DOTAAbilities" {
+	"pa_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pa/pa_q"
+		"AbilityType" "DOTA_ABILITY_TYPE_BASIC"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "phantom_assassin_stifling_dagger"
+		"AbilityCooldown" "2.5"
+		"AbilityCastPoint" "0.1"
+		"Damage" "2"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "900"
+			"MaxLength" "900"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "900"
+		}
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_phantom_assassin/phantom_assassin_stifling_dagger_debuff.vpcf"
+		}
+	}
+}

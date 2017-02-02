@@ -1,0 +1,21 @@
+"DOTAAbilities" {
+	"shaker_a" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/shaker/shaker_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "earthshaker/sltv__earthshaker_ability_icons/earthshaker_aftershock"
+		"AbilityCooldown" "0.6"
+		"AbilityCastPoint" "0.15"
+		"Damage" "1"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "300"
+		}
+	}
+}

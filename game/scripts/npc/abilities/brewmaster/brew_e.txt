@@ -1,0 +1,10 @@
+"DOTAAbilities" {
+	"brew_e" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/brew/brew_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "brewmaster_storm_dispel_magic"
+		"AbilityCooldown" "12.0"
+		"AbilityCastPoint" "0.15"
+	}
+}

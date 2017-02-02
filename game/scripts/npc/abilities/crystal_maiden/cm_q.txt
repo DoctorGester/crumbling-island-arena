@@ -1,0 +1,25 @@
+"DOTAAbilities" {
+	"cm_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/cm/cm_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "tusk_snowball"
+		"AbilityCooldown" "5.0"
+		"Damage" "3"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "1500"
+			"MaxLength" "1500"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1500"
+		}
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_crystalmaiden/maiden_frostbite_buff.vpcf"
+		}
+	}
+}

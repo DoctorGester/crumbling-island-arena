@@ -1,0 +1,26 @@
+"DOTAAbilities" {
+	"cm_e" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/cm/cm_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "ancient_apparition_chilling_touch"
+		"AbilityCooldown" "5.0"
+		"Damage" "3"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "1100"
+			"MaxLength" "1100"
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1100"
+		}
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf"
+		}
+	}
+}

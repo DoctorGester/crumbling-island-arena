@@ -1,0 +1,23 @@
+"DOTAAbilities" {
+	"ta_e" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ta/ta_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityTextureName" "templar_assassin_meld"
+		"AbilityCooldown" "7.0"
+		"AbilityCastPoint" "0.2"
+
+		"TargetingIndicator" {
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "400"
+		}
+
+		"precache" {
+			"particle" "particles/econ/events/ti4/blink_dagger_end_ti4.vpcf"
+		}
+	}
+}

@@ -1,0 +1,25 @@
+"DOTAAbilities" {
+	"zeus_e" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/zeus/zeus_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "zuus_static_field"
+		"AbilityCooldown" "7.0"
+		"AbilityCastPoint" "0.15"
+		"Damage" "2"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "600"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "600"
+		}
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_razor/razor_storm_lightning_strike.vpcf"
+		}
+	}
+}

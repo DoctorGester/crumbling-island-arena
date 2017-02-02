@@ -1,0 +1,20 @@
+"DOTAAbilities" {
+	"wk_w" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/wk/wk_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "undying_decay"
+		"AbilityCooldown" "7.0"
+		"AbilityCastPoint" "0.2"
+		"Damage" "3"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "400"
+		}
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_skeletonking/skeletonking_hellfireblast_debuff.vpcf"
+		}
+	}
+}
