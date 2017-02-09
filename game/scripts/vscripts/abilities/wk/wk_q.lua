@@ -27,7 +27,7 @@ function wk_q:OnSpellStart()
 end
 
 function wk_q:GetCastAnimation()
-    return ACT_DOTA_CAST_ABILITY_1
+    return ACT_DOTA_CAST_ABILITY_3
 end
 
 function wk_q:GetPlaybackRateOverride()

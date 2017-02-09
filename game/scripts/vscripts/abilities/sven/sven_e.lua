@@ -40,28 +40,32 @@ function sven_e:OnChannelFinish(interrupted)
     local effect = ImmediateEffectPoint("particles/econ/items/sven/sven_warcry_ti5/sven_spell_warcry_ti_5.vpcf", PATTACH_ABSORIGIN, hero, hero:GetPos())
     ParticleManager:SetParticleControl(effect, 2, hero:GetPos())
 
-    SvenDash(hero, target, 200, {
-        modifier = { name = "modifier_sven_e", ability = self },
-        forceFacing = true,
-        gesture = ACT_DOTA_RUN,
-        gestureRate = 1.8,
-        hitParams = {
-            ability = self,
-            sound = "Arena.Sven.HitE",
-            damage = self:GetDamage(),
-            action = function(victim)
-                local pos = hero:GetPos()
-                local tp = victim:GetPos()
-                local between = ClosestPointToSegment(from, pos, tp)
-                local knockDirection = (tp - between):Normalized()
+    hero:GetUnit():Interrupt()
 
-                SoftKnockback(victim, hero, knockDirection, 10 + 60 * direction:Dot(knockDirection), { decrease = 4 })
+    TimedEntity(0.05, function()
+        SvenDash(hero, target, 200, {
+            modifier = { name = "modifier_sven_e", ability = self },
+            forceFacing = true,
+            gesture = ACT_DOTA_CHANNEL_ABILITY_3,
+            gestureRate = 1.8,
+            hitParams = {
+                ability = self,
+                sound = "Arena.Sven.HitE",
+                damage = self:GetDamage(),
+                action = function(victim)
+                    local pos = hero:GetPos()
+                    local tp = victim:GetPos()
+                    local between = ClosestPointToSegment(from, pos, tp)
+                    local knockDirection = (tp - between):Normalized()
 
-                local effect = ImmediateEffectPoint("particles/econ/items/earthshaker/earthshaker_gravelmaw/earthshaker_fissure_dust_gravelmaw.vpcf", PATTACH_ABSORIGIN, hero, tp)
-                ParticleManager:SetParticleControl(effect, 1, between + (tp - between):Normalized() * 300)
-            end
-        }
-    })
+                    SoftKnockback(victim, hero, knockDirection, 10 + 60 * direction:Dot(knockDirection), { decrease = 4 })
+
+                    local effect = ImmediateEffectPoint("particles/econ/items/earthshaker/earthshaker_gravelmaw/earthshaker_fissure_dust_gravelmaw.vpcf", PATTACH_ABSORIGIN, hero, tp)
+                    ParticleManager:SetParticleControl(effect, 1, between + (tp - between):Normalized() * 300)
+                end
+            }
+        })
+    end):Activate()
 end
 
 if IsServer() then

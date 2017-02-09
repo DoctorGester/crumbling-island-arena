@@ -38,9 +38,9 @@ function ta_q:OnSpellStart(interrupted)
 end
 
 function ta_q:GetCastAnimation()
-    return ACT_DOTA_ATTACK
+    return ACT_DOTA_CAST_ABILITY_3
 end
 
 function ta_q:GetPlaybackRateOverride()
-    return 2.0
+    return 1.6
 end
