@@ -142,7 +142,7 @@ function Spells:GroundDamage(point, radius, source, suppress)
             if hit then
                 for _, part in pairs(parts) do
                     if part.launched and hit[part] then
-                        hero:AddNewModifier(hero, nil, "modifier_launched", { duration = 0.7 })
+                        hero:AddNewModifier(hero, nil, "modifier_launched", { duration = 0.5 })
                         break
                     end
                 end

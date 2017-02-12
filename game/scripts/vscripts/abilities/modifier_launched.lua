@@ -27,5 +27,5 @@ function modifier_launched:GetOverrideAnimationRate(params)
 end
 
 function modifier_launched:GetVisualZDelta()
-    return math.sin(self:GetElapsedTime() / self:GetDuration() * 3.14) * 180
+    return math.sin(self:GetElapsedTime() / self:GetDuration() * 3.14) * 140
 end
