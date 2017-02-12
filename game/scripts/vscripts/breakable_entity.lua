@@ -1,7 +1,7 @@
 BreakableEntity = BreakableEntity or class({}, nil, UnitEntity)
 
-function BreakableEntity:constructor(round, unitName, pos, team, findSpace)
-    getbase(BreakableEntity).constructor(self, round, unitName, pos, team, findSpace)
+function BreakableEntity:constructor(round, unitName, pos, team, findSpace, playerOwner)
+    getbase(BreakableEntity).constructor(self, round, unitName, pos, team, findSpace, playerOwner)
 
     self.customHealth = false
 end

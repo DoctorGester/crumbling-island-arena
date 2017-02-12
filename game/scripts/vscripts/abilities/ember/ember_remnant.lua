@@ -1,7 +1,7 @@
 EmberRemnant = class({}, nil, WearableOwner)
 
 function EmberRemnant:constructor(round, owner, target, ability)
-    getbase(EmberRemnant).constructor(self, round, "ember_remnant", owner:GetPos(), owner.unit:GetTeamNumber())
+    getbase(EmberRemnant).constructor(self, round, "ember_remnant", owner:GetPos(), owner.unit:GetTeamNumber(), false, owner.owner)
 
     self.owner = owner.owner
     self.hero = owner

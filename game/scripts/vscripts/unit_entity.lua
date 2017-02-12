@@ -8,7 +8,7 @@ meta.__call = function(object, f)
     end
 end
 
-function UnitEntity:constructor(round, unitName, pos, team, findSpace)
+function UnitEntity:constructor(round, unitName, pos, team, findSpace, playerOwner)
 	getbase(UnitEntity).constructor(self, round)
 
     if findSpace == nil then
@@ -17,6 +17,10 @@ function UnitEntity:constructor(round, unitName, pos, team, findSpace)
     
 	if unitName then
 		self:SetUnit(CreateUnitByName(unitName, pos, findSpace, nil, nil, team or DOTA_TEAM_NOTEAM))
+
+        if playerOwner then
+            self:AddNewModifier(self, nil, "modifier_player_id", {}):SetStackCount(playerOwner.id)
+        end
 	end
 
 	self.removeOnDeath = true
