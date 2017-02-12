@@ -29,7 +29,7 @@ function tiny_a:OnSpellStart()
     local sound = { "Arena.Tiny.HitA2", "Arena.Tiny.HitA" }
     local duration = 0.8
 
-    if mod then
+    if mod and not mod.used then
         damage = damage * 3
         force = force * 3
         range = 500
