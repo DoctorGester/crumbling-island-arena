@@ -217,7 +217,7 @@ function Level:FindCirclePartIntersection(x, y, rad)
 
     for cluster, _ in pairs(clusters) do
         for polygon, _ in pairs(cluster) do
-            if polygon.part.z > -1000 and (polygon:contains(x, y) or polygon:intersectsCircle(x, y, rad)) then
+            if not polygon.part.launched and (polygon:contains(x, y) or polygon:intersectsCircle(x, y, rad)) then
                 --self:DebugPolygon(polygon, 0.1)
 
                 if not result then
