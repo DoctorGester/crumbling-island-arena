@@ -102,6 +102,14 @@ function Dash:Update()
         result = self:PositionFunction(origin)
 
         result.z = self.zStart + self:HeightFunction(origin)
+
+        local testPos = self:PositionFunction(self:PositionFunction(self:PositionFunction(result)))
+
+        if self.hero:CanFall() and not Spells.TestCircle(testPos, self.hero:GetRad()) then
+            self:Interrupt()
+            return origin
+        end
+
         self.hero:SetPos(result)
 
         if self.hitParams then
