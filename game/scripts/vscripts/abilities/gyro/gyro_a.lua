@@ -29,7 +29,10 @@ function self:OnSpellStart()
 
             if not modifier then
                 modifier = victim:AddNewModifier(hero, self, "modifier_gyro_a_slow", { duration = 3 })
-                modifier:SetStackCount(1)
+
+                if modifier then
+                    modifier:SetStackCount(1)
+                end
             else
                 modifier:IncrementStackCount()
                 modifier:ForceRefresh()
