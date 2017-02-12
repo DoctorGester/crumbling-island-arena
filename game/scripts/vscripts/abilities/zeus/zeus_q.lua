@@ -10,6 +10,8 @@ function zeus_q:DestroyParticle()
 end
 
 function zeus_q:OnAbilityPhaseStart()
+    Wrappers.DirectionalAbility(self, 1200)
+
     self.particle = FX("particles/zeus_q/zeus_q_target.vpcf", PATTACH_CUSTOMORIGIN, self:GetCaster(), {
         cp0 = self:GetCursorPosition()
     })
@@ -29,8 +31,6 @@ function zeus_q:OnAbilityPhaseInterrupted()
 end
 
 function zeus_q:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 1200)
-
     self:DestroyParticle()
 
     local hero = self:GetCaster().hero
