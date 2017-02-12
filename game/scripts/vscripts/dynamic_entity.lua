@@ -98,6 +98,10 @@ function DynamicEntity:AllModifiers()
 end
 
 function DynamicEntity:AllowAbilityEffect(source, ability)
+    if not self:Alive() then
+        return true
+    end
+
     for _, modifier in pairs(self:AllModifiers()) do
         if modifier.AllowAbilityEffect and modifier:AllowAbilityEffect(source, ability) == false then
             return false
