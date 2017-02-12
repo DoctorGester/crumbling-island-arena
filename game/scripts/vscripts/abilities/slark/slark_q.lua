@@ -23,10 +23,15 @@ function slark_q:OnSpellStart()
         graphics = "particles/slark_q/slark_q.vpcf",
         distance = 900,
         hitModifier = { name = "modifier_slark_q", duration = 1.0, ability = self },
-        hitSound = "Arena.Slark.HitE"
+        hitSound = "Arena.Slark.HitE",
+        destroyFunction = function()
+            hero:FindAbility("slark_a"):SetActivated(true)
+            hero:GetWearableBySlot("weapon"):RemoveEffects(EF_NODRAW)
+        end
     }):Activate()
 
-    hero:FindAbility("slark_a"):StartCooldown(2.0)
+    hero:FindAbility("slark_a"):SetActivated(false)
+    hero:GetWearableBySlot("weapon"):AddEffects(EF_NODRAW)
 end
 
 function slark_q:GetCastAnimation()
