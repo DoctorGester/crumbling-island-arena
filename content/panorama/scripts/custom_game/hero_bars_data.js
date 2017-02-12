@@ -103,6 +103,7 @@ AddStatusEffect("modifier_lycan_e", "#StatusFear", "#5e679b", 2);
 AddStatusEffect("modifier_cm_frozen", "#StatusFrozen", "#7ceeff", 2);
 AddStatusEffect("modifier_silence_lua", "#StatusSilenced", "#ffffff", 2);
 AddStatusEffect("modifier_sven_w_slow", "#StatusSilenced", "#ffffff", 2);
+AddStatusEffect("modifier_am_r", "#StatusSilenced", "#ffffff", 2);
 
 AddStatusEffect("modifier_cm_r_slow", "#StatusFrozen", "#7ceeff");
 AddStatusEffect("modifier_ursa_frenzy", "#StatusFrenzy", "#FF6A00");
@@ -115,6 +116,8 @@ AddStatusEffect("modifier_ember_w", "#StatusRooted", "#a6e7e2");
 AddStatusEffect("modifier_venge_w", "#StatusBreak", "#b2e7c8");
 AddStatusEffect("modifier_ta_q", "#StatusBreak", "#b2e7c8");
 AddStatusEffect("modifier_venge_r_target", "#StatusBreak", "#b2e7c8");
+AddStatusEffect("modifier_am_a", "#StatusCharged", "#00b5ff");
+AddStatusEffect("modifier_am_w", "#StatusSpellShield", "#7aaaff", 1);
 //AddStatusEffect("modifier_wr_a", "#StatusHaste", "#91e246");
 
 AddStatusEffect("modifier_ursa_r", "#StatusUltimate", "#ff1b00", 1);

@@ -6055,11 +6055,56 @@
 		event_type = "1.0"
 	}
 
-	Arena.AM.PreQ = {
+	Arena.AM.PreA = {
 		type = "dota_update_default"
 		vsnd_files = 
 		[
 			"sounds/weapons/hero/antimage/antimage_swing1.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "60.0"
+		event_type = "1.0"
+	}
+
+	Arena.AM.CastQ = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/doom_bringer/infernal_blade_preattack.vsnd",
+		]
+		volume = "1.0"
+		volume_fade_out = "0.3"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "60.0"
+		event_type = "1.0"
+	}
+
+	Arena.AM.LoopQ = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/antimage_q.vsnd",
+		]
+		volume = "1.4"
+		volume_fade_out = "0.3"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "60.0"
+		event_type = "1.0"
+	}
+
+	Arena.AM.EndQ = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/ui/inventory/metalblade_pickup_01.vsnd",
+			"sounds/ui/inventory/metalblade_pickup_02.vsnd",
 		]
 		volume = "1.0"
 		pitch_rand_min = "-0.05"
@@ -6087,9 +6132,9 @@
 		type = "dota_update_default"
 		vsnd_files = 
 		[
-			"sounds/items/lotus_activate.vsnd"
+			"sounds/weapons/hero/antimage/spell_shield_block.vsnd"
 		]
-		volume = "0.4"
+		volume = "1.8"
 		pitch_rand_min = "-0.05"
 		pitch_rand_max = "0.05"
 		pitch = "1.0"
@@ -6106,7 +6151,7 @@
 			"sounds/vo/antimage/anti_resist_03.vsnd",
 			"sounds/vo/antimage/anti_resist_04.vsnd"
 		]
-		volume = "1.0"
+		volume = "2.0"
 		pitch_rand_min = "-0.05"
 		pitch_rand_max = "0.05"
 		pitch = "1.0"

@@ -1,12 +1,13 @@
 WearableOwner = WearableOwner or class({}, nil, BreakableEntity)
 
-function WearableOwner:constructor(round, unitName, pos, team, findSpace)
-    getbase(WearableOwner).constructor(self, round, unitName, pos, team, findSpace)
+function WearableOwner:constructor(round, unitName, pos, team, findSpace, playerOwner)
+    getbase(WearableOwner).constructor(self, round, unitName, pos, team, findSpace, playerOwner)
 
     self.wearables = {}
     self.wearableParticles = {}
     self.mappedParticles = {}
     self.wearableSlots = {}
+    self.slotVisualParameters = {}
     self.hideQueue = nil
 end
 
@@ -66,22 +67,36 @@ function WearableOwner:LoadItems(...)
 
     for slot, item in pairs(items) do
         if not item.id or not ignored[item.id] then
+            self.slotVisualParameters[slot] = { self:GetUnit(), item.visuals or {}, styles[item.id], slot }
+
             if item.model_player then
                 local wearable = self:AttachWearable(item.model_player)
-                self:AttachVisuals(wearable, item.visuals or {}, styles[item.id])
+                self.slotVisualParameters[slot][1] = wearable
 
                 table.insert(sessionWearables, wearable)
                 self.wearableSlots[slot] = wearable
-            else
-                self:AttachVisuals(self:GetUnit(), item.visuals or {}, styles[item.id])
             end
+
+            self:AttachVisuals(unpack(self.slotVisualParameters[slot]))
         end
     end
 
     return sessionWearables
 end
 
-function WearableOwner:AttachVisuals(wearable, visuals, style)
+function WearableOwner:RecreateSlotVisuals(slot)
+    self:AttachVisuals(unpack(self.slotVisualParameters[slot]))
+end
+
+function WearableOwner:DestroySlotVisuals(slot)
+    for _, particle in pairs(self.wearableParticles[slot] or {}) do
+        DFX(particle)
+    end
+
+    self.wearableParticles[slot] = nil
+end
+
+function WearableOwner:AttachVisuals(wearable, visuals, style, slot)
     local attachTypes = {
         customorigin = PATTACH_CUSTOMORIGIN,
         point_follow = PATTACH_POINT_FOLLOW,
@@ -133,7 +148,8 @@ function WearableOwner:AttachVisuals(wearable, visuals, style)
             ParticleManager:SetParticleControlEnt(particle, cp.control_point_index, target, at, cp.attachment, target:GetAbsOrigin(), true)
         end
 
-        table.insert(self.wearableParticles, particle)
+        self.wearableParticles[slot] = self.wearableParticles[slot] or {}
+        table.insert(self.wearableParticles[slot], particle)
     end
 end
 
@@ -322,9 +338,11 @@ function WearableOwner:AttachWearable(modelPath)
 end
 
 function WearableOwner:CleanParticles()
-    for _, particle in pairs(self.wearableParticles) do
-        ParticleManager:DestroyParticle(particle, false)
-        ParticleManager:ReleaseParticleIndex(particle)
+    for _, slotParticles in pairs(self.wearableParticles) do
+        for _, particle in pairs(slotParticles) do
+            ParticleManager:DestroyParticle(particle, false)
+            ParticleManager:ReleaseParticleIndex(particle)
+        end
     end
 
     self.wearableParticles = {}

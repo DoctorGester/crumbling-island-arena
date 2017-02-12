@@ -5,8 +5,7 @@ LinkLuaModifier("modifier_am_w", "abilities/am/modifier_am_w", LUA_MODIFIER_MOTI
 
 function self:OnSpellStart()
     local hero = self:GetCaster().hero
-    local target = self:GetCursorPosition()
-    hero:AddNewModifier(hero, self, "modifier_am_w", { duration = 2 })
+    hero:AddNewModifier(hero, self, "modifier_am_w", { duration = 1 })
     hero:EmitSound("Arena.AM.CastW")
 end
 

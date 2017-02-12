@@ -372,6 +372,13 @@
             "type" "pass"
             "level" "12"
             "item" "8271,8324"
+            "particles"
+			{
+				"particles/am_a/am_a.vpcf" "particles/econ/am_a/am_a.vpcf"
+				"particles/am_q/am_q.vpcf" "particles/econ/am_q/am_q.vpcf"
+				"particles/am_q/am_q2.vpcf" "particles/econ/am_q/am_q2.vpcf"
+				"particles/am_e/am_e.vpcf" "particles/econ/am_q/am_q_trail.vpcf"
+			}
         }
 
         "2"

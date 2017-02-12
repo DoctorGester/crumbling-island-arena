@@ -1,0 +1,1 @@
+modifier_am_a = class({})

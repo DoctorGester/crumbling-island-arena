@@ -10,6 +10,8 @@ function self:OnAbilityPhaseStart()
 end
 
 function self:OnSpellStart()
+    Wrappers.DirectionalAbility(self, 800)
+
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
 

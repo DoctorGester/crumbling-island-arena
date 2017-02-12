@@ -106,6 +106,7 @@ function FX(path, attach, parent, options)
 
     for i = 0, 16 do
         local cp = options["cp"..tostring(i)]
+        local cpf = options["cp"..tostring(i).."f"]
 
         if cp then
             -- Probably vector
@@ -125,6 +126,10 @@ function FX(path, attach, parent, options)
 
                 ParticleManager:SetParticleControlEnt(index, i, cp.ent, cp.attach, cp.point, cp.ent:GetAbsOrigin(), true)
             end
+        end
+
+        if cpf then
+            ParticleManager:SetParticleControlForward(index, i, cpf)
         end
     end
 

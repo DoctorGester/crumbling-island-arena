@@ -10,7 +10,7 @@
 		},
 		{
 			_class = "C_OP_RampScalarLinearSimple"
-			m_Rate = 31.4
+			m_Rate = -31.4
 			m_flEndTime = 99999.0
 			m_nField = 12
 		},
@@ -19,7 +19,7 @@
 		},
 		{
 			_class = "C_OP_MovementRotateParticleAroundAxis"
-			m_flRotRate = 1800.0
+			m_flRotRate = -1800.0
 		},
 	]
 	m_Renderers = 

@@ -15,6 +15,7 @@ function Hero:constructor(data)
     self.wearableParticles = {}
     self.mappedParticles = {}
     self.wearableSlots = {}
+    self.slotVisualParameters = {}
     self.mixins = {}
     self.lastKnockbackSource = nil
     self.lastKnockbackTimer = 0
@@ -182,13 +183,11 @@ function Hero:EmitSound(sound, location)
 end
 
 function Hero:SetOwner(owner)
-    local c = GameRules.GameMode.TeamColors[owner.team]
-    local name = IsInToolsMode() and "Player" or PlayerResource:GetPlayerName(owner.id)
-
     self.owner = owner
     self.unit:SetControllableByPlayer(owner.id, true)
-    self.unit:SetCustomHealthLabel(name, c[1], c[2], c[3])
     PlayerResource:SetOverrideSelectionEntity(owner.id, self.unit)
+
+    self:AddNewModifier(self, nil, "modifier_player_id", {}):SetStackCount(self.owner.id)
 
     if #self.wearables == 0 then
         self:LoadWearables()

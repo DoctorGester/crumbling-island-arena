@@ -222,9 +222,9 @@
 		"medusa_DescE" "Потратить ману и получить щит"
 		"medusa_DescR" "Оглушить ВСЕХ героев перед собой"
 
-		"antimage_DescQ" "Атаковать врагов вокруг"
-		"antimage_DescW" "Щит от дебаффов"
-		"antimage_DescE" "Короткий рывок"
+		"antimage_DescQ" "Бросить 2 снаряда"
+		"antimage_DescW" "Щит против способностей"
+		"antimage_DescE" "Короткий рывок + урон"
 		"antimage_DescR" "Безмолвие + замедление в области"
 
 		"phantom_lancer_DescQ" "Атака перед собой, превращает иллюзии в снаряды"
@@ -271,7 +271,7 @@
 		"ChangeHero" "Сменить героя"
 		"Round" "Раунд"
 		"FirstBlood" "<b><font color='red'>Первую кровь</font></b> пролил <b><font color='{s:color}'>{s:name}</font></b>"
-		"MVP" "<b><font color='gold'>Игрок раунда</font></b>: <b><font color='{s:color}'>{s:name}</font></b>"
+		"MVP" "<b><font color='gold'>MVP</font></b>: <b><font color='{s:color}'>{s:name}</font></b>"
 		"AttackTipLeft" "НАЖМИ"
         "AttackTipRight" "ЧТОБЫ ИСПОЛЬЗОВАТЬ АТАКУ"
 
@@ -774,8 +774,8 @@
 		"ModifierTooltip_modifier_dusa_r_target"				"Скоро обратится в камень"
 		"ModifierTooltip_modifier_dusa_r"						"Оглушен"
 
-		"ModifierTooltip_modifier_am_damage"					"Получит урон когда количество стаков достигнет 3"
-		"ModifierTooltip_modifier_am_w"							"Защищен от дебаффов"
+		"ModifierTooltip_modifier_am_a"							"Оружие заряжено"
+		"ModifierTooltip_modifier_am_w"							"Защищен от магии"
 		"ModifierTooltip_modifier_am_e"							"Magic be dashed"
 		"ModifierTooltip_modifier_am_r"							"Замедлен и обезмолвлен"
 
@@ -807,6 +807,7 @@
 		"StatusShock" "Шок"
 		"StatusRooted" "Обездвижен"
 		"StatusBreak" "Уязвимость"
+		"StatusSpellShield" "Щит"
 		"StatusUltimate" "Ультимейт"
 	}
 }

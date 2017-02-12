@@ -156,7 +156,7 @@ function Projectile:CollideWith(target)
         if self.hitFunction then
             self:hitFunction(target)
         elseif self.damage ~= nil then
-            target:Damage(self.hero, self.damage, self.isPhysical)
+            target:Damage(self, self.damage, self.isPhysical)
         end
 
         if self.hitModifier then

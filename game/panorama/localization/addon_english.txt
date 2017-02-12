@@ -224,9 +224,9 @@
 		"medusa_DescE" "Spend mana to gain a shield"
 		"medusa_DescR" "Disable ALL heroes in front of you"
 
-		"antimage_DescQ" "Attack enemies around you"
-		"antimage_DescW" "Debuff deflecting shield"
-		"antimage_DescE" "Short dash"
+		"antimage_DescQ" "Throw 2 projectiles"
+		"antimage_DescW" "Ability deflecting shield"
+		"antimage_DescE" "Short dash + damage"
 		"antimage_DescR" "Silence + slow in the AOE"
 
 		"phantom_lancer_DescQ" "Melee attack, turns illusions into projectiles"
@@ -606,9 +606,10 @@
 		"AbilityTooltip_dusa_e"							"Spend <font color=\"skyblue\">mana</font> to gain a shield<br/><br/><font color=\"skyblue\">Mana</font> is restored every 10 seconds<br/>The more <font color=\"skyblue\">mana</font> you have, the slower you move"
 		"AbilityTooltip_dusa_r"							"Gain a powerful buff, disabling <font color=\"gold\"><b>ALL</b></font> heroes in front of you after looking at them for 1 second"
 
-		"AbilityTooltip_am_q"							"Apply a stacking debuff to all enemies around<br/>When an enemy reaches 3 stacks he takes damage"
-		"AbilityTooltip_am_w"							"Gain a short shield which negates applied debuffs<br/>Every debuff restores a charge of <font color=\"gold\"><b>E</b></font>"
-		"AbilityTooltip_am_e"							"<font color=\"#DAFF7F\"><b>Charged</b></font><br/>Short dash<br/>Applies a stacking debuff to all enemies on the way<br/>When an enemy reaches 3 stacks he takes damage"
+		"AbilityTooltip_am_a"							"Damages enemies in a circle<br/>Attacking when <font color='#00b5ff'>CHARGED</font> consumes the charge, deals 2x damage and silences"
+		"AbilityTooltip_am_q"							"Throw both weapons in 2 arcs, damaging enemies on the way"
+		"AbilityTooltip_am_w"							"Gain a short shield which negates incoming spells<br/><font color='#00b5ff'>CHARGES</font> your weapon when triggered"
+		"AbilityTooltip_am_e"							"Short dash<br/><font color='#00b5ff'>CHARGES</font> your weapon if an enemy is damaged"
 		"AbilityTooltip_am_r"							"Silence all enemies in the target area and slow them based on the number of abilities they have on cooldown"
 
 		"AbilityTooltip_pl_q"							"Attack enemies in front of you<br/>All illusions hit turn into projectiles and fly forward damaging first enemy on their way"
@@ -786,8 +787,8 @@
 		"ModifierTooltip_modifier_dusa_r_target"				"Will turn into stone soon"
 		"ModifierTooltip_modifier_dusa_r"						"Stunned"
 
-		"ModifierTooltip_modifier_am_damage"					"Will take damage once the stack count reaches 3"
-		"ModifierTooltip_modifier_am_w"							"Protected from debuffs"
+		"ModifierTooltip_modifier_am_a"							"Weapon is charged"
+		"ModifierTooltip_modifier_am_w"							"Spell protection"
 		"ModifierTooltip_modifier_am_e"							"Magic be dashed"
 		"ModifierTooltip_modifier_am_r"							"Slowed and silenced"
 
@@ -818,6 +819,8 @@
 		"StatusShock" "Shock"
 		"StatusRooted" "Rooted"
 		"StatusBreak" "Break"
+		"StatusSpellShield" "Spell shield"
+		"StatusCharged" "Charged"
 		"StatusUltimate" "Ultimate"
 	}
 }

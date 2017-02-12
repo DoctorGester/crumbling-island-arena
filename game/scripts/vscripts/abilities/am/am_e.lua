@@ -12,9 +12,13 @@ function self:OnSpellStart()
     Dash(hero, target, 2000, {
         modifier = { name = "modifier_am_e", ability = self },
         forceFacing = true,
+        gesture = ACT_DOTA_RUN,
+        gestureRate = 2.4,
         hitParams = {
-            action = function(victim)
-                hero:FindAbility("am_q"):DealDamage(victim)
+            damage = self:GetDamage(),
+            sound = "Arena.AM.Hit",
+            action = function()
+                hero:AddNewModifier(hero, hero:FindAbility("am_a"), "modifier_am_a", { duration = 3.0 })
             end
         }
     })

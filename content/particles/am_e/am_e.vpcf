@@ -135,23 +135,4 @@
 			_class = "C_OP_ContinuousEmitter"
 		},
 	]
-	m_Children = 
-	[
-		{
-			m_ChildRef = resource:"particles/am_q/am_q_e.vpcf"
-			m_bDisableChild = true
-		},
-		{
-			m_ChildRef = resource:"particles/am_q/am_q_b.vpcf"
-			m_bDisableChild = true
-		},
-		{
-			m_ChildRef = resource:"particles/am_q/am_q_c.vpcf"
-			m_bDisableChild = true
-		},
-		{
-			m_ChildRef = resource:"particles/am_q/am_q_d.vpcf"
-			m_bDisableChild = true
-		},
-	]
 }
