@@ -17,7 +17,6 @@ function ProjectilePAA:constructor(round, hero, target, damage, ability)
     self.attraction = 0.05
     self.startTime = GameRules:GetGameTime()
 
-    self.state = ProjectilePAA.STATE_NORMAL
     self.vel = self.vel * self:GetSpeed()
     self.hitGroup[hero] = self.gracePeriod
     self.hitFunction = function(self, target)
