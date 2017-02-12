@@ -2,16 +2,6 @@ var dummy = "npc_dota_hero_wisp";
 var heroBars = {};
 var heroes = null;
 
-function GetUnitOwner(unit) {
-    for (var i = 0; i < Players.GetMaxPlayers(); i++) {
-        if (Players.IsValidPlayerID(i) && Entities.IsControllableByPlayer(unit, i)) {
-            return i;
-        }
-    }
-
-    return null;
-}
-
 function darken(color, percent) {
     return [ color[0] * percent, color[1] * percent, color[2] * percent ];
 }
@@ -298,7 +288,7 @@ function UpdateHeroBars(){
                     var bar = panel.FindChildTraverse("HealthBar");
                     var teamColor = colors[Entities.GetTeamNumber(entity.id)];
                     var name = panel.FindChildTraverse("PlayerName");
-                    name.text = Players.GetPlayerName(GetUnitOwner(entity.id));
+                    name.text = Players.GetPlayerName(GetPlayerOwnerID(entity.id));
                     name.style.color = clr(teamColor);
 
                     var missing = bar.FindChild("MissingHealth");

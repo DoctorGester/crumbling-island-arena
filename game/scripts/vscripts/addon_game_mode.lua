@@ -550,6 +550,7 @@ function GameMode:InitModifiers()
     LinkLuaModifier("modifier_wearable_visuals_activity", "abilities/modifier_wearable_visuals", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_attack_speed", "abilities/modifier_attack_speed", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_custom_healthbar", "abilities/modifier_custom_healthbar", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_player_id", "abilities/modifier_player_id", LUA_MODIFIER_MOTION_NONE)
 end
 
 function GameMode:SetupMode()
@@ -1353,6 +1354,11 @@ function GameMode:LoadCustomHeroes()
             for i = 0, 10 do
                 local abilityName = data["Ability"..tostring(i)]
                 if abilityName and #abilityName ~= 0 and not abilityName:starts("placeholder") then
+
+                    if not customAbilities[abilityName] then
+                        print("Ability not found "..abilityName)
+                    end
+
                     local ability = {}
                     ability.name = abilityName
                     ability.texture = customAbilities[ability.name].AbilityTextureName
@@ -1572,6 +1578,7 @@ if IsInToolsMode() then
     GameMode.InitModifiers()
     GameRules.GameMode:LoadCustomHeroes()
     GameRules.GameMode:UpdateAvailableHeroesTable()
+    GameRules.GameMode:NetworkCosmetics()
 
     GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(GameMode, "FilterExecuteOrder"), GameRules.GameMode)
 end

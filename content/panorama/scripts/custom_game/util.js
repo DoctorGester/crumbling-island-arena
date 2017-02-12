@@ -380,6 +380,10 @@ function GetModifierCount(unit, modifier) {
     return j;
 }
 
+function GetPlayerOwnerID(unit) {
+    return GetStackCount(unit, "modifier_player_id")
+}
+
 function CreateScoreboardFromData(players, callback) {
     for (var key in players) {
         players[key].ids = [ players[key].id ];
