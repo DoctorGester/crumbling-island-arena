@@ -16,6 +16,7 @@ function self:OnSpellStart()
     local target = self:GetCursorPosition()
 
     hero:AreaEffect({
+        ability = self,
         onlyHeroes = true,
         filter = Filters.Area(target, 350),
         modifier = { name = "modifier_am_r", duration = 2.5, ability = self }

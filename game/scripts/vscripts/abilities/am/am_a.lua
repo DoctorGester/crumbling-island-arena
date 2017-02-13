@@ -47,3 +47,5 @@ end
 function self:GetPlaybackRateOverride()
     return 1.66
 end
+
+Wrappers.AttackAbility(self)

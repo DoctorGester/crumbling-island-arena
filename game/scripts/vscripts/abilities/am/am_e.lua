@@ -10,6 +10,7 @@ function self:OnSpellStart()
     local target = self:GetCursorPosition()
 
     Dash(hero, target, 2000, {
+        ability = self,
         modifier = { name = "modifier_am_e", ability = self },
         forceFacing = true,
         gesture = ACT_DOTA_RUN,
