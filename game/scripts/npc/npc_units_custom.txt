@@ -112,6 +112,13 @@
 		"VisionNighttimeRange"		"0"		// Range of vision at night time.
 	}
 
+	"jugg_sword"
+	{
+		"BaseClass"					"npc_dota_creep_neutral"
+
+		"Ability1"					"dummy_unit_ability"
+	}
+
 	"wearable_model"
 	{
 		"BaseClass"     "npc_dota_creature"

@@ -1,7 +1,7 @@
 JuggerSword = class({}, nil, UnitEntity)
 
 function JuggerSword:constructor(round, owner, target, particle)
-    getbase(JuggerSword).constructor(self, round, DUMMY_UNIT, target, owner.unit:GetTeamNumber())
+    getbase(JuggerSword).constructor(self, round, "jugg_sword", target, owner.unit:GetTeamNumber(), false, owner.owner)
 
     self.owner = owner.owner
     self.hero = owner
