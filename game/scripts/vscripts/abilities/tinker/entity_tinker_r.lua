@@ -26,6 +26,7 @@ function EntityTinkerR:Update()
     self.hero:AreaEffect({
         ability = self.ability,
         targetProjectiles = true,
+        sound = "Arena.Tinker.HitR",
         filter = Filters.Area(self:GetPos(), 400) + Filters.WrapFilter(
             function(target)
                 return time - (self.ignoreGroup[target] or 0) >= 1
@@ -49,7 +50,6 @@ function EntityTinkerR:Update()
                 release = true
             })
 
-            target:EmitSound("Arena.Tinker.HitR")
             self.ignoreGroup[target] = time
         end
     })
