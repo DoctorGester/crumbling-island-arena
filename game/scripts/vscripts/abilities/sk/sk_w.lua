@@ -26,6 +26,7 @@ function SKWProjectile:constructor(round, hero, target, damage)
         distance = 2000,
         continueOnHit = true,
         considersGround = true,
+        ignoreProjectiles = true,
         hitFunction = function(_, target)
             target:Damage(hero, damage)
             SKUtil.AbilityHit(hero, target)

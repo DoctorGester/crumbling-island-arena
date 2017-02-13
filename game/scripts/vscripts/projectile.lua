@@ -39,6 +39,7 @@ function Projectile:constructor(round, params)
     self.isPhysical = params.isPhysical
     self.screenShake = params.screenShake
     self.hitProjectiles = params.hitProjectiles
+    self.ignoreProjectiles = params.ignoreProjectiles
     self.considersGround = params.considersGround
     self.ability = params.ability
 
@@ -137,7 +138,10 @@ function Projectile:CollidesWith(target)
     local areEnemies = (self.owner.team ~= target.owner.team or target.specialAlly)
 
     if instanceof(target, Projectile) then
-        return ((IsAttackAbility(self.ability) and IsAttackAbility(target.ability)) or (self.hitProjectiles or target.hitProjectiles)) and areEnemies
+        local anyHitProjectiles = (self.hitProjectiles or target.hitProjectiles)
+        local anyIgnoreProjectiles = (self.ignoreProjectiles or target.ignoreProjectiles)
+
+        return ((IsAttackAbility(self.ability) and IsAttackAbility(target.ability)) or anyHitProjectiles and not anyIgnoreProjectiles) and areEnemies
     else
         return areEnemies
     end
