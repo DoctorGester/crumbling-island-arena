@@ -463,8 +463,12 @@ var DeathMatch = new (function() {
     this.PlayersUpdated = function(data) {
         if (data.isDeathMatch) {
             var player = _(data.players).findWhere({ id: Game.GetLocalPlayerID() });
-            $("#DeathMatchContainer").SetHasClass("Hidden", !player.isDead);
-            $("#DeathMatchRespawnButtonIcon").heroname = player.hero;
+
+            $("#DeathMatchContainer").SetHasClass("Hidden", player == null || !player.isDead);
+
+            if (player != null) {
+                $("#DeathMatchRespawnButtonIcon").heroname = player.hero;
+            }
         }
     }
 
