@@ -861,6 +861,17 @@ function GameMode:OnRoundEnd(round)
         end
     end
 
+    -- Overriding everything
+    if self:IsDuel() then
+        for _, player in pairs(self.Players) do
+            if player.team == winner then
+                self.scoreEarned[player] = 1
+            else
+                self.scoreEarned[player] = 0
+            end
+        end
+    end
+
     if self:CountHeroes() > 3 then
         if self.firstBloodBy then
             local firstBloodPlayer = self.firstBloodBy.owner
@@ -1141,6 +1152,10 @@ end
 
 function GameMode:IsDeathMatch()
     return self.gameSetup:GetSelectedMode() == "dm"
+end
+
+function GameMode:IsDuel()
+    return not self:IsDeathMatch() and PlayerResource:GetPlayerCount() == 2
 end
 
 -- A replica of server-side function
@@ -1529,6 +1544,8 @@ function GameMode:Start()
 
     if self:IsDeathMatch() then
         self.gameGoal = PlayerResource:GetPlayerCount() * 3
+    elseif self:IsDuel() then
+        self.gameGoal = 4
     else
         self.gameGoal = PlayerResource:GetPlayerCount() * 6 * self.gameSetup:GetPlayersInTeam()
     end
