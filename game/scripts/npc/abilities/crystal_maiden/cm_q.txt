@@ -4,8 +4,9 @@
 		"ScriptFile" "abilities/cm/cm_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "tusk_snowball"
-		"AbilityCooldown" "3.0"
+		"AbilityCooldown" "3.5"
 		"Damage" "2"
+		"AbilityCastPoint" "0.15"
 
 		"TargetingIndicator" {
 			"Type" "TARGETING_INDICATOR_LINE"

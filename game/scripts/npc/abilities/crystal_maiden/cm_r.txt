@@ -7,6 +7,7 @@
 		"AbilityTextureName" "ancient_apparition_ice_vortex"
 		"AbilityCooldown" "18.0"
 		"AbilityCastRange" "800"
+		"AbilityCastPoint" "0.15"
 
 		"TargetingIndicator" {
 			"Type" "TARGETING_INDICATOR_AOE"

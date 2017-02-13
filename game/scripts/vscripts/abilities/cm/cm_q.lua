@@ -29,3 +29,7 @@ end
 function cm_q:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_1
 end
+
+function cm_q:GetPlaybackRateOverride()
+    return 1.66
+end

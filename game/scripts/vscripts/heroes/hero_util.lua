@@ -166,7 +166,7 @@ function CMUtil.IsFrozen(target)
 end
 
 function CMUtil.Stun(hero, target, ability)
-    target:AddNewModifier(hero, ability, "modifier_cm_stun", { duration = 1.0 })
+    target:AddNewModifier(hero, ability, "modifier_cm_stun", { duration = 0.9 })
 end
 
 function CMUtil.Freeze(hero, target, ability)

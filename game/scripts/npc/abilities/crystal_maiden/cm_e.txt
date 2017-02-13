@@ -6,6 +6,7 @@
 		"AbilityTextureName" "ancient_apparition_chilling_touch"
 		"AbilityCooldown" "5.0"
 		"Damage" "2"
+		"AbilityCastPoint" "0.15"
 
 		"TargetingIndicator" {
 			"Type" "TARGETING_INDICATOR_LINE"
