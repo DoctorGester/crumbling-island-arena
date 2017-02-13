@@ -162,25 +162,39 @@ end
 CMUtil = {}
 
 function CMUtil.IsFrozen(target)
-    return target:FindModifier("modifier_cm_frozen") or target:FindModifier("modifier_cm_r_slow")
+    return target:FindModifier("modifier_cm_frozen")
+end
+
+function CMUtil.Stun(hero, target, ability)
+    target:AddNewModifier(hero, ability, "modifier_cm_stun", { duration = 1.0 })
 end
 
 function CMUtil.Freeze(hero, target, ability)
     target:AddNewModifier(hero, ability, "modifier_cm_frozen", { duration = 1.65 })
 end
 
-function CMUtil.AbilityHit(hero)
+function CMUtil.AbilityHit(hero, target, ability)
+    target:Damage(hero, ability:GetDamage())
+
+    if CMUtil.IsFrozen(target) then
+        CMUtil.Stun(hero, target, ability)
+    end
+
+    CMUtil.Freeze(hero, target, ability)
+
+    if instanceof(target, Hero) then
+
     local mod = hero:FindModifier("modifier_cm_a")
-
-    if mod then
-        if mod:GetStackCount() < 3 then
-            mod:Inc()
-        end
-    else
-        mod = hero:AddNewModifier(hero, hero:FindAbility("cm_a"), "modifier_cm_a")
-
         if mod then
-            mod:SetStackCount(1)
+            if mod:GetStackCount() < 3 then
+                mod:Inc()
+            end
+        else
+            mod = hero:AddNewModifier(hero, hero:FindAbility("cm_a"), "modifier_cm_a")
+
+            if mod then
+                mod:SetStackCount(1)
+            end
         end
     end
 end

@@ -415,12 +415,12 @@
 		"AbilityTooltip_earth_spirit_e"					"Perform a short jump. When targeting a <font color=\"#3A9B00\"><b>Remnant</b></font>, land on top of it, becoming invulnerable until leaving it."
 		"AbilityTooltip_earth_spirit_r"					"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Target a <font color=\"#3A9B00\"><b>Remnant</b></font>. After a short delay, emerge from it, leaving your old body behind."
 
-		"AbilityTooltip_cm_a"							"Hitting enemies with spells charges the weapon<br/>At 3 charges next attack <font color=\"skyblue\"><b>Freezes</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies take damage"
-		"AbilityTooltip_cm_q"							"Launch a projectile into a chosen direction<br>Enemies hit are <font color=\"skyblue\"><b>Frozen</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies take damage"
-		"AbilityTooltip_cm_w"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Enemies under the cursor are <font color=\"skyblue\"><b>Frozen</b></font> after a delay<br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies take damage"
-		"AbilityTooltip_cm_e"							"Launch a wave into a chosen direction<br>Reactivate to relocate to the wave\\\\'s position<br>Enemies hit are <font color=\"skyblue\"><b>Frozen</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies take damage"
+		"AbilityTooltip_cm_a"							"Hitting enemies with spells charges the weapon<br/>At 3 charges next attack <font color=\"skyblue\"><b>Freezes</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies are stunned"
+		"AbilityTooltip_cm_q"							"Launch a projectile into a chosen direction<br>Enemies hit are <font color=\"skyblue\"><b>Frozen</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies are stunned"
+		"AbilityTooltip_cm_w"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Enemies under the cursor are <font color=\"skyblue\"><b>Frozen</b></font> after a delay<br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies are stunned"
+		"AbilityTooltip_cm_e"							"Launch a wave into a chosen direction<br>Reactivate to relocate to the wave\\\\'s position<br>Enemies hit are <font color=\"skyblue\"><b>Frozen</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies are stunned"
 		"AbilityTooltip_cm_e_sub"						"Relocate to the wave\\\\'s position"
-		"AbilityTooltip_cm_r"							"Target an area<br>All enemies in the area are slowed and considered <font color=\"skyblue\"><b>Frozen</b></font>"
+		"AbilityTooltip_cm_r"							"Target an area<br>All enemies in the area are slowed and <font color=\"skyblue\"><b>Frozen</b></font>"
 
 		"AbilityTooltip_zeus_a"							"Enemies hit are affected by <font color=\"#7FC9FF\"><b>Shock</b></font><br/>Damaging them with another ability will stun them"
 		"AbilityTooltip_zeus_q"							"Damage enemies in the area"
@@ -681,8 +681,8 @@
 		"ModifierTooltip_modifier_earth_spirit_stand"			"Invulnerable while on the <font color=\"#3A9B00\"><b>Remnant</b></font>"
 
 		"ModifierTooltip_modifier_cm_a"							"Next attack will <font color=\"skyblue\"><b>Freeze</b></font>"
+		"ModifierTooltip_modifier_cm_stun"						"Stunned"
 		"ModifierTooltip_modifier_cm_frozen"					"<font color=\"skyblue\"><b>Frozen</b></font>"
-		"ModifierTooltip_modifier_cm_r_slow"					"Slowed and considered <font color=\"skyblue\"><b>Frozen</b></font>"
 
 		"ModifierTooltip_modifier_phoenix_q"					"Birdy"
 		"ModifierTooltip_modifier_phoenix_q_slow"				"Slowed down"

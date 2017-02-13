@@ -4,18 +4,18 @@
 		"ScriptFile" "abilities/cm/cm_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "tusk_snowball"
-		"AbilityCooldown" "5.0"
-		"Damage" "3"
+		"AbilityCooldown" "3.0"
+		"Damage" "2"
 
 		"TargetingIndicator" {
 			"Type" "TARGETING_INDICATOR_LINE"
-			"MinLength" "1500"
-			"MaxLength" "1500"
+			"MinLength" "800"
+			"MaxLength" "800"
 		}
 
 		"HoverIndicator" {
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "1500"
+			"Radius" "800"
 		}
 
 		"precache" {

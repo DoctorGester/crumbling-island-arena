@@ -49,13 +49,7 @@ function cm_w:OnChannelThink(interval)
                     ability = self,
                     filter = Filters.And(Filters.Area(target, 128), groupFilter),
                     action = function(victim)
-                        CMUtil.AbilityHit(hero)
-
-                        if CMUtil.IsFrozen(victim) then
-                            victim:Damage(hero, self:GetDamage())
-                        else
-                            CMUtil.Freeze(hero, victim, ability)
-                        end
+                        CMUtil.AbilityHit(hero, victim, self)
                         
                         self.damaged[victim] = true
                     end

@@ -15,13 +15,7 @@ function cm_e:OnSpellStart()
         distance = 1100,
         continueOnHit = true,
         hitFunction = function(_, target)
-            CMUtil.AbilityHit(hero)
-
-            if CMUtil.IsFrozen(target) then
-                target:Damage(hero, self:GetDamage())
-            else
-                CMUtil.Freeze(hero, target, self)
-            end
+            CMUtil.AbilityHit(hero, target, self)
 
             target:EmitSound("Arena.CM.HitE")
         end,

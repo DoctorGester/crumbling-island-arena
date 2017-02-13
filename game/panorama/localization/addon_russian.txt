@@ -409,10 +409,10 @@
 		"AbilityTooltip_earth_spirit_e"					"Короткий прыжок. Можно указать на <font color=\"#3A9B00\"><b>Копию</b></font> и забраться на неё, получив неуязвимость"
 		"AbilityTooltip_earth_spirit_r"					"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>Укажите на <font color=\"#3A9B00\"><b>Копию</b></font>. После короткой задержки поменяйтесь с ней местами и здоровьем."
 
-		"AbilityTooltip_cm_a"							"Попадания способностями по врагам заряжают посох<br/>При трех зарядах следующая атака <font color=\"skyblue\"><b>Замораживает</b></font><br><br>Уже <font color=\"skyblue\"><b>Замороженные</b></font> враги получают урон"
-		"AbilityTooltip_cm_q"							"Запустить <font color=\"skyblue\"><b>Замораживающий</b></font> снаряд<br><br>Уже <font color=\"skyblue\"><b>Замороженные</b></font> враги получают урон"
-		"AbilityTooltip_cm_w"							"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>После задержки <font color=\"skyblue\"><b>Замораживает</b></font> врагов у курсора<br><br>Уже <font color=\"skyblue\"><b>Замороженные</b></font> враги получают урон"
-		"AbilityTooltip_cm_e"							"Запустить <font color=\"skyblue\"><b>Замораживающую</b></font> волну<br>Примените еще раз, чтобы телепортироваться в волну<br><br>Уже <font color=\"skyblue\"><b>Замороженные</b></font> враги получают урон"
+		"AbilityTooltip_cm_a"							"Попадания способностями по врагам заряжают посох<br/>При трех зарядах следующая атака <font color=\"skyblue\"><b>Замораживает</b></font><br><br>Уже <font color=\"skyblue\"><b>Замороженные</b></font> враги оглушаются"
+		"AbilityTooltip_cm_q"							"Запустить <font color=\"skyblue\"><b>Замораживающий</b></font> снаряд<br><br>Уже <font color=\"skyblue\"><b>Замороженные</b></font> враги оглушаются"
+		"AbilityTooltip_cm_w"							"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>После задержки <font color=\"skyblue\"><b>Замораживает</b></font> врагов у курсора<br><br>Уже <font color=\"skyblue\"><b>Замороженные</b></font> враги оглушаются"
+		"AbilityTooltip_cm_e"							"Запустить <font color=\"skyblue\"><b>Замораживающую</b></font> волну<br>Примените еще раз, чтобы телепортироваться в волну<br><br>Уже <font color=\"skyblue\"><b>Замороженные</b></font> враги оглушаются"
 		"AbilityTooltip_cm_e_sub"						"Телепортироваться в волну"
 		"AbilityTooltip_cm_r"							"Укажите область<br>Все враги в области замедляются и считаются <font color=\"skyblue\"><b>Замороженными</b></font>"
 
@@ -672,7 +672,7 @@
 
 		"ModifierTooltip_modifier_cm_a"							"Следующая атака <font color=\"skyblue\"><b>Заморозит</b></font>"
 		"ModifierTooltip_modifier_cm_frozen"					"<font color=\"skyblue\"><b>Заморожен</b></font>"
-		"ModifierTooltip_modifier_cm_r_slow"					"Замедлен и считается <font color=\"skyblue\"><b>Замороженным</b></font>"
+		"ModifierTooltip_modifier_cm_stun"						"Оглушен"
 
 		"ModifierTooltip_modifier_phoenix_q"					"Птичка"
 		"ModifierTooltip_modifier_phoenix_q_slow"				"Замедлен"

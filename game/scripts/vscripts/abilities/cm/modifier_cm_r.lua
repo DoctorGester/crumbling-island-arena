@@ -13,7 +13,7 @@ function modifier_cm_r:GetAuraDuration()
 end
 
 function modifier_cm_r:GetModifierAura()
-    return "modifier_cm_r_slow"
+    return "modifier_cm_frozen"
 end
 
 function modifier_cm_r:GetAuraSearchTeam()

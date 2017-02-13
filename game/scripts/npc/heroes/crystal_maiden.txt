@@ -25,6 +25,7 @@
 		"RemoveWearablesOnDeath" "1"
 		"Difficulty" "hard"
 		"Range" "ranged"
+		"DateAdded" "13.02.2017"
 		"Order" "4"
 		"Ability1" "cm_q"
 		"Ability2" "cm_w"

@@ -1,9 +1,10 @@
 cm_q = class({})
 
 LinkLuaModifier("modifier_cm_frozen", "abilities/cm/modifier_cm_frozen", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_cm_stun", "abilities/cm/modifier_cm_stun", LUA_MODIFIER_MOTION_NONE)
 
 function cm_q:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 1500)
+    Wrappers.DirectionalAbility(self, 800)
 
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
@@ -18,14 +19,8 @@ function cm_q:OnSpellStart()
         distance = 1500,
         hitSound = "Arena.CM.HitQ",
         hitFunction = function(_, target)
-            CMUtil.AbilityHit(hero)
-
-            if CMUtil.IsFrozen(target) then
-                target:Damage(hero, self:GetDamage())
-            else
-                CMUtil.Freeze(hero, target, self)
-            end
-        end
+            CMUtil.AbilityHit(hero, target, self)
+        end,
     }):Activate()
 
     hero:EmitSound("Arena.CM.CastQ")
