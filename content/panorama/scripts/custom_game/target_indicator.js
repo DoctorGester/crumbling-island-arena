@@ -476,6 +476,10 @@ function UpdateTargetIndicator(){
         active = guidedAbility;
     }
 
+    if (!Entities.IsAlive(unit)) {
+        active = -1;
+    }
+
     var newHover = hoverAbility;
     var data = targetingIndicators[Abilities.GetAbilityName(active)];
 
