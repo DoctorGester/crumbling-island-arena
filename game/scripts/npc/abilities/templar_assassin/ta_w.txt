@@ -9,7 +9,7 @@
 
 		"TargetingIndicator" {
 			"Type" "TARGETING_INDICATOR_AOE"
-			"Radius" "200"
+			"Radius" "230"
 			"DisplayRange" "1"
 		}
 
