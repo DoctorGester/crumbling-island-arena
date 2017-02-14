@@ -35,7 +35,7 @@ function drow_r:OnChannelFinish(interrupted)
         hitSound = "Arena.Drow.HitR",
         hitFunction = function(projectile, target)
             target:Damage(projectile, self:GetDamage())
-            SoftKnockback(target, hero, projectile.vel, 100, {})
+            SoftKnockback(target, projectile, projectile.vel, 100, {})
 
         end,
         nonBlockedHitAction = function(projectile, target)

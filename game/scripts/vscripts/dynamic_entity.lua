@@ -16,8 +16,9 @@ function DynamicEntity:constructor(round)
     self.fallingSpeed = 0
 end
 
-function DynamicEntity:MakeFall()
+function DynamicEntity:MakeFall(horizontalVelocity)
     self.falling = true
+    self.fallingHorizontalVelocity = horizontalVelocity or Vector()
 end
 
 function DynamicEntity:CanFall()
@@ -63,10 +64,25 @@ end
 function DynamicEntity:Update()
     if self.falling then
         self.fallingSpeed = self.fallingSpeed + 10
+        local pos = self:GetPos()
 
-        self:SetPos(self:GetPos() - Vector(0, 0, self.fallingSpeed / 3))
+        local t = pos - Vector(0, 0, self.fallingSpeed / 3)
 
-        if self:GetPos().z <= -MAP_HEIGHT then
+        if self.fallingHorizontalVelocity then
+            if pos.z > -100 then
+                local hit = Spells.TestCircle(pos + self.fallingHorizontalVelocity * 0.5, self:GetRad())
+
+                if hit then
+                    self.fallingHorizontalVelocity = -self.fallingHorizontalVelocity * 0.5
+                end
+            end
+
+            t = t + self.fallingHorizontalVelocity
+        end
+
+        self:SetPos(t)
+
+        if pos.z <= -MAP_HEIGHT then
             self:Destroy()
 
             if self.SetHidden then

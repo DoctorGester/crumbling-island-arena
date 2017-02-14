@@ -43,8 +43,8 @@ function UnitEntity:GetName()
     return self.unit:GetName()
 end
 
-function UnitEntity:MakeFall()
-    getbase(UnitEntity).MakeFall(self)
+function UnitEntity:MakeFall(horVel)
+    getbase(UnitEntity).MakeFall(self, horVel)
 
     self:AddNewModifier(self, nil, "modifier_falling", {})
 end

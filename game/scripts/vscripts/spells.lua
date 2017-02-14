@@ -97,7 +97,16 @@ function Spells:Update()
                     local hit = entity:TestFalling()
 
                     if not hit then
-                        entity:MakeFall()
+                        local softKb = self:FindSoftKnockback(entity)
+                        local horVel
+
+                        if softKb then
+                            horVel = softKb.direction * softKb.force
+                        end
+
+                        print(softKb, horVel)
+
+                        entity:MakeFall(horVel)
                     end
 
                     -- Doing damage to the pieces entity is standing on
@@ -115,6 +124,16 @@ function Spells:Update()
             , entity)
         end
     end
+end
+
+function Spells:FindSoftKnockback(entity)
+    for _, dash in ipairs(self.dashes) do
+        if instanceof(dash, SoftKnockback) and dash.hero == entity then
+            return dash
+        end
+    end
+
+    return nil
 end
 
 function Spells:InterruptDashes(hero)

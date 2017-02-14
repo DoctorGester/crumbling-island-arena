@@ -64,9 +64,15 @@ function Dash:constructor(hero, to, speed, params)
         self.modifierHandle
             = self.hero:AddNewModifier(self.modifier.source or self.hero, self.modifier.ability, self.modifier.name, { duration = duration })
 
+        self.source = self.modifier.source
+
         if self.modifierHandle == nil then
             self.cantStart = true
         end
+    end
+
+    if params.source then
+        self.source = params.source
     end
 
     hero.round.spells:AddDash(self)
@@ -105,7 +111,7 @@ function Dash:Update()
 
         local testPos = self:PositionFunction(self:PositionFunction(self:PositionFunction(result)))
 
-        if self.hero:CanFall() and not Spells.TestCircle(testPos, self.hero:GetRad()) then
+        if (self.source == nil or self.source == self.hero) and self.hero:CanFall() and not Spells.TestCircle(testPos, self.hero:GetRad()) then
             self:Interrupt()
             return origin
         end
@@ -131,9 +137,10 @@ function Dash:Update()
     end
 
     local modifierRemoved = (self.modifier and self.hero:Alive()) and self.hero:FindModifier(self.modifier.name) ~= self.modifierHandle
-    local interrupted = not self.hero:Alive() or self:IsStunned() or modifierRemoved or self.cantStart
+    local interrupted = not self.hero:Alive() or self:IsStunned() or modifierRemoved or self.cantStart or self.hero.falling
     if interrupted or self:HasEnded() then
         self:End(self.hero:Alive() and self.hero:GetPos() or self.to, not interrupted)
+        return self.hero:GetPos()
     end
 
     return result
@@ -273,6 +280,7 @@ function SoftKnockback:constructor(hero, source, direction, force, params)
     params.forceFacing = nil
     params.modifier = nil
     params.interruptedByStuns = false
+    params.source = source
 
     getbase(SoftKnockback).constructor(self, hero, nil, 0, params)
 
@@ -307,7 +315,10 @@ function SoftKnockback:Update()
 end
 
 function SoftKnockback:End(at, reachedDestination)
-    self.hero:FindClearSpace(self.hero:GetPos(), true)
+    if not self.hero.falling then
+        self.hero:FindClearSpace(self.hero:GetPos(), true)
+    end
+
     self:OnArrival(reachedDestination)
     self.destroyed = true
 end
