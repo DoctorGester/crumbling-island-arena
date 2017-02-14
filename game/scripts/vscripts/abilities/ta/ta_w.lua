@@ -12,7 +12,7 @@ function ta_w:OnSpellStart()
         release = false
     })
 
-    TimedEntity(1.0, function()
+    TimedEntity(0.9, function()
         DFX(effect)
 
         FX("particles/units/heroes/hero_templar_assassin/templar_assassin_trap_explode.vpcf", PATTACH_WORLDORIGIN, hero, {
@@ -25,7 +25,7 @@ function ta_w:OnSpellStart()
         hero:AreaEffect({
             ability = self,
             onlyHeroes = true,
-            filter = Filters.Area(target, 200),
+            filter = Filters.Area(target, 230),
             modifier = { name = "modifier_ta_w", duration = 3.5, ability = self }
         })
     end):Activate()
