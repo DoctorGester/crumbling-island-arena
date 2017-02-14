@@ -54,6 +54,31 @@ if GameMode == nil then
     GameMode = class({})
 end
 
+function RegisterAnimations()
+    local function Reg(hname)
+        RegisterCustomAnimationScriptForModel(
+            string.format("models/heroes/%s/%s.vmdl", hname, hname),
+            string.format("animation/%s.lua", hname)
+        )
+    end
+
+    Reg("antimage")
+    Reg("crystal_maiden")
+    Reg("ember_spirit")
+    Reg("invoker")
+    Reg("lanaya")
+    Reg("legion_commander")
+    Reg("medusa")
+    Reg("omniknight")
+    Reg("phantom_lancer")
+    Reg("pudge")
+    Reg("sand_king")
+    Reg("sven")
+    Reg("wraith_king")
+end
+
+RegisterAnimations()
+
 function Precache(context)
     print("Precaching code particles")
 
