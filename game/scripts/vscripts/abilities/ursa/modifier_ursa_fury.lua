@@ -28,8 +28,8 @@ function modifier_ursa_fury:IncreaseStacks(amount)
     end
 end
 
-function modifier_ursa_fury:OnDamageDealt(target, _, amount)
-    if instanceof(target, Hero) then
+function modifier_ursa_fury:OnDamageDealt(target, source, amount)
+    if self:GetParent():GetParentEntity() == source and instanceof(target, Hero) then
         self:IncreaseStacks(amount)
     end
 end

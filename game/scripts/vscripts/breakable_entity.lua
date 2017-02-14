@@ -90,10 +90,14 @@ function BreakableEntity:Damage(source, amount, isPhysical)
     ParticleManager:SetParticleControl(sign, 3, Vector(255, 255, 255))
     ParticleManager:ReleaseParticleIndex(sign)
 
-    if source and instanceof(source, BreakableEntity) then
-        for _, modifier in pairs(source:AllModifiers()) do
-            if modifier.OnDamageDealt then
-                modifier:OnDamageDealt(self, source, amount, isPhysical)
+    if source then
+        for _, entity in pairs(source.round.spells.entities) do
+            if entity:Alive() and instanceof(entity, BreakableEntity) then
+                for _, modifier in pairs(entity:AllModifiers()) do
+                    if modifier.OnDamageDealt then
+                        modifier:OnDamageDealt(self, source, amount, isPhysical)
+                    end
+                end
             end
         end
     end

@@ -1,7 +1,10 @@
 modifier_ta_e = class({})
 
-function modifier_ta_e:OnDamageDealt(target, hero, amount)
-    if instanceof(target, Hero) then
+function modifier_ta_e:OnDamageDealt(target, source, amount)
+    local hero = self:GetParent():GetParentEntity()
+    local proj = instanceof(source, Projectile)
+
+    if (hero == source or (proj and source.hero == hero)) and instanceof(target, Hero) then
         local modifier = target:FindModifier("modifier_ta_e_counter")
 
         if not modifier then
