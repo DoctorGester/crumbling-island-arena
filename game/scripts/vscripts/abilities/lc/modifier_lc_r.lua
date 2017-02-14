@@ -26,5 +26,5 @@ function modifier_lc_r:OnDamageReceived(source, hero, amount)
 end
 
 function modifier_lc_r:OnDamageReceivedPriority()
-    return 1
+    return -1
 end
