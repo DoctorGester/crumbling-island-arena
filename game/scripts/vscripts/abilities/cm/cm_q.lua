@@ -4,24 +4,44 @@ LinkLuaModifier("modifier_cm_frozen", "abilities/cm/modifier_cm_frozen", LUA_MOD
 LinkLuaModifier("modifier_cm_stun", "abilities/cm/modifier_cm_stun", LUA_MODIFIER_MOTION_NONE)
 
 function cm_q:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 800)
+    Wrappers.DirectionalAbility(self, 1200)
 
-    local hero = self:GetCaster().hero
+    local hero = self:GetCaster():GetParentEntity()
     local target = self:GetCursorPosition()
+    local particle = FX("particles/aoe_marker_filled.vpcf", PATTACH_ABSORIGIN, hero, {
+        cp0 = target,
+        cp1 = Vector(200, 0, 0),
+        cp2 = Vector(175, 238, 238)
+    })
 
-    DistanceCappedProjectile(hero.round, {
-        ability = self,
-        owner = hero,
-        from = hero:GetPos() + Vector(0, 0, 128),
-        to = target + Vector(0, 0, 128),
-        speed = 1200,
-        graphics = "particles/cm/cm_q.vpcf",
-        distance = 1500,
-        hitSound = "Arena.CM.HitQ",
-        hitFunction = function(_, target)
-            CMUtil.AbilityHit(hero, target, self)
-        end,
-    }):Activate()
+    TimedEntity(0.7, function()
+        DFX(particle)
+
+        hero:AreaEffect({
+            ability = self,
+            filter = Filters.Area(target, 200),
+            action = function(victim)
+                CMUtil.AbilityHit(hero, victim, self)
+            end
+        })
+
+        ScreenShake(target, 5, 150, 0.25, 2000, 0, true)
+        Spells:GroundDamage(target, 200, hero)
+
+        FX("particles/econ/items/lich/frozen_chains_ti6/lich_frozenchains_frostnova.vpcf", PATTACH_WORLDORIGIN, hero, {
+            cp0 = target,
+            cp1 = Vector(200, 1, 1),
+            release = true
+        })
+
+        FX("particles/units/heroes/hero_crystalmaiden/maiden_crystal_nova.vpcf", PATTACH_WORLDORIGIN, hero, {
+            cp0 = target,
+            cp1 = Vector(200, 1, 1),
+            release = true
+        })
+
+        hero:EmitSound("Arena.CM.HitQ", target)
+    end):Activate()
 
     hero:EmitSound("Arena.CM.CastQ")
 end

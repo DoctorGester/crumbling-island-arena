@@ -1114,8 +1114,7 @@
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[
-			"sounds/weapons/hero/winter_wyvern/splinter01.vsnd",
-			"sounds/weapons/hero/winter_wyvern/splinter02.vsnd"
+			"sounds/weapons/hero/lich/frost_nova.vsnd"
 		]
 		volume = "1.0"
 		pitch_rand_min = "-0.05"

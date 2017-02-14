@@ -67,7 +67,7 @@
 		"phantom_assassin_DescE" "Прыжок"
 		"phantom_assassin_DescR" "Невидимость"
 
-		"crystal_maiden_DescQ" "Замораживающий снежок"
+		"crystal_maiden_DescQ" "Заморозка в области"
 		"crystal_maiden_DescW" "Прерываемое. Заморозка с задержкой"
 		"crystal_maiden_DescE" "Замораживающая волна, примени еще раз, чтобы переместиться в неё"
 		"crystal_maiden_DescR" "Заморозка и замедление в области"
@@ -410,7 +410,7 @@
 		"AbilityTooltip_earth_spirit_r"					"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>Укажите на <font color=\"#3A9B00\"><b>Копию</b></font>. После короткой задержки поменяйтесь с ней местами и здоровьем."
 
 		"AbilityTooltip_cm_a"							"Попадания способностями по врагам заряжают посох<br/>При трех зарядах следующая атака <font color=\"skyblue\"><b>Замораживает</b></font><br><br>Уже <font color=\"skyblue\"><b>Замороженные</b></font> враги оглушаются"
-		"AbilityTooltip_cm_q"							"Запустить <font color=\"skyblue\"><b>Замораживающий</b></font> снаряд<br><br>Уже <font color=\"skyblue\"><b>Замороженные</b></font> враги оглушаются"
+		"AbilityTooltip_cm_q"							"<font color=\"skyblue\"><b>Заморозить</b></font> врагов в области<br><br>Уже <font color=\"skyblue\"><b>Замороженные</b></font> враги оглушаются"
 		"AbilityTooltip_cm_w"							"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>После задержки <font color=\"skyblue\"><b>Замораживает</b></font> врагов у курсора<br><br>Уже <font color=\"skyblue\"><b>Замороженные</b></font> враги оглушаются"
 		"AbilityTooltip_cm_e"							"Запустить <font color=\"skyblue\"><b>Замораживающую</b></font> волну<br>Примените еще раз, чтобы телепортироваться в волну<br><br>Уже <font color=\"skyblue\"><b>Замороженные</b></font> враги оглушаются"
 		"AbilityTooltip_cm_e_sub"						"Телепортироваться в волну"

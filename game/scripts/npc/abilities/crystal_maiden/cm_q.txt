@@ -9,14 +9,14 @@
 		"AbilityCastPoint" "0.15"
 
 		"TargetingIndicator" {
-			"Type" "TARGETING_INDICATOR_LINE"
-			"MinLength" "800"
-			"MaxLength" "800"
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "200"
+			"DisplayRange" "1"
 		}
 
 		"HoverIndicator" {
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "800"
+			"Radius" "1200"
 		}
 
 		"precache" {
