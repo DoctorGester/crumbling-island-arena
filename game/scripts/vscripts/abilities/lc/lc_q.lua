@@ -40,6 +40,5 @@ function lc_q:OnSpellStart()
         modifier = { name = "modifier_lc_q_animation", ability = self },
     })
 
-    AddAnimationTranslate(hero:GetUnit(), "duel_kill", 0.1)
-    hero:Animate(ACT_DOTA_ATTACK, 1.5)
+    hero:Animate(ACT_DOTA_ATTACK2, 1.5)
 end

@@ -15,7 +15,7 @@ function invoker_e:OnSpellStart()
 end
 
 function invoker_e:GetCastAnimation()
-    return ACT_DOTA_CAST_ALACRITY
+    return ACT_DOTA_CAST_ABILITY_3
 end
 
 function invoker_e:GetPlaybackRateOverride()

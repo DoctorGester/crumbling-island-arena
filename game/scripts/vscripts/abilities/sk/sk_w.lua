@@ -9,7 +9,7 @@ function sk_w:OnSpellStart()
 end
 
 function sk_w:GetCastAnimation()
-    return ACT_DOTA_CAST_ABILITY_4
+    return ACT_DOTA_CAST_ABILITY_2
 end
 
 SKWProjectile = SKWProjectile or class({}, nil, DistanceCappedProjectile)

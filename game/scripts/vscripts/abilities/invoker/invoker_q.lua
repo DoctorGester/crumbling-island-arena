@@ -45,5 +45,5 @@ function invoker_q:OnSpellStart()
 end
 
 function invoker_q:GetCastAnimation()
-    return ACT_DOTA_CAST_ALACRITY
+    return ACT_DOTA_CAST_ABILITY_1
 end
