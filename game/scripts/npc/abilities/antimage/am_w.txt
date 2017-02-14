@@ -4,6 +4,6 @@
 		"ScriptFile" "abilities/am/am_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "antimage_spell_shield"
-		"AbilityCooldown" "2.5"
+		"AbilityCooldown" "2.8"
 	}
 }

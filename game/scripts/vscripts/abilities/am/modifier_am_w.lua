@@ -1,6 +1,18 @@
 modifier_am_w = class({})
 local self = modifier_am_w
 
+function self:DeclareFunctions()
+    local funcs = {
+        MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
+    }
+
+    return funcs
+end
+
+function self:GetModifierMoveSpeedBonus_Percentage(params)
+    return -50
+end
+
 function self:GetEffectName()
     return "particles/am_w/am_w_shield.vpcf"
 end
