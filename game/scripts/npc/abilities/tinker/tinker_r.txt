@@ -5,7 +5,7 @@
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "tinker_rearm"
-		"AbilityCooldown" "14.0"
+		"AbilityCooldown" "18.0"
 		"AbilityCastPoint" "0.2"
 		"Damage" "1"
 
