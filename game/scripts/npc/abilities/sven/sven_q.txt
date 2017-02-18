@@ -6,7 +6,7 @@
 		"AbilityTextureName" "sven_storm_bolt"
 		"AbilityCooldown" "4"
 		"AbilityCastPoint" "0.2"
-		"Damage" "2"
+		"Damage" "3"
 
 		"TargetingIndicator" {
 			"Type" "TARGETING_INDICATOR_LINE"
