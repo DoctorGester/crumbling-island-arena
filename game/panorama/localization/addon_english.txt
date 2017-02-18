@@ -327,7 +327,8 @@
 		"GameSetupTeam1" "Team 1"
 		"GameSetupTeam2" "Team 2"
 		"GameSetupTeam3" "Team 3"
-		"GameSetupBans" "Ban a hero"
+		"GameSetupBans" "Ban stage"
+		"GameSetupConfirm" "Confirm"
 
 		"GamePaused" "Game paused"
 		"PauseTip" "Click on top of the screen if unpause isn't working"

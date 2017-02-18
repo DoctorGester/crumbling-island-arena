@@ -1,9 +1,9 @@
 SetupStage = SetupStage or class({})
 
-function SetupStage:constructor(players, name, allowInputChange)
+function SetupStage:constructor(players, name, needsInputConfirmation)
     self.players = players
     self.name = name
-    self.allowInputChange = allowInputChange
+    self.needsInputConfirmation = needsInputConfirmation
 
     self.inputs = {}
 end
@@ -25,10 +25,33 @@ function SetupStage:Activate()
             self:NetworkInputs()
         end
     )
+
+    if self.needsInputConfirmation then
+        self.confirmedPlayers = {}
+        self.confirmListener = CustomGameEventManager:RegisterListener(self.name.."_confirm", function(_, ...)
+            self:ConfirmInput(...)
+        end)
+    end
+end
+
+function SetupStage:ConfirmInput(args)
+    if not self.needsInputConfirmation then
+        return
+    end
+
+    self.confirmedPlayers[args.PlayerID] = true
+end
+
+function SetupStage:TransformInput(player, input)
+    return input
 end
 
 function SetupStage:Deactivate()
     CustomGameEventManager:UnregisterListener(self.listener)
+
+    if self.confirmListener then
+        CustomGameEventManager:UnregisterListener(self.confirmListener)
+    end
 end
 
 function SetupStage:NetworkInputs()
@@ -48,7 +71,11 @@ function SetupStage:ReceiveInput(args)
         return
     end
 
-    if not self.allowInputChange and self.inputs[player.id] then
+    if not self.needsInputConfirmation and self.inputs[player.id] then
+        return
+    end
+
+    if self.needsInputConfirmation and self.confirmedPlayers[player.id] then
         return
     end
 
@@ -56,7 +83,7 @@ function SetupStage:ReceiveInput(args)
         return
     end
 
-    self.inputs[player.id] = args.input
+    self.inputs[player.id] = self:TransformInput(player.id, args.input)
 end
 
 function SetupStage:AssignDefaultInputs()
@@ -70,8 +97,14 @@ function SetupStage:AssignDefaultInputs()
 end
 
 function SetupStage:HasEnded()
-    if not self.allowInputChange then
-        return false
+    if self.needsInputConfirmation then
+        for _, player in pairs(self.players) do
+            if not self.confirmedPlayers[player.id] then
+                return false
+            end
+        end
+
+        return true
     end
 
     for _, player in pairs(self.players) do

@@ -50,8 +50,9 @@ function GameSetup:GetNextStageAndTime()
 
         if self:GetSelectedMode() == "ffa" then
             if GameRules.GameMode.rankedMode ~= nil then
+                self:FreeForAllTeams()
                 EmitAnnouncerSound("Announcer.SetupBanStage")
-                return BanStage("stage_bans", self.players, 1), IsInToolsMode() and 5 or 15
+                return BanStage("stage_bans", self.players, 3), IsInToolsMode() and 5 or 15
             end
 
             return nil
@@ -116,15 +117,19 @@ function GameSetup:UpdateNetworkState()
     })
 end
 
+function GameSetup:FreeForAllTeams()
+    local currentTeam = 0
+
+    for _, player in pairs(self.players) do
+        self.players[player.id]:SetTeam(self.teams[currentTeam])
+
+        currentTeam = currentTeam + 1
+    end
+end
+
 function GameSetup:End()
     if not self.outputs.stage_team then
-        local currentTeam = 0
-
-        for _, player in pairs(self.players) do
-            self.players[player.id]:SetTeam(self.teams[currentTeam])
-
-            currentTeam = currentTeam + 1
-        end
+        self:FreeForAllTeams()
     end
 
     statCollection:setFlags({ version = GAME_VERSION, mode = self:GetSelectedMode() })

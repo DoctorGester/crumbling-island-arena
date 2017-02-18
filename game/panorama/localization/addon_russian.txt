@@ -322,7 +322,8 @@
 		"GameSetupTeam1" "Команда 1"
 		"GameSetupTeam2" "Команда 2"
 		"GameSetupTeam3" "Команда 3"
-		"GameSetupBans" "Забаньте героя"
+		"GameSetupBans" "Стадия банов"
+		"GameSetupConfirm" "Подтвердить"
 
 		"GamePaused" "Пауза"
 		"PauseTip" "Кликните вверху экрана, если паузу не получается снять"

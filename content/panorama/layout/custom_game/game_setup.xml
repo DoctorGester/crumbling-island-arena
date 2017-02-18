@@ -6,6 +6,8 @@
     <scripts>
         <include src="file://{resources}/scripts/custom_game/underscore-min.js" />
         <include src="file://{resources}/scripts/custom_game/util.js" />
+        <include src="file://{resources}/scripts/custom_game/odiff.js" />
+        <include src="file://{resources}/scripts/custom_game/structure.js" />
         <include src="file://{resources}/scripts/custom_game/game_setup.js" />
     </scripts>
     <Panel class="GameSetupBackground" hittest="false">
@@ -26,6 +28,7 @@
             <Label class="MatchModeHeader" text="#Unranked"/>
             <Label class="VotingHeader" text="#GameSetupBans"/>
             <Panel id="BanButtons"/>
+            <Button class="ConfirmButton" onactivate="ConfirmBan()"><Label text="#GameSetupConfirm"/></Button>
             <Label class="VotingTimer" text=" "/>
         </Panel>
         <!--<Panel id="GameSetupChat"/>-->
