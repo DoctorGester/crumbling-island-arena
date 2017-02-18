@@ -609,7 +609,7 @@
 
 		"AbilityTooltip_am_a"							"Damages enemies in a circle<br/>Attacking when <font color='#00b5ff'>CHARGED</font> consumes the charge, deals 2x damage and silences"
 		"AbilityTooltip_am_q"							"Throw both weapons in 2 arcs, damaging enemies on the way"
-		"AbilityTooltip_am_w"							"Gain a short shield which negates incoming spells<br/><font color='#00b5ff'>CHARGES</font> your weapon when triggered"
+		"AbilityTooltip_am_w"							"Gain a short shield which negates incoming spells<br/><font color='#00b5ff'>CHARGES</font> your weapon and refunds 50% of cooldown when triggered"
 		"AbilityTooltip_am_e"							"Short dash<br/><font color='#00b5ff'>CHARGES</font> your weapon if an enemy is damaged"
 		"AbilityTooltip_am_r"							"Silence all enemies in the target area and slow them based on the number of abilities they have on cooldown"
 

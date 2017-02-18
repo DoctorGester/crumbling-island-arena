@@ -46,7 +46,17 @@ function self:AllowAbilityEffect(source, ability)
 end
 
 if IsServer() then
+    function self:OnCreated()
+        self:GetAbility():SetActivated(false)
+    end
+
     function self:OnDestroy()
+        local mul = self.bonusGranted and 0.5 or 1.0
+        local ability = self:GetAbility()
+        ability:SetActivated(true)
+        ability:EndCooldown()
+        ability:StartCooldown(ability.BaseClass.GetCooldown(ability, 1) * mul)
+
         self:GetParent():GetParentEntity():EmitSound("Arena.AM.EndW")
     end
 end

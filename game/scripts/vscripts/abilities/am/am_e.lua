@@ -18,8 +18,10 @@ function self:OnSpellStart()
         hitParams = {
             damage = self:GetDamage(),
             sound = "Arena.AM.Hit",
-            action = function()
-                hero:AddNewModifier(hero, hero:FindAbility("am_a"), "modifier_am_a", { duration = 3.0 })
+            action = function(target)
+                if instanceof(target, Hero) then
+                    hero:AddNewModifier(hero, hero:FindAbility("am_a"), "modifier_am_a", { duration = 3.0 })
+                end
             end
         }
     })
