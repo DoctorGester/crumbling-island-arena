@@ -448,7 +448,7 @@
 		"AbilityTooltip_lc_r"							"Target an area<br>While in that area, you are immortal and your cooldowns are halved"
 
 		"AbilityTooltip_pa_a"							"Can't use W while the glaive is in the air"
-		"AbilityTooltip_pa_q"							"Throw a slowing projectile"
+		"AbilityTooltip_pa_q"							"Throw a slowing projectile<br/>Next 2 damage instances from hero deal additional damage to the victim"
 		"AbilityTooltip_pa_w"							"Strike an area around you"
 		"AbilityTooltip_pa_w_sub"						"Throw a dagger which slows the first enemy hit<br><br>Doesn\\\\'t deal damage"
 		"AbilityTooltip_pa_e"							"Perform a short jump"

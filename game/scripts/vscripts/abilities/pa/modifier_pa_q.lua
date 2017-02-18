@@ -1,6 +1,7 @@
 modifier_pa_q = class({})
 
 function modifier_pa_q:OnCreated(kv)
+    self:SetStackCount(2)
 end
 
 function modifier_pa_q:DeclareFunctions()
@@ -25,4 +26,18 @@ end
 
 function modifier_pa_q:GetEffectAttachType()
     return PATTACH_ABSORIGIN_FOLLOW
+end
+
+function modifier_pa_q:OnDamageReceived(source, hero, amount, isPhysical)
+    local ent = self:GetCaster():GetParentEntity()
+
+    if source == ent or source.hero == ent then
+        self:DecrementStackCount()
+
+        if self:GetStackCount() == 0 then
+            self:Destroy()
+        end
+
+        return amount + 1
+    end
 end

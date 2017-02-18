@@ -14,9 +14,8 @@ function pa_q:OnSpellStart()
         speed = 1400,
         graphics = "particles/pa_w_sub/pa_w_sub.vpcf",
         distance = 900,
-        hitModifier = { name = "modifier_pa_q", duration = 1.0, ability = self },
-        hitSound = "Arena.PA.HitW.Sub",
-        damage = self:GetDamage()
+        hitModifier = { name = "modifier_pa_q", duration = 1.6, ability = self },
+        hitSound = "Arena.PA.HitW.Sub"
     }):Activate()
 
     hero:EmitSound("Arena.PA.CastW.Sub")
