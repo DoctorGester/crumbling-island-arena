@@ -77,6 +77,20 @@ function ProjectileAMQ:Remove()
     self.hero:RecreateSlotVisuals(self.slot)
 end
 
+function ProjectileAMQ:CalculatePositionLocalSpace()
+    local progress = (self.localTime - self.startTime) / self.time
+    local yOffset = (4 * 200) * (progress - progress * progress) -- x - x^2
+    local eased = EaseOutCircular(progress, 0, 0.55, 1) + progress * 0.45
+
+    return self.direction * eased * self.distance + self.perp * yOffset
+end
+
+function ProjectileAMQ:FindClearSpace(position, force)
+    self.startPosition = position - self:CalculatePositionLocalSpace()
+
+    getbase(ProjectileAMQ).FindClearSpace(self, position, force)
+end
+
 function ProjectileAMQ:Deflect(by, direction)
     direction.z = 0
     self.direction = direction:Normalized()
@@ -86,9 +100,5 @@ function ProjectileAMQ:Deflect(by, direction)
 end
 
 function ProjectileAMQ:GetNextPosition()
-    local progress = (self.localTime - self.startTime) / self.time
-    local yOffset = (4 * 200) * (progress - progress * progress) -- x - x^2
-    local eased = EaseOutCircular(progress, 0, 0.55, 1) + progress * 0.45
-
-    return self.startPosition + self.direction * eased * self.distance + self.perp * yOffset
+    return self.startPosition + self:CalculatePositionLocalSpace()
 end
