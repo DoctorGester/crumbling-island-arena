@@ -316,7 +316,7 @@ end
 
 function SoftKnockback:End(at, reachedDestination)
     if not self.hero.falling then
-        self.hero:FindClearSpace(self.hero:GetPos(), true)
+        self.hero:FindClearSpace(at, true)
     end
 
     self:OnArrival(reachedDestination)
