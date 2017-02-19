@@ -146,9 +146,10 @@ function DynamicEntity:AreaEffect(params)
         local passes = not instanceof(target, Projectile) or ((IsAttackAbility(params.ability) and IsAttackAbility(target.ability)) or params.targetProjectiles)
         local heroPasses = not params.onlyHeroes or instanceof(target, Hero)
         local allyFilter = target.owner.team ~= self.owner.team or (params.hitAllies and (target ~= self or params.hitSelf))
-        local blocked = params.ability and target:AllowAbilityEffect(self, params.ability) == false
 
         if allyFilter and passes and heroPasses and params.filter(target) then
+            local blocked = params.ability and target:AllowAbilityEffect(self, params.ability) == false
+
             if params.modifier and not blocked then
                 local m = params.modifier
 
