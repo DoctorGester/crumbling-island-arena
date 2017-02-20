@@ -5,7 +5,7 @@ function sven_e:GetChannelTime()
     local enraged = self:GetCaster():HasModifier("modifier_sven_r") -- Can't use IsEnraged on the client
 
     if enraged then
-        return 0.01
+        return nil
     end
 
     return 0.4
@@ -13,6 +13,10 @@ end
 
 function sven_e:OnSpellStart()
     self:GetCaster().hero:EmitSound("Arena.Sven.CastE")
+
+    if self:GetCaster():HasModifier("modifier_sven_r") then
+        self:Cast(self.BaseClass.GetCursorPosition(self))
+    end
 end
 
 function sven_e:GetChannelAnimation()
@@ -22,8 +26,11 @@ end
 function sven_e:OnChannelFinish(interrupted)
     if interrupted then return end
 
-    local hero = self:GetCaster().hero
-    local target = self:GetCursorPosition()
+    self:Cast(self:GetCursorPosition())
+end
+
+function sven_e:Cast(target)
+    local hero = self:GetCaster():GetParentEntity()
     local direction = target - hero:GetPos()
     local from = hero:GetPos()
 
