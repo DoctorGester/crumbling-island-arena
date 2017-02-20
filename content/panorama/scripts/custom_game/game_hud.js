@@ -247,7 +247,9 @@ function UpdateUI(){
         buffBar.Update();
     }
 
-    UpdateGuidedAndCastedAbilities(localHero);
+    if (GetPlayerOwnerID(localHero) == Game.GetLocalPlayerID()) {
+        UpdateGuidedAndCastedAbilities(localHero);
+    }
 }
 
 function UpdateGuidedAndCastedAbilities(localHero) {
