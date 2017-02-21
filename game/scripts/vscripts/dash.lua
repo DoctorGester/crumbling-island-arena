@@ -304,18 +304,20 @@ function SoftKnockback:PositionFunction(current)
 end
 
 function SoftKnockback:Update()
-    self.force = math.max(0, self.force - self.decrease)
+    if self.hero:Alive() and not self.cantStart then
+        self.force = math.max(0, self.force - self.decrease)
 
-    local next = self:PositionFunction(self.hero:GetPos())
-    if not GridNav:IsTraversable(next) or GridNav:IsBlocked(next) then
-        self.direction = -self.direction
+        local next = self:PositionFunction(self.hero:GetPos())
+        if not GridNav:IsTraversable(next) or GridNav:IsBlocked(next) then
+            self.direction = -self.direction
+        end
     end
 
     getbase(SoftKnockback).Update(self)
 end
 
 function SoftKnockback:End(at, reachedDestination)
-    if not self.hero.falling then
+    if self.hero:Alive() and not self.hero.falling then
         self.hero:FindClearSpace(at, true)
     end
 
