@@ -33,10 +33,13 @@ function self:OnSpellStart()
     end
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Area(hero:GetPos(), 300),
         damage = damage,
         sound = sound,
-        action = action
+        action = action,
+        isPhysical = true,
+        knockback = { force = 20, decrease = 3 }
     })
 end
 
