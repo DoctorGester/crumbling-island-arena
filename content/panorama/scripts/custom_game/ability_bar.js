@@ -80,7 +80,17 @@ function EntityAbilityDataProvider(entityId) {
     };
 
     this.IsSilenced = function() {
-        return Entities.IsSilenced(this.entityId);
+        if (Entities.IsSilenced(this.entityId)) {
+            return true;
+        }
+
+        for (var modifier in statusEffects) {
+            if (statusEffects[modifier].token == "#StatusSilenced" && HasModifier(this.entityId, modifier)) {
+                return true;
+            }
+        }
+
+        return false;
     };
 
     this.IsStunned = function() {
@@ -147,7 +157,7 @@ function AbilityBar(elementId) {
 
         if (this.provider.IsSilenced && this.provider.IsStunned && this.provider.IsRooted) {
             var rooted = this.provider.IsRooted() && data.rootDisables;
-            ability.SetDisabled(this.provider.IsSilenced(), this.provider.IsStunned(), rooted);
+            ability.SetDisabled(this.provider.IsSilenced() && !data.attack, this.provider.IsStunned(), rooted);
         }
 
         if (data.attack) {
