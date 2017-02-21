@@ -86,3 +86,5 @@ end
 if IsClient() then
     require("wrappers")
 end
+
+Wrappers.NormalAbility(tinker_q)

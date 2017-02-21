@@ -51,3 +51,9 @@ end
 function sk_e:GetCastAnimation()
     return ACT_DOTA_SAND_KING_BURROW_IN
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(sk_e)

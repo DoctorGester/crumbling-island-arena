@@ -60,3 +60,9 @@ end
 if IsServer() then
     Wrappers.GuidedAbility(self, true)
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(gyro_r)

@@ -43,3 +43,9 @@ end
 function self:GetPlaybackRateOverride()
     return 1.33
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(omni_q)

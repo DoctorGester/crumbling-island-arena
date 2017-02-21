@@ -17,3 +17,9 @@ function wr_e:OnSpellStart()
 
     ScreenShake(hero:GetPos(), 5, 150, 0.25, 3000, 0, true)
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(wr_e)

@@ -14,3 +14,9 @@ end
 function pugna_w:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_3
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(pugna_w)

@@ -27,3 +27,9 @@ end
 function self:GetIntrinsicModifierName()
     return "modifier_dusa_mana"
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(dusa_w)

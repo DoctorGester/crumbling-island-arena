@@ -17,6 +17,10 @@ if IsServer() then
         local hero = event.unit.hero
         local parent = self:GetParent()
 
+        if not event.ability.canBeSilenced then
+            return
+        end
+
         if hero and hero.owner.team ~= parent.hero.owner.team and (hero:GetPos() - parent:GetAbsOrigin()):Length2D() <= 400 then
             self:Destroy()
         end

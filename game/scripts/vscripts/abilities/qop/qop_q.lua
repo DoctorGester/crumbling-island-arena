@@ -32,3 +32,9 @@ end
 function qop_q:GetPlaybackRateOverride()
     return 1.5
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(qop_q)

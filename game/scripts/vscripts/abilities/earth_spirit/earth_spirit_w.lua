@@ -40,3 +40,9 @@ function earth_spirit_w:GetCustomCastErrorLocation(location)
 
     return ""
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(earth_spirit_w)

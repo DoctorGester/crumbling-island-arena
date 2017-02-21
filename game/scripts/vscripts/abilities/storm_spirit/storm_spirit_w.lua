@@ -11,3 +11,9 @@ function storm_spirit_w:OnSpellStart()
 
     ProjectileStormW(hero.round, hero, target, self):Activate()
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(storm_spirit_w)

@@ -22,3 +22,9 @@ function cm_e_sub:OnSpellStart()
         ImmediateEffectPoint(particle, PATTACH_CUSTOMORIGIN, hero, hero:GetPos())
     end
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(cm_e_sub)

@@ -10,3 +10,9 @@ function pudge_r:OnSpellStart()
     hero:GetUnit():StartGesture(ACT_DOTA_CAST_ABILITY_ROT)
     hero:EmitSound("Arena.Pudge.CastR.Voice")
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(pudge_r)

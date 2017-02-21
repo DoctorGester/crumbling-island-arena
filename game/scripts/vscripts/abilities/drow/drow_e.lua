@@ -20,3 +20,9 @@ function drow_e:OnSpellStart()
         gestureRate = 2.4
     })
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(drow_e)

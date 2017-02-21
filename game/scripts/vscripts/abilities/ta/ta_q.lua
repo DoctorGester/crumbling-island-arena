@@ -44,3 +44,9 @@ end
 function ta_q:GetPlaybackRateOverride()
     return 1.6
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(ta_q)

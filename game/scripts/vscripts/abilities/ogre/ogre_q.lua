@@ -82,3 +82,9 @@ end
 function ogre_q:GetPlaybackRateOverride()
     return 1.05
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(ogre_q)

@@ -39,3 +39,9 @@ end
 function invoker_r:GetCastAnimation()
     return ACT_DOTA_CAST_CHAOS_METEOR
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(invoker_r)

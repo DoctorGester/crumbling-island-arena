@@ -58,3 +58,9 @@ end
 function venge_e:GetPlaybackRateOverride()
     return 2.0
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(venge_e)

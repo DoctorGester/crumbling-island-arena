@@ -39,3 +39,9 @@ end
 function tiny_q:GetPlaybackRateOverride()
     return 2
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(tiny_q)

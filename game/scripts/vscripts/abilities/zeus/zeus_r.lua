@@ -123,3 +123,9 @@ end
 if IsServer() then
     Wrappers.GuidedAbility(zeus_r, true)
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(zeus_r)

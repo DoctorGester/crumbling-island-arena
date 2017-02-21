@@ -10,3 +10,9 @@ function ogre_r:OnSpellStart()
     hero:EmitSound("Arena.Ogre.CastR3")
     hero:EmitSound("Arena.Ogre.CastR4")
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(ogre_r)

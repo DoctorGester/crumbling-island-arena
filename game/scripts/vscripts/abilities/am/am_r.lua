@@ -36,6 +36,13 @@ end
 function self:GetPlaybackRateOverride()
     return 2.0
 end
+
 function self:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_4
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(am_r)

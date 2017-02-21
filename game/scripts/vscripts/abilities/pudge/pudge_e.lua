@@ -38,3 +38,9 @@ end
 function pudge_e:GetPlaybackRateOverride()
     return 2
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(pudge_e)

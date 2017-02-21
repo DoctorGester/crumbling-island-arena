@@ -70,3 +70,9 @@ function SKWProjectile:Remove()
 
 	getbase(SKWProjectile).Remove(self)
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(sk_w)

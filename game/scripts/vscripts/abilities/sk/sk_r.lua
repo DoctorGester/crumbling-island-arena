@@ -14,3 +14,9 @@ end
 function sk_r:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_4
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(sk_r)

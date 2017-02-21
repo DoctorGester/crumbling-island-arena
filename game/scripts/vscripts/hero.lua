@@ -388,6 +388,22 @@ function Hero:Update()
             assigned:SetAbsOrigin(self:GetPos())
         end
     end
+
+    local unit = self:GetUnit()
+    local count = unit:GetAbilityCount() - 1
+    for i = 0, count do
+        local ability = unit:GetAbilityByIndex(i)
+
+        if ability ~= nil and (ability:IsInAbilityPhase() or ability:IsChanneling()) then
+            if unit:IsDisarmed() and IsAttackAbility(ability) then
+                unit:Interrupt()
+            end
+
+            if IsUnitSilenced(unit) and ability.canBeSilenced then
+                unit:Interrupt()
+            end
+        end
+    end
 end
 
 function Hero:Setup()

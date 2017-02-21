@@ -19,3 +19,9 @@ function lc_e:OnSpellStart()
 
     hero:EmitSound("Arena.LC.CastE")
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(lc_e)

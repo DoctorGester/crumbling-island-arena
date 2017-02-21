@@ -63,3 +63,9 @@ function tiny_e:GetCastAnimation()
 
     return ACT_TINY_AVALANCHE
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(tiny_e)

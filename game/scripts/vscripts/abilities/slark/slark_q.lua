@@ -41,3 +41,9 @@ end
 function slark_q:GetPlaybackRateOverride()
     return 3
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(slark_q)

@@ -38,3 +38,9 @@ function slark_w:OnSpellStart()
         end
     end):Activate()
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(slark_w)

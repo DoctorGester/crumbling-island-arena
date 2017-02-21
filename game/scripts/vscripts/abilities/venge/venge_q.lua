@@ -19,3 +19,9 @@ function venge_q:OnSpellStart()
 
     hero:EmitSound("Arena.Venge.CastQ")
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(venge_q)

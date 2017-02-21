@@ -9,3 +9,9 @@ function jugger_r:OnSpellStart()
     hero:EmitSound("Arena.Jugger.CastR2")
     hero:FindAbility("jugger_a"):EndCooldown()
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(jugger_r)

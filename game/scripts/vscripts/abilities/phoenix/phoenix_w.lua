@@ -47,3 +47,9 @@ function phoenix_w:OnSpellStart()
 
     hero:EmitSound("Arena.Phoenix.CastW")
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(phoenix_w)

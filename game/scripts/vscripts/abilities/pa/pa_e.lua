@@ -16,3 +16,9 @@ function pa_e:OnSpellStart()
         end
     ):Activate()
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(pa_e)

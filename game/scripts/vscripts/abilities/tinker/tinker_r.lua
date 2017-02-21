@@ -18,3 +18,9 @@ end
 function tinker_r:GetCastAnimation()
     return ACT_DOTA_TINKER_REARM3
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(tinker_r)

@@ -51,3 +51,9 @@ end
 if IsServer() then
     Wrappers.GuidedAbility(wr_q, true)
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(wr_q)

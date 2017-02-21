@@ -17,3 +17,9 @@ function self:OnSpellStart()
         self.lastCast = now
     end
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(dusa_e)

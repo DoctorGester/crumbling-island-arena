@@ -44,3 +44,9 @@ end
 function zeus_e:GetCastAnimation()
     return ACT_DOTA_TELEPORT_END
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(zeus_e)

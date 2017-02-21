@@ -6,3 +6,9 @@ function ogre_e:OnSpellStart()
     hero:RollRandomSpell()
     hero:EmitSound("Arena.Ogre.CastE")
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(ogre_e)

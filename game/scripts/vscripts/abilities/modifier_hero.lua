@@ -33,22 +33,6 @@ function modifier_hero:DeclareFunctions()
 end
 
 if IsServer() then
-    function modifier_hero:OnStateChanged(event)
-        local unit = event.unit
-        if unit == self:GetParent() then
-            if unit:IsDisarmed() then
-                local count = unit:GetAbilityCount() - 1
-                for i = 0, count do
-                    local ability = unit:GetAbilityByIndex(i)
-
-                    if ability ~= nil and IsAttackAbility(ability) and ability:IsInAbilityPhase() then
-                        unit:Interrupt()
-                    end
-                end
-            end
-        end
-    end
-
     function modifier_hero:GetModifierMoveSpeed_Limit()
         if self:GetParent():GetParentEntity():CanFall() and self:IsForwardEmpty() then
             return 20

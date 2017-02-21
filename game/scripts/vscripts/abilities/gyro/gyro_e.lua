@@ -28,3 +28,9 @@ end
 function self:GetIntrinsicModifierName()
     return "modifier_gyro_e_cooldown"
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(gyro_e)

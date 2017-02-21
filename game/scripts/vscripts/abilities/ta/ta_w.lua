@@ -36,3 +36,9 @@ end
 function ta_w:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_4
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(ta_w)

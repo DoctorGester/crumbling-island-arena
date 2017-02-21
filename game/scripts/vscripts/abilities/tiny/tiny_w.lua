@@ -30,3 +30,9 @@ end
 function tiny_w:GetCastAnimation()
     return ACT_TINY_TOSS
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(tiny_w)

@@ -122,3 +122,9 @@ end
 function shaker_r:GetPlaybackRateOverride()
     return 1.2
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(shaker_r)

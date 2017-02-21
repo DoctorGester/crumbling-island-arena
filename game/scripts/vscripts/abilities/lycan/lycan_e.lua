@@ -24,3 +24,9 @@ end
 function lycan_e:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_2
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(lycan_e)

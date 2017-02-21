@@ -26,3 +26,9 @@ end
 function ember_e:GetCastAnimation()
     return 0
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(ember_e)

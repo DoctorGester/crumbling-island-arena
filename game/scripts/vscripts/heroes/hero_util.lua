@@ -146,6 +146,12 @@ function TinkerUtil.PortalAbility(ability, isPrimary, swapTo, startEffect, effec
     function ability:GetPlaybackRateOverride()
         return 2.0
     end
+
+    if IsClient() then
+        require("wrappers")
+    end
+
+    Wrappers.NormalAbility(ability)
 end
 
 function TinkerUtil.PortalCancelAbility(ability, isPrimary, swapTo)
@@ -157,6 +163,12 @@ function TinkerUtil.PortalCancelAbility(ability, isPrimary, swapTo)
             portal:Destroy()
         end
     end
+
+    if IsClient() then
+        require("wrappers")
+    end
+
+    Wrappers.NormalAbility(ability)
 end
 
 CMUtil = {}

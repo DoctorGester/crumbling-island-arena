@@ -37,3 +37,9 @@ end
 function drow_w:GetPlaybackRateOverride()
     return 2
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(drow_w)

@@ -36,3 +36,9 @@ end
 function ta_e:GetIntrinsicModifierName()
     return "modifier_ta_e"
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(ta_e)

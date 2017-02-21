@@ -79,6 +79,12 @@ if IsServer() then
     Wrappers.GuidedAbility(sven_e, true)
 end
 
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(sven_e)
+
 SvenDash = SvenDash or class({}, nil, Dash)
 SvenDash.DUST_EFFECT = "particles/econ/items/rubick/rubick_force_gold_ambient/rubick_telekinesis_force_dust_gold.vpcf"
 

@@ -66,3 +66,9 @@ end
 function qop_r:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_3
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(qop_r)

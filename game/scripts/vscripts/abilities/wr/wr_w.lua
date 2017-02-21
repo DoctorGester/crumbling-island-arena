@@ -42,3 +42,9 @@ end
 function wr_w:GetPlaybackRateOverride()
     return 1
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(wr_w)

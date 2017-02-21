@@ -17,3 +17,9 @@ end
 function cm_r:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_1
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(cm_r)

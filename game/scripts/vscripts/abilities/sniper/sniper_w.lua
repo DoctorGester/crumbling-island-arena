@@ -28,3 +28,9 @@ end
 function sniper_w:GetCastAnimation()
     return ACT_DOTA_TELEPORT_END
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(sniper_w)

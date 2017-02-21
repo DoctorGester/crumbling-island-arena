@@ -28,3 +28,9 @@ end
 function ursa_q:GetPlaybackRateOverride()
     return 1.5
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(ursa_q)

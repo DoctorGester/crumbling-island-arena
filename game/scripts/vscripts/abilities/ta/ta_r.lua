@@ -9,3 +9,9 @@ function ta_r:OnSpellStart()
     hero:EmitSound("Arena.TA.CastR.Voice")
     self:GetCaster():StartGesture(ACT_DOTA_CAST_REFRACTION)
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(ta_r)

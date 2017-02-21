@@ -22,3 +22,9 @@ function venge_w:OnSpellStart()
     hero:EmitSound("Arena.Venge.CastW")
     hero:EmitSound("Arena.Venge.CastW.Voice")
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(venge_w)

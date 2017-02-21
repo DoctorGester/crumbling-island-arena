@@ -40,3 +40,9 @@ function storm_spirit_e:GetCustomCastErrorLocation(location)
 
     return ""
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(storm_spirit_e)

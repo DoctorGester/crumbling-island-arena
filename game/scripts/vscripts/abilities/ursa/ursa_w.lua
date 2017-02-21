@@ -10,3 +10,9 @@ function ursa_w:OnSpellStart()
     hero:EmitSound("Arena.Ursa.CastW")
     hero:FindAbility("ursa_a"):EndCooldown()
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(ursa_w)

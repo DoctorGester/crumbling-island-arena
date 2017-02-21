@@ -33,3 +33,9 @@ end
 function wk_q:GetPlaybackRateOverride()
     return 2.0
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(wk_q)

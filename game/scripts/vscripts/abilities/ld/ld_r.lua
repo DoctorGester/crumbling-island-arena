@@ -44,3 +44,9 @@ function ld_r:OnChannelFinish(interrupted)
         hero:AddNewModifier(hero, self, "modifier_ld_r", {})
     end
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(ld_r)

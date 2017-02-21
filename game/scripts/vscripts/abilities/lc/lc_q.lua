@@ -43,3 +43,9 @@ function lc_q:OnSpellStart()
     AddAnimationTranslate(hero:GetUnit(), "duel_kill", 0.1)
     hero:Animate(ACT_DOTA_ATTACK, 1.5)
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(lc_q)

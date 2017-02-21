@@ -33,3 +33,9 @@ function undying_q_sub:OnSpellStart()
 
     hero:EmitSound("Arena.Undying.CastW.Sub")
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(undying_q_sub)

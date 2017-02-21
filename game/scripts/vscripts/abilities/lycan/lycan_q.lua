@@ -26,3 +26,9 @@ end
 function lycan_q:GetIntrinsicModifierName()
     return "modifier_lycan_instinct"
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(lycan_q)

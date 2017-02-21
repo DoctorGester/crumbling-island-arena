@@ -41,3 +41,9 @@ end
 function brew_w:GetPlaybackRateOverride()
     return 2
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(brew_w)

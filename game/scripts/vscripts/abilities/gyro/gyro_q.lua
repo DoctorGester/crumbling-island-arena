@@ -48,3 +48,9 @@ end
 function self:GetPlaybackRateOverride()
     return 1.5
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(gyro_q)

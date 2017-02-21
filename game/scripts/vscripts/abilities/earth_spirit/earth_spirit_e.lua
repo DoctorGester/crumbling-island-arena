@@ -89,3 +89,9 @@ function ESDash:Update()
         self.to = self.targetRemnant:GetPos()
     end
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(earth_spirit_e)

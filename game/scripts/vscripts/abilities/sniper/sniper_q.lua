@@ -35,3 +35,9 @@ end
 function sniper_q:GetPlaybackRateOverride()
     return 2.0
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(sniper_q)

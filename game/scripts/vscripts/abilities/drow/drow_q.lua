@@ -21,3 +21,9 @@ function drow_q:OnSpellStart()
         self:EndCooldown()
     end
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(drow_q)

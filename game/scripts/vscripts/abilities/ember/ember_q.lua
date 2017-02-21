@@ -35,3 +35,9 @@ end
 function ember_q:GetPlaybackRateOverride()
     return 2.0
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(ember_q)

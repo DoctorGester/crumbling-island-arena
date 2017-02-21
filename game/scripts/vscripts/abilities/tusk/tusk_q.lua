@@ -32,3 +32,9 @@ end
 function tusk_q:GetPlaybackRateOverride()
     return 2.0
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(tusk_q)

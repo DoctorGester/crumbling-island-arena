@@ -43,3 +43,9 @@ end
 function wk_e:GetCastAnimation()
     return ACT_DOTA_TELEPORT
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(wk_e)

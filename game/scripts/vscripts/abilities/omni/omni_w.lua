@@ -30,3 +30,9 @@ end
 function self:GetCastAnimation()
     return ACT_DOTA_ATTACK2
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(omni_w)

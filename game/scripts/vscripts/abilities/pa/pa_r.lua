@@ -8,3 +8,9 @@ function pa_r:OnSpellStart()
     hero:EmitSound("Item.GlimmerCape.Activate")
     hero:EmitSound("Arena.PA.CastR.Voice")
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(pa_r)

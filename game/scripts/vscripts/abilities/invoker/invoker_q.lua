@@ -47,3 +47,9 @@ end
 function invoker_q:GetCastAnimation()
     return ACT_DOTA_CAST_ALACRITY
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(invoker_q)

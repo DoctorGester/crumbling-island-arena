@@ -21,3 +21,9 @@ end
 function invoker_e:GetPlaybackRateOverride()
     return 1.3
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(invoker_e)

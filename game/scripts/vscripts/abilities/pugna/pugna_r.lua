@@ -6,3 +6,9 @@ function pugna_r:OnSpellStart()
 
     hero:AddNewModifier(hero, self, "modifier_pugna_r", { duration = 4.5 })
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(pugna_r)

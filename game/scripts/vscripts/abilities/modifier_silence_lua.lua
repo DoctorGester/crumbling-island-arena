@@ -4,14 +4,6 @@ function modifier_silence_lua:IsDebuff()
     return true
 end
 
-function modifier_silence_lua:CheckState()
-    local state = {
-        [MODIFIER_STATE_SILENCED] = true
-    }
-
-    return state
-end
-
 function modifier_silence_lua:GetEffectName()
     return "particles/generic_gameplay/generic_silence.vpcf"
 end

@@ -31,3 +31,9 @@ function phoenix_q:OnSpellStart()
         }
     })
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(phoenix_q)
