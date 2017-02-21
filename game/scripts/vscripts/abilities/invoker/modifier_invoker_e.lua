@@ -14,10 +14,14 @@ if IsServer() then
     end
 
     function modifier_invoker_e:OnAbilityExecuted(event)
+        self:OnAbilityStart(event)
+    end
+
+    function modifier_invoker_e:OnAbilityStart(event)
         local hero = event.unit.hero
         local parent = self:GetParent()
 
-        if not event.ability.canBeSilenced then
+        if not event.ability.canBeSilenced or self:GetElapsedTime() < 0.5 then
             return
         end
 
@@ -34,6 +38,7 @@ if IsServer() then
             filter = Filters.Area(parent:GetAbsOrigin(), 400),
             filterProjectiles = true,
             onlyHeroes = true,
+            damage = self:GetAbility():GetDamage(),
             modifier = {
                 name = "modifier_silence_lua",
                 duration = 2.0,
@@ -49,6 +54,7 @@ end
 function modifier_invoker_e:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_VISUAL_Z_DELTA,
+        MODIFIER_EVENT_ON_ABILITY_START,
         MODIFIER_EVENT_ON_ABILITY_EXECUTED
     }
 
