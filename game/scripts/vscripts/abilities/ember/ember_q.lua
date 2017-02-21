@@ -29,7 +29,7 @@ function ember_q:OnSpellStart()
 end
 
 function ember_q:GetCastAnimation()
-    return ACT_DOTA_ATTACK2
+    return ACT_DOTA_ATTACK
 end
 
 function ember_q:GetPlaybackRateOverride()

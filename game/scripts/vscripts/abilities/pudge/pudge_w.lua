@@ -45,7 +45,7 @@ function pudge_w:OnSpellStart()
 end
 
 function pudge_w:GetCastAnimation()
-    return ACT_DOTA_ATTACK2
+    return ACT_DOTA_CHANNEL_ABILITY_4
 end
 
 function pudge_w:GetPlaybackRateOverride()
