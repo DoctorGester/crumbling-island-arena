@@ -12,15 +12,6 @@ function modifier_sven_w_slow:DeclareFunctions()
     return funcs
 end
 
-
-function modifier_sven_w_slow:CheckState()
-    local state = {
-        [MODIFIER_STATE_SILENCED] = true
-    }
-
-    return state
-end
-
 function modifier_sven_w_slow:GetEffectName()
     return "particles/generic_gameplay/generic_silence.vpcf"
 end

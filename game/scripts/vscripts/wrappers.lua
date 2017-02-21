@@ -195,7 +195,21 @@ function Wrappers.AttackAbility(ability, staticDurationOffset, fx)
 end
 
 function IsUnitSilenced(hero)
-    return hero:HasModifier("modifier_silence_lua")
+    local silenceModifiers = {
+        "modifier_silence_lua",
+        "modifier_am_r",
+        "modifier_sven_w_slow",
+        "modifier_ogre_5",
+        "modifier_ogre_6"
+    }
+
+    for _, mod in ipairs(silenceModifiers) do
+        if hero:HasModifier(mod) then
+            return true
+        end
+    end
+
+    return false
 end
 
 function Wrappers.NormalAbility(ability)

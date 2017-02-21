@@ -24,14 +24,6 @@ function self:IsDebuff()
     return true
 end
 
-function self:CheckState()
-    local state = {
-        [MODIFIER_STATE_SILENCED] = true
-    }
-
-    return state
-end
-
 function self:GetEffectName()
     return "particles/generic_gameplay/generic_silence.vpcf"
 end
