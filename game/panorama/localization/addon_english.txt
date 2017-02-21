@@ -304,6 +304,10 @@
 		"InfoPassTaunts" "Taunt animations for<br/><img src='file://{images}/heroes/icons/npc_dota_hero_undying.png'/> <img src='file://{images}/heroes/icons/npc_dota_hero_slark.png'/> <img src='file://{images}/heroes/icons/npc_dota_hero_zuus.png'/>"
 		"InfoPassEmotes" "Voice emotes for<br/><img src='file://{images}/heroes/icons/npc_dota_hero_skeleton_king.png'/> <img src='file://{images}/heroes/icons/npc_dota_hero_sniper.png'/> <img src='file://{images}/heroes/icons/npc_dota_hero_queenofpain.png'/>"
 
+		"News" "news"
+		"NewsArcanaWinner" "Winner of the Arcana Tournament"
+		"NewsArcanaCongratulations" "Congratulations!"
+
 		"GameName" "Crumbling Island Arena"
 		"GameTip" "Tip: {s:tip}"
 		"GameTip0" "Avoid standing on the red ground"

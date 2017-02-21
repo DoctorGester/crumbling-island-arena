@@ -46,6 +46,18 @@
                 <Image class="RewardImage" src="file://{images}/custom_game/rewards/7.png" scaling="stretch-to-fit-y-preserve-aspect"/>
             </Panel>
         </snippet>
+
+        <snippet name="arcanaTournament">
+            <Panel>
+                <Label class="WidgetHeader" text="#NewsArcanaWinner"/>
+                <Panel id="NewsArcanaPlayer">
+                    <DOTAAvatarImage class="RankedSeasonCongratulationsPlayerAvatar" steamid="76561198146651779"/>
+                    <DOTAUserName steamid="76561198146651779"/>
+                </Panel>
+                <Image id="NewsArcanaImage" src="file://{images}/custom_game/arcana.jpg" scaling="stretch-to-fit-y-preserve-aspect"/>
+                <Label class="WidgetHeader" text="#NewsArcanaCongratulations"/>
+            </Panel>
+        </snippet>
     </snippets>
     <Panel style="width:100%;height:100%;overflow:clip;background-color:black;" hittest="false">
         <Image src="file://{images}/custom_game/loadscreen.png" hittest="false"/>
@@ -125,6 +137,13 @@
                 </Panel>
                 <Panel id="RankedInfoHeader">
                     <Label id="RankedInfoHeaderText" text="#Pass"/>
+                </Panel>
+            </Panel>
+
+            <Panel id="NewsInfo" class="Widget">
+                <Panel id="NewsInfoContainer" class="WidgetContainer"/>
+                <Panel id="RankedInfoHeader">
+                    <Label id="RankedInfoHeaderText" text="#News"/>
                 </Panel>
             </Panel>
         </Panel>

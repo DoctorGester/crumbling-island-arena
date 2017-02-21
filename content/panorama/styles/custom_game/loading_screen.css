@@ -1,4 +1,4 @@
-Label
+Label, DOTAUserName
 {
     font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
 }
@@ -101,7 +101,7 @@ Label
     font-size: 19px;
 }
 
-#PassInfoContainer
+#PassInfoContainer, #NewsInfoContainer
 {
     flow-children: down;
 }
@@ -406,4 +406,40 @@ Label
     tooltip-position: top;
     tooltip-body-position: 50% 100%;
     background-color: rgba(0, 255, 255, 0.02);
+}
+
+#NewsInfo
+{
+    width: 30%;
+    height: 100%;
+}
+
+.AspectRatio5x4 #NewsInfo, .AspectRatio4x3 #NewsInfo
+{
+    width: 50%;
+    align: right center;
+}
+
+#NewsArcanaPlayer
+{
+    flow-children: right;
+    align: center center;
+    margin: 30px;
+}
+
+#NewsArcanaPlayer DOTAUserName
+{
+    color: gold;
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+    align: center center;
+}
+
+#NewsArcanaImage
+{
+    align: center center;
+    margin-bottom: 55px;
+    border-radius: 3px;
+    border: 1px solid gold;
 }

@@ -300,6 +300,10 @@
 		"InfoPassTaunts" "Анимации насмешек для<br/><img src='file://{images}/heroes/icons/npc_dota_hero_undying.png'/> <img src='file://{images}/heroes/icons/npc_dota_hero_slark.png'/> <img src='file://{images}/heroes/icons/npc_dota_hero_zuus.png'/>"
 		"InfoPassEmotes" "Голосовые эмоции для<br/><img src='file://{images}/heroes/icons/npc_dota_hero_skeleton_king.png'/> <img src='file://{images}/heroes/icons/npc_dota_hero_sniper.png'/> <img src='file://{images}/heroes/icons/npc_dota_hero_queenofpain.png'/>"
 
+		"News" "новости"
+		"NewsArcanaWinner" "Победитель Турнира Арканы"
+        "NewsArcanaCongratulations" "Поздравляем!"
+
 		"GameTip" "Подсказка: {s:tip}"
 		"GameTip0" "Старайся не стоять на красной земле"
 		"GameTip1" "Землю можно разрушать способностями"
