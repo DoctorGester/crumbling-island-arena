@@ -34,7 +34,7 @@ require('statistics')
 require('chat')
 require('debug_util')
 
-_G.GAME_VERSION = "2.0"
+_G.GAME_VERSION = "2.1"
 _G.STATE_NONE = 0
 _G.STATE_GAME_SETUP = 1
 _G.STATE_HERO_SELECTION = 2
