@@ -110,8 +110,10 @@ function Dash:Update()
         result.z = self.zStart + self:HeightFunction(origin)
 
         local testPos = self:PositionFunction(self:PositionFunction(self:PositionFunction(result)))
+        local selfDash = (self.source == nil or self.source == self.hero)
+        local blocked = not GridNav:IsTraversable(testPos) or GridNav:IsBlocked(result)
 
-        if (self.source == nil or self.source == self.hero) and self.hero:CanFall() and not Spells.TestCircle(testPos, self.hero:GetRad()) then
+        if selfDash and self.hero:CanFall() and (not Spells.TestCircle(testPos, self.hero:GetRad()) or blocked) then
             self:Interrupt()
             return origin
         end
