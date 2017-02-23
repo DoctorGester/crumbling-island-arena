@@ -467,8 +467,14 @@ function GameMode:FilterExecuteOrder(filterTable)
     local orderType = filterTable.order_type
     local index = 0
     local filteredUnits = {}
+
+    if filterTable.queue == 1 then
+        return true
+    end
+
     for _, unitIndex in pairs(filterTable.units) do
         local unit = EntIndexToHScript(unitIndex)
+        local skip = 0
 
         -- Yes, that happened
         if unit ~= nil then
@@ -480,15 +486,46 @@ function GameMode:FilterExecuteOrder(filterTable)
                 self.lastOrders[unit] = Vector(filterTable.position_x, filterTable.position_y)
             end
 
-            if orderType == DOTA_UNIT_ORDER_CAST_POSITION and self.lastOrders[unit] then
+            if filterTable.entindex_ability > 0 then
                 local ability = EntIndexToHScript(filterTable.entindex_ability)
+                local im = DOTA_ABILITY_BEHAVIOR_IMMEDIATE
 
-                if ability:IsCooldownReady() and not ability:IsInAbilityPhase() and IsAttackAbility(ability) then
+                if bit.band(ability:GetBehavior(), im) == im and IsFullyCastable(ability) then
+                    local all = FindUnitsInRadius(
+                        0,
+                        Vector(),
+                        nil,
+                        FIND_UNITS_EVERYWHERE,
+                        DOTA_UNIT_TARGET_TEAM_BOTH,
+                        DOTA_UNIT_TARGET_ALL,
+                        DOTA_UNIT_TARGET_FLAG_NONE,
+                        FIND_ANY_ORDER,
+                        false
+                    )
+
+                    for _, foundUnit in ipairs(all) do
+                        for _, modifier in ipairs(foundUnit:FindAllModifiers()) do
+                            if modifier.OnAbilityImmediate then
+                                modifier:OnAbilityImmediate({
+                                    unit = unit,
+                                    ability = ability
+                                })
+                            end
+                        end
+                    end
+                end
+
+                if IsAttackAbility(ability) and
+                        orderType == DOTA_UNIT_ORDER_CAST_POSITION and
+                        self.lastOrders[unit] and
+                        ability:IsCooldownReady() and
+                        not ability:IsInAbilityPhase()
+                then
                     --if unit:IsMoving() then
                         Timers:CreateTimer(0.1, function()
                             if IsValidEntity(unit) then
                                 ExecuteOrderFromTable({
-                                    UnitIndex = unitIndex, 
+                                    UnitIndex = unitIndex,
                                     OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
                                     Position = self.lastOrders[unit],
                                     Queue = true
@@ -513,14 +550,15 @@ function GameMode:FilterExecuteOrder(filterTable)
             if orderType == DOTA_UNIT_ORDER_CAST_TOGGLE then
                 local ability = EntIndexToHScript(filterTable.entindex_ability)
 
-                if ability:IsCooldownReady() then
-                    filteredUnits[index] = unitIndex
-
-                    index = index + 1
-                else
+                if not ability:IsCooldownReady() then
+                    skip = skip + 1
                     CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(filterTable.issuer_player_id_const), "cooldown_error", {})
                 end
-            elseif not unit:IsChanneling() or currentChanneling == "taunt_static" or orderType == DOTA_UNIT_ORDER_STOP or orderType == DOTA_UNIT_ORDER_HOLD_POSITION then
+            elseif unit:IsChanneling() and currentChanneling ~= "taunt_static" and orderType ~= DOTA_UNIT_ORDER_STOP and orderType ~= DOTA_UNIT_ORDER_HOLD_POSITION then
+                skip = skip + 1
+            end
+
+            if skip == 0 then
                 filteredUnits[index] = unitIndex
 
                 index = index + 1

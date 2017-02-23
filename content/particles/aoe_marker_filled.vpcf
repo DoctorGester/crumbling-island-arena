@@ -92,6 +92,13 @@
 			m_vInputMax = [ 255.0, 255.0, 255.0 ]
 			m_vOutputMax = [ 1.0, 1.0, 1.0 ]
 		},
+		{
+			_class = "C_INIT_RemapCPtoScalar"
+			m_nCPInput = 3
+			m_nFieldOutput = 7
+			m_flOutputMin = 1.0
+			m_flOutputMax = 0.0
+		},
 	]
 	m_Emitters = 
 	[

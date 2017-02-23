@@ -2,18 +2,30 @@ modifier_invoker_e = class({})
 
 if IsServer() then
     function modifier_invoker_e:OnCreated(kv)
-        local particle = ParticleManager:CreateParticle("particles/aoe_marker.vpcf", PATTACH_ABSORIGIN, self:GetParent())
-
-        ParticleManager:SetParticleControl(particle, 1, Vector(400, 1, 1))
-        ParticleManager:SetParticleControl(particle, 2, Vector(195, 143, 200))
-        ParticleManager:SetParticleControl(particle, 3, Vector(self:GetDuration(), 0, 0))
-        self:AddParticle(particle, false, false, 0, true, false)
-
         self:GetParent():EmitSound("Arena.Invoker.CastE")
         self:GetParent():EmitSound("Arena.Invoker.LoopE")
+
+        self:StartIntervalThink(0.5)
     end
 
-    function modifier_invoker_e:OnAbilityExecuted(event)
+    function modifier_invoker_e:OnIntervalThink()
+        self:StartIntervalThink(-1)
+
+        if self.destroyed then
+            return
+        end
+
+        local particle = FX("particles/aoe_marker_filled.vpcf", PATTACH_ABSORIGIN, self:GetParent(), {
+            cp0 = self:GetParent():GetAbsOrigin(),
+            cp1 = Vector(400, 1, 1),
+            cp2 = Vector(195, 143, 200),
+            cp3 = Vector(0.5, 0, 0)
+        })
+
+        self:AddParticle(particle, false, false, 0, true, false)
+    end
+
+    function modifier_invoker_e:OnAbilityImmediate(event)
         self:OnAbilityStart(event)
     end
 
@@ -21,16 +33,20 @@ if IsServer() then
         local hero = event.unit.hero
         local parent = self:GetParent()
 
-        if not event.ability.canBeSilenced or self:GetElapsedTime() < 0.5 then
+        if not event.ability.canBeSilenced or self:GetElapsedTime() < 0.5 or not instanceof(hero, Hero) then
             return
         end
 
         if hero and hero.owner.team ~= parent.hero.owner.team and (hero:GetPos() - parent:GetAbsOrigin()):Length2D() <= 400 then
+            if not self.destroyed then
+                self:GoBang()
+            end
+
             self:Destroy()
         end
     end
 
-    function modifier_invoker_e:OnDestroy()
+    function modifier_invoker_e:GoBang()
         local parent = self:GetParent()
 
         parent.hero:AreaEffect({
@@ -48,14 +64,21 @@ if IsServer() then
 
         self:GetParent():StopSound("Arena.Invoker.LoopE")
         self:GetParent():EmitSound("Arena.Invoker.EndE")
+
+        self.destroyed = true
+    end
+
+    function modifier_invoker_e:OnDestroy()
+        if not self.destroyed then
+            self:GoBang()
+        end
     end
 end
 
 function modifier_invoker_e:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_VISUAL_Z_DELTA,
-        MODIFIER_EVENT_ON_ABILITY_START,
-        MODIFIER_EVENT_ON_ABILITY_EXECUTED
+        MODIFIER_EVENT_ON_ABILITY_START
     }
 
     return funcs
