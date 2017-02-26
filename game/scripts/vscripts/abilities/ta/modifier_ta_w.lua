@@ -27,8 +27,9 @@ end
 
 function modifier_ta_w:OnDamageReceived(source, entity, amount)
     local hero = self:GetCaster():GetParentEntity()
+    local proj = instanceof(source, Projectile)
 
-    if hero == source then
+    if (hero == source or (proj and source.hero == hero)) then
         hero:Heal(amount)
         hero:EmitSound("Arena.TA.HitW")
 
