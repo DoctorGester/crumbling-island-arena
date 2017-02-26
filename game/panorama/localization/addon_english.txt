@@ -570,7 +570,7 @@
 		"AbilityTooltip_invoker_a"						"Deals magic damage"
 		"AbilityTooltip_invoker_q"						"Deal damage in an AOE after a 1.1 second delay"
 		"AbilityTooltip_invoker_w"						"Launch a slowing projectile<br/><br/>Enemies affected can't attack, take double damage from abilities and no physical damage"
-		"AbilityTooltip_invoker_e"						"Set up an area which explodes after 4 seconds and silences nearby enemies<br/><br/>Explodes prematurely if an enemy uses a spell while in the area"
+		"AbilityTooltip_invoker_e"						"Set up an area which explodes after 2 seconds and silences nearby enemies<br/><br/>Explodes prematurely if an enemy uses a spell while in the area"
 		"AbilityTooltip_invoker_r"						"Launch a meteor, dealing <font color=\"gold\"><b>MASSIVE</b></font> damage to the ground"
 
 		"AbilityTooltip_tinker_a"						"Detects nearby enemies and automatically follows them"
@@ -758,6 +758,7 @@
 		"ModifierTooltip_modifier_brew_beer"					"Slowed"
 
 		"ModifierTooltip_modifier_invoker_w"					"Slowed"
+		"ModifierTooltip_modifier_invoker_e_target"				"Will get silenced if casts a spell"
 
 		"ModifierTooltip_modifier_tinker_q"						"Disarmed"
 
@@ -826,6 +827,7 @@
 		"StatusBreak" "Break"
 		"StatusSpellShield" "Spell shield"
 		"StatusCharged" "Charged"
+		"StatusSpellbreak" "Spellbreak"
 		"StatusUltimate" "Ultimate"
 	}
 }

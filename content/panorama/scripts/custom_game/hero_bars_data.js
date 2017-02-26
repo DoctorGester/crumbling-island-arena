@@ -119,6 +119,7 @@ AddStatusEffect("modifier_venge_r_target", "#StatusBreak", "#b2e7c8");
 AddStatusEffect("modifier_am_a", "#StatusCharged", "#00b5ff");
 AddStatusEffect("modifier_am_w", "#StatusSpellShield", "#7aaaff", 1);
 AddStatusEffect("modifier_cm_frozen", "#StatusFrozen", "#7ceeff", 1);
+AddStatusEffect("modifier_invoker_e_target", "#StatusSpellbreak", "#fab9ff");
 //AddStatusEffect("modifier_wr_a", "#StatusHaste", "#91e246");
 
 AddStatusEffect("modifier_ursa_r", "#StatusUltimate", "#ff1b00", 1);

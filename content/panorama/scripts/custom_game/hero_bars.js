@@ -110,7 +110,7 @@ function UpdateHeroBars(){
                         statusEffect = fx;
                         statusEffectPriority = fx.priority;
                         statusEffectTime = Buffs.GetCreationTime(entity.id, buff);
-                        statusEffectProgress = dur <= 0 ? 0 : Math.round(Buffs.GetRemainingTime(entity.id, buff) / dur * 100);
+                        statusEffectProgress = dur <= 0.15 ? 0 : Math.round(Buffs.GetRemainingTime(entity.id, buff) / dur * 100);
                     }
                 }
 

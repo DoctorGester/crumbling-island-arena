@@ -130,6 +130,10 @@ function AbilityBar(elementId) {
     };
 
     this.Update = function() {
+        if (this.provider == null) {
+            return;
+        }
+
         var count = this.provider.GetAbilityCount();
 
         for (var i = 0; i < count; i++) {

@@ -15,6 +15,8 @@
         <include src="file://{resources}/scripts/custom_game/underscore-min.js" />
         <include src="file://{resources}/scripts/custom_game/vector.js" />
         <include src="file://{resources}/scripts/custom_game/util.js" />
+        <include src="file://{resources}/scripts/custom_game/hero_bars_data.js" />
+        <include src="file://{resources}/scripts/custom_game/hero_bars.js" />
         <include src="file://{resources}/scripts/custom_game/target_indicator.js" />
         <include src="file://{resources}/scripts/custom_game/buff_bar.js" />
         <include src="file://{resources}/scripts/custom_game/ability_bar.js" />
@@ -23,8 +25,6 @@
         <include src="file://{resources}/scripts/custom_game/game_hud.js" />
         <include src="file://{resources}/scripts/custom_game/scoreboard.js" />
         <include src="file://{resources}/scripts/custom_game/hero_detector.js" />
-        <include src="file://{resources}/scripts/custom_game/hero_bars_data.js" />
-        <include src="file://{resources}/scripts/custom_game/hero_bars.js" />
         <include src="file://{resources}/scripts/custom_game/message_queue.js" />
         <include src="file://{resources}/scripts/custom_game/vector_target.js" />
     </scripts>
@@ -97,8 +97,7 @@
         <Image src="file://{images}/custom_game/pl_r.png" style="opacity:0.0;"/>
         <Panel id="HeroBarsContainer" hittest="false" class="MainPanel"/>
         <Panel id="MainPanel" class="MainPanel" hittest="false">
-            <Panel id="DebugPanel" hittest="false">
-            </Panel>
+            <Panel id="DebugPanel" hittest="false"/>
             <Panel id="ScoreboardContainer" hittest="false" hittestchildren="false">
                 <Panel id="VictoryPanel">
                     <Label id="VictoryText" text="#GameGoal"/>

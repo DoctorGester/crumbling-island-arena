@@ -5,7 +5,7 @@ if IsServer() then
         self:GetParent():EmitSound("Arena.Invoker.CastE")
         self:GetParent():EmitSound("Arena.Invoker.LoopE")
 
-        self:StartIntervalThink(0.5)
+        self:StartIntervalThink(0.35)
     end
 
     function modifier_invoker_e:OnIntervalThink()
@@ -15,7 +15,7 @@ if IsServer() then
             return
         end
 
-        local particle = FX("particles/aoe_marker_filled.vpcf", PATTACH_ABSORIGIN, self:GetParent(), {
+        local particle = FX("particles/aoe_marker_filled_thin.vpcf", PATTACH_ABSORIGIN, self:GetParent(), {
             cp0 = self:GetParent():GetAbsOrigin(),
             cp1 = Vector(400, 1, 1),
             cp2 = Vector(195, 143, 200),
@@ -31,13 +31,12 @@ if IsServer() then
 
     function modifier_invoker_e:OnAbilityStart(event)
         local hero = event.unit.hero
-        local parent = self:GetParent()
 
-        if not event.ability.canBeSilenced or self:GetElapsedTime() < 0.5 or not instanceof(hero, Hero) then
+        if not event.ability.canBeSilenced or self:GetElapsedTime() < 0.35 then
             return
         end
 
-        if hero and hero.owner.team ~= parent.hero.owner.team and (hero:GetPos() - parent:GetAbsOrigin()):Length2D() <= 400 then
+        if hero and hero:FindModifier("modifier_invoker_e_target", self:GetCaster()) then
             if not self.destroyed then
                 self:GoBang()
             end
@@ -73,6 +72,34 @@ if IsServer() then
             self:GoBang()
         end
     end
+end
+
+function modifier_invoker_e:IsAura()
+    return true
+end
+
+function modifier_invoker_e:GetAuraRadius()
+    return 400
+end
+
+function modifier_invoker_e:GetAuraDuration()
+    return 0.1
+end
+
+function modifier_invoker_e:GetModifierAura()
+    return "modifier_invoker_e_target"
+end
+
+function modifier_invoker_e:GetAuraSearchTeam()
+    return DOTA_UNIT_TARGET_TEAM_ENEMY
+end
+
+function modifier_invoker_e:GetAuraSearchType()
+    return DOTA_UNIT_TARGET_HERO
+end
+
+function modifier_invoker_e:GetAuraEntityReject()
+    return self:GetElapsedTime() < 0.35
 end
 
 function modifier_invoker_e:DeclareFunctions()
