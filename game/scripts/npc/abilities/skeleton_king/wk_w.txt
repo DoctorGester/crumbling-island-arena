@@ -9,8 +9,9 @@
 		"Damage" "3"
 
 		"TargetingIndicator" {
-			"Type" "TARGETING_INDICATOR_AOE"
-			"Radius" "400"
+			"Type" "TARGETING_INDICATOR_WK_W"
+			"Radius" "200"
+			"Arc" "600"
 		}
 
 		"precache" {

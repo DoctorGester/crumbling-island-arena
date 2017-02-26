@@ -8,9 +8,12 @@
 		"Damage" "3"
 
 		"TargetingIndicator" {
-			"Type" "TARGETING_INDICATOR_RANGE"
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Arc" "100"
+			"ArcWidth" "50"
 			"Radius" "200"
-			"Offset" "500"
+			"MinLength" "500"
+			"MaxLength" "500"
 			"DisplayRange" "1"
 		}
 

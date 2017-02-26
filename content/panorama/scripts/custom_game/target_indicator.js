@@ -63,17 +63,53 @@ indicatorTypes["TARGETING_INDICATOR_LINE"] = function(data, unit) {
     }
 };
 
-indicatorTypes["TARGETING_INDICATOR_AOE"] = function(data, unit) {
-    this.particle = Particles.CreateParticle("particles/targeting/aoe.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN, unit);
-    Particles.SetParticleControl(this.particle, 1, [ GetNumber(data.Radius, 0, unit), 0, 0 ]);
+indicatorTypes["TARGETING_INDICATOR_ARC"] = function(data, unit) {
+    this.data = data;
+    this.unit = unit;
+    this.particle = Particles.CreateParticle("particles/targeting/arc.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN_FOLLOW, unit);
 
     this.Update = function(position){
-        Particles.SetParticleControl(this.particle, 0, position);
-    }
+        var arc = GetNumber(data.Arc, null, unit);
+
+        if (arc) {
+            UpdateArc(this, this.particle, position, arc, GetNumber(data.ArcWidth, 50, unit));
+        }
+    };
 
     this.Delete = function(){
         Particles.DestroyParticleEffect(this.particle, false);
         Particles.ReleaseParticleIndex(this.particle);
+    }
+};
+
+indicatorTypes["TARGETING_INDICATOR_AOE"] = function(data, unit) {
+    this.data = data;
+    this.unit = unit;
+    this.particle = Particles.CreateParticle("particles/targeting/aoe.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN, unit);
+    Particles.SetParticleControl(this.particle, 1, [ GetNumber(data.Radius, 0, unit), 0, 0 ]);
+
+    this.arc = GetNumber(data.Arc, null, unit);
+
+    if (this.arc) {
+        this.arcParticle = Particles.CreateParticle("particles/targeting/arc.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN, unit);
+    }
+
+    this.Update = function(position){
+        Particles.SetParticleControl(this.particle, 0, ClampPosition(Vector.FromArray(position), this.unit, this.data));
+
+        if (this.arc) {
+            UpdateArc(this, this.arcParticle, position, this.arc, GetNumber(data.ArcWidth, 25, unit));
+        }
+    };
+
+    this.Delete = function(){
+        Particles.DestroyParticleEffect(this.particle, false);
+        Particles.ReleaseParticleIndex(this.particle);
+
+        if (this.arc) {
+            Particles.DestroyParticleEffect(this.arcParticle, false);
+            Particles.ReleaseParticleIndex(this.arcParticle);
+        }
     }
 };
 
@@ -296,8 +332,39 @@ indicatorTypes["TARGETING_INDICATOR_AM_DASH"] = function(data, unit) {
         Particles.ReleaseParticleIndex(this.particle2);
     }
 };
-function UpdateLineFromPos(particle, unit, data, cursor, pos) {
-    var to = Vector.FromArray(cursor);
+
+indicatorTypes["TARGETING_INDICATOR_WK_W"] = function(data, unit) {
+    this.data = data;
+    this.unit = unit;
+    this.subIndicators = [];
+
+    for (var i = 0; i < 3; i++) {
+        this.subIndicators.push(new indicatorTypes["TARGETING_INDICATOR_AOE"](data, unit));
+    }
+
+    this.Update = function(position){
+        var i = -1;
+
+        position = Vector.FromArray(position);
+
+        for (var indicator of this.subIndicators) {
+            var angle = Math.PI / 1.5 * i;
+            var resultTarget = position.add(new Vector(Math.cos(angle) * 220, Math.sin(angle) * 220, 0));
+
+            indicator.Update(resultTarget);
+            i++;
+        }
+    };
+
+    this.Delete = function(){
+        for (var indicator of this.subIndicators) {
+            indicator.Delete();
+        }
+    }
+};
+
+function ClampPosition(to, unit, data, from) {
+    var pos = from || Vector.FromArray(Entities.GetAbsOrigin(unit));
 
     pos.z = 32;
     to.z = 32;
@@ -309,6 +376,12 @@ function UpdateLineFromPos(particle, unit, data, cursor, pos) {
         length = newLength;
         to = to.minus(pos).normalize().scale(length).add(pos);
     }
+
+    return to;
+}
+
+function UpdateLineFromPos(particle, unit, data, cursor, pos) {
+    var to = ClampPosition(Vector.FromArray(cursor), unit, data, pos);
 
     Particles.SetParticleControl(particle, 1, to);
 
@@ -442,6 +515,26 @@ indicatorTypes["TARGETING_INDICATOR_ANTIMAGE_Q"] = function(data, unit) {
         Particles.ReleaseParticleIndex(this.particle2);
     }
 };
+
+function UpdateArc(indicator, particle, position, targetHeight, width) {
+    var fr = Vector.FromArray(Entities.GetAbsOrigin(indicator.unit));
+    var to = UpdateLine(particle, indicator.unit, indicator.data, position, fr);
+    var len = to.minus(fr).length();
+
+    var target = targetHeight;
+
+    if (target > len) {
+        target = len;
+    }
+
+    var rel = target / len;
+    var val =  Math.max(1, len / 2 - len / 2 * rel);
+
+    Particles.SetParticleControl(particle, 0, fr);
+    Particles.SetParticleControl(particle, 1, to);
+    Particles.SetParticleControl(particle, 2, [ width, 0, 0 ]);
+    Particles.SetParticleControlForward(particle, 1, [0, 0, val]);
+}
 
 function UpdatePosition() {
     var cursor = GameUI.GetCursorPosition();

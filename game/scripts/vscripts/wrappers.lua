@@ -212,6 +212,10 @@ function IsUnitSilenced(hero)
     return false
 end
 
+function IsFullyCastable(ability)
+    return ability:IsFullyCastable() and not IsUnitSilenced(ability:GetCaster())
+end
+
 function Wrappers.NormalAbility(ability)
     local getBehavior = ability.GetBehavior
     local castFilterResult = ability.CastFilterResult or function() return UF_SUCCESS end

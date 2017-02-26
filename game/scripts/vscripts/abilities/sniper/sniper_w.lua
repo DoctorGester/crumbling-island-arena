@@ -5,6 +5,8 @@ LinkLuaModifier("modifier_sniper_w_trap", "abilities/sniper/modifier_sniper_w_tr
 require("abilities/sniper/entity_sniper_w")
 
 function sniper_w:OnSpellStart()
+    Wrappers.DirectionalAbility(self, 1600)
+
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
 

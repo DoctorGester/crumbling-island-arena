@@ -11,6 +11,9 @@
 		"TargetingIndicator" {
 			"Type" "TARGETING_INDICATOR_AOE"
 			"Radius" "200"
+			"Arc" "600"
+            "ArcWidth" "35"
+            "MaxLength" "1500"
 			"DisplayRange" "1"
 		}
 

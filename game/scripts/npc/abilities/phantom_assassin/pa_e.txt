@@ -7,7 +7,9 @@
 		"AbilityCooldown" "4"
 
 		"HoverIndicator" {
-			"Type" "TARGETING_INDICATOR_LINE"
+			"Type" "TARGETING_INDICATOR_ARC"
+			"Arc" "180"
+            "ArcWidth" "50"
 			"MinLength" "500"
 			"MaxLength" "500"
 		}

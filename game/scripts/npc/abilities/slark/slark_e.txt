@@ -10,6 +10,8 @@
 			"Type" "TARGETING_INDICATOR_LINE"
 			"MinLength" "600"
 			"MaxLength" "600"
+			"Arc" "220"
+            "ArcWidth" "50"
 		}
 	}
 }

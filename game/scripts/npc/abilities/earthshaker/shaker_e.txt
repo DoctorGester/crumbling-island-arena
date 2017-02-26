@@ -7,9 +7,13 @@
 		"AbilityCooldown" "5.0"
 
 		"TargetingIndicator" {
-			"Type" "TARGETING_INDICATOR_LINE"
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "256"
+			"DisplayRange" "1"
 			"MinLength" "350"
-			"MaxLength" "550"
+            "MaxLength" "550"
+			"Arc" "200"
+			"ArcWidth" "50"
 		}
 
 		"HoverIndicator" {

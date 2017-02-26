@@ -5,13 +5,15 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "techies_stasis_trap"
 		"AbilityCooldown" "4.5"
-		"AbilityCastRange" "1600"
 		"AbilityCastPoint" "0.1"
 
 		"TargetingIndicator" {
 			"Type" "TARGETING_INDICATOR_AOE"
 			"Radius" "128"
 			"DisplayRange" "1"
+			"Arc" "600"
+			"ArcWidth" "35"
+			"MaxLength" "1600"
 		}
 
 		"HoverIndicator" {
