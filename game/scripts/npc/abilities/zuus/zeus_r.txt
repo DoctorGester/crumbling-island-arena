@@ -3,7 +3,7 @@
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/zeus/zeus_r"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "zuus_thundergods_wrath"
 		"AbilityCooldown" "12.0"
 		"Damage" "4"
