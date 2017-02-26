@@ -320,7 +320,7 @@ end
 
 function SoftKnockback:End(at, reachedDestination)
     if self.hero:Alive() and not self.hero.falling then
-        self.hero:FindClearSpace(at, true)
+        ResolveNPCPositions(at, 100)
     end
 
     self:OnArrival(reachedDestination)
