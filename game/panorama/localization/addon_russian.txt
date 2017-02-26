@@ -816,6 +816,7 @@
 		"StatusBreak" "Уязвимость"
 		"StatusSpellShield" "Щит"
 		"StatusSpellbreak" "Магблок"
+		"StatusHaste" "Спешка"
 		"StatusUltimate" "Ультимейт"
 	}
 }
