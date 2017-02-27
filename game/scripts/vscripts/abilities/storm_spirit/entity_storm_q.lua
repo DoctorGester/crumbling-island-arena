@@ -1,4 +1,4 @@
-EntityStormQ = EntityStormQ or class({}, nil, WearableOwner)
+EntityStormQ = EntityStormQ or class({}, nil, UnitEntity)
 
 function EntityStormQ:constructor(round, owner, position, facing, ability)
     getbase(EntityStormQ).constructor(self, round, owner:GetName(), position)
@@ -14,6 +14,8 @@ function EntityStormQ:constructor(round, owner, position, facing, ability)
     self:EmitSound("Arena.Storm.HitQ")
     self:SetFacing(facing)
 
+    self:AddComponent(WearableComponent())
+    self:AddComponent(PlayerCircleComponent(128, true, 0.5))
     self:LoadItems(unpack(owner:BuildWearableStack()))
 
     self.playerParticle = ParticleManager:CreateParticleForTeam(

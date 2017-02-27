@@ -1,4 +1,4 @@
-LycanWolf = LycanWolf or class({}, nil, BreakableEntity)
+LycanWolf = LycanWolf or class({}, nil, UnitEntity)
 
 function LycanWolf:constructor(round, owner, target, offsetModifier, ability)
     local direction = (target - owner:GetPos()):Normalized()
@@ -20,6 +20,8 @@ function LycanWolf:constructor(round, owner, target, offsetModifier, ability)
     self.ability = ability
 
     self:SetFacing(target - self.start)
+
+    self:AddComponent(HealthComponent())
     self:AddNewModifier(self.hero, nil, "modifier_lycan_q", { duration = 3 })
     self:SetCustomHealth(2)
     self:EnableHealthBar()

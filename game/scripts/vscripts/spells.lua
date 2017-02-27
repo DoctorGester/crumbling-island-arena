@@ -5,6 +5,11 @@ Spells = Spells or class({})
 function Spells:constructor()
     self.entities = {}
     self.dashes = {}
+    self.systems = {}
+
+    self:AddSystem(HealthSystem)
+    self:AddSystem(WearableSystem)
+    self:AddSystem(PlayerCircleSystem)
 end
 
 function Spells.TestPoint(point)
@@ -21,6 +26,31 @@ function Spells.WrapException(callback, ...)
     if not status then
         print(err)
     end
+end
+
+function Spells.SystemCall(method, ...)
+    local self = GameRules.GameMode.round.spells
+
+    for _, system in ipairs(self.systems) do
+        system:EntityCall(self.entities, method, ...)
+    end
+end
+
+function Spells.SystemCallSingle(entity, method, ...)
+    local self = GameRules.GameMode.round.spells
+
+    for _, system in ipairs(self.systems) do
+        if system[method] then
+            if system:FilterEntity(entity) then
+                system[method](entity, ...)
+            end
+        end
+    end
+
+end
+
+function Spells:AddSystem(system)
+    table.insert(self.systems, system)
 end
 
 function Spells:Update()

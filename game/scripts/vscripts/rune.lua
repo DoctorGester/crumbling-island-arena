@@ -1,4 +1,4 @@
-Rune = Rune or class({}, nil, BreakableEntity)
+Rune = Rune or class({}, nil, UnitEntity)
 
 function Rune:constructor(round)
     getbase(Rune).constructor(self, round, DUMMY_UNIT, Vector(0, 0, 0))
@@ -12,6 +12,7 @@ function Rune:constructor(round)
     unit:SetOriginalModel("models/props_gameplay/rune_regeneration01.vmdl")
     unit:StartGesture(ACT_DOTA_IDLE)
 
+    self:AddComponent(HealthComponent())
     self:SetCustomHealth(6)
     self:EnableHealthBar()
     self:CreateParticles()

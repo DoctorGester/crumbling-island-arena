@@ -16,6 +16,22 @@ function DynamicEntity:constructor(round)
     self.fallingSpeed = 0
 end
 
+function DynamicEntity:AddComponent(component)
+    if component.Activate then
+        component.Activate(self)
+    end
+
+    for key, value in pairs(component) do
+        if key ~= "Activate" then
+            if self[key] ~= nil then
+                print("Warning! Colliding key", key)
+            end
+
+            self[key] = value
+        end
+    end
+end
+
 function DynamicEntity:MakeFall(horizontalVelocity)
     self.falling = true
     self.fallingHorizontalVelocity = horizontalVelocity or Vector()
@@ -62,6 +78,8 @@ function DynamicEntity:IsInvulnerable(value)
 end
 
 function DynamicEntity:Update()
+    Spells.SystemCallSingle(self, "Update")
+
     if self.falling then
         self.fallingSpeed = self.fallingSpeed + 10
         local pos = self:GetPos()
@@ -97,9 +115,16 @@ function DynamicEntity:TestFalling()
 end
 
 
-function DynamicEntity:Damage(source, amount, isPhysical) end
+function DynamicEntity:Damage(source, amount, isPhysical)
+    Spells.SystemCallSingle(self, "Damage", source, amount, isPhysical)
+end
+
 function DynamicEntity:Heal() end
-function DynamicEntity:Remove() end
+
+function DynamicEntity:Remove()
+    Spells.SystemCallSingle(self, "Remove")
+end
+
 function DynamicEntity:CollideWith(target) end
 
 function DynamicEntity:HasModifier() return false end

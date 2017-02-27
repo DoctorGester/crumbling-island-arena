@@ -32,6 +32,8 @@ function UnitEntity:constructor(round, unitName, pos, team, findSpace, playerOwn
 end
 
 function UnitEntity:SetHidden(hidden)
+    Spells.SystemCallSingle(self, "SetHidden", hidden)
+
     if hidden then
         self.unit:AddNoDraw()
     else
@@ -111,7 +113,11 @@ function UnitEntity:RemoveModifier(name)
     self.unit:RemoveModifierByName(name)
 end
 
-function UnitEntity:FindModifier(name)
+function UnitEntity:FindModifier(name, optionalCaster)
+    if optionalCaster then
+        return self.unit:FindModifierByNameAndCaster(name, optionalCaster.unit or optionalCaster)
+    end
+
     return self.unit:FindModifierByName(name)
 end
 
@@ -130,6 +136,8 @@ function UnitEntity:FindClearSpace(position, force)
 end
 
 function UnitEntity:Remove()
+    getbase(UnitEntity).Remove(self)
+
 	if self.removeOnDeath then
 		self:GetUnit():RemoveSelf()
 	else
@@ -137,5 +145,6 @@ function UnitEntity:Remove()
 
 	    self:GetUnit():ForceKill(false)
 		self:GetUnit():SetAbsOrigin(pos)
+        self:GetUnit():StartGesture(ACT_DOTA_DIE)
 	end
 end

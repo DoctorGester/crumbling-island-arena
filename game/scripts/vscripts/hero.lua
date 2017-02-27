@@ -1,5 +1,5 @@
 if not Hero then
-    Hero = class({}, nil, WearableOwner)
+    Hero = class({}, nil, UnitEntity)
 end
 
 function Hero:constructor(data)
@@ -11,17 +11,15 @@ function Hero:constructor(data)
     self.collisionType = COLLISION_TYPE_RECEIVER
 
     self.soundsStarted = {}
-    self.wearables = {}
-    self.wearableParticles = {}
-    self.mappedParticles = {}
-    self.wearableSlots = {}
-    self.slotVisualParameters = {}
     self.mixins = {}
     self.lastKnockbackSource = nil
     self.lastKnockbackTimer = 0
     self.data = data
     self.wearableRemoveTimer = 0
     self.hideOnDeathTimer = 0
+
+    self:AddComponent(HealthComponent())
+    self:AddComponent(WearableComponent())
 end
 
 function Hero:AddMixin(mixin)

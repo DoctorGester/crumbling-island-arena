@@ -1,24 +1,6 @@
-BreakableEntity = BreakableEntity or class({}, nil, UnitEntity)
+HealthSystem = HealthSystem or System("customHealth", "healthBarEnabled")
 
-function BreakableEntity:constructor(round, unitName, pos, team, findSpace, playerOwner)
-    getbase(BreakableEntity).constructor(self, round, unitName, pos, team, findSpace, playerOwner)
-
-    self.customHealth = false
-end
-
-function BreakableEntity:SetCustomHealth(health)
-    self.customHealth = true
-    self.health = health
-end
-
-function BreakableEntity:EnableHealthBar()
-    self.healthBarEnabled = true
-
-    self:GetUnit():SetMaxHealth(self.health)
-    self:GetUnit():SetBaseMaxHealth(self.health)
-end
-
-function BreakableEntity:Damage(source, amount, isPhysical)
+function HealthSystem:Damage(source, amount, isPhysical)
     if amount == nil then
         amount = 3
     end
@@ -83,12 +65,13 @@ function BreakableEntity:Damage(source, amount, isPhysical)
 
     self:GetUnit():AddNewModifier(self:GetUnit(), nil, "modifier_damaged", { duration = 0.2 })
 
-    local sign = ParticleManager:CreateParticle("particles/msg_damage.vpcf", PATTACH_CUSTOMORIGIN, mode)
-    ParticleManager:SetParticleControl(sign, 0, self:GetPos())
-    ParticleManager:SetParticleControl(sign, 1, Vector(0, amount, 0))
-    ParticleManager:SetParticleControl(sign, 2, Vector(math.max(1, amount / 1.5), 1, 0))
-    ParticleManager:SetParticleControl(sign, 3, Vector(255, 255, 255))
-    ParticleManager:ReleaseParticleIndex(sign)
+    FX("particles/msg_damage.vpcf", PATTACH_CUSTOMORIGIN, GameRules:GetGameModeEntity(), {
+        cp0 = self:GetPos(),
+        cp1 = Vector(0, amount, 0),
+        cp2 = Vector(math.max(1, amount / 1.5), 1, 0),
+        cp3 = Vector(255, 255, 255),
+        release = true
+    })
 
     if source then
         for _, entity in pairs(source.round.spells.entities) do
@@ -102,9 +85,7 @@ function BreakableEntity:Damage(source, amount, isPhysical)
         end
     end
 
-    if not self:Alive() then
+    if not self:Alive() and self.OnDeath then
         self:OnDeath(source)
     end
 end
-
-function BreakableEntity:OnDeath(source) end

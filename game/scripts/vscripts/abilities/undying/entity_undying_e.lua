@@ -1,4 +1,4 @@
-EntityUndyingE = EntityUndyingE or class({}, nil, BreakableEntity)
+EntityUndyingE = EntityUndyingE or class({}, nil, UnitEntity)
 
 function EntityUndyingE:constructor(round, owner, position, ability)
     getbase(EntityUndyingE).constructor(self, round, "undying_tombstone", position, owner:GetUnit():GetTeamNumber(), true)
@@ -15,6 +15,7 @@ function EntityUndyingE:constructor(round, owner, position, ability)
     self:AddNewModifier(self, nil, "modifier_custom_healthbar", {})
     self:EmitSound("Arena.Undying.CastE")
 
+    self:AddComponent(HealthComponent())
     self:SetCustomHealth(4)
     self:EnableHealthBar()
 
