@@ -112,6 +112,8 @@ function Precache(context)
 
     print("Precaching cosmetic models")
 
+    local proxyComponent = WearableComponent()
+
     for _, data in pairs(heroes) do
         PrecacheUnitByNameSync(data.override_hero, context)
 
@@ -121,7 +123,7 @@ function Precache(context)
                 GetName = function() return data.override_hero end
             }
 
-            for _, item in pairs(WearableOwner.FindDefaultItems(wearableOwnerProxy)) do
+            for _, item in pairs(proxyComponent.FindDefaultItems(wearableOwnerProxy)) do
                 table.insert(allItems, item)
             end
 
@@ -132,7 +134,7 @@ function Precache(context)
                 for _, entry in pairs(cosmetics) do
                     if type(entry) == "table" then
                         if entry.set then
-                            for _, item in pairs(WearableOwner.FindSetItems(nil, entry.set) or {}) do
+                            for _, item in pairs(proxyComponent.FindSetItems(nil, entry.set) or {}) do
                                 table.insert(allItems, item)
                             end
                         end
