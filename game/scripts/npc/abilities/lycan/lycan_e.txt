@@ -5,7 +5,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName" "lycan_howl"
 		"AbilityCooldown" "8.0"
-		"AbilityCastPoint" "0.3"
+		"AbilityCastPoint" "0.15"
 
 		"HoverIndicator" {
 			"Type" "TARGETING_INDICATOR_RANGE"
