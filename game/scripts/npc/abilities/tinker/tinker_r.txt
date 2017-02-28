@@ -13,6 +13,7 @@
 			"Type" "TARGETING_INDICATOR_AOE"
 			"Radius" "400"
 			"DisplayRange" "1"
+			"MaxLength" "300"
 		}
 
 		"HoverIndicator" {
