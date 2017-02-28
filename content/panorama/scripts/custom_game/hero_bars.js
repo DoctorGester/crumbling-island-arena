@@ -86,9 +86,18 @@ function UpdateHeroBars(){
                 var statusEffectTime = 0;
                 var statusEffectProgress;
 
+                var attackSpeedProgress;
+                var attackSpeedStacks;
+
                 for (var i = 0; i < Entities.GetNumBuffs(entity.id); i++) {
                     var buff = Entities.GetBuff(entity.id, i);
                     var name = Buffs.GetName(entity.id, buff);
+
+                    if (name == "modifier_attack_speed") {
+                        attackSpeedProgress = Buffs.GetRemainingTime(entity.id, buff) / Buffs.GetDuration(entity.id, buff);
+                        attackSpeedStacks = Buffs.GetStackCount(entity.id, buff);
+                        continue;
+                    }
 
                     if (shieldModifiers.indexOf(name) != -1){
                         shieldAmount += Buffs.GetStackCount(entity.id, buff);
@@ -111,6 +120,17 @@ function UpdateHeroBars(){
                         statusEffectPriority = fx.priority;
                         statusEffectTime = Buffs.GetCreationTime(entity.id, buff);
                         statusEffectProgress = dur <= 0.15 ? 0 : Math.round(Buffs.GetRemainingTime(entity.id, buff) / dur * 100);
+                    }
+                }
+
+                if (panel.cached && panel.cached.attackTimer) {
+                    panel.cached.attackTimer.SetHasClass("TimerHidden", !attackSpeedProgress);
+
+                    if (attackSpeedProgress) {
+                        var pg = -Math.round(attackSpeedProgress * 360);
+                        panel.cached.attackTimer.style.clip = "radial(50% 50%, 0deg, " + pg + "deg)";
+                        panel.cached.attackTimer.SetHasClass("DangerZone", attackSpeedStacks == 3);
+                        panel.cached.attackTimer.SetHasClass("MaxReached", attackSpeedStacks == 4);
                     }
                 }
 
@@ -300,6 +320,8 @@ function UpdateHeroBars(){
 
                     missing.style.backgroundColor = bg;
                     bar.style.backgroundColor = bg;
+
+                    panel.cached.attackTimer = panel.FindChildTraverse("AttackTimer");
                 } else {
                     var team = Entities.GetTeamNumber(entity.id);
 

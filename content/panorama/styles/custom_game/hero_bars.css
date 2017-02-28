@@ -111,6 +111,38 @@
     flow-children: down;
 }
 
+#BarTopContainer
+{
+    flow-children: right;
+}
+
+#AttackTimer
+{
+    border-radius: 50%;
+    border: 1px solid black;
+    background-color: #0bff00;
+    margin-left: 6px;
+    width: 10px;
+    height: 10px;
+    transition-property: opacity;
+    transition-duration: 0.2s;
+}
+
+#AttackTimer.TimerHidden
+{
+    opacity: 0;
+}
+
+#AttackTimer.DangerZone
+{
+    background-color: #ffa700;
+}
+
+#AttackTimer.MaxReached
+{
+    background-color: #ff0026;
+}
+
 .HeroBar #HealthBar
 {
     height: 10px;
@@ -118,6 +150,8 @@
     box-shadow: black 0px 0px 8px 0px;
     transition-property: opacity, box-shadow;
     transition-duration: 0.2s;
+    margin-left: 16px;
+    align: center center;
 }
 
 #HealthBar.Ethereal, .HeroBarLight.Ethereal #HealthBar
@@ -238,6 +272,7 @@
     transition-duration: 0.1s;
     height: 4px;
     margin-top: 1px;
+    margin-left: 16px;
 }
 
 #SpecialBar ProgressBar

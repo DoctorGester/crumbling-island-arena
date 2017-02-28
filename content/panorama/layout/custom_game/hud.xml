@@ -43,12 +43,15 @@
                         <Panel id="StatusEffectProgress"/>
                     </Panel>
                 </Panel>
-                <Panel id="BarContainer">
-                    <Panel id="HealthBar">
-                        <Panel id="ShieldDelim"/>
-                        <Panel id="MissingHealth"/>
+                <Panel id="BarTopContainer">
+                    <Panel id="BarContainer">
+                        <Panel id="HealthBar">
+                            <Panel id="ShieldDelim"/>
+                            <Panel id="MissingHealth"/>
+                        </Panel>
+                        <Panel id="SpecialBar" class="Hidden" hittest="false" hittestchildren="false"/>
                     </Panel>
-                    <Panel id="SpecialBar" class="Hidden" hittest="false" hittestchildren="false"/>
+                    <Panel id="AttackTimer"/>
                 </Panel>
             </Panel>
         </snippet>
