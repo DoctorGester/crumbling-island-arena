@@ -26,6 +26,10 @@ function EntityStormQ:constructor(round, owner, position, facing, ability)
     )
 end
 
+function EntityStormQ:TestFalling()
+    return Spells.TestCircle(self:GetPos(), 64)
+end
+
 function EntityStormQ:CollidesWith(target)
     return self.owner.team ~= target.owner.team and instanceof(target, Hero)
 end
