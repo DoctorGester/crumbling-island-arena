@@ -106,7 +106,7 @@ function PassTopChanged(top) {
 }
 
 function ProcessNews() {
-    var actualNews = moment({ years: 2017, months: 2, date: 21 }).add(10, "days").isAfter(moment.now());
+    var actualNews = moment({ years: 2017, months: 2, date: 21 }).add(7, "days").isAfter(moment.now());
 
     $("#PassInfo").SetHasClass("Hidden", actualNews);
     $("#NewsInfo").SetHasClass("Hidden", !actualNews);

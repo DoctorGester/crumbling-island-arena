@@ -47,6 +47,16 @@
         }
     }
 
+    "windrunner"
+    {
+        "1"
+        {
+            "type" "elite"
+            "season" "8"
+            "set" "bindings_of_the_battleranger"
+        }
+    }
+
     "invoker"
     {
         "1"

@@ -46,6 +46,11 @@
                 <Image class="RewardImage" src="file://{images}/custom_game/rewards/7.png" scaling="stretch-to-fit-y-preserve-aspect"/>
             </Panel>
         </snippet>
+        <snippet name="reward8">
+            <Panel>
+                <Image class="RewardImage" src="file://{images}/custom_game/rewards/8.png" scaling="stretch-to-fit-y-preserve-aspect"/>
+            </Panel>
+        </snippet>
 
         <snippet name="arcanaTournament">
             <Panel>
