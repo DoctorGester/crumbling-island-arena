@@ -521,6 +521,9 @@ function UpdateArc(indicator, particle, position, targetHeight, width) {
     var to = UpdateLine(particle, indicator.unit, indicator.data, position, fr);
     var len = to.minus(fr).length();
 
+    // Don't ask why, I don't know
+    fr.z = to.z + 2;
+
     var target = targetHeight;
 
     if (target > len) {
