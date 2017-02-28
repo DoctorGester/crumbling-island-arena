@@ -4,7 +4,7 @@
 		"ScriptFile" "abilities/am/am_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "antimage_blink"
-		"AbilityCooldown" "3.4"
+		"AbilityCooldown" "4.5"
 		"Damage" "2"
 
 		"TargetingIndicator" {
