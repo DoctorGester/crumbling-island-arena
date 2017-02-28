@@ -1,6 +1,4 @@
-if not Hero then
-    Hero = class({}, nil, UnitEntity)
-end
+Hero = Hero or class({}, nil, UnitEntity)
 
 function Hero:constructor(data)
     DynamicEntity.constructor(self, round) -- Intended

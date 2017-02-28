@@ -7,6 +7,8 @@ function Tiny:SetOwner(owner)
 
     self:GetUnit():SetModel("models/heroes/tiny_02/tiny_02.vmdl")
     self:GetUnit():SetOriginalModel("models/heroes/tiny_02/tiny_02.vmdl")
+
+    self:AddComponent(TinyComponent())
 end
 
 function Tiny:OnDeath(...)
@@ -16,8 +18,4 @@ function Tiny:OnDeath(...)
     ParticleManager:SetParticleControl(index, 0, self:GetPos())
     ParticleManager:SetParticleControlForward(index, 0, self:GetFacing())
     ParticleManager:ReleaseParticleIndex(index)
-end
-
-function Tiny:HasModelChanged()
-    return self:GetUnit():GetModelName() ~= "models/heroes/tiny_04/tiny_04.vmdl" and getbase(Tiny).HasModelChanged(self)
 end

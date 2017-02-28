@@ -1,5 +1,23 @@
+require('ecs/heroes/tiny')
+
+function WrapComponent(c)
+    local meta = {
+        __add = function(filter1, filter2)
+            for k, v in pairs(filter2) do
+                filter1[k] = v
+            end
+
+            return filter1
+        end
+    }
+
+    setmetatable(c, meta)
+
+    return c
+end
+
 function HealthComponent()
-    return {
+    return WrapComponent({
         customHealth = false,
         healthBarEnabled = false,
         SetCustomHealth = function(self, health)
@@ -12,11 +30,11 @@ function HealthComponent()
             self:GetUnit():SetMaxHealth(self.health)
             self:GetUnit():SetBaseMaxHealth(self.health)
         end
-    }
+    })
 end
 
 function PlayerCircleComponent(radius, thick, a)
-    return {
+    return WrapComponent({
         Activate = function(self)
             local path = thick and "particles/aoe_marker_filled.vpcf" or "particles/aoe_marker_filled_thin.vpcf"
             local color = GameRules.GameMode.TeamColors[self.owner.team]
@@ -28,11 +46,33 @@ function PlayerCircleComponent(radius, thick, a)
                 cp3 = Vector(a, 0, 0)
             })
         end
-    }
+    })
+end
+
+function ModelCheckerComponent()
+    return WrapComponent({
+        HasModelChanged = function(self)
+            for _, modifier in pairs(self:AllModifiers()) do
+                if modifier.DeclareFunctions then
+                    local funcs = modifier:DeclareFunctions()
+
+                    if vlua.find(funcs, MODIFIER_PROPERTY_MODEL_CHANGE) ~= nil then
+                        if modifier.GetModifierModelChange then
+                            if modifier:GetModifierModelChange() then
+                                return true
+                            end
+                        end
+                    end
+                end
+            end
+
+            return false
+        end
+    })
 end
 
 function WearableComponent()
-    return {
+    return WrapComponent({
         wearables = {},
         wearableParticles = {},
         mappedParticles = {},
@@ -213,23 +253,6 @@ function WearableComponent()
 
             return result
         end,
-        HasModelChanged = function(self)
-            for _, modifier in pairs(self:AllModifiers()) do
-                if modifier.DeclareFunctions then
-                    local funcs = modifier:DeclareFunctions()
-
-                    if vlua.find(funcs, MODIFIER_PROPERTY_MODEL_CHANGE) ~= nil then
-                        if modifier.GetModifierModelChange then
-                            if modifier:GetModifierModelChange() then
-                                return true
-                            end
-                        end
-                    end
-                end
-            end
-
-            return false
-        end,
         FindCurrentEffect = function(self, mainFunction, priorityFunction)
             local statusFx
             local maxStatusPriority = 0
@@ -313,5 +336,5 @@ function WearableComponent()
 
             self.wearables = {}
         end
-    }
+    }) + ModelCheckerComponent()
 end
