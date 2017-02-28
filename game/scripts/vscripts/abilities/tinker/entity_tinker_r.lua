@@ -12,7 +12,6 @@ function EntityTinkerR:constructor(round, owner, position, ability)
     self.ignoreGroup = {}
 
     self:AddNewModifier(owner.unit, ability, "modifier_tinker_r", {})
-    self:AddNewModifier(self, nil, "modifier_custom_healthbar", {})
     self:EmitSound("Arena.Sniper.CastW")
     self:AddComponent(HealthComponent())
     self:SetCustomHealth(3)

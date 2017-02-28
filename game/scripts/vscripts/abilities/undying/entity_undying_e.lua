@@ -12,7 +12,6 @@ function EntityUndyingE:constructor(round, owner, position, ability)
 
     self:AddNewModifier(owner.unit, ability, "modifier_undying_e", {})
     self:AddNewModifier(self:GetUnit(), ability, "modifier_undying_e_aura", {})
-    self:AddNewModifier(self, nil, "modifier_custom_healthbar", {})
     self:EmitSound("Arena.Undying.CastE")
 
     self:AddComponent(HealthComponent())
