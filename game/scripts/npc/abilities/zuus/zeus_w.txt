@@ -5,6 +5,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "razor_plasma_field"
 		"AbilityCooldown" "7.0"
+		"AbilityCastPoint" "0.1"
 
 		"precache" {
 			"particle" "particles/zeus_w2/zeus_w2.vpcf"
