@@ -5,6 +5,7 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "invoker_emp"
 		"AbilityCooldown" "6.0"
+		"AbilityCastPoint" "0.1"
 		"Damage" "2"
 
 		"TargetingIndicator" {
