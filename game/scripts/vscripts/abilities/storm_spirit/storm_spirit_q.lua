@@ -35,6 +35,10 @@ function storm_spirit_q:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_2
 end
 
+function storm_spirit_q:GetPlaybackRateOverride()
+    return 2.0
+end
+
 if IsClient() then
     require("wrappers")
 end

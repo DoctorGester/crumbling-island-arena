@@ -6,6 +6,7 @@
 		"AbilityTextureName" "magnataur_shockwave"
 		"AbilityCooldown" "5.0"
 		"Damage" "2"
+		"AbilityCastPoint" "0.1"
 
 		"TargetingIndicator" {
 			"Type" "TARGETING_INDICATOR_LINE"

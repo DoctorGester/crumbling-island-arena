@@ -41,6 +41,10 @@ function storm_spirit_r:GetCustomCastError()
     return ""
 end
 
+function storm_spirit_r:GetPlaybackRateOverride()
+    return 2.0
+end
+
 if IsClient() then
     require("wrappers")
 end

@@ -12,6 +12,10 @@ function storm_spirit_w:OnSpellStart()
     ProjectileStormW(hero.round, hero, target, self):Activate()
 end
 
+function storm_spirit_w:GetPlaybackRateOverride()
+    return 2.0
+end
+
 if IsClient() then
     require("wrappers")
 end
