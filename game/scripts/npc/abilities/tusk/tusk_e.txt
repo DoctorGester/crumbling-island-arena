@@ -3,7 +3,7 @@
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/tusk/tusk_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityTextureName" "tusk/glaciomarine_ability_icons/tusk_snowball"
+		"AbilityTextureName" "tusk_snowball"
 		"AbilityCooldown" "6.0"
 
 		"TargetingIndicator" {

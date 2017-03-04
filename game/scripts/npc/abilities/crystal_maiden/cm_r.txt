@@ -4,7 +4,7 @@
 		"ScriptFile" "abilities/cm/cm_r"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_AOE | DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName" "ancient_apparition_ice_vortex"
+		"AbilityTextureName" "crystal_maiden_crystal_nova"
 		"AbilityCooldown" "18.0"
 		"AbilityCastRange" "800"
 		"AbilityCastPoint" "0.15"

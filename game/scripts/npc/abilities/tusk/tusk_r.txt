@@ -4,7 +4,7 @@
 		"ScriptFile" "abilities/tusk/tusk_r"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
-		"AbilityTextureName" "crystal_maiden_crystal_nova"
+		"AbilityTextureName" "ancient_apparition_cold_feet"
 		"AbilityCooldown" "20.0"
 		"AbilityCastPoint" "0.15"
 	}
