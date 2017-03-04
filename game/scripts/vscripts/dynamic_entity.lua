@@ -30,6 +30,8 @@ function DynamicEntity:AddComponent(component)
             self[key] = value
         end
     end
+
+    return self
 end
 
 function DynamicEntity:MakeFall(horizontalVelocity)
@@ -47,6 +49,8 @@ end
 
 function DynamicEntity:SetPos(position)
     self.position = position
+
+    return self
 end
 
 function DynamicEntity:GetRad()
@@ -170,7 +174,11 @@ function DynamicEntity:AreaEffect(params)
     for _, target in pairs(self.round.spells:GetValidTargets()) do
         local passes = not instanceof(target, Projectile) or ((IsAttackAbility(params.ability) and IsAttackAbility(target.ability)) or params.targetProjectiles)
         local heroPasses = not params.onlyHeroes or instanceof(target, Hero)
-        local allyFilter = target.owner.team ~= self.owner.team or (params.hitAllies and (target ~= self or params.hitSelf))
+        local allyFilter = false
+
+        if target.owner then
+            allyFilter = target.owner.team ~= self.owner.team or (params.hitAllies and (target ~= self or params.hitSelf))
+        end
 
         if allyFilter and passes and heroPasses and params.filter(target) then
             local blocked = params.ability and target:AllowAbilityEffect(self, params.ability) == false

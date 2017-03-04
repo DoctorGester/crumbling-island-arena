@@ -35,18 +35,34 @@ function HealthComponent()
     })
 end
 
-function PlayerCircleComponent(radius, thick, a)
+function PlayerCircleComponent(radius, thick, a, colorOverride)
     return WrapComponent({
         Activate = function(self)
             local path = thick and "particles/aoe_marker_filled.vpcf" or "particles/aoe_marker_filled_thin.vpcf"
-            local color = GameRules.GameMode.TeamColors[self.owner.team]
+            local color = colorOverride or GameRules.GameMode.TeamColors[self.owner.team]
+            local attach = PATTACH_ABSORIGIN_FOLLOW
+            local parent = self
 
-            self.playerCircleParticle = FX(path, PATTACH_ABSORIGIN, self, {
+            if parent.unit == nil then
+                attach = PATTACH_WORLDORIGIN
+                parent = nil
+            end
+
+            self.playerCircleParticle = FX(path, attach, parent, {
                 cp0 = self:GetPos(),
                 cp1 = Vector(radius, 1, 1),
                 cp2 = Vector(color[1], color[2], color[3]),
                 cp3 = Vector(a, 0, 0)
             })
+        end
+    })
+end
+
+function ExpirationComponent(time)
+    return WrapComponent({
+        lifetime = time,
+        Activate = function(self)
+            self.timeStart = GameRules:GetGameTime()
         end
     })
 end

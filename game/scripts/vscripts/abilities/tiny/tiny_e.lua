@@ -14,7 +14,7 @@ function tiny_e:OnSpellStart()
         mod:Use()
     end
 
-    CreateAOEMarker(hero, target, radius, delay, Vector(127, 106, 0))
+    CreateEntityAOEMarker(target, radius, delay + 0.1, { 127, 106, 0 }, 0, true)
 
     TimedEntity(delay,
         function()

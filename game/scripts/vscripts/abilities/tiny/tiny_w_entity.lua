@@ -24,7 +24,11 @@ function TinyW:constructor(round, owner, ability, damage, target, bounces, heigh
     self:SetInvulnerable(true)
     self:SetPos(self.start)
 
-    CreateAOEMarker(self, target, self.effectRadius, self.travelTime)
+    self:CreateAOEMarker()
+end
+
+function TinyW:CreateAOEMarker()
+    CreateEntityAOEMarker(self.target, self.effectRadius, self.travelTime + 0.1, { 255, 255, 255 }, 0.65, true)
 end
 
 function TinyW:CanFall()
@@ -85,7 +89,7 @@ function TinyW:Update()
 
             self.target.z = GetGroundHeight(self.target, self.unit)
 
-            CreateAOEMarker(self, self.target, self.effectRadius, self.travelTime)
+            self:CreateAOEMarker()
         else
             self:Destroy()
         end

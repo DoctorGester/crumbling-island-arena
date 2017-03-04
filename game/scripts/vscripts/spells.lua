@@ -10,6 +10,7 @@ function Spells:constructor()
     self:AddSystem(HealthSystem)
     self:AddSystem(WearableSystem)
     self:AddSystem(PlayerCircleSystem)
+    self:AddSystem(ExpirationSystem)
 end
 
 function Spells.TestPoint(point)
@@ -133,8 +134,6 @@ function Spells:Update()
                         if softKb then
                             horVel = softKb.direction * softKb.force
                         end
-
-                        print(softKb, horVel)
 
                         entity:MakeFall(horVel)
                     end

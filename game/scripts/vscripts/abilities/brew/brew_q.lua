@@ -49,7 +49,7 @@ function brew_q:OnSpellStart()
         end
     }):Activate()
 
-    CreateAOEMarker(hero, target, 200, 0.4, Vector(255, 106, 0))
+    CreateEntityAOEMarker(target, 200, (target - hero:GetPos()):Length2D() / 2400 + 0.1, { 255, 106, 0 }, 0.3, true)
 
     self:AddBeerModifier(hero)
 

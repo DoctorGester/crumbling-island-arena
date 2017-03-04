@@ -98,7 +98,7 @@ function EaseInOutBack(t, b, c, d)
 end
 
 function FX(path, attach, parent, options)
-    if parent.GetUnit then
+    if parent and parent.GetUnit then
         parent = parent:GetUnit()
     end
 
@@ -289,6 +289,14 @@ function ImmediateEffectPoint(path, attach, owner, point, time)
     local effect = ImmediateEffect(path, attach, owner, time)
     ParticleManager:SetParticleControl(effect, 0, point)
     return effect
+end
+
+function CreateEntityAOEMarker(point, radius, duration, color, alpha, isThick)
+    DynamicEntity()
+        :SetPos(point)
+        :AddComponent(PlayerCircleComponent(radius, isThick, alpha, color))
+        :AddComponent(ExpirationComponent(duration))
+        :Activate()
 end
 
 function CreateAOEMarker(owner, point, radius, duration, color)

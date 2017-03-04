@@ -16,7 +16,6 @@ function wk_w:OnSpellStart()
         local angle = math.pi / 1.5 * i
         local position = hero:GetPos() - direction * 256 + rotated * i * 164
         local resultTarget = target + Vector(math.cos(angle) * 220, math.sin(angle) * 220, 0)
-        CreateAOEMarker(hero, resultTarget, 200, 1.7, Vector(32, 215, 131))
         WKArcher(hero.round, hero, self, position, resultTarget, 1 + 0.05 * i):Activate()
     end
 

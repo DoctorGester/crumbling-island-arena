@@ -5,7 +5,7 @@ function SniperShrapnel:constructor(round, owner, target, ability)
 
     self.owner = owner.owner
     self.hero = owner
-    self.removeOnDeath = true
+    self.removeOnDeath = false
     self.collisionType = COLLISION_TYPE_NONE
     self.ability = ability
 
@@ -13,6 +13,8 @@ function SniperShrapnel:constructor(round, owner, target, ability)
     self:SetPos(target)
     self:SetInvulnerable(true)
     self:EmitSound("Arena.Sniper.LoopQ")
+
+    self:AddComponent(PlayerCircleComponent(400, false, 0.8))
 
     self.ticksPassed = 0
     self.nextDamageAt = GameRules:GetGameTime() + 1.2

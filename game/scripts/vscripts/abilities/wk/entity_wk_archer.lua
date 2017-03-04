@@ -67,6 +67,8 @@ function WKArcher:Update()
             end
         }):Activate()
 
+        CreateEntityAOEMarker(self.target, 200, (self.target - self:GetPos()):Length2D() / 3200 + 0.1, { 32, 215, 131 }, 0.5, true)
+
         self:Destroy()
         return
     end

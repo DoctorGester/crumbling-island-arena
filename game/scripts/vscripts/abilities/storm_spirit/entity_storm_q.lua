@@ -15,7 +15,7 @@ function EntityStormQ:constructor(round, owner, position, facing, ability)
     self:SetFacing(facing)
 
     self:AddComponent(WearableComponent())
-    self:AddComponent(PlayerCircleComponent(128, true, 0.5))
+    self:AddComponent(PlayerCircleComponent(200, true, 0.5))
     self:LoadItems(unpack(owner:BuildWearableStack()))
 
     self.playerParticle = ParticleManager:CreateParticleForTeam(
