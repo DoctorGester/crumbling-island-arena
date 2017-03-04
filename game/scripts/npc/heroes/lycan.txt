@@ -21,7 +21,7 @@
 		"GameSoundsFile" ""
 		"VoiceFile" ""
 		"Range" "melee"
-		"DisableWearables" "true"
+		"DisableWearables" "1"
 		"Difficulty" "easy"
 		"Disabled" "false"
 		"Order" "9"

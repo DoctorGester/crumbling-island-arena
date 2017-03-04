@@ -218,6 +218,11 @@ function Projectile:SetSpeed(speed)
     self.speed = speed
 end
 
+function Projectile:SetModel(mdl)
+    self:GetUnit():SetModel(mdl)
+    self:GetUnit():SetOriginalModel(mdl)
+end
+
 function Projectile:SetGraphics(graphics)
     if self.particle then
         local p = self.particle
