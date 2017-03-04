@@ -31,12 +31,14 @@ function self:OnSpellStart()
 
                 ScreenShake(projectile:GetPos(), 5, 150, 0.25, 2000, 0, true)
 
+                -- Doesn't disappear otherwise
+                projectile:SetModel("models/development/invisiblebox.vmdl")
                 projectile:EmitSound("Arena.Gyro.EndW.Sub")
             end,
             damage = self:GetDamage()
         }):Activate()
 
-        projectile:GetUnit():SetModel("models/heroes/gyro/gyro_missile.vmdl")
+        projectile:SetModel("models/heroes/gyro/gyro_missile.vmdl")
 
         particle = FX("particles/units/heroes/hero_gyrocopter/gyro_guided_missile.vpcf", PATTACH_POINT_FOLLOW, projectile, {
             cp0 = { ent = projectile, point = "attach_hitloc" }
