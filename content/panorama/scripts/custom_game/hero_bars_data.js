@@ -22,7 +22,8 @@ var hideBarModifiers = [
     "modifier_gyro_e",
     "modifier_storm_spirit_e",
     "modifier_ursa_e",
-    "modifier_ursa_r"
+    "modifier_ursa_r",
+    "modifier_drow_q"
 ];
 
 var etherealModifiers = [

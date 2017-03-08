@@ -116,6 +116,11 @@ function UpdateHeroBars(){
                     }
 
                     var fx = statusEffects[name];
+                    var rc = recastModifiers.indexOf(name) != -1;
+
+                    if (rc && Entities.GetTeamNumber(entity.id) !== Players.GetTeam(Players.GetLocalPlayer())) {
+                        continue;
+                    }
 
                     if (fx && fx.priority >= statusEffectPriority && Buffs.GetCreationTime(entity.id, buff) >= statusEffectTime) {
                         var dur = Buffs.GetDuration(entity.id, buff);
@@ -124,7 +129,7 @@ function UpdateHeroBars(){
                         statusEffectPriority = fx.priority;
                         statusEffectTime = Buffs.GetCreationTime(entity.id, buff);
                         statusEffectProgress = dur <= 0.15 ? 0 : Math.round(Buffs.GetRemainingTime(entity.id, buff) / dur * 100);
-                        statusEffectRecast = recastModifiers.indexOf(name) != -1;
+                        statusEffectRecast = rc;
                         statusEffectAbility = Buffs.GetAbility(entity.id, buff);
                     }
                 }
