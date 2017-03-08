@@ -5,3 +5,7 @@ if IsServer() then
         self:GetAbility():StartCooldown(self:GetAbility():GetCooldown(1))
     end
 end
+
+function modifier_drow_q_recast:IsHidden()
+    return true
+end

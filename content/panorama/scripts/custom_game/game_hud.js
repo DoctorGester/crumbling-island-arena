@@ -216,6 +216,8 @@ function LoadCustomIcons(){
             for (var iconKey in hero.customIcons) {
                 abilityBar.AddCustomIcon(iconKey, hero.customIcons[iconKey]);
                 buffBar.AddCustomIcon(iconKey, hero.customIcons[iconKey]);
+
+                customIcons[iconKey] = hero.customIcons[iconKey];
             }
         }
     }

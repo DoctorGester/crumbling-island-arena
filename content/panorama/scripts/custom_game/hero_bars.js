@@ -10,6 +10,8 @@ function clr(color) {
     return "rgb(" + color[0] + "," + color[1] + "," + color[2]+ ")";
 }
 
+$("#HeroBarsContainer").RemoveAndDeleteChildren();
+
 function UpdateHeroBars(){
     $.Schedule(1 / 120, UpdateHeroBars);
 
@@ -85,6 +87,8 @@ function UpdateHeroBars(){
                 var statusEffectPriority = 0;
                 var statusEffectTime = 0;
                 var statusEffectProgress;
+                var statusEffectRecast = false;
+                var statusEffectAbility;
 
                 var attackSpeedProgress;
                 var attackSpeedStacks;
@@ -120,6 +124,8 @@ function UpdateHeroBars(){
                         statusEffectPriority = fx.priority;
                         statusEffectTime = Buffs.GetCreationTime(entity.id, buff);
                         statusEffectProgress = dur <= 0.15 ? 0 : Math.round(Buffs.GetRemainingTime(entity.id, buff) / dur * 100);
+                        statusEffectRecast = recastModifiers.indexOf(name) != -1;
+                        statusEffectAbility = Buffs.GetAbility(entity.id, buff);
                     }
                 }
 
@@ -193,17 +199,30 @@ function UpdateHeroBars(){
                 if (panel.cached.statusFx !== statusEffect) {
                     panel.cached.statusFx = statusEffect;
 
-                    var prog = panel.FindChildTraverse("StatusEffectProgress");
+                    var top = panel.FindChildTraverse("StatusEffectContainer");
+                    var prog = top.FindChildTraverse("StatusEffectProgress");
+                    var recast = top.FindChildTraverse("StatusEffectRecast");
 
                     if (statusEffect) {
-                        var name = panel.FindChildTraverse("StatusEffectName");
+                        var name = top.FindChildTraverse("StatusEffectName");
                         name.text = $.Localize(statusEffect.token).toUpperCase();
                         name.style.color = statusEffect.color;
                         prog.style.backgroundColor = statusEffect.color;
+
+                        if (statusEffectRecast) {
+                            recast.SetImage(GetTexture({
+                                texture: Abilities.GetAbilityTextureName(statusEffectAbility),
+                                name: Abilities.GetAbilityName(statusEffectAbility)
+                            }, customIcons));
+
+                            top.FindChildTraverse("RecastHotkey").text = Abilities.GetKeybind(statusEffectAbility);
+                        }
                     } else {
                         prog.style.width = "100px";
                     }
 
+                    top.SetHasClass("RecastVisible", statusEffectRecast);
+                    recast.SetHasClass("Hidden", !statusEffectRecast);
                     panel.SetHasClass("StatusEffect", !!statusEffect);
                 }
 

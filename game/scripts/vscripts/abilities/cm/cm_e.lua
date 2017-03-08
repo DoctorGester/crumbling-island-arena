@@ -1,5 +1,7 @@
 cm_e = class({})
 
+LinkLuaModifier("modifier_cm_e", "abilities/cm/modifier_cm_e", LUA_MODIFIER_MOTION_NONE)
+
 function cm_e:OnSpellStart()
     Wrappers.DirectionalAbility(self, 1100)
 
@@ -22,6 +24,7 @@ function cm_e:OnSpellStart()
         destroyFunction = function(projectile)
             hero:StopSound("Arena.CM.LoopE")
             hero:SwapAbilities("cm_e_sub", "cm_e")
+            hero:RemoveModifier("modifier_cm_e")
 
             self.icePath = nil
         end
@@ -33,6 +36,7 @@ function cm_e:OnSpellStart()
     hero:EmitSound("Arena.CM.LoopE")
     hero:SwapAbilities("cm_e", "cm_e_sub")
     hero:FindAbility("cm_e_sub"):StartCooldown(0.3)
+    hero:AddNewModifier(hero, hero:FindAbility("cm_e_sub"), "modifier_cm_e", {})
 end
 
 function cm_e:GetCastAnimation()

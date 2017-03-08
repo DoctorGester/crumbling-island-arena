@@ -39,7 +39,10 @@
                         <Label id="HealthValue"/>
                     </Panel>
                     <Panel id="StatusEffectContainer">
-                        <Label id="StatusEffectName" text="MERGE"/>
+                        <Image id="StatusEffectRecast">
+                            <Label id="RecastHotkey"/>
+                        </Image>
+                        <Label id="StatusEffectName"/>
                         <Panel id="StatusEffectProgress"/>
                     </Panel>
                 </Panel>

@@ -33,6 +33,32 @@
     opacity: 0.0;
 }
 
+#StatusEffectRecast
+{
+    align: center center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid black;
+    box-shadow: black 0px 0px 5px 0px;
+}
+
+.RecastVisible
+{
+    margin-top: -35px;
+}
+
+#RecastHotkey
+{
+    align: center bottom;
+    text-align: center;
+    margin: 4px 4px -4px;
+    color: white;
+    font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;
+    font-size: 18px;
+    text-shadow: 0px 0px 4px 8.0 #000000;
+}
+
 .HeroBar #StatusEffectName
 {
     font-family: Radiance, FZLanTingHei-R-GBK, TH Sarabun New, Gulim,MingLiU;

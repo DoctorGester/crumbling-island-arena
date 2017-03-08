@@ -29,6 +29,13 @@ var etherealModifiers = [
     "modifier_invoker_w"
 ];
 
+var recastModifiers = [
+    "modifier_gyro_w",
+    "modifier_drow_q_recast",
+    "modifier_jugger_e",
+    "modifier_cm_e"
+];
+
 var specialLayouts = {
     "npc_dota_hero_ursa": "UrsaBar",
     //"npc_dota_hero_juggernaut": "JuggBar",
@@ -36,6 +43,8 @@ var specialLayouts = {
 };
 
 var specialOffsetModifiers = {};
+
+var customIcons = {};
 
 specialOffsetModifiers.npc_dota_hero_undying = function(entity) {
     if (HasModifier(entity, "modifier_undying_r")) {
@@ -122,6 +131,11 @@ AddStatusEffect("modifier_cm_frozen", "#StatusFrozen", "#7ceeff", 1);
 AddStatusEffect("modifier_invoker_e_target", "#StatusSpellbreak", "#fab9ff");
 AddStatusEffect("modifier_wr_a", "#StatusHaste", "#91e246");
 AddStatusEffect("modifier_zeus_w", "#StatusHaste", "#a1e2d1");
+
+AddStatusEffect("modifier_gyro_w", "#StatusRecast", "#ffffff");
+AddStatusEffect("modifier_drow_q_recast", "#StatusRecast", "#ffffff");
+AddStatusEffect("modifier_jugger_e", "#StatusRecast", "#ffffff");
+AddStatusEffect("modifier_cm_e", "#StatusRecast", "#ffffff");
 
 AddStatusEffect("modifier_ursa_r", "#StatusUltimate", "#ff1b00", 1);
 AddStatusEffect("modifier_undying_r", "#StatusUltimate", "#30b529", 1);

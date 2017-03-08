@@ -830,6 +830,7 @@
 		"StatusSpellbreak" "Spellbreak"
 		"StatusHaste" "Haste"
 		"StatusUltimate" "Ultimate"
+		"StatusRecast" "Recast"
 	}
 }
 
