@@ -531,6 +531,23 @@
 		event_type = "1.0"
 	}
 
+	Arena.PA.DeflectA = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/shared/impacts/sword_impact1.vsnd",
+			"sounds/weapons/hero/shared/impacts/sword_impact2.vsnd",
+			"sounds/weapons/hero/shared/impacts/sword_impact3.vsnd",
+			"sounds/weapons/hero/shared/impacts/sword_impact4.vsnd",
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
 	Arena.PA.HitQ = {
 		type = "dota_src1_3d"
 		vsnd_files = 
