@@ -49,6 +49,10 @@ end
 
 function EntityTinkerE:CollideWith(target)
     if self.link and self.link:Alive() and not self.arrived[target] then
+        if target:AllowAbilityEffect(self, self.ability) == false then
+            return
+        end
+
         local old = target:GetPos()
         local diff = old - self:GetPos()
 
