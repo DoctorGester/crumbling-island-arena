@@ -1,7 +1,7 @@
 WKSkeleton = WKSkeleton or class({}, nil, UnitEntity)
 
 function WKSkeleton:constructor(round, owner, ability, position, direction)
-    getbase(WKSkeleton).constructor(self, round, "wk_skeleton", position, owner.unit:GetTeamNumber())
+    getbase(WKSkeleton).constructor(self, round, "wk_skeleton", position, owner.unit:GetTeamNumber(), true)
 
     self.ability = ability
     self.owner = owner.owner
@@ -32,7 +32,7 @@ end
 function WKSkeleton:CollideWith(target)
     local unit = self:GetUnit()
 
-    if not instanceof(target, Projectile) and not unit:IsStunned() and not unit:IsRooted() and not self.attacking and not target:IsAirborne() then
+    if not instanceof(target, Projectile) and not instanceof(target, Obstacle) and not unit:IsStunned() and not unit:IsRooted() and not self.attacking and not target:IsAirborne() then
         local direction = (target:GetPos() - self:GetPos())
         local distance = direction:Length2D()
 
@@ -93,12 +93,13 @@ function WKSkeleton:Update()
         return
     end
 
-    local result = ClampToMap(self.start + self.direction * 5000)
+    local d = (self:GetPos() - self.start):Length2D() * self.direction;
+    local result = ClampToMap(self.start + d + self.direction * 200)
 
     self.i = (self.i or 20) + 1
 
-    if self.i % 30 == 0 then
-        ExecuteOrderFromTable({ UnitIndex = self:GetUnit():GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_MOVE_TO_DIRECTION, Position = result })
+    if self.i % 10 == 0 then
+        ExecuteOrderFromTable({ UnitIndex = self:GetUnit():GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION, Position = result })
     end
 end
 

@@ -5,7 +5,7 @@ function LycanWolf:constructor(round, owner, target, offsetModifier, ability)
     direction = Vector(direction.y, -direction.x, 0)
     local pos = owner:GetPos() + direction * 200 * offsetModifier
 
-    getbase(LycanWolf).constructor(self, round, "npc_dota_lycan_wolf1", pos, owner.unit:GetTeamNumber())
+    getbase(LycanWolf).constructor(self, round, "npc_dota_lycan_wolf1", pos, owner.unit:GetTeamNumber(), true)
 
     self.owner = owner.owner
     self.hero = owner
@@ -47,7 +47,7 @@ end
 function LycanWolf:CollideWith(target)
     local unit = self:GetUnit()
 
-    if not instanceof(target, Projectile) and not unit:IsStunned() and not unit:IsRooted() and not self.attacking and not target:IsAirborne() then
+    if not instanceof(target, Projectile) and not instanceof(target, Obstacle) and not unit:IsStunned() and not unit:IsRooted() and not self.attacking and not target:IsAirborne() then
         local direction = (target:GetPos() - self:GetPos())
         local distance = direction:Length2D()
 
@@ -109,6 +109,6 @@ function LycanWolf:Update()
     self.i = (self.i or 0) + 1
 
     if self.i % 5 == 0 then
-        ExecuteOrderFromTable({ UnitIndex = self:GetUnit():GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_MOVE_TO_DIRECTION, Position = result })
+        ExecuteOrderFromTable({ UnitIndex = self:GetUnit():GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION, Position = result })
     end
 end
