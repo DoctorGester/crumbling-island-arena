@@ -25,6 +25,25 @@ function zeus_a:OnSpellStart()
         damage = damage + 1
     end
 
+    local closestTarget
+    local dist = 65536
+
+    hero:AreaEffect({
+        filter = Filters.Line(hero:GetPos(), target, 32),
+        action = function(target)
+            local d = (target:GetPos() - hero:GetPos()):Length2D()
+
+            if d < dist then
+                dist = d
+                closestTarget = target
+            end
+        end
+    })
+
+    if closestTarget then
+        target = hero:GetPos() + dir * dist
+    end
+
     hero:AreaEffect({
         ability = self,
         filter = Filters.Line(hero:GetPos(), target, 32),
