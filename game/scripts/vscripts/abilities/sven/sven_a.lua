@@ -41,15 +41,14 @@ function sven_a:OnSpellStart()
             ParticleManager:SetParticleControlEnt(blood, 0, target.unit, PATTACH_POINT_FOLLOW, "attach_hitloc", effectPos, true)
             ParticleManager:SetParticleControl(blood, 2, direction)
 
-            SoftKnockback(target, hero, target:GetPos() - hero:GetPos(), force, { decrease = 3 })
-
             if SvenUtil.IsEnraged(hero) then
                 local effect = ImmediateEffectPoint("particles/econ/items/earthshaker/earthshaker_gravelmaw/earthshaker_fissure_dust_gravelmaw.vpcf", PATTACH_ABSORIGIN, hero, effectPos)
                 ParticleManager:SetParticleControl(effect, 1, effectPos + direction * 300)
 
                 target:EmitSound("Arena.Sven.HitE")
             end
-        end
+        end,
+        knockback = { force = force, decrease = 3 }
     })
 end
 

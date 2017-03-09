@@ -25,10 +25,13 @@ function drow_w:OnSpellStart()
         hitCondition = function(projectile, target)
             return projectile.owner.team ~= target.owner.team and not instanceof(target, Projectile)
         end,
-        hitFunction = function(projectile, target)
-            local delta = 1 - math.min(1, (target:GetPos() - startPos):Length2D() / 1000)
-            SoftKnockback(target, hero, projectile.vel, 50 + 50 * delta, {})
-        end
+        knockback = {
+            force = function(target)
+                local delta = 1 - math.min(1, (target:GetPos() - startPos):Length2D() / 1000)
+
+                return 50 + 50 * delta
+            end
+        }
     }):Activate()
 
     hero:EmitSound("Arena.Drow.CastW")

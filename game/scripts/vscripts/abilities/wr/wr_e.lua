@@ -9,11 +9,13 @@ function wr_e:OnSpellStart()
     hero:AreaEffect({
         ability = self,
         filter = Filters.Area(hero:GetPos(), 400),
-        action = function(victim)
-            local direction = (victim:GetPos() - hero:GetPos())
-
-            SoftKnockback(victim, hero, direction, 30 + (1 - direction:Length2D() / 400) * 50, { decrease = 4 })
-        end
+        knockback = {
+            force = function(victim)
+                local direction = (victim:GetPos() - hero:GetPos())
+                return 30 + (1 - direction:Length2D() / 400) * 50
+            end,
+            decrease = 4
+        }
     })
 
     hero:AddNewModifier(hero, self, "modifier_wr_e", { duration = 2.5 })

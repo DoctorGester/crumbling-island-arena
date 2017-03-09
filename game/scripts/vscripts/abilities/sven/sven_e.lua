@@ -49,6 +49,13 @@ function sven_e:Cast(target)
 
     hero:GetUnit():Interrupt()
 
+    local function knockDirection(victim)
+        local pos = hero:GetPos()
+        local tp = victim:GetPos()
+        local between = ClosestPointToSegment(from, pos, tp)
+        return (tp - between):Normalized()
+    end
+
     TimedEntity(0.05, function()
         SvenDash(hero, target, 200, {
             modifier = { name = "modifier_sven_e", ability = self },
@@ -63,13 +70,17 @@ function sven_e:Cast(target)
                     local pos = hero:GetPos()
                     local tp = victim:GetPos()
                     local between = ClosestPointToSegment(from, pos, tp)
-                    local knockDirection = (tp - between):Normalized()
-
-                    SoftKnockback(victim, hero, knockDirection, 10 + 60 * direction:Dot(knockDirection), { decrease = 4 })
 
                     local effect = ImmediateEffectPoint("particles/econ/items/earthshaker/earthshaker_gravelmaw/earthshaker_fissure_dust_gravelmaw.vpcf", PATTACH_ABSORIGIN, hero, tp)
-                    ParticleManager:SetParticleControl(effect, 1, between + (tp - between):Normalized() * 300)
-                end
+                    ParticleManager:SetParticleControl(effect, 1, between + knockDirection(victim) * 300)
+                end,
+                knockback = {
+                    force = function(victim)
+                        return 10 + 60 * direction:Dot(knockDirection(victim))
+                    end,
+                    direction = knockDirection,
+                    decrease = 4
+                }
             }
         })
     end):Activate()

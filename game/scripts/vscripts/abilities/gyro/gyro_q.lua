@@ -21,17 +21,15 @@ function self:OnSpellStart()
             graphics = "particles/gyro_q/gyro_q.vpcf",
             distance = 550,
             hitSound = "Arena.Gyro.HitQ",
-            hitFunction = function(projectile, victim)
+            nonBlockedHitAction = function(projectile, victim)
                 FX("particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_guided_missile_explosion.vpcf", PATTACH_ABSORIGIN, victim, {
                     cp0 = projectile:GetPos(),
                     release = true
                 })
-
-                ScreenShake(projectile:GetPos(), 5, 150, 0.25, 1500, 0, true)
-                SoftKnockback(victim, hero, projectile.vel, 40, { decrease = 4.5 })
-
-                victim:Damage(hero, self:GetDamage())
-            end
+            end,
+            screenShake = { 5, 150, 0.25, 1500, 0, true },
+            damage = self:GetDamage(),
+            knockback = { force = 40, decrease = 4.5 }
         }):Activate()
     end
 

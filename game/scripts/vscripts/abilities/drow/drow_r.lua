@@ -33,11 +33,8 @@ function drow_r:OnChannelFinish(interrupted)
         speed = 3000,
         graphics = "particles/drow_r/drow_r.vpcf",
         hitSound = "Arena.Drow.HitR",
-        hitFunction = function(projectile, target)
-            target:Damage(projectile, self:GetDamage())
-            SoftKnockback(target, projectile, projectile.vel, 100, {})
-
-        end,
+        damage = self:GetDamage(),
+        knockback = { force = 100 },
         nonBlockedHitAction = function(projectile, target)
             local pos = projectile:GetPos()
             local effect = ImmediateEffectPoint("particles/econ/items/earthshaker/earthshaker_gravelmaw/earthshaker_fissure_dust_gravelmaw.vpcf", PATTACH_ABSORIGIN, target, pos)

@@ -30,9 +30,7 @@ function brew_a:OnSpellStart()
         filter = Filters.Cone(pos, range, forward, math.pi),
         sound = "Arena.Brew.HitA",
         damage = damage,
-        action = function(target)
-            SoftKnockback(target, hero, target:GetPos() - hero:GetPos(), force, { decrease = 3 })
-        end,
+        knockback = { force = force, decrease = 3 },
         isPhysical = true
     })
 end

@@ -42,6 +42,7 @@ function Projectile:constructor(round, params)
     self.ignoreProjectiles = params.ignoreProjectiles
     self.considersGround = params.considersGround
     self.ability = params.ability
+    self.knockback = params.knockback
 
     if self.destroyOnDamage == nil then
        self.destroyOnDamage = true 
@@ -161,6 +162,19 @@ function Projectile:CollideWith(target)
             self:hitFunction(target)
         elseif self.damage ~= nil then
             target:Damage(self, self.damage, self.isPhysical)
+        end
+
+        if self.knockback then
+            local direction = self.knockback.direction and self.knockback.direction(target) or self.vel
+            local force = self.knockback.force
+
+            if type(force) == "function" then
+                force = force(target)
+            end
+
+            SoftKnockback(target, self, direction, force or 20, {
+                decrease = self.knockback.decrease
+            })
         end
 
         if self.hitModifier then

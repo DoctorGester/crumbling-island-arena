@@ -20,11 +20,11 @@ function sniper_a:OnSpellStart()
         graphics = "particles/sniper_q/sniper_q.vpcf",
         radius = 48,
         hitSound = "Arena.Sniper.HitA",
-        hitFunction = function(projectile, target)
+        nonBlockedHitAction = function()
             hero:StopSound("Arena.Sniper.FlyA")
-            target:Damage(projectile, self:GetDamage(), true)
-            SoftKnockback(target, hero, projectile.vel, 20, { decrease = 3 })
-        end
+        end,
+        knockback = { force = 20, decrease = 3 },
+        damage = self:GetDamage()
     }):Activate()
 
     hero:EmitSound("Arena.Sniper.CastA")
