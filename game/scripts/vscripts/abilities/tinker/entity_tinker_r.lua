@@ -29,7 +29,7 @@ function EntityTinkerR:Update()
         sound = "Arena.Tinker.HitR",
         filter = Filters.Area(self:GetPos(), 400) + Filters.WrapFilter(
             function(target)
-                return time - (self.ignoreGroup[target] or 0) >= 1
+                return time - (self.ignoreGroup[target] or 0) >= 1 and not instanceof(target, Obstacle)
             end
         ),
         action = function(target)
