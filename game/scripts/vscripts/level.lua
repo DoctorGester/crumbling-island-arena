@@ -1,7 +1,7 @@
 require("level_piece")
 
 MAP_HEIGHT = 7000
-FINISHING_DISTANCE = 750
+FINISHING_DISTANCE = 1000
 
 local function bigTransformer(x, y)
     return x, -y
@@ -295,6 +295,16 @@ function Level:LaunchPart(part, by, point, radius)
     part.launchedAt = GameRules:GetGameTime()
     part.velocity = math.max(-50, (radius / 10 - dist / 3))
 
+    for _, child in pairs(part:GetChildren()) do
+        if child.GetParentEntity then
+            local ent = child:GetParentEntity()
+
+            if ent.OnLaunched then
+                ent:OnLaunched(part)
+            end
+        end
+    end
+
     if by and self.enableRegeneration then
         table.insert(self.regeneratingParts, part)
     end
@@ -521,6 +531,11 @@ function Level:SetPartOffset(part, offsetX, offsetY)
     part.offsetX = offsetX
     part.offsetY = offsetY
     self:UpdatePartPosition(part)
+end
+
+function Level:AddPartChild(part, child)
+    child:GetUnit():SetParent(part, nil)
+    child:GetUnit():SetOrigin(child:GetPos())
 end
 
 function Level.CreateCreep(name, spawn, team, goal)

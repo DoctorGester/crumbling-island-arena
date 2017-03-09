@@ -35,6 +35,9 @@ function ProjectilePAA:constructor(round, hero, target, damage, ability)
             ParticleManager:SetParticleControl(blood, 2, direction * 1000)
         end
     end
+
+    self.timesDeflected = 0
+    self.lastTimeDeflected = -1
 end
 
 function ProjectilePAA:CollidesWith(target)
@@ -61,9 +64,37 @@ function ProjectilePAA:Remove()
 end
 
 function ProjectilePAA:Deflect(by, direction)
+    if GameRules:GetGameTime() - self.lastTimeDeflected < 0.1 then
+        return
+    end
+
+    self.timesDeflected = self.timesDeflected + 1
+    if self.timesDeflected > 5 then
+        local mode = GameRules:GetGameModeEntity()
+        FX("particles/ui/ui_generic_treasure_impact.vpcf", PATTACH_ABSORIGIN, mode, {
+            cp0 = self:GetPos(),
+            cp1 = self:GetPos(),
+            release = true
+        })
+
+        FX("particles/msg_fx/msg_deny.vpcf", PATTACH_CUSTOMORIGIN, mode, {
+            cp0 = self:GetPos(),
+            cp3 = Vector(200, 0, 0),
+            release = true
+        })
+
+        self:Destroy()
+    end
+
+    self.lastTimeDeflected = GameRules:GetGameTime()
+
+    self:EmitSound("Arena.PA.DeflectA")
+
     direction.z = 0
-    self.vel = direction:Normalized() * self.vel:Length()
+    self.vel = direction:Normalized() * math.max(1500, self.vel:Length2D())
     self.owner = by.owner
+    self.startTime = GameRules:GetGameTime()
+    self.attraction = 0.05
 end
 
 function ProjectilePAA:GetNextPosition(pos)

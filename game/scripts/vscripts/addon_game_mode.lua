@@ -11,9 +11,11 @@ require('ecs/components')
 require('ecs/health_system')
 require('ecs/wearable_system')
 require('ecs/player_circle_system')
+require('ecs/expiration_system')
 
 require('dynamic_entity')
 require('unit_entity')
+require('obstacle')
 require('timed_entity')
 require('hero')
 require('player')
@@ -620,6 +622,7 @@ function GameMode:InitModifiers()
     LinkLuaModifier("modifier_attack_speed", "abilities/modifier_attack_speed", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_custom_healthbar", "abilities/modifier_custom_healthbar", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_player_id", "abilities/modifier_player_id", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_obstacle", "abilities/modifier_obstacle", LUA_MODIFIER_MOTION_NONE)
 end
 
 function GameMode:SetupMode()
@@ -1115,6 +1118,7 @@ function GameMode:OnHeroSelectionEnd()
         end
     )
     self.round:CreateHeroes(self.gameSetup:GetSpawnPoints())
+    self.round:SpawnObstacles()
     self.firstBloodBy = nil
     self:SetState(STATE_ROUND_IN_PROGRESS)
     self:UpdateGameInfo()

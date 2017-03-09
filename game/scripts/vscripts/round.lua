@@ -140,6 +140,50 @@ function Round:GetTeamInverted(team)
     return -1
 end
 
+function Round:SpawnObstacles()
+    local mdls = {
+        "models/props_stone/column/colosseum_column001.vmdl",
+        "models/props_stone/column/colosseum_column001a.vmdl",
+        "models/props_stone/column/colosseum_column002.vmdl"
+    }
+
+    local bigMap = GetMapName() == "unranked"
+
+    if bigMap then
+        mdls = {
+            "models/props_tree/cypress/tree_cypress010.vmdl",
+            "models/props_tree/cypress/tree_cypress008.vmdl"
+        }
+    end
+
+    for i = 0, 3 do
+        local centerAngle = math.pi / 2 * i + math.pi / 4
+
+        for j = -4, 4 do
+            local outside = math.abs(j) > 1
+            local range = 800
+            local anMul = 0.15
+
+            if outside then
+                range = 1800
+                anMul = 0.06
+            end
+
+            if not outside or bigMap and math.abs(j) ~= 2 then
+                local an = centerAngle + anMul * j
+                local pos = Vector(math.cos(an), math.sin(an), 0) * (range - math.abs(j) * 30)
+                local ent = Obstacle(mdls[RandomInt(1, #mdls)], pos)
+
+                ent:Activate()
+
+                if bigMap then
+                    ent:GetUnit():SetRenderColor(80 + RandomInt(-10, 10), 90 + RandomInt(-10, 10), 30)
+                end
+            end
+        end
+    end
+end
+
 function Round:CreateHeroes(spawnPoints)
     print("Creating heroes")
     Shuffle(spawnPoints)

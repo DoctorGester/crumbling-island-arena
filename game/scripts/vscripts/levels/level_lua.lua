@@ -72,6 +72,8 @@ function Level:UpdatePolyPointCluster(polygon, oldX, oldY, newX, newY)
 end
 
 function Level:AssociatePieces()
+    local function filter(p) return not p.part end
+
     for _, part in pairs(self.parts) do
         local found = nil
 
@@ -82,10 +84,10 @@ function Level:AssociatePieces()
             end
         end
         
-        local poly = self:GetClosestPolygonAt(part.x, part.y, true)
+        local poly = self:GetClosestPolygonAt(part.x, part.y, true, filter)
 
         if not poly then
-            poly = self:GetClosestPolygonAt(part.x, part.y, false)
+            poly = self:GetClosestPolygonAt(part.x, part.y, false, filter)
         end
 
         if poly then
@@ -118,12 +120,12 @@ function Level:DistanceToPolygon(x, y, poly)
     return (Vector(x, y, 0) - Vector(poly.originX, poly.originY, 0)):Length2D()
 end
 
-function Level:GetClosestPolygonAt(x, y, checkContains)
+function Level:GetClosestPolygonAt(x, y, checkContains, filter)
     local closest = nil
     local minDist = math.huge
 
     for _, polygon in ipairs(self.polygons) do
-        if not polygon.part and (not checkContains or polygon:contains(x, y)) then
+        if (not filter or filter(polygon)) and (not checkContains or polygon:contains(x, y)) then
             local distance = self:DistanceToPolygon(x, y, polygon)
 
             if distance < minDist then
