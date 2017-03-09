@@ -147,7 +147,7 @@ function Round:SpawnObstacles()
         "models/props_stone/column/colosseum_column002.vmdl"
     }
 
-    local bigMap = GetMapName() == "unranked"
+    local bigMap = GetMapName() == "unranked" or GetMapName() == "ranked_3v3"
 
     if bigMap then
         mdls = {
