@@ -289,6 +289,8 @@ function SoftKnockback:constructor(hero, source, direction, force, params)
     self.direction = direction:Normalized()
     self.force = force * multiplier
     self.decrease = params.decrease or 7
+    self.knockup = params.knockup
+    self.h = 0
 
     self.decrease = self.decrease * multiplier
 
@@ -298,16 +300,25 @@ function SoftKnockback:constructor(hero, source, direction, force, params)
 end
 
 function SoftKnockback:HasEnded()
-    return self.force <= 0
+    return self.force <= 0 and (not self.knockup or self.h <= self.zStart)
 end
 
 function SoftKnockback:PositionFunction(current)
     return current + self.direction * self.force
 end
 
+function SoftKnockback:HeightFunction()
+    return self.h
+end
+
 function SoftKnockback:Update()
     if self.hero:Alive() and not self.cantStart then
         self.force = math.max(0, self.force - self.decrease)
+
+        if self.knockup then
+            self.knockup = self.knockup - 10
+            self.h = math.max(self.zStart, self.h + self.knockup)
+        end
 
         local next = self:PositionFunction(self.hero:GetPos())
         if not GridNav:IsTraversable(next) or GridNav:IsBlocked(next) then

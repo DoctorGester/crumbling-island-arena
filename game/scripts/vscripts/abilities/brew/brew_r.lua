@@ -38,12 +38,18 @@ function brew_r:OnSpellStart()
                 q:AddBeerModifier(victim)
                 q:AddBeerModifier(victim)
 
-                Knockback(victim, self, victim:GetPos() - target, 350, 1500, DashParabola(80))
+               -- Knockback(victim, self, victim:GetPos() - target, 350, 1500, DashParabola(80))
 
                 if victim.owner.team ~= hero.owner.team then
                     victim:Damage(hero, self:GetDamage())
                 end
-            end
+            end,
+            knockback = {
+                force = 80,
+                knockup = 60,
+                direction = function(v) return v:GetPos() - target end
+            },
+            modifier = { name = "modifier_stunned_lua", ability = self, duration = 0.5 }
         },
         hitSound = "Arena.Brew.HitR",
         hitFunction = function(projectile, hit)

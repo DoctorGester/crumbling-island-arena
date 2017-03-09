@@ -112,9 +112,9 @@ function shaker_q:OnSpellStart()
                 filterProjectiles = true,
                 action = function(target)
                     damaged[target] = true
-
-                    Knockback(target, self, direction, 350, 1500, DashParabola(250))
-                end
+                end,
+                knockback = { force = 55, knockup = 70, decrease = 4 },
+                modifier = { name = "modifier_stunned_lua", ability = self, duration = 0.5 }
             })
 
             if currentLen ~= len then
