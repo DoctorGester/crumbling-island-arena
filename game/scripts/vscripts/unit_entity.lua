@@ -1,13 +1,5 @@
 UnitEntity = UnitEntity or class({}, nil, DynamicEntity)
 
-local meta = getmetatable(UnitEntity)
-local oldCall = meta.__call
-meta.__call = function(object, f)
-    if object.unit and IsValidEntity(object.unit) then
-        return oldCall(object, f)
-    end
-end
-
 function UnitEntity:constructor(round, unitName, pos, team, findSpace, playerOwner)
 	getbase(UnitEntity).constructor(self, round)
 
