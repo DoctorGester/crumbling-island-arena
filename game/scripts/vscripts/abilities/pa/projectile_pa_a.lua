@@ -69,7 +69,7 @@ function ProjectilePAA:Deflect(by, direction)
     end
 
     self.timesDeflected = self.timesDeflected + 1
-    if self.timesDeflected > 5 then
+    if self.timesDeflected > 3 then
         local mode = GameRules:GetGameModeEntity()
         FX("particles/ui/ui_generic_treasure_impact.vpcf", PATTACH_ABSORIGIN, mode, {
             cp0 = self:GetPos(),

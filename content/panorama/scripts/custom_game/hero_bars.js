@@ -53,6 +53,11 @@ function UpdateHeroBars(){
 
             if (lightBar) {
                 offset = 150;
+
+                lightBar = {
+                    rem: GetRemainingModifierTime(entity, "modifier_custom_healthbar"),
+                    dur: GetModifierDuration(entity, "modifier_custom_healthbar")
+                }
             } else {
                 var nm = Entities.GetUnitName(entity);
                 offset = heroes[nm].barOffset;
@@ -169,6 +174,8 @@ function UpdateHeroBars(){
                     var bar = panel.FindChild("HealthBar");
                     bar.max = max;
                     bar.value = health;
+                    bar.SetHasClass("WithTransition", entity.light.dur <= 0);
+                    panel.SetHasClass("Expiring", entity.light.dur > 0 && entity.light.rem < 0.25);
                     panel.SetHasClass("Ethereal", ethereal);
                     panel.FindChild("HealthValue").SetHasClass("Low", health <= max / 2);
                     panel.FindChild("HealthValue").text = health.toString();

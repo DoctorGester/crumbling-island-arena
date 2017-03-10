@@ -8,11 +8,19 @@ function Obstacle:constructor(model, target)
 
     self:GetUnit():SetModel(model)
     self:GetUnit():SetOriginalModel(model)
-    self:SetFacing(RandomVector(1))
 
     self:AddNewModifier(self, nil, "modifier_obstacle", {})
     self:RegenerateNavBlock()
     self:FindPolygon()
+
+    self.rotation = Quat.fromAxisAngle(0, 0, 1, math.random() * math.pi * 2)
+    self.health = 5
+
+    self:GetUnit():SetBaseMaxHealth(self.health)
+    self:GetUnit():SetMaxHealth(self.health)
+    self:GetUnit():SetHealth(self.health)
+
+    self:SetAnglesFromQuaternion(self.rotation)
 end
 
 function Obstacle:CanFall()
@@ -42,6 +50,7 @@ function Obstacle:OnLaunched(parent)
     self:ClearObstruction()
     self:AddComponent(ExpirationComponent(2.0))
     self.launched = true
+    self.collisionType = COLLISION_TYPE_NONE
 end
 
 function Obstacle:RegenerateNavBlock()
@@ -52,7 +61,20 @@ function Obstacle:RegenerateNavBlock()
     })
 end
 
-function Obstacle:AllowAbilityEffect()
+function Obstacle:AllowAbilityEffect(source, ability)
+    if ability.GetDamage then
+        self.health = self.health - 1
+        self:AddNewModifier(self, nil, "modifier_custom_healthbar", { duration = 2.0 })
+
+        if self.health <= 0 then
+            self:Destroy()
+        else
+            self:GetUnit():SetHealth(self.health)
+        end
+
+        self:Push(Vector())
+    end
+
     return false
 end
 
@@ -94,9 +116,22 @@ function Obstacle:MakeFall()
 end
 
 function Obstacle:Remove()
+    self:EmitSound("Arena.TreeFall")
+
+    FX("particles/world_destruction_fx/tree_destroy.vpcf", PATTACH_WORLDORIGIN, GameRules:GetGameModeEntity(), {
+        cp0 = self:GetPos(),
+        cp3 = Vector(255, 255, 255)
+    })
+
     getbase(Obstacle).Remove(self)
 
     self:ClearObstruction()
+end
+
+function Obstacle:SetAnglesFromQuaternion(q)
+    local yaw, pitch, roll = Quat.toEuler(q)
+
+    self:GetUnit():SetAngles(math.deg(yaw), math.deg(pitch), math.deg(roll))
 end
 
 function Obstacle:Update()
@@ -106,4 +141,30 @@ function Obstacle:Update()
         print("Navblock regenerated for", self)
         self:RegenerateNavBlock()
     end
+
+    self.rotation = self.rotation or Quat.fromAxisAngle(0, 0, 1, math.random() * math.pi * 2)
+
+    local resultRot = self.rotation
+
+    if self.pushNormal then
+        local timePassed = GameRules:GetGameTime() - self.pushStartTime
+        local angle = math.sin(GameRules:GetGameTime() * 24) * (0.05 * (1 - timePassed))
+        --local rotAxis = Quat.fromAxisAngle(self.pushNormal.x, self.pushNormal.y, self.pushNormal.z, angle)
+        local rotAxis = Quat.fromAxisAngle(0, 1, 0, angle)
+
+        resultRot = Quat.mul(rotAxis, resultRot)
+
+        if timePassed > 1.0 then
+            self.pushNormal = nil
+        end
+
+        self:SetAnglesFromQuaternion(resultRot)
+    end
+end
+
+function Obstacle:Push(vel)
+    self.pushNormal = Vector(-vel.y, vel.x):Normalized()
+    self.pushStartTime = GameRules:GetGameTime()
+
+    --DebugDrawLine(self:GetPos(), self:GetPos() + self.pushNormal:Normalized() * 300, 0, 255, 0, true, 2.0)
 end

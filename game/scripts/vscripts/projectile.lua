@@ -157,6 +157,10 @@ function Projectile:CollideWith(target)
 
     local blocked = self.ability and target:AllowAbilityEffect(self, self.ability) == false
 
+    if instanceof(target, Obstacle) then
+        target:Push(self.vel)
+    end
+
     if not blocked then
         if self.hitFunction then
             self:hitFunction(target)

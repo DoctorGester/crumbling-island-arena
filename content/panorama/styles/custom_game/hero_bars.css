@@ -209,6 +209,8 @@
 .HeroBarLight
 {
     width: 80px;
+    transition-property: opacity;
+    transition-duration: 0.3s;
 }
 
 .HeroBarLight #HealthValue
@@ -248,12 +250,20 @@
 
 .HeroBarLight #HealthBar .ProgressBarLeft {
     background-color: gradient(linear, 0% 0%, 0% 98%, from(#FFFFFF), to(#898989));
+}
+
+.HeroBarLight #HealthBar.WithTransition .ProgressBarLeft {
     transition-property: width;
     transition-duration: 0.2s;
 }
 
 .HeroBarLight #HealthBar .ProgressBarRight {
     background-color: gradient(linear, 0% 0%, 0% 95%, from(#333333), to(#555555));
+}
+
+.HeroBarLight.Expiring
+{
+    opacity: 0.0;
 }
 
 @keyframes 'HealthAnimation'

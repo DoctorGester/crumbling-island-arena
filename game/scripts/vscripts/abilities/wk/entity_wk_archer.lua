@@ -51,7 +51,7 @@ function WKArcher:Update()
             arc = 600,
             graphics = self.hero:GetMappedParticle("particles/wk_w/wk_w.vpcf"),
             hitParams = {
-                ability = self,
+                ability = self.ability,
                 filter = Filters.Area(self.target, 200),
                 filterProjectiles = true,
                 damage = self.ability:GetDamage(),

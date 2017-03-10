@@ -502,6 +502,29 @@
 		event_type = "1.0"
 	}
 
+	Arena.TreeFall = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/furion/treant_spawn01.vsnd",
+			"sounds/weapons/hero/furion/treant_spawn02.vsnd",
+			"sounds/weapons/hero/furion/treant_spawn03.vsnd",
+			"sounds/weapons/hero/furion/treant_spawn04.vsnd",
+			"sounds/physics/footsteps/hero/furion/treant_death01.vsnd",
+			"sounds/physics/footsteps/hero/furion/treant_death02.vsnd",
+		]
+		volume = "0.549988"
+		volume_rand_min = "-0.049988"
+		volume_rand_max = "0.049988"
+		pitch = "1.000000"
+		pitch_rand_min = "-0.100000"
+		pitch_rand_max = "0.100000"
+		soundlevel = "75.000000"
+		mixgroup = "Physics"
+		volume_falloff_max = "1800.000000"
+		spread_radius = "100.000000"
+	}
+
 	Arena.PA.Throw = {
 		type = "dota_src1_3d"
 		vsnd_files = 

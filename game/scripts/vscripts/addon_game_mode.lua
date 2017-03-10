@@ -4,6 +4,7 @@ require('lib/vector_target')
 require('lib/statcollection')
 require('targeting_indicator')
 require('util')
+require('quat')
 require('stats')
 
 require('ecs/system')
