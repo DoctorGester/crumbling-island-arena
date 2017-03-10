@@ -149,12 +149,12 @@ function Round:SpawnObstacles()
 
     local bigMap = GetMapName() == "unranked" or GetMapName() == "ranked_3v3"
 
-    if bigMap then
+    --if bigMap then
         mdls = {
             "models/props_tree/cypress/tree_cypress010.vmdl",
             "models/props_tree/cypress/tree_cypress008.vmdl"
         }
-    end
+    --end
 
     for i = 0, 3 do
         local centerAngle = math.pi / 2 * i + math.pi / 4
