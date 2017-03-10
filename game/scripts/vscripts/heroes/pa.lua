@@ -32,10 +32,10 @@ function PA:WeaponDestroyed()
 		return
 	end
 	
-	self:FindAbility("pa_a"):StartCooldown(1)
+	self:FindAbility("pa_a"):StartCooldown(1.8)
 	self.weapon = nil
 
-	Timers:CreateTimer(1, function()
+	Timers:CreateTimer(1.8, function()
 		self:WeaponRetrieved(true)
 	end)
 end
