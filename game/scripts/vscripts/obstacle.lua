@@ -116,12 +116,14 @@ function Obstacle:MakeFall()
 end
 
 function Obstacle:Remove()
-    self:EmitSound("Arena.TreeFall")
+    if self.launched or self.health <= 0 then
+        self:EmitSound("Arena.TreeFall")
 
-    FX("particles/world_destruction_fx/tree_destroy.vpcf", PATTACH_WORLDORIGIN, GameRules:GetGameModeEntity(), {
-        cp0 = self:GetPos(),
-        cp3 = Vector(255, 255, 255)
-    })
+        FX("particles/world_destruction_fx/tree_destroy.vpcf", PATTACH_WORLDORIGIN, GameRules:GetGameModeEntity(), {
+            cp0 = self:GetPos(),
+            cp3 = Vector(255, 255, 255)
+        })
+    end
 
     getbase(Obstacle).Remove(self)
 
