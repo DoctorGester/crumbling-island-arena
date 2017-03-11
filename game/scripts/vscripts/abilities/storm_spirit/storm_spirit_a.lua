@@ -38,7 +38,8 @@ function storm_spirit_a:OnSpellStart()
                 ability = self,
                 filter = Filters.Area(projectile:GetPos(), 350),
                 damage = self:GetDamage() * 2,
-                modifier = { name = "modifier_storm_spirit_a_slow", duration = 1.2, ability = self }
+                modifier = { name = "modifier_storm_spirit_a_slow", duration = 1.2, ability = self },
+                isPhysical = true
             })
 
             FX("particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf", PATTACH_WORLDORIGIN, projectile, {
