@@ -26,7 +26,7 @@ function EntitySniperW:Update()
 end
 
 function EntitySniperW:CollidesWith(target)
-    return self.owner.team ~= target.owner.team and instanceof(target, Hero)
+    return self.owner.team ~= target.owner.team and instanceof(target, Hero) and not target:IsAirborne()
 end
 
 function EntitySniperW:CollideWith(target)
