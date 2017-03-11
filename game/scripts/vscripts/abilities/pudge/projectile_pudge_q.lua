@@ -39,6 +39,11 @@ end
 
 function ProjectilePudgeQ:CollideWith(target)
     local ally = target.owner.team == self.hero.owner.team
+
+    if instanceof(target, Obstacle) and self.goingBack then
+        return
+    end
+
     local blocked = target:AllowAbilityEffect(self, self.ability) == false
 
     if blocked then
