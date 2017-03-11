@@ -7,7 +7,6 @@
 		"AbilityTextureName" "phantom_assassin_stifling_dagger"
 		"AbilityCooldown" "2.5"
 		"AbilityCastPoint" "0.1"
-		"Damage" "2"
 
 		"TargetingIndicator" {
 			"Type" "TARGETING_INDICATOR_LINE"
