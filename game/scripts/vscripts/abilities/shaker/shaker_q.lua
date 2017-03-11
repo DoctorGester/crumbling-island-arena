@@ -113,6 +113,11 @@ function shaker_q:OnSpellStart()
                 action = function(target)
                     damaged[target] = true
                 end,
+                notBlockedAction = function(target)
+                    if instanceof(target, Obstacle) then
+                        damaged[target] = true
+                    end
+                end,
                 knockback = { force = 55, knockup = 70, decrease = 4 },
                 modifier = { name = "modifier_stunned_lua", ability = self, duration = 0.5 }
             })
