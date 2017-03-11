@@ -52,6 +52,11 @@ function cm_w:OnChannelThink(interval)
                         CMUtil.AbilityHit(hero, victim, self)
                         
                         self.damaged[victim] = true
+                    end,
+                    notBlockedAction = function(target)
+                        if instanceof(target, Obstacle) then
+                            self.damaged[target] = true
+                        end
                     end
                 })
 
