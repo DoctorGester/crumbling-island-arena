@@ -20,7 +20,8 @@ function storm_spirit_a:OnSpellStart()
         radius = 48,
         graphics = "particles/storm_a/storm_a.vpcf",
         distance = 700,
-        hitSound = charged and "Arena.Storm.HitA2" or "Arena.Storm.HitA"
+        hitSound = charged and "Arena.Storm.HitA2" or "Arena.Storm.HitA",
+        isPhysical = true
     }
 
     if charged then
