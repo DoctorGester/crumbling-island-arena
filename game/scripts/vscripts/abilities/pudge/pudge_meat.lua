@@ -10,7 +10,6 @@ function PudgeMeat:constructor(round, owner, target)
     self.health = 1
     self.size = 64
     self.collisionType = COLLISION_TYPE_INFLICTOR
-    self.invulnerable = true
 
     local unit = self:GetUnit()
     unit.hero = self
