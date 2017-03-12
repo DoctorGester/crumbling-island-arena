@@ -7,7 +7,3 @@ function modifier_sven_e:CheckState()
 
     return state
 end
-
-function modifier_sven_e:OnDamageReceived()
-    return false
-end
