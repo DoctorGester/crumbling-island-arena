@@ -29,7 +29,11 @@ function zeus_a:OnSpellStart()
     local dist = 65536
 
     hero:AreaEffect({
-        filter = Filters.Line(hero:GetPos(), target, 32),
+        filter = Filters.Line(hero:GetPos(), target, 32) + Filters.WrapFilter(
+            function(target)
+                return not instanceof(target, Projectile) or IsAttackAbility(target.ability)
+            end
+        ),
         action = function(target)
             local d = (target:GetPos() - hero:GetPos()):Length2D()
 
@@ -37,7 +41,8 @@ function zeus_a:OnSpellStart()
                 dist = d
                 closestTarget = target
             end
-        end
+        end,
+        targetProjectiles = true
     })
 
     if closestTarget then
