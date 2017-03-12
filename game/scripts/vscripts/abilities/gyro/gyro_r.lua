@@ -34,7 +34,7 @@ if IsServer() then
                 distance = 1500,
                 hitSound = "Arena.Gyro.HitR",
                 nonBlockedHitAction = function(projectile, victim)
-                    FX("particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_guided_missile_explosion.vpcf", PATTACH_ABSORIGIN, victim, {
+                    FX("particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_guided_missile_explosion.vpcf", PATTACH_ABSORIGIN, projectile, {
                         cp0 = projectile:GetPos(),
                         release = true
                     })
