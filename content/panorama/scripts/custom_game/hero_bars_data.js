@@ -23,7 +23,7 @@ var hideBarModifiers = [
     "modifier_storm_spirit_e",
     "modifier_ursa_e",
     "modifier_ursa_r",
-    "modifier_drow_q"
+    "modifier_drow_e"
 ];
 
 var etherealModifiers = [
@@ -32,7 +32,6 @@ var etherealModifiers = [
 
 var recastModifiers = [
     "modifier_gyro_w",
-    "modifier_drow_q_recast",
     "modifier_jugger_e",
     "modifier_cm_e"
 ];
