@@ -6,21 +6,30 @@ function Obstacle:constructor(model, target)
     self.collisionType = COLLISION_TYPE_RECEIVER
     self.owner = { team = 0 }
 
-    self:GetUnit():SetModel(model)
-    self:GetUnit():SetOriginalModel(model)
+    self.prop = SpawnEntityFromTableSynchronous("prop_dynamic", {
+        origin = target,
+        model = model
+    })
 
     self:AddNewModifier(self, nil, "modifier_obstacle", {})
     self:RegenerateNavBlock()
     self:FindPolygon()
 
-    self.rotation = Quat.fromAxisAngle(0, 0, 1, math.random() * math.pi * 2)
+    self.rotation = Quat.fromAxisAngle(0, 0, 1, 0)--math.random() * math.pi * 2)
     self.health = 5
 
     self:GetUnit():SetBaseMaxHealth(self.health)
     self:GetUnit():SetMaxHealth(self.health)
     self:GetUnit():SetHealth(self.health)
 
+    self.prop:SetParent(self:GetUnit(), nil)
+    self.prop:SetOrigin(target)
+
     self:SetAnglesFromQuaternion(self.rotation)
+end
+
+function Obstacle:SetRenderColor(r, g, b)
+    self.prop:SetRenderColor(r, g, b)
 end
 
 function Obstacle:CanFall()
@@ -72,7 +81,7 @@ function Obstacle:AllowAbilityEffect(source, ability)
             self:GetUnit():SetHealth(self.health)
         end
 
-        self:Push(Vector())
+        self:Push(self:GetPos() - source:GetPos())
     end
 
     return false
@@ -133,7 +142,7 @@ end
 function Obstacle:SetAnglesFromQuaternion(q)
     local yaw, pitch, roll = Quat.toEuler(q)
 
-    self:GetUnit():SetAngles(math.deg(yaw), math.deg(pitch), math.deg(roll))
+    self.prop:SetAngles(math.deg(yaw), math.deg(pitch), math.deg(roll))
 end
 
 function Obstacle:Update()
@@ -150,14 +159,14 @@ function Obstacle:Update()
 
     if self.pushNormal then
         local timePassed = GameRules:GetGameTime() - self.pushStartTime
-        local angle = math.sin(GameRules:GetGameTime() * 24) * (0.05 * (1 - timePassed))
-        --local rotAxis = Quat.fromAxisAngle(self.pushNormal.x, self.pushNormal.y, self.pushNormal.z, angle)
-        local rotAxis = Quat.fromAxisAngle(0, 1, 0, angle)
+        local angle = math.sin(GameRules:GetGameTime() * 24) * (self.pushAmplitude * (1 - timePassed))
+        local rotAxis = Quat.fromAxisAngle(self.pushNormal.x, self.pushNormal.y, self.pushNormal.z, angle)
 
-        resultRot = Quat.mul(rotAxis, resultRot)
+        resultRot = Quat.mul(resultRot, rotAxis)
 
         if timePassed > 1.0 then
             self.pushNormal = nil
+            self.pushAmplitude = 0
         end
 
         self:SetAnglesFromQuaternion(resultRot)
@@ -167,6 +176,7 @@ end
 function Obstacle:Push(vel)
     self.pushNormal = Vector(-vel.y, vel.x):Normalized()
     self.pushStartTime = GameRules:GetGameTime()
+    self.pushAmplitude = math.min((self.pushAmplitude or 0) + RandomFloat(0.05, 0.1), 0.3)
 
     --DebugDrawLine(self:GetPos(), self:GetPos() + self.pushNormal:Normalized() * 300, 0, 255, 0, true, 2.0)
 end

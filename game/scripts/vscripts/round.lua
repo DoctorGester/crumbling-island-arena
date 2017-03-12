@@ -177,7 +177,7 @@ function Round:SpawnObstacles()
                 ent:Activate()
 
                 --if bigMap then
-                    ent:GetUnit():SetRenderColor(80 + RandomInt(-10, 10), 90 + RandomInt(-10, 10), 30)
+                    ent:SetRenderColor(80 + RandomInt(-10, 10), 90 + RandomInt(-10, 10), 30)
                 --end
             end
         end
