@@ -66,7 +66,7 @@ indicatorTypes["TARGETING_INDICATOR_LINE"] = function(data, unit) {
 indicatorTypes["TARGETING_INDICATOR_ARC"] = function(data, unit) {
     this.data = data;
     this.unit = unit;
-    this.particle = Particles.CreateParticle("particles/targeting/arc.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN_FOLLOW, unit);
+    this.particle = Particles.CreateParticle("particles/targeting/arc.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN, unit);
 
     this.Update = function(position){
         var arc = GetNumber(data.Arc, null, unit);
