@@ -30,7 +30,7 @@ function drow_r:OnChannelFinish(interrupted)
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 64),
         to = target + Vector(0, 0, 64),
-        speed = 3000,
+        speed = 3500,
         graphics = "particles/drow_r/drow_r.vpcf",
         hitSound = "Arena.Drow.HitR",
         damage = self:GetDamage(),

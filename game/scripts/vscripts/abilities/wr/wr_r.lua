@@ -71,16 +71,6 @@ function wr_r:GetChannelTime()
     return 2.0
 end
 
---[[
-function wr_r:GetCastAnimation()
-    return ACT_DOTA_ATTACK
-end
-
-function wr_r:GetPlaybackRateOverride()
-    return 1.0
-end
-]]--
-
 if IsServer() then
     Wrappers.GuidedAbility(wr_r, true)
 end

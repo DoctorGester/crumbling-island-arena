@@ -4,19 +4,19 @@
 		"ScriptFile" "abilities/drow/drow_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "drow_ranger_silence"
-		"AbilityCooldown" "7.0"
-		"AbilityCastPoint" "0.2"
+		"AbilityCooldown" "4.5"
+		"AbilityCastPoint" "0.1"
 
 		"TargetingIndicator" {
-			"Type" "TARGETING_INDICATOR_THICK_LINE"
-			"MinLength" "1500"
-			"MaxLength" "1500"
-			"Width" "200"
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "250"
+			"DisplayRange" "1"
+			"MaxLength" "1000"
 		}
 
 		"HoverIndicator" {
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "1500"
+			"Radius" "1000"
 		}
 
 		"precache" {

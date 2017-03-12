@@ -1,40 +1,40 @@
 drow_w = class({})
 
 function drow_w:OnSpellStart()
-    local hero = self:GetCaster().hero
+    Wrappers.DirectionalAbility(self, 1000)
+
+    local hero = self:GetCaster():GetParentEntity()
     local target = self:GetCursorPosition()
-    local startPos = hero:GetPos()
-    local direction = (target - startPos):Normalized()
-    local position = startPos + direction * 2000
+    local particle = FX("particles/aoe_marker_filled.vpcf", PATTACH_ABSORIGIN, hero, {
+        cp0 = target,
+        cp1 = Vector(250, 0, 0),
+        cp2 = Vector(194, 208, 210)
+    })
 
-    local particle = ParticleManager:CreateParticle("particles/units/heroes/hero_drow/drow_silence_wave.vpcf", PATTACH_CUSTOMORIGIN, hero:GetUnit())
-    ParticleManager:SetParticleControl(particle, 0, hero:GetPos())
-    ParticleManager:SetParticleControl(particle, 1, direction * 2000)
+    TimedEntity(0.55, function()
+        DFX(particle)
 
-    DistanceCappedProjectile(hero.round, {
-        ability = self,
-        owner = hero,
-        from = hero:GetPos(),
-        to = target ,
-        speed = 2000,
-        distance = 1500,
-        radius = 128,
-        continueOnHit = true,
-        invulnerable = true,
-        hitModifier = { name = "modifier_silence_lua", duration = 0.9, ability = self },
-        hitCondition = function(projectile, target)
-            return projectile.owner.team ~= target.owner.team and not instanceof(target, Projectile)
-        end,
-        knockback = {
-            force = function(target)
-                local delta = 1 - math.min(1, (target:GetPos() - startPos):Length2D() / 1000)
+        local hit = hero:AreaEffect({
+            ability = self,
+            filter = Filters.Area(target, 250),
+            modifier = { name = "modifier_silence_lua", duration = 1.2, ability = self },
+            onlyHeroes = true
+        })
 
-                return 50 + 50 * delta
-            end
-        }
-    }):Activate()
+        if hit then
+            hero:FindAbility("drow_q"):EndCooldown()
+        end
 
-    hero:EmitSound("Arena.Drow.CastW")
+        FX("particles/units/heroes/hero_drow/drow_silence.vpcf", PATTACH_WORLDORIGIN, hero, {
+            cp0 = target,
+            cp1 = Vector(250, 1, 1),
+            release = true
+        })
+
+        hero:EmitSound("Arena.Drow.CastW")
+    end):Activate()
+
+
 end
 
 function drow_w:GetPlaybackRateOverride()

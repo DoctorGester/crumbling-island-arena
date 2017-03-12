@@ -137,9 +137,9 @@
 		"vengefulspirit_DescE" "Меняющий местами снаряд"
 		"vengefulspirit_DescR" "Вызов духа-защитника"
 
-		"drow_ranger_DescQ" "Короткий рывок + урон. Переиспользование"
-		"drow_ranger_DescW" "Волна отбрасывания и безмолвия"
-		"drow_ranger_DescE" "Рывок + замедление"
+		"drow_ranger_DescQ" "Град замедляющих стрел"
+		"drow_ranger_DescW" "Безмолвие в области"
+		"drow_ranger_DescE" "Короткий рывок + урон"
 		"drow_ranger_DescR" "Прерываемое, отбрасывающая стрела"
 
 		"skeleton_king_DescQ" "Вызов скелетов мечников"
@@ -497,10 +497,10 @@
 		"AbilityTooltip_venge_e"						"Запустить снаряд, меняющий местами героя и цель"
 		"AbilityTooltip_venge_r"						"Вызвать Духа Возмездия в указанную область<br/>Дух запускает оглушающие снаряды в ответ на применение противниками способностей<br/>Пассивно накладывает <font color=\"gold\"><b>W</b></font> в области<br/>Продолжительность: 10.0s"
 
-		"AbilityTooltip_drow_a"							"Замедляет врагов"
-		"AbilityTooltip_drow_q"							"Рывок в сторону, запускающий стрелы по кругу<br/>Может быть использован еще раз в короткий период времени"
-		"AbilityTooltip_drow_w"							"Запустить волну безмолвия, отбрасывающую противников"
-		"AbilityTooltip_drow_e"							"Рвануться к указанной точке, замедляя врагов на пути"
+		"AbilityTooltip_drow_a"							"Проходит сквозь врагов"
+		"AbilityTooltip_drow_q"							"Запустить град замедляющих стрел<br/>Может нанести 3 урона по одной цели"
+		"AbilityTooltip_drow_w"							"Наложить безмолвие в области после задержки<br/>Попадание по врагам перезаряжает <font color=\"gold\"><b>Q</b></font>"
+		"AbilityTooltip_drow_e"							"Рывок в сторону, запускающий стрелы по кругу"
 		"AbilityTooltip_drow_r"							"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>Запустить дальнобойную стрелу, наносяющую урон и отбрасывающую противника, в которого попадет"
 
 		"AbilityTooltip_wk_a"							"Восстанавливает здоровье за попадание по героям"
@@ -702,7 +702,6 @@
 
 		"ModifierTooltip_modifier_drow_q"						"Замедлен"
 		"ModifierTooltip_modifier_drow_e"						"Шадоустеп"
-		"ModifierTooltip_modifier_drow_e_slow"					"Замедлен"
 
 		"ModifierTooltip_modifier_wk_q"							"Замедлен"
 		"ModifierTooltip_modifier_wk_w"							"Замедлен"

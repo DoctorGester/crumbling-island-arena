@@ -27,6 +27,7 @@
 		"ForNewPlayers" "1"
 		"Range" "ranged"
 		"Order" "15"
+		"DateAdded" "13.03.2017"
 		"Ability1" "drow_q"
 		"Ability2" "drow_w"
 		"Ability3" "drow_e"
