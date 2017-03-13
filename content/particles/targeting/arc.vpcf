@@ -48,6 +48,12 @@
 		{
 			_class = "C_INIT_RandomLifeTime"
 		},
+		{
+			_class = "C_INIT_RemapCPtoScalar"
+			m_nCPInput = 2
+			m_flInputMax = 200.0
+			m_flOutputMax = 200.0
+		},
 	]
 	m_Emitters = 
 	[
