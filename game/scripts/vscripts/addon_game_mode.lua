@@ -41,7 +41,7 @@ require('statistics')
 require('chat')
 require('debug_util')
 
-_G.GAME_VERSION = "2.1"
+_G.GAME_VERSION = "2.2"
 _G.STATE_NONE = 0
 _G.STATE_GAME_SETUP = 1
 _G.STATE_HERO_SELECTION = 2
@@ -259,14 +259,10 @@ function GameMode:EventPlayerConnected(args)
         return
     end
 
-    if GameRules:State_Get() >= DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-        if string.len(PlayerResource:GetSelectedHeroName(id)) == 0 then
-            CreateHeroForPlayer(DUMMY_HERO, playerEntity)
-        end
+    if string.len(PlayerResource:GetSelectedHeroName(id)) == 0 then
+        UTIL_Remove(CreateHeroForPlayer(DUMMY_HERO, playerEntity))
     end
 
-    self:EnsurePlayersHaveControllers()
-    
     local userID = args.userid
 
     self.Users = self.Users or {}
@@ -287,20 +283,6 @@ function GameMode:EventPlayerConnected(args)
     end
 end
 
-function GameMode:EnsurePlayersHaveControllers()
-    Timers:CreateTimer(5, function()
-        if GameRules:State_Get() >= DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-            for _, player in pairs(self.Players) do
-                local playerEntity = PlayerResource:GetPlayer(player.id)
-
-                if playerEntity and IsValidEntity(playerEntity) and string.len(PlayerResource:GetSelectedHeroName(player.id)) == 0 then
-                    CreateHeroForPlayer(DUMMY_HERO, playerEntity)
-                end
-            end
-        end
-    end)
-end
-
 function GameMode:EventPlayerReconnected(args)
     print("Player reconnected")
     PrintTable(args)
@@ -308,8 +290,6 @@ function GameMode:EventPlayerReconnected(args)
     if self.HeroSelection then
         self.HeroSelection:UpdateSelectedHeroes()
     end
-
-    self:EnsurePlayersHaveControllers()
 end
 
 function GameMode:EventPlayerDisconnected(args)
