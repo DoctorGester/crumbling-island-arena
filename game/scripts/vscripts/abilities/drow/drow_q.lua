@@ -59,20 +59,9 @@ function drow_q:OnChannelThink(interval)
 
         hero:EmitSound("Arena.Drow.CastA")
 
-        --FX("particles/econ/items/windrunner/windrunner_ti6/windrunner_spell_powershot_channel_ti6_shock_ring.vpcf", PATTACH_ABSORIGIN, hero, {
-           -- cp1 = { ent = hero, attach = PATTACH_ABSORIGIN },
-            --release = true
-        --})
-
         ScreenShake(hero:GetPos(), 5, 150, 0.15, 3000, 0, true)
 
         self.shots = shots + 1
-    end
-
-    if interval == 0 then
-        --hero:EmitSound("Arena.WR.CastR.Voice")
-        --hero:EmitSound("Arena.WR.CastR")
-        --hero:AddNewModifier(hero, self, "modifier_wr_r", {})
     end
 end
 

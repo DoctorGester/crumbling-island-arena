@@ -3015,6 +3015,21 @@
 		event_type = "1.0"
 	}
 
+	Arena.Drow.CastW.Voice = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/vo/drowranger/dro_ability_01.vsnd",
+			"sounds/vo/drowranger/dro_ability_07.vsnd"
+		]
+		volume = "2.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
 	Arena.Drow.CastE = {
 		type = "dota_update_default"
 		vsnd_files = 

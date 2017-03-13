@@ -34,7 +34,7 @@ function drow_w:OnSpellStart()
         hero:EmitSound("Arena.Drow.CastW")
     end):Activate()
 
-
+    hero:EmitSound("Arena.Drow.CastW.Voice")
 end
 
 function drow_w:GetPlaybackRateOverride()
