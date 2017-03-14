@@ -3,6 +3,7 @@ LinkLuaModifier("modifier_drow_q", "abilities/drow/modifier_drow_q", LUA_MODIFIE
 
 function drow_q:OnChannelThink(interval)
     self.channelingTime = (self.channelingTime or 0) + interval
+    self.going = true
 
     local shots = self.shots or 0
     local hero = self:GetCaster():GetParentEntity()
@@ -51,7 +52,7 @@ function drow_q:OnChannelThink(interval)
             destroyFunction = function()
                 self.projectileCounter = (self.projectileCounter or 0) - 1
 
-                if self.projectileCounter == 0 then
+                if self.projectileCounter == 0 and not self.going then
                     self.damaged = nil
                 end
             end
@@ -67,13 +68,8 @@ end
 
 function drow_q:OnChannelFinish()
     self.channelingTime = 0
-    self.soundPlayed = false
     self.shots = 0
-    self.hitGroup = nil
-
-    local hero = self:GetCaster():GetParentEntity()
-    hero:StopSound("Arena.WR.CastR")
-    --hero:RemoveModifier("modifier_wr_r")
+    self.going = false
 end
 
 function drow_q:GetChannelTime()
