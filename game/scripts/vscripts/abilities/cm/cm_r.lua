@@ -11,6 +11,8 @@ function cm_r:OnSpellStart()
     holder:EmitSound("Arena.CM.CastR")
     holder:EmitSound("Arena.CM.LoopR")
 
+    hero:EmitSound("Arena.CM.CastR.Voice")
+
     ImmediateEffectPoint("particles/econ/items/crystal_maiden/crystal_maiden_cowl_of_ice/maiden_crystal_nova_cowlofice.vpcf", PATTACH_CUSTOMORIGIN, hero, target)
 end
 

@@ -10,6 +10,7 @@ function storm_spirit_e:OnSpellStart()
 
     if remnant then
         hero:EmitSound("Arena.Storm.CastE")
+        hero:EmitSound("Arena.Storm.CastE.Voice")
 
         Dash(hero, remnant:GetPos(), 2000, {
             modifier = { name = "modifier_storm_spirit_e", ability = self },

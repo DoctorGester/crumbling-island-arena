@@ -29,6 +29,7 @@ function self:OnSpellStart()
     })
 
     hero:EmitSound("Arena.AM.CastR")
+    hero:EmitSound("Arena.AM.CastR.Voice")
 
     ScreenShake(target, 5, 150, 0.45, 3000, 0, true)
 end
