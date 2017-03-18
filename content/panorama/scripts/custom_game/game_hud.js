@@ -154,6 +154,7 @@ function SetupUI(){
     GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_MENU_BUTTONS, false);
     GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_ENDGAME, false);
     GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_ENDGAME_CHAT, false);
+    GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_QUICK_STATS, false);
 }
 
 function GetLocalHero(){
@@ -688,7 +689,6 @@ function SetupChat() {
     hud.style.zIndex = 10;
 
     hud.FindChild("topbar").FindChild("DayGlow").style.visibility = "collapse";
-    hud.FindChild("quickstats").style.visibility = "collapse";
 
     var hudChat = hud.FindChild("HudChat");
     var controls = hudChat.FindChildTraverse("ChatControls");
