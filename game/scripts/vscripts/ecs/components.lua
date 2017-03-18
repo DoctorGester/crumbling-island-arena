@@ -24,12 +24,15 @@ function HealthComponent()
             self.customHealth = true
             self.health = health
         end,
-        EnableHealthBar = function(self)
-            self.healthBarEnabled = true
-
+        SetupUnitHealth = function(self)
             self:GetUnit():SetBaseMaxHealth(self.health)
             self:GetUnit():SetMaxHealth(self.health)
             self:GetUnit():SetHealth(self.health)
+        end,
+        EnableHealthBar = function(self)
+            self.healthBarEnabled = true
+
+            self:SetupUnitHealth()
             self:AddNewModifier(self, nil, "modifier_custom_healthbar", {})
         end
     })
