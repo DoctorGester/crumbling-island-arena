@@ -6,7 +6,7 @@ if IsServer() then
         self.currentAngle = math.atan2(hero:GetFacing().y, hero:GetFacing().x) % (math.pi * 2)
         self.damaged = {}
 
-        self:StartIntervalThink(0.03)
+        self:StartIntervalThink(0.02)
         self:OnIntervalThink()
 
         hero:SetHidden(true)
@@ -14,7 +14,7 @@ if IsServer() then
 
     function modifier_drow_e:OnIntervalThink()
         self:FireArrow(self.currentAngle)
-        self.currentAngle = self.currentAngle + 0.8
+        self.currentAngle = self.currentAngle + 0.6
     end
 
     function modifier_drow_e:OnDestroy()
@@ -36,7 +36,7 @@ if IsServer() then
             speed = 1450,
             radius = 48,
             graphics = "particles/drow_q/drow_q.vpcf",
-            distance = 500,
+            distance = 300,
             hitSound = "Arena.Drow.HitA",
             hitFunction = function(_, victim)
                 if self.damaged[victim] == nil then
