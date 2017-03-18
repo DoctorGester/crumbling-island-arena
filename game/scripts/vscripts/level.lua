@@ -225,7 +225,7 @@ function Level:DamageGround(part, damage, source, point, radius)
 
     if part.health <= 50 and not part.launched then
         part.z = part.defaultZ + (part.health / 50 - 1) * 18 - 8
-        part:SetAbsOrigin(Vector(part.x, part.y, part.z))
+        self:UpdatePartPosition(part)
     end
 
     if part.health <= 0 then
