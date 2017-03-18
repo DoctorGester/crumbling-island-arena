@@ -22,6 +22,37 @@ function WKZombie:constructor(round, owner, position, direction)
     if RandomInt(0, 1) == 1 then
         self:EmitSound("Arena.WK.CastE")
     end
+
+    self:AddComponent(HealthComponent())
+    self:SetCustomHealth(3)
+    self:SetupUnitHealth()
+    self.healthBarEnabled = true
+end
+
+function WKZombie:Damage(...)
+    getbase(WKZombie).Damage(self, ...)
+
+    self:AddNewModifier(self, nil, "modifier_custom_healthbar", { duration = 2.0 })
+end
+
+function WKZombie:CollideWith(target)
+    if instanceof(target, Projectile) and target.continueOnHit then
+        target:Destroy()
+
+        local mode = GameRules:GetGameModeEntity()
+
+        FX("particles/ui/ui_generic_treasure_impact.vpcf", PATTACH_ABSORIGIN, mode, {
+            cp0 = target:GetPos(),
+            cp1 = target:GetPos(),
+            release = true
+        })
+
+        FX("particles/msg_fx/msg_deny.vpcf", PATTACH_CUSTOMORIGIN, mode, {
+            cp0 = target:GetPos(),
+            cp3 = Vector(200, 0, 0),
+            release = true
+        })
+    end
 end
 
 function WKZombie:GetPos()
