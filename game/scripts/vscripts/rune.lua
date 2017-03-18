@@ -23,6 +23,7 @@ end
 function Rune:CreateParticles()
     self.particle = ParticleManager:CreateParticle("particles/rune_particle.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.unit)
     ParticleManager:SetParticleControl(self.particle, 1, Vector(0, 255, 0))
+    ParticleManager:SetParticleAlwaysSimulate(self.particle)
 end
 
 function Rune:Remove()
