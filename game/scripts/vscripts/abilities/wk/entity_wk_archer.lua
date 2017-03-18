@@ -64,6 +64,8 @@ function WKArcher:Update()
                 else
                     projectile:EmitSound("Arena.WK.HitW")
                 end
+
+                Spells:GroundDamage(self.target, 200, self.hero)
             end
         }):Activate()
 
