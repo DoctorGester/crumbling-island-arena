@@ -121,10 +121,6 @@ function Projectile:Update()
         self:Destroy()
         return
     end
-    
-    for target, time in pairs(self.hitGroup) do
-        self.hitGroup[target] = time - 1
-    end
 
     self:SetPos(self:GetNextPosition(pos))
 
@@ -149,7 +145,7 @@ function Projectile:CollidesWith(target)
 end
 
 function Projectile:CollideWith(target)
-    if self.hitGroup[target] and self.hitGroup[target] > 0 then
+    if self.hitGroup[target] then
         return
     end
 
@@ -199,7 +195,7 @@ function Projectile:CollideWith(target)
     end
 
     if self.continueOnHit then
-        self.hitGroup[target] = self.gracePeriod
+        self.hitGroup[target] = true
     elseif not instanceof(target, Projectile) and not invulnerableTarget then
         self:Destroy()
     end
