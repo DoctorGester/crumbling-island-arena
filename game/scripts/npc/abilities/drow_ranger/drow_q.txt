@@ -4,7 +4,7 @@
 		"ScriptFile" "abilities/drow/drow_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "drow_ranger/dragons_touch_ability_icons/drow_ranger_wave_of_silence"
-		"AbilityCooldown" "6.0"
+		"AbilityCooldown" "8.0"
 		"Damage" "1"
 
 		"TargetingIndicator" {

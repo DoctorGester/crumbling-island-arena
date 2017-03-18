@@ -23,7 +23,7 @@ function drow_q:OnChannelThink(interval)
             owner = hero,
             from = hero:GetPos() + Vector(0, 0, 96) + offset,
             to = target + Vector(0, 0, 96) + offset * 0.5,
-            speed = 3000,
+            speed = 2500,
             distance = 1200,
             graphics = "particles/drow_a/drow_a.vpcf",
             damage = self:GetDamage(),
