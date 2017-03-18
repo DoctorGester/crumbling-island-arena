@@ -514,7 +514,7 @@
 		"AbilityTooltip_wk_a"							"Heals per each hero hit"
 		"AbilityTooltip_wk_q"							"Raise a squad of skeleton footmen<br/>Skeletons attack first enemy they encounter<br/>Every attack applies a stacking slow"
 		"AbilityTooltip_wk_w"							"Raise three skeleton archers who attack target area, slowing all enemies caught"
-		"AbilityTooltip_wk_e"							"Raise a wall of immortal zombies"
+		"AbilityTooltip_wk_e"							"Raise a wall of zombies"
 		"AbilityTooltip_wk_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Strike ground in a long wide line, stunning all enemies caught"
 
 		"AbilityTooltip_ogre_q"							"Throw a concoction into a target area, applying concoction effect to all heroes"
