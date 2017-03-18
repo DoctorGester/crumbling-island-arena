@@ -34,7 +34,6 @@ function WKSkeleton:CollideWith(target)
 
     if not instanceof(target, Projectile) and not instanceof(target, Obstacle) and not unit:IsStunned() and not unit:IsRooted() and not self.attacking and not target:IsAirborne() then
         local direction = (target:GetPos() - self:GetPos())
-        local distance = direction:Length2D()
 
         ExecuteOrderFromTable({ UnitIndex = unit:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_STOP })
 
