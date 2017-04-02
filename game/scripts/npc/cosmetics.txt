@@ -83,20 +83,27 @@
 
     "earthshaker"
     {
-        "1"
+    	"1"
+    	{
+    		"type" "elite"
+    		"season" "9"
+    		"set" "crimson_beast"
+    	}
+
+        "2"
         {
             "type" "pass_base"
             "item" "6820"
         }
 
-        "2"
+        "3"
         {
             "type" "promo"
             "promo_id" "0"
             "item" "6486"
         }
 
-        "3"
+        "4"
         {
             "type" "pass"
             "level" "4"
