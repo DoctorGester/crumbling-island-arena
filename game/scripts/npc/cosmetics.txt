@@ -325,13 +325,20 @@
 
     "skeleton_king"
     {
-        "1"
+    	"1"
+    	{
+    		"type" "elite"
+    		"season" "10"
+    		"set" "wraith_king_lord_of_the_hunt"
+    	}
+
+        "2"
         {
             "type" "pass_base"
             "emote" "default"
         }
 
-        "2"
+        "3"
         {
             "type" "pass"
             "level" "6"
