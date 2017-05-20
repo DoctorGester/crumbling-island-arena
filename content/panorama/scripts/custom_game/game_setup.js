@@ -40,10 +40,14 @@ function ModeVotesChanged(players) {
         }
 
         if (!playerVotes[id]) {
-            playerVotes[id] = $.CreatePanel("DOTAAvatarImage", votes, "");
+            playerVotes[id] = $.CreatePanel("Panel", votes, "");
             playerVotes[id].AddClass("PlayerVote");
 
-            TryFetchSteamId(id, playerVotes[id]);
+            var avatar = $.CreatePanel("DOTAAvatarImage", playerVotes[id], "");
+            avatar.style.width = "100%";
+            avatar.style.height = "100%";
+
+            TryFetchSteamId(id, avatar);
 
             playerVotes[id].front = $.CreatePanel("Panel", playerVotes[id], "");
             playerVotes[id].front.AddClass("PlayerVoteFront");
@@ -154,8 +158,12 @@ function TeamsChanged(data) {
 
                 playerRanks[player.id] = rank;
 
-                var avatar = $.CreatePanel("DOTAAvatarImage", parent, "");
-                avatar.AddClass("TeamSelectionAvatar");
+                var avatarParent = $.CreatePanel("Panel", parent, "");
+                avatarParent.AddClass("TeamSelectionAvatar");
+
+                var avatar = $.CreatePanel("DOTAAvatarImage", avatarParent, "");
+                avatar.style.width = "100%";
+                avatar.style.height = "100%";
 
                 TryFetchSteamId(player.id, avatar);
 
