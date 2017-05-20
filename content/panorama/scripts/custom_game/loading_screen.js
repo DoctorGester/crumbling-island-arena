@@ -4,6 +4,20 @@ var hallOfFamePlayers = {
     "TWO_TEAMS": 3
 };
 
+// BIG THANKS TO VALVE PANORAMA TEAM
+function StyleAvatar(avatar, style) {
+    for (var property in style) {
+        avatar.style[property] = style[property];
+    }
+}
+
+function StyleAvatarDefault(avatar) {
+    StyleAvatar(avatar, {
+        width: "100%",
+        height: "100%",
+    });
+}
+
 function HallOfFameChanged(data) {
     if (!data) {
         return;
@@ -24,11 +38,15 @@ function HallOfFameChanged(data) {
             var playerPanel = $.CreatePanel("Panel", $("#RankedTopPlayers"), "");
             playerPanel.AddClass("RankedSeasonCongratulationsPlayer");
 
-            var avatar = $.CreatePanel("DOTAAvatarImage", playerPanel, "");
+            var avatarParent = $.CreatePanel("Panel", playerPanel, "");
+            avatarParent.AddClass("RankedSeasonCongratulationsPlayerAvatar");
+
+            var avatar = $.CreatePanel("DOTAAvatarImage", avatarParent, "");
             avatar.steamid = player.steamId64.toString();
             avatar.AddClass("RankedSeasonCongratulationsPlayerAvatar");
+            StyleAvatarDefault(avatar);
 
-            var modePanel = $.CreatePanel("Panel", avatar, "");
+            var modePanel = $.CreatePanel("Panel", avatarParent, "");
             modePanel.AddClass("RankedMode");
 
             var modeName = $.CreatePanel("Label", modePanel, "");
@@ -72,9 +90,12 @@ function RankedInfoChanged(info) {
             var playerPanel = $.CreatePanel("Panel", parent, "");
             playerPanel.AddClass("RankedSeasonCongratulationsPlayer");
 
-            var avatar = $.CreatePanel("DOTAAvatarImage", playerPanel, "");
+            var avatarParent = $.CreatePanel("Panel", playerPanel, "");
+            avatarParent.AddClass("RankedSeasonCongratulationsPlayerAvatar");
+
+            var avatar = $.CreatePanel("DOTAAvatarImage", avatarParent, "");
             avatar.steamid = player.steamId64.toString();
-            avatar.AddClass("RankedSeasonCongratulationsPlayerAvatar");
+            StyleAvatarDefault(avatar);
 
             var icon = $.CreatePanel("Panel", playerPanel, "");
             icon.AddClass("TopPlayerIcon");
@@ -92,13 +113,19 @@ function PassTopChanged(top) {
 
     $("#PassInfoLoading").DeleteAsync(0);
 
-    for (var player of top) {
-        var avatar = $.CreatePanel("DOTAAvatarImage", players, "");
-        avatar.steamid = player.steamId64.toString();
-        avatar.AddClass("PassPlayer");
-        avatar.BCreateChildren("<DOTAScenePanel class='EliteEffect' map='maps/scenes/vr_theater/vr_background_particle.vmap'/>");
+    players.RemoveAndDeleteChildren();
 
-        var level = $.CreatePanel("Label", avatar, "");
+    for (var player of top) {
+        var avatarParent = $.CreatePanel("Panel", players, "");
+        avatarParent.AddClass("PassPlayer");
+
+        var avatar = $.CreatePanel("DOTAAvatarImage", avatarParent, "");
+        avatar.steamid = player.steamId64.toString();
+        StyleAvatarDefault(avatar);
+
+        avatarParent.BCreateChildren("<DOTAScenePanel class='EliteEffect' map='maps/scenes/vr_theater/vr_background_particle.vmap'/>");
+
+        var level = $.CreatePanel("Label", avatarParent, "");
         level.AddClass("EliteText");
         level.AddClass("RankLabel");
         level.text = Math.floor(parseInt(player.experience) / 1000) + 1;

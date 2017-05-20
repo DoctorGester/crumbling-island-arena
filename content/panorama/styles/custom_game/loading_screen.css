@@ -184,8 +184,8 @@ Label, DOTAUserName
 
 .PassPlayer
 {
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
     align: center center;
     border-radius: 50%;
     tooltip-position: top;
