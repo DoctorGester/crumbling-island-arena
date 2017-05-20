@@ -12,6 +12,7 @@ function storm_spirit_a:OnSpellStart()
     end
 
     local data = {
+        ability = self,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 64),
         to = target + Vector(0, 0, 64),
@@ -19,7 +20,8 @@ function storm_spirit_a:OnSpellStart()
         radius = 48,
         graphics = "particles/storm_a/storm_a.vpcf",
         distance = 700,
-        hitSound = charged and "Arena.Storm.HitA2" or "Arena.Storm.HitA"
+        hitSound = charged and "Arena.Storm.HitA2" or "Arena.Storm.HitA",
+        isPhysical = true
     }
 
     if charged then
@@ -33,9 +35,11 @@ function storm_spirit_a:OnSpellStart()
             end
 
             projectile:AreaEffect({
+                ability = self,
                 filter = Filters.Area(projectile:GetPos(), 350),
                 damage = self:GetDamage() * 2,
-                modifier = { name = "modifier_storm_spirit_a_slow", duration = 1.2, ability = self }
+                modifier = { name = "modifier_storm_spirit_a_slow", duration = 1.2, ability = self },
+                isPhysical = true
             })
 
             FX("particles/units/heroes/hero_stormspirit/stormspirit_overload_discharge.vpcf", PATTACH_WORLDORIGIN, projectile, {

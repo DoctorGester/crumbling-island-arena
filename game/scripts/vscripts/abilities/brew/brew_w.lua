@@ -6,6 +6,7 @@ function brew_w:OnSpellStart()
     local stacks = hero:FindAbility("brew_q"):CountBeer(hero)
 
     local projectile = DistanceCappedProjectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 128),
         to = target + Vector(0, 0, 128),
@@ -40,3 +41,9 @@ end
 function brew_w:GetPlaybackRateOverride()
     return 2
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(brew_w)

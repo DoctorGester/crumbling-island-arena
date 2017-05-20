@@ -25,7 +25,8 @@ function modifier_hero:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_DISABLE_HEALING,
         MODIFIER_PROPERTY_MOVESPEED_LIMIT,
-        MODIFIER_EVENT_ON_ABILITY_FULLY_CAST
+        MODIFIER_EVENT_ON_ABILITY_FULLY_CAST,
+        MODIFIER_EVENT_ON_STATE_CHANGED
     }
 
     return funcs

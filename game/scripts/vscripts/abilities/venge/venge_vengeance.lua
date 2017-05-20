@@ -1,4 +1,4 @@
-Vengeance = class({}, nil, WearableOwner)
+Vengeance = class({}, nil, UnitEntity)
 
 function Vengeance:constructor(round, owner, target, facing, ability)
     getbase(Vengeance).constructor(self, round, "venge_vengeance", target, owner.unit:GetTeamNumber())
@@ -17,6 +17,8 @@ function Vengeance:constructor(round, owner, target, facing, ability)
     unit:AddAbility("venge_q"):SetLevel(1)
     unit.hero = self
 
+    self:AddComponent(HealthComponent())
+    self:AddComponent(WearableComponent())
     self:CreateParticles()
     self:AddNewModifier(self.hero, ability, "modifier_venge_r", { duration = 10 })
     self:AddNewModifier(self.hero, ability, "modifier_venge_r_visual", {})

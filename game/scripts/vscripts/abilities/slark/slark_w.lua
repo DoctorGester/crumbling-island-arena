@@ -21,6 +21,7 @@ function slark_w:OnSpellStart()
             end
 
             hero:AreaEffect({
+                ability = self,
                 filter = Filters.Area(hero:GetPos(), 300),
                 damage = self:GetDamage(),
                 filterProjectiles = true
@@ -37,3 +38,9 @@ function slark_w:OnSpellStart()
         end
     end):Activate()
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(slark_w)

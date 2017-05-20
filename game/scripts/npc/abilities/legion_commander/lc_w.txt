@@ -1,0 +1,26 @@
+"DOTAAbilities" {
+	"lc_w" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/lc/lc_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_UNIT_TARGET"
+		"AbilityTextureName" "legion_commander_press_the_attack"
+		"AbilityCooldown" "6.0"
+		"AbilityUnitTargetTeam" "DOTA_UNIT_TARGET_TEAM_FRIENDLY"
+		"AbilityUnitTargetType" "DOTA_UNIT_TARGET_HERO"
+		"AbilityCastPoint" "0.1"
+		"AbilityCastRange" "500"
+
+		"TargetingIndicator" {
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "500"
+		}
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_bounty_hunter/bounty_hunter_jinda_slow.vpcf"
+		}
+	}
+}

@@ -104,6 +104,7 @@ function zeus_r:OnChannelFinish(interrupted)
     ScreenShake(hero:GetPos(), 5, 150, 0.35, 4000, 0, true)
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Area(target, 300),
         damage = self:GetDamage(),
         sound = "Arena.Zeus.HitE",
@@ -122,3 +123,9 @@ end
 if IsServer() then
     Wrappers.GuidedAbility(zeus_r, true)
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(zeus_r)

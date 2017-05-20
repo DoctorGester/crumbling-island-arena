@@ -154,6 +154,7 @@
 .KillLogEntryAppear
 {
     transform: translateX(0px) scaleY(-1.0);
+    sound: "UI.Kill";
 }
 
 .KillLogEntry Image, .KillLogEntry DOTAHeroImage
@@ -444,6 +445,47 @@
 .HeroMarkerTransition
 {
     transition: position 0.3s linear 0.0ms;
+}
+
+.HeroMarkerJuggSwordContainer
+{
+    height: 32px;
+    width: 32px;
+}
+
+.HeroMarkerJuggSwordBG
+{
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    background-color: #01090b;
+}
+
+.HeroMarkerJuggSword
+{
+    height: 32px;
+    width: 32px;
+    opacity-mask: url("file://{images}/custom_game/jugg_sword.png");
+}
+
+.HeroMarkerJuggSword.T1
+{
+    background-color: gradient(linear, 0% 0%, 0% 98%, from(rgb(255, 85, 0)), to(rgb(160, 55, 0)));
+}
+
+.HeroMarkerJuggSword.T2
+{
+    background-color: gradient(linear, 0% 0%, 0% 98%, from(rgb(170, 85, 255)), to(rgb(93, 67, 160)));
+}
+
+.HeroMarkerJuggSword.T3
+{
+    background-color: gradient(linear, 0% 0%, 0% 98%, from(rgb(0, 244, 255)), to(rgb(0, 149, 160)));
+}
+
+.HeroMarkerJuggSword.T4
+{
+    background-color: gradient(linear, 0% 0%, 0% 98%, from(rgb(170, 0, 0)), to(rgb(109, 0, 0)));
 }
 
 .AnimationHeroHudHidden

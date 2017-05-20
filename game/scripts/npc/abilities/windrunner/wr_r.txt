@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"wr_r" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/wr/wr_r"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityTextureName" "windrunner/peregrine_flight/windrunner_powershot"
+		"AbilityCooldown" "18.0"
+		"Damage" "2"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "2000"
+			"MinLength" "2000"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "2000"
+		}
+	}
+}

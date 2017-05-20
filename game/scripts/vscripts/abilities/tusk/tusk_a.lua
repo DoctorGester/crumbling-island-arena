@@ -37,6 +37,7 @@ function tusk_a:OnSpellStart()
     end
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Cone(pos, 300, forward, math.pi),
         sound = sound,
         damage = damage,

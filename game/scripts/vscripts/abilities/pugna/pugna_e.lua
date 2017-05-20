@@ -19,3 +19,9 @@ end
 function pugna_e:GetIntrinsicModifierName()
     return "modifier_pugna_e"
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(pugna_e)

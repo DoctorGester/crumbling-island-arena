@@ -11,9 +11,17 @@ function cm_r:OnSpellStart()
     holder:EmitSound("Arena.CM.CastR")
     holder:EmitSound("Arena.CM.LoopR")
 
+    hero:EmitSound("Arena.CM.CastR.Voice")
+
     ImmediateEffectPoint("particles/econ/items/crystal_maiden/crystal_maiden_cowl_of_ice/maiden_crystal_nova_cowlofice.vpcf", PATTACH_CUSTOMORIGIN, hero, target)
 end
 
 function cm_r:GetCastAnimation()
-    return ACT_DOTA_CAST_ABILITY_3
+    return ACT_DOTA_CAST_ABILITY_1
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(cm_r)

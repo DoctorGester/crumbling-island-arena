@@ -1,0 +1,25 @@
+"DOTAAbilities" {
+	"sk_e" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/sk/sk_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityTextureName" "sandking_burrowstrike"
+		"AbilityCooldown" "7.0"
+		"AbilityCastPoint" "0.2"
+		"Damage" "2"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "700"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "700"
+		}
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_sandking/sandking_burrowstrike.vpcf"
+		}
+	}
+}

@@ -7,8 +7,15 @@ function wr_e:OnSpellStart()
     FX("particles/wr_e/wr_e.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero, { release = true })
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Area(hero:GetPos(), 400),
-        knockback = { force = 60, decrease = 4 },
+        knockback = {
+            force = function(victim)
+                local direction = (victim:GetPos() - hero:GetPos())
+                return 30 + (1 - direction:Length2D() / 400) * 50
+            end,
+            decrease = 4
+        }
     })
 
     hero:AddNewModifier(hero, self, "modifier_wr_e", { duration = 2.5 })
@@ -16,3 +23,9 @@ function wr_e:OnSpellStart()
 
     ScreenShake(hero:GetPos(), 5, 150, 0.25, 3000, 0, true)
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(wr_e)

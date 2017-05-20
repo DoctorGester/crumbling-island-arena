@@ -1,0 +1,19 @@
+"DOTAAbilities" {
+	"sniper_r" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/sniper/sniper_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_TOGGLE | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "sniper_take_aim"
+		"AbilityCooldown" "2.0"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "400"
+		}
+
+		"precache" {
+			"particle" "particles/sniper_r/sniper_r.vpcf"
+		}
+	}
+}

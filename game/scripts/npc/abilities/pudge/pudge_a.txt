@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"pudge_a" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pudge/pudge_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "pudge_dismember"
+		"AbilityCooldown" "0.9"
+		"AbilityCastPoint" "0.15"
+		"Damage" "1"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_PUDGE_CLEAVER"
+			"MaxLength" "1200"
+			"MinLength" "1200"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1200"
+		}
+	}
+}

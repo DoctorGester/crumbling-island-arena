@@ -98,7 +98,7 @@ function EaseInOutBack(t, b, c, d)
 end
 
 function FX(path, attach, parent, options)
-    if parent.GetUnit then
+    if parent and parent.GetUnit then
         parent = parent:GetUnit()
     end
 
@@ -106,6 +106,7 @@ function FX(path, attach, parent, options)
 
     for i = 0, 16 do
         local cp = options["cp"..tostring(i)]
+        local cpf = options["cp"..tostring(i).."f"]
 
         if cp then
             -- Probably vector
@@ -125,6 +126,10 @@ function FX(path, attach, parent, options)
 
                 ParticleManager:SetParticleControlEnt(index, i, cp.ent, cp.attach, cp.point, cp.ent:GetAbsOrigin(), true)
             end
+        end
+
+        if cpf then
+            ParticleManager:SetParticleControlForward(index, i, cpf)
         end
     end
 
@@ -263,6 +268,10 @@ function AddLevelOneAbility(hero, abilityName)
     hero:AddAbility(abilityName):SetLevel(1)
 end
 
+function IsAttackAbility(ability)
+    return ability and ability:GetName():ends("_a")
+end
+
 function ImmediateEffect(path, attach, owner, time)
     local id = ParticleManager:CreateParticle(path, attach, owner.unit or owner)
 
@@ -280,6 +289,14 @@ function ImmediateEffectPoint(path, attach, owner, point, time)
     local effect = ImmediateEffect(path, attach, owner, time)
     ParticleManager:SetParticleControl(effect, 0, point)
     return effect
+end
+
+function CreateEntityAOEMarker(point, radius, duration, color, alpha, isThick)
+    DynamicEntity()
+        :SetPos(point)
+        :AddComponent(PlayerCircleComponent(radius, isThick, alpha, color))
+        :AddComponent(ExpirationComponent(duration))
+        :Activate()
 end
 
 function CreateAOEMarker(owner, point, radius, duration, color)

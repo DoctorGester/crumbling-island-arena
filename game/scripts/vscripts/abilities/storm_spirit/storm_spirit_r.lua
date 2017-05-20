@@ -7,6 +7,7 @@ end
 function storm_spirit_r:OnSpellStart()
     local hero = self:GetCaster().hero
 
+    hero:EmitSound("Arena.Storm.CastR.Voice")
     hero:AddNewModifier(hero, hero:FindAbility("storm_spirit_a"), "modifier_storm_spirit_a", { duration = 5 })
 
     for _, data in pairs(hero.lastRemnants) do
@@ -40,3 +41,13 @@ function storm_spirit_r:GetCustomCastError()
 
     return ""
 end
+
+function storm_spirit_r:GetPlaybackRateOverride()
+    return 2.0
+end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(storm_spirit_r)

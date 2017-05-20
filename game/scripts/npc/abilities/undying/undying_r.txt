@@ -1,0 +1,11 @@
+"DOTAAbilities" {
+	"undying_r" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/undying/undying_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "undying_flesh_golem"
+		"AbilityCastPoint" "0.15"
+		"AbilityCooldown" "22.0"
+	}
+}

@@ -5,19 +5,20 @@ function sk_w:OnSpellStart()
     local target = self:GetCursorPosition()
 
     hero:EmitSound("Arena.SK.CastW")
-    SKWProjectile(hero.round, hero, target, self:GetDamage()):Activate()
+    SKWProjectile(hero.round, hero, target, self):Activate()
 end
 
 function sk_w:GetCastAnimation()
-    return ACT_DOTA_CAST_ABILITY_2
+    return ACT_DOTA_CAST_ABILITY_4
 end
 
 SKWProjectile = SKWProjectile or class({}, nil, DistanceCappedProjectile)
 
 SKWProjectile.EFFECT = "particles/units/heroes/hero_sandking/sandking_burrowstrike_eruption.vpcf"
 
-function SKWProjectile:constructor(round, hero, target, damage)
+function SKWProjectile:constructor(round, hero, target, ability)
 	getbase(SKWProjectile).constructor(self, round, {
+        ability = ability,
         owner = hero,
         from = hero:GetPos(),
         to = target,
@@ -25,8 +26,9 @@ function SKWProjectile:constructor(round, hero, target, damage)
         distance = 2000,
         continueOnHit = true,
         considersGround = true,
+        ignoreProjectiles = true,
         hitFunction = function(_, target)
-            target:Damage(hero, damage)
+            target:Damage(hero, ability:GetDamage())
             SKUtil.AbilityHit(hero, target)
         end
     })
@@ -68,3 +70,9 @@ function SKWProjectile:Remove()
 
 	getbase(SKWProjectile).Remove(self)
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(sk_w)

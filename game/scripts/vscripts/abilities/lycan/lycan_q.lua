@@ -26,3 +26,13 @@ end
 function lycan_q:GetIntrinsicModifierName()
     return "modifier_lycan_instinct"
 end
+
+function lycan_q:GetPlaybackRateOverride()
+    return 1.66
+end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(lycan_q)

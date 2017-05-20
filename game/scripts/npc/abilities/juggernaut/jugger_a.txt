@@ -1,0 +1,18 @@
+"DOTAAbilities" {
+	"jugger_a" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/jugger/jugger_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "juggernaut_blade_dance"
+		"AbilityCooldown" "1.0"
+		"AbilityCastPoint" "0.15"
+		"Damage" "2"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_THICK_LINE"
+			"MaxLength" "GetStackCount(unit, 'modifier_jugger_sword')"
+			"MinLength" "GetStackCount(unit, 'modifier_jugger_sword')"
+			"Width" "64"
+		}
+	}
+}

@@ -5,6 +5,7 @@ function venge_e:OnSpellStart()
     local target = self:GetCursorPosition()
 
     DistanceCappedProjectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 128),
         to = target + Vector(0, 0, 128),
@@ -57,3 +58,9 @@ end
 function venge_e:GetPlaybackRateOverride()
     return 2.0
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(venge_e)

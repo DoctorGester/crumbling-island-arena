@@ -1,70 +1,33 @@
 modifier_drow_q = class({})
 
-if IsServer() then
-    function modifier_drow_q:OnCreated()
-        local hero = self:GetParent():GetParentEntity()
-        self.currentAngle = math.atan2(hero:GetFacing().y, hero:GetFacing().x) % (math.pi * 2)
-        self.damaged = {}
-
-        self:StartIntervalThink(0.03)
-        self:OnIntervalThink()
-
-        hero:SetHidden(true)
-    end
-
-    function modifier_drow_q:OnIntervalThink()
-        self:FireArrow(self.currentAngle)
-        self.currentAngle = self.currentAngle + 0.8
-    end
-
-    function modifier_drow_q:OnDestroy()
-        self:GetParent():GetParentEntity():SetHidden(false)
-    end
-
-    function modifier_drow_q:FireArrow(angle)
-        local direction = Vector(math.cos(angle), math.sin(angle))
-        local hero = self:GetParent():GetParentEntity()
-        local damage = self:GetAbility():GetDamage()
-
-        hero:EmitSound("Arena.Drow.CastQ2")
-
-        DistanceCappedProjectile(hero.round, {
-            owner = hero,
-            from = hero:GetPos() + Vector(0, 0, 64),
-            to = hero:GetPos() + direction * 100 + Vector(0, 0, 64),
-            speed = 1450,
-            radius = 48,
-            graphics = "particles/drow_q/drow_q.vpcf",
-            distance = 500,
-            hitSound = "Arena.Drow.HitA",
-            hitFunction = function(_, victim)
-                if self.damaged[victim] == nil then
-                    victim:Damage(hero, damage)
-                end
-
-                self.damaged[victim] = true
-            end
-        }):Activate()
-    end
-end
-
-function modifier_drow_q:CheckState()
-    local state = {
-        [MODIFIER_STATE_STUNNED] = true,
-        [MODIFIER_STATE_NO_HEALTH_BAR] = true
+function modifier_drow_q:DeclareFunctions()
+    local funcs = {
+        MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE
     }
 
-    return state
+    return funcs
+end
+
+function modifier_drow_q:IsDebuff()
+    return true
+end
+
+function modifier_drow_q:GetModifierMoveSpeedBonus_Percentage(params)
+    return -self:GetStackCount() * 10
 end
 
 function modifier_drow_q:GetEffectName()
-    return "particles/drow_q/drow_q_run.vpcf"
+    return "particles/generic_gameplay/generic_slowed_cold.vpcf"
+end
+
+function modifier_drow_q:StatusEffectPriority()
+    return 2
+end
+
+function modifier_drow_q:GetStatusEffectName()
+    return "particles/status_fx/status_effect_frost_lich.vpcf"
 end
 
 function modifier_drow_q:GetEffectAttachType()
     return PATTACH_ABSORIGIN_FOLLOW
-end
-
-function modifier_drow_q:IsInvulnerable()
-    return true
 end

@@ -1,6 +1,7 @@
 invoker_e = class({})
 
 LinkLuaModifier("modifier_invoker_e", "abilities/invoker/modifier_invoker_e", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_invoker_e_target", "abilities/invoker/modifier_invoker_e_target", LUA_MODIFIER_MOTION_NONE)
 
 function invoker_e:OnSpellStart()
     Wrappers.DirectionalAbility(self, 800)
@@ -10,14 +11,20 @@ function invoker_e:OnSpellStart()
 
     local holder = CreateUnitByName(DUMMY_UNIT, target, false, hero.unit, hero.unit, hero.unit:GetTeam())
     holder.hero = hero
-    holder:AddNewModifier(holder, self, "modifier_invoker_e", { duration = 4 })
+    holder:AddNewModifier(holder, self, "modifier_invoker_e", { duration = 2 })
     holder:EmitSound("Arena.CM.CastR")
 end
 
 function invoker_e:GetCastAnimation()
-    return ACT_DOTA_CAST_ABILITY_3
+    return ACT_DOTA_CAST_ALACRITY
 end
 
 function invoker_e:GetPlaybackRateOverride()
     return 1.3
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(invoker_e)

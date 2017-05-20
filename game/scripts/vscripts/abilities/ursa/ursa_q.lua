@@ -7,6 +7,7 @@ function ursa_q:OnSpellStart()
     local pos = hero:GetPos()
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Area(pos, 350),
         filterProjectiles = true,
         damage = self:GetDamage(),
@@ -27,3 +28,9 @@ end
 function ursa_q:GetPlaybackRateOverride()
     return 1.5
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(ursa_q)

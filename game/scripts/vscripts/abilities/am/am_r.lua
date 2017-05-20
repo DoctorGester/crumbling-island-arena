@@ -10,10 +10,13 @@ function self:OnAbilityPhaseStart()
 end
 
 function self:OnSpellStart()
+    Wrappers.DirectionalAbility(self, 800)
+
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
 
     hero:AreaEffect({
+        ability = self,
         onlyHeroes = true,
         filter = Filters.Area(target, 350),
         modifier = { name = "modifier_am_r", duration = 2.5, ability = self }
@@ -26,6 +29,7 @@ function self:OnSpellStart()
     })
 
     hero:EmitSound("Arena.AM.CastR")
+    hero:EmitSound("Arena.AM.CastR.Voice")
 
     ScreenShake(target, 5, 150, 0.45, 3000, 0, true)
 end
@@ -33,6 +37,13 @@ end
 function self:GetPlaybackRateOverride()
     return 2.0
 end
+
 function self:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_4
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(am_r)

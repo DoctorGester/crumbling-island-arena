@@ -11,7 +11,9 @@ var modifiersWithStacks = [
     "modifier_ta_r",
     "modifier_wr_a",
     "modifier_ursa_fury",
-    "modifier_undying_q_health"
+    "modifier_undying_q_health",
+    "modifier_pa_q",
+    "modifier_drow_q"
 ];
 
 function ShowBuffTooltip(element, entityId, buffId) {

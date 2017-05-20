@@ -1,0 +1,11 @@
+"DOTAAbilities" {
+	"storm_spirit_r" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/storm_spirit/storm_spirit_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "storm_spirit_static_remnant"
+		"AbilityCooldown" "12.0"
+		"AbilityCastPoint" "0.2"
+	}
+}

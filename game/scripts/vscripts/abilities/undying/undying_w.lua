@@ -6,6 +6,7 @@ function undying_w:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
     local projectile = DistanceCappedProjectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos(),
         to = target ,
@@ -14,7 +15,7 @@ function undying_w:OnSpellStart()
         radius = 100,
         graphics = "particles/undying_w/undying_w.vpcf",
         continueOnHit = true,
-        invulnerable = true,
+        ignoreProjectiles = true,
         considersGround = true,
         damage = self:GetDamage(),
         hitModifier = { name = "modifier_undying_w", duration = 1.5, ability = self }
@@ -38,3 +39,9 @@ end
 function undying_w:GetPlaybackRateOverride()
     return 1.66
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(undying_w)

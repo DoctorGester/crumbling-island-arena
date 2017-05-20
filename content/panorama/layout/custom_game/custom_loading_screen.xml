@@ -41,6 +41,37 @@
                 <Image class="RewardImage" src="file://{images}/custom_game/rewards/6.png" scaling="stretch-to-fit-y-preserve-aspect"/>
             </Panel>
         </snippet>
+        <snippet name="reward7">
+            <Panel>
+                <Image class="RewardImage" src="file://{images}/custom_game/rewards/7.png" scaling="stretch-to-fit-y-preserve-aspect"/>
+            </Panel>
+        </snippet>
+        <snippet name="reward8">
+            <Panel>
+                <Image class="RewardImage" src="file://{images}/custom_game/rewards/8.png" scaling="stretch-to-fit-y-preserve-aspect"/>
+            </Panel>
+        </snippet>
+        <snippet name="reward9">
+            <Panel>
+                <Image class="RewardImage" src="file://{images}/custom_game/rewards/9.png" scaling="stretch-to-fit-y-preserve-aspect"/>
+            </Panel>
+        </snippet>
+        <snippet name="reward10">
+            <Panel>
+                <Image class="RewardImage" src="file://{images}/custom_game/rewards/10.jpg" scaling="stretch-to-fit-y-preserve-aspect"/>
+            </Panel>
+        </snippet>
+        <snippet name="arcanaTournament">
+            <Panel>
+                <Label class="WidgetHeader" text="#NewsArcanaWinner"/>
+                <Panel id="NewsArcanaPlayer">
+                    <DOTAAvatarImage class="RankedSeasonCongratulationsPlayerAvatar" steamid="76561198146651779"/>
+                    <DOTAUserName steamid="76561198146651779"/>
+                </Panel>
+                <Image id="NewsArcanaImage" src="file://{images}/custom_game/arcana.jpg" scaling="stretch-to-fit-y-preserve-aspect"/>
+                <Label class="WidgetHeader" text="#NewsArcanaCongratulations"/>
+            </Panel>
+        </snippet>
     </snippets>
     <Panel style="width:100%;height:100%;overflow:clip;background-color:black;" hittest="false">
         <Image src="file://{images}/custom_game/loadscreen.png" hittest="false"/>
@@ -100,7 +131,7 @@
                         <Panel id="PassRewardRight">
                             <Label class="PassHeader" text="#InfoPassQuests"/>
                             <Panel class="QuestPanel">
-                                <DOTAScenePanel id='QuestPointsScene' map='maps/scenes/battlepass_ti6_rewardintro.vmap'/>
+                                <DOTAScenePanel id='QuestPointsScene' map='maps/scenes/battlepass_ti6_rewardintro.vmap' particleonly='false'/>
                                 <Label id="QuestReward" text="150"/>
                                 <Panel class="QuestTextContainer">
                                     <Label id="QuestText" html="true" text="#InfoQuestSample"/>
@@ -120,6 +151,13 @@
                 </Panel>
                 <Panel id="RankedInfoHeader">
                     <Label id="RankedInfoHeaderText" text="#Pass"/>
+                </Panel>
+            </Panel>
+
+            <Panel id="NewsInfo" class="Widget">
+                <Panel id="NewsInfoContainer" class="WidgetContainer"/>
+                <Panel id="RankedInfoHeader">
+                    <Label id="RankedInfoHeaderText" text="#News"/>
                 </Panel>
             </Panel>
         </Panel>

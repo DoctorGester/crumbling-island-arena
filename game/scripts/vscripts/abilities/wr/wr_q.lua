@@ -21,6 +21,7 @@ function wr_q:OnChannelFinish(interrupted)
     hero:EmitSound("Arena.WR.CastQ")
 
     DistanceCappedProjectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 128),
         to = target + Vector(0, 0, 128),
@@ -50,3 +51,9 @@ end
 if IsServer() then
     Wrappers.GuidedAbility(wr_q, true)
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(wr_q)

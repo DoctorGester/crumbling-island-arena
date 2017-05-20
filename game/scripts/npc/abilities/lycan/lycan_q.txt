@@ -1,0 +1,15 @@
+"DOTAAbilities" {
+	"lycan_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/lycan/lycan_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "lycan_summon_wolves"
+		"AbilityCooldown" "5.5"
+		"AbilityCastPoint" "0.1"
+		"Damage" "2"
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_lycan/lycan_howl_buff.vpcf"
+		}
+	}
+}

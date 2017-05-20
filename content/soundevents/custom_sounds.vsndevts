@@ -15,6 +15,16 @@
 		event_type = "1.0"
 	}
 
+	UI.Kill = {
+		type = "dota_src1_2d"
+		vsnd_files =
+		[
+			"sounds/ui/notification_team_kill.vsnd",
+		]
+		pitch = "1.000000"
+		volume = "1.000000"
+	}
+
 	UI.DeathMatchHeroClick = {
 		type = "dota_src1_3d"
 		vsnd_files = 
@@ -492,6 +502,29 @@
 		event_type = "1.0"
 	}
 
+	Arena.TreeFall = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/furion/treant_spawn01.vsnd",
+			"sounds/weapons/hero/furion/treant_spawn02.vsnd",
+			"sounds/weapons/hero/furion/treant_spawn03.vsnd",
+			"sounds/weapons/hero/furion/treant_spawn04.vsnd",
+			"sounds/physics/footsteps/hero/furion/treant_death01.vsnd",
+			"sounds/physics/footsteps/hero/furion/treant_death02.vsnd",
+		]
+		volume = "0.549988"
+		volume_rand_min = "-0.049988"
+		volume_rand_max = "0.049988"
+		pitch = "1.000000"
+		pitch_rand_min = "-0.100000"
+		pitch_rand_max = "0.100000"
+		soundlevel = "75.000000"
+		mixgroup = "Physics"
+		volume_falloff_max = "1800.000000"
+		spread_radius = "100.000000"
+	}
+
 	Arena.PA.Throw = {
 		type = "dota_src1_3d"
 		vsnd_files = 
@@ -512,6 +545,23 @@
 		vsnd_files = 
 		[
 			"sounds/misc/idles/idle_ck_grab.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.PA.DeflectA = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/shared/impacts/sword_impact1.vsnd",
+			"sounds/weapons/hero/shared/impacts/sword_impact2.vsnd",
+			"sounds/weapons/hero/shared/impacts/sword_impact3.vsnd",
+			"sounds/weapons/hero/shared/impacts/sword_impact4.vsnd",
 		]
 		volume = "1.0"
 		pitch_rand_min = "-0.05"
@@ -880,6 +930,40 @@
 		event_type = "1.0"
 	}
 
+	Arena.Storm.CastE.Voice = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/vo/stormspirit/ss_ability_lightning_04.vsnd",
+			"sounds/vo/stormspirit/ss_ability_lightning_05.vsnd",
+			"sounds/vo/stormspirit/ss_ability_lightning_05.vsnd",
+			"sounds/vo/stormspirit/ss_ability_lightning_06.vsnd",
+			"sounds/vo/stormspirit/ss_ability_lightning_08.vsnd",
+			"sounds/vo/stormspirit/ss_ability_lightning_09.vsnd",
+			"sounds/vo/stormspirit/ss_ability_lightning_10.vsnd",
+			"sounds/vo/stormspirit/ss_ability_lightning_12.vsnd",
+			"sounds/vo/stormspirit/ss_ability_lightning_13.vsnd",
+			"sounds/vo/stormspirit/ss_ability_lightning_14.vsnd",
+			"sounds/vo/stormspirit/ss_ability_lightning_18.vsnd",
+			"sounds/vo/stormspirit/ss_ability_lightning_20.vsnd",
+			"sounds/vo/stormspirit/ss_ability_lightning_21.vsnd",
+			"sounds/vo/stormspirit/ss_ability_lightning_23.vsnd",
+			"sounds/vo/stormspirit/ss_ability_lightning_24.vsnd",
+			"sounds/vo/stormspirit/ss_ability_lightning_25.vsnd",
+			"sounds/vo/stormspirit/ss_ability_lightning_27.vsnd",
+			"sounds/vo/stormspirit/ss_ability_lightning_28.vsnd",
+			"sounds/vo/stormspirit/ss_ability_lightning_29.vsnd",
+			"sounds/vo/stormspirit/ss_ability_lightning_30.vsnd",
+			"sounds/vo/stormspirit/ss_ability_lightning_31.vsnd",
+		]
+		volume = "2.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
 	Arena.Storm.LoopE = {
 		type = "dota_update_default"
 		vsnd_files = 
@@ -887,6 +971,20 @@
 			"sounds/weapons/hero/storm_spirit/ball_lightning_loop.vsnd"
 		]
 		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Storm.CastR.Voice = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/vo/stormspirit/ss_cast_04.vsnd"
+		]
+		volume = "2.0"
 		pitch_rand_min = "-0.05"
 		pitch_rand_max = "0.05"
 		pitch = "1.0"
@@ -1104,8 +1202,7 @@
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[
-			"sounds/weapons/hero/winter_wyvern/splinter01.vsnd",
-			"sounds/weapons/hero/winter_wyvern/splinter02.vsnd"
+			"sounds/weapons/hero/lich/frost_nova.vsnd"
 		]
 		volume = "1.0"
 		pitch_rand_min = "-0.05"
@@ -1228,6 +1325,20 @@
 			"sounds/weapons/hero/crystal_maiden/crystal_nova_yulsaria.vsnd"
 		]
 		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.CM.CastR.Voice = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/vo/crystalmaiden/cm_spawn_05.vsnd"
+		]
+		volume = "2.0"
 		pitch_rand_min = "-0.05"
 		pitch_rand_max = "0.05"
 		pitch = "1.0"
@@ -2959,6 +3070,21 @@
 			"sounds/weapons/hero/drow_ranger/silence.vsnd"
 		]
 		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Drow.CastW.Voice = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/vo/drowranger/dro_ability_01.vsnd",
+			"sounds/vo/drowranger/dro_ability_07.vsnd"
+		]
+		volume = "2.0"
 		pitch_rand_min = "-0.05"
 		pitch_rand_max = "0.05"
 		pitch = "1.0"
@@ -5135,6 +5261,20 @@
 		event_type = "1.0"
 	}
 
+	Arena.Tinker.CastR.Voice = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/vo/tinker/tink_attack_10.vsnd"
+		]
+		volume = "2.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
 	Arena.Tinker.LoopR = {
 		type = "dota_src1_3d"
 		vsnd_files = 
@@ -5301,6 +5441,20 @@
 			"sounds/weapons/hero/slark/shadow_dance.vsnd"
 		]
 		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Slark.CastR.Voice = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/vo/slark/slark_shadow_dance_01.vsnd"
+		]
+		volume = "2.0"
 		pitch_rand_min = "-0.05"
 		pitch_rand_max = "0.05"
 		pitch = "1.0"
@@ -5596,6 +5750,20 @@
 			"sounds/weapons/hero/tusk/frozen_sigil_cast.vsnd"
 		]
 		volume = "1.3"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Tusk.CastR.Voice = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/vo/tusk/tusk_levelup_07.vsnd"
+		]
+		volume = "2.0"
 		pitch_rand_min = "-0.05"
 		pitch_rand_max = "0.05"
 		pitch = "1.0"
@@ -6031,11 +6199,56 @@
 		event_type = "1.0"
 	}
 
-	Arena.AM.PreQ = {
+	Arena.AM.PreA = {
 		type = "dota_update_default"
 		vsnd_files = 
 		[
 			"sounds/weapons/hero/antimage/antimage_swing1.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "60.0"
+		event_type = "1.0"
+	}
+
+	Arena.AM.CastQ = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/doom_bringer/infernal_blade_preattack.vsnd",
+		]
+		volume = "1.0"
+		volume_fade_out = "0.3"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "60.0"
+		event_type = "1.0"
+	}
+
+	Arena.AM.LoopQ = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/antimage_q.vsnd",
+		]
+		volume = "1.4"
+		volume_fade_out = "0.3"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "60.0"
+		event_type = "1.0"
+	}
+
+	Arena.AM.EndQ = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/ui/inventory/metalblade_pickup_01.vsnd",
+			"sounds/ui/inventory/metalblade_pickup_02.vsnd",
 		]
 		volume = "1.0"
 		pitch_rand_min = "-0.05"
@@ -6063,9 +6276,9 @@
 		type = "dota_update_default"
 		vsnd_files = 
 		[
-			"sounds/items/lotus_activate.vsnd"
+			"sounds/weapons/hero/antimage/spell_shield_block.vsnd"
 		]
-		volume = "0.4"
+		volume = "1.8"
 		pitch_rand_min = "-0.05"
 		pitch_rand_max = "0.05"
 		pitch = "1.0"
@@ -6082,7 +6295,7 @@
 			"sounds/vo/antimage/anti_resist_03.vsnd",
 			"sounds/vo/antimage/anti_resist_04.vsnd"
 		]
-		volume = "1.0"
+		volume = "2.0"
 		pitch_rand_min = "-0.05"
 		pitch_rand_max = "0.05"
 		pitch = "1.0"
@@ -6139,6 +6352,20 @@
 			"sounds/weapons/hero/antimage/mana_void.vsnd"
 		]
 		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "60.0"
+		event_type = "1.0"
+	}
+
+	Arena.AM.CastR.Voice = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/vo/antimage/anti_ability_manavoid_05.vsnd"
+		]
+		volume = "2.0"
 		pitch_rand_min = "-0.05"
 		pitch_rand_max = "0.05"
 		pitch = "1.0"

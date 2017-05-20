@@ -18,6 +18,7 @@ function ta_q:OnSpellStart(interrupted)
     local target = self:GetCursorPosition()
 
     DistanceCappedProjectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 128),
         to = target + Vector(0, 0, 128),
@@ -41,5 +42,11 @@ function ta_q:GetCastAnimation()
 end
 
 function ta_q:GetPlaybackRateOverride()
-    return 2.0
+    return 1.6
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(ta_q)

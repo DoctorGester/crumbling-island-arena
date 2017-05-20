@@ -26,7 +26,7 @@ function modifier_lycan_e:OnDestroy()
         local target = self:GetParent().hero
 
         if LycanUtil.IsTransformed(hero) then
-            target:AddNewModifier(hero, self:GetAbility(), "modifier_lycan_e_silence", { duration = 2.5 })
+            target:AddNewModifier(hero, self:GetAbility(), "modifier_silence_lua", { duration = 2.5 })
         end
     end
 end
@@ -56,7 +56,10 @@ function modifier_lycan_e:CheckState()
     return state
 end
 
-
 function modifier_lycan_e:GetModifierMoveSpeedBonus_Percentage(params)
-    return 20
+    return -20
+end
+
+function modifier_lycan_e:GetPriority()
+    return MODIFIER_PRIORITY_SUPER_ULTRA
 end

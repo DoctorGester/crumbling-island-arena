@@ -36,3 +36,9 @@ function earth_spirit_q:OnSpellStart()
         end
     )
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(earth_spirit_q)

@@ -1,14 +1,6 @@
 UnitEntity = UnitEntity or class({}, nil, DynamicEntity)
 
-local meta = getmetatable(UnitEntity)
-local oldCall = meta.__call
-meta.__call = function(object, f)
-    if object.unit and IsValidEntity(object.unit) then
-        return oldCall(object, f)
-    end
-end
-
-function UnitEntity:constructor(round, unitName, pos, team, findSpace)
+function UnitEntity:constructor(round, unitName, pos, team, findSpace, playerOwner)
 	getbase(UnitEntity).constructor(self, round)
 
     if findSpace == nil then
@@ -17,6 +9,10 @@ function UnitEntity:constructor(round, unitName, pos, team, findSpace)
     
 	if unitName then
 		self:SetUnit(CreateUnitByName(unitName, pos, findSpace, nil, nil, team or DOTA_TEAM_NOTEAM))
+
+        if playerOwner then
+            self:AddNewModifier(self, nil, "modifier_player_id", {}):SetStackCount(playerOwner.id)
+        end
 	end
 
 	self.removeOnDeath = true
@@ -28,6 +24,8 @@ function UnitEntity:constructor(round, unitName, pos, team, findSpace)
 end
 
 function UnitEntity:SetHidden(hidden)
+    Spells.SystemCallSingle(self, "SetHidden", hidden)
+
     if hidden then
         self.unit:AddNoDraw()
     else
@@ -39,8 +37,8 @@ function UnitEntity:GetName()
     return self.unit:GetName()
 end
 
-function UnitEntity:MakeFall()
-    getbase(UnitEntity).MakeFall(self)
+function UnitEntity:MakeFall(horVel)
+    getbase(UnitEntity).MakeFall(self, horVel)
 
     self:AddNewModifier(self, nil, "modifier_falling", {})
 end
@@ -107,7 +105,11 @@ function UnitEntity:RemoveModifier(name)
     self.unit:RemoveModifierByName(name)
 end
 
-function UnitEntity:FindModifier(name)
+function UnitEntity:FindModifier(name, optionalCaster)
+    if optionalCaster then
+        return self.unit:FindModifierByNameAndCaster(name, optionalCaster.unit or optionalCaster)
+    end
+
     return self.unit:FindModifierByName(name)
 end
 
@@ -126,6 +128,8 @@ function UnitEntity:FindClearSpace(position, force)
 end
 
 function UnitEntity:Remove()
+    getbase(UnitEntity).Remove(self)
+
 	if self.removeOnDeath then
 		self:GetUnit():RemoveSelf()
 	else
@@ -133,5 +137,6 @@ function UnitEntity:Remove()
 
 	    self:GetUnit():ForceKill(false)
 		self:GetUnit():SetAbsOrigin(pos)
+        self:GetUnit():StartGesture(ACT_DOTA_DIE)
 	end
 end

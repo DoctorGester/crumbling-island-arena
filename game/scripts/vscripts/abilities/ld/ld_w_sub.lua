@@ -24,3 +24,9 @@ end
 function ld_w_sub:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_3
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(ld_w_sub)

@@ -33,3 +33,9 @@ function phoenix_e:OnChannelFinish(interrupted)
     ParticleManager:SetParticleControl(effect, 1, up)
     ParticleManager:SetParticleControl(effect, 4, up)
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(phoenix_e)

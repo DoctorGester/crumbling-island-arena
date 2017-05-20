@@ -1,0 +1,8 @@
+"DOTAAbilities" {
+	"tinker_w_sub" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tinker/tinker_w_sub"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "tinker_march_of_the_machines"
+	}
+}

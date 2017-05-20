@@ -32,6 +32,7 @@ function cm_w:OnChannelThink(interval)
         self.projectileCounter = (self.projectileCounter or 0) + 1
 
         ArcProjectile(hero.round, {
+            ability = self,
             owner = hero,
             from = target + Vector(0, 0, 1600) - hero:GetFacing() * 400,
             to = target,
@@ -45,17 +46,17 @@ function cm_w:OnChannelThink(interval)
                 end
 
                 local hit = hero:AreaEffect({
+                    ability = self,
                     filter = Filters.And(Filters.Area(target, 128), groupFilter),
                     action = function(victim)
-                        CMUtil.AbilityHit(hero)
-
-                        if CMUtil.IsFrozen(victim) then
-                            victim:Damage(hero, self:GetDamage())
-                        else
-                            CMUtil.Freeze(hero, victim, ability)
-                        end
+                        CMUtil.AbilityHit(hero, victim, self)
                         
                         self.damaged[victim] = true
+                    end,
+                    notBlockedAction = function(target)
+                        if instanceof(target, Obstacle) then
+                            self.damaged[target] = true
+                        end
                     end
                 })
 
@@ -91,3 +92,9 @@ end
 if IsServer() then
     Wrappers.GuidedAbility(cm_w, true, true)
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(cm_w)

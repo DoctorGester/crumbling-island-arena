@@ -75,7 +75,6 @@
 		},
 		{
 			_class = "C_INIT_CreateWithinSphere"
-			m_nControlPointNumber = 5
 		},
 		{
 			_class = "C_INIT_InheritVelocity"

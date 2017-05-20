@@ -1,0 +1,21 @@
+"DOTAAbilities" {
+	"pudge_w" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pudge/pudge_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "pudge_dismember"
+		"AbilityCooldown" "3.5"
+		"AbilityCastPoint" "0.15"
+		"Damage" "3"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "300"
+		}
+	}
+}

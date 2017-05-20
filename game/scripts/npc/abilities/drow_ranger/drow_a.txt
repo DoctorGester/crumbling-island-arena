@@ -1,0 +1,26 @@
+"DOTAAbilities" {
+	"drow_a" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/drow/drow_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "drow_ranger_frost_arrows"
+		"AbilityCooldown" "0.75"
+		"AbilityCastPoint" "0.135"
+		"Damage" "1"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "1200"
+			"MinLength" "1200"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1200"
+		}
+
+		"precache" {
+			"particle" "particles/drow_q/drow_q.vpcf"
+		}
+	}
+}

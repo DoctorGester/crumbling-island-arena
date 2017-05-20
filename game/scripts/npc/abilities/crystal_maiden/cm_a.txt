@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"cm_a" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/cm/cm_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "crystal_maiden_brilliance_aura"
+		"AbilityCooldown" "0.75"
+		"AbilityCastPoint" "0.135"
+		"Damage" "1"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "900"
+			"MinLength" "900"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "900"
+		}
+	}
+}

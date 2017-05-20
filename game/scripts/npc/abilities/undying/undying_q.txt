@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"undying_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/undying/undying_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "undying/pale_augur/undying_decay"
+		"AbilityCooldown" "2.8"
+		"AbilityCastPoint" "0.15"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "300"
+			"DisplayRange" "1"
+			"MaxLength" "900"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "900"
+		}
+	}
+}

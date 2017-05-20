@@ -1,0 +1,20 @@
+"DOTAAbilities" {
+	"shaker_r" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/shaker/shaker_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "earthshaker_echo_slam"
+		"AbilityCooldown" "18.0"
+		"AbilityCastPoint" "0.35"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1200"
+		}
+
+		"precache" {
+			"particle" "particles/econ/items/earthshaker/egteam_set/hero_earthshaker_egset/earthshaker_echoslam_start_egset.vpcf"
+		}
+	}
+}

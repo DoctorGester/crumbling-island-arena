@@ -21,6 +21,7 @@ function zeus_e:OnSpellStart()
         return instanceof(t, EntityZeusW) and t.owner.team == hero.owner.team and t:IntersectsWith(casterPos, target)
     end)) do
         hero:AreaEffect({
+            ability = self,
             filter = Filters.Line(casterPos, target, 64),
             filterProjectiles = true,
             damage = self:GetDamage(),
@@ -43,3 +44,9 @@ end
 function zeus_e:GetCastAnimation()
     return ACT_DOTA_TELEPORT_END
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(zeus_e)

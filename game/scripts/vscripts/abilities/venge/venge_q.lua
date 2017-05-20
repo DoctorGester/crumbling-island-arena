@@ -5,6 +5,7 @@ function venge_q:OnSpellStart()
     local target = self:GetCursorPosition()
 
     DistanceCappedProjectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 128),
         to = target + Vector(0, 0, 128),
@@ -18,3 +19,9 @@ function venge_q:OnSpellStart()
 
     hero:EmitSound("Arena.Venge.CastQ")
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(venge_q)

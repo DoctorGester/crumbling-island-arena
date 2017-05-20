@@ -11,6 +11,7 @@ function lc_e:OnSpellStart()
     Dash(hero, target, 1200, {
         modifier = { name = "modifier_lc_e_animation", ability = self },
         hitParams = {
+            ability = self,
             modifier = { name = "modifier_stunned_lua", ability = self, duration = 0.7 }
         },
         forceFacing = true
@@ -18,3 +19,9 @@ function lc_e:OnSpellStart()
 
     hero:EmitSound("Arena.LC.CastE")
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(lc_e)

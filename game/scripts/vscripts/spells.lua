@@ -5,6 +5,12 @@ Spells = Spells or class({})
 function Spells:constructor()
     self.entities = {}
     self.dashes = {}
+    self.systems = {}
+
+    self:AddSystem(HealthSystem)
+    self:AddSystem(WearableSystem)
+    self:AddSystem(PlayerCircleSystem)
+    self:AddSystem(ExpirationSystem)
 end
 
 function Spells.TestPoint(point)
@@ -21,6 +27,31 @@ function Spells.WrapException(callback, ...)
     if not status then
         print(err)
     end
+end
+
+function Spells.SystemCall(method, ...)
+    local self = GameRules.GameMode.round.spells
+
+    for _, system in ipairs(self.systems) do
+        system:EntityCall(self.entities, method, ...)
+    end
+end
+
+function Spells.SystemCallSingle(entity, method, ...)
+    local self = GameRules.GameMode.round.spells
+
+    for _, system in ipairs(self.systems) do
+        if system[method] then
+            if system:FilterEntity(entity) then
+                system[method](entity, ...)
+            end
+        end
+    end
+
+end
+
+function Spells:AddSystem(system)
+    table.insert(self.systems, system)
 end
 
 function Spells:Update()
@@ -97,14 +128,24 @@ function Spells:Update()
                     local hit = entity:TestFalling()
 
                     if not hit then
-                        entity:MakeFall()
+                        local softKb = self:FindSoftKnockback(entity)
+                        local horVel
+
+                        if softKb then
+                            horVel = softKb.direction * softKb.force
+                        end
+
+                        entity:MakeFall(horVel)
                     end
 
                     -- Doing damage to the pieces entity is standing on
                     if not GameRules.GameMode:IsDeathMatch() then
                         if hit and not level.running and instanceof(entity, Hero) then
                             for enthit, _ in pairs(hit) do
-                                level:DamageGround(enthit, 0.35, entity)
+                                local p = Vector(enthit.x, enthit.y)
+                                local dir = (entity:GetPos() - p):Normalized() * 20
+
+                                level:DamageGround(enthit, 0.35, entity, p + dir, 0)
                             end
                         end
                     end
@@ -112,6 +153,16 @@ function Spells:Update()
             , entity)
         end
     end
+end
+
+function Spells:FindSoftKnockback(entity)
+    for _, dash in ipairs(self.dashes) do
+        if instanceof(dash, SoftKnockback) and dash.hero == entity then
+            return dash
+        end
+    end
+
+    return nil
 end
 
 function Spells:InterruptDashes(hero)
@@ -128,8 +179,30 @@ function Spells:InterruptDashes(hero)
     end
 end
 
-function Spells:GroundDamage(point, radius, source)
-    GameRules.GameMode.level:DamageGroundInRadius(point, radius, source)
+function Spells:GroundDamage(point, radius, source, suppress)
+    local hitByHero = {}
+
+    -- TODO fix self:GroundDamage
+    for _, hero in pairs(GameRules.GameMode.round.spells:GetHeroTargets()) do
+        if hero ~= source then
+            local hit = hero:TestFalling()
+
+            if hit then
+                hitByHero[hero] = hit
+            end
+        end
+    end
+
+    local parts = GameRules.GameMode.level:DamageGroundInRadius(point, radius, source, suppress)
+
+    for hero, hit in pairs(hitByHero) do
+        for _, part in pairs(parts) do
+            if part.launched and hit[part] then
+                hero:AddNewModifier(hero, nil, "modifier_launched", { duration = 0.5 })
+                break
+            end
+        end
+    end
 end
 
 function Spells:GetValidTargets()

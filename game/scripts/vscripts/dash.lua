@@ -64,9 +64,15 @@ function Dash:constructor(hero, to, speed, params)
         self.modifierHandle
             = self.hero:AddNewModifier(self.modifier.source or self.hero, self.modifier.ability, self.modifier.name, { duration = duration })
 
+        self.source = self.modifier.source
+
         if self.modifierHandle == nil then
             self.cantStart = true
         end
+    end
+
+    if params.source then
+        self.source = params.source
     end
 
     hero.round.spells:AddDash(self)
@@ -102,6 +108,16 @@ function Dash:Update()
         result = self:PositionFunction(origin)
 
         result.z = self.zStart + self:HeightFunction(origin)
+
+        local testPos = self:PositionFunction(self:PositionFunction(self:PositionFunction(result)))
+        local selfDash = (self.source == nil or self.source == self.hero)
+        local blocked = not GridNav:IsTraversable(testPos) or GridNav:IsBlocked(result)
+
+        if selfDash and self.hero:CanFall() and (not Spells.TestCircle(testPos, self.hero:GetRad()) or blocked) then
+            self:Interrupt()
+            return origin
+        end
+
         self.hero:SetPos(result)
 
         if self.hitParams then
@@ -123,9 +139,10 @@ function Dash:Update()
     end
 
     local modifierRemoved = (self.modifier and self.hero:Alive()) and self.hero:FindModifier(self.modifier.name) ~= self.modifierHandle
-    local interrupted = not self.hero:Alive() or self:IsStunned() or modifierRemoved or self.cantStart
+    local interrupted = not self.hero:Alive() or self:IsStunned() or modifierRemoved or self.cantStart or self.hero.falling
     if interrupted or self:HasEnded() then
         self:End(self.hero:Alive() and self.hero:GetPos() or self.to, not interrupted)
+        return self.hero:GetPos()
     end
 
     return result
@@ -265,12 +282,15 @@ function SoftKnockback:constructor(hero, source, direction, force, params)
     params.forceFacing = nil
     params.modifier = nil
     params.interruptedByStuns = false
+    params.source = source
 
     getbase(SoftKnockback).constructor(self, hero, nil, 0, params)
 
     self.direction = direction:Normalized()
     self.force = force * multiplier
     self.decrease = params.decrease or 7
+    self.knockup = params.knockup
+    self.h = 0
 
     self.decrease = self.decrease * multiplier
 
@@ -280,26 +300,40 @@ function SoftKnockback:constructor(hero, source, direction, force, params)
 end
 
 function SoftKnockback:HasEnded()
-    return self.force <= 0
+    return self.force <= 0 and (not self.knockup or self.h <= self.zStart)
 end
 
 function SoftKnockback:PositionFunction(current)
     return current + self.direction * self.force
 end
 
-function SoftKnockback:Update()
-    self.force = math.max(0, self.force - self.decrease)
+function SoftKnockback:HeightFunction()
+    return self.h
+end
 
-    local next = self:PositionFunction(self.hero:GetPos())
-    if not GridNav:IsTraversable(next) or GridNav:IsBlocked(next) then
-        self.direction = -self.direction
+function SoftKnockback:Update()
+    if self.hero:Alive() and not self.cantStart then
+        self.force = math.max(0, self.force - self.decrease)
+
+        if self.knockup then
+            self.knockup = self.knockup - 10
+            self.h = math.max(self.zStart, self.h + self.knockup)
+        end
+
+        local next = self:PositionFunction(self.hero:GetPos())
+        if not GridNav:IsTraversable(next) or GridNav:IsBlocked(next) then
+            self.direction = -self.direction
+        end
     end
 
     getbase(SoftKnockback).Update(self)
 end
 
 function SoftKnockback:End(at, reachedDestination)
-    self.hero:FindClearSpace(self.hero:GetPos(), true)
+    if self.hero:Alive() and not self.hero.falling then
+        ResolveNPCPositions(at, 100)
+    end
+
     self:OnArrival(reachedDestination)
     self.destroyed = true
 end

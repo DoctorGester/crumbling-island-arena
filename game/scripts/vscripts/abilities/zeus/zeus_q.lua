@@ -10,6 +10,8 @@ function zeus_q:DestroyParticle()
 end
 
 function zeus_q:OnAbilityPhaseStart()
+    Wrappers.DirectionalAbility(self, 1200)
+
     self.particle = FX("particles/zeus_q/zeus_q_target.vpcf", PATTACH_CUSTOMORIGIN, self:GetCaster(), {
         cp0 = self:GetCursorPosition()
     })
@@ -29,8 +31,6 @@ function zeus_q:OnAbilityPhaseInterrupted()
 end
 
 function zeus_q:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 1200)
-
     self:DestroyParticle()
 
     local hero = self:GetCaster().hero
@@ -60,6 +60,7 @@ function zeus_q:OnSpellStart()
     ScreenShake(target, 5, 150, 0.35, 4000, 0, true)
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Area(target, 175),
         damage = self:GetDamage(),
         action = function(victim)
@@ -73,3 +74,9 @@ end
 function zeus_q:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_2
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(zeus_q)

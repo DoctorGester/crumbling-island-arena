@@ -17,6 +17,7 @@ function wk_a:OnSpellStart()
     local heal = 0
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Cone(pos, range, forward, math.pi),
         sound = "Arena.WK.HitA",
         action = function(victim)

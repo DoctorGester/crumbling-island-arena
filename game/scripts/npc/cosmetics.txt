@@ -47,6 +47,16 @@
         }
     }
 
+    "windrunner"
+    {
+        "1"
+        {
+            "type" "elite"
+            "season" "8"
+            "set" "bindings_of_the_battleranger"
+        }
+    }
+
     "invoker"
     {
         "1"
@@ -73,20 +83,27 @@
 
     "earthshaker"
     {
-        "1"
+    	"1"
+    	{
+    		"type" "elite"
+    		"season" "9"
+    		"set" "crimson_beast"
+    	}
+
+        "2"
         {
             "type" "pass_base"
             "item" "6820"
         }
 
-        "2"
+        "3"
         {
             "type" "promo"
             "promo_id" "0"
             "item" "6486"
         }
 
-        "3"
+        "4"
         {
             "type" "pass"
             "level" "4"
@@ -123,6 +140,18 @@
                 "sound" "Taunt.Undying"
                 "length" "3.0"
             }
+        }
+
+        "2"
+        {
+            "type" "elite"
+            "raw"
+            {
+            	"1" "armor:models/undying_reward/armor.vmdl"
+            	"2" "arms:models/undying_reward/bracer.vmdl"
+            	"3" "head:models/undying_reward/helmet.vmdl"
+            }
+            "season" "7"
         }
     }
     
@@ -296,13 +325,20 @@
 
     "skeleton_king"
     {
-        "1"
+    	"1"
+    	{
+    		"type" "elite"
+    		"season" "10"
+    		"set" "wraith_king_lord_of_the_hunt"
+    	}
+
+        "2"
         {
             "type" "pass_base"
             "emote" "default"
         }
 
-        "2"
+        "3"
         {
             "type" "pass"
             "level" "6"
@@ -360,6 +396,13 @@
             "type" "pass"
             "level" "12"
             "item" "8271,8324"
+            "particles"
+			{
+				"particles/am_a/am_a.vpcf" "particles/econ/am_a/am_a.vpcf"
+				"particles/am_q/am_q.vpcf" "particles/econ/am_q/am_q.vpcf"
+				"particles/am_q/am_q2.vpcf" "particles/econ/am_q/am_q2.vpcf"
+				"particles/am_e/am_e.vpcf" "particles/econ/am_q/am_q_trail.vpcf"
+			}
         }
 
         "2"

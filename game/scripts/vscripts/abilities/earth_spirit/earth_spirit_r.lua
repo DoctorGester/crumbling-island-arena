@@ -82,3 +82,9 @@ function earth_spirit_r:OnChannelFinish(interrupted)
 
     remnantUnit:SetHealth(remnant.health)
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(earth_spirit_r)

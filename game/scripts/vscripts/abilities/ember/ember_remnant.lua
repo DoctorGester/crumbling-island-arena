@@ -1,7 +1,7 @@
-EmberRemnant = class({}, nil, WearableOwner)
+EmberRemnant = class({}, nil, UnitEntity)
 
 function EmberRemnant:constructor(round, owner, target, ability)
-    getbase(EmberRemnant).constructor(self, round, "ember_remnant", owner:GetPos(), owner.unit:GetTeamNumber())
+    getbase(EmberRemnant).constructor(self, round, "ember_remnant", owner:GetPos(), owner.unit:GetTeamNumber(), false, owner.owner)
 
     self.owner = owner.owner
     self.hero = owner
@@ -31,6 +31,8 @@ function EmberRemnant:constructor(round, owner, target, ability)
         end
     })
 
+    self:AddComponent(HealthComponent())
+    self:AddComponent(WearableComponent())
     self:EmitSound("Arena.Ember.CastE")
     self:SetCustomHealth(2)
     self:EnableHealthBar()

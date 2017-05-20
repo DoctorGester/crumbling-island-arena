@@ -1,0 +1,17 @@
+"DOTAAbilities" {
+	"invoker_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/invoker/invoker_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "invoker_sun_strike"
+		"AbilityCooldown" "3.5"
+		"AbilityCastPoint" "0.15"
+		"Damage" "3"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "200"
+			"DisplayRange" "1"
+		}
+	}
+}

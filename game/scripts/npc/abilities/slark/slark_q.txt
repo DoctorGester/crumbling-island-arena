@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"slark_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/slark/slark_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "slark_essence_shift"
+		"AbilityCooldown" "3.5"
+		"AbilityCastPoint" "0.15"
+		"Damage" "3"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "900"
+			"MaxLength" "900"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "900"
+		}
+	}
+}

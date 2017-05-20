@@ -1,0 +1,15 @@
+"DOTAAbilities" {
+	"slark_w" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/slark/slark_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "slark_dark_pact"
+		"AbilityCooldown" "4.0"
+		"Damage" "2"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
+	}
+}

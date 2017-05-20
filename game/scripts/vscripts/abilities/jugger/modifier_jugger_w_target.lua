@@ -1,13 +1,5 @@
 modifier_jugger_w_target = class({})
 
-function modifier_jugger_w_target:CheckState()
-    local state = {
-        [MODIFIER_STATE_INVISIBLE] = false,
-    }
- 
-    return state
-end
-
 function modifier_jugger_w_target:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE

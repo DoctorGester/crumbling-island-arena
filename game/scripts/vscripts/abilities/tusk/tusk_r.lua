@@ -8,8 +8,15 @@ function tusk_r:OnSpellStart()
     local target = self:GetCursorPosition()
 
     hero:AddNewModifier(hero, self, "modifier_tusk_r_aura", { duration = 10 })
+    hero:EmitSound("Arena.Tusk.CastR.Voice")
 end
 
 function tusk_r:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_4
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(tusk_r)

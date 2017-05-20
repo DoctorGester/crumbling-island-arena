@@ -26,6 +26,7 @@ function shaker_e:OnSpellStart()
         end,
         arrivalFunction = function(dash)
             hero:AreaEffect({
+                ability = self,
                 filter = Filters.Area(target, 256),
                 modifier = { name = "modifier_stunned_lua", duration = 0.4, ability = self },
             })
@@ -49,3 +50,9 @@ end
 function shaker_e:GetPlaybackRateOverride()
     return 2
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(shaker_e)

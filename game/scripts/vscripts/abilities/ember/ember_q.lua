@@ -7,6 +7,7 @@ function ember_q:OnSpellStart()
     local target = self:GetCursorPosition()
 
     DistanceCappedProjectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos(),
         to = target,
@@ -28,9 +29,15 @@ function ember_q:OnSpellStart()
 end
 
 function ember_q:GetCastAnimation()
-    return ACT_DOTA_ATTACK2
+    return ACT_DOTA_ATTACK
 end
 
 function ember_q:GetPlaybackRateOverride()
     return 2.0
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(ember_q)

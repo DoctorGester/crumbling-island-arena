@@ -1,6 +1,5 @@
 var playerToggles = {};
 var playerRanks = {};
-var banButtons = {};
 
 var stagePanels = {
     stage_mode: "ModeVoteDialog",
@@ -241,14 +240,48 @@ function MiscInfoChanged(data) {
 }
 
 function AddBanEvent(button, ban) {
-    button.SetPanelEvent("onactivate", function() {
+    button.onactivate = function() {
         GameEvents.SendCustomGameEventToServer("stage_bans", { input: ban });
-    });
+    };
 }
 
-function HeroesChanged(heroes) {
-    var panel = $("#BanButtons");
+function ConfirmBan() {
+    GameEvents.SendCustomGameEventToServer("stage_bans_confirm", {});
+}
+
+function BansUpdated(data) {
+    var heroes = data.heroes;
+    var bans = data.stage_bans;
+
+    // TODO fix the bug
+    if (!heroes) {
+        return;
+    }
+
+    var struct = [];
     var heroNames = Object.keys(heroes);
+    var bannedHeroes = {};
+    var local = Game.GetLocalPlayerID();
+
+    if (bans) {
+        bans = bans.inputs;
+
+        var info = Game.GetPlayerInfo(local);
+        var localTeam = info ? info.player_team_id : -1;
+
+        for (var index in bans) {
+            var player = bans[index];
+            var team = Game.GetPlayerInfo(player.id).player_team_id;
+
+            if (player.input && (team == localTeam || localTeam == -1)) {
+                for (var key in player.input.bans) {
+                    if (!!player.input.bans[key]) {
+                        bannedHeroes[key] = true;
+                    }
+                }
+            }
+        }
+    }
 
     heroNames = _(heroNames).sortBy(function(hero) { return heroes[hero].order });
 
@@ -259,54 +292,51 @@ function HeroesChanged(heroes) {
             continue;
         }
 
-        var button = $.CreatePanel("DOTAHeroImage", panel, "");
-        button.heroname = hero;
-        button.AddClass("BanButton");
-        button.SetScaling("stretch-to-fit-x-preserve-aspect");
-
-        AddBanEvent(button, hero);
-
-        banButtons[hero] = button;
-    }
-}
-
-function BansChanged(bans) {
-    bans = bans.inputs;
-
-    var info = Game.GetPlayerInfo(Game.GetLocalPlayerID());
-
-    if (!info) {
-        return;
-    }
-    
-    var localTeam = info.player_team_id;
-
-    for (var index in bans) {
-        var player = bans[index];
-        var team = Game.GetPlayerInfo(player.id).player_team_id;
-
-        if (player.input && team == localTeam) {
-            if (banButtons[player.input].enabled) {
+        var btn = {
+            tag: "DOTAHeroImage",
+            heroname: hero,
+            class: [ "BanButton", bannedHeroes[hero] ? "Banned" : null ],
+            scaling: "stretch-to-fit-x-preserve-aspect",
+            onactivate: function() {
+                GameEvents.SendCustomGameEventToServer("stage_bans", { input: ban });
+            },
+            onChange: function() {
                 Game.EmitSound("UI.HeroBanned");
-            }
+            },
+            children: [
+                {
+                    class: [ !bannedHeroes[hero] ? "Hidden" : null ],
+                    hittest: false
+                },
+                {
+                    class: [ "Second", !bannedHeroes[hero] ? "Hidden" : null ],
+                    hittest: false
+                }
+            ]
+        };
 
-            banButtons[player.input].enabled = false;
-        }
+        AddBanEvent(btn, hero);
+
+        struct.push(btn);
     }
+
+    Structure.Create($("#BanButtons"), struct);
 }
 
 (function () {
-    SubscribeToNetTableKey("static", "heroes", true, HeroesChanged);
-
     SubscribeToNetTableKey("main", "gameState", true, GameStateChanged);
     SubscribeToNetTableKey("gameSetup", "modes", true, GameModesChanges);
     SubscribeToNetTableKey("gameSetup", "stage_mode", true, ModeVotesChanged);
     SubscribeToNetTableKey("gameSetup", "stage_team", true, TeamsChanged);
-    SubscribeToNetTableKey("gameSetup", "stage_bans", true, BansChanged);
 
     SubscribeToNetTableKey("gameSetup", "state", true, GameSetupChanged);
     SubscribeToNetTableKey("gameSetup", "misc", true, MiscInfoChanged);
     SubscribeToNetTableKey("ranks", "current", true, RanksChanged);
+
+    AggregateNetTables([
+        { table: "static", key: "heroes" },
+        { table: "gameSetup", key: "stage_bans" }
+    ], BansUpdated);
 
     GameEvents.Subscribe("setup_timer_tick", OnTimerTick);
     //$("#GameSetupChat").BLoadLayout("file://{resources}/layout/custom_game/simple_chat.xml", false, false);

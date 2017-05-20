@@ -1,0 +1,10 @@
+"DOTAAbilities" {
+	"jugger_r" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/jugger/jugger_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "juggernaut_omni_slash"
+		"AbilityCooldown" "16.0"
+	}
+}

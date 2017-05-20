@@ -1,0 +1,10 @@
+"DOTAAbilities" {
+	"slark_r" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/slark/slark_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "slark_shadow_dance"
+		"AbilityCooldown" "16.0"
+	}
+}

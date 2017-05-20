@@ -10,6 +10,7 @@ function pudge_w:OnSpellStart()
     ScreenShake(pos, 5, 150, 0.45, 3000, 0, true)
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Cone(pos, 300, direction, math.pi),
         sound = "Arena.Pudge.HitW",
         damage = self:GetDamage(),
@@ -44,9 +45,15 @@ function pudge_w:OnSpellStart()
 end
 
 function pudge_w:GetCastAnimation()
-    return ACT_DOTA_ATTACK2
+    return ACT_DOTA_CHANNEL_ABILITY_4
 end
 
 function pudge_w:GetPlaybackRateOverride()
     return 3
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(pudge_w)

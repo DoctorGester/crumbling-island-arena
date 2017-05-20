@@ -32,6 +32,7 @@ function sk_e:OnSpellStart()
 
     hero:FindClearSpace(target, true)
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Line(casterPos, target, 64),
         filterProjectiles = true,
         damage = self:GetDamage(),
@@ -50,3 +51,9 @@ end
 function sk_e:GetCastAnimation()
     return ACT_DOTA_SAND_KING_BURROW_IN
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(sk_e)

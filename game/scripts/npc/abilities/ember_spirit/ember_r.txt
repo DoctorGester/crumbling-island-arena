@@ -1,0 +1,26 @@
+"DOTAAbilities" {
+	"ember_r" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ember/ember_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "ember_spirit_fire_remnant"
+		"AbilityCooldown" "14.0"
+		"AbilityCastPoint" "0.3"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "600"
+			"MaxLength" "600"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "600"
+		}
+
+		"precache" {
+			"particle" "particles/ember_r/ember_r.vpcf"
+		}
+	}
+}

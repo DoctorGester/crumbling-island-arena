@@ -1,13 +1,14 @@
 JuggerSword = class({}, nil, UnitEntity)
 
 function JuggerSword:constructor(round, owner, target, particle)
-    getbase(JuggerSword).constructor(self, round, DUMMY_UNIT, target, owner.unit:GetTeamNumber())
+    getbase(JuggerSword).constructor(self, round, "jugg_sword", target, owner.unit:GetTeamNumber(), false, owner.owner)
 
     self.owner = owner.owner
     self.hero = owner
     self.health = 1
     self.size = 64
     self.collisionType = COLLISION_TYPE_INFLICTOR
+    self.invulnerable = true
 
     local unit = self:GetUnit()
     unit.hero = self

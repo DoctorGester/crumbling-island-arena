@@ -5,10 +5,13 @@ LinkLuaModifier("modifier_sniper_w_trap", "abilities/sniper/modifier_sniper_w_tr
 require("abilities/sniper/entity_sniper_w")
 
 function sniper_w:OnSpellStart()
+    Wrappers.DirectionalAbility(self, 1600)
+
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
 
     ArcProjectile(self.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 64),
         to = target,
@@ -27,3 +30,9 @@ end
 function sniper_w:GetCastAnimation()
     return ACT_DOTA_TELEPORT_END
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(sniper_w)

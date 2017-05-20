@@ -1,0 +1,15 @@
+"DOTAAbilities" {
+	"pudge_r" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pudge/pudge_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "pudge_rot"
+		"AbilityCooldown" "14.0"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "800"
+		}
+	}
+}

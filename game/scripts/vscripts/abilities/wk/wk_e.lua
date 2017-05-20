@@ -37,9 +37,15 @@ function wk_e:OnSpellStart()
 end
 
 function wk_e:GetPlaybackRateOverride()
-    return 2.0
+    return 3.0
 end
 
 function wk_e:GetCastAnimation()
     return ACT_DOTA_TELEPORT
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(wk_e)

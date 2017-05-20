@@ -97,7 +97,7 @@ function Stats.RequestTopPlayers(callback)
 end
 
 function Stats.RequestData(url, callback, rep)
-    local req = CreateHTTPRequest("GET", Stats.host..url)
+    local req = CreateHTTPRequestScriptVM("GET", Stats.host..url)
     req:Send(function(res)
         if res.StatusCode ~= 200 then
             print("Server connection failure")
@@ -120,7 +120,7 @@ function Stats.RequestData(url, callback, rep)
 end
 
 function Stats.SendData(url, data, callback, rep)
-    local req = CreateHTTPRequest("POST", Stats.host..url)
+    local req = CreateHTTPRequestScriptVM("POST", Stats.host..url)
     local encoded = json.encode(data)
     print("[STATS] URL", url, "payload:", encoded)
 

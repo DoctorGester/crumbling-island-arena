@@ -144,3 +144,9 @@ end
 if IsServer() then
     Wrappers.GuidedAbility(phoenix_r, true, true)
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(phoenix_r)

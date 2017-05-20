@@ -105,6 +105,18 @@ function PassTopChanged(top) {
     }
 }
 
+function ProcessNews() {
+    var actualNews = moment({ years: 2017, months: 1, date: 21 }).add(7, "days").isAfter(moment.now());
+
+    $("#PassInfo").SetHasClass("Hidden", actualNews);
+    $("#NewsInfo").SetHasClass("Hidden", !actualNews);
+
+    if (actualNews) {
+        $("#NewsInfoContainer").RemoveAndDeleteChildren();
+        $("#NewsInfoContainer").BLoadLayoutSnippet("arcanaTournament");
+    }
+}
+
 $.AsyncWebRequest("http://138.68.73.132:3637/ranks/info", { type: "GET", 
     success: function( data ) {
         var info = JSON.parse(data);
@@ -132,10 +144,13 @@ if (hittestBlocker) {
     hittestBlocker.hittestchildren = false;
 }
 
+ProcessNews();
+
 GameEvents.Subscribe("game_rules_state_change", function(data) {
     if (Game.GameStateIsAfter(DOTA_GameState.DOTA_GAMERULES_STATE_WAIT_FOR_PLAYERS_TO_LOAD)) {
         $("#PassInfo").SetHasClass("Hidden", true);
         $("#RankedInfo").SetHasClass("Hidden", true);
         $("#GameTip").SetHasClass("Hidden", true);
+        $("#NewsInfo").SetHasClass("Hidden", true);
     }
 });

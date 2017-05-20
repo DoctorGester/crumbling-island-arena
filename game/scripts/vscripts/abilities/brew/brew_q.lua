@@ -25,6 +25,7 @@ function brew_q:OnSpellStart()
     local target = self:GetCursorPosition()
 
     local projectile = ArcProjectile(self.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos(),
         to = target,
@@ -32,6 +33,7 @@ function brew_q:OnSpellStart()
         arc = 600,
         graphics = "particles/brew_q/brew_q.vpcf",
         hitParams = {
+            ability = self,
             filter = Filters.Area(target, 200),
             filterProjectiles = true,
             onlyHeroes = true,
@@ -47,7 +49,7 @@ function brew_q:OnSpellStart()
         end
     }):Activate()
 
-    CreateAOEMarker(hero, target, 200, 0.4, Vector(255, 106, 0))
+    CreateEntityAOEMarker(target, 200, (target - hero:GetPos()):Length2D() / 2400 + 0.1, { 255, 106, 0 }, 0.3, true)
 
     self:AddBeerModifier(hero)
 
@@ -67,3 +69,9 @@ end
 function brew_q:GetPlaybackRateOverride()
     return 1.33
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(brew_q)

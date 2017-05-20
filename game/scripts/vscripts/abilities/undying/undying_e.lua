@@ -23,3 +23,9 @@ end
 function undying_e:GetPlaybackRateOverride()
     return 1.33
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(undying_e)

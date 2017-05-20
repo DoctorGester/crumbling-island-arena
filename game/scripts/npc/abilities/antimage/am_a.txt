@@ -1,0 +1,16 @@
+"DOTAAbilities" {
+	"am_a" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/am/am_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "antimage_mana_break"
+		"AbilityCooldown" "0.6"
+		"AbilityCastPoint" "0.1"
+		"Damage" "1"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
+	}
+}

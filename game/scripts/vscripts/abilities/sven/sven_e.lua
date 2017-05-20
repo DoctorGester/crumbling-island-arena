@@ -5,7 +5,7 @@ function sven_e:GetChannelTime()
     local enraged = self:GetCaster():HasModifier("modifier_sven_r") -- Can't use IsEnraged on the client
 
     if enraged then
-        return 0.01
+        return nil
     end
 
     return 0.4
@@ -13,6 +13,10 @@ end
 
 function sven_e:OnSpellStart()
     self:GetCaster().hero:EmitSound("Arena.Sven.CastE")
+
+    if self:GetCaster():HasModifier("modifier_sven_r") then
+        self:Cast(self.BaseClass.GetCursorPosition(self))
+    end
 end
 
 function sven_e:GetChannelAnimation()
@@ -22,8 +26,11 @@ end
 function sven_e:OnChannelFinish(interrupted)
     if interrupted then return end
 
-    local hero = self:GetCaster().hero
-    local target = self:GetCursorPosition()
+    self:Cast(self:GetCursorPosition())
+end
+
+function sven_e:Cast(target)
+    local hero = self:GetCaster():GetParentEntity()
     local direction = target - hero:GetPos()
     local from = hero:GetPos()
 
@@ -40,32 +47,54 @@ function sven_e:OnChannelFinish(interrupted)
     local effect = ImmediateEffectPoint("particles/econ/items/sven/sven_warcry_ti5/sven_spell_warcry_ti_5.vpcf", PATTACH_ABSORIGIN, hero, hero:GetPos())
     ParticleManager:SetParticleControl(effect, 2, hero:GetPos())
 
-    SvenDash(hero, target, 200, {
-        modifier = { name = "modifier_sven_e", ability = self },
-        forceFacing = true,
-        gesture = ACT_DOTA_CHANNEL_ABILITY_3,
-        gestureRate = 1.8,
-        hitParams = {
-            sound = "Arena.Sven.HitE",
-            damage = self:GetDamage(),
-            action = function(victim)
-                local pos = hero:GetPos()
-                local tp = victim:GetPos()
-                local between = ClosestPointToSegment(from, pos, tp)
-                local knockDirection = (tp - between):Normalized()
+    hero:GetUnit():Interrupt()
 
-                SoftKnockback(victim, hero, knockDirection, 10 + 60 * direction:Dot(knockDirection), { decrease = 4 })
+    local function knockDirection(victim)
+        local pos = hero:GetPos()
+        local tp = victim:GetPos()
+        local between = ClosestPointToSegment(from, pos, tp)
+        return (tp - between):Normalized()
+    end
 
-                local effect = ImmediateEffectPoint("particles/econ/items/earthshaker/earthshaker_gravelmaw/earthshaker_fissure_dust_gravelmaw.vpcf", PATTACH_ABSORIGIN, hero, tp)
-                ParticleManager:SetParticleControl(effect, 1, between + (tp - between):Normalized() * 300)
-            end
-        }
-    })
+    TimedEntity(0.05, function()
+        SvenDash(hero, target, 200, {
+            modifier = { name = "modifier_sven_e", ability = self },
+            forceFacing = true,
+            gesture = ACT_DOTA_CHANNEL_ABILITY_3,
+            gestureRate = 1.8,
+            hitParams = {
+                ability = self,
+                sound = "Arena.Sven.HitE",
+                damage = self:GetDamage(),
+                action = function(victim)
+                    local pos = hero:GetPos()
+                    local tp = victim:GetPos()
+                    local between = ClosestPointToSegment(from, pos, tp)
+
+                    local effect = ImmediateEffectPoint("particles/econ/items/earthshaker/earthshaker_gravelmaw/earthshaker_fissure_dust_gravelmaw.vpcf", PATTACH_ABSORIGIN, hero, tp)
+                    ParticleManager:SetParticleControl(effect, 1, between + knockDirection(victim) * 300)
+                end,
+                knockback = {
+                    force = function(victim)
+                        return 10 + 60 * direction:Dot(knockDirection(victim))
+                    end,
+                    direction = knockDirection,
+                    decrease = 4
+                }
+            }
+        })
+    end):Activate()
 end
 
 if IsServer() then
     Wrappers.GuidedAbility(sven_e, true)
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(sven_e)
 
 SvenDash = SvenDash or class({}, nil, Dash)
 SvenDash.DUST_EFFECT = "particles/econ/items/rubick/rubick_force_gold_ambient/rubick_telekinesis_force_dust_gold.vpcf"

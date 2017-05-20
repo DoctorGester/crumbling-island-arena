@@ -38,7 +38,7 @@ function modifier_tusk_w_aura:GetModifierAura()
 end
 
 function modifier_tusk_w_aura:GetAuraEntityReject(entity)
-    if entity.GetParentEntity and entity:GetParentEntity().owner.team == self:GetParent():GetParentEntity().owner.team then
+    if entity.GetParentEntity and entity:GetParentEntity().owner and entity:GetParentEntity().owner.team == self:GetParent():GetParentEntity().owner.team then
         return true
     end
 

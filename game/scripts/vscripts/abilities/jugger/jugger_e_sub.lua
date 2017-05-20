@@ -25,3 +25,9 @@ end
 function jugger_e_sub:GetPlaybackRateOverride()
     return 2
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(jugger_e_sub)

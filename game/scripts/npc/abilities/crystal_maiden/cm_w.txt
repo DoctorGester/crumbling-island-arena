@@ -1,0 +1,14 @@
+"DOTAAbilities" {
+	"cm_w" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/cm/cm_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "crystal_maiden_freezing_field"
+		"AbilityCooldown" "6.0"
+		"Damage" "2"
+
+		"precache" {
+			"particle" "particles/cm_w/cm_w.vpcf"
+		}
+	}
+}

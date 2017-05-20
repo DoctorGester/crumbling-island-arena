@@ -1,11 +1,12 @@
 TinyQ = TinyQ or class({}, nil, Projectile)
 
-function TinyQ:constructor(round, owner, ability, target, stun, damage)
+function TinyQ:constructor(round, owner, ability, target, stun, damage, ability)
     local modifierName = (stun and "modifier_stunned_lua" or "modifier_tiny_q")
 
     self.groundHeight = GetGroundHeight(target, nil)
 
     getbase(TinyQ).constructor(self, round, {
+        ability = ability,
         owner = owner,
         from = owner:GetPos() + Vector(0, 0, 32) + self.groundHeight,
         to = target + Vector(0, 0, 32) + self.groundHeight,

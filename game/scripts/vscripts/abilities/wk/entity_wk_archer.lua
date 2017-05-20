@@ -51,6 +51,7 @@ function WKArcher:Update()
             arc = 600,
             graphics = self.hero:GetMappedParticle("particles/wk_w/wk_w.vpcf"),
             hitParams = {
+                ability = self.ability,
                 filter = Filters.Area(self.target, 200),
                 filterProjectiles = true,
                 damage = self.ability:GetDamage(),
@@ -63,8 +64,12 @@ function WKArcher:Update()
                 else
                     projectile:EmitSound("Arena.WK.HitW")
                 end
+
+                Spells:GroundDamage(self.target, 200, self.hero)
             end
         }):Activate()
+
+        CreateEntityAOEMarker(self.target, 200, (self.target - self:GetPos()):Length2D() / 3200 + 0.1, { 32, 215, 131 }, 0.5, true)
 
         self:Destroy()
         return

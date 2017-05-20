@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"gyro_r" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/gyro/gyro_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "gyrocopter_rocket_barrage"
+		"AbilityCooldown" "16.0"
+		"AbilityCastPoint" "0.15"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "1500"
+			"MaxLength" "1500"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1500"
+		}
+	}
+}

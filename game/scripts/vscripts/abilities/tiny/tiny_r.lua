@@ -7,3 +7,9 @@ function tiny_r:OnSpellStart()
     hero:AddNewModifier(hero, self, "modifier_tiny_r", { duration = 6 })
     hero:EmitSound("Arena.Tiny.CastR")
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(tiny_r)

@@ -12,7 +12,8 @@ function ursa_e:OnSpellStart()
         modifier = { name = "modifier_ursa_e", ability = self },
         forceFacing = true,
         hitParams = {
-            modifier = { name = "modifier_stunned_lua", ability = self, duration = 1.0 }
+            ability = self,
+            modifier = { name = "modifier_stunned_lua", ability = self, duration = 0.4 }
         },
         arrivalFunction = function()
             hero:GetUnit():StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1_END, 1.5)
@@ -34,3 +35,9 @@ end
 function ursa_e:GetPlaybackRateOverride()
     return 1.5
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(ursa_e)

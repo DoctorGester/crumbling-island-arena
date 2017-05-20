@@ -154,6 +154,7 @@ function SetupUI(){
     GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_TOP_MENU_BUTTONS, false);
     GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_ENDGAME, false);
     GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_ENDGAME_CHAT, false);
+    GameUI.SetDefaultUIEnabled(DotaDefaultUIElement_t.DOTA_DEFAULT_UI_QUICK_STATS, false);
 }
 
 function GetLocalHero(){
@@ -216,6 +217,8 @@ function LoadCustomIcons(){
             for (var iconKey in hero.customIcons) {
                 abilityBar.AddCustomIcon(iconKey, hero.customIcons[iconKey]);
                 buffBar.AddCustomIcon(iconKey, hero.customIcons[iconKey]);
+
+                customIcons[iconKey] = hero.customIcons[iconKey];
             }
         }
     }
@@ -247,7 +250,9 @@ function UpdateUI(){
         buffBar.Update();
     }
 
-    UpdateGuidedAndCastedAbilities(localHero);
+    if (GetPlayerOwnerID(localHero) == Game.GetLocalPlayerID()) {
+        UpdateGuidedAndCastedAbilities(localHero);
+    }
 }
 
 function UpdateGuidedAndCastedAbilities(localHero) {
@@ -463,8 +468,12 @@ var DeathMatch = new (function() {
     this.PlayersUpdated = function(data) {
         if (data.isDeathMatch) {
             var player = _(data.players).findWhere({ id: Game.GetLocalPlayerID() });
-            $("#DeathMatchContainer").SetHasClass("Hidden", !player.isDead);
-            $("#DeathMatchRespawnButtonIcon").heroname = player.hero;
+
+            $("#DeathMatchContainer").SetHasClass("Hidden", player == null || !player.isDead);
+
+            if (player != null) {
+                $("#DeathMatchRespawnButtonIcon").heroname = player.hero;
+            }
         }
     }
 
@@ -552,7 +561,7 @@ function MouseCallback(event, button) {
 
     var position = GameUI.GetScreenWorldPosition(GameUI.GetCursorPosition());
 
-    if (GameUI.IsAltDown() && position) {
+    if (GameUI.IsAltDown() && position && button == 0) {
         GameEvents.SendCustomGameEventToServer("custom_ping", { position: position, danger: GameUI.IsControlDown() });
         return true;
     }
@@ -680,7 +689,6 @@ function SetupChat() {
     hud.style.zIndex = 10;
 
     hud.FindChild("topbar").FindChild("DayGlow").style.visibility = "collapse";
-    hud.FindChild("quickstats").style.visibility = "collapse";
 
     var hudChat = hud.FindChild("HudChat");
     var controls = hudChat.FindChildTraverse("ChatControls");

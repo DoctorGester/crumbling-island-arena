@@ -8,7 +8,7 @@ function jugger_e:OnSpellStart()
     ParticleManager:SetParticleControl(particle, 0, hero:GetPos() + Vector(0, 0, 64))
     ParticleManager:ReleaseParticleIndex(particle)
 
-    hero:AddNewModifier(hero, self, "modifier_jugger_e", { duration = 1.8 })
+    hero:AddNewModifier(hero, hero:FindAbility("jugger_e_sub"), "modifier_jugger_e", { duration = 1.8 })
     hero:SwapAbilities("jugger_e", "jugger_e_sub")
     hero:EmitSound("Arena.Jugger.CastE")
 end
@@ -16,3 +16,9 @@ end
 function jugger_e:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_2
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(jugger_e)

@@ -12,7 +12,7 @@ function ta_w:OnSpellStart()
         release = false
     })
 
-    TimedEntity(1.0, function()
+    TimedEntity(0.9, function()
         DFX(effect)
 
         FX("particles/units/heroes/hero_templar_assassin/templar_assassin_trap_explode.vpcf", PATTACH_WORLDORIGIN, hero, {
@@ -23,8 +23,9 @@ function ta_w:OnSpellStart()
         hero:EmitSound("Arena.TA.EndW", target)
 
         hero:AreaEffect({
+            ability = self,
             onlyHeroes = true,
-            filter = Filters.Area(target, 200),
+            filter = Filters.Area(target, 230),
             modifier = { name = "modifier_ta_w", duration = 3.5, ability = self }
         })
     end):Activate()
@@ -35,3 +36,9 @@ end
 function ta_w:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_4
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(ta_w)

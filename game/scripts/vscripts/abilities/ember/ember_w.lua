@@ -6,6 +6,7 @@ function ember_w:OnSpellStart()
     local target = self:GetCursorPosition()
 
     DistanceCappedProjectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 128),
         to = target + Vector(0, 0, 128),
@@ -16,7 +17,7 @@ function ember_w:OnSpellStart()
         hitSound = "Arena.Ember.HitW",
         hitFunction = function(projectile, target)
             if EmberUtil.Burn(hero, target, self) then
-                target:AddNewModifier(hero, self, "modifier_stunned_lua", { duration = 1.0 })
+                target:Damage(hero, self:GetDamage())
             end
         end,
         destroyFunction = function()
@@ -34,3 +35,9 @@ end
 function ember_w:GetPlaybackRateOverride()
     return 1.5
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(ember_w)

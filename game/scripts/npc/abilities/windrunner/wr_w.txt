@@ -1,0 +1,21 @@
+"DOTAAbilities" {
+	"wr_w" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/wr/wr_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "windrunner_shackleshot"
+		"AbilityCooldown" "4.0"
+		"AbilityCastPoint" "0.1"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "1000"
+			"MinLength" "1000"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1000"
+		}
+	}
+}

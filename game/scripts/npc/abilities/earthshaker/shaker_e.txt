@@ -1,0 +1,28 @@
+"DOTAAbilities" {
+	"shaker_e" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/shaker/shaker_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "earthshaker_enchant_totem"
+		"AbilityCooldown" "5.0"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "256"
+			"DisplayRange" "1"
+			"MinLength" "350"
+            "MaxLength" "550"
+			"Arc" "200"
+			"ArcWidth" "50"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "550"
+		}
+
+		"precache" {
+			"particle" "particles/econ/items/earthshaker/egteam_set/hero_earthshaker_egset/earthshaker_aftershock_egset.vpcf"
+		}
+	}
+}

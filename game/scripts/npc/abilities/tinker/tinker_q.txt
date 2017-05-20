@@ -1,0 +1,23 @@
+"DOTAAbilities" {
+	"tinker_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tinker/tinker_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "tinker_laser"
+		"AbilityCooldown" "4.5"
+		"AbilityCastPoint" "0.2"
+		"Damage" "3"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_TINKER_LASER"
+			"MinLength" "850"
+			"MaxLength" "850"
+			"Width" "64"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "850"
+		}
+	}
+}

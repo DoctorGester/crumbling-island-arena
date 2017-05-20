@@ -1,0 +1,26 @@
+"DOTAAbilities" {
+	"venge_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/venge/venge_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "vengefulspirit_magic_missile"
+		"AbilityCooldown" "3.4"
+		"AbilityCastPoint" "0.15"
+		"Damage" "2"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "950"
+			"MinLength" "950"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "950"
+		}
+
+		"precache" {
+			"particle" "particles/venge_q/venge_q.vpcf"
+		}
+	}
+}

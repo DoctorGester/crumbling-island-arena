@@ -1,0 +1,21 @@
+"DOTAAbilities" {
+	"tiny_a" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tiny/tiny_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "tiny_craggy_exterior"
+		"AbilityCooldown" "1.0"
+		"AbilityCastPoint" "0.175"
+		"Damage" "1"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "(function(){ if (HasModifier(unit, 'modifier_tiny_r')) return 500; return 400; })()"
+		}
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "(function(){ if (HasModifier(unit, 'modifier_tiny_r')) return 500; return 400; })()"
+		}
+	}
+}

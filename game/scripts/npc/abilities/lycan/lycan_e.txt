@@ -1,0 +1,19 @@
+"DOTAAbilities" {
+	"lycan_e" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/lycan/lycan_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "lycan_howl"
+		"AbilityCooldown" "8.0"
+		"AbilityCastPoint" "0.15"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "350"
+		}
+
+		"precache" {
+			"particle" "particles/econ/items/nightstalker/nightstalker_black_nihility/nightstalker_black_nihility_void.vpcf"
+		}
+	}
+}

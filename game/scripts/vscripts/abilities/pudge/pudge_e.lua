@@ -17,13 +17,12 @@ function pudge_e:OnSpellStart()
     })
 
     dash.hitParams = {
+        ability = self,
         modifier = { name = "modifier_stunned_lua", ability = self, duration = 0.7 },
-        action = function(target)
-            Knockback(target, self, direction, 500, 1500, DashParabola(50))
+        knockback = { force = 90 },
+        notBlockedAction = function(target)
             ScreenShake(target:GetPos(), 5, 150, 0.45, 3000, 0, true)
-
             hero:EmitSound("Arena.Pudge.HitE")
-
             dash:Interrupt()
         end
     }
@@ -36,3 +35,9 @@ end
 function pudge_e:GetPlaybackRateOverride()
     return 2
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(pudge_e)

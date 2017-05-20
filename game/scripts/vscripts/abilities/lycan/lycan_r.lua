@@ -26,3 +26,9 @@ function lycan_r:OnChannelFinish(interrupted)
 
     hero:AddNewModifier(hero, self, "modifier_lycan_r", { duration = 6 })
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(lycan_r)

@@ -12,9 +12,16 @@ function self:OnSpellStart()
     Dash(hero, target, 2000, {
         modifier = { name = "modifier_am_e", ability = self },
         forceFacing = true,
+        gesture = ACT_DOTA_RUN,
+        gestureRate = 2.4,
         hitParams = {
-            action = function(victim)
-                hero:FindAbility("am_q"):DealDamage(victim)
+            ability = self,
+            damage = self:GetDamage(),
+            sound = "Arena.AM.Hit",
+            action = function(target)
+                if instanceof(target, Hero) then
+                    hero:AddNewModifier(hero, hero:FindAbility("am_a"), "modifier_am_a", { duration = 3.0 })
+                end
             end
         }
     })
@@ -29,3 +36,9 @@ end
 function self:GetPlaybackRateOverride()
     return 2
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(am_e)

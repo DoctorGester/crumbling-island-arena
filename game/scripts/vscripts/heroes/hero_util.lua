@@ -43,13 +43,13 @@ end
 
 TinkerUtil = {}
 
-function TinkerUtil.PortalAbility(ability, isPrimary, startEffect, effect, warpEffect)
-    local function FindPortal(hero, primary)
-        return hero.round.spells:FilterEntities(function(ent)
-            return instanceof(ent, EntityTinkerE) and ent.primary == primary and ent:Alive() and ent.hero == hero
-        end)[1]
-    end
+function TinkerUtil.FindPortal(hero, primary)
+    return hero.round.spells:FilterEntities(function(ent)
+        return instanceof(ent, EntityTinkerE) and ent.primary == primary and ent:Alive() and ent.hero == hero
+    end)[1]
+end
 
+function TinkerUtil.PortalAbility(ability, isPrimary, swapTo, startEffect, effect, warpEffect)
     function ability:RemoveParticle()
         if self.preParticle then
             ParticleManager:DestroyParticle(self.preParticle, false)
@@ -78,7 +78,7 @@ function TinkerUtil.PortalAbility(ability, isPrimary, startEffect, effect, warpE
             return UF_FAIL_CUSTOM
         end
 
-        local portal = FindPortal(self:GetCaster().hero, not isPrimary)
+        local portal = TinkerUtil.FindPortal(self:GetCaster().hero, not isPrimary)
 
         if not portal then
             return UF_SUCCESS
@@ -109,11 +109,14 @@ function TinkerUtil.PortalAbility(ability, isPrimary, startEffect, effect, warpE
     function ability:OnSpellStart()
         local hero = self:GetCaster().hero
         local target = self:GetCursorPosition()
-        local first = FindPortal(self:GetCaster().hero, isPrimary)
+        local first = TinkerUtil.FindPortal(self:GetCaster().hero, isPrimary)
+
+        ScreenShake(target, 5, 150, 0.25, 3000, 0, true)
 
         self:RemoveParticle()
 
         hero:EmitSound("Arena.Tinker.CastE")
+        hero:SwapAbilities(self:GetName(), swapTo)
 
         if first then
             first:Destroy()
@@ -128,7 +131,7 @@ function TinkerUtil.PortalAbility(ability, isPrimary, startEffect, effect, warpE
             isPrimary
         ):Activate()
 
-        local second = FindPortal(self:GetCaster().hero, not isPrimary)
+        local second = TinkerUtil.FindPortal(self:GetCaster().hero, not isPrimary)
 
         if second then
             second:LinkTo(portal)
@@ -143,30 +146,67 @@ function TinkerUtil.PortalAbility(ability, isPrimary, startEffect, effect, warpE
     function ability:GetPlaybackRateOverride()
         return 2.0
     end
+
+    if IsClient() then
+        require("wrappers")
+    end
+
+    Wrappers.NormalAbility(ability)
+end
+
+function TinkerUtil.PortalCancelAbility(ability, isPrimary, swapTo)
+    function ability:OnSpellStart()
+        local hero = self:GetCaster():GetParentEntity()
+        local portal = TinkerUtil.FindPortal(hero, isPrimary)
+
+        if portal then
+            portal:Destroy()
+        end
+    end
+
+    if IsClient() then
+        require("wrappers")
+    end
+
+    Wrappers.NormalAbility(ability)
 end
 
 CMUtil = {}
 
 function CMUtil.IsFrozen(target)
-    return target:FindModifier("modifier_cm_frozen") or target:FindModifier("modifier_cm_r_slow")
+    return target:FindModifier("modifier_cm_frozen")
+end
+
+function CMUtil.Stun(hero, target, ability)
+    target:AddNewModifier(hero, ability, "modifier_cm_stun", { duration = 0.9 })
 end
 
 function CMUtil.Freeze(hero, target, ability)
     target:AddNewModifier(hero, ability, "modifier_cm_frozen", { duration = 1.65 })
 end
 
-function CMUtil.AbilityHit(hero)
+function CMUtil.AbilityHit(hero, target, ability)
+    target:Damage(hero, ability:GetDamage())
+
+    if CMUtil.IsFrozen(target) then
+        CMUtil.Stun(hero, target, ability)
+    end
+
+    CMUtil.Freeze(hero, target, ability)
+
+    if instanceof(target, Hero) then
+
     local mod = hero:FindModifier("modifier_cm_a")
-
-    if mod then
-        if mod:GetStackCount() < 3 then
-            mod:Inc()
-        end
-    else
-        mod = hero:AddNewModifier(hero, hero:FindAbility("cm_a"), "modifier_cm_a")
-
         if mod then
-            mod:SetStackCount(1)
+            if mod:GetStackCount() < 3 then
+                mod:Inc()
+            end
+        else
+            mod = hero:AddNewModifier(hero, hero:FindAbility("cm_a"), "modifier_cm_a")
+
+            if mod then
+                mod:SetStackCount(1)
+            end
         end
     end
 end
@@ -228,7 +268,7 @@ function ZeusUtil.AbilityHit(hero, ability, victim)
     local mod = victim:FindModifier("modifier_zeus_a")
 
     if mod then
-        victim:AddNewModifier(hero, ability, "modifier_stunned", { duration = 0.85 })
+        victim:AddNewModifier(hero, ability, "modifier_stunned_lua", { duration = 0.85 })
         mod:Destroy()
     end
 end

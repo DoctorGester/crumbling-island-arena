@@ -12,6 +12,7 @@ function self:OnSpellStart()
 
         local particle = -1
         local projectile = DistanceCappedProjectile(hero.round, {
+            ability = self,
             owner = hero,
             from = hero:GetPos(),
             to = target,
@@ -30,12 +31,14 @@ function self:OnSpellStart()
 
                 ScreenShake(projectile:GetPos(), 5, 150, 0.25, 2000, 0, true)
 
+                -- Doesn't disappear otherwise
+                projectile:SetModel("models/development/invisiblebox.vmdl")
                 projectile:EmitSound("Arena.Gyro.EndW.Sub")
             end,
             damage = self:GetDamage()
         }):Activate()
 
-        projectile:GetUnit():SetModel("models/heroes/gyro/gyro_missile.vmdl")
+        projectile:SetModel("models/heroes/gyro/gyro_missile.vmdl")
 
         particle = FX("particles/units/heroes/hero_gyrocopter/gyro_guided_missile.vpcf", PATTACH_POINT_FOLLOW, projectile, {
             cp0 = { ent = projectile, point = "attach_hitloc" }
@@ -51,3 +54,9 @@ end
 function self:GetCastAnimation()
     return ACT_DOTA_OVERRIDE_ABILITY_4
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(gyro_w_sub)

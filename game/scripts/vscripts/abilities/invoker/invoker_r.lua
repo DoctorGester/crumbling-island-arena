@@ -10,6 +10,7 @@ function invoker_r:OnSpellStart()
     hero:EmitSound("Arena.Invoker.CastR.Voice")
 
     ArcProjectile(self.round, {
+        ability = self,
         owner = hero,
         from = target + Vector(0, 0, 3000) - self:GetDirection() * 2000,
         to = target,
@@ -22,9 +23,9 @@ function invoker_r:OnSpellStart()
             ParticleManager:SetParticleControl(particle, 3, target)
             ParticleManager:ReleaseParticleIndex(particle)
 
-            Spells:GroundDamage(target, 500, hero)
-            Spells:GroundDamage(target, 500, hero)
-            Spells:GroundDamage(target, 500, hero)
+            --Spells:GroundDamage(target, 500, hero, true)
+            Spells:GroundDamage(target, 500, hero, true)
+            Spells:GroundDamage(target, 500, hero, true)
             Spells:GroundDamage(target, 500, hero)
 
             ScreenShake(target, 5, 150, 0.5, 4000, 0, true)
@@ -38,3 +39,9 @@ end
 function invoker_r:GetCastAnimation()
     return ACT_DOTA_CAST_CHAOS_METEOR
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(invoker_r)

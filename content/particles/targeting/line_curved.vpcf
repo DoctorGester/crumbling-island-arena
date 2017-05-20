@@ -12,7 +12,7 @@
 			m_nOrientationType = 2
 			m_nScaleCP1 = 0
 			m_nScaleCP2 = 1
-			m_flScaleVSizeByControlPointDistance = 1.0
+			m_flScaleVSizeByControlPointDistance = 2.0
 			m_hTexture = resource:"materials/particle/targeting/line_base.vtex"
 			m_flTextureVWorldSize = 0.0
 			m_bDisableZBuffering = true
@@ -33,6 +33,7 @@
 				m_nStartControlPointNumber = 1
 				m_nBulgeControl = 1
 				m_flBulge = 0.5
+				m_flMidPoint = 0.2
 			}
 			m_bUseParticleCount = true
 		},

@@ -2,6 +2,7 @@ ProjectilePudgeQ = ProjectilePudgeQ or class({}, nil, Projectile)
 
 function ProjectilePudgeQ:constructor(round, hero, target, ability)
 	getbase(ProjectilePudgeQ).constructor(self, round, {
+        ability = ability,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 64),
         to = target + Vector(0, 0, 64),
@@ -38,6 +39,21 @@ end
 
 function ProjectilePudgeQ:CollideWith(target)
     local ally = target.owner.team == self.hero.owner.team
+
+    if instanceof(target, Obstacle) and self.goingBack then
+        return
+    end
+
+    local blocked = target:AllowAbilityEffect(self, self.ability) == false
+
+    if blocked then
+        if not self.goingBack then
+            self:RetractHook()
+        end
+
+        self.goingBack = true
+        return
+    end
 
     if not ally then
         target:Damage(self, self.ability:GetDamage())

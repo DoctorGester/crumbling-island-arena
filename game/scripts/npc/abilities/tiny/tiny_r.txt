@@ -1,0 +1,14 @@
+"DOTAAbilities" {
+	"tiny_r" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tiny/tiny_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "tiny_grow"
+		"AbilityCooldown" "12.0"
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_tiny/tiny_transform.vpcf"
+		}
+	}
+}

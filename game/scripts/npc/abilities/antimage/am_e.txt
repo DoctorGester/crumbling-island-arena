@@ -1,0 +1,21 @@
+"DOTAAbilities" {
+	"am_e" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/am/am_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "antimage_blink"
+		"AbilityCooldown" "4.5"
+		"Damage" "2"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "450"
+			"MaxLength" "450"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "450"
+		}
+	}
+}

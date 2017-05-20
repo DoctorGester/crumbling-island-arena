@@ -1,4 +1,4 @@
-JuggerWard = JuggerWard or class({}, nil, BreakableEntity)
+JuggerWard = JuggerWard or class({}, nil, UnitEntity)
 
 function JuggerWard:constructor(round, owner, target, ability)
     getbase(JuggerWard).constructor(self, round, "jugger_ward", target, owner.unit:GetTeamNumber())
@@ -20,6 +20,7 @@ function JuggerWard:constructor(round, owner, target, ability)
     self:EmitSound("Arena.Jugger.CastW")
     self:EmitSound("Arena.Jugger.LoopW")
 
+    self:AddComponent(HealthComponent())
     self:SetCustomHealth(2)
     self:EnableHealthBar()
 

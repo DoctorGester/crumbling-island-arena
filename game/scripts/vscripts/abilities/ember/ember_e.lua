@@ -11,9 +11,10 @@ function ember_e:OnSpellStart()
         modifier = { name = "modifier_ember_e", ability = self },
         forceFacing = true,
         hitParams = {
+            ability = self,
             action = function(target)
                 if EmberUtil.Burn(hero, target, self) then
-                    target:Damage(hero, self:GetDamage())
+                    target:AddNewModifier(hero, self, "modifier_stunned_lua", { duration = 1.0 })
                 end
             end
         }
@@ -25,3 +26,9 @@ end
 function ember_e:GetCastAnimation()
     return 0
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(ember_e)

@@ -20,3 +20,9 @@ function ursa_r:OnSpellStart()
 
     ScreenShake(hero:GetPos(), 5, 150, 0.45, 3000, 0, true)
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(ursa_r)

@@ -27,6 +27,7 @@ function Projectile:constructor(round, params)
     self.hitSound = params.hitSound
     self.hitFunction = params.hitFunction
     self.hitCondition = params.hitCondition
+    self.nonBlockedHitAction = params.nonBlockedHitAction
     self.destroyFunction = params.destroyFunction
     self.continueOnHit = params.continueOnHit or false
     self.gracePeriod = params.gracePeriod or 30
@@ -38,7 +39,10 @@ function Projectile:constructor(round, params)
     self.isPhysical = params.isPhysical
     self.screenShake = params.screenShake
     self.hitProjectiles = params.hitProjectiles
+    self.ignoreProjectiles = params.ignoreProjectiles
     self.considersGround = params.considersGround
+    self.ability = params.ability
+    self.knockback = params.knockback
 
     if self.destroyOnDamage == nil then
        self.destroyOnDamage = true 
@@ -83,6 +87,7 @@ function Projectile:FindClearSpace(position, force)
 end
 
 function Projectile:Deflect(by, direction)
+    direction.z = 0
     self.vel = direction:Normalized()
     self.owner = by.owner
 
@@ -116,10 +121,6 @@ function Projectile:Update()
         self:Destroy()
         return
     end
-    
-    for target, time in pairs(self.hitGroup) do
-        self.hitGroup[target] = time - 1
-    end
 
     self:SetPos(self:GetNextPosition(pos))
 
@@ -134,31 +135,59 @@ function Projectile:CollidesWith(target)
     local areEnemies = (self.owner.team ~= target.owner.team or target.specialAlly)
 
     if instanceof(target, Projectile) then
-        return ((self.isPhysical and target.isPhysical) or (self.hitProjectiles or target.hitProjectiles)) and areEnemies
+        local anyHitProjectiles = (self.hitProjectiles or target.hitProjectiles)
+        local anyIgnoreProjectiles = (self.ignoreProjectiles or target.ignoreProjectiles)
+
+        return ((IsAttackAbility(self.ability) and IsAttackAbility(target.ability)) or anyHitProjectiles and not anyIgnoreProjectiles) and areEnemies
     else
         return areEnemies
     end
 end
 
 function Projectile:CollideWith(target)
-    if self.hitGroup[target] and self.hitGroup[target] > 0 then
+    if self.hitGroup[target] then
         return
     end
 
     local invulnerableTarget = target:IsInvulnerable()
 
-    if self.hitFunction then
-        self:hitFunction(target)
-    elseif self.damage ~= nil then
-        target:Damage(self.hero, self.damage, self.isPhysical)
-    end
-    
-    if self.hitSound then
-        target:EmitSound(self.hitSound)
+    local blocked = self.ability and target:AllowAbilityEffect(self, self.ability) == false
+
+    if instanceof(target, Obstacle) then
+        target:Push(self.vel)
     end
 
-    if self.hitModifier then
-        target:AddNewModifier(self.hero, self.hitModifier.ability, self.hitModifier.name, { duration = self.hitModifier.duration })
+    if not blocked then
+        if self.hitFunction then
+            self:hitFunction(target)
+        elseif self.damage ~= nil then
+            target:Damage(self, self.damage, self.isPhysical)
+        end
+
+        if self.knockback then
+            local direction = self.knockback.direction and self.knockback.direction(target) or self.vel
+            local force = self.knockback.force
+
+            if type(force) == "function" then
+                force = force(target)
+            end
+
+            SoftKnockback(target, self, direction, force or 20, {
+                decrease = self.knockback.decrease
+            })
+        end
+
+        if self.hitModifier then
+            target:AddNewModifier(self.hero, self.hitModifier.ability, self.hitModifier.name, { duration = self.hitModifier.duration })
+        end
+    end
+
+    if self.nonBlockedHitAction then
+        self:nonBlockedHitAction(target, blocked)
+    end
+
+    if self.hitSound then
+        target:EmitSound(self.hitSound)
     end
 
     if self.screenShake then
@@ -166,7 +195,7 @@ function Projectile:CollideWith(target)
     end
 
     if self.continueOnHit then
-        self.hitGroup[target] = self.gracePeriod
+        self.hitGroup[target] = true
     elseif not instanceof(target, Projectile) and not invulnerableTarget then
         self:Destroy()
     end
@@ -201,6 +230,11 @@ end
 
 function Projectile:SetSpeed(speed)
     self.speed = speed
+end
+
+function Projectile:SetModel(mdl)
+    self:GetUnit():SetModel(mdl)
+    self:GetUnit():SetOriginalModel(mdl)
 end
 
 function Projectile:SetGraphics(graphics)
@@ -285,6 +319,8 @@ function PointTargetProjectile:Update()
 end
 
 function PointTargetProjectile:Deflect(by, direction)
+    direction.z = 0
+
     local len = (self.target - self:GetPos()):Length2D()
     self.target = self:GetPos() + direction:Normalized() * len
     self.owner = by.owner

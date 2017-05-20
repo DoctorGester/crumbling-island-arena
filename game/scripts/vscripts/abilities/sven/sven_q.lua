@@ -10,6 +10,7 @@ function sven_q:OnSpellStart()
     end
 
     DistanceCappedProjectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 128),
         to = target + Vector(0, 0, 128),
@@ -18,6 +19,7 @@ function sven_q:OnSpellStart()
         distance = 700,
         destroyFunction = function(projectile)
             projectile:AreaEffect({
+                ability = self,
                 filter = Filters.Area(projectile:GetPos(), 275),
                 damage = self:GetDamage(),
                 modifier = { name = "modifier_stunned_lua", duration = 0.6, ability = self },
@@ -42,3 +44,9 @@ end
 function sven_q:GetPlaybackRateOverride()
     return 1.66
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(sven_q)

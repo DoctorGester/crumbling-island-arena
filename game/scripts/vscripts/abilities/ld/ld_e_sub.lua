@@ -9,3 +9,9 @@ function ld_e_sub:OnSpellStart()
     hero:AddNewModifier(hero, self, "modifier_ld_e_sub", { duration = 4.5 })
     hero:EmitSound("Arena.LD.CastESub")
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(ld_e_sub)

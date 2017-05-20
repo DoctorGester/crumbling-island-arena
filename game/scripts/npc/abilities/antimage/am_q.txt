@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"am_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/am/am_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "antimage_mana_break"
+		"AbilityCooldown" "5.0"
+		"AbilityCastPoint" "0.2"
+		"Damage" "2"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_ANTIMAGE_Q"
+			"MinLength" "500"
+			"MaxLength" "1500"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1500"
+		}
+	}
+}

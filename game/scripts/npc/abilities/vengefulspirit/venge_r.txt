@@ -1,0 +1,27 @@
+"DOTAAbilities" {
+	"venge_r" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/venge/venge_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "vengefulspirit_command_aura"
+		"AbilityCooldown" "20"
+		"AbilityCastRange" "1000"
+		"AbilityCastPoint" "0.15"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "550"
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1000"
+		}
+
+		"precache" {
+			"particle" "particles/venge_r/venge_r_counter.vpcf"
+		}
+	}
+}

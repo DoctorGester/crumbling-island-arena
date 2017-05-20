@@ -10,3 +10,9 @@ function sven_r:OnSpellStart()
     hero:FindAbility("sven_w"):EndCooldown()
     hero:FindAbility("sven_e"):EndCooldown()
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(sven_r)

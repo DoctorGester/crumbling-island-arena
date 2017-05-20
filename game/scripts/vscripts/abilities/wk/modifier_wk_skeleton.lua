@@ -7,7 +7,6 @@ function modifier_wk_skeleton:CheckState()
         [MODIFIER_STATE_UNSELECTABLE] = true,
         [MODIFIER_STATE_DISARMED] = true,
         [MODIFIER_STATE_BLIND] = true,
-        [MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true
     }
 
     return state

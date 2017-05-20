@@ -17,6 +17,7 @@ function tusk_e:OnSpellStart()
         forceFacing = true,
         modifier = { name = "modifier_tusk_e", ability = self },
         hitParams = {
+            ability = self,
             modifier = { name = "modifier_stunned_lua", ability = self, duration = 1.2 },
             sound = "Arena.Tusk.HitE"
         },
@@ -34,3 +35,9 @@ end
 function tusk_e:GetPlaybackRateOverride()
     return 2
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(tusk_e)

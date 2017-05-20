@@ -1,0 +1,27 @@
+"DOTAAbilities" {
+	"sk_w" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/sk/sk_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "earthshaker_aftershock_egset"
+		"AbilityCooldown" "8.0"
+		"AbilityCastPoint" "0.1"
+		"Damage" "3"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_THICK_LINE"
+			"MinLength" "2000"
+			"MaxLength" "2000"
+			"Width" "120"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "2000"
+		}
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_sandking/sandking_burrowstrike_eruption.vpcf"
+		}
+	}
+}

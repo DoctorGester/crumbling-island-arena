@@ -24,6 +24,7 @@ function invoker_q:OnSpellStart()
             realTarget = target - Vector(0, 0, MAP_HEIGHT / 2)
         else
             hero:AreaEffect({
+                ability = self,
                 filter = Filters.Area(target, 200),
                 filterProjectiles = true,
                 action = function(victim)
@@ -44,5 +45,11 @@ function invoker_q:OnSpellStart()
 end
 
 function invoker_q:GetCastAnimation()
-    return ACT_DOTA_CAST_ABILITY_1
+    return ACT_DOTA_CAST_ALACRITY
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(invoker_q)

@@ -25,6 +25,7 @@ if IsServer() then
             self.timePassed = self.timePassed % 0.15
 
             DistanceCappedProjectile(hero.round, {
+                ability = self,
                 owner = hero,
                 from = hero:GetPos() + Vector(0, 0, 128),
                 to = target + Vector(0, 0, 128),
@@ -32,15 +33,14 @@ if IsServer() then
                 graphics = "particles/gyro_r/gyro_r.vpcf",
                 distance = 1500,
                 hitSound = "Arena.Gyro.HitR",
-                hitFunction = function(projectile, victim)
-                    FX("particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_guided_missile_explosion.vpcf", PATTACH_ABSORIGIN, victim, {
+                nonBlockedHitAction = function(projectile, victim)
+                    FX("particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_guided_missile_explosion.vpcf", PATTACH_ABSORIGIN, projectile, {
                         cp0 = projectile:GetPos(),
                         release = true
                     })
-
-                    ScreenShake(projectile:GetPos(), 5, 150, 0.25, 1500, 0, true)
-                    SoftKnockback(victim, hero, projectile.vel, 50, {})
-                end
+                end,
+                screenShake = { 5, 150, 0.25, 1500, 0, true },
+                knockback = { force = 50 }
             }):Activate()
 
             SoftKnockback(hero, hero, (hero:GetPos() - target):Normalized(), 10, { decrease = 4 })
@@ -59,3 +59,9 @@ end
 if IsServer() then
     Wrappers.GuidedAbility(self, true)
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(gyro_r)

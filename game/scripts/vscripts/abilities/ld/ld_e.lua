@@ -20,3 +20,9 @@ end
 function ld_e:GetPlaybackRateOverride()
     return 2
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(ld_e)

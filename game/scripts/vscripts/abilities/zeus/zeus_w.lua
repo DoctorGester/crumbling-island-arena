@@ -26,6 +26,15 @@ function zeus_w:GetCastAnimation()
     return ACT_DOTA_ATTACK2
 end
 
+function zeus_w:GetPlaybackRateOverride()
+    return 2.0
+end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(zeus_w)
 
 _G["EntityZeusW"] = EntityZeusW or class({}, nil, DynamicEntity)
 

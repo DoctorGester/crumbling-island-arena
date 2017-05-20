@@ -4,12 +4,19 @@ require('lib/vector_target')
 require('lib/statcollection')
 require('targeting_indicator')
 require('util')
+require('quat')
 require('stats')
+
+require('ecs/system')
+require('ecs/components')
+require('ecs/health_system')
+require('ecs/wearable_system')
+require('ecs/player_circle_system')
+require('ecs/expiration_system')
 
 require('dynamic_entity')
 require('unit_entity')
-require('breakable_entity')
-require('wearable_owner')
+require('obstacle')
 require('timed_entity')
 require('hero')
 require('player')
@@ -34,7 +41,7 @@ require('statistics')
 require('chat')
 require('debug_util')
 
-_G.GAME_VERSION = "2.0"
+_G.GAME_VERSION = "2.2"
 _G.STATE_NONE = 0
 _G.STATE_GAME_SETUP = 1
 _G.STATE_HERO_SELECTION = 2
@@ -53,6 +60,31 @@ DUMMY_HERO = "npc_dota_hero_wisp"
 if GameMode == nil then
     GameMode = class({})
 end
+
+function RegisterAnimations()
+    local function Reg(hname)
+        RegisterCustomAnimationScriptForModel(
+            string.format("models/heroes/%s/%s.vmdl", hname, hname),
+            string.format("animation/%s.lua", hname)
+        )
+    end
+
+    Reg("antimage")
+    Reg("crystal_maiden")
+    Reg("ember_spirit")
+    Reg("invoker")
+    Reg("lanaya")
+    Reg("legion_commander")
+    Reg("medusa")
+    Reg("omniknight")
+    Reg("phantom_lancer")
+    Reg("pudge")
+    Reg("sand_king")
+    Reg("sven")
+    Reg("wraith_king")
+end
+
+RegisterAnimations()
 
 function Precache(context)
     print("Precaching code particles")
@@ -83,6 +115,8 @@ function Precache(context)
 
     print("Precaching cosmetic models")
 
+    local proxyComponent = WearableComponent()
+
     for _, data in pairs(heroes) do
         PrecacheUnitByNameSync(data.override_hero, context)
 
@@ -92,7 +126,7 @@ function Precache(context)
                 GetName = function() return data.override_hero end
             }
 
-            for _, item in pairs(WearableOwner.FindDefaultItems(wearableOwnerProxy)) do
+            for _, item in pairs(proxyComponent.FindDefaultItems(wearableOwnerProxy)) do
                 table.insert(allItems, item)
             end
 
@@ -103,7 +137,7 @@ function Precache(context)
                 for _, entry in pairs(cosmetics) do
                     if type(entry) == "table" then
                         if entry.set then
-                            for _, item in pairs(WearableOwner.FindSetItems(nil, entry.set) or {}) do
+                            for _, item in pairs(proxyComponent.FindSetItems(nil, entry.set) or {}) do
                                 table.insert(allItems, item)
                             end
                         end
@@ -225,14 +259,10 @@ function GameMode:EventPlayerConnected(args)
         return
     end
 
-    if GameRules:State_Get() >= DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-        if string.len(PlayerResource:GetSelectedHeroName(id)) == 0 then
-            CreateHeroForPlayer(DUMMY_HERO, playerEntity)
-        end
+    if string.len(PlayerResource:GetSelectedHeroName(id)) == 0 then
+        UTIL_Remove(CreateHeroForPlayer(DUMMY_HERO, playerEntity))
     end
 
-    self:EnsurePlayersHaveControllers()
-    
     local userID = args.userid
 
     self.Users = self.Users or {}
@@ -253,20 +283,6 @@ function GameMode:EventPlayerConnected(args)
     end
 end
 
-function GameMode:EnsurePlayersHaveControllers()
-    Timers:CreateTimer(5, function()
-        if GameRules:State_Get() >= DOTA_GAMERULES_STATE_GAME_IN_PROGRESS then
-            for _, player in pairs(self.Players) do
-                local playerEntity = PlayerResource:GetPlayer(player.id)
-
-                if playerEntity and IsValidEntity(playerEntity) and string.len(PlayerResource:GetSelectedHeroName(player.id)) == 0 then
-                    CreateHeroForPlayer(DUMMY_HERO, playerEntity)
-                end
-            end
-        end
-    end)
-end
-
 function GameMode:EventPlayerReconnected(args)
     print("Player reconnected")
     PrintTable(args)
@@ -274,8 +290,6 @@ function GameMode:EventPlayerReconnected(args)
     if self.HeroSelection then
         self.HeroSelection:UpdateSelectedHeroes()
     end
-
-    self:EnsurePlayersHaveControllers()
 end
 
 function GameMode:EventPlayerDisconnected(args)
@@ -442,8 +456,14 @@ function GameMode:FilterExecuteOrder(filterTable)
     local orderType = filterTable.order_type
     local index = 0
     local filteredUnits = {}
+
+    if filterTable.queue == 1 then
+        return true
+    end
+
     for _, unitIndex in pairs(filterTable.units) do
         local unit = EntIndexToHScript(unitIndex)
+        local skip = 0
 
         -- Yes, that happened
         if unit ~= nil then
@@ -455,15 +475,46 @@ function GameMode:FilterExecuteOrder(filterTable)
                 self.lastOrders[unit] = Vector(filterTable.position_x, filterTable.position_y)
             end
 
-            if orderType == DOTA_UNIT_ORDER_CAST_POSITION and self.lastOrders[unit] then
+            if filterTable.entindex_ability > 0 then
                 local ability = EntIndexToHScript(filterTable.entindex_ability)
+                local im = DOTA_ABILITY_BEHAVIOR_IMMEDIATE
 
-                if ability:IsCooldownReady() and not ability:IsInAbilityPhase() and ability:GetName():ends("_a") then
+                if bit.band(ability:GetBehavior(), im) == im and IsFullyCastable(ability) then
+                    local all = FindUnitsInRadius(
+                        0,
+                        Vector(),
+                        nil,
+                        FIND_UNITS_EVERYWHERE,
+                        DOTA_UNIT_TARGET_TEAM_BOTH,
+                        DOTA_UNIT_TARGET_ALL,
+                        DOTA_UNIT_TARGET_FLAG_NONE,
+                        FIND_ANY_ORDER,
+                        false
+                    )
+
+                    for _, foundUnit in ipairs(all) do
+                        for _, modifier in ipairs(foundUnit:FindAllModifiers()) do
+                            if modifier.OnAbilityImmediate then
+                                modifier:OnAbilityImmediate({
+                                    unit = unit,
+                                    ability = ability
+                                })
+                            end
+                        end
+                    end
+                end
+
+                if IsAttackAbility(ability) and
+                        orderType == DOTA_UNIT_ORDER_CAST_POSITION and
+                        self.lastOrders[unit] and
+                        ability:IsCooldownReady() and
+                        not ability:IsInAbilityPhase()
+                then
                     --if unit:IsMoving() then
                         Timers:CreateTimer(0.1, function()
                             if IsValidEntity(unit) then
                                 ExecuteOrderFromTable({
-                                    UnitIndex = unitIndex, 
+                                    UnitIndex = unitIndex,
                                     OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
                                     Position = self.lastOrders[unit],
                                     Queue = true
@@ -488,14 +539,15 @@ function GameMode:FilterExecuteOrder(filterTable)
             if orderType == DOTA_UNIT_ORDER_CAST_TOGGLE then
                 local ability = EntIndexToHScript(filterTable.entindex_ability)
 
-                if ability:IsCooldownReady() then
-                    filteredUnits[index] = unitIndex
-
-                    index = index + 1
-                else
+                if not ability:IsCooldownReady() then
+                    skip = skip + 1
                     CustomGameEventManager:Send_ServerToPlayer(PlayerResource:GetPlayer(filterTable.issuer_player_id_const), "cooldown_error", {})
                 end
-            elseif not unit:IsChanneling() or currentChanneling == "taunt_static" or orderType == DOTA_UNIT_ORDER_STOP or orderType == DOTA_UNIT_ORDER_HOLD_POSITION then
+            elseif unit:IsChanneling() and currentChanneling ~= "taunt_static" and orderType ~= DOTA_UNIT_ORDER_STOP and orderType ~= DOTA_UNIT_ORDER_HOLD_POSITION then
+                skip = skip + 1
+            end
+
+            if skip == 0 then
                 filteredUnits[index] = unitIndex
 
                 index = index + 1
@@ -543,11 +595,15 @@ function GameMode:InitModifiers()
     LinkLuaModifier("modifier_creep", "abilities/modifier_creep", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_preview", "abilities/modifier_preview", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_damaged", "abilities/modifier_damaged", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_launched", "abilities/modifier_launched", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_wearable_visuals", "abilities/modifier_wearable_visuals", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_wearable_visuals_status_fx", "abilities/modifier_wearable_visuals", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_wearable_visuals_hero_fx", "abilities/modifier_wearable_visuals", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_wearable_visuals_activity", "abilities/modifier_wearable_visuals", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_attack_speed", "abilities/modifier_attack_speed", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_custom_healthbar", "abilities/modifier_custom_healthbar", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_player_id", "abilities/modifier_player_id", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_obstacle", "abilities/modifier_obstacle", LUA_MODIFIER_MOTION_NONE)
 end
 
 function GameMode:SetupMode()
@@ -858,6 +914,17 @@ function GameMode:OnRoundEnd(round)
         end
     end
 
+    -- Overriding everything
+    if self:IsDuel() then
+        for _, player in pairs(self.Players) do
+            if player.team == winner then
+                self.scoreEarned[player] = 1
+            else
+                self.scoreEarned[player] = 0
+            end
+        end
+    end
+
     if self:CountHeroes() > 3 then
         if self.firstBloodBy then
             local firstBloodPlayer = self.firstBloodBy.owner
@@ -1032,6 +1099,7 @@ function GameMode:OnHeroSelectionEnd()
         end
     )
     self.round:CreateHeroes(self.gameSetup:GetSpawnPoints())
+    self.round:SpawnObstacles()
     self.firstBloodBy = nil
     self:SetState(STATE_ROUND_IN_PROGRESS)
     self:UpdateGameInfo()
@@ -1138,6 +1206,10 @@ end
 
 function GameMode:IsDeathMatch()
     return self.gameSetup:GetSelectedMode() == "dm"
+end
+
+function GameMode:IsDuel()
+    return not self:IsDeathMatch() and PlayerResource:GetPlayerCount() == 2
 end
 
 -- A replica of server-side function
@@ -1351,6 +1423,11 @@ function GameMode:LoadCustomHeroes()
             for i = 0, 10 do
                 local abilityName = data["Ability"..tostring(i)]
                 if abilityName and #abilityName ~= 0 and not abilityName:starts("placeholder") then
+
+                    if not customAbilities[abilityName] then
+                        print("Ability not found "..abilityName)
+                    end
+
                     local ability = {}
                     ability.name = abilityName
                     ability.texture = customAbilities[ability.name].AbilityTextureName
@@ -1521,6 +1598,8 @@ function GameMode:Start()
 
     if self:IsDeathMatch() then
         self.gameGoal = PlayerResource:GetPlayerCount() * 3
+    elseif self:IsDuel() then
+        self.gameGoal = 4
     else
         self.gameGoal = PlayerResource:GetPlayerCount() * 6 * self.gameSetup:GetPlayersInTeam()
     end
@@ -1570,6 +1649,7 @@ if IsInToolsMode() then
     GameMode.InitModifiers()
     GameRules.GameMode:LoadCustomHeroes()
     GameRules.GameMode:UpdateAvailableHeroesTable()
+    GameRules.GameMode:NetworkCosmetics()
 
     GameRules:GetGameModeEntity():SetExecuteOrderFilter(Dynamic_Wrap(GameMode, "FilterExecuteOrder"), GameRules.GameMode)
 end

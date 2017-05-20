@@ -72,6 +72,8 @@ function Level:UpdatePolyPointCluster(polygon, oldX, oldY, newX, newY)
 end
 
 function Level:AssociatePieces()
+    local function filter(p) return not p.part end
+
     for _, part in pairs(self.parts) do
         local found = nil
 
@@ -82,10 +84,10 @@ function Level:AssociatePieces()
             end
         end
         
-        local poly = self:GetClosestPolygonAt(part.x, part.y, true)
+        local poly = self:GetClosestPolygonAt(part.x, part.y, true, filter)
 
         if not poly then
-            poly = self:GetClosestPolygonAt(part.x, part.y, false)
+            poly = self:GetClosestPolygonAt(part.x, part.y, false, filter)
         end
 
         if poly then
@@ -109,7 +111,7 @@ end
 function Level:GetPartAt(x, y)
     local polygon = self:GetPolygonAt(x, y)
 
-    if polygon and polygon.part.z > -1000 then
+    if polygon and not polygon.part.launched then
         return polygon.part
     end
 end
@@ -118,12 +120,12 @@ function Level:DistanceToPolygon(x, y, poly)
     return (Vector(x, y, 0) - Vector(poly.originX, poly.originY, 0)):Length2D()
 end
 
-function Level:GetClosestPolygonAt(x, y, checkContains)
+function Level:GetClosestPolygonAt(x, y, checkContains, filter)
     local closest = nil
     local minDist = math.huge
 
     for _, polygon in ipairs(self.polygons) do
-        if not polygon.part and (not checkContains or polygon:contains(x, y)) then
+        if (not filter or filter(polygon)) and (not checkContains or polygon:contains(x, y)) then
             local distance = self:DistanceToPolygon(x, y, polygon)
 
             if distance < minDist then
@@ -217,7 +219,7 @@ function Level:FindCirclePartIntersection(x, y, rad)
 
     for cluster, _ in pairs(clusters) do
         for polygon, _ in pairs(cluster) do
-            if polygon.part.z > -1000 and (polygon:contains(x, y) or polygon:intersectsCircle(x, y, rad)) then
+            if not polygon.part.launched and (polygon:contains(x, y) or polygon:intersectsCircle(x, y, rad)) then
                 --self:DebugPolygon(polygon, 0.1)
 
                 if not result then

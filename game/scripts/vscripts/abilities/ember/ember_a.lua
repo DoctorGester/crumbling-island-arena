@@ -17,6 +17,7 @@ function ember_a:OnSpellStart()
     local damage = self:GetDamage()
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Cone(pos, range, forward, math.pi),
         sound = "Arena.Ember.HitA",
         action = function(target)

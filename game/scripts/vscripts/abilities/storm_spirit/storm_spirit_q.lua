@@ -13,6 +13,7 @@ function storm_spirit_q:OnSpellStart()
     hero:AddNewModifier(hero, hero:FindAbility("storm_spirit_a"), "modifier_storm_spirit_a", { duration = 5 })
 
     PointTargetProjectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos(),
         to = target,
@@ -33,3 +34,13 @@ end
 function storm_spirit_q:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_2
 end
+
+function storm_spirit_q:GetPlaybackRateOverride()
+    return 2.0
+end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(storm_spirit_q)

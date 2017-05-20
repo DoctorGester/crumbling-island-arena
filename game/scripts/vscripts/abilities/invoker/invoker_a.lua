@@ -10,6 +10,7 @@ function invoker_a:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
     local p = DistanceCappedProjectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 128),
         to = target + Vector(0, 0, 128),
@@ -18,8 +19,7 @@ function invoker_a:OnSpellStart()
         radius = 48,
         graphics = "particles/invoker_a/invoker_a.vpcf",
         distance = 800,
-        hitSound = "Arena.Invoker.HitA",
-        isPhysical = true
+        hitSound = "Arena.Invoker.HitA"
     }):Activate()
 
     ParticleManager:SetParticleControl(p.particle, 9, hero:GetPos() + Vector(0, 0, 64))

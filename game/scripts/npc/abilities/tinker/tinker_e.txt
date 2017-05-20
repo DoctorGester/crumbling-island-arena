@@ -1,0 +1,10 @@
+"DOTAAbilities" {
+	"tinker_e" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tinker/tinker_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "tinker_march_of_the_machines"
+		"AbilityCooldown" "8.0"
+		"AbilityCastPoint" "0.2"
+	}
+}

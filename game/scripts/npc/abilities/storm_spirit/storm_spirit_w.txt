@@ -1,0 +1,20 @@
+"DOTAAbilities" {
+	"storm_spirit_w" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/storm_spirit/storm_spirit_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "storm_spirit_electric_vortex"
+		"AbilityCooldown" "5.0"
+		"AbilityCastPoint" "0.1"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "600"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "600"
+		}
+	}
+}

@@ -15,4 +15,11 @@ function slark_r:OnSpellStart()
 
     hero:GetUnit():Purge(false, true, false, false, false)
     hero:EmitSound("Arena.Slark.CastR")
+    hero:EmitSound("Arena.Slark.CastR.Voice")
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(slark_r)

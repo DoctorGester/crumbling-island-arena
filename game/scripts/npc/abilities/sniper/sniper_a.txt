@@ -1,0 +1,19 @@
+"DOTAAbilities" {
+	"sniper_a" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/sniper/sniper_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "sniper_assassinate"
+		"AbilityCooldown" "0.6"
+		"AbilityCastPoint" "0.5"
+		"Damage" "2"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_DIRECTION_GLOBAL"
+		}
+
+		"precache" {
+			"particle" "particles/sniper_q/sniper_q.vpcf"
+		}
+	}
+}

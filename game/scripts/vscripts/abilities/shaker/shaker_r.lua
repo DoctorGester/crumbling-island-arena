@@ -61,7 +61,7 @@ function shaker_r:OnSpellStart()
 
                     if distance > currentLen and distance <= currentLen + speed then
                         if part.health <= 50 then
-                            GameRules.GameMode.level:LaunchPart(part, hero)
+                            GameRules.GameMode.level:LaunchPart(part, hero, start, len)
                         else 
                             offsets[part] = 7 + currentLen / len * RandomFloat(7, 25)
 
@@ -95,6 +95,7 @@ function shaker_r:OnSpellStart()
             )
 
             local hurt = hero:AreaEffect({
+                ability = self,
                 filter = Filters.Area(start, currentLen + speed) + -Filters.Area(start, currentLen) + groupFilter,
                 modifier = { name = "modifier_stunned_lua", duration = 1.2, ability = self },
                 action = function(target)
@@ -121,3 +122,9 @@ end
 function shaker_r:GetPlaybackRateOverride()
     return 1.2
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(shaker_r)

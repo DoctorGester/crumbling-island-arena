@@ -1,0 +1,9 @@
+"DOTAAbilities" {
+	"ursa_w" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ursa/ursa_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "ursa_fury_swipes"
+		"AbilityCooldown" "6.0"
+	}
+}

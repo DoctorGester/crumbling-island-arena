@@ -1,4 +1,4 @@
-EntityStormQ = EntityStormQ or class({}, nil, WearableOwner)
+EntityStormQ = EntityStormQ or class({}, nil, UnitEntity)
 
 function EntityStormQ:constructor(round, owner, position, facing, ability)
     getbase(EntityStormQ).constructor(self, round, owner:GetName(), position)
@@ -14,6 +14,8 @@ function EntityStormQ:constructor(round, owner, position, facing, ability)
     self:EmitSound("Arena.Storm.HitQ")
     self:SetFacing(facing)
 
+    self:AddComponent(WearableComponent())
+    self:AddComponent(PlayerCircleComponent(200, true, 0.5))
     self:LoadItems(unpack(owner:BuildWearableStack()))
 
     self.playerParticle = ParticleManager:CreateParticleForTeam(
@@ -22,6 +24,10 @@ function EntityStormQ:constructor(round, owner, position, facing, ability)
         self:GetUnit(),
         self.owner.team
     )
+end
+
+function EntityStormQ:TestFalling()
+    return Spells.TestCircle(self:GetPos(), 64)
 end
 
 function EntityStormQ:CollidesWith(target)
@@ -35,6 +41,7 @@ function EntityStormQ:Update()
         self:Destroy()
     elseif self.explosionStart ~= nil and GameRules:GetGameTime() - self.explosionStart > 1.0 then
         self.hero:AreaEffect({
+            ability = self.ability,
             filter = Filters.Area(self:GetPos(), 275),
             damage = self.ability:GetDamage()
         })

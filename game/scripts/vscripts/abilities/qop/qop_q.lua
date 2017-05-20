@@ -8,6 +8,7 @@ function qop_q:OnSpellStart()
     local hadCharges = hero:FindAbility("qop_r"):HasCharges(self)
 
     DistanceCappedProjectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 64),
         to = target + Vector(0, 0, 64),
@@ -31,3 +32,9 @@ end
 function qop_q:GetPlaybackRateOverride()
     return 1.5
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(qop_q)

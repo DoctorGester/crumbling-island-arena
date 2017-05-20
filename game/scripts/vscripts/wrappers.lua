@@ -87,7 +87,9 @@ function Wrappers.GuidedAbility(ability, forceFacing, doNotSetFacing)
     local onChannelFinish = ability.OnChannelFinish
 
     function ability:OnChannelFinish(interrupted)
-        CustomGameEventManager:UnregisterListener(self.listener)
+        if self.listener then
+            CustomGameEventManager:UnregisterListener(self.listener)
+        end
 
         if forceFacing then
             local caster = self:GetCaster()
@@ -189,6 +191,64 @@ function Wrappers.AttackAbility(ability, staticDurationOffset, fx)
 
             onSpellStart(self)
         end
+    end
+end
+
+function IsUnitSilenced(hero)
+    local silenceModifiers = {
+        "modifier_silence_lua",
+        "modifier_am_r",
+        "modifier_sven_w_slow",
+        "modifier_ogre_5",
+        "modifier_ogre_6"
+    }
+
+    for _, mod in ipairs(silenceModifiers) do
+        if hero:HasModifier(mod) then
+            return true
+        end
+    end
+
+    return false
+end
+
+function IsFullyCastable(ability)
+    return ability:IsFullyCastable() and not IsUnitSilenced(ability:GetCaster())
+end
+
+function Wrappers.NormalAbility(ability)
+    local getBehavior = ability.GetBehavior
+    local castFilterResult = ability.CastFilterResult or function() return UF_SUCCESS end
+    local castError = ability.GetCustomCastError or function() return "" end
+
+    ability.canBeSilenced = true
+
+    function ability:GetBehavior()
+        if IsUnitSilenced(self:GetCaster()) then
+            return DOTA_ABILITY_BEHAVIOR_NO_TARGET
+        end
+
+        if getBehavior then
+            return getBehavior(self)
+        end
+
+        return self.BaseClass.GetBehavior(self)
+    end
+
+    function ability:CastFilterResult()
+        if IsUnitSilenced(self:GetCaster()) then
+            return UF_FAIL_CUSTOM
+        end
+
+        return castFilterResult(self)
+    end
+
+    function ability:GetCustomCastError()
+        if IsUnitSilenced(self:GetCaster()) then
+            return "#dota_hud_error_unit_silenced"
+        end
+
+        return castError(self)
     end
 end
 

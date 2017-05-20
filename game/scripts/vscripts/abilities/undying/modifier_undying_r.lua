@@ -9,6 +9,10 @@ if IsServer() then
         hero:FindAbility("undying_w"):SetActivated(false)
         hero:FindAbility("undying_e"):SetActivated(false)
         hero:FindAbility("undying_r"):SetActivated(false)
+        hero:Animate(ACT_DOTA_SPAWN)
+
+        FX("particles/units/heroes/hero_undying/undying_fg_transform.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero, { release = true})
+        ScreenShake(hero:GetPos(), 5, 150, 0.45, 3000, 0, true)
     end
 
     function self:OnDestroy()
@@ -18,6 +22,9 @@ if IsServer() then
         hero:FindAbility("undying_w"):SetActivated(true)
         hero:FindAbility("undying_e"):SetActivated(true)
         hero:FindAbility("undying_r"):SetActivated(true)
+
+        FX("particles/units/heroes/hero_undying/undying_fg_transform_reverse.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero, { release = true})
+        ScreenShake(hero:GetPos(), 5, 150, 0.45, 3000, 0, true)
 
         local shield = hero:FindModifier("modifier_undying_q_health")
 
@@ -42,7 +49,11 @@ function self:GetModifierMoveSpeedOverride(params)
 end
 
 function self:GetModifierModelChange()
-    return "models/heroes/undying/undying_flesh_golem.vmdl"
+    if self:GetParent():GetParentEntity():IsAwardEnabled() then
+        return "models/undying_reward/golem.vmdl"
+    else
+        return "models/heroes/undying/undying_flesh_golem.vmdl"
+    end
 end
 
 function self:GetActivityTranslationModifiers()

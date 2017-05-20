@@ -7,15 +7,15 @@ function pa_q:OnSpellStart()
     local target = self:GetCursorPosition()
 
     DistanceCappedProjectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 64),
         to = target + Vector(0, 0, 64),
         speed = 1400,
         graphics = "particles/pa_w_sub/pa_w_sub.vpcf",
         distance = 900,
-        hitModifier = { name = "modifier_pa_q", duration = 1.0, ability = self },
-        hitSound = "Arena.PA.HitW.Sub",
-        damage = self:GetDamage()
+        hitModifier = { name = "modifier_pa_q", duration = 1.6, ability = self },
+        hitSound = "Arena.PA.HitW.Sub"
     }):Activate()
 
     hero:EmitSound("Arena.PA.CastW.Sub")
@@ -24,3 +24,9 @@ end
 function pa_q:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_1
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(pa_q)

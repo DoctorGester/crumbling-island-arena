@@ -5,7 +5,7 @@ function tiny_e:OnSpellStart()
     local target = self:GetCursorPosition()
     local radius = 250
     local duration = 4
-    local delay = 0.75
+    local delay = 0.6
     local mod = hero:FindModifier("modifier_tiny_r")
 
     if mod and not mod.used then
@@ -14,7 +14,7 @@ function tiny_e:OnSpellStart()
         mod:Use()
     end
 
-    CreateAOEMarker(hero, target, radius, delay, Vector(127, 106, 0))
+    CreateEntityAOEMarker(target, radius, delay + 0.1, { 127, 106, 0 }, 0, true)
 
     TimedEntity(delay,
         function()
@@ -63,3 +63,9 @@ function tiny_e:GetCastAnimation()
 
     return ACT_TINY_AVALANCHE
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(tiny_e)

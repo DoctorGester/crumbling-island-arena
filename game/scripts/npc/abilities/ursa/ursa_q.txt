@@ -1,0 +1,16 @@
+"DOTAAbilities" {
+	"ursa_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ursa/ursa_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "ursa_earthshock"
+		"AbilityCooldown" "7.0"
+		"AbilityCastPoint" "0.15"
+		"Damage" "2"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "350"
+		}
+	}
+}

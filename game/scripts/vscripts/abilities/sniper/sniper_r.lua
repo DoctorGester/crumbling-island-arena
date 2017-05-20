@@ -13,3 +13,9 @@ function sniper_r:OnToggle()
         hero:EmitSound("Arena.Sniper.ToggleOffR")
     end
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(sniper_r)

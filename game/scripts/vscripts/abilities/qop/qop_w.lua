@@ -15,6 +15,7 @@ function qop_w:OnSpellStart()
     end
 
     hero:AreaEffect({
+        ability = self,
         onlyHeroes = true,
         filter = Filters.Cone(hero:GetPos(), 700, direction, math.pi / 2) + faceFilter,
         modifier = { name = "modifier_qop_w", duration = 1.5, ability = self }
@@ -32,3 +33,9 @@ end
 function qop_w:GetPlaybackRateOverride()
     return 1.5
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(qop_w)

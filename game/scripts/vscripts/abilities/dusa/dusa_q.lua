@@ -71,3 +71,9 @@ end
 function self:GetPlaybackRateOverride()
     return 2.0
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(dusa_q)

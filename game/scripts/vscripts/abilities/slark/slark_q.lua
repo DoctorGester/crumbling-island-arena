@@ -14,6 +14,7 @@ function slark_q:OnSpellStart()
     local target = self:GetCursorPosition()
 
     DistanceCappedProjectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 64),
         to = target + Vector(0, 0, 64),
@@ -25,7 +26,13 @@ function slark_q:OnSpellStart()
         hitSound = "Arena.Slark.HitE"
     }):Activate()
 
+    hero:GetWearableBySlot("weapon"):AddEffects(EF_NODRAW)
     hero:FindAbility("slark_a"):StartCooldown(2.0)
+
+    TimedEntity(2.0, function()
+        hero:FindAbility("slark_a"):SetActivated(true)
+        hero:GetWearableBySlot("weapon"):RemoveEffects(EF_NODRAW)
+    end):Activate()
 end
 
 function slark_q:GetCastAnimation()
@@ -35,3 +42,9 @@ end
 function slark_q:GetPlaybackRateOverride()
     return 3
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(slark_q)

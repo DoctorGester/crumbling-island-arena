@@ -8,6 +8,7 @@ function pa_w:OnSpellStart()
     ImmediateEffect(particle, PATTACH_ABSORIGIN_FOLLOW, hero)
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Area(hero:GetPos(), 300),
         action = function(victim)
             local direction = (victim:GetPos() - hero:GetPos()):Normalized()
@@ -30,3 +31,9 @@ end
 function pa_w:GetCastAnimation()
     return ACT_DOTA_ATTACK_EVENT
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(pa_w)

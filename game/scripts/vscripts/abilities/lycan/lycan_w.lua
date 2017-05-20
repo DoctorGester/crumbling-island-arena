@@ -32,6 +32,7 @@ function lycan_w:OnSpellStart()
         end
 
         hero:AreaEffect({
+            ability = self,
             filter = Filters.Area(target, 500),
             damage = self:GetDamage(),
             modifier = modifier,
@@ -45,3 +46,13 @@ end
 function lycan_w:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_1
 end
+
+function lycan_w:GetPlaybackRateOverride()
+    return 1.66
+end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(lycan_w)

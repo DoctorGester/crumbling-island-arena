@@ -2,83 +2,6 @@ var dummy = "npc_dota_hero_wisp";
 var heroBars = {};
 var heroes = null;
 
-var colors = {
-    2: [ 255, 82, 66 ],
-    3: [ 48, 168, 255 ] ,
-    6: [ 197, 77, 168 ],
-    7: [ 199, 228, 13 ],
-    8: [ 161, 127, 255 ],
-    9: [ 101, 212, 19 ]
-};
-
-var shieldModifiers = [
-    "modifier_gyro_w",
-    "modifier_lc_w_shield",
-    "modifier_undying_q_health"
-];
-
-var hideBarModifiers = [
-    "modifier_tusk_e",
-    "modifier_ember_e",
-    "modifier_hidden",
-    "modifier_omni_e",
-    "modifier_gyro_e",
-    "modifier_storm_spirit_e",
-    "modifier_ursa_e",
-    "modifier_ursa_r"
-];
-
-var etherealModifiers = [
-    "modifier_invoker_w"
-];
-
-var specialLayouts = {
-    "npc_dota_hero_ursa": "UrsaBar",
-    //"npc_dota_hero_juggernaut": "JuggBar",
-    "npc_dota_hero_undying": "UndyingBar"
-};
-
-var specialLayoutCallbacks = {};
-
-specialLayoutCallbacks.npc_dota_hero_ursa = function(entity, panel) {
-    var fury = FindModifier(entity.id, "modifier_ursa_fury");
-    var frenzy = FindModifier(entity.id, "modifier_ursa_frenzy");
-    var bar = panel.FindChildTraverse("UrsaRage");
-
-    panel.FindChildTraverse("UrsaRage_Left").SetHasClass("UrsaFrenzy", !!frenzy);
-
-    if (frenzy) {
-        bar.value = 100;
-    } else if (fury) {
-        bar.value = Buffs.GetStackCount(entity.id, fury);
-    }
-};
-
-specialLayoutCallbacks.npc_dota_hero_juggernaut = function(entity, panel) {
-
-};
-
-specialLayoutCallbacks.npc_dota_hero_undying = function(entity, panel) {
-    var shield = FindModifier(entity.id, "modifier_undying_q_health");
-    var bar = panel.FindChildTraverse("UndyingShield");
-
-    if (shield) {
-        bar.value = Math.round(Buffs.GetRemainingTime(entity.id, shield) / Buffs.GetDuration(entity.id, shield) * 100);
-    } else {
-        bar.value = 0;
-    }
-};
-
-function GetUnitOwner(unit) {
-    for (var i = 0; i < Players.GetMaxPlayers(); i++) {
-        if (Players.IsValidPlayerID(i) && Entities.IsControllableByPlayer(unit, i)) {
-            return i;
-        }
-    }
-
-    return null;
-}
-
 function darken(color, percent) {
     return [ color[0] * percent, color[1] * percent, color[2] * percent ];
 }
@@ -86,6 +9,8 @@ function darken(color, percent) {
 function clr(color) {
     return "rgb(" + color[0] + "," + color[1] + "," + color[2]+ ")";
 }
+
+$("#HeroBarsContainer").RemoveAndDeleteChildren();
 
 function UpdateHeroBars(){
     $.Schedule(1 / 120, UpdateHeroBars);
@@ -111,6 +36,8 @@ function UpdateHeroBars(){
         }
     }
 
+    mainPanel.SetHasClass("AltPressed", GameUI.IsAltDown());
+
     var onScreen = _
         .chain(all)
         .reject(function(entity) {
@@ -126,8 +53,20 @@ function UpdateHeroBars(){
 
             if (lightBar) {
                 offset = 150;
+
+                lightBar = {
+                    rem: GetRemainingModifierTime(entity, "modifier_custom_healthbar"),
+                    dur: GetModifierDuration(entity, "modifier_custom_healthbar")
+                }
             } else {
-                offset = heroes[Entities.GetUnitName(entity)].barOffset;
+                var nm = Entities.GetUnitName(entity);
+                offset = heroes[nm].barOffset;
+
+                var specialModifier = specialOffsetModifiers[nm];
+
+                if (specialModifier) {
+                    offset += (specialModifier(entity) || 0);
+                }
             }
 
             var x = Game.WorldToScreenX(abs[0], abs[1], abs[2] + offset);
@@ -149,10 +88,25 @@ function UpdateHeroBars(){
                 var shieldAmount = 0;
                 var hidden = false;
                 var ethereal = false;
+                var statusEffect;
+                var statusEffectPriority = 0;
+                var statusEffectTime = 0;
+                var statusEffectProgress;
+                var statusEffectRecast = false;
+                var statusEffectAbility;
+
+                var attackSpeedProgress;
+                var attackSpeedStacks;
 
                 for (var i = 0; i < Entities.GetNumBuffs(entity.id); i++) {
                     var buff = Entities.GetBuff(entity.id, i);
                     var name = Buffs.GetName(entity.id, buff);
+
+                    if (name == "modifier_attack_speed") {
+                        attackSpeedProgress = Buffs.GetRemainingTime(entity.id, buff) / Buffs.GetDuration(entity.id, buff);
+                        attackSpeedStacks = Buffs.GetStackCount(entity.id, buff);
+                        continue;
+                    }
 
                     if (shieldModifiers.indexOf(name) != -1){
                         shieldAmount += Buffs.GetStackCount(entity.id, buff);
@@ -164,6 +118,44 @@ function UpdateHeroBars(){
 
                     if (etherealModifiers.indexOf(name) != -1) {
                         ethereal = true;
+                    }
+
+                    var fx = statusEffects[name];
+                    var rc = recastModifiers.indexOf(name) != -1;
+
+                    if (rc && Entities.GetTeamNumber(entity.id) !== Players.GetTeam(Players.GetLocalPlayer())) {
+                        continue;
+                    }
+
+                    if (fx && fx.priority >= statusEffectPriority && Buffs.GetCreationTime(entity.id, buff) >= statusEffectTime) {
+                        var dur = Buffs.GetDuration(entity.id, buff);
+
+                        statusEffect = fx;
+                        statusEffectPriority = fx.priority;
+                        statusEffectTime = Buffs.GetCreationTime(entity.id, buff);
+                        statusEffectProgress = dur <= 0.15 ? 0 : Math.round(Buffs.GetRemainingTime(entity.id, buff) / dur * 100);
+                        statusEffectRecast = rc;
+                        statusEffectAbility = Buffs.GetAbility(entity.id, buff);
+                    }
+                }
+
+                if (panel.cached && panel.cached.attackTimer) {
+                    panel.cached.attackTimer.SetHasClass("TimerHidden", !attackSpeedProgress);
+
+                    if (attackSpeedProgress) {
+                        var pg = -Math.round(attackSpeedProgress * 360);
+                        panel.cached.attackTimer.style.clip = "radial(50% 50%, 0deg, " + pg + "deg)";
+                        panel.cached.attackTimer.SetHasClass("DangerZone", attackSpeedStacks == 3);
+                        panel.cached.attackTimer.SetHasClass("MaxReached", attackSpeedStacks == 4);
+                    }
+                }
+
+                for (var name of Object.keys(ultimateAbilities)) {
+                    var ability = Entities.GetAbilityByName(entity.id, name);
+
+                    if (ability && Abilities.GetChannelStartTime(ability) > 0) {
+                        statusEffect = ultimateAbilities[name];
+                        statusEffectProgress = Math.round(100 - (Game.GetGameTime() - Abilities.GetChannelStartTime(ability)) / Abilities.GetChannelTime(ability) * 100);
                     }
                 }
 
@@ -179,23 +171,14 @@ function UpdateHeroBars(){
                     panel.style.x = (Math.floor(entity.x) - 40) + "px";
                     panel.style.y = (Math.floor(entity.y) - 48) + "px";
 
-                    var team = Entities.GetTeamNumber(entity.id);
                     var bar = panel.FindChild("HealthBar");
                     bar.max = max;
                     bar.value = health;
+                    bar.SetHasClass("WithTransition", entity.light.dur <= 0);
+                    panel.SetHasClass("Expiring", entity.light.dur > 0 && entity.light.rem < 0.25);
                     panel.SetHasClass("Ethereal", ethereal);
                     panel.FindChild("HealthValue").SetHasClass("Low", health <= max / 2);
                     panel.FindChild("HealthValue").text = health.toString();
-
-                    if (team != DOTATeam_t.DOTA_TEAM_NOTEAM) {
-                        var teamColor = colors[team];
-                        panel.FindChildTraverse("HealthBar_Left").style.backgroundColor =
-                            "gradient(linear, 0% 0%, 0% 95%, from(" +
-                            clr(teamColor) +
-                            "), to(" +
-                            clr(darken(teamColor, 0.3)) +
-                            "));";
-                    }
 
                     return;
                 }
@@ -213,12 +196,59 @@ function UpdateHeroBars(){
                     pieceSize = 3;
                 }
 
-                var name = panel.FindChildTraverse("PlayerName");
-                name.text = Players.GetPlayerName(GetUnitOwner(entity.id));
-                name.style.color = clr(teamColor);
+                panel.style.x = (Math.floor(entity.x) - Math.round(Math.max(pieceSize * max, 140) / 2)) + "px";
+                panel.style.y = (Math.floor(entity.y) - 50) + "px";
+
+                var callback = specialLayoutCallbacks[Entities.GetUnitName(entity.id)];
+
+                if (callback) {
+                    callback(entity, panel);
+                }
 
                 bar.SetHasClass("Ethereal", ethereal);
                 panel.SetHasClass("NotVisible", hidden);
+
+                if (panel.cached.statusFx !== statusEffect) {
+                    panel.cached.statusFx = statusEffect;
+
+                    var top = panel.FindChildTraverse("StatusEffectContainer");
+                    var prog = top.FindChildTraverse("StatusEffectProgress");
+                    var recast = top.FindChildTraverse("StatusEffectRecast");
+
+                    if (statusEffect) {
+                        var name = top.FindChildTraverse("StatusEffectName");
+                        name.text = $.Localize(statusEffect.token).toUpperCase();
+                        name.style.color = statusEffect.color;
+                        prog.style.backgroundColor = statusEffect.color;
+
+                        if (statusEffectRecast) {
+                            recast.SetImage(GetTexture({
+                                texture: Abilities.GetAbilityTextureName(statusEffectAbility),
+                                name: Abilities.GetAbilityName(statusEffectAbility)
+                            }, customIcons));
+
+                            top.FindChildTraverse("RecastHotkey").text = Abilities.GetKeybind(statusEffectAbility);
+                        }
+                    } else {
+                        prog.style.width = "100px";
+                    }
+
+                    top.SetHasClass("RecastVisible", statusEffectRecast);
+                    recast.SetHasClass("Hidden", !statusEffectRecast);
+                    panel.SetHasClass("StatusEffect", !!statusEffect);
+                }
+
+                if (statusEffect) {
+                    panel.FindChildTraverse("StatusEffectProgress").style.width = statusEffectProgress + "px"
+                }
+
+                if (panel.cached.health === health && panel.cached.max === max && panel.cached.shieldAmount === shieldAmount) {
+                    return;
+                }
+
+                panel.cached.health = health;
+                panel.cached.max = max;
+                panel.cached.shieldAmount = shieldAmount;
 
                 var valueMaxColor = [ 142, 231, 45 ];
                 var valueLabel = panel.FindChildTraverse("HealthValue");
@@ -241,18 +271,6 @@ function UpdateHeroBars(){
                 $.Schedule(0, function() {
                     missing.style.width = ((max - health) * pieceSize).toString() + "px";
                 });
-
-                var bg = "gradient(linear, 0% 0%, 0% 95%, from(" +
-                    clr(darken(teamColor, 0.1)) +
-                    "), to(" +
-                    clr(darken(teamColor, 0.2)) +
-                    "));";
-
-                missing.style.backgroundColor = bg;
-                bar.style.backgroundColor = bg;
-
-                panel.style.x = (Math.floor(entity.x) - Math.round(pieceSize * max / 2)) + "px";
-                panel.style.y = (Math.floor(entity.y) - 70) + "px";
 
                 if (diff > 0) {
                     for (var i = 0; i < diff; i++) {
@@ -304,21 +322,50 @@ function UpdateHeroBars(){
                 for (var child of healthChildren.concat(shieldChildren)) {
                     child.style.width = pieceSize.toString() + "px";
                 }
-
-                var callback = specialLayoutCallbacks[Entities.GetUnitName(entity.id)];
-
-                if (callback) {
-                    callback(entity, panel);
-                }
             } else {
                 var panel = $.CreatePanel("Panel", mainPanel, "");
-                var layout = specialLayouts[Entities.GetUnitName(entity.id)];
+                var special = specialLayouts[Entities.GetUnitName(entity.id)];
 
-                if (!layout) {
-                    layout = entity.light ? "HealthBarLight" : "HealthBar";
+                panel.BLoadLayoutSnippet(entity.light ? "HealthBarLight" : "HealthBar");
+
+                if (special) {
+                    panel.FindChildTraverse("SpecialBar").BLoadLayoutSnippet(special);
+                    panel.FindChildTraverse("SpecialBar").SetHasClass("Hidden", false);
                 }
 
-                panel.BLoadLayoutSnippet(layout);
+                if (!entity.light) {
+                    panel.cached = {};
+
+                    var bar = panel.FindChildTraverse("HealthBar");
+                    var teamColor = colors[Entities.GetTeamNumber(entity.id)];
+                    var name = panel.FindChildTraverse("PlayerName");
+                    name.text = Players.GetPlayerName(GetPlayerOwnerID(entity.id));
+                    name.style.color = clr(teamColor);
+
+                    var missing = bar.FindChild("MissingHealth");
+                    var bg = "gradient(linear, 0% 0%, 0% 95%, from(" +
+                        clr(darken(teamColor, 0.1)) +
+                        "), to(" +
+                        clr(darken(teamColor, 0.2)) +
+                        "));";
+
+                    missing.style.backgroundColor = bg;
+                    bar.style.backgroundColor = bg;
+
+                    panel.cached.attackTimer = panel.FindChildTraverse("AttackTimer");
+                } else {
+                    var team = Entities.GetTeamNumber(entity.id);
+
+                    if (team != DOTATeam_t.DOTA_TEAM_NOTEAM) {
+                        var teamColor = colors[team];
+                        panel.FindChildTraverse("HealthBar_Left").style.backgroundColor =
+                            "gradient(linear, 0% 0%, 0% 95%, from(" +
+                            clr(teamColor) +
+                            "), to(" +
+                            clr(darken(teamColor, 0.3)) +
+                            "));";
+                    }
+                }
 
                 heroBars[entity.id] = panel;
             }

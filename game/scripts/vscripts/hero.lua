@@ -1,6 +1,4 @@
-if not Hero then
-    Hero = class({}, nil, WearableOwner)
-end
+Hero = Hero or class({}, nil, UnitEntity)
 
 function Hero:constructor(data)
     DynamicEntity.constructor(self, round) -- Intended
@@ -11,16 +9,15 @@ function Hero:constructor(data)
     self.collisionType = COLLISION_TYPE_RECEIVER
 
     self.soundsStarted = {}
-    self.wearables = {}
-    self.wearableParticles = {}
-    self.mappedParticles = {}
-    self.wearableSlots = {}
     self.mixins = {}
     self.lastKnockbackSource = nil
     self.lastKnockbackTimer = 0
     self.data = data
     self.wearableRemoveTimer = 0
     self.hideOnDeathTimer = 0
+
+    self:AddComponent(HealthComponent())
+    self:AddComponent(WearableComponent())
 end
 
 function Hero:AddMixin(mixin)
@@ -64,7 +61,7 @@ function Hero:Animate(gesture, rate)
     end
 end
 
-function Hero:BuildWearableStack()
+function Hero:BuildWearableStack(adjustState)
     local cosmetics = Cosmetics[self:GetShortName()]
     local result = {}
 
@@ -134,27 +131,35 @@ function Hero:BuildWearableStack()
                     end
                 end
 
-                if entry.emote then
-                    self:GetUnit():RemoveAbility("placeholder_emote")
-                    self:GetUnit():AddAbility("emote"):SetLevel(1)
+                if entry.raw then
+                    for _, model in pairs(entry.raw) do
+                        table.insert(result, model)
+                    end
                 end
 
-                if entry.taunt then
-                    self:GetUnit():RemoveAbility("placeholder_taunt")
-
-                    local ability = entry.taunt.type == "static" and "taunt_static" or "taunt_moving"
-                    local taunt = self:GetUnit():AddAbility(ability)
-                    local length = entry.taunt.length
-
-                    if length == nil then
-                        length = 1.5
+                if adjustState then
+                    if entry.emote then
+                        self:GetUnit():RemoveAbility("placeholder_emote")
+                        self:GetUnit():AddAbility("emote"):SetLevel(1)
                     end
 
-                    taunt:SetLevel(1)
-                    taunt.length = length
-                    taunt.activity = entry.taunt.activity
-                    taunt.sound = entry.taunt.sound
-                    taunt.translate = entry.taunt.translate
+                    if entry.taunt then
+                        self:GetUnit():RemoveAbility("placeholder_taunt")
+
+                        local ability = entry.taunt.type == "static" and "taunt_static" or "taunt_moving"
+                        local taunt = self:GetUnit():AddAbility(ability)
+                        local length = entry.taunt.length
+
+                        if length == nil then
+                            length = 1.5
+                        end
+
+                        taunt:SetLevel(1)
+                        taunt.length = length
+                        taunt.activity = entry.taunt.activity
+                        taunt.sound = entry.taunt.sound
+                        taunt.translate = entry.taunt.translate
+                    end
                 end
             end
         end
@@ -164,7 +169,7 @@ function Hero:BuildWearableStack()
 end
 
 function Hero:LoadWearables()
-    self:LoadItems(unpack(self:BuildWearableStack()))
+    self:LoadItems(unpack(self:BuildWearableStack(true)))
 end
 
 function Hero:EmitSound(sound, location)
@@ -174,13 +179,11 @@ function Hero:EmitSound(sound, location)
 end
 
 function Hero:SetOwner(owner)
-    local c = GameRules.GameMode.TeamColors[owner.team]
-    local name = IsInToolsMode() and "Player" or PlayerResource:GetPlayerName(owner.id)
-
     self.owner = owner
     self.unit:SetControllableByPlayer(owner.id, true)
-    self.unit:SetCustomHealthLabel(name, c[1], c[2], c[3])
     PlayerResource:SetOverrideSelectionEntity(owner.id, self.unit)
+
+    self:AddNewModifier(self, nil, "modifier_player_id", {}):SetStackCount(self.owner.id)
 
     if #self.wearables == 0 then
         self:LoadWearables()
@@ -315,7 +318,7 @@ function Hero:CanFall()
 end
 
 function Hero:IsAirborne()
-    for _, modifier in pairs(self.unit:FindAllModifiers()) do
+    for _, modifier in pairs(self:AllModifiers()) do
         if modifier.Airborne and modifier:Airborne() then
             return true
         end
@@ -379,6 +382,22 @@ function Hero:Update()
 
         if assigned then
             assigned:SetAbsOrigin(self:GetPos())
+        end
+    end
+
+    local unit = self:GetUnit()
+    local count = unit:GetAbilityCount() - 1
+    for i = 0, count do
+        local ability = unit:GetAbilityByIndex(i)
+
+        if ability ~= nil and (ability:IsInAbilityPhase() or ability:IsChanneling()) then
+            if unit:IsDisarmed() and IsAttackAbility(ability) then
+                unit:Interrupt()
+            end
+
+            if IsUnitSilenced(unit) and ability.canBeSilenced then
+                unit:Interrupt()
+            end
         end
     end
 end

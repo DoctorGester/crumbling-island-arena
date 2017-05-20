@@ -50,9 +50,7 @@ modifier_ogre_5 = GenericModifier(
         GetEffectName = "particles/generic_gameplay/generic_silence.vpcf",
         GetEffectAttachType = PATTACH_OVERHEAD_FOLLOW
     },
-    {
-        MODIFIER_STATE_SILENCED
-    },
+    {},
     {}
 )
 
@@ -63,9 +61,7 @@ modifier_ogre_6 = GenericModifier(
         GetEffectName = "particles/items_fx/item_sheepstick.vpcf",
         GetEffectAttachType = PATTACH_ABSORIGIN
     },
-    {
-        MODIFIER_STATE_SILENCED
-    },
+    {},
     {
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE = -40,
         MODIFIER_PROPERTY_MODEL_CHANGE = "models/items/hex/sheep_hex/sheep_hex.vmdl",

@@ -313,9 +313,23 @@
     wash-color: rgb(110, 20, 20);
 }
 
-.BanButton:disabled
+.BanButton.Banned
 {
-    wash-color: rgb(110, 20, 20);
+    brightness: 0.3;
+}
+
+.BanButton Panel
+{
+    opacity-mask: url("s2r://panorama/images/hero_selection/banned_overlay_psd.vtex");
+    background-color: #ff0026;
+
+    width: 100%;
+    height: 100%;
+}
+
+.BanButton Panel.Second
+{
+    transform: scaleX(-1);
 }
 
 #FFAButton
@@ -364,6 +378,51 @@
 #3v3Button:active
 {
     border-bottom: 0;
+}
+
+.ConfirmButton
+{
+    min-width: 300px;
+    height: 54px;
+    background-image: url("s2r://panorama/images/backgrounds/background_play_button_2x_png.vtex");
+    background-size: 378px 60px;
+    padding: 4px 12px 4px 12px;
+    border: 1px solid #ffffff05;
+    border-right-color: #00000088;
+    border-bottom-color: #00000088;
+    align: center center;
+    margin: 18px;
+    background-color: gradient(linear, 0% 0%, 0% 100%, from(#333e72), to(#4d88dd));
+}
+
+.ConfirmButton:enabled:hover
+{
+    border-top-color: #aaaaaa77;
+    border-left-color: #aaaaaa33;
+    border-bottom-color: #333333;
+    border-right-color: #404040;
+}
+
+.ConfirmButton:active
+{
+    brightness: 1.2;
+    sound: "ui_generic_button_click";
+    transform: translateY(1px);
+}
+
+.ConfirmButton Label
+{
+    font-family: Radiance,FZLanTingHei-R-GBK,TH Sarabun New,YDYGO 540,Gulim,MingLiU;
+    horizontal-align: center;
+    vertical-align: center;
+    text-align: center;
+    color: white;
+    font-size: 34px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 2px;
+    width: 100%;
 }
 
 .VotingButton

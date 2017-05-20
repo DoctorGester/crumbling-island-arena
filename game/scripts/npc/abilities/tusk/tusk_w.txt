@@ -1,0 +1,15 @@
+"DOTAAbilities" {
+	"tusk_w" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/tusk/tusk_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "tusk_frozen_sigil"
+		"AbilityCooldown" "7.0"
+		"AbilityCastPoint" "0.15"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "500"
+		}
+	}
+}

@@ -18,6 +18,7 @@ if IsServer() then
         local hero = self:GetParent():GetParentEntity()
 
         hero:AreaEffect({
+            ability = self:GetAbility(),
             filter = Filters.Area(hero:GetPos(), 300),
             damage = self:GetAbility():GetDamage()
         })

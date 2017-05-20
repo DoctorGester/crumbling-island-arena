@@ -26,6 +26,7 @@ function ursa_a:OnSpellStart()
     end
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Cone(hero:GetPos(), 300, direction, math.pi),
         sound = "Arena.Ursa.HitA",
         damage = damage,

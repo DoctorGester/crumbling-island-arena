@@ -6,10 +6,35 @@ function UpdateHeroDetector(){
 
     var mainPanel = $("#MainPanel");
     var all = Entities.GetAllHeroEntities();
+    var special = {};
+
+    // Special handing of jugg swords
+    var h = Players.GetLocalPlayerPortraitUnit();
+    if (Entities.GetUnitName(h) == "npc_dota_hero_juggernaut") {
+        var owner = GetPlayerOwnerID(h);
+
+        for (var ent of Entities.GetAllEntitiesByClassname("npc_dota_creep_neutral")) {
+            if (Entities.GetUnitName(ent) == "jugg_sword" && GetPlayerOwnerID(ent) == owner) {
+                all.push(ent);
+
+                var count = GetStackCount(h, "modifier_jugger_sword");
+                var level = 1;
+
+                if (count >= 500) level++;
+                if (count >= 800) level++;
+                if (count >= 1300) level++;
+
+                special[ent] = level;
+                ent.isSpecial = true;
+                break;
+            }
+        }
+    }
+
     var notOnScreen = _
         .chain(all)
         .reject(function(entity) {
-            return Entities.IsUnselectable(entity);
+            return Entities.IsUnselectable(entity) && !special[entity];
         })
         .filter(function(entity) {
             return Entities.IsAlive(entity);
@@ -45,9 +70,25 @@ function UpdateHeroDetector(){
                     panel.AddClass("HeroMarkerTransition");
                 }
             } else {
-                var panel = $.CreatePanel("DOTAHeroImage", mainPanel, "");
-                panel.heroname = Entities.GetUnitName(entity.id);
-                panel.heroimagestyle = "icon";
+                var panel;
+
+                if (special[entity.id]) {
+                    panel = $.CreatePanel("Panel", mainPanel, "");
+                    panel.AddClass("HeroMarkerJuggSwordContainer");
+
+                    var bg = $.CreatePanel("Panel", panel, "");
+                    bg.AddClass("HeroMarkerJuggSwordBG");
+
+                    var sw = $.CreatePanel("Panel", panel, "");
+                    sw.AddClass("HeroMarkerJuggSword");
+                    sw.AddClass("T" + special[entity.id]);
+
+                } else {
+                    panel = $.CreatePanel("DOTAHeroImage", mainPanel, "");
+                    panel.heroname = Entities.GetUnitName(entity.id);
+                    panel.heroimagestyle = "icon";
+                }
+
                 panel.hittest = false;
 
                 heroPanels[entity.id] = panel;

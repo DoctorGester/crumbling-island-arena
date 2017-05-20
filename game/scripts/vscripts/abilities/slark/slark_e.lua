@@ -21,16 +21,25 @@ function slark_e:OnSpellStart()
     hero:EmitSound("Arena.Slark.CastE")
 
     dash.hitParams = {
+        ability = self,
         onlyHeroes = true,
+        dontBlockAction = true,
         modifier = { name = "modifier_slark_e_leash", ability = self, duration = 2.5 },
         action = function(target)
+            hero:EmitSound("Arena.Slark.HitE.Voice")
+            target:EmitSound("Arena.Slark.LoopE")
+        end,
+        notBlockedAction = function(target, wasBlocked)
             ScreenShake(target:GetPos(), 5, 150, 0.45, 3000, 0, true)
 
             hero:EmitSound("Arena.Slark.HitE")
-            hero:EmitSound("Arena.Slark.HitE.Voice")
-            target:EmitSound("Arena.Slark.LoopE")
-
             dash:Interrupt()
         end
     }
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(slark_e)

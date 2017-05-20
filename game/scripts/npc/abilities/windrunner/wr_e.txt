@@ -1,0 +1,14 @@
+"DOTAAbilities" {
+	"wr_e" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/wr/wr_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "windrunner_windrun"
+		"AbilityCooldown" "3.0"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "400"
+		}
+	}
+}

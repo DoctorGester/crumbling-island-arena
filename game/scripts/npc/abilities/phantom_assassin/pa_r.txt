@@ -1,0 +1,10 @@
+"DOTAAbilities" {
+	"pa_r" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pa/pa_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "phantom_assassin_blur"
+		"AbilityCooldown" "16"
+	}
+}

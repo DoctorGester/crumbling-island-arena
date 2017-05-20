@@ -17,6 +17,7 @@ function lycan_a:OnSpellStart()
     local damage = self:GetDamage()
 
     hero:AreaEffect({
+        ability = self,
         filter = Filters.Cone(pos, range, forward, math.pi),
         sound = "Arena.Lycan.HitA",
         action = function(target)

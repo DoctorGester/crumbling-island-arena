@@ -26,18 +26,17 @@ function drow_r:OnChannelFinish(interrupted)
     local direction = self:GetDirection()
 
     Projectile(hero.round, {
+        ability = self,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 64),
         to = target + Vector(0, 0, 64),
-        speed = 3000,
+        speed = 3500,
         graphics = "particles/drow_r/drow_r.vpcf",
         hitSound = "Arena.Drow.HitR",
-        hitFunction = function(projectile, target)
-            target:Damage(projectile, self:GetDamage())
-            SoftKnockback(target, hero, projectile.vel, 100, {})
-
+        damage = self:GetDamage(),
+        knockback = { force = 100 },
+        nonBlockedHitAction = function(projectile, target)
             local pos = projectile:GetPos()
-
             local effect = ImmediateEffectPoint("particles/econ/items/earthshaker/earthshaker_gravelmaw/earthshaker_fissure_dust_gravelmaw.vpcf", PATTACH_ABSORIGIN, target, pos)
             ParticleManager:SetParticleControl(effect, 1, pos + direction * 300)
 
@@ -72,3 +71,9 @@ end
 if IsServer() then
     Wrappers.GuidedAbility(drow_r, true)
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(drow_r)

@@ -49,6 +49,10 @@ end
 
 function EntityTinkerE:CollideWith(target)
     if self.link and self.link:Alive() and not self.arrived[target] then
+        if target:AllowAbilityEffect(self, self.ability) == false then
+            return
+        end
+
         local old = target:GetPos()
         local diff = old - self:GetPos()
 
@@ -109,7 +113,15 @@ end
 function EntityTinkerE:Remove()
     getbase(EntityTinkerE).Remove(self)
 
-    self:DestroyLine()
+    if self.primary then
+        self.hero:SwapAbilities("tinker_w_sub", "tinker_w")
+        self:DestroyLine()
+    else
+        self.hero:SwapAbilities("tinker_e_sub", "tinker_e")
+        if self.link then
+            self.link:DestroyLine()
+        end
+    end
 
     ParticleManager:DestroyParticle(self.particle, false)
     ParticleManager:ReleaseParticleIndex(self.particle)

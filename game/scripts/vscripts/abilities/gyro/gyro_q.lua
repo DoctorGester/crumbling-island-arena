@@ -12,6 +12,7 @@ function self:OnSpellStart()
         local retarget = Vector(math.cos(an), math.sin(an)) + hero:GetPos()
 
         DistanceCappedProjectile(hero.round, {
+            ability = self,
             owner = hero,
             from = hero:GetPos() + Vector(0, 0, 128),
             to = retarget + Vector(0, 0, 128),
@@ -20,17 +21,15 @@ function self:OnSpellStart()
             graphics = "particles/gyro_q/gyro_q.vpcf",
             distance = 550,
             hitSound = "Arena.Gyro.HitQ",
-            hitFunction = function(projectile, victim)
+            nonBlockedHitAction = function(projectile, victim)
                 FX("particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_guided_missile_explosion.vpcf", PATTACH_ABSORIGIN, victim, {
                     cp0 = projectile:GetPos(),
                     release = true
                 })
-
-                ScreenShake(projectile:GetPos(), 5, 150, 0.25, 1500, 0, true)
-                SoftKnockback(victim, hero, projectile.vel, 40, { decrease = 4.5 })
-
-                victim:Damage(hero, self:GetDamage())
-            end
+            end,
+            screenShake = { 5, 150, 0.25, 1500, 0, true },
+            damage = self:GetDamage(),
+            knockback = { force = 40, decrease = 4.5 }
         }):Activate()
     end
 
@@ -47,3 +46,9 @@ end
 function self:GetPlaybackRateOverride()
     return 1.5
 end
+
+if IsClient() then
+    require("wrappers")
+end
+
+Wrappers.NormalAbility(gyro_q)

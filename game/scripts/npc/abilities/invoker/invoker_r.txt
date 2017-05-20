@@ -1,0 +1,17 @@
+"DOTAAbilities" {
+	"invoker_r" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/invoker/invoker_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "invoker_chaos_meteor"
+		"AbilityCooldown" "14.0"
+		"AbilityCastPoint" "0.1"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "450"
+			"DisplayRange" "1"
+		}
+	}
+}

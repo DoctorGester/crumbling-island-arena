@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"ta_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/ta/ta_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "templar_assassin_psi_blades"
+		"AbilityCooldown" "6"
+		"AbilityCastPoint" "0.2"
+		"Damage" "3"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "750"
+			"MaxLength" "750"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "750"
+		}
+	}
+}
