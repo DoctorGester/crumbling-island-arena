@@ -4,11 +4,13 @@ LinkLuaModifier("modifier_earth_spirit_e", "abilities/earth_spirit/modifier_eart
 LinkLuaModifier("modifier_earth_spirit_e_animation", "abilities/earth_spirit/modifier_earth_spirit_e", LUA_MODIFIER_MOTION_NONE)
 
 function earth_spirit_e:GetBehavior()
+    local default = bit.bor(DOTA_ABILITY_BEHAVIOR_POINT, DOTA_ABILITY_BEHAVIOR_IMMEDIATE)
+
     if self:GetCaster():HasModifier("modifier_earth_spirit_stand") then
-        return DOTA_ABILITY_BEHAVIOR_POINT
+        return default
     end
 
-    return bit.bor(DOTA_ABILITY_BEHAVIOR_POINT, DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES)
+    return bit.bor(default, DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES)
 end
 
 function earth_spirit_e:OnSpellStart()
