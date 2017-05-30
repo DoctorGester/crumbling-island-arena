@@ -18,6 +18,10 @@ function earth_spirit_q:OnSpellStart()
     hero:EmitSound("Arena.Earth.CastQ.Voice")
 end
 
+function earth_spirit_q:GetCastPoint()
+    return 0.1
+end
+
 function earth_spirit_q:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_1
 end
