@@ -10,6 +10,10 @@ function earth_spirit_r:GetChannelAnimation()
 	return ACT_DOTA_OVERRIDE_ABILITY_1
 end
 
+function earth_spirit_r:GetCastPoint()
+	return 0.10
+end
+
 if IsServer() then
 	function earth_spirit_r:OnChannelThink(interval)
 		local hero = self:GetCaster():GetParentEntity()
@@ -49,7 +53,7 @@ if IsServer() then
 		self.roll = nil
 
 		local hero = self:GetCaster():GetParentEntity()
-		hero:StopSound("Arena.Gyro.LoopR")
+		hero:RemoveModifier("modifier_earth_spirit_r")
 	end
 end
 
