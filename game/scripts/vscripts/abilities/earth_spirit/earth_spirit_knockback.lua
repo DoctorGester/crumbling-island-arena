@@ -8,17 +8,11 @@ function EarthSpiritKnockback:constructor(ability, hero, source, direction, forc
 			ability = self,
 			modifier = { name = "modifier_stunned_lua", ability = ability, duration = 0.7 },
 			filter = function(target) return target ~= source end,
-			knockback = {
-				direction = function() return self.direction end,
-				force = function(victim)
-					if self.direction:Dot((victim:GetPos() - hero:GetPos()):Normalized()) < 1.0 then
-						return 50
-					end
-
-					return 0
-				end,
-				decrease = 3
-			}
+			action = function(victim)
+				if self.direction:Dot((victim:GetPos() - hero:GetPos()):Normalized()) < 1.0 then
+					SoftKnockback(victim, source, self.direction, 50, { decrease = 3 })
+				end
+			end
 		}
 	else
 		params.hitParams = {
