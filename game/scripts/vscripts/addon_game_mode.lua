@@ -1085,6 +1085,13 @@ function GameMode:OnRoundEnd(round)
 end
 
 function GameMode:OnHeroSelectionEnd()
+    -- Thanks!
+    if self.roundNumber == 2 and ({ unranked = true, ranked_3v3 = true })[GetMapName()] then
+        print("[IMPORTANT] T H A N K S F O R T H A T V A L V E")
+        self.level:ThanksValve()
+        print("[IMPORTANT] Spicy worldlayers!")
+    end
+
     self.level:Reset()
     self.currentScoreAddition = 1
     self.scoreEarned = {}
@@ -1544,7 +1551,7 @@ function GameMode:Start()
     self.heroSelection = HeroSelection(
         self.Players,
         self.AvailableHeroes,
-        self.TeamColors, 
+        self.TeamColors,
         self.chat,
         true,
         self.rankedMode ~= nil

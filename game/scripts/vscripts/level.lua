@@ -101,6 +101,12 @@ function Level:constructor()
     self:SetupBackground()
 end
 
+function Level:ThanksValve()
+    for _, part in pairs(self.parts) do
+        part.defaultZ = part.defaultZ - 32
+    end
+end
+
 function Level:Hide()
     for _, part in ipairs(self.parts) do
         part:AddEffects(EF_NODRAW)
@@ -196,8 +202,8 @@ function Level:DamageGroundInRadius(point, radius, source, suppressParticles)
 
     for i, d in ipairs(damageQueue) do
         --Timers:CreateTimer(i * 0.003, function()
-            local proportion = 1 - d[2] / radius
-            self:DamageGround(d[1], 100 * proportion, source, point, radius)
+        local proportion = 1 - d[2] / radius
+        self:DamageGround(d[1], 100 * proportion, source, point, radius)
         --end)
     end
 
@@ -551,7 +557,7 @@ function Level:SetupBackground()
     if not ancient then
         return
     end
-    
+
     --local effect = ParticleManager:CreateParticle("particles/dire_fx/bad_ancient_ambient.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity())
     --ParticleManager:SetParticleControl(effect, 0, ancient:GetAbsOrigin())
     --ParticleManager:ReleaseParticleIndex(effect)
