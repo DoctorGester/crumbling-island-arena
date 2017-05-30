@@ -1,0 +1,26 @@
+"DOTAAbilities" {
+	"earth_spirit_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/earth_spirit/earth_spirit_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "earth_spirit_petrify"
+		"AbilityCooldown" "6.0"
+		"Damage" "3"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "220"
+			"DisplayRange" "1"
+			"MaxLength" "HasModifier(unit, 'modifier_earth_spirit_stand') ? 1400 : 700"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "HasModifier(unit, 'modifier_earth_spirit_stand') ? 1400 : 700"
+		}
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_earth_spirit/earthspirit_petrify_shockwave.vpcf"
+		}
+	}
+}

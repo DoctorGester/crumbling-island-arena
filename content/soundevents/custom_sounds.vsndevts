@@ -992,6 +992,36 @@
 		event_type = "1.0"
 	}
 
+	Arena.Earth.HitA = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/earth_spirit/attack01.vsnd",
+			"sounds/weapons/hero/earth_spirit/attack02.vsnd",
+			"sounds/weapons/hero/earth_spirit/attack03.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Earth.ProcA = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/magnataur/shockwave_particle.vsnd"
+		]
+		volume = "2.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.15"
+		soundlevel = "81.0"
+		event_type = "1.0"
+	}
+
 	Arena.Earth.CastQ = {
 		type = "dota_src1_3d"
 		vsnd_files = 
@@ -1010,6 +1040,11 @@
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[
+			"sounds/vo/earth_spirit/earthspi_stonecaller_04.vsnd",
+			"sounds/vo/earth_spirit/earthspi_stonecaller_05.vsnd",
+			"sounds/vo/earth_spirit/earthspi_stonecaller_10.vsnd",
+			"sounds/vo/earth_spirit/earthspi_stonecaller_11.vsnd",
+			"sounds/vo/earth_spirit/earthspi_stonecaller_12.vsnd",
 			"sounds/vo/earth_spirit/earthspi_stonecaller_15.vsnd"
 		]
 		volume = "2.0"
@@ -1027,6 +1062,26 @@
 			"sounds/weapons/hero/earth_spirit/stone_remnant_destroy.vsnd"
 		]
 		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Earth.CastW.Voice = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/vo/earth_spirit/earthspi_geomagnetic_01.vsnd",
+			"sounds/vo/earth_spirit/earthspi_geomagnetic_02.vsnd",
+			"sounds/vo/earth_spirit/earthspi_geomagnetic_04.vsnd",
+			"sounds/vo/earth_spirit/earthspi_geomagnetic_06.vsnd",
+			"sounds/vo/earth_spirit/earthspi_geomagnetic_07.vsnd",
+			"sounds/vo/earth_spirit/earthspi_geomagnetic_09.vsnd",
+			"sounds/vo/earth_spirit/earthspi_geomagnetic_10.vsnd"
+		]
+		volume = "2.0"
 		pitch_rand_min = "-0.05"
 		pitch_rand_max = "0.05"
 		pitch = "1.0"
@@ -1078,6 +1133,20 @@
 		event_type = "1.0"
 	}
 
+	Arena.Earth.HitW.Sub = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/earth_spirit/boulder_smash_target.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "60.0"
+		event_type = "1.0"
+	}
+
 	Arena.Earth.CastE.Loop = {
 		type = "dota_update_default"
 		vsnd_files = 
@@ -1095,10 +1164,10 @@
 	}
 
 	Arena.Earth.CastR = {
-		type = "dota_src1_3d"
+		type = "dota_update_default"
 		vsnd_files = 
 		[
-			"sounds/weapons/hero/earth_spirit/magnetize_cast.vsnd"
+			"sounds/weapons/hero/earth_spirit/rolling_boulder_cast.vsnd"
 		]
 		volume = "1.0"
 		pitch_rand_min = "-0.05"
@@ -1108,11 +1177,11 @@
 		event_type = "1.0"
 	}
 
-	Arena.Earth.EndR.Voice = {
+	Arena.Earth.CastR.Voice = {
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[
-			"sounds/vo/earth_spirit/earthspi_respawn_12.vsnd"
+			"sounds/vo/earth_spirit/earthspi_rollingboulder_03.vsnd"
 		]
 		volume = "2.0"
 		pitch_rand_min = "-0.05"
@@ -1126,7 +1195,21 @@
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[
-			"sounds/weapons/hero/magnataur/shockwave_particle.vsnd"
+			"sounds/weapons/hero/earth_spirit/rolling_boulder_stop.vsnd"
+		]
+		volume = "2.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.15"
+		soundlevel = "81.0"
+		event_type = "1.0"
+	}
+
+	Arena.Earth.HitR = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/earth_spirit/rolling_boulder_target.vsnd"
 		]
 		volume = "2.0"
 		pitch_rand_min = "-0.05"

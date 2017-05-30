@@ -54,5 +54,5 @@ function modifier_earth_spirit_e_animation:GetOverrideAnimation(params)
 end
 
 function modifier_earth_spirit_e_animation:GetOverrideAnimationRate(params)
-    return 4
+    return 6
 end

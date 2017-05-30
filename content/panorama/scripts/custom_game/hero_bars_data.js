@@ -23,7 +23,8 @@ var hideBarModifiers = [
     "modifier_storm_spirit_e",
     "modifier_ursa_e",
     "modifier_ursa_r",
-    "modifier_drow_e"
+    "modifier_drow_e",
+    "modifier_earth_spirit_r",
 ];
 
 var etherealModifiers = [
@@ -33,7 +34,8 @@ var etherealModifiers = [
 var recastModifiers = [
     "modifier_gyro_w",
     "modifier_jugger_e",
-    "modifier_cm_e"
+    "modifier_cm_e",
+    "modifier_earth_spirit_w_recast"
 ];
 
 var specialLayouts = {
@@ -136,6 +138,7 @@ AddStatusEffect("modifier_gyro_w", "#StatusRecast", "#ffffff");
 AddStatusEffect("modifier_drow_q_recast", "#StatusRecast", "#ffffff");
 AddStatusEffect("modifier_jugger_e", "#StatusRecast", "#ffffff");
 AddStatusEffect("modifier_cm_e", "#StatusRecast", "#ffffff");
+AddStatusEffect("modifier_earth_spirit_w_recast", "#StatusRecast", "#ffffff");
 
 AddStatusEffect("modifier_ursa_r", "#StatusUltimate", "#ff1b00", 1);
 AddStatusEffect("modifier_undying_r", "#StatusUltimate", "#30b529", 1);
@@ -156,3 +159,4 @@ AddUltimateAbility("gyro_r", "#ff6d10");
 AddUltimateAbility("wr_r", "#8cff27");
 AddUltimateAbility("drow_r",  "#6aace7");
 AddUltimateAbility("lycan_r",  "#ff2b12");
+AddUltimateAbility("earth_spirit_r",  "#2dd422");

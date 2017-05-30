@@ -1,0 +1,15 @@
+"DOTAAbilities" {
+	"earth_spirit_r" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/earth_spirit/earth_spirit_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "earth_spirit_rolling_boulder"
+		"AbilityCooldown" "14.0"
+		"Damage" "3"
+
+		"precache" {
+			"particle" "particles/units/heroes/hero_earth_spirit/espirit_magnet_arclightning.vpcf"
+		}
+	}
+}

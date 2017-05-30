@@ -197,13 +197,18 @@ function DynamicEntity:AreaEffect(params)
                 local direction = params.knockback.direction and params.knockback.direction(target) or (target:GetPos() - self:GetPos())
 
                 local force = params.knockback.force
+                local decrease = params.knockback.decrease
 
                 if type(force) == "function" then
                     force = force(target)
                 end
 
+                if type(decrease) == "function" then
+                    decrease = decrease(target)
+                end
+
                 SoftKnockback(target, self, direction, force or 20, {
-                    decrease = params.knockback.decrease,
+                    decrease = decrease,
                     knockup = params.knockback.knockup
                 })
             end

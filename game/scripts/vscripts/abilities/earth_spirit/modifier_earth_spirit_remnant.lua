@@ -1,4 +1,22 @@
+---@type CDOTA_Modifier_Lua
 modifier_earth_spirit_remnant = class({})
+
+if IsServer() then
+    function modifier_earth_spirit_remnant:OnCreated()
+        local index = FX("particles/earth_spirit_q/earth_spirit_q.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent(), {
+            release = false
+        })
+
+        self:AddParticle(
+        index,
+        false,
+        false,
+        0,
+        false,
+        false
+        )
+    end
+end
 
 function modifier_earth_spirit_remnant:GetStatusEffectName()
     return "particles/status_fx/status_effect_earth_spirit_petrify.vpcf"

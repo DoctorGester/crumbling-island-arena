@@ -46,6 +46,7 @@
 		"HeroName_npc_dota_hero_gyrocopter"				"The Turtle"
 		"HeroName_npc_dota_hero_rubick"					"Envy"
 		"HeroName_npc_dota_hero_windrunner"				"Aura"
+		"HeroName_None"									"a Hero!"
 
 		"Available_on_npc_dota_hero_drow_ranger"		"Available on April 23!"
 		"Available_on_npc_dota_hero_skeleton_king"		"Available on April 30!"
@@ -85,9 +86,9 @@
 		"zuus_DescR" "Channeling. Global. Teleport + damage"
 
 		"earth_spirit_DescQ" "Delayed remnant drop. AOE damage"
-		"earth_spirit_DescW" "Drag a remnant. Line damage"
+		"earth_spirit_DescW" "Pull and push targets"
 		"earth_spirit_DescE" "Short jump. Can jump on remnants"
-		"earth_spirit_DescR" "Swap health and position with remnant"
+		"earth_spirit_DescR" "Roll towards cursor, damage + knockback"
 
 		"sven_DescQ" "Stunning projectile"
 		"sven_DescW" "Slow and silence in a cone"
@@ -415,10 +416,11 @@
 		"AbilityTooltip_taunt_moving"					"Is that some kind of a dance? Nevermind, gimme gimme!"
 		"AbilityTooltip_emote"							"Say it out loud! Your enemies must know what you think about them!"
 
-		"AbilityTooltip_earth_spirit_q"					"After a short delay, drop a <font color=\"#3A9B00\"><b>Remnant</b></font> at the target location."
-		"AbilityTooltip_earth_spirit_w"					"Target a <font color=\"#3A9B00\"><b>Remnant</b></font>, if you are standing on a <font color=\"#3A9B00\"><b>Remnant</b></font>, drag target to you. Otherwise, move your <font color=\"#3A9B00\"><b>Remnant</b></font> to it."
-		"AbilityTooltip_earth_spirit_e"					"Perform a short jump. When targeting a <font color=\"#3A9B00\"><b>Remnant</b></font>, land on top of it, becoming invulnerable until leaving it."
-		"AbilityTooltip_earth_spirit_r"					"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Target a <font color=\"#3A9B00\"><b>Remnant</b></font>. After a short delay, emerge from it, leaving your old body behind."
+		"AbilityTooltip_earth_spirit_a"					"Places a short debuff<br/>Nearby <font color=\"#3A9B00\"><b>Remnants</b></font> consume the debuff, dealing 1 damage"
+		"AbilityTooltip_earth_spirit_q"					"After a short delay, drop a <font color=\"#3A9B00\"><b>Remnant</b></font> at the target location<br/>It can be destroyed to restore 2 health"
+		"AbilityTooltip_earth_spirit_w"					"Pull targets in the area towards you<br/>Recast to push targets in the chosen direction<br/>Colliding with a <font color=\"#3A9B00\"><b>Remnant</b></font> will stun the target"
+		"AbilityTooltip_earth_spirit_e"					"Perform a short jump<br/>When targeting a <font color=\"#3A9B00\"><b>Remnant</b></font>, land on top of it, becoming invulnerable and gaining additional ability cast range"
+		"AbilityTooltip_earth_spirit_r"					"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Roll towards cursor, stopping on a first enemy hero encountered, dealing damage and knocking him back"
 
 		"AbilityTooltip_cm_a"							"Hitting enemies with spells charges the weapon<br/>At 3 charges next attack <font color=\"skyblue\"><b>Freezes</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies are stunned"
 		"AbilityTooltip_cm_q"							"<font color=\"skyblue\"><b>Freeze</b></font> enemies in the area<br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies are stunned"
@@ -682,8 +684,10 @@
 		"ModifierTooltip_modifier_lc_e"							"Slidin"
 		"ModifierTooltip_modifier_lc_r"							"Immortal and has cooldowns halved"
 
+		"ModifierTooltip_modifier_earth_spirit_e"				"Will receive additional damage if comes close to a <font color=\"#3A9B00\"><b>Remnant</b></font>"
 		"ModifierTooltip_modifier_earth_spirit_e"				"Flying Donatello style"
-		"ModifierTooltip_modifier_earth_spirit_stand"			"Invulnerable while on the <font color=\"#3A9B00\"><b>Remnant</b></font>"
+		"ModifierTooltip_modifier_earth_spirit_stand"			"Has invulnerability and extended ability cast range while on the <font color=\"#3A9B00\"><b>Remnant</b></font>"
+		"ModifierTooltip_modifier_earth_spirit_r"				"They hatin"
 
 		"ModifierTooltip_modifier_cm_a"							"Next attack will <font color=\"skyblue\"><b>Freeze</b></font>"
 		"ModifierTooltip_modifier_cm_stun"						"Stunned"

@@ -12,9 +12,10 @@ function earth_spirit_e:GetBehavior()
 end
 
 function earth_spirit_e:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 600)
+    local hero = self:GetCaster():GetParentEntity()
 
-    local hero = self:GetCaster().hero
+    Wrappers.DirectionalAbility(self, hero:HasModifier("modifier_earth_spirit_stand") and 1200 or 600)
+
     local target = self:GetCursorPosition()
     local targetRemnant = EarthSpirit:FindNonStandRemnantCursor(self, target)
     local hadStand = false
@@ -28,7 +29,7 @@ function earth_spirit_e:OnSpellStart()
         hero:GetRemnantStand():SetStandingHero(nil)
     end
 
-    ESDash(targetRemnant, hero, target, 900, {
+    ESDash(targetRemnant, hero, target, 1400, {
         loopingSound = "Arena.Earth.CastE.Loop",
         modifier = { name = "modifier_earth_spirit_e", ability = self },
         forceFacing = true,
@@ -38,7 +39,6 @@ function earth_spirit_e:OnSpellStart()
                 targetRemnant:SetStandingHero(hero)
                 target = targetRemnant:GetPos()
                 hero:SetPos(Vector(target.x, target.y, target.z + 150))
-                self:EndCooldown()
 
                 Timers:CreateTimer(function()
                     hero:AreaEffect({

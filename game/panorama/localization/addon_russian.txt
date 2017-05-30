@@ -37,12 +37,16 @@
 		"HeroName_npc_dota_hero_undying"				"Уныние"
 		"HeroName_npc_dota_hero_medusa"					"Жадность"
 		"HeroName_npc_dota_hero_omniknight"				"Энох"
+		"HeroName_npc_dota_hero_axe"					"?????"
 		"HeroName_npc_dota_hero_shadow_demon"			"Ведьма"
+		"HeroName_npc_dota_hero_faceless_void"			"Eyes of Heaven"
+		"HeroName_npc_dota_hero_beastmaster"			"?????"
 		"HeroName_npc_dota_hero_antimage"				"Эа"
 		"HeroName_npc_dota_hero_phantom_lancer"			"Близнецы"
 		"HeroName_npc_dota_hero_gyrocopter"				"Черепаха"
 		"HeroName_npc_dota_hero_rubick"					"Зависть"
 		"HeroName_npc_dota_hero_windrunner"				"Аура"
+		"HeroName_None"									"???"
 
 		"Available_on_npc_dota_hero_lone_druid"			"Доступно с 4 июня!"
 		"Available_on_npc_dota_hero_drow_ranger"		"Доступено с 23 апреля!"
@@ -83,9 +87,9 @@
 		"zuus_DescR" "Прерываемая. Глобальная. Телепортация + урон"
 
 		"earth_spirit_DescQ" "Копия и урон в области с задержкой"
-		"earth_spirit_DescW" "Перетянуть копию, урон по линии"
+		"earth_spirit_DescW" "Притянуть/оттолкнуть цели"
 		"earth_spirit_DescE" "Прыжок. Можно забираться на копии"
-		"earth_spirit_DescR" "Поменяться местами и здоровьем с копией"
+		"earth_spirit_DescR" "Катиться в сторону курсора. Откидывание + урон"
 
 		"sven_DescQ" "Оглушающий снаряд"
 		"sven_DescW" "Безмолвие и замедление в конусе"
@@ -409,10 +413,11 @@
 		"AbilityTooltip_taunt_moving"					"Это что-то вроде танца? Плевать, жги!"
 		"AbilityTooltip_emote"							"Скажи это вслух! Пусть они знают, что ты о них думаешь!"
 
-		"AbilityTooltip_earth_spirit_q"					"После короткой задержки, уронить <font color=\"#3A9B00\"><b>Копию</b></font> в указанную область"
-		"AbilityTooltip_earth_spirit_w"					"Укажите на <font color=\"#3A9B00\"><b>Копию</b></font>. Переместитесь к ней, если уже стоите на <font color=\"#3A9B00\"><b>Копии</b></font>. Если нет, притащите её к себе"
-		"AbilityTooltip_earth_spirit_e"					"Короткий прыжок. Можно указать на <font color=\"#3A9B00\"><b>Копию</b></font> и забраться на неё, получив неуязвимость"
-		"AbilityTooltip_earth_spirit_r"					"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>Укажите на <font color=\"#3A9B00\"><b>Копию</b></font>. После короткой задержки поменяйтесь с ней местами и здоровьем."
+		"AbilityTooltip_earth_spirit_a"					"Накладывают короткий дебафф<br/>Ближайшие <font color=\"#3A9B00\"><b>Копии</b></font> поглощают дебафф, нанося урон"
+		"AbilityTooltip_earth_spirit_q"					"После короткой задержки, уронить <font color=\"#3A9B00\"><b>Копию</b></font> в указанную область<br/>Копия может быть уничтожена чтобы восстановить здоровье героя"
+		"AbilityTooltip_earth_spirit_w"					"Притянуть цели в области к герою<br/>Примени снова, чтобы оттолкнуть цели в указанном направлении<br/>Цели проходящие через <font color=\"#3A9B00\"><b>Копию</b></font> оглушаются"
+		"AbilityTooltip_earth_spirit_e"					"Короткий прыжок<br/>Можно указать на <font color=\"#3A9B00\"><b>Копию</b></font> и забраться на неё, получив неуязвимость и увеличенный радиус применения способностей"
+		"AbilityTooltip_earth_spirit_r"					"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br>Начать катиться в сторону курсора, остановившись на первом враге, нанеся ему урон и отбросив его"
 
 		"AbilityTooltip_cm_a"							"Попадания способностями по врагам заряжают посох<br/>При трех зарядах следующая атака <font color=\"skyblue\"><b>Замораживает</b></font><br><br>Уже <font color=\"skyblue\"><b>Замороженные</b></font> враги оглушаются"
 		"AbilityTooltip_cm_q"							"<font color=\"skyblue\"><b>Заморозить</b></font> врагов в области<br><br>Уже <font color=\"skyblue\"><b>Замороженные</b></font> враги оглушаются"
@@ -673,8 +678,9 @@
 		"ModifierTooltip_modifier_lc_e"							"Скользит"
 		"ModifierTooltip_modifier_lc_r"							"Бессмертен, способности перезаряжаются быстрее"
 
+		"ModifierTooltip_modifier_earth_spirit_e"				"Получит дополнительный урон если подойдет к <font color=\"#3A9B00\"><b>Копии</b></font>"
 		"ModifierTooltip_modifier_earth_spirit_e"				"Летит как Донателло"
-		"ModifierTooltip_modifier_earth_spirit_stand"			"Неуязвим стоя на <font color=\"#3A9B00\"><b>Копии</b></font>"
+		"ModifierTooltip_modifier_earth_spirit_stand"			"Неуязвим и имеет увеличенный радиус применения способностей стоя на <font color=\"#3A9B00\"><b>Копии</b></font>"
 
 		"ModifierTooltip_modifier_cm_a"							"Следующая атака <font color=\"skyblue\"><b>Заморозит</b></font>"
 		"ModifierTooltip_modifier_cm_frozen"					"<font color=\"skyblue\"><b>Заморожен</b></font>"

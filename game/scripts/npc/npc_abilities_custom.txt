@@ -149,6 +149,12 @@
 #base "abilities\antimage\am_e.txt"
 #base "abilities\antimage\am_r.txt"
 #base "abilities\antimage\am_a.txt"
+#base "abilities\earth_spirit\earth_spirit_q.txt"
+#base "abilities\earth_spirit\earth_spirit_w.txt"
+#base "abilities\earth_spirit\earth_spirit_w_sub.txt"
+#base "abilities\earth_spirit\earth_spirit_e.txt"
+#base "abilities\earth_spirit\earth_spirit_r.txt"
+#base "abilities\earth_spirit\earth_spirit_a.txt"
 
 "DOTAAbilities" {
 	"dummy_unit_ability" {
@@ -211,71 +217,6 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"AbilityTextureName" "rubick_empty1"
 		"AbilityCooldown" "8.0"
-	}
-
-	"earth_spirit_q" {
-		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/earth_spirit/earth_spirit_q"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName" "earth_spirit_stone_caller"
-		"AbilityCooldown" "7.5"
-
-		"TargetingIndicator" {
-			"Type" "TARGETING_INDICATOR_AOE"
-			"Radius" "256"
-			"DisplayRange" "1"
-		}
-
-		"HoverIndicator" {
-			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "1000"
-		}
-
-		"precache" {
-			"particle" "particles/units/heroes/hero_earth_spirit/earthspirit_petrify_shockwave.vpcf"
-		}
-	}
-
-	"earth_spirit_w" {
-		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/earth_spirit/earth_spirit_w"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName" "earth_spirit_geomagnetic_grip"
-		"AbilityCooldown" "5.0"
-
-		"precache" {
-			"particle" "particles/econ/items/magnataur/shock_of_the_anvil/magnataur_shockanvil_cracks_sprt.vpcf"
-		}
-	}
-
-	"earth_spirit_e" {
-		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/earth_spirit/earth_spirit_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityTextureName" "earth_spirit_magnetize"
-		"AbilityCooldown" "3.5"
-
-		"TargetingIndicator" {
-			"DisplayRange" "1"
-		}
-
-		"HoverIndicator" {
-			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "600"
-		}
-	}
-
-	"earth_spirit_r" {
-		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/earth_spirit/earth_spirit_r"
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName" "earth_spirit_petrify"
-		"AbilityCooldown" "14.0"
-
-		"precache" {
-			"particle" "particles/units/heroes/hero_earth_spirit/espirit_magnet_arclightning.vpcf"
-		}
 	}
 
 	"phoenix_q" {

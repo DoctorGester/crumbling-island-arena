@@ -27,6 +27,7 @@
 #base "heroes\gyrocopter.txt"
 #base "heroes\windrunner.txt"
 #base "heroes\antimage.txt"
+#base "heroes\earth_spirit.txt"
 
 "DOTAHeroes" {
 	"npc_dota_hero_wisp" {
@@ -46,42 +47,6 @@
 		"StatusHealth" "15"
 		"VisionDaytimeRange" "0"
 		"VisionNighttimeRange" "0"
-	}
-
-	"npc_dota_hero_earth_spirit" {
-		"override_hero" "npc_dota_hero_earth_spirit"
-		"Class" "heroes/earth_spirit:EarthSpirit"
-		"ArmorPhysical" "0"
-		"MagicalResistance" "0"
-		"AttackCapabilities" "DOTA_UNIT_CAP_NO_ATTACK"
-		"AttributePrimary" "DOTA_ATTRIBUTE_STRENGTH"
-		"BountyXP" "0"
-		"MovementSpeed" "375"
-		"MovementTurnRate" "10"
-		"StatusHealth" "20"
-		"StatusHealthRegen" "0"
-		"StatusManaRegen" "0"
-		"StatusStartingMana" "0"
-		"AttributeBaseStrength" "0"
-		"AttributeBaseIntelligence" "0"
-		"VisionDaytimeRange" "0"
-		"VisionNighttimeRange" "0"
-		"Portrait" ""
-		"SoundSet" ""
-		"GameSoundsFile" ""
-		"VoiceFile" ""
-		"DisableWearables" "1"
-		"Range" "melee"
-		"Difficulty" "hard"
-		"Disabled" "true"
-		"Order" "3"
-		"Ability1" "earth_spirit_q"
-		"Ability2" "earth_spirit_w"
-		"Ability3" "earth_spirit_e"
-		"Ability4" "placeholder_emote"
-		"Ability5" "placeholder_taunt"
-		"Ability6" "earth_spirit_r"
-		"Ultimate" "earth_spirit_r"
 	}
 
 	"npc_dota_hero_pugna" {
