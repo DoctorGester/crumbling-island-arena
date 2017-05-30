@@ -94,7 +94,7 @@ function EarthSpiritRoll:Update(...)
 	local current = self.direction
 	local angle = current:Dot(requiredDirection)
 
-	self.velocity = self.velocity + (angle - 0.75) * 3.5
+	self.velocity = math.max(25, self.velocity + (angle - 0.75) * 3.5)
 	self.direction = LerpVectors(current, requiredDirection, 0.2)
 	self.hero:GetUnit():SetAngles(0, math.deg(math.atan2(self.direction.y, self.direction.x)), 0)
 end
