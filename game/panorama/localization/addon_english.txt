@@ -418,7 +418,7 @@
 
 		"AbilityTooltip_earth_spirit_a"					"Places a short debuff<br/>Nearby <font color=\"#3A9B00\"><b>Remnants</b></font> consume the debuff, dealing 1 damage"
 		"AbilityTooltip_earth_spirit_q"					"After a short delay, drop a <font color=\"#3A9B00\"><b>Remnant</b></font> at the target location<br/>It can be destroyed to restore 2 health"
-		"AbilityTooltip_earth_spirit_w"					"Pull targets in the area towards you<br/>Recast to push targets in the chosen direction<br/>Colliding with a <font color=\"#3A9B00\"><b>Remnant</b></font> will stun the target"
+		"AbilityTooltip_earth_spirit_w"					"Pull a closest target (prioritizes heroes) in the area towards you<br/>Recast to push targets around you in the chosen direction<br/>Colliding with a <font color=\"#3A9B00\"><b>Remnant</b></font> will stun the target"
 		"AbilityTooltip_earth_spirit_e"					"Perform a short jump<br/>When targeting a <font color=\"#3A9B00\"><b>Remnant</b></font>, land on top of it, becoming invulnerable and gaining additional ability cast range"
 		"AbilityTooltip_earth_spirit_r"					"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Roll towards cursor, stopping on a first enemy hero encountered, dealing damage and knocking him back"
 
