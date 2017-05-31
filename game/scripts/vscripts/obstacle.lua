@@ -73,7 +73,14 @@ end
 function Obstacle:AllowAbilityEffect(source, ability)
     if ability.GetDamage then
         self.health = self.health - 1
-        self:AddNewModifier(self, nil, "modifier_custom_healthbar", { duration = 2.0 })
+
+        local duration = nil
+
+        if (self.health > 2) then
+            duration = 2.0
+        end
+
+        self:AddNewModifier(self, nil, "modifier_custom_healthbar", { duration = duration })
 
         if self.health <= 0 then
             self:Destroy()
