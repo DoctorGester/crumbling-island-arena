@@ -88,7 +88,6 @@ function EarthSpiritRemnant:EarthCollision()
         self.hero:AreaEffect({
             filter = Filters.Area(pos, 220) + allyHeroFilter,
             damage = self.ability:GetDamage(),
-            hitAllies = true,
             ability = self.ability
         })
 
@@ -150,10 +149,15 @@ function EarthSpiritRemnant:Update()
 
         local hit = self:AreaEffect({
             filter = Filters.Area(self:GetPos(), 400) + modifierFilter,
-            damage = 1,
             ability = self.ability,
             sound = "Arena.Earth.ProcA",
             action = function(target)
+                local mod = target:FindModifier("modifier_earth_spirit_a")
+
+                if mod then
+                    target:Damage(mod:GetCaster():GetParentEntity(), 1)
+                end
+
                 target:RemoveModifier("modifier_earth_spirit_a")
             end,
             notBlockedAction = function(target)
