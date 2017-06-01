@@ -67,7 +67,7 @@ function EarthSpiritRoll:constructor(ability, hero, target)
 			ability = ability,
 			damage = ability:GetDamage(),
 			action = function(target)
-				EarthSpiritKnockback(ability, target, hero, self.direction:Normalized(), 90, { decrease = 5 })
+				EarthSpiritKnockback(ability, target, hero, self.direction:Normalized(), self.velocity / 50  * 90, { decrease = 5 })
 			end,
 			notBlockedAction = function(target)
 				target:EmitSound("Arena.Earth.HitR")
