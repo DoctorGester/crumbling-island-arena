@@ -78,6 +78,8 @@ function Obstacle:AllowAbilityEffect(source, ability)
 
         if (self.health > 2) then
             duration = 2.0
+        else
+            self:RemoveModifier("modifier_custom_healthbar")
         end
 
         self:AddNewModifier(self, nil, "modifier_custom_healthbar", { duration = duration })
