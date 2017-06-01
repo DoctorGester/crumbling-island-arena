@@ -8,3 +8,7 @@ function taunt_moving:OnSpellStart()
         self:GetCaster():EmitSound(self.sound)
     end
 end
+
+function taunt_moving:ProcsMagicStick()
+    return false
+end

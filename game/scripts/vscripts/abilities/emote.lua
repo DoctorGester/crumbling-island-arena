@@ -5,3 +5,7 @@ function emote:OnSpellStart()
 
     hero:EmitSound(hero:GetShortName())
 end
+
+function emote:ProcsMagicStick()
+    return false
+end
