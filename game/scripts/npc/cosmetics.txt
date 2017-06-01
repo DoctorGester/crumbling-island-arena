@@ -202,6 +202,24 @@
     {
         "1"
         {
+            "type" "pass"
+            "level" "7"
+            "emote" "default"
+        }
+
+        "2"
+        {
+			"type" "elite"
+            "set" "murder_of_crows"
+            "season" "11"
+            "particles"
+			{
+				"particles/pudge_q/pudge_q.vpcf" "particles/econ/pudge_q_seasonal/pudge_q.vpcf"
+			}
+        }
+
+        "3"
+        {
             "type" "pass_base"
             "item" "8004"
             "particles"
@@ -210,14 +228,7 @@
             }
         }
 
-        "2"
-        {
-            "type" "pass"
-            "level" "7"
-            "emote" "default"
-        }
-
-        "3"
+        "4"
         {
             "type" "pass"
             "level" "17"
