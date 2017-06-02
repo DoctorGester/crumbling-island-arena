@@ -20,7 +20,7 @@ function TinyW:constructor(round, owner, ability, damage, target, bounces, heigh
 
     self.particle = ParticleManager:CreateParticle("particles/tiny_w/tiny_w.vpcf", PATTACH_ABSORIGIN_FOLLOW , self.unit)
 
-    self.removeOnDeath = true
+    self.removeOnDeath = false
     self:SetInvulnerable(true)
     self:SetPos(self.start)
 
