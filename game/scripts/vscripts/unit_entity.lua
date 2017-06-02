@@ -101,6 +101,7 @@ function UnitEntity:StopSound(sound)
 				end
 			end)
 		else
+			self.soundsStarted[sound] = nil
 			self:GetUnit():StopSound(sound)
 		end
 
