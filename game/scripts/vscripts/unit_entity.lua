@@ -166,7 +166,8 @@ function UnitEntity:Remove()
 
 		if maxTime > 0 then
 			print("[SOUNDS]", "Delayed entity removal, waiting for", maxTime)
-			self:GetUnit():AddNoDraw()
+			self:GetUnit():ForceKill(false)
+			self:GetUnit():SetAbsOrigin(self:GetPos())
 
 			Timers:CreateTimer(maxTime, function()
 				-- At least one entry encountered means there are more sounds
@@ -181,10 +182,8 @@ function UnitEntity:Remove()
 			self:GetUnit():RemoveSelf()
 		end
 	else
-		local pos = self:GetPos()
-
 		self:GetUnit():ForceKill(false)
-		self:GetUnit():SetAbsOrigin(pos)
+		self:GetUnit():SetAbsOrigin(self:GetPos())
 		self:GetUnit():StartGesture(ACT_DOTA_DIE)
 	end
 end
