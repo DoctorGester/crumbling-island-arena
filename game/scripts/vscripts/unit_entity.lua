@@ -17,6 +17,7 @@ function UnitEntity:constructor(round, unitName, pos, team, findSpace, playerOwn
 
 	self.removeOnDeath = true
 	self.modifierImmune = false
+	self.soundsStarted = {}
 
 	if pos then
 		getbase(UnitEntity).SetPos(self, pos)
@@ -68,49 +69,75 @@ function UnitEntity:GetFacing()
 end
 
 function UnitEntity:EmitSound(sound, location)
-    if location then
-        EmitSoundOnLocationWithCaster(location, sound, self.unit)
-    else
-        self.unit:EmitSound(sound)
-    end
+	if self.destryoed then
+		return
+	end
+
+	if location then
+		EmitSoundOnLocationWithCaster(location, sound, self.unit)
+	else
+		print("[SOUNDS]", "Emit", sound)
+		self.unit:EmitSound(sound)
+		self.soundsStarted[sound] = GameRules:GetGameTime()
+	end
 end
 
 function UnitEntity:StopSound(sound)
-    if IsValidEntity(self.unit) then
-    	self.unit:StopSound(sound)
-    end
+	if IsValidEntity(self.unit) then
+		print("[SOUNDS]", "Stop", sound)
+
+		local originalTime = self.soundsStarted[sound] or 0
+		local time = (GameRules:GetGameTime() - originalTime) - 0.1
+
+		if time < 0 then
+			print("[SOUNDS]", "Trying to stop", sound, "waiting for", -time)
+
+			Timers:CreateTimer(-time, function()
+				if (self.soundsStarted[sound] or 0) == originalTime then -- Sound was not restarted after stop
+					self:GetUnit():StopSound(sound)
+					self.soundsStarted[sound] = nil
+				else
+					print("[SOUNDS]", sound, "was restarted, new time", self.soundsStarted[sound])
+				end
+			end)
+		else
+			self:GetUnit():StopSound(sound)
+		end
+
+		return -time
+	end
 end
 
 function UnitEntity:SetFacing(facing)
-    self.unit:SetForwardVector(facing)
+	self.unit:SetForwardVector(facing)
 end
 
 function UnitEntity:AddNewModifier(source, ability, modifier, params)
 	if not self.modifierImmune then
-        local from = source
+		local from = source
 
-        if source and source.unit then
-            from = source.unit
-        end
+		if source and source.unit then
+			from = source.unit
+		end
 
-	    return self.unit:AddNewModifier(from, ability, modifier, params)
+		return self.unit:AddNewModifier(from, ability, modifier, params)
 	end
 end
 
 function UnitEntity:HasModifier(modifier)
-    return self.unit:HasModifier(modifier)
+	return self.unit:HasModifier(modifier)
 end
 
 function UnitEntity:RemoveModifier(name)
-    self.unit:RemoveModifierByName(name)
+	self.unit:RemoveModifierByName(name)
 end
 
 function UnitEntity:FindModifier(name, optionalCaster)
-    if optionalCaster then
-        return self.unit:FindModifierByNameAndCaster(name, optionalCaster.unit or optionalCaster)
-    end
+	if optionalCaster then
+		return self.unit:FindModifierByNameAndCaster(name, optionalCaster.unit or optionalCaster)
+	end
 
-    return self.unit:FindModifierByName(name)
+	return self.unit:FindModifierByName(name)
 end
 
 function UnitEntity:AllModifiers()
@@ -118,25 +145,46 @@ function UnitEntity:AllModifiers()
 end
 
 function UnitEntity:GetGroundHeight(position)
-    return GetGroundHeight(position or self:GetPos(), self.unit)
+	return GetGroundHeight(position or self:GetPos(), self.unit)
 end
 
 function UnitEntity:FindClearSpace(position, force)
-    getbase(UnitEntity).SetPos(self, position)
+	getbase(UnitEntity).SetPos(self, position)
 
-    FindClearSpaceForUnit(self.unit, position, force)
+	FindClearSpaceForUnit(self.unit, position, force)
 end
 
 function UnitEntity:Remove()
-    getbase(UnitEntity).Remove(self)
+	getbase(UnitEntity).Remove(self)
 
 	if self.removeOnDeath then
-		self:GetUnit():RemoveSelf()
+		local maxTime = 0
+
+		for sound, _ in pairs(self.soundsStarted) do
+			maxTime = math.max(self:StopSound(sound) or 0, maxTime)
+		end
+
+		if maxTime > 0 then
+			print("[SOUNDS]", "Delayed entity removal, waiting for", maxTime)
+			self:GetUnit():AddNoDraw()
+
+			Timers:CreateTimer(maxTime, function()
+				-- At least one entry encountered means there are more sounds
+				for sound, _ in pairs(self.soundsStarted) do
+					print("[SOUNDS]", "At least", sound, "is left, waiting")
+					return 0.01
+				end
+
+				self:GetUnit():RemoveSelf()
+			end)
+		else
+			self:GetUnit():RemoveSelf()
+		end
 	else
 		local pos = self:GetPos()
 
-	    self:GetUnit():ForceKill(false)
+		self:GetUnit():ForceKill(false)
 		self:GetUnit():SetAbsOrigin(pos)
-        self:GetUnit():StartGesture(ACT_DOTA_DIE)
+		self:GetUnit():StartGesture(ACT_DOTA_DIE)
 	end
 end

@@ -172,12 +172,6 @@ function Hero:LoadWearables()
     self:LoadItems(unpack(self:BuildWearableStack(true)))
 end
 
-function Hero:EmitSound(sound, location)
-    getbase(Hero).EmitSound(self, sound, location)
-
-    table.insert(self.soundsStarted, sound)
-end
-
 function Hero:SetOwner(owner)
     self.owner = owner
     self.unit:SetControllableByPlayer(owner.id, true)
@@ -427,10 +421,6 @@ function Hero:Remove()
         if modifier.GetName and modifier:GetName() ~= "modifier_falling" then
             modifier:Destroy()
         end
-    end
-
-    for _, sound in pairs(self.soundsStarted) do
-        getbase(Hero).StopSound(self, sound)
     end
 
     getbase(Hero).Remove(self)
