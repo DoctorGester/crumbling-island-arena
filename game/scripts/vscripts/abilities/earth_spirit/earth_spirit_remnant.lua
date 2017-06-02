@@ -18,6 +18,7 @@ function EarthSpiritRemnant:constructor(owner, target, direction, ability)
 
     self.initializationDelay = 10
     self.ability = ability
+    self.lastHit = 0
 
     -- Deathmatch only
     self.dontCleanup = true
@@ -142,7 +143,7 @@ function EarthSpiritRemnant:Update()
             self.fell = true
             self:EarthCollision()
         end
-    else
+    elseif GameRules:GetGameTime() - self.lastHit > 0.3 then
         local modifierFilter = Filters.WrapFilter(function(target)
             return target:HasModifier("modifier_earth_spirit_a")
         end)
@@ -170,6 +171,8 @@ function EarthSpiritRemnant:Update()
         })
 
         if hit then
+            self.lastHit = GameRules:GetGameTime()
+
             FX("particles/units/heroes/hero_earth_spirit/espirit_stone_explosion.vpcf", PATTACH_ABSORIGIN, self, {
                 cp1 = Vector(400, 1, 1),
                 release = true
