@@ -131,7 +131,7 @@
 #base "abilities\undying\undying_w.txt"
 #base "abilities\undying\undying_e.txt"
 #base "abilities\undying\undying_r.txt"
-#base "abilities\undying\undying_q_sub.txt"
+#base "abilities\undying\undying_w_sub.txt"
 #base "abilities\undying\undying_a.txt"
 #base "abilities\gyrocopter\gyro_q.txt"
 #base "abilities\gyrocopter\gyro_w.txt"

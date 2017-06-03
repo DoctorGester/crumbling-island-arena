@@ -9,6 +9,7 @@ function self:OnSpellStart()
 
     local hero = self:GetCaster():GetParentEntity()
     local target = self:GetCursorPosition()
+    local transformed = hero:HasModifier("modifier_undying_r")
 
     FX("particles/units/heroes/hero_undying/undying_decay.vpcf", PATTACH_WORLDORIGIN, hero, {
         cp0 = target,
@@ -33,7 +34,7 @@ function self:OnSpellStart()
                 cp2 = { ent = hero }
             })
 
-            stacks = stacks + 1
+            stacks = stacks + (transformed and 2 or 1)
         end
     })
 

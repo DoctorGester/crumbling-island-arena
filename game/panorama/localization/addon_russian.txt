@@ -597,11 +597,11 @@
 		"AbilityTooltip_tusk_r"							"<font color=\"gold\"><b>ВСЕ</b></font> отбрасывания в 2 раза сильнее<br/>Твоя <font color=\"gold\"><b>E</b></font> в 2 раза быстрее<br/><br/>Длится <font color=\"gold\"><b>10</b></font> секунд"
 
 		"AbilityTooltip_undying_a"						"Дальность и отталкивание растут с запасом <font color='#279225'><b>Гниения</b></font><br/>Урон растет при 3 и 6 зарядах"
-		"AbilityTooltip_undying_q"						"Замедлить врагов в области<br/>Получить заряд <font color='#279225'><b>Гниения</b></font> защищающий от урона за каждого врага"
-		"AbilityTooltip_undying_q_sub"					"Прыжок в область, оглушающий врагов при приземлении<br/>Дальность и длительность оглушения растут с запасом <font color='#279225'><b>Гниения</b></font>"
+		"AbilityTooltip_undying_q"						"Замедлить врагов в области<br/>Получить заряд <font color='#279225'><b>Гниения</b></font> защищающий от урона за каждого врага<br/>Эффект удвоен во время <font color=\"gold\"><b>R</b></font>"
+		"AbilityTooltip_undying_w_sub"					"Прыжок в область, оглушающий врагов при приземлении<br/>Дальность и длительность оглушения растут с запасом <font color='#279225'><b>Гниения</b></font>"
 		"AbilityTooltip_undying_w"						"Запустить связывающую и наносящую урон волну"
 		"AbilityTooltip_undying_e"						"Призыва Надгробного Камня, наносящего врагам урон за каждые 2.5 секунды нахождения в области"
-		"AbilityTooltip_undying_r"						"Трансформироваться, теряя все способности и получая новую<br/>Заряды <font color='#279225'><b>Гниения</b></font> не могут быть потеряны за время способности, но пропадают после её окончания"
+		"AbilityTooltip_undying_r"						"Трансформироваться, теряя <font color=\"gold\"><b>E</b></font> и получая новую <font color=\"gold\"><b>W</b></font><br/>Заряды <font color='#279225'><b>Гниения</b></font> не истекают за время способности"
 
 		"AbilityTooltip_dusa_q"							"Запустить множество стрел, нанося урон врагам в области"
 		"AbilityTooltip_dusa_w"							"Запустить замедляющий снаряд, восстанвливающий ману за каждого врага"
@@ -774,7 +774,7 @@
 
 		"ModifierTooltip_modifier_undying_q"					"Замедлен"
 		"ModifierTooltip_modifier_undying_q_health"				"Защищен от урона"
-		"ModifierTooltip_modifier_undying_q_sub"				"Прыгающие зомби?"
+		"ModifierTooltip_modifier_undying_w_sub"				"Прыгающие зомби?"
 		"ModifierTooltip_modifier_undying_w"					"Связан"
 		"ModifierTooltip_modifier_undying_e_target"				"Получит урон, если останется возле Камня"
 		"ModifierTooltip_modifier_undying_r"					"Трансформировался"

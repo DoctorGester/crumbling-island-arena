@@ -33,7 +33,7 @@
 		"Ability4" "placeholder_emote"
 		"Ability5" "placeholder_taunt"
 		"Ability6" "undying_r"
-		"Ability7" "undying_q_sub"
+		"Ability7" "undying_w_sub"
 		"Ability8" "undying_a"
 		"Ultimate" "undying_r"
 	}

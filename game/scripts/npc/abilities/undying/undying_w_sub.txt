@@ -1,7 +1,7 @@
 "DOTAAbilities" {
-	"undying_q_sub" {
+	"undying_w_sub" {
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/undying/undying_q_sub"
+		"ScriptFile" "abilities/undying/undying_w_sub"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "undying_flesh_golem"
 		"AbilityCooldown" "2.5"
