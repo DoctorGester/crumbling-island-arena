@@ -48,7 +48,7 @@ function Rune:OnDeath(source)
         FX("particles/items3_fx/warmage_recipient.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero, { release = true })
     end
 
-    self:EmitSound("Arena.Rune")
+    self:EmitSound("Arena.Rune", self:GetPos())
 
     EmitAnnouncerSound("Announcer.RoundRune")
 end
