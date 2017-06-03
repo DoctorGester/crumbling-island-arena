@@ -14,7 +14,7 @@ function brew_e:OnSpellStart()
     local hero = self:GetCaster().hero
 
     hero:GetUnit():Purge(false, true, false, false, false)
-    hero:Heal()
+    hero:Heal(2)
 
     local effect = ParticleManager:CreateParticle("particles/items3_fx/mango_active.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero:GetUnit())
     ParticleManager:ReleaseParticleIndex(effect)
