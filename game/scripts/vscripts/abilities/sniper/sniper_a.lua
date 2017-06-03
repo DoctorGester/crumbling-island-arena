@@ -24,7 +24,8 @@ function sniper_a:OnSpellStart()
             hero:StopSound("Arena.Sniper.FlyA")
         end,
         knockback = { force = 20, decrease = 3 },
-        damage = self:GetDamage()
+        damage = self:GetDamage(),
+        isPhysical = true
     }):Activate()
 
     hero:EmitSound("Arena.Sniper.CastA")
