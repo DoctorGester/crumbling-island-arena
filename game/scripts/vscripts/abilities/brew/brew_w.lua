@@ -19,7 +19,7 @@ function brew_w:OnSpellStart()
         hitFunction = function(projectile, target)
             local stacks = hero:FindAbility("brew_q"):CountBeer(target)
 
-            target:Damage(hero, self:GetDamage())
+            target:Damage(hero, stacks + 1)
 
             if stacks > 0 then
                 target:AddNewModifier(hero, self, "modifier_stunned_lua", { duration = stacks * 0.5 })
