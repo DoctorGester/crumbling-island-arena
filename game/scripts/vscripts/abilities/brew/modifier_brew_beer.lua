@@ -23,7 +23,9 @@ function modifier_brew_beer:IsDebuff()
 end
 
 function modifier_brew_beer:GetModifierMoveSpeedBonus_Percentage(params)
-    return -7
+    local m = 7
+
+    return self:GetParent() == self:GetCaster() and m or -m
 end
 
 function modifier_brew_beer:GetEffectName()

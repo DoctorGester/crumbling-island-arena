@@ -24,7 +24,7 @@ function brew_q:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
 
-    local projectile = ArcProjectile(self.round, {
+    ArcProjectile(self.round, {
         ability = self,
         owner = hero,
         from = hero:GetPos(),
