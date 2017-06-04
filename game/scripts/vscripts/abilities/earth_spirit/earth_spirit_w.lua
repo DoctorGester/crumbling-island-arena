@@ -18,7 +18,9 @@ function earth_spirit_w:OnSpellStart()
     local isHero = false
     local closest = nil
 
-    for _, ent in pairs(s:FilterEntities(Filters.Area(target, 220), s:GetValidTargets())) do
+    local treeFilter = Filters.WrapFilter(function(e) return not instanceof(e, Obstacle) end )
+
+    for _, ent in pairs(s:FilterEntities(Filters.Area(target, 220) + treeFilter, s:GetValidTargets())) do
         local distance = distFrom(ent)
         local isEntHero = instanceof(ent, Hero) ~= nil
 
@@ -31,7 +33,7 @@ function earth_spirit_w:OnSpellStart()
 
     if closest then
         local target = closest
-        local direction = hero:GetPos() - target:GetPos()
+        local direction = (hero:GetPos() - target:GetPos()) * Vector(1, 0, 0)
         local force = direction:Length2D() / 10
         local decrease = direction:Length2D() / 160
         EarthSpiritKnockback(self, target, hero, direction, force or 20, {
