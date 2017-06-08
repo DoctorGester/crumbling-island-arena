@@ -6,7 +6,7 @@
 		"AttackCapabilities" "DOTA_UNIT_CAP_NO_ATTACK"
 		"AttributePrimary" "DOTA_ATTRIBUTE_STRENGTH"
 		"BountyXP" "0"
-		"MovementSpeed" "375"
+		"MovementSpeed" "350"
 		"MovementTurnRate" "10"
 		"StatusHealth" "20"
 		"StatusHealthRegen" "0"
