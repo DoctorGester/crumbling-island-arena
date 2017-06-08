@@ -154,7 +154,7 @@ function UpdateBar(entity, spawn) {
 
             if (statusEffectRecast) {
                 recast.SetImage(GetTexture({
-                    texture: Abilities.GetAbilityTextureName(statusEffectAbility),
+                    texture: abilityData[Abilities.GetAbilityName(statusEffectAbility)].texture,
                     name: Abilities.GetAbilityName(statusEffectAbility)
                 }, customIcons));
 
@@ -303,7 +303,7 @@ function UpdateHeroBars(){
                 }
             } else {
                 var nm = Entities.GetUnitName(entity);
-                offset = heroes[nm].barOffset;
+                offset = Entities.GetHealthBarOffset(entity);
 
                 var specialModifier = specialOffsetModifiers[nm];
 

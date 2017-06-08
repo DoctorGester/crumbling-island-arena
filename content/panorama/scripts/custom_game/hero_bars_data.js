@@ -47,6 +47,7 @@ var specialLayouts = {
 var specialOffsetModifiers = {};
 
 var customIcons = {};
+var abilityData = {};
 
 specialOffsetModifiers.npc_dota_hero_undying = function(entity) {
     if (HasModifier(entity, "modifier_undying_r")) {
@@ -105,6 +106,10 @@ specialLayoutCallbacks.npc_dota_hero_undying = function(entity, panel) {
         bar.value = 0;
     }
 };
+
+SubscribeToNetTableKey("static", "abilities", true, function(data) {
+    abilityData = data;
+});
 
 AddStatusEffect("modifier_stunned_lua", "#StatusStunned", "#45baff", 2);
 AddStatusEffect("modifier_knockback_lua", "#StatusStunned", "#45baff", 2);
