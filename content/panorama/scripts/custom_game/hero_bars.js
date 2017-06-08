@@ -1,6 +1,5 @@
 var dummy = "npc_dota_hero_wisp";
 var heroBars = {};
-var heroes = null;
 
 function darken(color, percent) {
     return [ color[0] * percent, color[1] * percent, color[2] * percent ];
@@ -269,14 +268,6 @@ function UpdateHeroBars(){
         all = all.concat(Entities.GetAllEntitiesByClassname(cl).filter(function(entity) {
             return HasModifier(entity, "modifier_custom_healthbar");
         }));
-    }
-
-    if (heroes == null) {
-        heroes = CustomNetTables.GetTableValue("static", "heroes");
-
-        if (heroes == null) {
-            return;
-        }
     }
 
     mainPanel.SetHasClass("AltPressed", GameUI.IsAltDown());
