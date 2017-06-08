@@ -55,7 +55,7 @@ function EntityAbilityDataProvider(entityId) {
         data.id = ability;
         data.key = Abilities.GetKeybind(ability);
         data.name = Abilities.GetAbilityName(ability);
-        data.texture = abilityData[Abilities.GetAbilityName(ability)].texture;
+        data.texture = (abilityData[Abilities.GetAbilityName(ability)] || {}).texture || "";
         data.cooldown = Abilities.GetCooldownLength(ability);
         data.ready = Abilities.IsCooldownReady(ability);
         data.remaining = Abilities.GetCooldownTimeRemaining(ability);

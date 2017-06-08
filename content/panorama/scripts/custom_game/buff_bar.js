@@ -39,7 +39,7 @@ function Buff(parent) {
     }
 
     this.SetDataFromBuffId = function(entityId, buffId, customIcons) {
-        var texture = Buffs.GetTexture(entityId, buffId);
+        var texture = (abilityData[Abilities.GetAbilityName(Buffs.GetAbility(entityId, buffId))] || {}).texture || "";//Buffs.GetTexture(entityId, buffId);
         var debuff = Buffs.IsDebuff(entityId, buffId);
         var remaining = Math.max(0, Buffs.GetRemainingTime(entityId, buffId));
         var stacks = 0;
