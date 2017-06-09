@@ -110,12 +110,6 @@ function Obstacle:CollideWith(target)
                 cp1 = target:GetPos(),
                 release = true
             })
-
-            FX("particles/msg_fx/msg_deny.vpcf", PATTACH_CUSTOMORIGIN, mode, {
-                cp0 = target:GetPos(),
-                cp3 = Vector(200, 0, 0),
-                release = true
-            })
         end
     end
 end
