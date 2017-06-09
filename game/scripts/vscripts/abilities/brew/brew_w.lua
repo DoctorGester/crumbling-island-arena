@@ -19,7 +19,7 @@ function brew_w:OnSpellStart()
         hitFunction = function(projectile, target)
             local stacks = hero:FindAbility("brew_q"):CountBeer(target)
 
-            target:Damage(heroStacks, stacks + 1)
+            target:Damage(hero, heroStacks + 1)
 
             if stacks > 0 then
                 target:AddNewModifier(hero, self, "modifier_stunned_lua", { duration = stacks * 0.5 })
@@ -31,7 +31,7 @@ function brew_w:OnSpellStart()
 
     hero:EmitSound("Arena.Brew.CastW")
 
-    ParticleManager:SetParticleControl(projectile.particle, 4, Vector(stacks + 2, 1, 0))
+    ParticleManager:SetParticleControl(projectile.particle, 4, Vector(heroStacks + 2, 1, 0))
 end
 
 function brew_w:GetCastAnimation()
