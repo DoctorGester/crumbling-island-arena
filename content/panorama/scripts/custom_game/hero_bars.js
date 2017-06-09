@@ -153,7 +153,7 @@ function UpdateBar(entity, spawn) {
 
             if (statusEffectRecast) {
                 recast.SetImage(GetTexture({
-                    texture: abilityData[Abilities.GetAbilityName(statusEffectAbility)].texture,
+                    texture: Abilities.GetAbilityTextureName(statusEffectAbility),
                     name: Abilities.GetAbilityName(statusEffectAbility)
                 }, customIcons));
 
