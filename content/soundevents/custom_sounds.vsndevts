@@ -3929,6 +3929,21 @@
 		event_type = "1.0"
 	}
 
+	Arena.Ember.HitE = {
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/ember_spirit/fire_remnant_stop.vsnd",
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.02"
+		pitch_rand_max = "0.02"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+	
+	
 	Arena.Ember.CastR = {
 		type = "dota_src1_3d"
 		vsnd_files = 

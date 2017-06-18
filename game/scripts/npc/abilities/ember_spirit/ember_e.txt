@@ -4,7 +4,7 @@
 		"ScriptFile" "abilities/ember/ember_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "ember_spirit_activate_fire_remnant"
-		"AbilityCooldown" "2.7"
+		"AbilityCooldown" "3.5"
 
 		"TargetingIndicator" {
 			"Type" "TARGETING_INDICATOR_LINE_EMBER"
