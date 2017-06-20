@@ -1,6 +1,5 @@
 var dummy = "npc_dota_hero_wisp";
 var heroBars = {};
-var heroes = null;
 
 function darken(color, percent) {
     return [ color[0] * percent, color[1] * percent, color[2] * percent ];
@@ -271,14 +270,6 @@ function UpdateHeroBars(){
         }));
     }
 
-    if (heroes == null) {
-        heroes = CustomNetTables.GetTableValue("static", "heroes");
-
-        if (heroes == null) {
-            return;
-        }
-    }
-
     mainPanel.SetHasClass("AltPressed", GameUI.IsAltDown());
 
     var onScreen = _
@@ -303,7 +294,7 @@ function UpdateHeroBars(){
                 }
             } else {
                 var nm = Entities.GetUnitName(entity);
-                offset = heroes[nm].barOffset;
+                offset = Entities.GetHealthBarOffset(entity);
 
                 var specialModifier = specialOffsetModifiers[nm];
 
