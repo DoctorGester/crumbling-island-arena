@@ -2,6 +2,7 @@ ta_e = class({})
 
 LinkLuaModifier("modifier_ta_e", "abilities/ta/modifier_ta_e", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_ta_e_counter", "abilities/ta/modifier_ta_e_counter", LUA_MODIFIER_MOTION_NONE)
+--LinkLuaModifier("modifier_ta_e_precast", "abilities/ta/modifier_ta_e_precast", LUA_MODIFIER_MOTION_NONE)
 
 function ta_e:OnAbilityPhaseStart()
     self:GetCaster().hero:EmitSound("Arena.TA.CastE")

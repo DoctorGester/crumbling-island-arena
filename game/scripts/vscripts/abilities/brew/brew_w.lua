@@ -3,7 +3,7 @@ brew_w = class({})
 function brew_w:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
-    local stacks = hero:FindAbility("brew_q"):CountBeer(hero)
+    local heroStacks = hero:FindAbility("brew_q"):CountBeer(hero)
 
     local projectile = DistanceCappedProjectile(hero.round, {
         ability = self,
@@ -12,14 +12,14 @@ function brew_w:OnSpellStart()
         to = target + Vector(0, 0, 128),
         speed = 1650,
         graphics = "particles/brew_w/brew_w.vpcf",
-        distance = 500 + 250 * stacks,
-        radius = 32 + 32 * stacks,
+        distance = 500 + 250 * heroStacks,
+        radius = 32 + 32 * heroStacks,
         hitSound = "Arena.Ember.HitQ",
         continueOnHit = true,
         hitFunction = function(projectile, target)
             local stacks = hero:FindAbility("brew_q"):CountBeer(target)
 
-            target:Damage(hero, stacks + 1)
+            target:Damage(hero, heroStacks + 1)
 
             if stacks > 0 then
                 target:AddNewModifier(hero, self, "modifier_stunned_lua", { duration = stacks * 0.5 })
@@ -31,7 +31,7 @@ function brew_w:OnSpellStart()
 
     hero:EmitSound("Arena.Brew.CastW")
 
-    ParticleManager:SetParticleControl(projectile.particle, 4, Vector(stacks + 2, 1, 0))
+    ParticleManager:SetParticleControl(projectile.particle, 4, Vector(heroStacks + 2, 1, 0))
 end
 
 function brew_w:GetCastAnimation()

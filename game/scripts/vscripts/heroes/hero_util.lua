@@ -85,7 +85,7 @@ function TinkerUtil.PortalAbility(ability, isPrimary, swapTo, startEffect, effec
         end
 
         local pos = portal:GetPos()
-        if (pos - location):Length2D() <= 300 then
+        if (pos - location):Length2D() <= 300 or (pos - location):Length2D() >= 1000 then -- changes here
             return UF_FAIL_CUSTOM
         end
 
