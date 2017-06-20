@@ -65,13 +65,11 @@ function HealthSystem:Damage(source, amount, isPhysical)
 
     self:GetUnit():AddNewModifier(self:GetUnit(), nil, "modifier_damaged", { duration = 0.2 })
 
-    local color = isPhysical and Vector(250, 70, 70) or Vector(100, 130, 240)
-
     FX("particles/msg_damage.vpcf", PATTACH_CUSTOMORIGIN, GameRules:GetGameModeEntity(), {
         cp0 = self:GetPos(),
         cp1 = Vector(0, amount, 0),
         cp2 = Vector(math.max(1, amount / 1.5), 1, 0),
-        cp3 = color,
+        cp3 = Vector(255, 255, 255),
         release = true
     })
 

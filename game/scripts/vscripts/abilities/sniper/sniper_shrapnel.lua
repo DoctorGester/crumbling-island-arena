@@ -27,10 +27,6 @@ function SniperShrapnel:constructor(round, owner, target, ability)
     })
 end
 
-function SniperShrapnel:CanFall()
-    return false
-end
-
 function SniperShrapnel:Update()
     getbase(SniperShrapnel).Update(self)
 

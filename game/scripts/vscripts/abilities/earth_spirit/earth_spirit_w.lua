@@ -18,16 +18,7 @@ function earth_spirit_w:OnSpellStart()
     local isHero = false
     local closest = nil
 
-    local targets = {}
-
-    hero:AreaEffect({
-        ability = self,
-        filter = Filters.Area(target, 220),
-        hitAllies = true,
-        action = function(victim) table.insert(targets, victim) end
-    })
-
-    for _, ent in pairs(targets) do
+    for _, ent in pairs(s:FilterEntities(Filters.Area(target, 220), s:GetValidTargets())) do
         local distance = distFrom(ent)
         local isEntHero = instanceof(ent, Hero) ~= nil
 
@@ -40,9 +31,9 @@ function earth_spirit_w:OnSpellStart()
 
     if closest then
         local target = closest
-        local direction = (hero:GetPos() - target:GetPos()) * Vector(1, 1, 0)
+        local direction = hero:GetPos() - target:GetPos()
         local force = direction:Length2D() / 10
-        local decrease = math.max(3, direction:Length2D() / 160)
+        local decrease = direction:Length2D() / 160
         EarthSpiritKnockback(self, target, hero, direction, force or 20, {
             loopingSound = "Arena.Earth.CastW.Loop",
             decrease = decrease
