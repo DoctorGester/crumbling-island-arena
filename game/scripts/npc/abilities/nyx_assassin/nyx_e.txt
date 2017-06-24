@@ -1,0 +1,10 @@
+"DOTAAbilities" {
+	"nyx_e" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/nyx/nyx_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_TOGGLE"
+		"AbilityTextureName" "antimage_blink"
+		"AbilityCooldown" "0"
+		"AbilityCastPoint" "0"
+	}
+}

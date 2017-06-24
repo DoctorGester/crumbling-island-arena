@@ -155,6 +155,7 @@
 #base "abilities\earth_spirit\earth_spirit_e.txt"
 #base "abilities\earth_spirit\earth_spirit_r.txt"
 #base "abilities\earth_spirit\earth_spirit_a.txt"
+#base "abilities\nyx_assassin\nyx_e.txt"
 
 "DOTAAbilities" {
 	"dummy_unit_ability" {

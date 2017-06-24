@@ -40,6 +40,7 @@
 			"tinker_e" "tinker_e_sub.png"
 			"tinker_w_sub" "tinker_e.png"
 			"tinker_e_sub" "tinker_e_sub.png"
+			"tinker_cd" "tinker_cd.png"
 		}
 		"Ultimate" "tinker_r"
 	}

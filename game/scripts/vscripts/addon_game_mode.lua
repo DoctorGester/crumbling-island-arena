@@ -452,6 +452,30 @@ function GameMode:InitSettings()
     end
 end
 
+--[[
+function GameMode:OrderFilter(event)
+    local nyxing = unit:FindModifier("modifier_nyx_e")
+    if event == DOTA_UNIT_ORDER_MOVE_TO_POSITION and nyxing then
+        event.position_y = event.position_y - offsetVector.y
+        return true
+    end
+end]]
+
+function GameMode:OrderFilter(event)
+    --Check if the order is the glyph type
+    if event.order_type == DOTA_UNIT_ORDER_MOVE_TO_POSITION then
+        local offsetVector = RandomVector(100)
+        event.position_x = event.position_x + offsetVector.x
+        event.position_y = event.position_y + offsetVector.y
+        return true
+    end
+
+    --Return true by default to keep all other orders the same
+    return true
+end
+
+
+
 function GameMode:FilterExecuteOrder(filterTable)
     local orderType = filterTable.order_type
     local index = 0
@@ -470,6 +494,8 @@ function GameMode:FilterExecuteOrder(filterTable)
             if orderType == DOTA_UNIT_ORDER_STOP or orderType == DOTA_UNIT_ORDER_HOLD_POSITION then
                 self.lastOrders[unit] = nil
             end
+
+            
 
             if orderType == DOTA_UNIT_ORDER_MOVE_TO_POSITION then
                 self.lastOrders[unit] = Vector(filterTable.position_x, filterTable.position_y)

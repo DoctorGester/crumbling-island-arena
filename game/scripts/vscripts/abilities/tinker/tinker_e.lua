@@ -1,5 +1,7 @@
 tinker_e = class({})
 
+LinkLuaModifier("modifier_tinker_portal_cd", "abilities/tinker/modifier_tinker_portal_cd", LUA_MODIFIER_MOTION_NONE)
+
 if IsClient() then
     require('heroes/hero_util')
 end

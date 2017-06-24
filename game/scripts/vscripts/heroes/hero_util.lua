@@ -50,6 +50,7 @@ function TinkerUtil.FindPortal(hero, primary)
 end
 
 function TinkerUtil.PortalAbility(ability, isPrimary, swapTo, startEffect, effect, warpEffect)
+    LinkLuaModifier("modifier_tinker_portal_cd", "abilities/tinker/modifier_tinker_portal_cd", LUA_MODIFIER_MOTION_NONE)
     function ability:RemoveParticle()
         if self.preParticle then
             ParticleManager:DestroyParticle(self.preParticle, false)
@@ -75,18 +76,21 @@ function TinkerUtil.PortalAbility(ability, isPrimary, swapTo, startEffect, effec
         if not IsServer() then return UF_SUCCESS end
 
         if not Spells.TestPoint(location) then
-            return UF_FAIL_CUSTOM
+            return UF_FAIL_CUSTOM, nil
         end
 
         local portal = TinkerUtil.FindPortal(self:GetCaster().hero, not isPrimary)
 
         if not portal then
-            return UF_SUCCESS
+            return UF_SUCCESS, nil
         end
 
         local pos = portal:GetPos()
         if (pos - location):Length2D() <= 300 then
-            return UF_FAIL_CUSTOM
+            return UF_FAIL_CUSTOM, "close"
+        end
+        if (pos - location):Length2D() >= 1500 then
+            return UF_FAIL_CUSTOM, "far"
         end
 
         return UF_SUCCESS
@@ -97,10 +101,15 @@ function TinkerUtil.PortalAbility(ability, isPrimary, swapTo, startEffect, effec
             return "#dota_hud_error_tinker_portal_outside"
         end
 
-        local result = self:CastFilterResultLocation(location)
+        local result, result2 = self:CastFilterResultLocation(location)
 
         if result == UF_FAIL_CUSTOM then
-            return "#dota_hud_error_tinker_portal_too_close"
+            if result2 == "far" then
+                return "#dota_hud_error_tinker_portal_too_far" -- change to far
+            else
+                return "#dota_hud_error_tinker_portal_too_close"
+            end
+
         end
 
         return ""
@@ -110,6 +119,8 @@ function TinkerUtil.PortalAbility(ability, isPrimary, swapTo, startEffect, effec
         local hero = self:GetCaster().hero
         local target = self:GetCursorPosition()
         local first = TinkerUtil.FindPortal(self:GetCaster().hero, isPrimary)
+
+        hero:AddNewModifier(hero, ability, "modifier_tinker_portal_cd", { duration = self:GetCooldown(1)})
 
         ScreenShake(target, 5, 150, 0.25, 3000, 0, true)
 
@@ -158,6 +169,7 @@ function TinkerUtil.PortalCancelAbility(ability, isPrimary, swapTo)
     function ability:OnSpellStart()
         local hero = self:GetCaster():GetParentEntity()
         local portal = TinkerUtil.FindPortal(hero, isPrimary)
+        hero:FindModifier("modifier_tinker_portal_cd"):Destroy()
 
         if portal then
             portal:Destroy()

@@ -28,6 +28,7 @@
 #base "heroes\windrunner.txt"
 #base "heroes\antimage.txt"
 #base "heroes\earth_spirit.txt"
+#base "heroes\nyx_assassin.txt"
 
 "DOTAHeroes" {
 	"npc_dota_hero_wisp" {
