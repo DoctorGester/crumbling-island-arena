@@ -8,6 +8,10 @@ function modifier_pudge_a:DeclareFunctions()
     return funcs
 end
 
+function modifier_pudge_a:IsPermanent()
+    return true
+end
+
 function modifier_pudge_a:IsDebuff()
     return true
 end
