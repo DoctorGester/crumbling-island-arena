@@ -185,6 +185,5 @@ function UnitEntity:Remove()
 	else
 		self:GetUnit():ForceKill(false)
 		self:GetUnit():SetAbsOrigin(self:GetPos())
-		self:GetUnit():StartGesture(ACT_DOTA_DIE)
 	end
 end
