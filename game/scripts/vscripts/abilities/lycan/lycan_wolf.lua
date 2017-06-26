@@ -5,7 +5,7 @@ function LycanWolf:constructor(round, owner, target, offsetModifier, ability)
     direction = Vector(direction.y, -direction.x, 0)
     local pos = owner:GetPos() + direction * 200 * offsetModifier
 
-    getbase(LycanWolf).constructor(self, round, "npc_dota_lycan_wolf1", pos, owner.unit:GetTeamNumber(), true)
+    getbase(LycanWolf).constructor(self, round, "lycan_wolf", pos, owner.unit:GetTeamNumber(), true)
 
     self.owner = owner.owner
     self.hero = owner
