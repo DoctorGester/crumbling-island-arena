@@ -392,10 +392,12 @@ var DeathMatch = new (function() {
                 _(hero.abilities)
                     .chain()
                     .filter(function(a) {
-                        return EndsWith(a.name, ability.toLowerCase());
+                        return EndsWith(a, ability.toLowerCase());
                     })
                     .first()
                     .value();
+
+            found = (CustomNetTables.GetTableValue("static", "abilities") || {})[found];
 
             var row = $("#AbilityRow" + ability);
 
