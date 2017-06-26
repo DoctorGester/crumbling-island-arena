@@ -45,7 +45,7 @@ function drow_q:OnChannelThink(interval)
                 self.damaged[victim] = (self.damaged[victim] or 0) + 1
 
                 if self.damaged[victim] <= 3 then
-                    victim:Damage(hero, self:GetDamage(), true)
+                    victim:Damage(hero, self:GetDamage())
                 end
             end,
             knockback = { force = 20, decrease = 5.5 },
