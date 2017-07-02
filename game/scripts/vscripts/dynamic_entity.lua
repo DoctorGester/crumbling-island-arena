@@ -224,10 +224,10 @@ function DynamicEntity:AreaEffect(params)
             if params.sound and not soundPlayed then
                 if type(params.sound) == "table" then
                     for _, sound in pairs(params.sound) do
-                        target:EmitSound(sound)
+                        self:EmitSound(sound, target:GetPos())
                     end
                 else
-                    target:EmitSound(params.sound)
+                    self:EmitSound(params.sound, target:GetPos())
                 end
 
                 soundPlayed = true

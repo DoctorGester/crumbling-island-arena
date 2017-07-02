@@ -187,7 +187,7 @@ function Projectile:CollideWith(target)
     end
 
     if self.hitSound then
-        target:EmitSound(self.hitSound)
+        target:EmitSound(self.hitSound, target:GetPos())
     end
 
     if self.screenShake then
