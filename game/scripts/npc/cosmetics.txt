@@ -402,7 +402,19 @@
 
     "antimage"
     {
-        "1"
+    	"1"
+    	{
+    		"type" "elite"
+    		"season" "12"
+			"set" "guilt_of_the_survivor"
+			"particles"
+			{
+				"particles/am_q/am_q.vpcf" "particles/econ/am_q_seasonal/am_q.vpcf"
+				"particles/am_q/am_q2.vpcf" "particles/econ/am_q_seasonal/am_q2.vpcf"
+			}
+    	}
+
+        "2"
         {
             "type" "pass"
             "level" "12"
@@ -416,7 +428,7 @@
 			}
         }
 
-        "2"
+        "3"
         {
             "type" "pass"
             "level" "2"
