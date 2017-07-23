@@ -14,14 +14,17 @@ function drow_w:OnSpellStart()
     TimedEntity(0.55, function()
         DFX(particle)
 
-        local hit = hero:AreaEffect({
+        local hitAndNotBlocked = false
+
+        hero:AreaEffect({
             ability = self,
             filter = Filters.Area(target, 250),
             modifier = { name = "modifier_silence_lua", duration = 1.2, ability = self },
-            onlyHeroes = true
+            onlyHeroes = true,
+            action = function() hitAndNotBlocked = true end
         })
 
-        if hit then
+        if hitAndNotBlocked then
             hero:FindAbility("drow_q"):EndCooldown()
         end
 
