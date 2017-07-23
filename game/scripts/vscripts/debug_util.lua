@@ -1,8 +1,8 @@
 Debug = Debug or {
     enableEndCheck = false,
     displayDebug = true,
-    debugHeroName = "npc_dota_hero_sven",
-    debugHero = nil
+    debugHero = nil,
+    wtfStatus = false
 }
 
 function Debug.OnTestEverything()
@@ -33,13 +33,22 @@ function Debug.OnResetLevel(eventSourceIndex, args)
     GameRules.GameMode.level:Reset()
 end
 
+function Debug.OnToggleWTF()
+    wtfStatus = not wtfStatus
+    SendToServerConsole("dota_ability_debug "..(wtfStatus and "1" or "0"))
+end
+
 function Debug.OnCreateTestHero(eventSourceIndex, args)
+    args.enemy = args.enemy == 1
+
     local round = GameRules.GameMode.round
     local hero = round:LoadHeroClass(args.name)
+    local team = args.enemy and DOTA_TEAM_CUSTOM_2 or DOTA_TEAM_GOODGUYS
+    local playerId = args.enemy and 2 or 0
 
-    hero:SetUnit(CreateUnitByName(args.name, Vector(0, 0, 0), true, nil, nil, DOTA_TEAM_CUSTOM_2))
+    hero:SetUnit(CreateUnitByName(args.name, Vector(0, 0, 0), true, nil, nil, team))
     hero:Setup()
-    hero:SetOwner({ id = 2, hero = hero, team = DOTA_TEAM_CUSTOM_2, score = 0, IsConnected = function() return true end })
+    hero:SetOwner({ id = playerId, hero = hero, team = team, score = 0, IsConnected = function() return true end })
     round:LoadHeroMixins(args.name, hero)
 
     local _, first = next(round.players)
@@ -65,11 +74,11 @@ end
 function InjectEndCheck(round)
     local original = round.CheckEndConditions
     local new =
-        function()
-            if enableEndCheck then
-                original(round)
-            end
+    function()
+        if enableEndCheck then
+            original(round)
         end
+    end
 
     round.CheckEndConditions = new
 end
@@ -77,15 +86,15 @@ end
 function InjectProjectileDebug()
     local original = Spells.ThinkFunction
     local new =
-        function(dt)
-            if displayDebug then
-                for _, projectile in ipairs(Projectiles) do
-                    DebugDrawCircle(projectile.position, Vector(0, 255, 0), 255, projectile.radius, false, THINK_PERIOD)
-                end
+    function(dt)
+        if displayDebug then
+            for _, projectile in ipairs(Projectiles) do
+                DebugDrawCircle(projectile.position, Vector(0, 255, 0), 255, projectile.radius, false, THINK_PERIOD)
             end
-
-            return original(dt)
         end
+
+        return original(dt)
+    end
 
     Spells.ThinkFunction = new
 end
@@ -93,13 +102,13 @@ end
 function InjectAreaDebug()
     local original = Spells.AreaDamage
     local new =
-        function(self, hero, point, area, action)
-            if displayDebug then
-                DebugDrawCircle(point, Vector(0, 255, 0), 255, area, false, 1)
-            end
-
-            return original(nil, hero, point, area, action)
+    function(self, hero, point, area, action)
+        if displayDebug then
+            DebugDrawCircle(point, Vector(0, 255, 0), 255, area, false, 1)
         end
+
+        return original(nil, hero, point, area, action)
+    end
 
     Spells.AreaDamage = new
 end
@@ -130,7 +139,7 @@ function CheckAndEnableDebug()
     end
 
     GameRules.GameMode.gameSetup.timer = 20000
-    GameRules.GameMode.heroSelection.SelectionTimerTime = (PlayerResource:GetPlayerCount() > 1) and 3 or 20000 
+    GameRules.GameMode.heroSelection.SelectionTimerTime = (PlayerResource:GetPlayerCount() > 1) and 3 or 20000
     GameRules.GameMode.heroSelection.PreGameTime = 0
     GameRules.GameMode:UpdateGameInfo()
 
@@ -145,6 +154,7 @@ function CheckAndEnableDebug()
     CustomGameEventManager:RegisterListener("debug_check_end", Debug.OnCheckEnd)
     CustomGameEventManager:RegisterListener("debug_reset_level", Debug.OnResetLevel)
     CustomGameEventManager:RegisterListener("debug_create_test_hero", Debug.OnCreateTestHero)
+    CustomGameEventManager:RegisterListener("debug_toggle_wtf", Debug.OnToggleWTF)
     CustomGameEventManager:RegisterListener("debug_test_everything", Debug.OnTestEverything)
 
     --InjectProjectileDebug()
