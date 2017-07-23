@@ -11,6 +11,16 @@ function sven_e:GetChannelTime()
     return 0.4
 end
 
+function sven_e:GetBehavior()
+    local default = bit.bor(DOTA_ABILITY_BEHAVIOR_POINT, DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES)
+
+    if self:GetCaster():HasModifier("modifier_sven_r") then
+        return bit.bor(default, DOTA_ABILITY_BEHAVIOR_IMMEDIATE)
+    end
+
+    return default
+end
+
 function sven_e:OnSpellStart()
     self:GetCaster().hero:EmitSound("Arena.Sven.CastE")
 
