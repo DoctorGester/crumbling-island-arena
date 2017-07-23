@@ -42,7 +42,7 @@ function self:OnSpellStart()
         local modifier = hero:FindModifier("modifier_undying_q_health")
 
         if not modifier then
-            modifier = hero:AddNewModifier(hero, self, "modifier_undying_q_health", { duration = 5 })
+            modifier = hero:AddNewModifier(hero, self, "modifier_undying_q_health", { duration = transformed and -1 or 5 })
         end
 
         if modifier then
