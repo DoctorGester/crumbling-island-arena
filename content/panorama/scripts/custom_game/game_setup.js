@@ -54,7 +54,7 @@ function ModeVotesChanged(players) {
         }
 
         if (player.input != null) {
-            playerVotes[id].front.SetHasClass("PlayerVote" + player.input, true);
+            playerVotes[id].front.SetHasClass("PlayerVote" + player.input.toUpperCase(), true);
         }
     }
 }
@@ -116,7 +116,7 @@ function GameModesChanges(data) {
     for (var key in data) {
         var mode = data[key];
 
-        var button = $.CreatePanel("Button", buttons, mode + "Button");
+        var button = $.CreatePanel("Button", buttons, mode.toUpperCase() + "Button");
         button.AddClass("VotingButton");
 
         var label = $.CreatePanel("Label", button, "");
