@@ -513,7 +513,11 @@ var DeathMatch = new (function() {
     }
 
     this.HideHeroes = function() {
-        $("#DeathMatchHeroes").SetHasClass("Hidden", true);
+        var panel = $("#DeathMatchHeroes");
+
+        panel.SetHasClass("DeathMatchHeroesAnimated", false);
+        panel.SetHasClass("DeathMatchPanelHidden", true);
+        panel.SetHasClass("DeathMatchHeroesAnimated", true);
     }
 
     this.OnRespawn = function(args) {

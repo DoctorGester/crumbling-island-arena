@@ -168,7 +168,7 @@
                         <Label text="#ChangeHero"/>
                     </Button>
                 </Panel>
-                <Panel id="DeathMatchHeroes" class="DeathMatchPanelHidden" acceptsinput="true">
+                <Panel id="DeathMatchHeroes" class="DeathMatchPanelHidden DeathMatchHeroesAnimated" acceptsinput="true">
                     <Panel id="DeathMatchHeroesHero">
                         <Label id="DeathMatchHeroName"/>
                         <Panel id="DeathMatchHeroMovieContainer">
