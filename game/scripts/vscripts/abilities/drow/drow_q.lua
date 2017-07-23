@@ -1,15 +1,25 @@
 drow_q = class({})
 LinkLuaModifier("modifier_drow_q", "abilities/drow/modifier_drow_q", LUA_MODIFIER_MOTION_NONE)
 
-function drow_q:OnChannelThink(interval)
-    self.channelingTime = (self.channelingTime or 0) + interval
+DrowQInstance = class({})
+
+function DrowQInstance:constructor(ability)
+    self.ability = ability
+    self.channelingTime = 0
+    self.shots = 0
+    self.going = false
+end
+
+function DrowQInstance:Update(interval)
+    self.channelingTime = self.channelingTime + interval
     self.going = true
 
+    local ability = self.ability
     local shots = self.shots or 0
-    local hero = self:GetCaster():GetParentEntity()
+    local hero = ability:GetCaster():GetParentEntity()
 
     if self.channelingTime >= shots * 0.1 then
-        local target = self:GetCursorPosition()
+        local target = ability:GetCursorPosition()
         hero:Animate(ACT_DOTA_ATTACK, 8.0)
 
         local dir = target - hero:GetPos()
@@ -19,14 +29,14 @@ function drow_q:OnChannelThink(interval)
         self.damaged = self.damaged or {}
 
         DistanceCappedProjectile(hero.round, {
-            ability = self,
+            ability = ability,
             owner = hero,
             from = hero:GetPos() + Vector(0, 0, 96) + offset,
             to = target + Vector(0, 0, 96) + offset * 0.5,
             speed = 2500,
             distance = 1200,
             graphics = "particles/drow_a/drow_a.vpcf",
-            damage = self:GetDamage(),
+            damage = ability:GetDamage(),
             hitSound = "Arena.Drow.HitA",
             hitFunction = function(_, victim)
                 local modifier = victim:FindModifier("modifier_drow_q")
@@ -45,7 +55,7 @@ function drow_q:OnChannelThink(interval)
                 self.damaged[victim] = (self.damaged[victim] or 0) + 1
 
                 if self.damaged[victim] <= 3 then
-                    victim:Damage(hero, self:GetDamage())
+                    victim:Damage(hero, ability:GetDamage())
                 end
             end,
             knockback = { force = 20, decrease = 5.5 },
@@ -66,10 +76,16 @@ function drow_q:OnChannelThink(interval)
     end
 end
 
+function drow_q:OnChannelThink(interval)
+    if interval == 0 then
+        self.currentInstance = DrowQInstance(self)
+    end
+
+    self.currentInstance:Update(interval)
+end
+
 function drow_q:OnChannelFinish()
-    self.channelingTime = 0
-    self.shots = 0
-    self.going = false
+    self.currentInstance.going = false
 end
 
 function drow_q:GetChannelTime()
