@@ -14,7 +14,7 @@ function Debug.OnTestEverything()
 end
 
 function Debug.OnTakeDamage(eventSourceIndex, args)
-    GameRules.GameMode.Players[args.PlayerID].hero:Damage()
+    GameRules.GameMode.Players[args.PlayerID].hero:Damage(GameRules.GameMode.Players[args.PlayerID].hero)
 end
 
 function Debug.OnHealHealth(eventSourceIndex, args)
