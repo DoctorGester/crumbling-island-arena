@@ -27,9 +27,9 @@ function SKWProjectile:constructor(round, hero, target, ability)
         continueOnHit = true,
         considersGround = true,
         ignoreProjectiles = true,
-        hitFunction = function(_, target)
-            target:Damage(hero, ability:GetDamage())
-            SKUtil.AbilityHit(hero, target)
+        hitFunction = function(projectile, target)
+            target:Damage(projectile, ability:GetDamage())
+            SKUtil.AbilityHit(projectile:GetTrueHero(), target)
         end
     })
 

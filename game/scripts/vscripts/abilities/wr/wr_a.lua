@@ -15,8 +15,12 @@ function wr_a:OnSpellStart()
         graphics = "particles/wr_a/wr_a.vpcf",
         distance = 1200,
         hitSound = "Arena.Drow.HitA",
-        hitFunction = function(_, target)
-            target:Damage(hero, self:GetDamage(), true)
+        hitFunction = function(projectile, target)
+            target:Damage(projectile, self:GetDamage(), true)
+
+            local hero = projectile:GetTrueHero()
+
+            print(target, hero)
 
             if instanceof(target, Hero) then
                 local haste = hero:FindModifier("modifier_wr_a")

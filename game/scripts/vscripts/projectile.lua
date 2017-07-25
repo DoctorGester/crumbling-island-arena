@@ -89,9 +89,18 @@ end
 function Projectile:Deflect(by, direction)
     direction.z = 0
     self.vel = direction:Normalized()
+    self.heroOverride = by
     self.owner = by.owner
 
     self:SetFacing(self.vel)
+end
+
+function Projectile:GetTrueHero()
+    if self.heroOverride then
+        return self.heroOverride
+    end
+
+    return self.hero
 end
 
 function Projectile:Update()

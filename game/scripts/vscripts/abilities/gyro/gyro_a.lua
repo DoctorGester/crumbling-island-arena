@@ -23,12 +23,12 @@ function self:OnSpellStart()
             })
         end,
         screenShake = { 5, 150, 0.25, 1500, 0, true },
-        hitFunction = function(_, victim)
+        hitFunction = function(projectile, victim)
             local damage = self:GetDamage()
             local modifier = victim:FindModifier("modifier_gyro_a_slow")
 
             if not modifier then
-                modifier = victim:AddNewModifier(hero, self, "modifier_gyro_a_slow", { duration = 3 })
+                modifier = victim:AddNewModifier(projectile:GetTrueHero(), self, "modifier_gyro_a_slow", { duration = 3 })
 
                 if modifier then
                     modifier:SetStackCount(1)
@@ -44,7 +44,7 @@ function self:OnSpellStart()
                 end
             end
 
-            victim:Damage(hero, damage, true)
+            victim:Damage(projectile, damage, true)
         end
     }):Activate()
 

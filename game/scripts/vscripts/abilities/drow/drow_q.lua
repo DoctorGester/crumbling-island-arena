@@ -38,11 +38,11 @@ function DrowQInstance:Update(interval)
             graphics = "particles/drow_a/drow_a.vpcf",
             damage = ability:GetDamage(),
             hitSound = "Arena.Drow.HitA",
-            hitFunction = function(_, victim)
+            hitFunction = function(projectile, victim)
                 local modifier = victim:FindModifier("modifier_drow_q")
 
                 if not modifier then
-                    modifier = victim:AddNewModifier(hero, self, "modifier_drow_q", { duration = 2 })
+                    modifier = victim:AddNewModifier(projectile:GetTrueHero(), self, "modifier_drow_q", { duration = 2 })
 
                     if modifier then
                         modifier:SetStackCount(1)
@@ -55,7 +55,7 @@ function DrowQInstance:Update(interval)
                 self.damaged[victim] = (self.damaged[victim] or 0) + 1
 
                 if self.damaged[victim] <= 3 then
-                    victim:Damage(hero, ability:GetDamage())
+                    victim:Damage(projectile, ability:GetDamage())
                 end
             end,
             knockback = { force = 20, decrease = 5.5 },

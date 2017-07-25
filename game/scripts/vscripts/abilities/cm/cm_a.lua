@@ -12,14 +12,14 @@ function cm_a:OnSpellStart()
     if mod and mod:GetStackCount() == 3 then
         graphics = "particles/cm_a/cm_a_empowered.vpcf"
 
-        action = function(_, target)
-            target:Damage(hero, self:GetDamage())
+        action = function(projectile, target)
+            target:Damage(projectile, self:GetDamage())
 
             if CMUtil.IsFrozen(target) then
-                CMUtil.Stun(hero, target, self)
+                CMUtil.Stun(projectile:GetTrueHero(), target, self)
             end
 
-            CMUtil.Freeze(hero, target, self)
+            CMUtil.Freeze(projectile:GetTrueHero(), target, self)
         end
 
         mod:Destroy()

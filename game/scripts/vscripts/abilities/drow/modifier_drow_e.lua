@@ -38,9 +38,9 @@ if IsServer() then
             graphics = "particles/drow_q/drow_q.vpcf",
             distance = 300,
             hitSound = "Arena.Drow.HitA",
-            hitFunction = function(_, victim)
+            hitFunction = function(projectile, victim)
                 if self.damaged[victim] == nil then
-                    victim:Damage(hero, damage)
+                    victim:Damage(projectile, damage)
                 end
 
                 self.damaged[victim] = true
