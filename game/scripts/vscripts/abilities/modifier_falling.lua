@@ -4,6 +4,10 @@ if IsServer() then
     function modifier_falling:OnCreated()
         self:GetParent():StartGesture(ACT_DOTA_FLAIL)
     end
+
+    function modifier_falling:OnDestroy()
+        self:GetParent():FadeGesture(ACT_DOTA_FLAIL)
+    end
 end
 
 function modifier_falling:IsStunDebuff()
