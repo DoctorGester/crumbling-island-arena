@@ -184,17 +184,38 @@ function Round:SpawnObstacles()
     end
 end
 
-function Round:CreateHeroes(spawnPoints)
+function Round:CreateHeroes(spawnPoints, isRanked)
     print("Creating heroes")
-    Shuffle(spawnPoints)
+    if not isRanked then
+        Shuffle(spawnPoints)
+    end
 
     local teamSpawned = {}
 
+    local teams = {}
+    for i, player in pairs(self.players) do
+        teams[player.team] = true
+    end
+
+    local teamCount = 0
+    for _, _ in pairs(teams) do
+        teamCount = teamCount + 1
+    end
+
+    local totalSpawns = #spawnPoints
+    local spawnOffset = RandomInt(0, totalSpawns)
+
     for i, player in pairs(self.players) do
         if player:IsConnected() and player.selectionLocked and player.selectedHero ~= nil then
+            local pointIndex = self:GetTeamInverted(player.team) + 1
+
+            if isRanked then
+                pointIndex = (self:GetTeamInverted(player.team) * math.floor(totalSpawns / teamCount) + spawnOffset) % totalSpawns + 1
+            end
+
             local offset = (teamSpawned[player.team] or 0)
             local hero = self:LoadHeroClass(player.selectedHero)
-            local unit = CreateUnitByName(player.selectedHero, spawnPoints[self:GetTeamInverted(player.team) + 1] + Vector(0, 128, 0) * offset, true, nil, nil, player.team)
+            local unit = CreateUnitByName(player.selectedHero, spawnPoints[pointIndex] + Vector(0, 128, 0) * offset, true, nil, nil, player.team)
             hero:SetUnit(unit)
             hero:SetFacing(-hero:GetPos())
 
