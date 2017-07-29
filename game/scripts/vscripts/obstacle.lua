@@ -98,7 +98,8 @@ end
 
 function Obstacle:CollideWith(target)
     if instanceof(target, Projectile) and target.continueOnHit then
-        if instanceof(target, ProjectilePAA) then
+        -- Configure inside of projectile?
+        if instanceof(target, ProjectilePAA) or instanceof(target, TinyQ) then
             target:Deflect(target.hero, -target.vel)
         else
             target:Destroy()
