@@ -42,7 +42,7 @@ function DrowQInstance:Update(interval)
                 local modifier = victim:FindModifier("modifier_drow_q")
 
                 if not modifier then
-                    modifier = victim:AddNewModifier(projectile:GetTrueHero(), self, "modifier_drow_q", { duration = 2 })
+                    modifier = victim:AddNewModifier(projectile:GetTrueHero(), ability, "modifier_drow_q", { duration = 2 })
 
                     if modifier then
                         modifier:SetStackCount(1)
