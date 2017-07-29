@@ -71,7 +71,7 @@ function TinyW:Update()
             ability = self.ability,
             filter = Filters.Area(effectPosition, self.effectRadius),
             damage = self.damage,
-            modifier = { name = "modifier_stunned_lua", duration = 1.2, ability = self.ability },
+            modifier = { name = "modifier_stunned_lua", duration = 0.7, ability = self.ability },
         })
 
         ScreenShake(effectPosition, 5, 150, 0.25, 2000, 0, true)
@@ -80,6 +80,7 @@ function TinyW:Update()
         self:EmitSound("Arena.Tiny.HitW")
 
         if self.bounces > 0 then
+            self.damage = math.max(self.damage - 1, 1)
             self.start = self.position
             self.target = self.target + delta:Normalized() * delta:Length() / 2
             self.height = self.height / 2

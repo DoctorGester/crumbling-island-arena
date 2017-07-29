@@ -492,9 +492,9 @@
 
 		"AbilityTooltip_tiny_a"							"Briefly slows enemies hit"
 		"AbilityTooltip_tiny_q"							"Throw a stone<br/>Pick it up to reset cooldown"
-		"AbilityTooltip_tiny_w"							"Throw a stone stunning all enemies in the target area"
+		"AbilityTooltip_tiny_w"							"Throw a bouncing stone stunning all enemies in the target area, deals less damage on additional bounces"
 		"AbilityTooltip_tiny_e"							"After a short delay, create an impassable ring of stones"
-		"AbilityTooltip_tiny_r"							"Empower next your next used ability<br><br><font color=\"gold\"><b>A</b></font> Farther knockback, tripled damage<br><font color=\"gold\"><b>Q</b></font> Applies a stun<br><font color=\"gold\"><b>W</b></font> Bounces 2 times<br><font color=\"gold\"><b>E</b></font> Has no delay on cast"
+		"AbilityTooltip_tiny_r"							"Empower next your next used ability<br><br><font color=\"gold\"><b>A</b></font> Farther knockback, tripled damage<br><font color=\"gold\"><b>Q</b></font> Applies a stun<br><font color=\"gold\"><b>W</b></font> Throws 3 stones<br><font color=\"gold\"><b>E</b></font> Has no delay on cast"
 
 		"AbilityTooltip_pugna_q"						"Take damage<br/>Fire a projectile<br/>If it hits, fire back healing projectile"
 		"AbilityTooltip_pugna_w"						"Place a healing trap which activates in 1.5 seconds"

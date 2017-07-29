@@ -4,9 +4,9 @@
 		"ScriptFile" "abilities/tiny/tiny_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "rubick_telekinesis_land"
-		"AbilityCooldown" "5.0"
-		"AbilityCastPoint" "0.15"
-		"Damage" "3"
+		"AbilityCooldown" "3.0"
+		"AbilityCastPoint" "0.1"
+		"Damage" "2"
 
 		"TargetingIndicator" {
 			"Type" "TARGETING_INDICATOR_AOE"
