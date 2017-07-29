@@ -2740,7 +2740,7 @@
 		[
 			"sounds/weapons/hero/leshrac/split_earth.vsnd"
 		]
-		volume = "0.65"
+		volume = "0.35"
 		pitch_rand_min = "-0.1"
 		pitch_rand_max = "0.1"
 		pitch = "1.0"
