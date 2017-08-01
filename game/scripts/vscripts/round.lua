@@ -1,4 +1,4 @@
-GRACE_TIME = 1
+GRACE_TIME = 1.5
 ULTS_TIME = 40
 
 Round = Round or class({})
@@ -13,25 +13,26 @@ function Round:constructor(players, teams, availableHeroes, callback)
     self.teams = teams
     self.availableHeroes = availableHeroes
 
+    self.isTryingToEnd = false
+    self.timeRemainingUntilEnd = 0
+
     self.spells = Spells()
     self.statistics = Statistics(players)
     self.runeTimer = 25 * 30
-    self.rune = nil
+
     self.runeParticleParams = {"particles/rune_marker.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity(), {
         cp0 = Vector(0, 0, 32),
         cp1 = Vector(200, 0, 0),
         release = false
     }}
+
+    self.rune = nil
     self.runeParticle = FX(unpack(self.runeParticleParams))
 end
 
-function Round:CheckEndConditions()
-    if self.ended then
-        return
-    end
-
+function Round:GetLastOrNoneAlive()
     local teams = {}
-    
+
     for _, player in pairs(self.players) do
         if player:IsConnected() and (player.hero and not player.hero.unit:IsNull() and player.hero:Alive()) then
             teams[player.team] = true
@@ -39,17 +40,33 @@ function Round:CheckEndConditions()
     end
 
     local amountAlive = 0
-    local lastAlive = nil
+    local lastAlive
 
     for team, _ in pairs(teams) do
         amountAlive = amountAlive + 1
         lastAlive = team
     end
 
-    if amountAlive <= 1 then
-        self.winner = lastAlive
-        self:EndRound()
+    return lastAlive, amountAlive
+end
+
+function Round:IsAnyoneFalling()
+    for _, player in pairs(self.players) do
+        if player:IsConnected() and (player.hero and not player.hero.unit:IsNull() and player.hero:Alive()) and player.hero.falling then
+            return true
+        end
     end
+
+    return false
+end
+
+function Round:CheckEndConditions()
+    if self.ended then
+        return
+    end
+
+    local lastAlive, amountAlive = self:GetLastOrNoneAlive()
+    return amountAlive <= 1
 end
 
 function Round:EndRound()
@@ -59,11 +76,9 @@ function Round:EndRound()
         end
     end
 
+    self.isTryingToEnd = false
     self.ended = true
-
-    Timers:CreateTimer(GRACE_TIME, function()
-        self:callback()
-    end)
+    self:callback()
 end
 
 function Round:Update()
@@ -92,9 +107,31 @@ function Round:Update()
         end
     end
 
+    -- End conditions and stuff under there
+    if self.ended then
+        return
+    end
+
+    if self.isTryingToEnd then
+        if not self:IsAnyoneFalling() then
+            self.timeRemainingUntilEnd = self.timeRemainingUntilEnd - FrameTime()
+        end
+
+        if self.timeRemainingUntilEnd <= 0 then
+            local lastAlive, amountAlive = self:GetLastOrNoneAlive()
+
+            self.winner = lastAlive
+            self:EndRound()
+        end
+    end
+
     if self.entityDied then
         self.entityDied = false
-        self:CheckEndConditions()
+
+        if self:CheckEndConditions() then
+            self.isTryingToEnd = true
+            self.timeRemainingUntilEnd = GRACE_TIME
+        end
     end
 end
 
@@ -150,10 +187,10 @@ function Round:SpawnObstacles()
     local bigMap = GetMapName() == "unranked" or GetMapName() == "ranked_3v3"
 
     --if bigMap then
-        mdls = {
-            "models/props_tree/cypress/tree_cypress010.vmdl",
-            "models/props_tree/cypress/tree_cypress008.vmdl"
-        }
+    mdls = {
+        "models/props_tree/cypress/tree_cypress010.vmdl",
+        "models/props_tree/cypress/tree_cypress008.vmdl"
+    }
     --end
 
     for i = 0, 3 do
@@ -177,7 +214,7 @@ function Round:SpawnObstacles()
                 ent:Activate()
 
                 --if bigMap then
-                    ent:SetRenderColor(80 + RandomInt(-10, 10), 90 + RandomInt(-10, 10), 30)
+                ent:SetRenderColor(80 + RandomInt(-10, 10), 90 + RandomInt(-10, 10), 30)
                 --end
             end
         end

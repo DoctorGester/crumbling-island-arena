@@ -399,6 +399,7 @@
 
 		"RoundWon" "Round won!"
 		"RoundLost" "Round lost!"
+		"RoundDraw" "Draw!"
 		"RoundEnding" "<font color='{s:color}'>{s:name}</font> wins!"
 		"RoundEndingWasted" "round wasted!"
 

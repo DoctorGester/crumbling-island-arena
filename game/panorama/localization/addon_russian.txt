@@ -400,6 +400,7 @@
 		"RoundEndingWasted" "Ничья!"
 		"RoundWon" "Победа!"
 		"RoundLost" "Поражение!"
+		"RoundDraw" "Ничья!"
 
 		"System" "[<font color='#7FC9FF'>СИСТЕМА</font>]"
 		"SystemEveryoneLeft" "Все враги покинули игру! Игра закончится через <font color='#FF7F7F'>{s:time}</font> секунд, если они не вернутся"
