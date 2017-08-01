@@ -193,7 +193,7 @@ function DynamicEntity:AreaEffect(params)
                 target:Damage(self, params.damage, params.isPhysical)
             end
 
-            if params.knockback and not blocked then
+            if params.knockback and (not blocked or not params.ability) then
                 local direction = params.knockback.direction and params.knockback.direction(target) or (target:GetPos() - self:GetPos())
 
                 local force = params.knockback.force

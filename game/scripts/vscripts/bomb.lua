@@ -42,7 +42,8 @@ function Bomb:OnDeath(source)
         hitSelf = true,
         hitAllies = true,
         knockback = {
-            force = 90
+            force = 90,
+            direction = function(v) return v:GetPos() - self:GetPos() end
         }
     })
 end
