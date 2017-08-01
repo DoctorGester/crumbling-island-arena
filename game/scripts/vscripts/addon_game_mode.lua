@@ -28,6 +28,7 @@ require('teambuilder')
 require('hero_selection')
 require('round')
 require('rune')
+require('bomb')
 require('deathmatch')
 require('quests')
 require('heroes/hero_util')
@@ -41,7 +42,7 @@ require('statistics')
 require('chat')
 require('debug_util')
 
-_G.GAME_VERSION = "2.2"
+_G.GAME_VERSION = "2.3"
 _G.STATE_NONE = 0
 _G.STATE_GAME_SETUP = 1
 _G.STATE_HERO_SELECTION = 2
@@ -84,7 +85,7 @@ function RegisterAnimations()
     Reg("wraith_king")
 end
 
-RegisterAnimations()
+--RegisterAnimations()
 
 function Precache(context)
     print("Precaching code particles")

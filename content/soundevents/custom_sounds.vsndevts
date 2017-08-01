@@ -502,6 +502,24 @@
 		event_type = "1.0"
 	}
 
+	Arena.Bomb = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/techies/remote_mine01.vsnd",
+			"sounds/weapons/hero/techies/remote_mine02.vsnd",
+			"sounds/weapons/hero/techies/remote_mine03.vsnd",
+			"sounds/weapons/hero/techies/remote_mine04.vsnd",
+			"sounds/weapons/hero/techies/remote_mine05.vsnd",
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
 	Arena.TreeFall = {
 		type = "dota_update_default"
 		vsnd_files =

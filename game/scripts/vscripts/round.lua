@@ -193,6 +193,8 @@ function Round:SpawnObstacles()
     }
     --end
 
+    local bombsToSpawn = RandomInt(1, 3) + (bigMap and 2 or 0)
+
     for i = 0, 3 do
         local centerAngle = math.pi / 2 * i + math.pi / 4
 
@@ -216,6 +218,12 @@ function Round:SpawnObstacles()
                 --if bigMap then
                 ent:SetRenderColor(80 + RandomInt(-10, 10), 90 + RandomInt(-10, 10), 30)
                 --end
+
+                if bombsToSpawn > 0 and RandomFloat(0, 1) < 0.2 then
+                    bombsToSpawn = bombsToSpawn - 1
+
+                    Bomb(self, pos * (RandomFloat(0.75, 0.9))):Activate()
+                end
             end
         end
     end
