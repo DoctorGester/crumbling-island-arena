@@ -294,7 +294,14 @@
 
     "templar_assassin"
     {
-        "1"
+    	"1"
+    	{
+			"type" "elite"
+			"set" "province_of_the_psion_inquisitor"
+			"season" "13"
+    	}
+
+        "2"
         {
             "type" "pass"
             "level" "20"
