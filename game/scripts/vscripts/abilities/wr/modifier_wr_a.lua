@@ -22,6 +22,12 @@ if IsServer() then
     end
 end
 
+function modifier_wr_a:CheckState()
+    return {
+        [MODIFIER_STATE_NO_UNIT_COLLISION] = true
+    }
+end
+
 function modifier_wr_a:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BONUS_PERCENTAGE,
