@@ -36,6 +36,7 @@ function ta_a:OnSpellStart()
         action = function(victim)
             local effect = ImmediateEffect(hero:GetMappedParticle("particles/units/heroes/hero_templar_assassin/templar_assassin_meld_hit.vpcf"), PATTACH_ABSORIGIN, hero)
             ParticleManager:SetParticleControlForward(effect, 0, direction:Normalized())
+            ParticleManager:SetParticleControl(effect, 1, victim:GetPos())
             ParticleManager:SetParticleControl(effect, 3, victim:GetPos())
         end
     })
