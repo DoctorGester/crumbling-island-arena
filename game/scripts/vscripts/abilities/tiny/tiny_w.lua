@@ -8,7 +8,7 @@ function tiny_w:OnAbilityPhaseStart()
 end
 
 function tiny_w:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 1500)
+    Wrappers.DirectionalAbility(self, 1500, 300)
 
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
