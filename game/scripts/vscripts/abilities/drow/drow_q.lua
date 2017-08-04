@@ -18,7 +18,7 @@ function DrowQInstance:Update(interval)
     local shots = self.shots or 0
     local hero = ability:GetCaster():GetParentEntity()
 
-    if self.channelingTime >= shots * 0.1 then
+    if self.channelingTime >= shots * 0.1 + 0.1 then
         local target = ability:GetCursorPosition()
         hero:Animate(ACT_DOTA_ATTACK, 8.0)
 
