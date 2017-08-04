@@ -17,11 +17,11 @@ function tiny_w:OnSpellStart()
 
     if mod and not mod.used then
         local dist = (target - hero:GetPos()):Length2D()
-        local tilt = 1 - dist / 2000
+        local tilt = 1 - dist / 2400
 
         for i = -1, 1 do
             local dir = self:GetDirection()
-            local an = math.atan2(dir.y, dir.x) + (0.3 + 0.8 * i * tilt)
+            local an = math.atan2(dir.y, dir.x) + (0.9 * i * tilt)
             local retarget = Vector(math.cos(an), math.sin(an)) * dist + hero:GetPos()
 
             TimedEntity((i + 1) * 0.1, function()
