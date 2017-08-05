@@ -18,6 +18,7 @@ function Bomb:constructor(round, position)
     self:SetCustomHealth(2)
     self:EnableHealthBar()
     self:AddNewModifier(self, nil, "modifier_custom_healthbar", {})
+    self.ability = self:GetUnit():AddAbility("venge_q") -- BIG HACK!
 end
 
 function Bomb:OnDeath(source)
@@ -37,6 +38,7 @@ function Bomb:OnDeath(source)
     end
 
     source:AreaEffect({
+        ability = self.ability,
         filter = Filters.Area(self:GetPos(), 300),
         damage = 3,
         hitSelf = true,
