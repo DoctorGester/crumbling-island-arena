@@ -9,10 +9,11 @@
 		"Damage" "2"
 
 		"TargetingIndicator" {
-			"Type" "TARGETING_INDICATOR_AOE"
+			"Type" "TARGETING_INDICATOR_TINY_W"
 			"Radius" "200"
 			"Arc" "600"
             "ArcWidth" "35"
+            "MinLength" "300"
             "MaxLength" "1500"
 			"DisplayRange" "1"
 		}
