@@ -179,7 +179,7 @@ function Spells:InterruptDashes(hero)
     end
 end
 
-function Spells:GroundDamage(point, radius, source, suppress)
+function Spells:GroundDamage(point, radius, source, suppress, damageFactor)
     local hitByHero = {}
 
     -- TODO fix self:GroundDamage
@@ -193,7 +193,7 @@ function Spells:GroundDamage(point, radius, source, suppress)
         end
     end
 
-    local parts = GameRules.GameMode.level:DamageGroundInRadius(point, radius, source, suppress)
+    local parts = GameRules.GameMode.level:DamageGroundInRadius(point, radius, source, suppress, damageFactor)
 
     for hero, hit in pairs(hitByHero) do
         for _, part in pairs(parts) do

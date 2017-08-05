@@ -75,7 +75,7 @@ function TinyW:Update()
         })
 
         ScreenShake(effectPosition, 5, 150, 0.25, 2000, 0, true)
-        Spells:GroundDamage(effectPosition, self.effectRadius, self.hero)
+        Spells:GroundDamage(effectPosition, self.effectRadius, self.hero, false, 0.5)
 
         self:EmitSound("Arena.Tiny.HitW")
 

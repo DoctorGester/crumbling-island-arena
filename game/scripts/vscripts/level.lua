@@ -165,7 +165,7 @@ function Level:BuildIndex()
     end
 end
 
-function Level:DamageGroundInRadius(point, radius, source, suppressParticles)
+function Level:DamageGroundInRadius(point, radius, source, suppressParticles, damageFactor)
     -- TODO index points with cluster grid
     local damageQueue = {}
     local justParts = {}
@@ -200,10 +200,14 @@ function Level:DamageGroundInRadius(point, radius, source, suppressParticles)
 
     table.sort(damageQueue, compare)
 
+    if not damageFactor then
+        damageFactor = 1
+    end
+
     for i, d in ipairs(damageQueue) do
         --Timers:CreateTimer(i * 0.003, function()
         local proportion = 1 - d[2] / radius
-        self:DamageGround(d[1], 100 * proportion, source, point, radius)
+        self:DamageGround(d[1], 100 * proportion * damageFactor, source, point, radius)
         --end)
     end
 
@@ -468,7 +472,7 @@ function Level:Update()
 
     for i = #self.shakingParts, 1, -1 do
         local part = self.shakingParts[i]
-        
+
         if part.z <= -MAP_HEIGHT then
             --SplashEffect(part:GetAbsOrigin())
             part:AddEffects(EF_NODRAW)
