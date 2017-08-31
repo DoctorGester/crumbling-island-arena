@@ -16,6 +16,7 @@ function ember_q:OnSpellStart()
         distance = 1100,
         hitSound = "Arena.Ember.HitQ",
         continueOnHit = true,
+        damagesTrees = true,
         hitFunction = function(projectile, target)
             target:Damage(projectile, self:GetDamage())
 

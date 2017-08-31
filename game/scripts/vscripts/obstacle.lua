@@ -40,6 +40,28 @@ function Obstacle:GetPos()
     return self.unit:GetAbsOrigin()
 end
 
+function Obstacle:DealOneDamage(source)
+    self.health = self.health - 1
+
+    local duration
+
+    if self.health > 2 then
+        duration = 2.0
+    else
+        self:RemoveModifier("modifier_custom_healthbar")
+    end
+
+    self:AddNewModifier(self, nil, "modifier_custom_healthbar", { duration = duration })
+
+    if self.health <= 0 then
+        self:Destroy()
+    else
+        self:GetUnit():SetHealth(self.health)
+    end
+
+    self:Push(self:GetPos() - source:GetPos())
+end
+
 function Obstacle:FindPolygon()
     local level = GameRules.GameMode.level
     local pos = self:GetPos()
@@ -71,28 +93,6 @@ function Obstacle:RegenerateNavBlock()
 end
 
 function Obstacle:AllowAbilityEffect(source, ability)
-    if ability.GetDamage then
-        self.health = self.health - 1
-
-        local duration = nil
-
-        if (self.health > 2) then
-            duration = 2.0
-        else
-            self:RemoveModifier("modifier_custom_healthbar")
-        end
-
-        self:AddNewModifier(self, nil, "modifier_custom_healthbar", { duration = duration })
-
-        if self.health <= 0 then
-            self:Destroy()
-        else
-            self:GetUnit():SetHealth(self.health)
-        end
-
-        self:Push(self:GetPos() - source:GetPos())
-    end
-
     return false
 end
 

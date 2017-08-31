@@ -53,6 +53,7 @@ function cm_w:OnChannelThink(interval)
                         
                         self.damaged[victim] = true
                     end,
+                    damagesTrees = true,
                     notBlockedAction = function(target)
                         if instanceof(target, Obstacle) then
                             self.damaged[target] = true

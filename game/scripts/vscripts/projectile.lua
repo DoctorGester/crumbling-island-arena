@@ -43,6 +43,7 @@ function Projectile:constructor(round, params)
     self.considersGround = params.considersGround
     self.ability = params.ability
     self.knockback = params.knockback
+    self.damagesTrees = params.damagesTrees
 
     if self.destroyOnDamage == nil then
        self.destroyOnDamage = true 
@@ -163,7 +164,11 @@ function Projectile:CollideWith(target)
     local blocked = self.ability and target:AllowAbilityEffect(self, self.ability) == false
 
     if instanceof(target, Obstacle) then
-        target:Push(self.vel)
+        if self.damage or self.damagesTrees then
+            target:DealOneDamage(self)
+        else
+            target:Push(self.vel)
+        end
     end
 
     if not blocked then

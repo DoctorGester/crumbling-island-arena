@@ -24,6 +24,7 @@ function SKWProjectile:constructor(round, hero, target, ability)
         to = target,
         speed = 900,
         distance = 2000,
+        damagesTrees = true,
         continueOnHit = true,
         considersGround = true,
         ignoreProjectiles = true,

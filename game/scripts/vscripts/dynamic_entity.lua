@@ -182,6 +182,11 @@ function DynamicEntity:AreaEffect(params)
 
         if allyFilter and passes and heroPasses and params.filter(target) then
             local blocked = params.ability and target:AllowAbilityEffect(self, params.ability) == false
+            local isTree = instanceof(target, Obstacle)
+
+            if isTree and (params.damage ~= nil or params.damagesTrees) then
+                target:DealOneDamage(self)
+            end
 
             if params.modifier and not blocked then
                 local m = params.modifier
@@ -193,7 +198,7 @@ function DynamicEntity:AreaEffect(params)
                 target:Damage(self, params.damage, params.isPhysical)
             end
 
-            if params.knockback and (not blocked or not params.ability) then
+            if params.knockback and (not blocked or not params.ability) and not isTree then
                 local direction = params.knockback.direction and params.knockback.direction(target) or (target:GetPos() - self:GetPos())
 
                 local force = params.knockback.force

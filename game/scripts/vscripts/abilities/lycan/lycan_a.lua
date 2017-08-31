@@ -20,6 +20,7 @@ function lycan_a:OnSpellStart()
         ability = self,
         filter = Filters.Cone(pos, range, forward, math.pi),
         sound = "Arena.Lycan.HitA",
+        damagesTrees = true,
         action = function(target)
             local dmg = damage
 

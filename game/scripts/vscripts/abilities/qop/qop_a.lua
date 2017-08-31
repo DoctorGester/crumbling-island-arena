@@ -13,6 +13,7 @@ function qop_a:OnSpellStart()
         radius = 48,
         graphics = "particles/qop_a/qop_a.vpcf",
         distance = 1000,
+        damagesTrees = true,
         hitSound = "Arena.QOP.HitA",
         hitFunction = function(projectile, victim)
             local damage = self:GetDamage()

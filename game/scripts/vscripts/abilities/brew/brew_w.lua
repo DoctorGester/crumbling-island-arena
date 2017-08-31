@@ -16,6 +16,7 @@ function brew_w:OnSpellStart()
         radius = 32 + 32 * heroStacks,
         hitSound = "Arena.Ember.HitQ",
         continueOnHit = true,
+        damagesTrees = true,
         hitFunction = function(projectile, target)
             local stacks = hero:FindAbility("brew_q"):CountBeer(target)
 

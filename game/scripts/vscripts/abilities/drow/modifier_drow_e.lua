@@ -31,6 +31,7 @@ if IsServer() then
         DistanceCappedProjectile(hero.round, {
             ability = self:GetAbility(),
             owner = hero,
+            damagesTrees = true,
             from = hero:GetPos() + Vector(0, 0, 64),
             to = hero:GetPos() + direction * 100 + Vector(0, 0, 64),
             speed = 1450,

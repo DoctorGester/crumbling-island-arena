@@ -7,6 +7,7 @@ function ProjectilePAA:constructor(round, hero, target, damage, ability)
         to = target * Vector(1, 1, 0) + Vector(0, 0, 100),
         speed = 5000,
         graphics = "particles/pa_q/pa_q.vpcf",
+        damagesTrees = true,
         continueOnHit = true,
         disablePrediction = true,
         isPhysical = true,

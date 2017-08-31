@@ -48,6 +48,10 @@ function ProjectilePudgeQ:CollideWith(target)
 
     if blocked then
         if not self.goingBack then
+            if instanceof(target, Obstacle) then
+                target:DealOneDamage(self)
+            end
+            
             self:RetractHook()
         end
 

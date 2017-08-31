@@ -22,6 +22,7 @@ function self:OnSpellStart()
                 release = true
             })
         end,
+        damagesTrees = true,
         screenShake = { 5, 150, 0.25, 1500, 0, true },
         hitFunction = function(projectile, victim)
             local damage = self:GetDamage()

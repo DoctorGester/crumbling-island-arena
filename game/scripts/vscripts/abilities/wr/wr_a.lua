@@ -15,6 +15,7 @@ function wr_a:OnSpellStart()
         graphics = "particles/wr_a/wr_a.vpcf",
         distance = 1200,
         hitSound = "Arena.Drow.HitA",
+        damagesTrees = true,
         hitFunction = function(projectile, target)
             target:Damage(projectile, self:GetDamage(), true)
 
