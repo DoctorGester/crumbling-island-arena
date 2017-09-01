@@ -54,12 +54,26 @@ function Obstacle:DealOneDamage(source)
     self:AddNewModifier(self, nil, "modifier_custom_healthbar", { duration = duration })
 
     if self.health <= 0 then
+        self:AddOrRefreshTreeHealModifier(source)
         self:Destroy()
     else
         self:GetUnit():SetHealth(self.health)
     end
 
     self:Push(self:GetPos() - source:GetPos())
+end
+
+function Obstacle:AddOrRefreshTreeHealModifier(target)
+    if target.hero then target = target.hero end
+
+    local modifier = target:FindModifier("modifier_tree_heal")
+
+    if not modifier then
+        modifier = target:AddNewModifier(target, nil, "modifier_tree_heal", {})
+    else
+        modifier:IncrementStackCount()
+        modifier:IncrementStackCount()
+    end
 end
 
 function Obstacle:FindPolygon()

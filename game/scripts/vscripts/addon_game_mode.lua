@@ -604,6 +604,7 @@ function GameMode:InitModifiers()
     LinkLuaModifier("modifier_custom_healthbar", "abilities/modifier_custom_healthbar", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_player_id", "abilities/modifier_player_id", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_obstacle", "abilities/modifier_obstacle", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_tree_heal", "abilities/modifier_tree_heal", LUA_MODIFIER_MOTION_NONE)
 end
 
 function GameMode:SetupMode()
