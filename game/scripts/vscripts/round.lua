@@ -177,6 +177,39 @@ function Round:GetTeamInverted(team)
     return -1
 end
 
+function Round:RandomlyGenerateDamagedGround()
+    local amountOfPatches = RandomInt(0, 2)
+    local selectedPoints = {}
+
+    for i = 0, amountOfPatches do
+        while true do
+            local point = RandomVector(RandomFloat(300, 1200))
+            local tooClose = false
+
+            for _, alreadyGeneratedPoint in ipairs(selectedPoints) do
+                if (point - alreadyGeneratedPoint):Length2D() <= 1200 then
+                    tooClose = true
+                    break
+                end
+            end
+
+            if not tooClose then
+                table.insert(selectedPoints, point)
+                break
+            end
+        end
+    end
+
+    for _, point in ipairs(selectedPoints) do
+        local severity = RandomInt(0, 2)
+        local patchSize = RandomFloat(200, 500)
+
+        for _ = 0, severity do
+            Spells:GroundDamage(point, patchSize, nil, true)
+        end
+    end
+end
+
 function Round:SpawnObstacles()
     local mdls = {
         "models/props_stone/column/colosseum_column001.vmdl",

@@ -1126,6 +1126,7 @@ function GameMode:OnHeroSelectionEnd()
     )
     self.round:CreateHeroes(self.gameSetup:GetSpawnPoints(), self:GetRankedMode())
     self.round:SpawnObstacles()
+    self.round:RandomlyGenerateDamagedGround()
     self.firstBloodBy = nil
     self:SetState(STATE_ROUND_IN_PROGRESS)
     self:UpdateGameInfo()
