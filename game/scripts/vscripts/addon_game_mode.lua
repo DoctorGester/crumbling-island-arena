@@ -111,6 +111,19 @@ function Precache(context)
     _G.GameItems = LoadKeyValues("scripts/items/items_game.txt")
     _G.Cosmetics = LoadKeyValues("scripts/npc/cosmetics.txt")
 
+    -- Here goes the awesome stuff
+    -- And the reason to this is as follows: we need an ambient effect on the weapon which is contained inside
+    -- of the asset_modifier. But because Valve are awesome people (Thanks Valve) and they care about modders
+    -- Valve's C++ LoadKeyValues can read 2 table entries with the same key, and Lua version can't because
+    -- it returns a Lua object which can't have 2 equal keys. So we are modifying the item to get the ambient effect
+
+    _G.GameItems.items["9097"].visuals = {
+        asset_modifier = {
+            type = "particle_create",
+            modifier = "particles/econ/items/sniper/sniper_witch_hunter/sniper_witch_hunter_weapon_ambient.vpcf"
+        }
+    }
+
     local heroes = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
     local cosmeticsParticles = {}
 

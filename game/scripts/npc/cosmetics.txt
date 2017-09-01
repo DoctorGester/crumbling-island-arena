@@ -490,6 +490,13 @@
 
         "3"
         {
+            "type" "elite"
+            "season" "14"
+            "set" "occultist's_pursuit"
+        }
+
+        "4"
+        {
             "type" "pass"
             "level" "11"
             "taunt"
