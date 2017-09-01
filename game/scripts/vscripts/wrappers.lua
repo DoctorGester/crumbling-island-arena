@@ -212,8 +212,18 @@ function IsUnitSilenced(hero)
     return false
 end
 
-function IsFullyCastable(ability)
-    return ability:IsFullyCastable() and not IsUnitSilenced(ability:GetCaster())
+function IsFullyCastable(ability, location)
+    local passesFilters = true
+
+    if location and ability.CastFilterResultLocation then
+        passesFilters = passesFilters and ability:CastFilterResultLocation(location) == UF_SUCCESS
+    end
+
+    if ability.CastFilterResult then
+        passesFilters = passesFilters and ability:CastFilterResult() == UF_SUCCESS
+    end
+
+    return ability:IsFullyCastable() and not IsUnitSilenced(ability:GetCaster()) and passesFilters
 end
 
 function Wrappers.NormalAbility(ability)

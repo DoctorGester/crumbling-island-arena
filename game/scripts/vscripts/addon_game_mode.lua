@@ -478,8 +478,13 @@ function GameMode:FilterExecuteOrder(filterTable)
             if filterTable.entindex_ability > 0 then
                 local ability = EntIndexToHScript(filterTable.entindex_ability)
                 local im = DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+                local location
 
-                if bit.band(ability:GetBehavior(), im) == im and IsFullyCastable(ability) then
+                if orderType == DOTA_UNIT_ORDER_CAST_POSITION then
+                    location = Vector(filterTable.position_x, filterTable.position_y, filterTable.position_z)
+                end
+
+                if bit.band(ability:GetBehavior(), im) == im and IsFullyCastable(ability, location) then
                     local all = FindUnitsInRadius(
                         0,
                         Vector(),
@@ -968,7 +973,7 @@ function GameMode:OnRoundEnd(round)
     for player, earned in pairs(self.scoreEarned) do
         player.score = player.score + earned
     end
-    
+
     for _, player in pairs(self.Players) do
         local playerData = {}
         playerData.id = player.id
@@ -1078,7 +1083,7 @@ function GameMode:OnRoundEnd(round)
         else
             self:SetState(STATE_HERO_SELECTION)
             self.heroSelection:Start(function() self:OnHeroSelectionEnd() end)
-            
+
             GameRules:GetGameModeEntity():StopSound("dsadowski_01.music.battle_01")
             GameRules:GetGameModeEntity():EmitSound("dsadowski_01.music.countdown")
         end
