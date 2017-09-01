@@ -180,10 +180,12 @@ end
 function Round:RandomlyGenerateDamagedGround()
     local amountOfPatches = RandomInt(0, 2)
     local selectedPoints = {}
+    local bigMap = GetMapName() == "unranked" or GetMapName() == "ranked_3v3"
+    local maximumDistance = bigMap and 1100 or 800
 
     for i = 0, amountOfPatches do
         while true do
-            local point = RandomVector(RandomFloat(300, 1200))
+            local point = RandomVector(RandomFloat(300, maximumDistance))
             local tooClose = false
 
             for _, alreadyGeneratedPoint in ipairs(selectedPoints) do
@@ -202,7 +204,7 @@ function Round:RandomlyGenerateDamagedGround()
 
     for _, point in ipairs(selectedPoints) do
         local severity = RandomInt(0, 2)
-        local patchSize = RandomFloat(200, 500)
+        local patchSize = RandomFloat(200, 350)
 
         for _ = 0, severity do
             Spells:GroundDamage(point, patchSize, nil, true)
