@@ -1,0 +1,20 @@
+"DOTAAbilities" {
+	"pl_e" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pl/pl_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "phantom_lancer_phantom_edge"
+		"AbilityCooldown" "3.5"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "600"
+			"MaxLength" "1200"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1200"
+		}
+	}
+}
