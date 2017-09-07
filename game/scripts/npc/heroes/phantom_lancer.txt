@@ -1,0 +1,42 @@
+"DOTAHeroes" {
+	"npc_dota_hero_phantom_lancer" {
+		"override_hero" "npc_dota_hero_phantom_lancer"
+		"ArmorPhysical" "0"
+		"MagicalResistance" "0"
+		"AttackCapabilities" "DOTA_UNIT_CAP_NO_ATTACK"
+		"AttributePrimary" "DOTA_ATTRIBUTE_STRENGTH"
+		"BountyXP" "0"
+		"MovementSpeed" "375"
+		"MovementTurnRate" "10"
+		"StatusHealth" "20"
+		"StatusHealthRegen" "0"
+		"StatusManaRegen" "0"
+		"StatusStartingMana" "0"
+		"AttributeBaseStrength" "0"
+		"AttributeBaseIntelligence" "0"
+		"VisionDaytimeRange" "0"
+		"VisionNighttimeRange" "0"
+		"DrawParticlesWhileHidden" "1"
+		"Portrait" ""
+		"SoundSet" ""
+		"GameSoundsFile" ""
+		"VoiceFile" ""
+		"DisableWearables" "1"
+		"Range" "melee"
+		"Difficulty" "hard"
+		"Order" "37"
+		"Ability1" "pl_q"
+		"Ability2" "pl_w"
+		"Ability3" "pl_e"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "pl_r"
+		"Ability7" "pl_a"
+		"Ultimate" "pl_r"
+
+		"CustomIcons" {
+			"pl_w" "pl_w.png"
+			"pl_r" "pl_r.png"
+		}
+	}
+}
