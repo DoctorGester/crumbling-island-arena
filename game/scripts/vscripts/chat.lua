@@ -19,6 +19,8 @@ function Chat:OnSay(args)
         return
     end
 
+    args.team = args.team == 1
+
     if GameRules.GameMode.gameSetup:GetPlayersInTeam() == 1 then
         args.team = false
     end
