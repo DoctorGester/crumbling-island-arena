@@ -155,6 +155,11 @@
 #base "abilities\earth_spirit\earth_spirit_e.txt"
 #base "abilities\earth_spirit\earth_spirit_r.txt"
 #base "abilities\earth_spirit\earth_spirit_a.txt"
+#base "abilities\phantom_lancer\pl_q.txt"
+#base "abilities\phantom_lancer\pl_w.txt"
+#base "abilities\phantom_lancer\pl_e.txt"
+#base "abilities\phantom_lancer\pl_r.txt"
+#base "abilities\phantom_lancer\pl_a.txt"
 
 "DOTAAbilities" {
 	"dummy_unit_ability" {
@@ -600,72 +605,6 @@
 		"HoverIndicator" {
 			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
 			"Radius" "600"
-		}
-	}
-
-	"pl_q" {
-		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/pl/pl_q"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName" "phantom_lancer_spirit_lance"
-		"AbilityCooldown" "0.65"
-		"AbilityCastPoint" "0.1"
-
-		"HoverIndicator" {
-			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "350"
-		}
-
-		"TargetingIndicator" {
-			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
-			"Radius" "350"
-		}
-	}
-
-	"pl_w" {
-		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/pl/pl_w"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
-		"AbilityTextureName" "phantom_lancer_phantom_edge"
-		"AbilityCooldown" "5.0"
-	}
-
-	"pl_e" {
-		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/pl/pl_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName" "phantom_lancer_phantom_edge"
-		"AbilityCooldown" "4.5"
-
-		"TargetingIndicator" {
-			"Type" "TARGETING_INDICATOR_LINE"
-			"MinLength" "600"
-			"MaxLength" "1200"
-		}
-
-		"HoverIndicator" {
-			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "1200"
-		}
-	}
-
-	"pl_r" {
-		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/pl/pl_r"
-		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
-		"AbilityTextureName" "phantom_lancer_phantom_edge"
-		"AbilityCooldown" "10.0"
-
-		"TargetingIndicator" {
-			"Type" "TARGETING_INDICATOR_LINE"
-			"MinLength" "1200"
-			"MaxLength" "1200"
-		}
-
-		"HoverIndicator" {
-			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "1200"
 		}
 	}
 

@@ -230,8 +230,8 @@
 		"antimage_DescE" "Short dash + damage"
 		"antimage_DescR" "Silence + slow in the AOE"
 
-		"phantom_lancer_DescQ" "Melee attack, turns illusions into projectiles"
-		"phantom_lancer_DescW" "Counter next damage instance and blink"
+		"phantom_lancer_DescQ" "Damaging projectile. Spawn illusion on hit"
+		"phantom_lancer_DescW" "Counter next 2 or more damage instance and blink"
 		"phantom_lancer_DescE" "Summon an illusion"
 		"phantom_lancer_DescR" "Summon an illusion using melee attack"
 
@@ -620,10 +620,11 @@
 		"AbilityTooltip_am_e"							"Short dash<br/><font color='#00b5ff'>CHARGES</font> your weapon if an enemy is damaged"
 		"AbilityTooltip_am_r"							"Silence all enemies in the target area and slow them based on the number of abilities they have on cooldown"
 
-		"AbilityTooltip_pl_q"							"Attack enemies in front of you<br/>All illusions hit turn into projectiles and fly forward damaging first enemy on their way"
-		"AbilityTooltip_pl_w"							"Become immobile and immune, countering next damage instance in a short period<br/>Once damage is countered, appear behind the back of the enemy"
-		"AbilityTooltip_pl_e"							"Summon an illusion or target an existing one, make it run towards you, gives speed bonus on contact, slows enemies on contact"
-		"AbilityTooltip_pl_r"							"Summon an illusion behind you, which uses your <font color=\"gold\"><b>Q</b></font> after a short delay"
+		"AbilityTooltip_pl_a"							"Attack enemies in front of you<br/>All illusions hit turn into projectiles and fly forward damaging first enemy on their way. Contact with any illusion gives you a double damage to this attack"
+		"AbilityTooltip_pl_q"							"Fire a damaging projectile which spawn an illusion behind the back of your target"
+		"AbilityTooltip_pl_w"							"Become immobile and immune, countering <font color=\"#FF6A00\"><b>2 or more</b></font> damage instance in a short period<br/>Once damage is countered, appear behind the back of the enemy. Also your next attack will deal double damage"
+		"AbilityTooltip_pl_e"							"Summon an illusion or target an existing one, make it run towards you, gives speed bonus on contact, slows enemies on contact."
+		"AbilityTooltip_pl_r"							"Summon an illusion behind you, which uses your <font color=\"gold\"><b>Melee Attack</b></font> after a short delay"
 
 		"AbilityTooltip_omni_q"							"Heal all allies and damage all enemies around you<br/>You are healed if at least one target was damaged"
 		"AbilityTooltip_omni_w"							"Stun enemies in front of you"
@@ -801,9 +802,10 @@
 		"ModifierTooltip_modifier_am_e"							"Magic be dashed"
 		"ModifierTooltip_modifier_am_r"							"Slowed and silenced"
 
+		"ModifierTooltip_modifier_pl_a_dmg"					    "Next attack will deal double damage"
 		"ModifierTooltip_modifier_pl_e_slow"					"Slowed"
 		"ModifierTooltip_modifier_pl_e_speed"					"Sped up"
-		"ModifierTooltip_modifier_pl_w"							"Will counter next damage instance"
+		"ModifierTooltip_modifier_pl_w"							"Will counter next 2 or more dmg instance"
 		"ModifierTooltip_modifier_pl_q"							"Shiny"
 
 		"ModifierTooltip_modifier_omni_e"						"Invulnerable"

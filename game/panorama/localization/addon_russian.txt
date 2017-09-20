@@ -231,8 +231,8 @@
 		"antimage_DescE" "Короткий рывок + урон"
 		"antimage_DescR" "Безмолвие + замедление в области"
 
-		"phantom_lancer_DescQ" "Атака перед собой, превращает иллюзии в снаряды"
-		"phantom_lancer_DescW" "Отразить следующую атаку"
+		"phantom_lancer_DescQ" "Cнаряд + урон. Призывает иллюзию при попадании"
+		"phantom_lancer_DescW" "Отразить следующий урон равный 2 или больше"
 		"phantom_lancer_DescE" "Призвать иллюзию"
 		"phantom_lancer_DescR" "Призвать атакующую иллюзию"
 
