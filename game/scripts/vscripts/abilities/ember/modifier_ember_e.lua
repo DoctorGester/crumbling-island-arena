@@ -17,7 +17,8 @@ end
 function modifier_ember_e:CheckState()
     local state = {
         [MODIFIER_STATE_STUNNED] = true,
-        [MODIFIER_STATE_NO_HEALTH_BAR] = true
+        [MODIFIER_STATE_NO_HEALTH_BAR] = true,
+        [MODIFIER_STATE_NO_UNIT_COLLISION] = true
     }
 
     return state
