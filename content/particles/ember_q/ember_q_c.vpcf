@@ -3,112 +3,84 @@
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 128
-	m_flConstantRadius = 128.000000
-	m_ConstantColor =
-	[
-		255,
-		179,
-		46,
-		35,
-	]
+	m_flConstantRadius = 128.0
+	m_ConstantColor = [ 255, 179, 46, 35 ]
 	m_bShouldSort = false
-	m_Renderers =
+	m_Renderers = 
 	[
 		{
 			_class = "C_OP_RenderTrails"
 			m_nSequenceCombineMode = "SEQUENCE_COMBINE_MODE_USE_SEQUENCE_0"
 			m_bMod2X = true
-			m_flOverbrightFactor = 2.000000
+			m_flOverbrightFactor = 2.0
 			m_hTexture = resource:"materials/particle/beam_smoke_03_modulate_light.vtex"
 			m_bIgnoreDT = true
-			m_flAnimationRate = 0.500000
-			m_flRadiusScale = 0.500000
-			m_flFinalTextureScaleV = -1.000000
-			m_flFinalTextureOffsetV = 1.000000
-			m_vEndTrailTintFactor =
-			[
-				3.000000,
-				1.000000,
-				1.000000,
-				0.500000,
-			]
+			m_flAnimationRate = 0.5
+			m_flRadiusScale = 0.5
+			m_flFinalTextureScaleV = -1.0
+			m_flFinalTextureOffsetV = 1.0
+			m_vEndTrailTintFactor = [ 3.0, 1.0, 1.0, 0.5 ]
 		},
 	]
-	m_Operators =
+	m_Operators = 
 	[
 		{
 			_class = "C_OP_Decay"
 		},
 		{
 			_class = "C_OP_PositionLock"
-			m_flPrevPosScale = 0.000000
+			m_flPrevPosScale = 0.0
 		},
 		{
 			_class = "C_OP_ColorInterpolate"
 			m_bDisableOperator = true
-			m_ColorFade =
-			[
-				108,
-				57,
-				50,
-				255,
-			]
+			m_ColorFade = [ 108, 57, 50, 255 ]
 		},
 		{
 			_class = "C_OP_LerpEndCapScalar"
-			m_flLerpTime = 0.250000
-			m_flOutput = 0.000000
+			m_flLerpTime = 0.25
+			m_flOutput = 0.0
 		},
 		{
 			_class = "C_OP_LerpEndCapScalar"
-			m_flLerpTime = 0.250000
+			m_flLerpTime = 0.25
 			m_nFieldOutput = 16
-			m_flOutput = 0.000000
+			m_flOutput = 0.0
 		},
 		{
 			_class = "C_OP_RemapSpeed"
 			m_nOpEndCapState = 0
 			m_bIgnoreDelta = true
-			m_flInputMax = 1000.000000
-			m_flOutputMin = 1.000000
-			m_flOutputMax = 0.000000
+			m_flInputMax = 1000.0
+			m_flOutputMin = 1.0
+			m_flOutputMax = 0.0
 			m_bScaleInitialRange = true
 		},
 		{
 			_class = "C_OP_FadeInSimple"
-			m_flFadeInTime = 1.000000
+			m_flFadeInTime = 1.0
 		},
 	]
-	m_Initializers =
+	m_Initializers = 
 	[
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMax = 0.750000
-			m_fLifetimeMin = 0.250000
+			m_fLifetimeMax = 0.75
+			m_fLifetimeMin = 0.25
 		},
 		{
 			_class = "C_INIT_CreateWithinSphere"
 		},
 		{
 			_class = "C_INIT_PositionOffset"
-			m_OffsetMin =
-			[
-				0.000000,
-				-80.000000,
-				120.000000,
-			]
-			m_OffsetMax =
-			[
-				0.000000,
-				80.000000,
-				120.000000,
-			]
+			m_OffsetMin = [ 0.0, -80.0, 120.0 ]
+			m_OffsetMax = [ 0.0, 80.0, 120.0 ]
 			m_bLocalCoords = true
 		},
 		{
 			_class = "C_INIT_RandomTrailLength"
-			m_flMinLength = 0.500000
-			m_flMaxLength = 1.000000
+			m_flMinLength = 0.5
+			m_flMaxLength = 1.0
 		},
 		{
 			_class = "C_INIT_RandomSequence"
@@ -123,8 +95,8 @@
 		},
 		{
 			_class = "C_INIT_RandomRadius"
-			m_flRadiusMin = 32.000000
-			m_flRadiusMax = 164.000000
+			m_flRadiusMin = 32.0
+			m_flRadiusMax = 164.0
 		},
 		{
 			_class = "C_INIT_RandomAlpha"
@@ -132,21 +104,30 @@
 		},
 		{
 			_class = "C_INIT_PositionWarp"
-			m_vecWarpMin =
-			[
-				1.000000,
-				0.100000,
-				1.000000,
-			]
-			m_flWarpTime = 0.250000
+			m_vecWarpMin = [ 1.0, 0.1, 1.0 ]
+			m_flWarpTime = 0.25
 		},
 	]
-	m_Emitters =
+	m_Emitters = 
 	[
 		{
 			_class = "C_OP_ContinuousEmitter"
-			m_flEmissionDuration = 0.500000
-			m_flEmitRate = 200.000000
+			m_flEmitRate = 200.0
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
 		},
 	]
 }
