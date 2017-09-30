@@ -21,6 +21,10 @@ end
 function EntityTinkerR:Update()
     getbase(EntityTinkerR).Update(self)
 
+    if self.falling then
+        return
+    end
+
     local time = GameRules:GetGameTime()
 
     self.hero:AreaEffect({
