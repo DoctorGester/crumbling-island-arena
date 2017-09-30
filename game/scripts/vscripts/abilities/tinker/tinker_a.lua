@@ -75,6 +75,8 @@ function ProjectileTinkerA:Deflect(by, direction)
     self.target = nil
     self.vel = direction:Normalized() * self.vel:Length2D() * 0.8
     self.deflectedAt = GameRules:GetGameTime()
+    self.heroOverride = by
+    self.owner = by.owner
 end
 
 function ProjectileTinkerA:GetNextPosition(pos)
