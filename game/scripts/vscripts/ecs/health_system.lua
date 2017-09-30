@@ -63,6 +63,8 @@ function HealthSystem:Damage(source, amount, isPhysical)
         ApplyDamage(damageTable)
     end
 
+    GameRules.GameMode:OnDamageDealt(self, source, amount)
+
     self:GetUnit():AddNewModifier(self:GetUnit(), nil, "modifier_damaged", { duration = 0.2 })
 
     local color = isPhysical and Vector(250, 70, 70) or Vector(100, 130, 240)

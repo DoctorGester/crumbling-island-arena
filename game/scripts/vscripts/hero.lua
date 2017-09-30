@@ -236,7 +236,6 @@ end
 
 function Hero:Damage(...)
     getbase(Hero).Damage(self, ...)
-    GameRules.GameMode:OnDamageDealt(self, ...)
 end
 
 function Hero:OnDeath()
