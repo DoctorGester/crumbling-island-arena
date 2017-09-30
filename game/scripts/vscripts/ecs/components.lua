@@ -180,6 +180,16 @@ function WearableComponent()
 
             self.wearableParticles[slot] = nil
         end,
+        RecreateAllVisuals = function(self)
+            for slot, _ in pairs(self.slotVisualParameters) do
+                self:RecreateSlotVisuals(slot)
+            end
+        end,
+        DestroyAllVisuals = function(self)
+            for slot, _ in pairs(self.wearableParticles) do
+                self:DestroySlotVisuals(slot)
+            end
+        end,
         AttachVisuals = function(self, wearable, visuals, style, slot)
             local attachTypes = {
                 customorigin = PATTACH_CUSTOMORIGIN,

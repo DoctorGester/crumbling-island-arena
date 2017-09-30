@@ -56,6 +56,7 @@ function zeus_r:OnChannelThink(interval)
 
     if self.timePassed >= 0.2 and not self.hidden then
         hero:SetHidden(true)
+        hero:DestroyAllVisuals()
         hero:AddNewModifier(hero, self, "modifier_zeus_r", { duration = 2.3 })
 
         FX("particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", PATTACH_CUSTOMORIGIN, hero, {
@@ -73,6 +74,7 @@ function zeus_r:OnChannelFinish(interrupted)
     local target = self.target
 
     hero:SetHidden(false)
+    hero:RecreateAllVisuals()
     hero:GetUnit():StartGestureWithPlaybackRate(ACT_DOTA_TELEPORT_END, 1.5)
 
     if self.marker then
