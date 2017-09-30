@@ -24,6 +24,7 @@
 		"DisableWearables" "1"
 		"RemoveWearablesOnDeath" "1"
 		"RoundEndActivity" "ACT_DOTA_IDLE"
+		"RoundEndTranslation" "tree"
 		"Range" "melee"
 		"Difficulty" "easy"
 		"Order" "13"
