@@ -7,7 +7,6 @@ function pudge_e:OnSpellStart()
 
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
-    local direction = self:GetDirection()
 
     local dash = Dash(hero, target, 800, {
         modifier = { name = "modifier_pudge_e_animation", ability = self },
@@ -24,6 +23,9 @@ function pudge_e:OnSpellStart()
             ScreenShake(target:GetPos(), 5, 150, 0.45, 3000, 0, true)
             hero:EmitSound("Arena.Pudge.HitE")
             dash:Interrupt()
+        end,
+        filter = function(target)
+            return not instanceof(target, PudgeMeat)
         end
     }
 end
