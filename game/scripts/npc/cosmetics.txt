@@ -520,6 +520,16 @@
         }
     }
 
+    "tiny"
+    {
+        "1"
+        {
+            "type" "elite"
+            "season" "15"
+            "set" "tiny_igneous_stone"
+        }
+    }
+
     "queenofpain"
     {
         "1"

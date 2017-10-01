@@ -81,6 +81,11 @@
                 <Image class="RewardImage" src="file://{images}/custom_game/rewards/14.jpg" scaling="stretch-to-fit-y-preserve-aspect"/>
             </Panel>
         </snippet>
+        <snippet name="reward15">
+            <Panel>
+                <Image class="RewardImage" src="file://{images}/custom_game/rewards/15.jpg" scaling="stretch-to-fit-y-preserve-aspect"/>
+            </Panel>
+        </snippet>
         <snippet name="arcanaTournament">
             <Panel>
                 <Label class="WidgetHeader" text="#NewsArcanaWinner"/>
