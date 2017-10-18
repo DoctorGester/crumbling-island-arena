@@ -8,6 +8,13 @@
             "season" "0"
             "set" "hunter_of_kings"
         }
+
+        "2"
+        {
+            "type" "pass"
+            "level" "27"
+            "emote" "default"
+        }
     }
 
     "juggernaut"
@@ -44,6 +51,12 @@
             "type" "elite"
             "season" "6"
             "set" "stormwrought_arbiter"
+        }
+        "2"
+        {
+            "type" "pass"
+            "level" "26"
+            "item" "8189"
         }
     }
 
@@ -124,6 +137,13 @@
                 "sound" "Taunt.Slark"
                 "length" "1.2"
             }
+        }
+
+        "2"
+        {
+            "type" "pass"
+            "level" "38"
+            "item" "7465"
         }
     }
 
@@ -312,6 +332,13 @@
                 "particles/units/heroes/hero_templar_assassin/templar_assassin_meld_hit.vpcf" "particles/econ/items/templar_assassin/templar_assassin_focal/templar_assassin_meld_focal_attack_hit.vpcf"
             }
         }
+
+        "3"
+        {
+            "type" "pass"
+            "level" "30"
+            "emote" "default"
+        }
     }
 
     "storm_spirit"
@@ -322,6 +349,7 @@
             "level" "23"
             "item" "6431"
         }
+
     }
 
     "ember_spirit"
@@ -338,6 +366,13 @@
             "type" "pass"
             "level" "3"
             "item" "7470,7472"
+        }
+
+        "3"
+        {
+            "type" "pass"
+            "level" "39"
+            "emote" "default"
         }
     }
 
@@ -365,6 +400,20 @@
             "particles"
             {
                 "particles/wk_w/wk_w.vpcf" "particles/econ/wk_w/wk_w.vpcf"
+            }
+        }
+
+        "4"
+        {
+            "type" "pass"
+            "level" "40"
+            "taunt"
+            {
+                "type" "static"
+                "activity" "ACT_DOTA_CAST_ABILITY_2"
+                "translate" "frostivus"
+                "sound" "Taunt.WK"
+                "length" "3.0"
             }
         }
     }
@@ -510,6 +559,23 @@
         }
     }
 
+    "tiny"
+    {
+        "1"
+        {
+            "type" "elite"
+            "season" "15"
+            "set" "tiny_igneous_stone"
+        }
+
+        "2"
+        {
+            "type" "pass"
+            "level" "36"
+            "emote" "default"
+        }
+    }
+
     "sand_king"
     {
         "1"
@@ -526,6 +592,106 @@
         {
             "type" "pass_base"
             "emote" "default"
+        }
+
+        "2"
+        {
+            "type" "pass"
+            "level" "34"
+            "taunt"
+            {
+                "type" "static"
+                "activity" "ACT_DOTA_IDLE_RARE"
+                "translate" "loadout"
+                "sound" "Taunt.QOP"
+                "length" "3.5"
+            }
+        }
+
+        "3"
+        {
+            "type" "pass"
+            "level" "29"
+            "item" "7212"
+        }
+
+    }
+
+    "tinker"
+    {
+        "1"
+        {
+            "type" "pass"
+            "level" "28"
+            "taunt"
+            {
+                "type" "static"
+                "activity" "ACT_DOTA_VICTORY"
+                "translate" "tinker_rollermaw"
+                "sound" "Taunt.Tinker"
+                "length" "4.0"
+            }
+        }
+
+        "2"
+        {
+            "type" "pass"
+            "level" "32"
+            "item" "6224"
+        }
+    }
+
+    "legion_commander"
+    {
+        "1"
+        {
+            "type" "pass"
+            "level" "37"
+            "taunt"
+            {
+                "type" "static"
+                "activity" "ACT_DOTA_TELEPORT"
+                "translate" "dualwield"
+                "sound" "Taunt.LC"
+                "length" "4"
+            }
+        }
+    }
+
+    "gyrocopter"
+    {
+        "1"
+        {
+            "type" "pass"
+            "level" "31"
+            "taunt"
+            {
+                "type" "moving"
+                "activity" "ACT_DOTA_TAUNT"
+                "translate" "taunt_roll_gesture"
+                "sound" "Taunt.Gyrocopter"
+                "length" "2.5"
+            }
+        }
+    }
+
+    "earth_spirit"
+    {
+        "1"
+        {
+            "type" "pass"
+            "level" "33"
+            "emote" "default"
+        }
+    }
+
+    "ursa"
+    {
+        "1"
+        {
+            "type" "pass"
+            "level" "35"
+            "item" "6893"
         }
     }
 }
