@@ -121,6 +121,56 @@
         distance_max = "3500"
     }
 
+    lycan = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/vo/lycan/lycan_laugh_03.vsnd"
+        ]
+        volume = "3"
+        distance_max = "3500"
+    }
+
+    templar_assassin = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/vo/templar_assassin/temp_refraction_04.vsnd"
+        ]
+        volume = "3"
+        distance_max = "3500"
+    }
+
+    earth_spirit = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/vo/earth_spirit/earthspi_kill_07.vsnd"
+        ]
+        volume = "3"
+        distance_max = "3500"
+    }
+
+    tiny = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/vo/tiny/tiny_ability_toss_04.vsnd"
+        ]
+        volume = "3"
+        distance_max = "3500"
+    }
+
+    ember_spirit = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/vo/ember_spirit/embr_deny_03.vsnd"
+        ]
+        volume = "3"
+        distance_max = "3500"
+    }
+
     Taunt.AM = {
         type = "dota_update_default"
         vsnd_files = 
@@ -193,6 +243,55 @@
         [
             "sounds/weapons/hero/vengeful_spirit/chicken_dance.vsnd"
         ]
+        distance_max = "3500"
+    }
+
+    Taunt.Tinker = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/vo/tinker/tink_laugh_13.vsnd"
+        ]
+        volume = "1.5"
+        distance_max = "3500"
+    }
+
+    Taunt.Gyrocopter = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/weapons/hero/gyrocopter/taunt_barrel_roll.vsnd"
+        ]
+        distance_max = "3500"
+    }
+
+    Taunt.QOP = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/vo/queenofpain/pain_taunt_01.vsnd"
+        ]
+        volume = "1.5"
+        distance_max = "3500"
+    }
+
+    Taunt.WK = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/vo/skeleton_king/wraith_lasthit_10.vsnd"
+        ]
+        volume = "3"
+        distance_max = "3500"
+    }
+
+    Taunt.LC = {
+        type = "dota_update_default"
+        vsnd_files = 
+        [
+            "sounds/vo/legion_commander/legcom_dem_duel_05.vsnd"
+        ]
+        volume = "1.5"
         distance_max = "3500"
     }
 
