@@ -36,7 +36,7 @@ function zeus_r:OnChannelThink(interval)
     self.target = target
 
     if not self.marker then
-        self.marker = FX("particles/zeus_r/zeus_r_marker.vpcf", PATTACH_CUSTOMORIGIN, hero, {
+        self.marker = FX("particles/zeus_r/zeus_r_marker.vpcf", PATTACH_WORLDORIGIN, GameRules:GetGameModeEntity(), {
             cp1 = Vector(300, 0, 0)
         })
 
