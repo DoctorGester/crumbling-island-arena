@@ -178,15 +178,17 @@ function Wrappers.AttackAbility(ability, staticDurationOffset, fx)
             local cd = self:GetCooldown(1)
             local duration = cd * 1.9 + staticDurationOffset
 
-            if not m then
-                m = hero:AddNewModifier(hero, self, "modifier_attack_speed", { duration = duration })
-                m:SetStackCount(1)
-            else
-                if m:GetStackCount() < 4 then
-                    m:IncrementStackCount()
+            if false then
+                if not m then
+                    m = hero:AddNewModifier(hero, self, "modifier_attack_speed", { duration = duration })
+                    m:SetStackCount(1)
+                else
+                    if m:GetStackCount() < 4 then
+                        m:IncrementStackCount()
+                    end
+
+                    m:SetDuration(duration, true)
                 end
-                
-                m:SetDuration(duration, true)
             end
 
             onSpellStart(self)
