@@ -70,7 +70,7 @@ function sven_e:Cast(target)
         SvenDash(hero, target, 200, {
             modifier = { name = "modifier_sven_e", ability = self },
             forceFacing = true,
-            gesture = ACT_DOTA_CHANNEL_ABILITY_3,
+            gesture = ACT_DOTA_RUN,
             gestureRate = 1.8,
             hitParams = {
                 ability = self,
