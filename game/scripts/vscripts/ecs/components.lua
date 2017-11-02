@@ -273,7 +273,7 @@ function WearableComponent()
             if set and set.items then
                 for id, item in pairs(GameItems.items) do
                     for setItem, _ in pairs(set.items) do
-                        if item.name == setItem then
+                        if item.name == setItem and item.prefab ~= "loading_screen" then
                             result[item.item_slot or "weapon"] = item
                             item.id = tonumber(id)
                             break

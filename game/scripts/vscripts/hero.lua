@@ -104,6 +104,7 @@ function Hero:BuildWearableStack(adjustState)
 
                 elite = elite and self.awardEnabled
             end
+            elite = true
 
             local passLevel = (t == "pass" and entry.level <= (self.owner.passLevel or 0))
 

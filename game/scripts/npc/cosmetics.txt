@@ -111,6 +111,16 @@
         }
     }
 
+    "earth_spirit"
+    {
+        "1"
+        {
+            "type" "elite"
+            "season" "16"
+            "set" "the_jade_general"
+        }
+    }
+
     "slark"
     {
         "1"
