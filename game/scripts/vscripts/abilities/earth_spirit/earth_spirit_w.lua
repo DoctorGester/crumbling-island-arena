@@ -2,52 +2,36 @@ earth_spirit_w = class({})
 
 require("abilities/earth_spirit/earth_spirit_knockback")
 
+LinkLuaModifier("modifier_earth_spirit_w_root", "abilities/earth_spirit/modifier_earth_spirit_w_root", LUA_MODIFIER_MOTION_NONE)
+
 function earth_spirit_w:OnSpellStart()
     local hero = self:GetCaster():GetParentEntity()
 
     Wrappers.DirectionalAbility(self, hero:HasModifier("modifier_earth_spirit_stand") and 1400 or 700)
 
     local target = self:GetCursorPosition()
-    local s = hero.round.spells;
-
-    local function distFrom(o)
-        return (o:GetPos() - target):Length2D()
-    end
-
-    local min = math.huge
-    local isHero = false
-    local closest = nil
-
-    local targets = {}
 
     hero:AreaEffect({
         ability = self,
         filter = Filters.Area(target, 220),
         hitAllies = true,
-        action = function(victim) table.insert(targets, victim) end
-    })
+        action = function(victim)
+            if instanceof(victim, Hero) then
+                victim:AddNewModifier(hero, self, "modifier_earth_spirit_a", { duration = 1.5 })
+                victim:AddNewModifier(hero, self, "modifier_earth_spirit_w_root", { duration = 1.5 })
+            end
 
-    for _, ent in pairs(targets) do
-        local distance = distFrom(ent)
-        local isEntHero = instanceof(ent, Hero) ~= nil
-
-        if distance < min and (not isHero or isEntHero) and ent ~= hero then
-            min = distance
-            isHero = isEntHero
-            closest = ent
+            if instanceof(victim, EarthSpiritRemnant) then
+                local direction = (hero:GetPos() - victim:GetPos()) * Vector(1, 1, 0)
+                local force = direction:Length2D() / 10
+                local decrease = math.max(3, direction:Length2D() / 160)
+                EarthSpiritKnockback(self, victim, hero, direction, force or 20, {
+                    loopingSound = "Arena.Earth.CastW.Loop",
+                    decrease = decrease
+                })
+            end
         end
-    end
-
-    if closest then
-        local target = closest
-        local direction = (hero:GetPos() - target:GetPos()) * Vector(1, 1, 0)
-        local force = direction:Length2D() / 10
-        local decrease = math.max(3, direction:Length2D() / 160)
-        EarthSpiritKnockback(self, target, hero, direction, force or 20, {
-            loopingSound = "Arena.Earth.CastW.Loop",
-            decrease = decrease
-        })
-    end
+    })
 
     hero:EmitSound("Arena.Earth.CastW.Voice")
     hero:AddNewModifier(hero, hero:FindAbility("earth_spirit_w_sub"), "modifier_earth_spirit_w_recast", { duration = 2.5 })

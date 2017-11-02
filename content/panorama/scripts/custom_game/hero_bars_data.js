@@ -138,6 +138,7 @@ AddStatusEffect("modifier_cm_frozen", "#StatusFrozen", "#7ceeff", 1);
 AddStatusEffect("modifier_invoker_e_target", "#StatusSpellbreak", "#fab9ff");
 AddStatusEffect("modifier_wr_a", "#StatusHaste", "#91e246");
 AddStatusEffect("modifier_zeus_w", "#StatusHaste", "#a1e2d1");
+AddStatusEffect("modifier_earth_spirit_a", "#StatusMagnetized", "#3BC600");
 
 AddStatusEffect("modifier_gyro_w", "#StatusRecast", "#ffffff");
 AddStatusEffect("modifier_drow_q_recast", "#StatusRecast", "#ffffff");
