@@ -54,26 +54,16 @@ function Obstacle:DealOneDamage(source)
     self:AddNewModifier(self, nil, "modifier_custom_healthbar", { duration = duration })
 
     if self.health <= 0 then
-        self:AddOrRefreshTreeHealModifier(source)
+        local hero = source
+        if hero.hero then hero = hero.hero end
+
+        TreeHealProjectile(nil, hero, hero, self:GetPos()):Activate()
         self:Destroy()
     else
         self:GetUnit():SetHealth(self.health)
     end
 
     self:Push(self:GetPos() - source:GetPos())
-end
-
-function Obstacle:AddOrRefreshTreeHealModifier(target)
-    if target.hero then target = target.hero end
-
-    local modifier = target:FindModifier("modifier_tree_heal")
-
-    if not modifier then
-        modifier = target:AddNewModifier(target, nil, "modifier_tree_heal", {})
-    else
-        modifier:IncrementStackCount()
-        modifier:IncrementStackCount()
-    end
 end
 
 function Obstacle:FindPolygon()
@@ -197,4 +187,34 @@ function Obstacle:Push(vel)
     self.pushAmplitude = math.min((self.pushAmplitude or 0) + RandomFloat(0.05, 0.1), 0.3)
 
     --DebugDrawLine(self:GetPos(), self:GetPos() + self.pushNormal:Normalized() * 300, 0, 255, 0, true, 2.0)
+end
+
+TreeHealProjectile = TreeHealProjectile or class({}, nil, HomingProjectile)
+
+function TreeHealProjectile:constructor(round, hero, target, pos)
+    getbase(TreeHealProjectile).constructor(self, round, {
+        owner = hero,
+        from = pos + Vector(0, 0, 64),
+        heightOffset = 64,
+        target = target,
+        speed = 900,
+        graphics = "particles/tree_heal_projectile.vpcf",
+        hitFunction = function(projectile, target)
+            projectile:AddOrRefreshTreeHealModifier(target)
+        end
+    })
+end
+
+function TreeHealProjectile:AddOrRefreshTreeHealModifier(target)
+    local modifier = target:FindModifier("modifier_tree_heal")
+
+    if not modifier then
+        modifier = target:AddNewModifier(target, nil, "modifier_tree_heal", {})
+    else
+        modifier:SetStackCount(2)
+    end
+end
+
+function TreeHealProjectile:CollidesWith(target)
+    return target == self.target
 end
