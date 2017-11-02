@@ -59,7 +59,7 @@ function zeus_r:OnChannelThink(interval)
         hero:DestroyAllVisuals()
         hero:AddNewModifier(hero, self, "modifier_zeus_r", { duration = 2.3 })
 
-        FX("particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", PATTACH_CUSTOMORIGIN, hero, {
+        FX("particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", PATTACH_CUSTOMORIGIN, GameRules:GetGameModeEntity(), {
             cp0 = hero:GetPos() + Vector(0, 0, 2000),
             cp1 = hero:GetPos(),
             release = true
