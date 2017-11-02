@@ -156,6 +156,18 @@ function DynamicEntity:AllowAbilityEffect(source, ability)
     return true
 end
 
+function DynamicEntity:OnBlockedAbilityDamage(source, ability, damage, isPhysical)
+    if not self:Alive() then
+        return
+    end
+
+    for _, modifier in pairs(self:AllModifiers()) do
+        if modifier.OnBlockedAbilityDamage then
+            modifier:OnBlockedAbilityDamage(source, ability, damage, isPhysical)
+        end
+    end
+end
+
 function DynamicEntity:Activate()
     self.round.spells:AddDynamicEntity(self)
 
@@ -192,6 +204,10 @@ function DynamicEntity:AreaEffect(params)
                 local m = params.modifier
 
                 target:AddNewModifier(self, m.ability, m.name, { duration = m.duration })
+            end
+
+            if params.damage ~= nil and blocked then
+                target:OnBlockedAbilityDamage(self, params.ability, params.damage, params.isPhysical)
             end
 
             if params.damage ~= nil and not blocked then
