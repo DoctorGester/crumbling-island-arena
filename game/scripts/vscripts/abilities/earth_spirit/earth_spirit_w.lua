@@ -14,7 +14,6 @@ function earth_spirit_w:OnSpellStart()
     hero:AreaEffect({
         ability = self,
         filter = Filters.Area(target, 220),
-        hitAllies = true,
         action = function(victim)
             if instanceof(victim, Hero) then
                 victim:AddNewModifier(hero, self, "modifier_earth_spirit_a", { duration = 1.5 })
