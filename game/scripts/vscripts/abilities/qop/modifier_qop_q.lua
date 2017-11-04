@@ -18,9 +18,12 @@ if IsServer() then
     function modifier_qop_q:OnIntervalThink()
         self:GetParent():GetParentEntity():Damage(self:GetCaster().hero, self:GetAbility():GetDamage() / 3)
 
-        if self.heals and self:GetCaster():GetParentEntity():Alive() and RandomInt(0, 1) == 0 then
-            self:GetCaster().hero:Heal(self:GetAbility():GetDamage() / 3)
-            self:GetCaster():EmitSound("Arena.QOP.CastR.Heal")
+        if self.heals and self:GetCaster():GetParentEntity():Alive() then
+            self:GetCaster():GetParentEntity():Heal(self:GetAbility():GetDamage() / 3)
+
+            if RandomInt(0, 1) == 0 then
+                self:GetCaster():EmitSound("Arena.QOP.CastR.Heal")
+            end
         end
     end
 end
