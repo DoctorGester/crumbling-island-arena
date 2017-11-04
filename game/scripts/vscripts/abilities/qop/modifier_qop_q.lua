@@ -20,6 +20,7 @@ if IsServer() then
 
         if self.heals and self:GetCaster():GetParentEntity():Alive() then
             self:GetCaster():GetParentEntity():Heal(self:GetAbility():GetDamage() / 3)
+            FX("particles/items3_fx/octarine_core_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetCaster(), { release = true })
 
             if RandomInt(0, 1) == 0 then
                 self:GetCaster():EmitSound("Arena.QOP.CastR.Heal")
