@@ -16,7 +16,6 @@ function cm_e_sub:OnSpellStart()
         TimedEntity(5, function() deathSim:RemoveSelf() end):Activate()
 
         hero:FindClearSpace(icePath:GetPos(), true)
-        hero:SwapAbilities("cm_e_sub", "cm_e")
         hero:EmitSound("Arena.CM.CastSubE")
         icePath:Destroy()
         ImmediateEffectPoint(particle, PATTACH_CUSTOMORIGIN, hero, hero:GetPos())
