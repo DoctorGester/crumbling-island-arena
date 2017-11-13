@@ -29,11 +29,11 @@
 		"Order" "38"
 		"Ability1" "gyro_q"
 		"Ability2" "gyro_w"
-		"Ability3" "gyro_w_sub"
-		"Ability4" "gyro_e"
-		"Ability5" "placeholder_emote"
-		"Ability6" "placeholder_taunt"
-		"Ability7" "gyro_r"
+		"Ability3" "gyro_e"
+		"Ability4" "placeholder_emote"
+		"Ability5" "placeholder_taunt"
+		"Ability6" "gyro_r" 
+		"Ability7" "gyro_w_sub"
 		"Ability8" "gyro_a"
 	}
 }
