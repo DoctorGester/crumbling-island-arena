@@ -1,6 +1,6 @@
 "DOTAHeroes" {
 	"npc_dota_hero_crystal_maiden" {
-		"override_hero"  "npc_dota_hero_crystal_maiden"
+		"override_hero" "npc_dota_hero_crystal_maiden"
 		"ArmorPhysical" "0"
 		"MagicalResistance" "0"
 		"AttackCapabilities" "DOTA_UNIT_CAP_NO_ATTACK"
