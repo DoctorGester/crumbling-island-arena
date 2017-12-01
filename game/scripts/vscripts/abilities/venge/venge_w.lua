@@ -16,6 +16,7 @@ function venge_w:OnSpellStart()
         distance = 1400,
         hitModifier = { name = "modifier_venge_w", duration = 3.0, ability = self },
         continueOnHit = true,
+        goesThroughTrees = true,
         damage = self:GetDamage()
     }):Activate()
 

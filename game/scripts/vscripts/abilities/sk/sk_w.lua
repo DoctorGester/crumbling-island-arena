@@ -27,6 +27,7 @@ function SKWProjectile:constructor(round, hero, target, ability)
         damagesTrees = true,
         continueOnHit = true,
         considersGround = true,
+        goesThroughTrees = true,
         ignoreProjectiles = true,
         hitFunction = function(projectile, target)
             target:Damage(projectile, ability:GetDamage())

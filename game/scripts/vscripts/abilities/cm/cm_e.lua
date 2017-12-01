@@ -17,6 +17,7 @@ function cm_e:OnSpellStart()
         distance = 1100,
         continueOnHit = true,
         damagesTrees = true,
+        goesThroughTrees = true,
         hitFunction = function(_, target)
             CMUtil.AbilityHit(hero, target, self)
 

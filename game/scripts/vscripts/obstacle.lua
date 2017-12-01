@@ -105,7 +105,7 @@ function Obstacle:CollideWith(target)
         -- Configure inside of projectile?
         if instanceof(target, ProjectilePAA) or instanceof(target, TinyQ) then
             target:Deflect(target.hero, -target.vel)
-        else
+        elseif not target.goesThroughTrees then
             target:Destroy()
 
             local mode = GameRules:GetGameModeEntity()

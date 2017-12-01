@@ -22,6 +22,7 @@ function storm_spirit_q:OnSpellStart()
         damage = self:GetDamage(),
         continueOnHit = true,
         considersGround = true,
+        goesThroughTrees = true,
         targetReachedFunction =
             function(proj)
                 hero:AddRemnant(EntityStormQ(proj.round, hero, proj:GetPos(), direction, self):Activate())
