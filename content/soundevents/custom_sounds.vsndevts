@@ -520,6 +520,20 @@
 		event_type = "1.0"
 	}
 
+	Arena.BombTick = {
+	    type = "dota_update_default"
+	    vsnd_files =
+	    [
+	        "sounds/weapons/hero/techies/remote_mine_activate.vsnd"
+	    ]
+	    volume = "1.0"
+	    pitch_rand_min = "-0.05"
+	    pitch_rand_max = "0.05"
+	    pitch = "1.0"
+	    soundlevel = "95.0"
+	    event_type = "1.0"
+	}
+
 	Arena.TreeHealStart = {
 		type = "dota_src1_3d"
 		vsnd_files =

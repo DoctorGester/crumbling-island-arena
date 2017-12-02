@@ -1,11 +1,18 @@
 Bomb = Bomb or class({}, nil, UnitEntity)
 
+local EXPLOSION_DELAY = 2.5
+
 function Bomb:constructor(round, position)
     getbase(Bomb).constructor(self, round, DUMMY_UNIT, position)
 
     self.owner = { team = 0 }
     self.size = 64
     self.collisionType = COLLISION_TYPE_RECEIVER
+    self.gotDamagedAt = 0
+    self.nextTickSoundAt = 0
+    self.resetColorAt = 0
+    self.isGoingToExplode = false
+    self.damageSource = nil
 
     local unit = self:GetUnit()
     unit:SetModel("models/heroes/techies/fx_techies_remotebomb.vmdl")
@@ -18,6 +25,30 @@ function Bomb:constructor(round, position)
     self:SetCustomHealth(2)
     self:EnableHealthBar()
     self:AddNewModifier(self, nil, "modifier_custom_healthbar", {})
+end
+
+function Bomb:Update()
+    getbase(Bomb).Update(self)
+
+    if self.isGoingToExplode and not self.destroyed then
+        local currentTime = GameRules:GetGameTime()
+
+        if currentTime >= self.nextTickSoundAt then
+            self:EmitSound("Arena.BombTick", self:GetPos())
+            self.unit:SetRenderColor(255, 100, 100)
+            self:ScheduleNextTick()
+            self.resetColorAt = currentTime + 0.09
+        end
+
+        if currentTime >= self.resetColorAt then
+            self.unit:SetRenderColor(255, 255, 255)
+        end
+
+        if currentTime >= self.gotDamagedAt + EXPLOSION_DELAY then
+            self:Destroy()
+            self:OnDeath(self.damageSource)
+        end
+    end
 end
 
 function Bomb:OnDeath(source)
@@ -46,6 +77,22 @@ function Bomb:OnDeath(source)
             direction = function(v) return v:GetPos() - self:GetPos() end
         }
     })
+end
+
+function Bomb:ScheduleNextTick()
+    local deltaTime = GameRules:GetGameTime() - self.gotDamagedAt
+    local explosionProgress = deltaTime / (EXPLOSION_DELAY * 1.15)
+
+    self.nextTickSoundAt = GameRules:GetGameTime() + math.cos(explosionProgress * (math.pi / 2.0)) * 0.3
+end
+
+function Bomb:OnDamageReceived(damageSource)
+    self.isGoingToExplode = true
+    self.gotDamagedAt = GameRules:GetGameTime()
+    self.damageSource = damageSource
+    self.nextTickSoundAt = self.gotDamagedAt
+
+    return 1
 end
 
 function Bomb:CollidesWith(source)

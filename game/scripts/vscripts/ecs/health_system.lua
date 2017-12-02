@@ -17,6 +17,8 @@ function HealthSystem:Damage(source, amount, isPhysical)
 
     local all = self:AllModifiers()
 
+    table.insert(all, self) -- To be able to declare OnDamageReceived and OnDamageReceivedPriority on the entity itself
+
     table.sort(all, function(a, b)
         local ap = a.OnDamageReceivedPriority and a:OnDamageReceivedPriority() or 0
         local bp = b.OnDamageReceivedPriority and b:OnDamageReceivedPriority() or 0
