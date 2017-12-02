@@ -132,6 +132,13 @@
             "season" "16"
             "set" "the_jade_general"
         }
+
+        "2"
+        {
+            "type" "pass"
+            "level" "33"
+            "emote" "default"
+        }
     }
 
     "slark"
@@ -569,23 +576,6 @@
         }
     }
 
-    "tiny"
-    {
-        "1"
-        {
-            "type" "elite"
-            "season" "15"
-            "set" "tiny_igneous_stone"
-        }
-
-        "2"
-        {
-            "type" "pass"
-            "level" "36"
-            "emote" "default"
-        }
-    }
-
     "sand_king"
     {
         "1"
@@ -603,6 +593,13 @@
             "type" "elite"
             "season" "15"
             "set" "tiny_igneous_stone"
+        }
+
+        "2"
+        {
+            "type" "pass"
+            "level" "36"
+            "emote" "default"
         }
     }
 
@@ -699,16 +696,6 @@
             "type" "elite"
             "season" "17"
             "set" "airborne_assault_craft"
-        }
-    }
-
-    "earth_spirit"
-    {
-        "1"
-        {
-            "type" "pass"
-            "level" "33"
-            "emote" "default"
         }
     }
 

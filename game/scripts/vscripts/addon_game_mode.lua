@@ -1661,7 +1661,7 @@ end
 if IsInToolsMode() then
     _G.Cosmetics = LoadKeyValues("scripts/npc/cosmetics.txt")
 
-    for i = 0, 30 do
+    for i = 0, 50 do
         for hero, cosmetics in pairs(Cosmetics) do
             for _, asset in pairs(cosmetics) do
                 if type(asset) == "table" then
