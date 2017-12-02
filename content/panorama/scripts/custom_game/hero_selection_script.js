@@ -28,7 +28,8 @@ var seasonAwards = {
     13: "npc_dota_hero_templar_assassin",
     14: "npc_dota_hero_sniper",
     15: "npc_dota_hero_tiny",
-    16: "npc_dota_hero_earth_spirit"
+    16: "npc_dota_hero_earth_spirit",
+    17: "npc_dota_hero_gyrocopter"
 };
 
 function PreloadPreview(hero, value, insertFirst) {
