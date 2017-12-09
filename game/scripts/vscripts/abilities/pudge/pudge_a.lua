@@ -2,7 +2,7 @@ pudge_a = class({})
 LinkLuaModifier("modifier_pudge_a", "abilities/pudge/modifier_pudge_a", LUA_MODIFIER_MOTION_NONE)
 
 function pudge_a:OnSpellStart()
-    Wrappers.DirectionalAbility(self)
+    Wrappers.DirectionalAbility(self, 1200, 1200)
 
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
