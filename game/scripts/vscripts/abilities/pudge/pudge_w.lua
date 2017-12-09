@@ -9,7 +9,9 @@ function pudge_w:OnSpellStart()
 
     ScreenShake(pos, 5, 150, 0.45, 3000, 0, true)
 
-    local hitAnyone = hero:AreaEffect({
+    local hitAnyone = false
+
+    hero:AreaEffect({
         ability = self,
         filter = Filters.Cone(pos, 300, direction, math.pi),
         sound = "Arena.Pudge.HitW",
@@ -24,13 +26,17 @@ function pudge_w:OnSpellStart()
                 relese = true
             })
 
-            local healPath = "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok.vpcf"
-            FX(healPath, PATTACH_ABSORIGIN_FOLLOW, hero, {
-                cp1 = hero:GetPos(),
-                release = true
-            })
+            if instanceof(target, Hero) then
+                hitAnyone = true
 
-            hero:Heal(2)
+                local healPath = "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok.vpcf"
+                FX(healPath, PATTACH_ABSORIGIN_FOLLOW, hero, {
+                    cp1 = hero:GetPos(),
+                    release = true
+                })
+
+                hero:Heal(2)
+            end
         end
     })
 
