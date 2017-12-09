@@ -46,6 +46,18 @@ function HealthSystem:Damage(source, amount, isPhysical)
         end
     end
 
+    if source then
+        local sourceHero = source
+
+        if source.hero then
+            sourceHero = source.hero
+        end
+
+        if sourceHero.HasModifier and sourceHero:HasModifier("modifier_rune_double_damage") then
+            amount = amount * 2
+        end
+    end
+
     if self.customHealth then
         self.health = math.max(0, self.health - amount)
 

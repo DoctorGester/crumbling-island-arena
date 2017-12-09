@@ -1,28 +1,55 @@
 Rune = Rune or class({}, nil, UnitEntity)
 
-function Rune:constructor(round)
+RuneTypes = {
+    HEALING = 0,
+    DOUBLE_DAMAGE = 1,
+    LAST = 2
+}
+
+local RUNE_MODELS = {
+    [RuneTypes.HEALING] = "models/props_gameplay/rune_regeneration01.vmdl",
+    [RuneTypes.DOUBLE_DAMAGE] = "models/props_gameplay/rune_doubledamage01.vmdl"
+}
+
+local RUNE_SPAWN_SOUNDS = {
+    [RuneTypes.HEALING] = "Arena.RuneHealingSpawn",
+    [RuneTypes.DOUBLE_DAMAGE] = "Arena.RuneDoubleDamageSpawn"
+}
+
+local RUNE_PARTICLES = {
+    [RuneTypes.HEALING] = "particles/rune_particle.vpcf",
+    [RuneTypes.DOUBLE_DAMAGE] = "particles/generic_gameplay/rune_doubledamage.vpcf",
+}
+
+local RUNE_COLORS = {
+    [RuneTypes.HEALING] = Vector(0, 255, 0),
+    [RuneTypes.DOUBLE_DAMAGE] = Vector(0, 255, 255),
+}
+
+function Rune:constructor(round, runeType)
     getbase(Rune).constructor(self, round, DUMMY_UNIT, Vector(0, 0, 0))
 
     self.owner = { team = 0 }
     self.size = 64
     self.collisionType = COLLISION_TYPE_RECEIVER
+    self.runeType = runeType
 
     local unit = self:GetUnit()
-    unit:SetModel("models/props_gameplay/rune_regeneration01.vmdl")
-    unit:SetOriginalModel("models/props_gameplay/rune_regeneration01.vmdl")
+    unit:SetModel(RUNE_MODELS[runeType])
+    unit:SetOriginalModel(RUNE_MODELS[runeType])
     unit:StartGesture(ACT_DOTA_IDLE)
 
     self:AddComponent(HealthComponent())
     self:SetCustomHealth(6)
     self:EnableHealthBar()
     self:CreateParticles()
-    self:EmitSound("Arena.RuneSpawn")
+    self:EmitSound(RUNE_SPAWN_SOUNDS[runeType])
     self:AddNewModifier(self, nil, "modifier_custom_healthbar", {})
 end
 
 function Rune:CreateParticles()
-    self.particle = ParticleManager:CreateParticle("particles/rune_particle.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.unit)
-    ParticleManager:SetParticleControl(self.particle, 1, Vector(0, 255, 0))
+    self.particle = ParticleManager:CreateParticle(RUNE_PARTICLES[self.runeType], PATTACH_ABSORIGIN_FOLLOW, self.unit)
+    ParticleManager:SetParticleControl(self.particle, 1, RUNE_COLORS[self.runeType])
     ParticleManager:SetParticleAlwaysSimulate(self.particle)
 end
 
@@ -33,22 +60,41 @@ function Rune:Remove()
     ParticleManager:ReleaseParticleIndex(self.particle)
 end
 
+function Rune:Update(...)
+    getbase(Rune).Update(self, ...)
+
+    -- Thanks Valve, great tools
+    if self.runeType == RuneTypes.DOUBLE_DAMAGE then
+        local currentAngle = (GameRules:GetGameTime() % (math.pi * 2)) * 2.0
+        self:GetUnit():SetForwardVector(Vector(math.cos(currentAngle), math.sin(currentAngle)))
+    end
+end
+
 function Rune:OnDeath(source)
-    FX("particles/items3_fx/warmage.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity(), { cp0 = self:GetPos() + Vector(0, 0, 64), release = true })
-    FX("particles/items3_fx/fish_bones_active.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity(), { cp0 = self:GetPos() + Vector(0, 0, 64), release = true })
     ScreenShake(self:GetPos(), 5, 150, 0.45, 3000, 0, true)
+
+    local fxPosition = self:GetPos() + Vector(0, 0, 64)
+
+    if self.runeType == RuneTypes.HEALING then
+        FX("particles/items3_fx/warmage.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity(), { cp0 = fxPosition, release = true })
+        FX("particles/items3_fx/fish_bones_active.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity(), { cp0 = fxPosition, release = true })
+
+        self:EmitSound("Arena.Rune", self:GetPos())
+    end
 
     for _, hero in pairs(self.round.spells:FilterEntities(
         function(target)
             return instanceof(target, Hero) and target:Alive() and source.owner.team == target.owner.team
         end)) do
 
-        hero:Heal(5)
+        if self.runeType == RuneTypes.DOUBLE_DAMAGE then
+            hero:AddNewModifier(hero, nil, "modifier_rune_double_damage", { duration = 5.0 })
+        elseif self.runeType == RuneTypes.HEALING then
+            hero:Heal(5)
 
-        FX("particles/items3_fx/warmage_recipient.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero, { release = true })
+            FX("particles/items3_fx/warmage_recipient.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero, { release = true })
+        end
     end
-
-    self:EmitSound("Arena.Rune", self:GetPos())
 
     EmitAnnouncerSound("Announcer.RoundRune")
 end

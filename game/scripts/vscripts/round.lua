@@ -19,6 +19,8 @@ function Round:constructor(players, teams, availableHeroes, callback)
     self.spells = Spells()
     self.statistics = Statistics(players)
     self.runeTimer = 25 * 30
+    self.runeCounter = 0
+    self.nextRuneType = RuneTypes.HEALING
 
     self.runeParticleParams = {"particles/rune_marker.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity(), {
         cp0 = Vector(0, 0, 32),
@@ -89,7 +91,11 @@ function Round:Update()
             self.runeTimer = self.runeTimer - 1
 
             if self.runeTimer <= 0 then
-                self.rune = Rune(self):Activate()
+                self.rune = Rune(self, self.nextRuneType):Activate()
+                self.runeCounter = self.runeCounter + 1
+                self.nextRuneType = self.runeCounter % RuneTypes.LAST
+
+                print("NExt rune type", self.nextRuneType, self.runeCounter)
             end
         end
 

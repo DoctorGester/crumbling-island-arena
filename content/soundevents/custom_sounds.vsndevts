@@ -474,11 +474,25 @@
 		event_type = "1.0"
 	}
 
-	Arena.RuneSpawn = {
+	Arena.RuneHealingSpawn = {
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[
 			"sounds/items/rune_regen.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.RuneDoubleDamageSpawn = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/items/rune_dd.vsnd"
 		]
 		volume = "1.0"
 		pitch_rand_min = "-0.05"

@@ -135,6 +135,14 @@ function Spells:Update()
                             horVel = softKb.direction * softKb.force
                         end
 
+                        local pudgeQDash = self:FindPudgeQDash(entity)
+
+                        if pudgeQDash and not pudgeQDash:HasEnded() then
+                            local direction = (pudgeQDash.pudge:GetPos() - entity:GetPos()):Normalized()
+
+                            horVel = direction * pudgeQDash.velocity
+                        end
+
                         entity:MakeFall(horVel)
                     end
 
@@ -158,6 +166,16 @@ end
 function Spells:FindSoftKnockback(entity)
     for _, dash in ipairs(self.dashes) do
         if instanceof(dash, SoftKnockback) and dash.hero == entity then
+            return dash
+        end
+    end
+
+    return nil
+end
+
+function Spells:FindPudgeQDash(entity)
+    for _, dash in ipairs(self.dashes) do
+        if instanceof(dash, DashPudgeQ) and dash.hero == entity then
             return dash
         end
     end
