@@ -14,7 +14,10 @@ function ursa_q:OnSpellStart()
         modifier = { name = "modifier_ursa_q", duration = 1.0, ability = self }
     })
 
-    ImmediateEffect("particles/units/heroes/hero_ursa/ursa_earthshock.vpcf", PATTACH_ABSORIGIN, hero)
+    FX("particles/units/heroes/hero_ursa/ursa_earthshock.vpcf", PATTACH_ABSORIGIN, hero, {
+        cp1 = Vector(200, 200, 200),
+        release = true
+    })
 
     hero:EmitSound("Arena.Ursa.CastQ")
 
