@@ -176,7 +176,7 @@
 		"lone_druid_DescR" "Transform. Available immediately"
 
 		"pudge_DescQ" "Hook an enemy"
-		"pudge_DescW" "Melee attack"
+		"pudge_DescW" "Melee attack + Heal"
 		"pudge_DescE" "Dash + knockback"
 		"pudge_DescR" "AOE slow"
 
@@ -553,11 +553,11 @@
 		"AbilityTooltip_ld_w_sub"						"Greatly slow enemies around you"
 		"AbilityTooltip_ld_e_sub"						"Gain a boost of speed<br/><br/>Attacking in this state <font color=\"#3A9B00\"><b>Roots</b></font> enemies"
 
-		"AbilityTooltip_pudge_a"						"Applies a fading slow<br/>Hitting slowed enemies with abilities makes them drop healing meat"
+		"AbilityTooltip_pudge_a"						"Applies a fading slow"
 		"AbilityTooltip_pudge_q"						"Launch a hook, which damages and pulls first enemy hit to you"
-		"AbilityTooltip_pudge_w"						"Attack enemies in front of you"
-		"AbilityTooltip_pudge_e"						"Dash to the target point, stop after encountering an enemy and knock him back"
-		"AbilityTooltip_pudge_r"						"Slow enemies around you for 5 seconds"
+		"AbilityTooltip_pudge_w"						"Attack enemies in front of you and restore 2 health for each enemy hit"
+		"AbilityTooltip_pudge_e"						"Dash to the target point, stop after encountering an enemy, damage and knock him back"
+		"AbilityTooltip_pudge_r"						"Slow enemies around you for 5 seconds<br/>Affected enemies receive additional damage from the hero"
 
 		"AbilityTooltip_ursa_a"							"Dealing and taking damage generates <font color='#FF6A00'><b>Fury</b></font><br/>When maximum is reached gain <font color='#FF2700'><b>Frenzy</b></font><br/>Deals double damage under <font color='#FF2700'><b>Frenzy</b></font>"
 		"AbilityTooltip_ursa_q"							"Slow enemies around you<br/>Resets on entering <font color='#FF2700'><b>Frenzy</b></font>"
