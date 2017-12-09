@@ -7,13 +7,18 @@ function pudge_a:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
     local dir = self:GetDirection()
-    dir = Vector(-dir.y, dir.x)
+    dir = Vector(dir.y, -dir.x)
+
+    local currentSequence = self:GetCaster():GetSequence()
+    if currentSequence == "pudge_attack_1_anim" or currentSequence == "hh_attack1" then
+        dir = -dir
+    end
 
     DistanceCappedProjectile(hero.round, {
         ability = self,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 96) + dir * 80,
-        to = target + Vector(0, 0, 96) + dir * 80,
+        to = target,
         damage = self:GetDamage(),
         speed = 1450,
         radius = 48,
