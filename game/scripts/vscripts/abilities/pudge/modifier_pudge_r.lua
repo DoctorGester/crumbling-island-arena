@@ -15,3 +15,12 @@ end
 function modifier_pudge_r:GetEffectName()
     return "particles/units/heroes/hero_pudge/pudge_rot_recipient.vpcf"
 end
+
+function modifier_pudge_r:OnDamageReceived(source, _, amount, _)
+    local hero = self:GetCaster():GetParentEntity()
+    local proj = instanceof(source, Projectile)
+
+    if (hero == source or (proj and source.hero == hero)) then
+        return amount + 1
+    end
+end
