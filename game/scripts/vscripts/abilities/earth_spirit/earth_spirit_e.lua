@@ -37,7 +37,7 @@ function earth_spirit_e:OnSpellStart()
         forceFacing = true,
         noFixedDuration = true,
         arrivalFunction = function()
-            if targetRemnant and not targetRemnant.destroyed and not targetRemnant.standingHero then
+            if targetRemnant and not targetRemnant.destroyed and not targetRemnant.standingHero and not targetRemnant.falling then
                 targetRemnant:SetStandingHero(hero)
                 target = targetRemnant:GetPos()
                 hero:SetPos(Vector(target.x, target.y, target.z + 150))
@@ -87,7 +87,7 @@ end
 function ESDash:Update()
     getbase(ESDash).Update(self)
 
-    if self.targetRemnant and not self.targetRemnant.destroyed then
+    if self.targetRemnant and not self.targetRemnant.destroyed and not self.targetRemnant.falling then
         self.to = self.targetRemnant:GetPos()
     end
 end
