@@ -4,7 +4,7 @@
 		"ScriptFile" "abilities/pudge/pudge_a"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "pudge_dismember"
-		"AbilityCooldown" "0.9"
+		"AbilityCooldown" "0.75"
 		"AbilityCastPoint" "0.15"
 		"Damage" "1"
 
