@@ -1,6 +1,7 @@
 Bomb = Bomb or class({}, nil, UnitEntity)
 
 local EXPLOSION_DELAY = 2.5
+local EXPLOSION_RADIUS = 350
 
 function Bomb:constructor(round, position)
     getbase(Bomb).constructor(self, round, DUMMY_UNIT, position)
@@ -55,7 +56,7 @@ function Bomb:OnDeath(source)
     FX("particles/units/heroes/hero_techies/techies_remote_mines_detonate.vpcf", PATTACH_ABSORIGIN, GameRules:GetGameModeEntity(),
     {
         cp0 = self:GetPos() + Vector(0, 0, 64),
-        cp1 = Vector(300, 1, 1),
+        cp1 = Vector(EXPLOSION_RADIUS, 1, 1),
         release = true
     })
 
@@ -68,7 +69,7 @@ function Bomb:OnDeath(source)
     end
 
     source:AreaEffect({
-        filter = Filters.Area(self:GetPos(), 300),
+        filter = Filters.Area(self:GetPos(), EXPLOSION_RADIUS),
         damage = 3,
         hitSelf = true,
         hitAllies = true,
@@ -91,6 +92,8 @@ function Bomb:OnDamageReceived(damageSource)
     self.gotDamagedAt = GameRules:GetGameTime()
     self.damageSource = damageSource
     self.nextTickSoundAt = self.gotDamagedAt
+
+    self:AddComponent(PlayerCircleComponent(EXPLOSION_RADIUS, true, 0.25, { 165, 20, 40 }))
 
     return 1
 end
