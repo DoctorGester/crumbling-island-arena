@@ -161,7 +161,9 @@ function DashPudgeQ:constructor(hero, target, ability, particle)
     self.pudge = hero
     self.particle = particle
 
-    target:AddKnockbackSource(hero)
+    if instanceof(target, Hero) then
+        target:AddKnockbackSource(hero)
+    end
 
     ParticleManager:SetParticleControlEnt(self.particle, 3, target:GetUnit(), PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetPos(), true)
 end
