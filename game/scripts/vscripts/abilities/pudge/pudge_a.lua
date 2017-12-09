@@ -18,7 +18,7 @@ function pudge_a:OnSpellStart()
         ability = self,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 96) + dir * 80,
-        to = target,
+        to = target + Vector(0, 0, 96),
         damage = self:GetDamage(),
         speed = 1450,
         radius = 48,
