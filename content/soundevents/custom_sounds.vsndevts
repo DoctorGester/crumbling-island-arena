@@ -4648,7 +4648,7 @@
 	}
 
 	Arena.Pudge.LoopR = {
-		type = "dota_src1_3d"
+		type = "dota_update_default"
 		vsnd_files = 
 		[
 			"sounds/weapons/hero/pudge/rot.vsnd"
@@ -4656,6 +4656,8 @@
 		volume = "1.0"
 		pitch_rand_min = "-0.05"
 		pitch_rand_max = "0.05"
+        volume_fade_in = "0.1"
+        volume_fade_out = "0.7"
 		pitch = "1.0"
 		soundlevel = "95.0"
 		event_type = "1.0"
