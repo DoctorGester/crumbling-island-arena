@@ -1,5 +1,6 @@
-var dummy = "npc_dota_hero_wisp";
+var heroPanels = {};
 var heroBars = {};
+var mainPanel = $("#HeroBarsContainer");
 
 function darken(color, percent) {
     return [ color[0] * percent, color[1] * percent, color[2] * percent ];
@@ -254,134 +255,286 @@ function UpdateBar(entity, spawn) {
     }
 }
 
+function DetectAndPushSpecialEntities(all) {
+    var special = {};
+
+    // Special handing of jugg swords
+    var h = Players.GetLocalPlayerPortraitUnit();
+    if (Entities.GetUnitName(h) == "npc_dota_hero_juggernaut") {
+        var owner = GetPlayerOwnerID(h);
+
+        for (var ent of Entities.GetAllEntitiesByClassname("npc_dota_creep_neutral")) {
+            if (Entities.GetUnitName(ent) == "jugg_sword" && GetPlayerOwnerID(ent) == owner) {
+                all.push({
+                    id: ent,
+                    isRealHero: false
+                });
+
+                var count = GetStackCount(h, "modifier_jugger_sword");
+                var level = 1;
+
+                if (count >= 500) level++;
+                if (count >= 800) level++;
+                if (count >= 1300) level++;
+
+                special[ent] = level;
+                ent.isSpecial = true;
+                break;
+            }
+        }
+    }
+
+    return special;
+}
+
+function CreateBar(entityId, lightBar) {
+    var panel = $.CreatePanel("Panel", mainPanel, "");
+    var special = specialLayouts[Entities.GetUnitName(entityId)];
+
+    panel.BLoadLayoutSnippet(lightBar ? "HealthBarLight" : "HealthBar");
+
+    if (special) {
+        panel.FindChildTraverse("SpecialBar").BLoadLayoutSnippet(special);
+        panel.FindChildTraverse("SpecialBar").SetHasClass("Hidden", false);
+    }
+
+    panel.light = !!lightBar;
+
+    if (!lightBar) {
+        panel.cached = {};
+
+        var bar = panel.FindChildTraverse("HealthBar");
+        var teamColor = colors[Entities.GetTeamNumber(entityId)];
+        var name = panel.FindChildTraverse("PlayerName");
+        name.text = Players.GetPlayerName(GetPlayerOwnerID(entityId));
+        name.style.color = clr(teamColor);
+
+        var missing = bar.FindChild("MissingHealth");
+        var bg = "gradient(linear, 0% 0%, 0% 95%, from(" +
+            clr(darken(teamColor, 0.1)) +
+            "), to(" +
+            clr(darken(teamColor, 0.2)) +
+            "));";
+
+        missing.style.backgroundColor = bg;
+        bar.style.backgroundColor = bg;
+
+        panel.cached.attackTimer = panel.FindChildTraverse("AttackTimer");
+    } else {
+        var team = Entities.GetTeamNumber(entityId);
+
+        if (team != DOTATeam_t.DOTA_TEAM_NOTEAM) {
+            var teamColor = colors[team];
+            panel.FindChildTraverse("HealthBar_Left").style.backgroundColor =
+                "gradient(linear, 0% 0%, 0% 95%, from(" +
+                clr(teamColor) +
+                "), to(" +
+                clr(darken(teamColor, 0.3)) +
+                "));";
+        }
+    }
+
+    return panel;
+}
+
+function ValidateAndUpdateOnScreenEntity(entityId, screenX, screenY, lightBar) {
+    var changedBarTypeAndNeedsRecreation = _.has(heroBars, entityId) && heroBars[entityId].light !== !!lightBar;
+
+    if (changedBarTypeAndNeedsRecreation) {
+        return false;
+    }
+
+    if (_.has(heroBars, entityId)) {
+        UpdateBar({ id: entityId, x: screenX, y: screenY, light: lightBar });
+    } else {
+        heroBars[entityId] = CreateBar(entityId, lightBar);
+
+        UpdateBar({ id: entityId, x: screenX, y: screenY, light: lightBar });
+    }
+
+    return true;
+}
+
+function UpdateHeroDetectorPanel(entityId, screenX, screenY) {
+    var panel = heroPanels[entityId];
+    var screenWidth = Game.GetScreenWidth();
+    var screenHeight = Game.GetScreenHeight();
+    var realW = Clamp(screenX, 0, screenWidth - panel.actuallayoutwidth) / screenWidth;
+    var realH = Clamp(screenY, 0, screenHeight - panel.actuallayoutwidth) / screenHeight;
+
+    if (isNaN(realW) || isNaN(realH)) {
+        return;
+    }
+
+    panel.style.position = parseInt(realW * 100) + "% " + parseInt(realH * 100) + "% 0px";
+
+    if (!panel.BHasClass("HeroMarkerTransition")) {
+        panel.AddClass("HeroMarkerTransition");
+    }
+}
+
+function CreateHeroDetectorPanel(entityId, specialLevel) {
+    var panel;
+
+    if (specialLevel) {
+        panel = $.CreatePanel("Panel", mainPanel, "");
+        panel.AddClass("HeroMarkerJuggSwordContainer");
+
+        var bg = $.CreatePanel("Panel", panel, "");
+        bg.AddClass("HeroMarkerJuggSwordBG");
+
+        var sw = $.CreatePanel("Panel", panel, "");
+        sw.AddClass("HeroMarkerJuggSword");
+        sw.AddClass("T" + specialLevel);
+    } else {
+        panel = $.CreatePanel("DOTAHeroImage", mainPanel, "");
+        panel.heroname = Entities.GetUnitName(entityId);
+        panel.heroimagestyle = "icon";
+    }
+
+    panel.hittest = false;
+
+    return panel;
+}
+
+function ValidateAndUpdateOffScreenEntity(entityId, screenX, screenY, isRealHero, specialLevel) {
+    if (!isRealHero && !specialLevel) {
+        return false;
+    }
+
+    if (_.has(heroPanels, entityId)) {
+        UpdateHeroDetectorPanel(entityId, screenX, screenY);
+    } else {
+        heroPanels[entityId] = CreateHeroDetectorPanel(entityId, specialLevel);
+
+        UpdateHeroDetectorPanel(entityId, screenX, screenY);
+    }
+
+    return true;
+}
+
+function DetermineOffsetAndLightBarData(entityId) {
+    var lightBar = HasModifier(entityId, "modifier_custom_healthbar");
+    var offset;
+
+    if (lightBar) {
+        offset = 150;
+
+        lightBar = {
+            rem: GetRemainingModifierTime(entityId, "modifier_custom_healthbar"),
+            dur: GetModifierDuration(entityId, "modifier_custom_healthbar")
+        }
+    } else {
+        var nm = Entities.GetUnitName(entityId);
+        offset = Entities.GetHealthBarOffset(entityId);
+
+        var specialModifier = specialOffsetModifiers[nm];
+
+        if (specialModifier) {
+            offset += (specialModifier(entityId) || 0);
+        }
+    }
+
+    return {
+        offset: offset,
+        lightBar: lightBar
+    }
+}
+
 function UpdateHeroBars(){
     $.Schedule(1 / 120, UpdateHeroBars);
 
-    var mainPanel = $("#HeroBarsContainer");
     var classes = [ "npc_dota_creep_neutral", "npc_dota_creature" ];
+    var all = [];
 
-    var all = Entities.GetAllHeroEntities().filter(function(entity) {
-        return !Entities.IsUnselectable(entity) || HasModifier(entity, "modifier_custom_healthbar");
-    });
+    for (var heroEntity of Entities.GetAllHeroEntities()) {
+        var isSelectable = !Entities.IsUnselectable(heroEntity);
+        var hasCustomHealthbar = HasModifier(heroEntity, "modifier_custom_healthbar");
+
+        if (isSelectable || hasCustomHealthbar) {
+            all.push({
+                id: heroEntity,
+                isRealHero: isSelectable
+            })
+        }
+    }
 
     for (var cl of classes) {
-        all = all.concat(Entities.GetAllEntitiesByClassname(cl).filter(function(entity) {
-            return HasModifier(entity, "modifier_custom_healthbar");
-        }));
+        var dataArray = Entities.GetAllEntitiesByClassname(cl)
+            .filter(function(entity) {
+                return HasModifier(entity, "modifier_custom_healthbar");
+            })
+            .map(function(id) {
+                return {
+                    id: id,
+                    isRealHero: false
+                }
+            });
+
+        all = all.concat(dataArray);
     }
 
     mainPanel.SetHasClass("AltPressed", GameUI.IsAltDown());
 
-    var onScreen = _
-        .chain(all)
-        .reject(function(entity) {
-            return Entities.IsOutOfGame(entity);
-        })
-        .filter(function(entity) {
-            return Entities.IsAlive(entity);
-        })
-        .map(function(entity) {
-            var abs = Entities.GetAbsOrigin(entity);
-            var lightBar = HasModifier(entity, "modifier_custom_healthbar");
-            var offset;
+    var special = DetectAndPushSpecialEntities(all);
+    var trulyOnScreen = [];
+    var trulyNotOnScreen = [];
 
-            if (lightBar) {
-                offset = 150;
+    for (var entityData of all) {
+        var entityId = entityData.id;
 
-                lightBar = {
-                    rem: GetRemainingModifierTime(entity, "modifier_custom_healthbar"),
-                    dur: GetModifierDuration(entity, "modifier_custom_healthbar")
-                }
-            } else {
-                var nm = Entities.GetUnitName(entity);
-                offset = Entities.GetHealthBarOffset(entity);
+        if (Entities.IsOutOfGame(entityId) || !Entities.IsAlive(entityId)) {
+            continue;
+        }
 
-                var specialModifier = specialOffsetModifiers[nm];
+        var abs = Entities.GetAbsOrigin(entityId);
+        var offsetAndLightBarData = DetermineOffsetAndLightBarData(entityId);
 
-                if (specialModifier) {
-                    offset += (specialModifier(entity) || 0);
-                }
+        var offset = offsetAndLightBarData.offset;
+        var lightBar = offsetAndLightBarData.lightBar;
+
+        var screenX = Game.WorldToScreenX(abs[0], abs[1], abs[2] + offset);
+        var screenY = Game.WorldToScreenY(abs[0], abs[1], abs[2] + offset);
+
+        if (screenX == -1 || screenY == -1) {
+            continue
+        }
+
+        var isOnScreen = GameUI.GetScreenWorldPosition(screenX, screenY) != null;
+
+        if (isOnScreen) {
+            if (!special[entityId] && ValidateAndUpdateOnScreenEntity(entityId, screenX, screenY, lightBar)) {
+                trulyOnScreen.push(entityId);
             }
-
-            var x = Game.WorldToScreenX(abs[0], abs[1], abs[2] + offset);
-            var y = Game.WorldToScreenY(abs[0], abs[1], abs[2] + offset);
-
-            return { id: entity, x: x, y: y, abs: abs, light: lightBar };
-        })
-        .reject(function(entity) {
-            return _.has(heroBars, entity.id) && heroBars[entity.id].light !== !!entity.light;
-        })
-        .reject(function(mapped) {
-            return mapped.x == -1 || mapped.y == -1;
-        })
-        .filter(function(mapped) {
-            return GameUI.GetScreenWorldPosition(mapped.x, mapped.y) != null;
-        })
-        .each(function(entity) {
-            if (_.has(heroBars, entity.id)) {
-                UpdateBar(entity);
-            } else {
-                var panel = $.CreatePanel("Panel", mainPanel, "");
-                var special = specialLayouts[Entities.GetUnitName(entity.id)];
-
-                panel.BLoadLayoutSnippet(entity.light ? "HealthBarLight" : "HealthBar");
-
-                if (special) {
-                    panel.FindChildTraverse("SpecialBar").BLoadLayoutSnippet(special);
-                    panel.FindChildTraverse("SpecialBar").SetHasClass("Hidden", false);
-                }
-
-                panel.light = !!entity.light;
-
-                if (!entity.light) {
-                    panel.cached = {};
-
-                    var bar = panel.FindChildTraverse("HealthBar");
-                    var teamColor = colors[Entities.GetTeamNumber(entity.id)];
-                    var name = panel.FindChildTraverse("PlayerName");
-                    name.text = Players.GetPlayerName(GetPlayerOwnerID(entity.id));
-                    name.style.color = clr(teamColor);
-
-                    var missing = bar.FindChild("MissingHealth");
-                    var bg = "gradient(linear, 0% 0%, 0% 95%, from(" +
-                        clr(darken(teamColor, 0.1)) +
-                        "), to(" +
-                        clr(darken(teamColor, 0.2)) +
-                        "));";
-
-                    missing.style.backgroundColor = bg;
-                    bar.style.backgroundColor = bg;
-
-                    panel.cached.attackTimer = panel.FindChildTraverse("AttackTimer");
-                } else {
-                    var team = Entities.GetTeamNumber(entity.id);
-
-                    if (team != DOTATeam_t.DOTA_TEAM_NOTEAM) {
-                        var teamColor = colors[team];
-                        panel.FindChildTraverse("HealthBar_Left").style.backgroundColor =
-                            "gradient(linear, 0% 0%, 0% 95%, from(" +
-                            clr(teamColor) +
-                            "), to(" +
-                            clr(darken(teamColor, 0.3)) +
-                            "));";
-                    }
-                }
-
-                heroBars[entity.id] = panel;
-
-                UpdateBar(entity);
+        } else {
+            if (ValidateAndUpdateOffScreenEntity(entityId, screenX, screenY, entityData.isRealHero, special[entityId])) {
+                trulyNotOnScreen.push(entityId);
             }
-        })
-        .value();
+        }
+    }
 
-    var oldEntities = _.omit(heroBars, function(value, key) {
-        return _.some(onScreen, function(entity) { return entity.id == key });
-    });
+    // Everything around there is crap code, but this is extra crap, unreadable!
+    {
+        var oldEntities = _.omit(heroBars, function(value, key) {
+            return _.some(trulyOnScreen, function(entityId) { return entityId == key });
+        });
 
-    _.each(oldEntities, function(panel, key) {
-        panel.DeleteAsync(0);
-        delete heroBars[key];
-    });
+        _.each(oldEntities, function(panel, key) {
+            panel.DeleteAsync(0);
+            delete heroBars[key];
+        });
+    }
+
+    {
+        var oldEntities = _.omit(heroPanels, function(value, key) {
+            return _.some(trulyNotOnScreen, function(entityId) { return entityId == key });
+        });
+
+        _.each(oldEntities, function(panel, key) {
+            panel.DeleteAsync(0);
+            delete heroPanels[key];
+        });
+    }
 }
 
 UpdateHeroBars();
