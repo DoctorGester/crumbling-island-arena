@@ -708,4 +708,14 @@
             "item" "6893"
         }
     }
+
+    "nevermore"
+    {
+        "1"
+        {
+            "type" "elite"
+            "season" "18"
+            "set" "diabolical_fiend"
+        }
+    }
 }
