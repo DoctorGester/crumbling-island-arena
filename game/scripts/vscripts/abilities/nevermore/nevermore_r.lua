@@ -24,6 +24,7 @@ function nevermore_r:OnSpellStart()
     })
 
     hero:EmitSound("Arena.Nevermore.CastR")
+    hero:EmitSound("Arena.Nevermore.CastR.Voice")
 end
 
 function nevermore_r:OnChannelFinish(interrupted)
@@ -32,6 +33,8 @@ function nevermore_r:OnChannelFinish(interrupted)
     hero:StopSound("Arena.Nevermore.CastR")
 
     if interrupted then
+        hero:StopSound("Arena.Nevermore.CastR.Voice")
+
         if self.particle then
             DFX(self.particle)
             self.particle = nil

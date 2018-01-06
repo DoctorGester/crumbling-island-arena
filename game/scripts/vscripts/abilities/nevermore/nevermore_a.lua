@@ -49,6 +49,21 @@ function nevermore_a:OnSpellStart()
                 if stackingModifier and stackingModifier:GetStackCount() < 16 then
                     stackingModifier:IncrementStackCount()
 
+                    local function PlayFX()
+                        FX("particles/units/heroes/hero_nevermore/nevermore_loadout.vpcf", PATTACH_ABSORIGIN_FOLLOW, trueHero, { release = true })
+                        trueHero:EmitSound("Arena.Nevermore.ProcA.FX")
+                    end
+
+                    if (stackingModifier:GetStackCount() == 8) then
+                        trueHero:EmitSound("Arena.Nevermore.ProcA.First")
+                        PlayFX()
+                    end
+
+                    if (stackingModifier:GetStackCount() == 16) then
+                        trueHero:EmitSound("Arena.Nevermore.ProcA.Second")
+                        PlayFX()
+                    end
+
                     local path = "particles/nevermore_a/nevermore_a_souls.vpcf"
                     FX(path, PATTACH_CUSTOMORIGIN_FOLLOW, GameRules:GetGameModeEntity(), {
                         cp0 = { ent = target, point = "attach_hitloc" },

@@ -7198,11 +7198,74 @@
 		event_type = "1.0"
 	}
 
+	Arena.Nevermore.ProcA.First = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/vo/nevermore/nev_level_01.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Nevermore.ProcA.Second = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/vo/nevermore/nev_level_06.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Nevermore.ProcA.FX = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/clinkz/death_pact.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
 	Arena.Nevermore.CastQ = {
 		type = "dota_update_default"
 		vsnd_files =
 		[
 			"sounds/weapons/hero/nevermore/shadowraze.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Nevermore.CastQ.Voice = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/vo/nevermore/nev_ability_shadow_07.vsnd",
+			"sounds/vo/nevermore/nev_ability_shadow_08.vsnd",
+			"sounds/vo/nevermore/nev_ability_shadow_18.vsnd",
+			"sounds/vo/nevermore/nev_ability_shadow_19.vsnd",
+			"sounds/vo/nevermore/nev_ability_shadow_20.vsnd",
+			"sounds/vo/nevermore/nev_ability_shadow_21.vsnd",
+			"sounds/vo/nevermore/nev_ability_shadow_22.vsnd",
+			"sounds/vo/nevermore/nev_ability_shadow_23.vsnd"
 		]
 		volume = "1.0"
 		pitch_rand_min = "-0.05"
@@ -7250,6 +7313,22 @@
 	    event_type = "1.0"
 	}
 
+	Arena.Nevermore.HitE.Voice = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/vo/nevermore/nev_ability_presence_01.vsnd",
+			"sounds/vo/nevermore/nev_ability_presence_02.vsnd",
+			"sounds/vo/nevermore/nev_ability_presence_03.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
 	Arena.Nevermore.CastR = {
 		type = "dota_update_default"
 		vsnd_files =
@@ -7258,6 +7337,21 @@
 		]
 		volume = "1.0"
         volume_fade_out = "0.2"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Nevermore.CastR.Voice = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/vo/nevermore/nev_ability_requiem_11.vsnd"
+		]
+		volume = "1.0"
+        volume_fade_out = "0.4"
 		pitch_rand_min = "-0.05"
 		pitch_rand_max = "0.05"
 		pitch = "1.0"

@@ -351,14 +351,6 @@
         ]
     }
 
-    Round. = {
-        type = "dota_update_vo_switch"
-        vsnd_files = 
-        [
-            ""
-        ]
-    }
-
     Round.sven = {
         type = "dota_update_vo_switch"
         vsnd_files = 
@@ -599,5 +591,13 @@
         ]
         volume = "3"
         distance_max = "3500"
+    }
+
+    Round.nevermore = {
+        type = "dota_update_vo_switch"
+        vsnd_files =
+        [
+            "sounds/vo/nevermore/nev_deny_03.vsnd"
+        ]
     }
 }

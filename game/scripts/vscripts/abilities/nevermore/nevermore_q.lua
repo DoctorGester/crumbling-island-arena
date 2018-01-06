@@ -3,7 +3,7 @@ nevermore_q = class({})
 LinkLuaModifier("modifier_nevermore_q", "abilities/nevermore/modifier_nevermore_q", LUA_MODIFIER_MOTION_NONE)
 
 function nevermore_q:OnAbilityPhaseStart()
-    self:GetCaster().hero:EmitSound("Arena.nevermore.PreQ")
+    self:GetCaster().hero:EmitSound("Arena.Nevermore.CastQ.Voice")
     return true
 end
 
