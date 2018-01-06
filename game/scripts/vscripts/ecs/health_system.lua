@@ -88,7 +88,8 @@ function HealthSystem:Damage(source, amount, isPhysical)
         })
 
         self:EmitSound("Arena.RuneBlueHit")
-        self:GetUnit():AddNewModifier(self:GetUnit(), nil, "modifier_stunned", { duration = 0.8 })
+        self:GetUnit():AddNewModifier(self:GetUnit(), nil, "modifier_stunned", { duration = 0.6 })
+        self.round.spells:InterruptDashes(self)
     end
 
     self:GetUnit():AddNewModifier(self:GetUnit(), nil, "modifier_damaged", { duration = 0.2 })
