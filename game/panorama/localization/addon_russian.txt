@@ -46,6 +46,7 @@
 		"HeroName_npc_dota_hero_gyrocopter"				"Черепаха"
 		"HeroName_npc_dota_hero_rubick"					"Зависть"
 		"HeroName_npc_dota_hero_windrunner"				"Аура"
+        "HeroName_npc_dota_hero_nevermore"				"Отчаяние"
 		"HeroName_None"									"???"
 
 		"Available_on_npc_dota_hero_lone_druid"			"Доступно с 4 июня!"
@@ -250,6 +251,11 @@
 		"windrunner_DescW" "Снаряд. Отбрасывание + оглушение"
 		"windrunner_DescE" "Отбрасывание врагов вокруг"
 		"windrunner_DescR" "Прерываемое. 4 снаряда"
+
+		"nevermore_DescQ" "Урон в области. Переиспользуемо"
+		"nevermore_DescW" "Атака перед собой. Обезоруживает"
+		"nevermore_DescE" "Безмолвие + рывок"
+		"nevermore_DescR" "Прерываемое. Страх в области"
 
 		"HeroBanned" "Этот герой забанен"
 		"PlayerHeader" "Игроки"
@@ -640,6 +646,12 @@
 		"AbilityTooltip_wr_e"							"Отбросить врагов вокруг<br/>Следующие 2.5 секунды <font color='#36B500'><b>Спешка</b></font> не расходуется при движении"
 		"AbilityTooltip_wr_r"							"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br/>Запустить до 4 взрывающихся стрел, наносящие урон и отбрасывающие врагов при контакте"
 
+		"AbilityTooltip_nevermore_a"					"Попадание по вражеским героям набирает <font color='#B52600'><b>Осколки Душ</b></font><br/>Собрав <b>8</b> и <b>16</b> <font color='#B52600'><b>Осколков</b></font> герой <b>навсегда</b> увеличивает урон атаки"
+		"AbilityTooltip_nevermore_q"					"Нанести урон в области перед собой<br/>Может быть переиспользовано дважды, каждый раз увеличивая расстояние"
+		"AbilityTooltip_nevermore_w"					"Атаковать врагов перед собой и оттолкнуть их<br/>Обезоруживает врагов"
+		"AbilityTooltip_nevermore_e"					"Короткий летающий рывок<br/>Враги на пути будут обезмолвлены"
+		"AbilityTooltip_nevermore_r"					"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br/>Запускает 12 снарядов накладывающих страх на врагов<br/>Снаряды наносят урон деревьям"
+
 		"ModifierTooltip_modifier_charges"						"Заряды способности"
 		"ModifierTooltip_modifier_stunned_lua"					"Оглушен"
 		"ModifierTooltip_modifier_silence_lua"					"Безмолвие"
@@ -809,6 +821,10 @@
 
 		"ModifierTooltip_modifier_wr_a"							"<font color='#36B500'><b>Спешка</b></font><br/>Ускорен и расходует заряд пока двигается"
         "ModifierTooltip_modifier_wr_e"							"Не расходует заряд <font color='#36B500'><b>Спешки</b></font> когда двигается"
+
+		"ModifierTooltip_modifier_nevermore_a"					"Текущее количество <font color='#B52600'><b>Осколков душ</b>"
+        "ModifierTooltip_modifier_nevermore_w"					"Обезоружен"
+		"ModifierTooltip_modifier_nevermore_r"					"В ужасе"
 
 		"StatusStunned" "Оглушен"
 		"StatusCharmed" "Шарм"

@@ -46,6 +46,7 @@
 		"HeroName_npc_dota_hero_gyrocopter"				"The Turtle"
 		"HeroName_npc_dota_hero_rubick"					"Envy"
 		"HeroName_npc_dota_hero_windrunner"				"Aura"
+        "HeroName_npc_dota_hero_nevermore"				"Despair"
 		"HeroName_None"									"a Hero!"
 
 		"Available_on_npc_dota_hero_drow_ranger"		"Available on April 23!"
@@ -249,6 +250,11 @@
 		"windrunner_DescW" "Projectile. Knockback + stun"
 		"windrunner_DescE" "Knockback enemies around"
 		"windrunner_DescR" "Channeling. Fire 4 projectiles"
+
+		"nevermore_DescQ" "Damage in the area. Recast"
+		"nevermore_DescW" "Melee attack. Knockback + disarm"
+		"nevermore_DescE" "Silencing dash"
+		"nevermore_DescR" "Channeling. AoE fear"
 
 		"HeroBanned" "This hero is banned"
 		"PlayerHeader" "Players"
@@ -644,6 +650,12 @@
 		"AbilityTooltip_wr_e"							"Knock back enemies around<br/>For the next 2.5 seconds stacks of <font color='#36B500'><b>Haste</b></font> can't be spent"
 		"AbilityTooltip_wr_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br/>Fire up to 4 exploding arrows, damaging and knocking back enemies on contact"
 
+		"AbilityTooltip_nevermore_a"					"Hitting enemy heroes generates <font color='#B52600'><b>Soul Shards</b></font><br/>Reaching <b>8</b> and <b>16</b> <font color='#B52600'><b>Soul Shards</b></font> increases attack damage <b>permanently</b>"
+		"AbilityTooltip_nevermore_q"					"Deal damage in an area in front of you<br/>Can be recast twice, each time increasing range"
+		"AbilityTooltip_nevermore_w"					"Attack enemies in front of you and knock them back<br/>Disarms affected enemies"
+		"AbilityTooltip_nevermore_e"					"Short flying dash<br/>Enemies on the way are silenced"
+		"AbilityTooltip_nevermore_r"					"<font color=\"#DAFF7F\"><b>Channeling</b></font><br/>Fires 12 projectiles which fear enemies on hit<br/>Projectiles deal damage to trees"
+
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
 		"ModifierTooltip_modifier_silence_lua"					"Silenced"
@@ -816,6 +828,11 @@
 
 		"ModifierTooltip_modifier_wr_a"							"<font color='#36B500'><b>Haste</b></font><br/>Moving faster and spending stacks while moving"
 		"ModifierTooltip_modifier_wr_e"							"Does not spend <font color='#36B500'><b>Haste</b></font> stacks while moving"
+
+		"ModifierTooltip_modifier_nevermore_a"					"Current amount of <font color='#B52600'><b>Soul Shards</b>"
+        "ModifierTooltip_modifier_nevermore_w"					"Disarmed"
+		"ModifierTooltip_modifier_nevermore_e"					"Spooky Ghost"
+		"ModifierTooltip_modifier_nevermore_r"					"Fleeing"
 
 		"StatusStunned" "Stunned"
 		"StatusCharmed" "Charmed"

@@ -49,7 +49,7 @@ function nevermore_w:OnSpellStart()
 end
 
 function nevermore_w:GetPlaybackRateOverride()
-    return 2.0
+    return 2.5
 end
 
 function nevermore_w:GetCastAnimation()
