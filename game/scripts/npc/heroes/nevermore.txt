@@ -16,6 +16,7 @@
 		"AttributeBaseIntelligence" "0"
 		"VisionDaytimeRange" "0"
 		"VisionNighttimeRange" "0"
+		"RoundEndActivity" "ACT_DOTA_VICTORY"
 		"Portrait" ""
 		"SoundSet" ""
 		"GameSoundsFile" ""
