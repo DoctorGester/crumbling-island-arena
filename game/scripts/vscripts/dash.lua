@@ -35,12 +35,6 @@ function Dash:constructor(hero, to, speed, params)
         self.hero:EmitSound(self.loopingSound)
     end
 
-    if params.gesture then
-        hero:Animate(params.gesture, params.gestureRate)
-
-        self.gesture = params.gesture
-    end
-
     if params.forceFacing then
         local facing = self.to - self.from
 
@@ -71,6 +65,12 @@ function Dash:constructor(hero, to, speed, params)
         end
     end
 
+    if params.gesture then
+        hero:Animate(params.gesture, params.gestureRate)
+
+        self.gesture = params.gesture
+    end
+
     if params.source then
         self.source = params.source
     end
@@ -93,7 +93,7 @@ function Dash:SetModifierHandle(modifier)
 end
 
 function Dash:HasEnded()
-    return (self.to - self.hero:GetPos()):Length2D() <= self.velocity / 2
+    return (self.to - self.hero:GetPos()):Length2D() <= self.velocity / 1.5
 end
 
 function Dash:Update()

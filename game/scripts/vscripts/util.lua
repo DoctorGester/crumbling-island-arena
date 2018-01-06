@@ -120,6 +120,8 @@ function FX(path, attach, parent, options)
                     cp.ent = cp.ent:GetUnit()
                 end
 
+                cp.ent = cp.ent or parent
+
                 if not cp.attach then
                     cp.attach = PATTACH_POINT_FOLLOW
                 end

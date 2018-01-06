@@ -155,6 +155,11 @@
 #base "abilities\earth_spirit\earth_spirit_e.txt"
 #base "abilities\earth_spirit\earth_spirit_r.txt"
 #base "abilities\earth_spirit\earth_spirit_a.txt"
+#base "abilities\nevermore\nevermore_q.txt"
+#base "abilities\nevermore\nevermore_w.txt"
+#base "abilities\nevermore\nevermore_e.txt"
+#base "abilities\nevermore\nevermore_r.txt"
+#base "abilities\nevermore\nevermore_a.txt"
 
 "DOTAAbilities" {
 	"dummy_unit_ability" {

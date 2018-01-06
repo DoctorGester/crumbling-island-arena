@@ -1,22 +1,22 @@
 "DOTAAbilities" {
-	"pudge_a" {
+	"nevermore_a" {
 		"BaseClass" "ability_lua"
-		"ScriptFile" "abilities/pudge/pudge_a"
+		"ScriptFile" "abilities/nevermore/nevermore_a"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
-		"AbilityTextureName" "pudge_dismember"
-		"AbilityCooldown" "0.75"
+		"AbilityTextureName" "nevermore_necromastery"
+		"AbilityCooldown" "0.6"
 		"AbilityCastPoint" "0.15"
 		"Damage" "1"
 
 		"TargetingIndicator" {
-			"Type" "TARGETING_INDICATOR_LINE"
-			"MaxLength" "1200"
-			"MinLength" "1200"
+			"Type" "TARGETING_INDICATOR_FROM_LINE_WITH_START_OFFSET"
+			"MaxLength" "750"
+			"MinLength" "750"
 		}
 
 		"HoverIndicator" {
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "1200"
+			"Radius" "750"
 		}
 	}
 }

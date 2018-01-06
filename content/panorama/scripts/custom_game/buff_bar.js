@@ -14,6 +14,7 @@ var modifiersWithStacks = [
     "modifier_undying_q_health",
     "modifier_pa_q",
     "modifier_drow_q",
+    "modifier_nevermore_a",
     "modifier_tree_heal"
 ];
 

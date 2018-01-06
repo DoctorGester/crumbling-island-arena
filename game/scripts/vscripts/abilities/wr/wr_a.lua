@@ -21,8 +21,6 @@ function wr_a:OnSpellStart()
 
             local hero = projectile:GetTrueHero()
 
-            print(target, hero)
-
             if instanceof(target, Hero) then
                 local haste = hero:FindModifier("modifier_wr_a")
 

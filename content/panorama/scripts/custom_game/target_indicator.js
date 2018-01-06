@@ -130,6 +130,8 @@ indicatorTypes["TARGETING_INDICATOR_RANGE"] = function(data, unit) {
     this.Update = function(cursor){
         Particles.SetParticleControl(this.particle, 1, [ GetNumber(data.Radius, 0, this.unit), 0, 0 ]);
 
+        this.offset = GetNumber(data.Offset, 0, unit);
+
         if (this.offset) {
             cursor = Vector.FromArray(cursor);
             var pos = Vector.FromArray(Entities.GetAbsOrigin(this.unit));
@@ -272,7 +274,7 @@ indicatorTypes["TARGETING_INDICATOR_TINKER_LASER"] = function(data, unit) {
     }
 };
 
-indicatorTypes["TARGETING_INDICATOR_PUDGE_CLEAVER"] = function(data, unit) {
+indicatorTypes["TARGETING_INDICATOR_FROM_LINE_WITH_START_OFFSET"] = function(data, unit) {
     this.data = data;
     this.unit = unit;
     this.particle = Particles.CreateParticle("particles/targeting/line.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN, unit);
@@ -281,13 +283,14 @@ indicatorTypes["TARGETING_INDICATOR_PUDGE_CLEAVER"] = function(data, unit) {
         var abs = Vector.FromArray(Entities.GetAbsOrigin(unit));
         var dir = Vector.FromArray(cursor).minus(abs).normalize();
 
-        var nd = new Vector(-dir.y, dir.x).scale(80);
+        var nd = new Vector(dir.y, -dir.x).scale(80);
         var offset = abs.add(nd);
+        var updatedDirection = Vector.FromArray(cursor).minus(offset).normalize();
 
-        cursor = Vector.FromArray(cursor).add(nd).toArray();
+        cursor = Vector.FromArray(cursor).toArray();
 
         var to = UpdateLineFromPos(this.particle, this.unit, this.data, cursor, offset);
-        var result = dir.scale(150).add(to);
+        var result = updatedDirection.scale(150).add(to);
         Particles.SetParticleControl(this.particle, 0, offset);
         Particles.SetParticleControl(this.particle, 2, result);
     };

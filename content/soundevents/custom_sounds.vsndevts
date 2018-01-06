@@ -7155,4 +7155,113 @@
 		event_type = "1.0"
 	}
 
+	Arena.Nevermore.CastA = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/nevermore/attack01.vsnd",
+			"sounds/weapons/hero/nevermore/attack02.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Nevermore.HitA = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/witch_doctor/projectile_impact.vsnd"
+		]
+		volume = "0.5"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Nevermore.CastQ = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/nevermore/shadowraze.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	"Arena.Nevermore.CastE" = {
+	    type = "dota_update_default"
+	    vsnd_files =
+	    [
+	        "sounds/weapons/hero/death_prophet/spirit_siphon_cast.vsnd"
+	    ]
+	    volume = "1.0"
+	    pitch_rand_min = "-0.05"
+	    pitch_rand_max = "0.05"
+	    volume_fade_in = "0.1"
+	    volume_fade_out = "2.0"
+	    pitch = "1.0"
+	    soundlevel = "95.0"
+	    event_type = "1.0"
+	}
+
+	"Arena.Nevermore.HitE" = {
+	    type = "dota_update_default"
+	    vsnd_files =
+	    [
+	        "sounds/weapons/hero/death_prophet/exorcism_impact01.vsnd",
+	        "sounds/weapons/hero/death_prophet/exorcism_impact02.vsnd",
+	        "sounds/weapons/hero/death_prophet/exorcism_impact03.vsnd",
+	        "sounds/weapons/hero/death_prophet/exorcism_impact04.vsnd",
+	        "sounds/weapons/hero/death_prophet/exorcism_impact05.vsnd",
+	        "sounds/weapons/hero/death_prophet/exorcism_impact06.vsnd",
+	        "sounds/weapons/hero/death_prophet/exorcism_impact07.vsnd",
+	        "sounds/weapons/hero/death_prophet/exorcism_impact08.vsnd",
+	        "sounds/weapons/hero/death_prophet/exorcism_impact09.vsnd"
+	    ]
+	    volume = "1.0"
+	    pitch_rand_min = "-0.05"
+	    pitch_rand_max = "0.05"
+	    pitch = "1.0"
+	    soundlevel = "95.0"
+	    event_type = "1.0"
+	}
+
+	Arena.Nevermore.CastR = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/nevermore/requiem_cast.vsnd"
+		]
+		volume = "1.0"
+        volume_fade_out = "0.2"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Nevermore.FinishR = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/nevermore/requiem_of_souls.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
 }

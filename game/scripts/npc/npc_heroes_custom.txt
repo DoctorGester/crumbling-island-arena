@@ -28,6 +28,7 @@
 #base "heroes\windrunner.txt"
 #base "heroes\antimage.txt"
 #base "heroes\earth_spirit.txt"
+#base "heroes\nevermore.txt"
 
 "DOTAHeroes" {
 	"npc_dota_hero_wisp" {
@@ -278,41 +279,6 @@
 		"Ability5" "placeholder_taunt"
 		"Ability6" "omni_r"
 		"Ultimate" "omni_r"
-	}
-
-	"npc_dota_hero_axe" {
-		"override_hero" "npc_dota_hero_axe"
-		"ArmorPhysical" "0"
-		"MagicalResistance" "0"
-		"AttackCapabilities" "DOTA_UNIT_CAP_NO_ATTACK"
-		"AttributePrimary" "DOTA_ATTRIBUTE_STRENGTH"
-		"BountyXP" "0"
-		"MovementSpeed" "375"
-		"MovementTurnRate" "10"
-		"StatusHealth" "20"
-		"StatusHealthRegen" "0"
-		"StatusManaRegen" "0"
-		"StatusStartingMana" "0"
-		"AttributeBaseStrength" "0"
-		"AttributeBaseIntelligence" "0"
-		"VisionDaytimeRange" "0"
-		"VisionNighttimeRange" "0"
-		"DrawParticlesWhileHidden" "1"
-		"Portrait" ""
-		"SoundSet" ""
-		"GameSoundsFile" ""
-		"VoiceFile" ""
-		"DisableWearables" "1"
-		"Difficulty" "easy"
-		"Disabled" "true"
-		"Order" "33"
-		"Ability1" "dusa_q"
-		"Ability2" "dusa_w"
-		"Ability3" "dusa_e"
-		"Ability4" "placeholder_emote"
-		"Ability5" "placeholder_taunt"
-		"Ability6" "dusa_r"
-		"Ultimate" "dusa_r"
 	}
 
 	"npc_dota_hero_shadow_demon" {

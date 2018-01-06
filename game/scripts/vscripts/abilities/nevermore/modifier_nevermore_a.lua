@@ -1,0 +1,1 @@
+modifier_nevermore_a = class({})
