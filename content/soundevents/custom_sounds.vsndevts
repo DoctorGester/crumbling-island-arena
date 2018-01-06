@@ -488,7 +488,7 @@
 		event_type = "1.0"
 	}
 
-	Arena.RuneDoubleDamageSpawn = {
+	Arena.RuneBlueSpawn = {
 		type = "dota_src1_3d"
 		vsnd_files =
 		[
@@ -500,6 +500,20 @@
 		pitch = "1.0"
 		soundlevel = "95.0"
 		event_type = "1.0"
+	}
+
+	Arena.RuneBlueHit = {
+	    type = "dota_src1_3d"
+        vsnd_files =
+        [
+            "sounds/weapons/hero/invoker/cold_snap.vsnd"
+        ]
+        volume = "1.0"
+        pitch_rand_min = "-0.05"
+        pitch_rand_max = "0.05"
+        pitch = "1.0"
+        soundlevel = "95.0"
+        event_type = "1.0"
 	}
 
 	Arena.Rune = {

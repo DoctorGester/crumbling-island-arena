@@ -834,6 +834,8 @@
 		"ModifierTooltip_modifier_nevermore_e"					"Spooky Ghost"
 		"ModifierTooltip_modifier_nevermore_r"					"Fleeing"
 
+		"ModifierTooltip_modifier_rune_blue"                    "Dealing damage to enemy heroes will briefly stun them"
+
 		"StatusStunned" "Stunned"
 		"StatusCharmed" "Charmed"
 		"StatusFear" "Fear"

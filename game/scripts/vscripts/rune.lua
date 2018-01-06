@@ -2,28 +2,28 @@ Rune = Rune or class({}, nil, UnitEntity)
 
 RuneTypes = {
     HEALING = 0,
-    DOUBLE_DAMAGE = 1,
+    COLD_SNAP = 1,
     LAST = 2
 }
 
 local RUNE_MODELS = {
     [RuneTypes.HEALING] = "models/props_gameplay/rune_regeneration01.vmdl",
-    [RuneTypes.DOUBLE_DAMAGE] = "models/props_gameplay/rune_doubledamage01.vmdl"
+    [RuneTypes.COLD_SNAP] = "models/props_gameplay/rune_doubledamage01.vmdl"
 }
 
 local RUNE_SPAWN_SOUNDS = {
     [RuneTypes.HEALING] = "Arena.RuneHealingSpawn",
-    [RuneTypes.DOUBLE_DAMAGE] = "Arena.RuneDoubleDamageSpawn"
+    [RuneTypes.COLD_SNAP] = "Arena.RuneBlueSpawn"
 }
 
 local RUNE_PARTICLES = {
     [RuneTypes.HEALING] = "particles/rune_particle.vpcf",
-    [RuneTypes.DOUBLE_DAMAGE] = "particles/generic_gameplay/rune_doubledamage.vpcf",
+    [RuneTypes.COLD_SNAP] = "particles/generic_gameplay/rune_doubledamage.vpcf",
 }
 
 local RUNE_COLORS = {
     [RuneTypes.HEALING] = Vector(0, 255, 0),
-    [RuneTypes.DOUBLE_DAMAGE] = Vector(0, 255, 255),
+    [RuneTypes.COLD_SNAP] = Vector(0, 255, 255),
 }
 
 function Rune:constructor(round, runeType)
@@ -40,7 +40,7 @@ function Rune:constructor(round, runeType)
     unit:StartGesture(ACT_DOTA_IDLE)
 
     self:AddComponent(HealthComponent())
-    self:SetCustomHealth(6)
+    self:SetCustomHealth(4)
     self:EnableHealthBar()
     self:CreateParticles()
     self:EmitSound(RUNE_SPAWN_SOUNDS[runeType])
@@ -64,7 +64,7 @@ function Rune:Update(...)
     getbase(Rune).Update(self, ...)
 
     -- Thanks Valve, great tools
-    if self.runeType == RuneTypes.DOUBLE_DAMAGE then
+    if self.runeType == RuneTypes.COLD_SNAP then
         local currentAngle = (GameRules:GetGameTime() % (math.pi * 2)) * 2.0
         self:GetUnit():SetForwardVector(Vector(math.cos(currentAngle), math.sin(currentAngle)))
     end
@@ -87,10 +87,10 @@ function Rune:OnDeath(source)
             return instanceof(target, Hero) and target:Alive() and source.owner.team == target.owner.team
         end)) do
 
-        if self.runeType == RuneTypes.DOUBLE_DAMAGE then
-            hero:AddNewModifier(hero, nil, "modifier_rune_double_damage", { duration = 5.0 })
+        if self.runeType == RuneTypes.COLD_SNAP then
+            hero:AddNewModifier(hero, nil, "modifier_rune_blue", { duration = 8.0 })
         elseif self.runeType == RuneTypes.HEALING then
-            hero:Heal(5)
+            hero:Heal(3)
 
             FX("particles/items3_fx/warmage_recipient.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero, { release = true })
         end

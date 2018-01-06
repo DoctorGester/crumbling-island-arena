@@ -1,5 +1,6 @@
 GRACE_TIME = 1.5
 ULTS_TIME = 40
+RUNE_RESPAWN_TIME = 15
 
 Round = Round or class({})
 
@@ -18,7 +19,7 @@ function Round:constructor(players, teams, availableHeroes, callback)
 
     self.spells = Spells()
     self.statistics = Statistics(players)
-    self.runeTimer = 25 * 30
+    self.runeTimer = RUNE_RESPAWN_TIME * 30
     self.runeCounter = 0
     self.nextRuneType = RuneTypes.HEALING
 
@@ -108,7 +109,7 @@ function Round:Update()
             end
 
             self.rune = nil
-            self.runeTimer = 25 * 30
+            self.runeTimer = RUNE_RESPAWN_TIME * 30
             self.runeParticle = FX(unpack(self.runeParticleParams))
         end
     end

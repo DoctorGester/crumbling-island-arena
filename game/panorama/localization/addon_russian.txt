@@ -826,6 +826,8 @@
         "ModifierTooltip_modifier_nevermore_w"					"Обезоружен"
 		"ModifierTooltip_modifier_nevermore_r"					"В ужасе"
 
+		"ModifierTooltip_modifier_rune_blue"                    "Нанесение урона по вражеским героям оглушит их на короткое время"
+
 		"StatusStunned" "Оглушен"
 		"StatusCharmed" "Шарм"
 		"StatusFear" "Страх"

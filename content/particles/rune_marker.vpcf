@@ -13,7 +13,7 @@
 		},
 		{
 			_class = "C_OP_StopAfterCPDuration"
-			m_flDuration = 25.0
+			m_flDuration = 15.0
 		},
 		{
 			_class = "C_OP_PositionLock"
@@ -58,7 +58,7 @@
 		{
 			_class = "C_INIT_RingWave"
 			m_nOverrideCP = 1
-			m_flParticlesPerOrbit = 501.0
+			m_flParticlesPerOrbit = 451.0
 			m_flInitialRadius = 1.0
 			m_bEvenDistribution = true
 		},
@@ -87,8 +87,8 @@
 		},
 		{
 			_class = "C_INIT_RemapParticleCountToScalar"
-			m_nInputMin = 450
-			m_nInputMax = 500
+			m_nInputMin = 400
+			m_nInputMax = 450
 			m_flOutputMin = 50.0
 			m_flOutputMax = 0.0
 			m_bActiveRange = true
@@ -98,7 +98,7 @@
 	[
 		{
 			_class = "C_OP_ContinuousEmitter"
-			m_flEmitRate = 20.0
+			m_flEmitRate = 30.0
 		},
 	]
 	m_ConstantColor = [ 185, 232, 164, 255 ]
@@ -106,6 +106,28 @@
 	[
 		{
 			m_ChildRef = resource:"particles/rune_marker_projected.vpcf"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 1.0, 1.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
 		},
 	]
 }

@@ -46,6 +46,8 @@ function HealthSystem:Damage(source, amount, isPhysical)
         end
     end
 
+    local hasBlueRune = false
+
     if source then
         local sourceHero = source
 
@@ -53,9 +55,7 @@ function HealthSystem:Damage(source, amount, isPhysical)
             sourceHero = source.hero
         end
 
-        if sourceHero.HasModifier and sourceHero:HasModifier("modifier_rune_double_damage") then
-            amount = amount * 2
-        end
+        hasBlueRune = sourceHero.HasModifier and sourceHero:HasModifier("modifier_rune_blue")
     end
 
     if self.customHealth then
@@ -78,6 +78,16 @@ function HealthSystem:Damage(source, amount, isPhysical)
     end
 
     GameRules.GameMode:OnDamageDealt(self, source, amount)
+
+    if amount > 0 and hasBlueRune then
+        FX("particles/units/heroes/hero_invoker/invoker_cold_snap.vpcf", PATTACH_ABSORIGIN_FOLLOW, self, {
+            cp1 = source:GetPos(),
+            release = true
+        })
+
+        self:EmitSound("Arena.RuneBlueHit")
+        self:GetUnit():AddNewModifier(self:GetUnit(), nil, "modifier_stunned", { duration = 0.8 })
+    end
 
     self:GetUnit():AddNewModifier(self:GetUnit(), nil, "modifier_damaged", { duration = 0.2 })
 
