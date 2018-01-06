@@ -40,7 +40,7 @@ function Rune:constructor(round, runeType)
     unit:StartGesture(ACT_DOTA_IDLE)
 
     self:AddComponent(HealthComponent())
-    self:SetCustomHealth(4)
+    self:SetCustomHealth(5)
     self:EnableHealthBar()
     self:CreateParticles()
     self:EmitSound(RUNE_SPAWN_SOUNDS[runeType])
@@ -90,7 +90,7 @@ function Rune:OnDeath(source)
         if self.runeType == RuneTypes.COLD_SNAP then
             hero:AddNewModifier(hero, nil, "modifier_rune_blue", { duration = 8.0 })
         elseif self.runeType == RuneTypes.HEALING then
-            hero:Heal(3)
+            hero:Heal(4)
 
             FX("particles/items3_fx/warmage_recipient.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero, { release = true })
         end
