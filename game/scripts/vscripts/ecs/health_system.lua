@@ -55,7 +55,9 @@ function HealthSystem:Damage(source, amount, isPhysical)
             sourceHero = source.hero
         end
 
-        hasBlueRune = sourceHero.HasModifier and sourceHero:HasModifier("modifier_rune_blue")
+        if sourceHero ~= self then
+            hasBlueRune = sourceHero.HasModifier and sourceHero:HasModifier("modifier_rune_blue")
+        end
     end
 
     if self.customHealth then
