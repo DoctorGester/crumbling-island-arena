@@ -193,7 +193,7 @@ function Projectile:CollideWith(target)
         end
 
         if self.hitModifier then
-            target:AddNewModifier(self.hero, self.hitModifier.ability, self.hitModifier.name, { duration = self.hitModifier.duration })
+            target:AddNewModifier(self:GetTrueHero(), self.hitModifier.ability, self.hitModifier.name, { duration = self.hitModifier.duration })
         end
     end
 
