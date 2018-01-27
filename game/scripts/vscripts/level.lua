@@ -1,7 +1,7 @@
 require("level_piece")
 
 MAP_HEIGHT = 7000
-FINISHING_DISTANCE = 1000
+FINISHING_DISTANCE = 0
 
 local function bigTransformer(x, y)
     return x, -y
