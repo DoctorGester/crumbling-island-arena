@@ -2,7 +2,7 @@ earth_spirit_w = class({})
 
 require("abilities/earth_spirit/earth_spirit_knockback")
 
-LinkLuaModifier("modifier_earth_spirit_w_root", "abilities/earth_spirit/modifier_earth_spirit_w_root", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_earth_spirit_w_slow", "abilities/earth_spirit/modifier_earth_spirit_w_slow", LUA_MODIFIER_MOTION_NONE)
 
 function earth_spirit_w:OnSpellStart()
     local hero = self:GetCaster():GetParentEntity()
@@ -17,7 +17,7 @@ function earth_spirit_w:OnSpellStart()
         action = function(victim)
             if instanceof(victim, Hero) then
                 victim:AddNewModifier(hero, self, "modifier_earth_spirit_a", { duration = 1.5 })
-                victim:AddNewModifier(hero, self, "modifier_earth_spirit_w_root", { duration = 1.5 })
+                victim:AddNewModifier(hero, self, "modifier_earth_spirit_w_slow", { duration = 1.5 })
             end
 
             if instanceof(victim, EarthSpiritRemnant) then
