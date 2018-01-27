@@ -47,10 +47,9 @@ function HealthSystem:Damage(source, amount, isPhysical)
     end
 
     local hasBlueRune = false
+    local sourceHero = source
 
     if source then
-        local sourceHero = source
-
         if source.hero then
             sourceHero = source.hero
         end
@@ -82,14 +81,7 @@ function HealthSystem:Damage(source, amount, isPhysical)
     GameRules.GameMode:OnDamageDealt(self, source, amount)
 
     if amount > 0 and hasBlueRune then
-        FX("particles/units/heroes/hero_invoker/invoker_cold_snap.vpcf", PATTACH_ABSORIGIN_FOLLOW, self, {
-            cp1 = source:GetPos(),
-            release = true
-        })
-
-        self:EmitSound("Arena.RuneBlueHit")
-        self:GetUnit():AddNewModifier(self:GetUnit(), nil, "modifier_stunned", { duration = 0.6 })
-        self.round.spells:InterruptDashes(self)
+        TriggerBlueRune(sourceHero, self)
     end
 
     self:GetUnit():AddNewModifier(self:GetUnit(), nil, "modifier_damaged", { duration = 0.2 })
@@ -118,5 +110,35 @@ function HealthSystem:Damage(source, amount, isPhysical)
 
     if not self:Alive() and self.OnDeath then
         self:OnDeath(source)
+    end
+end
+
+function HealthSystem:Update()
+    local modifier = self:FindModifier("modifier_rune_blue")
+
+    if modifier and modifier.lastDecrementedAt ~= nil and modifier.lastDecrementedAt ~= GameRules:GetGameTime() then
+        modifier.lastDecrementedAt = nil
+        modifier:DecrementStackCount()
+
+        if modifier:GetStackCount() == 0 then
+            modifier:Destroy()
+        end
+    end
+end
+
+function TriggerBlueRune(source, target)
+    local modifier = source:FindModifier("modifier_rune_blue")
+
+    FX("particles/units/heroes/hero_invoker/invoker_cold_snap.vpcf", PATTACH_ABSORIGIN_FOLLOW, self, {
+        cp1 = source:GetPos(),
+        release = true
+    })
+
+    target:EmitSound("Arena.RuneBlueHit")
+    target:AddNewModifier(target, nil, "modifier_stunned_lua", { duration = 0.6 })
+    target.round.spells:InterruptDashes(target)
+
+    if modifier.lastDecrementedAt ~= GameRules:GetGameTime() then
+        modifier.lastDecrementedAt = GameRules:GetGameTime()
     end
 end

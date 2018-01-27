@@ -88,7 +88,7 @@ function Rune:OnDeath(source)
         end)) do
 
         if self.runeType == RuneTypes.COLD_SNAP then
-            hero:AddNewModifier(hero, nil, "modifier_rune_blue", { duration = 8.0 })
+            hero:AddNewModifier(hero, nil, "modifier_rune_blue", { duration = 8.0 }):SetStackCount(4)
         elseif self.runeType == RuneTypes.HEALING then
             hero:Heal(4)
 
