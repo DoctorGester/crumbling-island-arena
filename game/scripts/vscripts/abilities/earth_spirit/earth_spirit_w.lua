@@ -20,7 +20,7 @@ function earth_spirit_w:OnSpellStart()
                 victim:AddNewModifier(hero, self, "modifier_earth_spirit_w_slow", { duration = 1.5 })
             end
 
-            if instanceof(victim, EarthSpiritRemnant) then
+            if not instanceof(victim, Hero) then
                 local direction = (hero:GetPos() - victim:GetPos()) * Vector(1, 1, 0)
                 local force = direction:Length2D() / 10
                 local decrease = math.max(3, direction:Length2D() / 160)

@@ -18,8 +18,9 @@ function earth_spirit_w_sub:OnSpellStart()
         sound = "Arena.Earth.HitW.Sub",
         action = function(target)
             local direction = cursor - hero:GetPos()
+            local force = instanceof(target, Hero) and 60 or 110
 
-            EarthSpiritKnockback(self, target, hero, direction, 70, {
+            EarthSpiritKnockback(self, target, hero, direction, force, {
                 decrease = 5
             })
         end
