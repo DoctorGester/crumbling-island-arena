@@ -43,6 +43,8 @@ function DashStormW:constructor(hero, target, ability, particle)
     self.particle = particle
     self.startTime = GameRules:GetGameTime()
 
+    target:AddKnockbackSource(hero)
+
     ParticleManager:SetParticleControlEnt(self.particle, 1, target:GetUnit(), PATTACH_ABSORIGIN_FOLLOW, nil, target:GetPos(), true)
 end
 
