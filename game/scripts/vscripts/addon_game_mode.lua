@@ -42,7 +42,7 @@ require('statistics')
 require('chat')
 require('debug_util')
 
-_G.GAME_VERSION = "2.4"
+_G.GAME_VERSION = "2.5"
 _G.STATE_NONE = 0
 _G.STATE_GAME_SETUP = 1
 _G.STATE_HERO_SELECTION = 2
@@ -778,7 +778,7 @@ function GameMode:RecordKill(victim, source, fell)
         })
     end
 
-     CustomGameEventManager:Send_ServerToAllClients("kill_log_entry", {
+    CustomGameEventManager:Send_ServerToAllClients("kill_log_entry", {
         killer = source.owner.hero:GetName(),
         victim = victim:GetName(),
         color = self.TeamColors[source.owner.team],
