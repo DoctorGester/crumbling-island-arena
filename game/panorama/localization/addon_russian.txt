@@ -416,6 +416,8 @@
 		"AbilityCooldown"								"<font color=\"gold\">ПЕРЕЗАРЯДКА</font>: {s:cooldown}"
 		"AbilityDamage"									"<font color=\"gold\">УРОН</font>: {s:damage}"
 
+		"AbilityTooltip_ability_blink"                  "Короткая телепортация<br/>Останавливает отталкивания<br/><br/><b><font color=\"orange\">КРАЙНИЕ МЕРЫ</font></b><br/>Способность можно использовать при падении с арены, дальность увеличена в 2 раза"
+
 		"AbilityTooltip_taunt_static"					"Насмехайся над врагами! Покажи им, как ты двигаешься, пускай завидуют!"
 		"AbilityTooltip_taunt_moving"					"Это что-то вроде танца? Плевать, жги!"
 		"AbilityTooltip_emote"							"Скажи это вслух! Пусть они знают, что ты о них думаешь!"

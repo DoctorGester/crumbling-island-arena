@@ -599,6 +599,34 @@
 		spread_radius = "100.000000"
 	}
 
+    Arena.AbilityBlink = {
+        type = "dota_update_default"
+        vsnd_files =
+        [
+            "sounds/items/iron_talon.vsnd"
+        ]
+        volume = "1.0"
+        pitch_rand_min = "-0.45"
+        pitch_rand_max = "-0.45"
+        pitch = "1.0"
+        soundlevel = "95.0"
+        event_type = "1.0"
+    }
+
+    Arena.AbilityBlink.Save = {
+        type = "dota_update_default"
+        vsnd_files =
+        [
+            "sounds/ui/inventory/set_applied.vsnd"
+        ]
+        volume = "1.0"
+        pitch_rand_min = "-0.05"
+        pitch_rand_max = "0.05"
+        pitch = "1.0"
+        soundlevel = "95.0"
+        event_type = "1.0"
+    }
+
 	Arena.PA.Throw = {
 		type = "dota_src1_3d"
 		vsnd_files = 

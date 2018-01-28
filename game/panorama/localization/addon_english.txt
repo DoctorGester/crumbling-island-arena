@@ -419,6 +419,8 @@
 		"AbilityCooldown"								"<font color=\"gold\">CD</font>: {s:cooldown}"
 		"AbilityDamage"									"<font color=\"gold\">DAMAGE</font>: {s:damage}"
 
+		"AbilityTooltip_ability_blink"                  "Short range teleportation<br/>Removes knockbacks<br/><br/><b><font color=\"orange\">EMERGENCY MEASURES</font></b><br/>Usable when falling down from the arena, range is doubled"
+
 		"AbilityTooltip_taunt_static"					"Taunt your enemies! Show them your best moves and make them jelly!"
 		"AbilityTooltip_taunt_moving"					"Is that some kind of a dance? Nevermind, gimme gimme!"
 		"AbilityTooltip_emote"							"Say it out loud! Your enemies must know what you think about them!"

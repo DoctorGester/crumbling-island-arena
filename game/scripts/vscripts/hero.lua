@@ -47,6 +47,9 @@ function Hero:SetUnit(unit)
     unit.hero = self
 
     Wrappers.WrapAbilitiesFromHeroData(unit, self.data)
+
+    self:GetUnit():RemoveAbility("placeholder_slot_d")
+    self:GetUnit():AddAbility("ability_blink"):SetLevel(1)
 end
 
 function Hero:GetShortName()
@@ -104,7 +107,7 @@ function Hero:BuildWearableStack(adjustState)
 
                 elite = elite and self.awardEnabled
             end
-
+elite = true
             local passLevel = (t == "pass" and entry.level <= (self.owner.passLevel or 0))
 
             if passBase or elite or passLevel then
@@ -139,12 +142,11 @@ function Hero:BuildWearableStack(adjustState)
 
                 if adjustState then
                     if entry.emote then
-                        self:GetUnit():RemoveAbility("placeholder_emote")
                         self:GetUnit():AddAbility("emote"):SetLevel(1)
                     end
 
                     if entry.taunt then
-                        self:GetUnit():RemoveAbility("placeholder_taunt")
+                        self:GetUnit():RemoveAbility("placeholder_slot_f")
 
                         local ability = entry.taunt.type == "static" and "taunt_static" or "taunt_moving"
                         local taunt = self:GetUnit():AddAbility(ability)
@@ -196,8 +198,8 @@ function Hero:GetRad()
     return 64
 end
 
-function Hero:TestFalling()
-    return Spells.TestCircle(self:GetPos(), 100)
+function Hero:TestFalling(pos)
+    return Spells.TestCircle(pos or self:GetPos(), 100)
 end
 
 function Hero:GetHealth()

@@ -80,8 +80,8 @@
 		"Ability1" "pugna_q"
 		"Ability2" "pugna_w"
 		"Ability3" "pugna_e"
-		"Ability4" "placeholder_emote"
-		"Ability5" "placeholder_taunt"
+		"Ability4" "placeholder_slot_d"
+		"Ability5" "placeholder_slot_f"
 		"Ability6" "pugna_r"
 		"Ultimate" "pugna_r"
 
@@ -123,8 +123,8 @@
 		"Ability1" "phoenix_q"
 		"Ability2" "phoenix_w"
 		"Ability3" "phoenix_e"
-		"Ability4" "placeholder_emote"
-		"Ability5" "placeholder_taunt"
+		"Ability4" "placeholder_slot_d"
+		"Ability5" "placeholder_slot_f"
 		"Ability6" "phoenix_r"
 		"Ultimate" "phoenix_r"
 	}
@@ -159,8 +159,8 @@
 		"Ability1" "ogre_q"
 		"Ability2" "ogre_w"
 		"Ability3" "ogre_e"
-		"Ability4" "placeholder_emote"
-		"Ability5" "placeholder_taunt"
+		"Ability4" "placeholder_slot_d"
+		"Ability5" "placeholder_slot_f"
 		"Ability6" "ogre_r"
 		"Ultimate" "ogre_r"
 	}
@@ -202,8 +202,8 @@
 		"Ability4" "ld_q_sub"
 		"Ability5" "ld_w_sub"
 		"Ability6" "ld_e_sub"
-		"Ability7" "placeholder_emote"
-		"Ability8" "placeholder_taunt"
+		"Ability7" "placeholder_slot_d"
+		"Ability8" "placeholder_slot_f"
 		"Ability9" "ld_r"
 		"Ultimate" "ld_r"
 	}
@@ -239,8 +239,8 @@
 		"Ability1" "dusa_q"
 		"Ability2" "dusa_w"
 		"Ability3" "dusa_e"
-		"Ability4" "placeholder_emote"
-		"Ability5" "placeholder_taunt"
+		"Ability4" "placeholder_slot_d"
+		"Ability5" "placeholder_slot_f"
 		"Ability6" "dusa_r"
 		"Ultimate" "dusa_r"
 	}
@@ -275,8 +275,8 @@
 		"Ability1" "omni_q"
 		"Ability2" "omni_w"
 		"Ability3" "omni_e"
-		"Ability4" "placeholder_emote"
-		"Ability5" "placeholder_taunt"
+		"Ability4" "placeholder_slot_d"
+		"Ability5" "placeholder_slot_f"
 		"Ability6" "omni_r"
 		"Ultimate" "omni_r"
 	}
@@ -310,8 +310,8 @@
 		"Ability1" "dusa_q"
 		"Ability2" "dusa_w"
 		"Ability3" "dusa_e"
-		"Ability4" "placeholder_emote"
-		"Ability5" "placeholder_taunt"
+		"Ability4" "placeholder_slot_d"
+		"Ability5" "placeholder_slot_f"
 		"Ability6" "dusa_r"
 		"Ultimate" "dusa_r"
 	}
@@ -345,8 +345,8 @@
 		"Ability1" "dusa_q"
 		"Ability2" "dusa_w"
 		"Ability3" "dusa_e"
-		"Ability4" "placeholder_emote"
-		"Ability5" "placeholder_taunt"
+		"Ability4" "placeholder_slot_d"
+		"Ability5" "placeholder_slot_f"
 		"Ability6" "dusa_r"
 		"Ultimate" "dusa_r"
 	}
@@ -383,8 +383,8 @@
 		"Ability1" "pl_q"
 		"Ability2" "pl_w"
 		"Ability3" "pl_e"
-		"Ability4" "placeholder_emote"
-		"Ability5" "placeholder_taunt"
+		"Ability4" "placeholder_slot_d"
+		"Ability5" "placeholder_slot_f"
 		"Ability6" "pl_r"
 
 		"CustomIcons" {
@@ -425,8 +425,8 @@
 		"Ability3" ""
 		"Ability4" ""
 		"Ability5" ""
-		"Ability6" "placeholder_emote"
-		"Ability7" "placeholder_taunt"
+		"Ability6" "placeholder_slot_d"
+		"Ability7" "placeholder_slot_f"
 		"Ability8" ""
 	}
 }

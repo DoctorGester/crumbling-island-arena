@@ -188,13 +188,13 @@
 		}
 	}
 
-	"placeholder_emote" {
+	"placeholder_slot_d" {
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"BaseClass" "ability_datadriven"
 		"AbilityTextureName" "rubick_empty1"
 	}
 
-	"placeholder_taunt" {
+	"placeholder_slot_f" {
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_PASSIVE | DOTA_ABILITY_BEHAVIOR_NOT_LEARNABLE"
 		"BaseClass" "ability_datadriven"
 		"AbilityTextureName" "rubick_empty1"
@@ -223,6 +223,23 @@
 		"AbilityTextureName" "rubick_empty1"
 		"AbilityCooldown" "8.0"
 	}
+
+	"ability_blink" {
+        "BaseClass" "ability_lua"
+        "ScriptFile" "abilities/ability_blink"
+        "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+        "AbilityTextureName" "elder_titan/elder_titan_ti7_immortal/elder_titan_echo_stomp_spirit_alt"
+        "AbilityCooldown" "40.0"
+
+        "TargetingIndicator" {
+            "DisplayRange" "1"
+        }
+
+        "HoverIndicator" {
+            "Type" "TARGETING_INDICATOR_RANGE"
+            "Radius" "(function(){ if (HasModifier(unit, 'modifier_falling')) return 500; return 250; })()"
+        }
+    }
 
 	"phoenix_q" {
 		"BaseClass" "ability_lua"

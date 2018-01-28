@@ -20,8 +20,9 @@ function Wrappers.DirectionalAbility(ability, optionalRange, optionalMinRange)
     end
 
     function ability:GetCursorPosition()
+        local optionalRangeAsNumber = type(optionalRange) == "function" and optionalRange(self) or optionalRange
         local target = getCursorPosition(ability)
-        local realRange = optionalRange or self.BaseClass.GetCastRange(self, target, nil)
+        local realRange = optionalRangeAsNumber or self.BaseClass.GetCastRange(self, target, nil)
         local minRange = optionalMinRange or 0
         local casterPos = self:GetCaster():GetAbsOrigin()
         local direction = self:GetDirection()
@@ -202,7 +203,8 @@ function IsUnitSilenced(hero)
         "modifier_am_r",
         "modifier_sven_w_slow",
         "modifier_ogre_5",
-        "modifier_ogre_6"
+        "modifier_ogre_6",
+        "modifier_falling"
     }
 
     for _, mod in ipairs(silenceModifiers) do
