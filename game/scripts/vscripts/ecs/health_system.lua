@@ -135,8 +135,7 @@ function TriggerBlueRune(source, target)
     })
 
     target:EmitSound("Arena.RuneBlueHit")
-    target:AddNewModifier(target, nil, "modifier_stunned_lua", { duration = 0.6 })
-    target.round.spells:InterruptDashes(target)
+    target:AddNewModifier(source, nil, "modifier_stunned_lua", { duration = 0.6 })
 
     if modifier.lastDecrementedAt ~= GameRules:GetGameTime() then
         modifier.lastDecrementedAt = GameRules:GetGameTime()

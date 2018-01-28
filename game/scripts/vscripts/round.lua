@@ -96,7 +96,7 @@ function Round:Update()
                 self.runeCounter = self.runeCounter + 1
                 self.nextRuneType = self.runeCounter % RuneTypes.LAST
 
-                print("NExt rune type", self.nextRuneType, self.runeCounter)
+                print("Next rune type", self.nextRuneType, self.runeCounter)
             end
         end
 
