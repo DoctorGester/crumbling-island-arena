@@ -7,7 +7,13 @@ function EarthSpiritKnockback:constructor(ability, hero, source, direction, forc
 		params.hitParams = {
 			ability = ability,
 			modifier = { name = "modifier_stunned_lua", ability = ability, duration = 0.7 },
-			filter = function(target) return target ~= source end,
+			filter = function(target)
+				if not target.owner then
+					return target ~= source
+				end
+
+				return target.owner.team ~= source.owner.team
+			end,
 			action = function(target)
 				target:Damage(source, 2)
 			end
