@@ -10,7 +10,7 @@ function Wrappers.DirectionalAbility(ability, optionalRange, optionalMinRange)
     function ability:GetDirection()
         local target = getCursorPosition(ability)
         local casterPos = self:GetCaster():GetAbsOrigin()
-        local direction = (target - casterPos):Normalized() * Vector(1, 1, 0)
+        local direction = ((target - casterPos) * Vector(1, 1, 0)):Normalized()
 
         if direction:Length2D() == 0 then
             direction = self:GetCaster():GetForwardVector()
