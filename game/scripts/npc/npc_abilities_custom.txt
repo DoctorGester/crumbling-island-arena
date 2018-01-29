@@ -229,7 +229,7 @@
         "ScriptFile" "abilities/ability_blink"
         "AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
         "AbilityTextureName" "elder_titan/elder_titan_ti7_immortal/elder_titan_echo_stomp_spirit_alt"
-        "AbilityCooldown" "40.0"
+        "AbilityCooldown" "35.0"
 
         "TargetingIndicator" {
             "DisplayRange" "1"
