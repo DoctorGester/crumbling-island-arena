@@ -13,11 +13,11 @@ function nevermore_a:OnSpellStart()
     local damageMultiplier = 1
     local stacks = self:GetCaster():GetModifierStackCount("modifier_nevermore_a", self:GetCaster())
 
-    if stacks >= 8 then
+    if stacks >= 6 then
         damageMultiplier = 2
     end
 
-    if stacks >= 16 then
+    if stacks >= 12 then
         damageMultiplier = 3
     end
 
@@ -54,12 +54,12 @@ function nevermore_a:OnSpellStart()
                         trueHero:EmitSound("Arena.Nevermore.ProcA.FX")
                     end
 
-                    if (stackingModifier:GetStackCount() == 8) then
+                    if (stackingModifier:GetStackCount() == 6) then
                         trueHero:EmitSound("Arena.Nevermore.ProcA.First")
                         PlayFX()
                     end
 
-                    if (stackingModifier:GetStackCount() == 16) then
+                    if (stackingModifier:GetStackCount() == 12) then
                         trueHero:EmitSound("Arena.Nevermore.ProcA.Second")
                         PlayFX()
                     end
