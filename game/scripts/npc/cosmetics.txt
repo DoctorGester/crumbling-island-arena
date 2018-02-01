@@ -367,6 +367,12 @@
             "item" "6431"
         }
 
+        "2"
+        {
+            "type" "elite"
+            "season" "19"
+            "set" "corridan_maestro"
+        }
     }
 
     "ember_spirit"
