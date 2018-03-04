@@ -98,7 +98,7 @@ function EntityAbilityDataProvider(entityId) {
             }
         }
 
-        if (HasModifier(this.entityId, "modifier_falling")) {
+        if (HasModifier(this.entityId, "modifier_falling") || HasModifier(this.entityId, "modifier_jugger_q")) {
             return true;
         }
 

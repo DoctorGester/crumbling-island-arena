@@ -204,7 +204,8 @@ function IsUnitSilenced(hero)
         "modifier_sven_w_slow",
         "modifier_ogre_5",
         "modifier_ogre_6",
-        "modifier_falling"
+        "modifier_falling",
+        "modifier_jugger_q"
     }
 
     for _, mod in ipairs(silenceModifiers) do

@@ -17,6 +17,8 @@ if IsServer() then
     function modifier_jugger_q:OnIntervalThink()
         local hero = self:GetParent():GetParentEntity()
 
+        self:GetParent():StartGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
+
         hero:AreaEffect({
             ability = self:GetAbility(),
             filter = Filters.Area(hero:GetPos(), 300),
@@ -26,6 +28,8 @@ if IsServer() then
 
     function modifier_jugger_q:OnDestroy()
         local hero = self:GetParent():GetParentEntity()
+
+        self:GetParent():FadeGesture(ACT_DOTA_OVERRIDE_ABILITY_1)
 
         hero:StopSound("Arena.Jugger.LoopQ")
         hero:EmitSound("Arena.Jugger.EndQ")
@@ -45,8 +49,12 @@ end
 
 function modifier_jugger_q:CheckState()
     return {
-        [MODIFIER_STATE_SILENCED] = true
+        [MODIFIER_STATE_DISARMED] = true
     }
+end
+
+function modifier_jugger_q:GetPriority()
+    return MODIFIER_PRIORITY_SUPER_ULTRA
 end
 
 function modifier_jugger_q:GetOverrideAnimation()
