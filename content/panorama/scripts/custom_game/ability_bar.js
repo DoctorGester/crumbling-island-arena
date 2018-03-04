@@ -105,8 +105,11 @@ function EntityAbilityDataProvider(entityId) {
         return false;
     };
 
-    this.IsStunned = function() {
-        return Entities.IsStunned(this.entityId);
+    this.IsStunned = function(ability) {
+        var ignoreStunFlag = DOTA_ABILITY_BEHAVIOR.DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE;
+        var ignoresStun = (Abilities.GetBehavior(ability) & ignoreStunFlag) == ignoreStunFlag;
+
+        return Entities.IsStunned(this.entityId) && !ignoresStun;
     };
 
     this.IsDisarmed = function() {
@@ -173,7 +176,7 @@ function AbilityBar(elementId) {
 
         if (this.provider.IsSilenced && this.provider.IsStunned && this.provider.IsRooted) {
             var rooted = this.provider.IsRooted() && data.rootDisables;
-            ability.SetDisabled(this.provider.IsSilenced() && !data.attack && !data.custom, this.provider.IsStunned(), rooted);
+            ability.SetDisabled(this.provider.IsSilenced() && !data.attack && !data.custom, this.provider.IsStunned(data.id), rooted);
         }
 
         if (data.attack) {

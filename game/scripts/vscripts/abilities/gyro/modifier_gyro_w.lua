@@ -7,7 +7,7 @@ if IsServer() then
 
         hero:SwapAbilities("gyro_w", "gyro_w_sub")
         hero:EmitSound("Arena.Gyro.CastW")
-        self:SetStackCount(2)
+        self:SetStackCount(3)
     end
 
     function self:OnDestroy()

@@ -732,6 +732,13 @@ function SetCastedAbility(ability) {
     castedAbility = ability;
 }
 
+function GetGyroRocketDistance(unit) {
+    var m = FindModifier(unit, 'modifier_gyro_w');
+    var elapsedTime = m ? Math.min(4.5, Buffs.GetElapsedTime(unit, m)) : 0;
+
+    return 300 + elapsedTime * 250
+}
+
 UpdateTargetIndicator();
 
 SubscribeToNetTableKey("main", "targetingIndicators", true, function(data){

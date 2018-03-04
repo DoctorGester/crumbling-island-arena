@@ -49,6 +49,11 @@ function ArcProjectile:constructor(round, params)
     end
 end
 
+function ArcProjectile:SetModel(mdl)
+    self:GetUnit():SetModel(mdl)
+    self:GetUnit():SetOriginalModel(mdl)
+end
+
 function ArcProjectile:CanFall()
     return false
 end
