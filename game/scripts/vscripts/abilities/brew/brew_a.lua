@@ -20,7 +20,7 @@ function brew_a:OnSpellStart()
     local force = 20
     local stacks = hero:FindAbility("brew_q"):CountBeer(hero)
 
-    if stacks >= 2 then
+    if stacks >= 3 then
         damage = damage * 2
         force = force * 1.5
     end
