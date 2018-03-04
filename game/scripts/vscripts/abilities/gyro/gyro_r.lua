@@ -29,7 +29,7 @@ if IsServer() then
                 owner = hero,
                 from = hero:GetPos() + Vector(0, 0, 128),
                 to = target + Vector(0, 0, 128),
-                speed = 1550,
+                speed = 1950,
                 graphics = "particles/gyro_r/gyro_r.vpcf",
                 distance = 1500,
                 hitSound = "Arena.Gyro.HitR",
