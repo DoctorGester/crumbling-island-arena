@@ -3,7 +3,8 @@ brew_w = class({})
 function brew_w:OnSpellStart()
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
-    local heroStacks = hero:FindAbility("brew_q"):CountBeer(hero)
+    local maxStacksConsumed = 3
+    local heroStacks = min(maxStacksConsumed, hero:FindAbility("brew_q"):CountBeer(hero))
 
     local projectile = DistanceCappedProjectile(hero.round, {
         ability = self,
@@ -17,6 +18,7 @@ function brew_w:OnSpellStart()
         hitSound = "Arena.Ember.HitQ",
         continueOnHit = true,
         damagesTrees = true,
+        goesThroughTrees = true,
         hitFunction = function(projectile, target)
             local stacks = hero:FindAbility("brew_q"):CountBeer(target)
 
@@ -31,6 +33,7 @@ function brew_w:OnSpellStart()
     }):Activate()
 
     hero:EmitSound("Arena.Brew.CastW")
+    hero:FindAbility("brew_q"):ClearBeer(hero, maxStacksConsumed)
 
     ParticleManager:SetParticleControl(projectile.particle, 4, Vector(heroStacks + 2, 1, 0))
 end

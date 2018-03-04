@@ -575,10 +575,10 @@
 		"AbilityTooltip_ursa_e"							"Short roll, stuns enemies on the way"
 		"AbilityTooltip_ursa_r"							"Become invulnerable to all damage and magic, immediately enter <font color='#FF2700'><b>Frenzy</b></font> or refresh its duration"
 
-		"AbilityTooltip_brew_a"							"Deals double damage if a hero has 2 or more <font color=\"#AF9200\"><b>Beer</b></font> debuffs"
+		"AbilityTooltip_brew_a"							"Deals double damage if hero has 3 or more <font color=\"#AF9200\"><b>Beer</b></font> debuffs"
 		"AbilityTooltip_brew_q"							"Receive a <font color=\"#AF9200\"><b>Beer</b></font> debuff<br/>Throw a beer to the target area, applying stacking <font color=\"#AF9200\"><b>Beer</b></font> debuff to every enemy hit<br/><font color=\"#AF9200\"><b>Beer</b></font> stacks slow enemies and speed up your hero"
-		"AbilityTooltip_brew_w"							"Unleash a damaging wave<br/>Wave range, damage and thickness scale from your current <font color=\"#AF9200\"><b>Beer</b></font> stacks<br/>Enemies hit are stunned up to 3 seconds depending on their <font color=\"#AF9200\"><b>Beer</b></font> stacks"
-		"AbilityTooltip_brew_e"							"Heal and purge debuffs<br/>Not disabled by silence<br/><br/>Every stack of <font color=\"#AF9200\"><b>Beer</b></font> reduces cooldown by 1 second"
+		"AbilityTooltip_brew_w"							"Unleash a damaging wave<br/>Consumes up to 3 <font color=\"#AF9200\"><b>Beer</b></font> stacks, increasing range, damage and radius<font color=\"#AF9200\"><b>Beer</b></font> stacks<br/>Enemies hit are stunned up to 4 seconds depending on their <font color=\"#AF9200\"><b>Beer</b></font> stacks"
+		"AbilityTooltip_brew_e"							"Heal for the amount of <font color=\"#AF9200\"><b>Beer</b></font> stacks and purge debuffs<br/>Not disabled by silence"
 		"AbilityTooltip_brew_r"							"Throw a bottle into the target area, knocking back and applying 2 stacks of <font color=\"#AF9200\"><b>Beer</b></font> to everyone hit<br/> Deals damage to enemies"
 
 		"AbilityTooltip_invoker_a"						"Deals magic damage"
