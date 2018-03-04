@@ -46,7 +46,7 @@ function nevermore_a:OnSpellStart()
                     stackingModifier = trueHero:AddNewModifier(trueHero, self, "modifier_nevermore_a", {})
                 end
 
-                if stackingModifier and stackingModifier:GetStackCount() < 16 then
+                if stackingModifier and stackingModifier:GetStackCount() < 12 then
                     stackingModifier:IncrementStackCount()
 
                     local function PlayFX()
