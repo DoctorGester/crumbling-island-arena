@@ -1,6 +1,7 @@
 "DOTAHeroes" {
 	"npc_dota_hero_brewmaster" {
 		"override_hero" "npc_dota_hero_brewmaster"
+        "Class" "heroes/brewmaster:Brewmaster"
 		"ArmorPhysical" "0"
 		"MagicalResistance" "0"
 		"AttackCapabilities" "DOTA_UNIT_CAP_NO_ATTACK"
