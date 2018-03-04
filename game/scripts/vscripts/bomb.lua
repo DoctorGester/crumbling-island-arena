@@ -1,6 +1,6 @@
 Bomb = Bomb or class({}, nil, UnitEntity)
 
-local EXPLOSION_DELAY = 2.5
+local EXPLOSION_DELAY = 1.4
 local EXPLOSION_RADIUS = 350
 
 function Bomb:constructor(round, position)
