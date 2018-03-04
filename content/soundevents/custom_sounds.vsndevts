@@ -745,6 +745,24 @@
 		event_type = "1.0"
 	}
 
+	Arena.PA.StepE = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/physics/footsteps/hero/enchantress/footstep01.vsnd",
+			"sounds/physics/footsteps/hero/enchantress/footstep02.vsnd",
+			"sounds/physics/footsteps/hero/enchantress/footstep03.vsnd",
+			"sounds/physics/footsteps/hero/enchantress/footstep04.vsnd",
+			"sounds/physics/footsteps/hero/enchantress/footstep05.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
 	Arena.Zeus.CastA = {
 		type = "dota_src1_3d"
 		vsnd_files = 
