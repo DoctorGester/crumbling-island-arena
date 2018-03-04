@@ -39,11 +39,17 @@ function nevermore_q:OnSpellStart()
         release = true
     })
 
+    local damage = self:GetDamage()
+
+    if not isAllowedToBeRecast then
+        damage = damage + 1
+    end
+
     hero:AreaEffect({
         ability = self,
         filter = Filters.Area(target, 250),
         filterProjectiles = true,
-        damage = self:GetDamage()
+        damage = damage
     })
 
     ScreenShake(target, 5, 150, 0.15, 3000, 0, true)

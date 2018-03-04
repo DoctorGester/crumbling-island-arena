@@ -653,7 +653,7 @@
 		"AbilityTooltip_wr_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br/>Fire up to 4 exploding arrows, damaging and knocking back enemies on contact"
 
 		"AbilityTooltip_nevermore_a"					"Hitting enemy heroes generates <font color='#B52600'><b>Soul Shards</b></font><br/>Reaching <b>6</b> and <b>12</b> <font color='#B52600'><b>Soul Shards</b></font> increases attack damage <b>permanently</b>"
-		"AbilityTooltip_nevermore_q"					"Deal damage in an area in front of you<br/>Can be recast twice, each time increasing range"
+		"AbilityTooltip_nevermore_q"					"Deal damage in an area in front of you<br/>Can be recast twice, each time increasing range<br/>Last recast deals increased damage"
 		"AbilityTooltip_nevermore_w"					"Attack enemies in front of you and knock them back<br/>Disarms affected enemies"
 		"AbilityTooltip_nevermore_e"					"Short flying dash<br/>Enemies on the way are silenced"
 		"AbilityTooltip_nevermore_r"					"<font color=\"#DAFF7F\"><b>Channeling</b></font><br/>Fires 12 projectiles which fear enemies on hit<br/>Projectiles deal damage to trees"
