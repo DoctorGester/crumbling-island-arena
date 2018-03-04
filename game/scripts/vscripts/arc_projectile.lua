@@ -83,7 +83,7 @@ end
 function ArcProjectile:Update()
     local prevFallingPos = self:GetPos()
 
-    getbase(Projectile).Update(self)
+    getbase(ArcProjectile).Update(self)
 
     local pos = self:GetPos()
 

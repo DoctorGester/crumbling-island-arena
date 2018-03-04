@@ -37,13 +37,15 @@ function EntityTinkerR:Update()
             end
         ),
         action = function(target)
-            local dir = target:GetPos() - self:GetPos()
+            local normal = (target:GetPos() - self:GetPos()):Normalized()
 
             if instanceof(target, Projectile) then
-                target:Deflect(self, dir)
+                local velocity = target.vel
+                local reflectedDirection = velocity - 2 * (velocity:Dot(normal)) * normal;
+                target:Deflect(self, reflectedDirection)
             else
                 self.round.spells:InterruptDashes(target)
-                SoftKnockback(target, self, dir, 50, { decrease = 3 })
+                SoftKnockback(target, self, normal, 50, { decrease = 3 })
                 target:Damage(self, self.ability:GetDamage())
             end
         end,
@@ -57,6 +59,31 @@ function EntityTinkerR:Update()
             self.ignoreGroup[target] = time
         end
     })
+
+    -- Reflecting arc projectiles
+    local arcProjectiles = self.round.spells:FilterEntities(function(ent)
+        return instanceof(ent, ArcProjectile) and ent:Alive() and not ent.falling
+    end)
+
+    for _, arcProjectile in pairs(arcProjectiles) do
+        local towardsProjectile = arcProjectile:GetPos() - self:GetPos()
+
+        if towardsProjectile:Length() <= 400.0 and arcProjectile.owner.team ~= self.owner.team  then
+            arcProjectile:Destroy()
+
+            FX("particles/units/heroes/hero_rattletrap/rattletrap_cog_attack.vpcf", PATTACH_ABSORIGIN, self, {
+                cp0 = { ent = self, point = "attach_attack1" },
+                cp1 = arcProjectile:GetPos(),
+                release = true
+            })
+
+            self:EmitSound("Arena.Tinker.HitR")
+
+            if arcProjectile.hitSound then
+                arcProjectile:EmitSound(arcProjectile.hitSound)
+            end
+        end
+    end
 
     if GameRules:GetGameTime() - (self.startTime or 0) > 6 then
         self:Destroy()
