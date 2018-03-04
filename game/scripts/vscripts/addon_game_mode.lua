@@ -1102,6 +1102,8 @@ function GameMode:OnRoundEnd(round)
             self:SetState(STATE_HERO_SELECTION)
             self.heroSelection:Start(function() self:OnHeroSelectionEnd() end)
 
+            SystemMessage("SystemRoundOver", { round = self.roundNumber - 1 })
+
             GameRules:GetGameModeEntity():StopSound("dsadowski_01.music.battle_01")
             GameRules:GetGameModeEntity():EmitSound("dsadowski_01.music.countdown")
         end

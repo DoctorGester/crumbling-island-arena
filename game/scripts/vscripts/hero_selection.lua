@@ -213,6 +213,7 @@ function HeroSelection:Update()
 
     if self.SelectionTimer == 0 then
         self:AssignRandomHeroes()
+        SystemMessage("SystemRoundStart", { round = GameRules.GameMode.roundNumber })
     end
 
     if self.SelectionTimer == 5 then

@@ -412,6 +412,8 @@
 		"System" "[<font color='#7FC9FF'>SYSTEM</font>]"
 		"SystemEveryoneLeft" "All enemies have left the game! The game will end in <font color='#FF7F7F'>{s:time}</font> seconds unless they reconnect"
 		"SystemPassLevel" "<font color='{s:color}'><b>{s:player}</b></font> owns CIA Pass level <font color='gold'><b>{s:level}</b></font>!"
+		"SystemRoundStart" "Round <font color='#FF7F7F'>{s:round}</font> is starting!"
+        "SystemRoundOver" "Round <font color='#FF7F7F'>{s:round}</font> is over!"
 
 		"RecentScore"									"+{d:score}"
 
