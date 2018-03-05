@@ -713,6 +713,13 @@
             "level" "35"
             "item" "6893"
         }
+
+        "2"
+        {
+            "type" "elite"
+            "season" "20"
+            "set" "scale_of_the_razorwyrm"
+        }
     }
 
     "nevermore"

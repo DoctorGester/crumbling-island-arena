@@ -31,7 +31,8 @@ var seasonAwards = {
     16: "npc_dota_hero_earth_spirit",
     17: "npc_dota_hero_gyrocopter",
     18: "npc_dota_hero_nevermore",
-    19: "npc_dota_hero_storm_spirit"
+    19: "npc_dota_hero_storm_spirit",
+    20: "npc_dota_hero_ursa"
 };
 
 function PreloadPreview(hero, value, insertFirst) {
