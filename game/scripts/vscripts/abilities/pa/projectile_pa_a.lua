@@ -35,6 +35,13 @@ function ProjectilePAA:constructor(round, hero, target, damage, ability)
             ParticleManager:SetParticleControlEnt(blood, 0, target:GetUnit(), PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetPos(), true)
             ParticleManager:SetParticleControlForward(blood, 0, direction)
             ParticleManager:SetParticleControl(blood, 2, direction * 1000)
+
+            local silenceAbilitySource = hero:FindAbility("pa_r")
+
+            if hero:HasModifier("modifier_pa_r") and target:AllowAbilityEffect(hero, silenceAbilitySource) then
+                target:AddNewModifier(hero, silenceAbilitySource, "modifier_silence_lua", { duration = 0.75 })
+                target:EmitSound("Arena.PA.HitR.Silence")
+            end
         end
     end
 
@@ -135,5 +142,5 @@ function ProjectilePAA:GetNextPosition(pos)
         self.attraction = self.attraction + 0.01
     end
 
-    return self.position + self.vel * self.hero:GetSpeedMultiplier() / 30 * self.currentMultiplier
+    return self.position + self.vel / 30 * self.currentMultiplier
 end

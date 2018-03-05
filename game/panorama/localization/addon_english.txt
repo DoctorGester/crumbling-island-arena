@@ -471,7 +471,7 @@
 		"AbilityTooltip_pa_w_sub"						"Throw a dagger which slows the first enemy hit<br><br>Doesn\\\\'t deal damage"
 		"AbilityTooltip_pa_e"							"Perform a short jump"
 		"AbilityTooltip_pa_e_sub"						"Perform a short jump, leaving your glaive behind"
-		"AbilityTooltip_pa_r"							"Become invisible for 5 seconds gaining bonus speed<br>Your glaive is also sped up<br><br>Casting spells briefly reveals you"
+		"AbilityTooltip_pa_r"							"Become invisible for 5 seconds gaining bonus speed<br>Your basic attack applies silence<br><br>Casting spells briefly reveals you"
 
 		"AbilityTooltip_sk_a"							"Places a debuff on targets hit<br/>Can be activated by other abilities, dealing damage in the area"
 		"AbilityTooltip_sk_q"							"Slow enemies in the area after a 1.2 second delay"

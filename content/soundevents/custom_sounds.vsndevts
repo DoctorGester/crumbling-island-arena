@@ -763,6 +763,19 @@
 		event_type = "1.0"
 	}
 
+	Arena.PA.HitR.Silence = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/items/orchid.vsnd"
+		]
+		volume = "0.15"
+		pitch_rand_min = "-0.35"
+		pitch_rand_max = "-0.35"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
 	Arena.Zeus.CastA = {
 		type = "dota_src1_3d"
 		vsnd_files = 
