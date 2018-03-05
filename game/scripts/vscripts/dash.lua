@@ -273,6 +273,10 @@ end
 SoftKnockback = SoftKnockback or class({}, nil, Dash)
 
 function SoftKnockback:constructor(hero, source, direction, force, params)
+    if instanceof(hero, Projectile) then
+        return
+    end
+
     local multiplier = 1
 
     for _, modifier in pairs(hero:AllModifiers()) do

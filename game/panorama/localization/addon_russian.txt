@@ -463,7 +463,7 @@
 		"AbilityTooltip_lc_e"							"Рвануться вперед, оглушая врагов на пути<br><br>Дистанция рывка зависит от текущей скорости"
 		"AbilityTooltip_lc_r"							"Укажите область<br>Пока герой находится в ней, он бессмертен и перезарядка его способностей быстрее в два раза"
 
-		"AbilityTooltip_pa_a"							"Не может использовать W когда бумеранг в воздухе"
+		"AbilityTooltip_pa_a"							"Не может использовать W когда бумеранг в воздухе<br/><br/>Бумеранг имеет свою собственную полосу здоровья и повышенную перезарядку после уничтожения"
         "AbilityTooltip_pa_q"							"Замедляющий снаряд<br/>Замедленная цель может дважды получить увеличенный урон от героя"
 		"AbilityTooltip_pa_w"							"Атаковать область вокруг себя"
 		"AbilityTooltip_pa_e"							"Короткий прыжок"
@@ -681,6 +681,7 @@
 		"ModifierTooltip_modifier_sk_q"							"Замедлен"
 		"ModifierTooltip_modifier_sk_r"							"Невидим в песчаной буре"
 
+		"ModifierTooltip_modifier_pa_a"							"Очки здоровья оружия"
 		"ModifierTooltip_modifier_pa_q"							"Замедлен"
 		"ModifierTooltip_modifier_pa_e"							"Прыгает"
 		"ModifierTooltip_modifier_pa_r"							"Невидим"

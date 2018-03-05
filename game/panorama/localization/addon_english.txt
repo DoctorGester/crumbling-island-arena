@@ -465,7 +465,7 @@
 		"AbilityTooltip_lc_e"							"Dash forward, briefly disabling enemies on the way<br><br>Dash distance depends on your current speed"
 		"AbilityTooltip_lc_r"							"Target an area<br>While in that area, you are immortal and your cooldowns are halved"
 
-		"AbilityTooltip_pa_a"							"Can't use W while the glaive is in the air"
+		"AbilityTooltip_pa_a"							"Can't use W while the glaive is in the air<br><br>The weapon has its own health and an increased cooldown when destroyed"
 		"AbilityTooltip_pa_q"							"Throw a slowing projectile<br/>Next 2 damage instances from hero deal additional damage to the victim"
 		"AbilityTooltip_pa_w"							"Strike an area around you"
 		"AbilityTooltip_pa_w_sub"						"Throw a dagger which slows the first enemy hit<br><br>Doesn\\\\'t deal damage"
@@ -685,6 +685,7 @@
 		"ModifierTooltip_modifier_sk_q"							"Slowed down"
 		"ModifierTooltip_modifier_sk_r"							"Invisible in sandstorm"
 
+		"ModifierTooltip_modifier_pa_a"							"Weapon health"
 		"ModifierTooltip_modifier_pa_q"							"Slowed down"
 		"ModifierTooltip_modifier_pa_e"							"Jumping"
 		"ModifierTooltip_modifier_pa_r"							"Invisible"

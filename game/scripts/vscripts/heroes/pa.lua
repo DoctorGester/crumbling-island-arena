@@ -31,13 +31,15 @@ function PA:WeaponDestroyed()
 	if not self.weapon then
 		return
 	end
-	
-	self:FindAbility("pa_a"):StartCooldown(1.8)
+
+    self:FindAbility("pa_a"):SetActivated(true)
+	self:FindAbility("pa_a"):StartCooldown(3.5)
 	self.weapon = nil
 
-	Timers:CreateTimer(1.8, function()
-		self:WeaponRetrieved(true)
-	end)
+    TimedEntity(3.5, function()
+		self:WeaponRetrieved()
+        self:FindModifier("modifier_pa_a"):SetStackCount(3)
+	end):Activate()
 end
 
 function PA:GetWeapon()
