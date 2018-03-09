@@ -67,7 +67,7 @@ function sven_e:Cast(target)
     end
 
     TimedEntity(0.05, function()
-        SvenDash(hero, target, 200, {
+        SvenDash(hero, target, 1200, {
             modifier = { name = "modifier_sven_e", ability = self },
             forceFacing = true,
             gesture = ACT_DOTA_RUN,
