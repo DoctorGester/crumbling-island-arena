@@ -4,7 +4,7 @@ function brew_a:OnAbilityPhaseStart()
     local hero = self:GetCaster():GetParentEntity()
     local stacks = hero:FindAbility("brew_q"):CountBeer(hero)
 
-    hero:EmitSound(stacks >= 2 and "Arena.Brew.CastA2" or "Arena.Brew.CastA")
+    hero:EmitSound(stacks >= 3 and "Arena.Brew.CastA2" or "Arena.Brew.CastA")
 
     return true
 end
@@ -39,7 +39,7 @@ function brew_a:GetCastAnimation()
     local hero = self:GetCaster():GetParentEntity()
     local stacks = hero:FindAbility("brew_q"):CountBeer(hero)
 
-    if stacks >= 2 then
+    if stacks >= 3 then
         return ACT_DOTA_ATTACK_EVENT
     end
 
