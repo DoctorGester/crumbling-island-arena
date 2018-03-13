@@ -100,7 +100,7 @@ function ProjectilePAA:Remove()
     getbase(ProjectilePAA).Remove(self)
 end
 
-function ProjectilePAA:Deflect(by, direction)
+function ProjectilePAA:Deflect(by, direction, optionalSound)
     if GameRules:GetGameTime() - self.lastTimeDeflected < 0.1 then
         return
     end
@@ -125,7 +125,7 @@ function ProjectilePAA:Deflect(by, direction)
 
     self.lastTimeDeflected = GameRules:GetGameTime()
 
-    self:EmitSound("Arena.PA.DeflectA")
+    self:EmitSound(optionalSound or "Arena.PA.DeflectA")
 
     direction.z = 0
     self.vel = direction:Normalized() * math.max(1500, self.vel:Length2D())
