@@ -1,5 +1,7 @@
 modifier_sniper_r = class({})
 
+local alreadyCheckedMyStateThankYou = false
+
 function modifier_sniper_r:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE,
@@ -28,10 +30,14 @@ function modifier_sniper_r:CheckState()
 
         state[MODIFIER_STATE_INVISIBLE] = invisible
 
-        if invisible then
-            self:SetStackCount(1)
-        else
-            self:SetStackCount(0)
+        if not alreadyCheckedMyStateThankYou then
+            alreadyCheckedMyStateThankYou = true
+            if invisible then
+                self:SetStackCount(1)
+            else
+                self:SetStackCount(0)
+            end
+            alreadyCheckedMyStateThankYou = false
         end
     end
 
