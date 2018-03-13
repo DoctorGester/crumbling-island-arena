@@ -29,6 +29,7 @@ function storm_spirit_a:OnSpellStart()
 
         data.hitFunction = function(projectile, _)
             projectile.hitSomething = true
+            projectile:Destroy()
         end
 
         data.destroyFunction = function(projectile)
