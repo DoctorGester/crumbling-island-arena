@@ -65,7 +65,7 @@ function self:OnSpellStart()
                 from = hero:GetPos(),
                 to = target,
                 speed = 1250,
-                distance = 300 + modifier:GetElapsedTime() * 250,
+                distance = 300 + math.min(4.5, modifier:GetElapsedTime()) * 250,
                 hitModifier = { name = "modifier_stunned_lua", duration = 1.2, ability = self },
                 hitSound = "Arena.Gyro.HitW.Sub",
                 destroyFunction = function(projectile)
