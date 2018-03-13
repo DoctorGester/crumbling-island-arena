@@ -12,7 +12,7 @@ function self:OnDamageReceived()
 end
 
 function self:OnDamageReceivedPriority()
-    return 1
+    return PRIORITY_ABSOLUTE_SHIELD
 end
 
 function self:GetEffectName()

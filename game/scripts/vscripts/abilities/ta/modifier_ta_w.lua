@@ -38,5 +38,5 @@ function modifier_ta_w:OnDamageReceived(source, entity, amount)
 end
 
 function modifier_ta_w:OnDamageReceivedPriority()
-    return -1
+    return PRIORITY_POST_SHIELD_ACTION
 end

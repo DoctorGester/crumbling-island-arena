@@ -31,7 +31,7 @@ function modifier_invoker_w:OnDamageReceived(source, hero, amount, isPhysical)
 end
 
 function modifier_invoker_w:OnDamageReceivedPriority()
-    return 1
+    return PRIORITY_AMPLIFY_DAMAGE
 end
 
 function modifier_invoker_w:IsDebuff()

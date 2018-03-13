@@ -1,3 +1,8 @@
+PRIORITY_AMPLIFY_DAMAGE = 1
+PRIORITY_ABSOLUTE_SHIELD = 1
+PRIORITY_SHIELD = 0
+PRIORITY_POST_SHIELD_ACTION = -1
+
 function string.starts(str,start)
    return string.sub(str, 1, string.len(start)) == start
 end

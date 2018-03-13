@@ -42,5 +42,5 @@ function modifier_earth_spirit_r:OnDamageReceived()
 end
 
 function modifier_earth_spirit_r:OnDamageReceivedPriority()
-    return 1
+    return PRIORITY_ABSOLUTE_SHIELD
 end

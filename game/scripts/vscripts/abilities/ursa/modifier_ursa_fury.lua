@@ -37,7 +37,7 @@ function modifier_ursa_fury:OnDamageDealt(target, source, amount)
 end
 
 function modifier_ursa_fury:OnDamageReceivedPriority()
-    return 0
+    return PRIORITY_POST_SHIELD_ACTION
 end
 
 function modifier_ursa_fury:OnDamageReceived(_, _, amount)

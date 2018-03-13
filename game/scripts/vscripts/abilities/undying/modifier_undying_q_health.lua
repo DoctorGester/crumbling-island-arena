@@ -32,5 +32,5 @@ function self:OnDamageReceived(_, _, amount)
 end
 
 function self:OnDamageReceivedPriority()
-    return 0
+    return PRIORITY_SHIELD
 end
