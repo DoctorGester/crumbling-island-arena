@@ -6,7 +6,6 @@ function EarthSpiritKnockback:constructor(ability, hero, source, direction, forc
 	if instanceof(hero, EarthSpiritRemnant) then
 		params.hitParams = {
 			ability = ability,
-			modifier = { name = "modifier_stunned_lua", ability = ability, duration = 0.7 },
 			filter = function(target)
 				if not target.owner then
 					return target ~= source
@@ -16,6 +15,7 @@ function EarthSpiritKnockback:constructor(ability, hero, source, direction, forc
 			end,
 			action = function(target)
 				target:Damage(source, 2)
+				target:AddNewModifier(source, ability, "modifier_stunned_lua", {duration = 0.7})
 			end
 		}
 	else
@@ -23,7 +23,7 @@ function EarthSpiritKnockback:constructor(ability, hero, source, direction, forc
 			ability = ability,
 			filter = function(target) return instanceof(target, EarthSpiritRemnant) end,
 			action = function(remnant)
-				if hero:AllowAbilityEffect(source, ability) then
+				if hero:AllowAbilityEffect(source, ability) and source.owner.team ~= hero.owner.team then
 					hero:AddNewModifier(source, ability, "modifier_stunned_lua", { duration = 0.7 })
 				end
 			end

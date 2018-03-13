@@ -34,7 +34,7 @@ if IsServer() then
     end
 
     function self:OnDamageReceivedPriority()
-        return 0
+        return -1
     end
 end
 

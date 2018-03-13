@@ -37,21 +37,25 @@ end
 
 function WKZombie:CollideWith(target)
     if instanceof(target, Projectile) and target.continueOnHit then
-        target:Destroy()
+        if instanceof(target, ProjectilePAA) then
+            target:Deflect(target.hero, -target.vel)
+        else
+            target:Destroy()
 
-        local mode = GameRules:GetGameModeEntity()
+            local mode = GameRules:GetGameModeEntity()
 
-        FX("particles/ui/ui_generic_treasure_impact.vpcf", PATTACH_ABSORIGIN, mode, {
-            cp0 = target:GetPos(),
-            cp1 = target:GetPos(),
-            release = true
-        })
+            FX("particles/ui/ui_generic_treasure_impact.vpcf", PATTACH_ABSORIGIN, mode, {
+                cp0 = target:GetPos(),
+                cp1 = target:GetPos(),
+                release = true
+            })
 
-        FX("particles/msg_fx/msg_deny.vpcf", PATTACH_CUSTOMORIGIN, mode, {
-            cp0 = target:GetPos(),
-            cp3 = Vector(200, 0, 0),
-            release = true
-        })
+            FX("particles/msg_fx/msg_deny.vpcf", PATTACH_CUSTOMORIGIN, mode, {
+                cp0 = target:GetPos(),
+                cp3 = Vector(200, 0, 0),
+                release = true
+            })
+        end
     end
 end
 

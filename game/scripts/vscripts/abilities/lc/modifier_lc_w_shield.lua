@@ -30,5 +30,5 @@ function modifier_lc_w_shield:OnDamageReceived(source, hero, amount)
 end
 
 function modifier_lc_w_shield:OnDamageReceivedPriority()
-    return 0
+    return -1
 end

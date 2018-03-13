@@ -9,6 +9,10 @@ function cm_w:OnChannelFinish(interrupted)
     self.previousTarget = nil
 end
 
+function cm_w:OnSpellStart()
+    self.timePassed = 0.13
+end
+
 function cm_w:OnChannelThink(interval)
     local hero = self:GetCaster():GetParentEntity()
     local target = self:GetCursorPosition() * Vector(1, 1, 0)
