@@ -17,3 +17,7 @@ function modifier_ta_q:OnDamageReceived(_, _, amount, isPhysical)
         return amount + 1
     end
 end
+
+function modifier_ta_q:OnDamageReceivedPriority()
+    return PRIORITY_AMPLIFY_DAMAGE
+end

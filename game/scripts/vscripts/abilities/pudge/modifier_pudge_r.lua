@@ -24,3 +24,7 @@ function modifier_pudge_r:OnDamageReceived(source, _, amount, _)
         return amount + 1
     end
 end
+
+function modifier_pudge_r:OnDamageReceivedPriority()
+    return PRIORITY_AMPLIFY_DAMAGE
+end
