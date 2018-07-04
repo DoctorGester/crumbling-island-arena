@@ -41,3 +41,7 @@ function modifier_pa_q:OnDamageReceived(source, hero, amount, isPhysical)
         return amount + 1
     end
 end
+
+function modifier_pa_q:OnDamageReceivedPriority()
+    return PRIORITY_AMPLIFY_DAMAGE
+end

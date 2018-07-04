@@ -13,6 +13,7 @@
 		"StatusHealthRegen" "0"
 		"StatusManaRegen" "0"
 		"StatusStartingMana" "0"
+		"AttributeBaseAgility" "0"
 		"AttributeBaseStrength" "0"
 		"AttributeBaseIntelligence" "0"
 		"VisionDaytimeRange" "0"
