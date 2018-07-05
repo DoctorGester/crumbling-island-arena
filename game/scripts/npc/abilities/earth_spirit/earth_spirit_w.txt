@@ -1,0 +1,25 @@
+"DOTAAbilities" {
+	"earth_spirit_w" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/earth_spirit/earth_spirit_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "earth_spirit_geomagnetic_grip"
+		"AbilityCooldown" "7.0"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "220"
+			"DisplayRange" "1"
+			"MaxLength" "HasModifier(unit, 'modifier_earth_spirit_stand') ? 1400 : 700"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "HasModifier(unit, 'modifier_earth_spirit_stand') ? 1400 : 700"
+		}
+
+		"precache" {
+			"particle" "particles/econ/items/magnataur/shock_of_the_anvil/magnataur_shockanvil_cracks_sprt.vpcf"
+		}
+	}
+}

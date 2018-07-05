@@ -56,7 +56,7 @@ end
 function JuggerSword:CollideWith(target)
     if target == self.hero then
         target:SwordPickedUp()
-        self:EmitSound("Arena.Jugger.Pick")
+        target:EmitSound("Arena.Jugger.Pick")
         self:Destroy()
     end
 end

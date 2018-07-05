@@ -10,7 +10,7 @@ function Wrappers.DirectionalAbility(ability, optionalRange, optionalMinRange)
     function ability:GetDirection()
         local target = getCursorPosition(ability)
         local casterPos = self:GetCaster():GetAbsOrigin()
-        local direction = (target - casterPos):Normalized() * Vector(1, 1, 0)
+        local direction = ((target - casterPos) * Vector(1, 1, 0)):Normalized()
 
         if direction:Length2D() == 0 then
             direction = self:GetCaster():GetForwardVector()
@@ -20,8 +20,9 @@ function Wrappers.DirectionalAbility(ability, optionalRange, optionalMinRange)
     end
 
     function ability:GetCursorPosition()
+        local optionalRangeAsNumber = type(optionalRange) == "function" and optionalRange(self) or optionalRange
         local target = getCursorPosition(ability)
-        local realRange = optionalRange or self.BaseClass.GetCastRange(self, target, nil)
+        local realRange = optionalRangeAsNumber or self.BaseClass.GetCastRange(self, target, nil)
         local minRange = optionalMinRange or 0
         local casterPos = self:GetCaster():GetAbsOrigin()
         local direction = self:GetDirection()
@@ -178,15 +179,17 @@ function Wrappers.AttackAbility(ability, staticDurationOffset, fx)
             local cd = self:GetCooldown(1)
             local duration = cd * 1.9 + staticDurationOffset
 
-            if not m then
-                m = hero:AddNewModifier(hero, self, "modifier_attack_speed", { duration = duration })
-                m:SetStackCount(1)
-            else
-                if m:GetStackCount() < 4 then
-                    m:IncrementStackCount()
+            if false then
+                if not m then
+                    m = hero:AddNewModifier(hero, self, "modifier_attack_speed", { duration = duration })
+                    m:SetStackCount(1)
+                else
+                    if m:GetStackCount() < 4 then
+                        m:IncrementStackCount()
+                    end
+
+                    m:SetDuration(duration, true)
                 end
-                
-                m:SetDuration(duration, true)
             end
 
             onSpellStart(self)
@@ -200,7 +203,9 @@ function IsUnitSilenced(hero)
         "modifier_am_r",
         "modifier_sven_w_slow",
         "modifier_ogre_5",
-        "modifier_ogre_6"
+        "modifier_ogre_6",
+        "modifier_falling",
+        "modifier_jugger_q"
     }
 
     for _, mod in ipairs(silenceModifiers) do
@@ -212,8 +217,18 @@ function IsUnitSilenced(hero)
     return false
 end
 
-function IsFullyCastable(ability)
-    return ability:IsFullyCastable() and not IsUnitSilenced(ability:GetCaster())
+function IsFullyCastable(ability, location)
+    local passesFilters = true
+
+    if location and ability.CastFilterResultLocation then
+        passesFilters = passesFilters and ability:CastFilterResultLocation(location) == UF_SUCCESS
+    end
+
+    if ability.CastFilterResult then
+        passesFilters = passesFilters and ability:CastFilterResult() == UF_SUCCESS
+    end
+
+    return ability:IsFullyCastable() and not IsUnitSilenced(ability:GetCaster()) and passesFilters
 end
 
 function Wrappers.NormalAbility(ability)

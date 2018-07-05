@@ -19,6 +19,7 @@ function cm_q:OnSpellStart()
 
         hero:AreaEffect({
             ability = self,
+            damagesTrees = true,
             filter = Filters.Area(target, 200),
             action = function(victim)
                 CMUtil.AbilityHit(hero, victim, self)

@@ -3,11 +3,13 @@ pudge_w = class({})
 function pudge_w:OnSpellStart()
     Wrappers.DirectionalAbility(self)
 
-    local hero = self:GetCaster().hero
+    local hero = self:GetCaster():GetParentEntity()
     local pos = hero:GetPos()
     local direction = self:GetDirection()
 
     ScreenShake(pos, 5, 150, 0.45, 3000, 0, true)
+
+    local hitAnyone = false
 
     hero:AreaEffect({
         ability = self,
@@ -16,19 +18,32 @@ function pudge_w:OnSpellStart()
         damage = self:GetDamage(),
         action = function(target)
             local effectPos = target:GetPos() + Vector(0, 0, 64)
-            local direction = (pos - effectPos):Normalized()
-            local blood = ImmediateEffect("particles/units/heroes/hero_riki/riki_backstab_hit_blood.vpcf", PATTACH_ABSORIGIN_FOLLOW, target)
-            ParticleManager:SetParticleControlEnt(blood, 0, target.unit, PATTACH_POINT_FOLLOW, "attach_hitloc", effectPos, true)
-            ParticleManager:SetParticleControl(blood, 2, direction)
 
-            if instanceof(target, Hero) and target:HasModifier("modifier_pudge_a") then
-                local meatDir = (target:GetPos() - hero:GetPos()):Normalized()
-                local meat = PudgeMeat(hero.round, hero, target:GetPos() + meatDir * 128):Activate()
+            local bloodPath = "particles/units/heroes/hero_riki/riki_backstab_hit_blood.vpcf"
+            FX(bloodPath, PATTACH_ABSORIGIN_FOLLOW, target, {
+                cp0 = { ent = target, point = "attach_hitloc" },
+                cp2 = (pos - effectPos):Normalized(),
+                relese = true
+            })
 
-                Knockback(meat, self, meatDir, 400, 1500, DashParabola(250))
+            if instanceof(target, Hero) then
+                hitAnyone = true
+
+                local healPath = "particles/econ/items/bloodseeker/bloodseeker_eztzhok_weapon/bloodseeker_bloodbath_eztzhok.vpcf"
+                FX(healPath, PATTACH_ABSORIGIN_FOLLOW, hero, {
+                    cp1 = hero:GetPos(),
+                    release = true
+                })
+
+                hero:Heal(2)
             end
         end
     })
+
+    if hitAnyone then
+        hero:EmitSound("Arena.Pudge.Meat.Voice")
+        hero:EmitSound("Arena.Pudge.Meat")
+    end
 
     local times = 0
     Timers:CreateTimer(0, function()

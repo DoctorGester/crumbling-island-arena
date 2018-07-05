@@ -161,6 +161,14 @@
 	    }
 	}
 
+	"lycan_wolf"
+	{
+	    "BaseClass"     "npc_dota_creature"
+	    "Model"         "models/heroes/lycan/summon_wolves.vmdl"
+	    "ModelScale"    "0.9"
+	    "MovementCapabilities"		"DOTA_UNIT_CAP_MOVE_GROUND"
+	}
+
 	"venge_vengeance"
 	{
 	    "BaseClass"     "npc_dota_creature"

@@ -7,7 +7,7 @@
 		"AbilityTextureName" "brewmaster_drunken_haze"
 		"AbilityCooldown" "14.0"
 		"AbilityCastPoint" "0.2"
-		"Damage" "4"
+		"Damage" "3"
 
 		"TargetingIndicator" {
 			"Type" "TARGETING_INDICATOR_AOE"

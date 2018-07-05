@@ -17,6 +17,10 @@ function modifier_ta_e_counter:OnDestroy()
     end
 end
 
+function modifier_ta_e_counter:IsPermanent()
+    return true
+end
+
 function modifier_ta_e_counter:IsHidden()
     return true
 end

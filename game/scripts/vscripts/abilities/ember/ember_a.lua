@@ -28,7 +28,8 @@ function ember_a:OnSpellStart()
             end
         end,
         knockback = { force = 20, decrease = 3 },
-        isPhysical = true
+        isPhysical = true,
+        damagesTrees = true
     })
 end
 

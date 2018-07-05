@@ -25,6 +25,7 @@ function TinyQ:constructor(round, owner, ability, target, stun, damage, ability)
     self.heightVel = 4
     self.removeOnDeath = true
     self.ability = ability
+    self.timeStarted = GameRules:GetGameTime()
     self.flyParticle = ParticleManager:CreateParticle("particles/tiny_q/tiny_q_fly_smoke.vpcf", PATTACH_ABSORIGIN_FOLLOW , self:GetUnit())
 end
 
@@ -33,16 +34,30 @@ function TinyQ:CanFall()
 end
 
 function TinyQ:CollideWith(target)
-    if self:GetSpeed() == 0 and target == self.hero then
-        self.picked = true
-        self.hero:EmitSound("Arena.Tiny.PickQ")
-        self.ability:EndCooldown()
+    if target == self.hero then
+        local delta = GameRules:GetGameTime() - self.timeStarted
+
+        if delta > 0.1 or self:GetSpeed() == 0 then
+            self.picked = true
+            self.hero:EmitSound("Arena.Tiny.PickQ")
+            self.ability:EndCooldown()
+
+            if delta < 2.0 then
+                self.ability:StartCooldown(2.0 - delta)
+            end
+
+            self:Destroy()
+        end
     else
         getbase(TinyQ).CollideWith(self, target)
     end
 end
 
 function TinyQ:CollidesWith(target)
+    if target == self.hero then
+        return GameRules:GetGameTime() - self.timeStarted > 0.1
+    end
+
     if self:GetSpeed() == 0 then
         return target == self.hero
     else
@@ -54,7 +69,7 @@ function TinyQ:MakeFall()
     getbase(TinyQ).MakeFall(self)
 
     self.fallingDirection = self:GetNextPosition(self:GetPos()) - self:GetPos()
-    
+
     self:RemoveGroundEffect()
 end
 
@@ -89,7 +104,7 @@ function TinyQ:Update()
 
                 if self:TestFalling() then
                     self.secondParticle = ParticleManager:CreateParticle("particles/tiny_q/tiny_q_ground.vpcf", PATTACH_ABSORIGIN_FOLLOW , self.unit)
-                    self:EmitSound("Arena.Tiny.LandQ", pos)
+                    self:EmitSound("Arena.Tiny.LandQ", self:GetPos())
 
                     Spells:GroundDamage(self:GetPos(), 128, self.hero)
                 end
@@ -141,6 +156,6 @@ function TinyQ:Remove()
 
     self:RemoveGroundEffect()
     self:RemoveSmoke()
-    
+
     getbase(TinyQ).Remove(self)
 end

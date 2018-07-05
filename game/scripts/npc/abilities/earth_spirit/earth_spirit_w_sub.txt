@@ -1,0 +1,21 @@
+"DOTAAbilities" {
+	"earth_spirit_w_sub" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/earth_spirit/earth_spirit_w_sub"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "earth_spirit_boulder_smash"
+		"AbilityCooldown" "0.0"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"Radius" "220"
+			"DisplayRange" "1"
+			"MaxLength" "600"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
+	}
+}

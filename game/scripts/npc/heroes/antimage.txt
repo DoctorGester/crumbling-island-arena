@@ -12,6 +12,7 @@
 		"StatusHealthRegen" "0"
 		"StatusManaRegen" "0"
 		"StatusStartingMana" "0"
+		"AttributeBaseAgility" "0"
 		"AttributeBaseStrength" "0"
 		"AttributeBaseIntelligence" "0"
 		"VisionDaytimeRange" "0"
@@ -30,8 +31,8 @@
 		"Ability1" "am_q"
 		"Ability2" "am_w"
 		"Ability3" "am_e"
-		"Ability4" "placeholder_emote"
-		"Ability5" "placeholder_taunt"
+		"Ability4" "placeholder_slot_d"
+		"Ability5" "placeholder_slot_f"
 		"Ability6" "am_r"
 		"Ability7" "am_a"
 	}

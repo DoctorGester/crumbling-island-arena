@@ -52,7 +52,7 @@ function sven_w:OnSpellStart()
 end
 
 function sven_w:GetCastAnimation()
-    return ACT_DOTA_OVERRIDE_ABILITY_2
+    return ACT_DOTA_CAST_ABILITY_1
 end
 
 function sven_w:GetPlaybackRateOverride()

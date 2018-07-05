@@ -1,9 +1,5 @@
 PA = class({}, {}, Hero)
 
-function PA:GetSpeedMultiplier()
-    return self:HasModifier("modifier_pa_r") and 1.6 or 1
-end
-
 function PA:SetWeaponVisible(visible)
     if visible then
         self:GetWearableBySlot("weapon"):RemoveEffects(EF_NODRAW)
@@ -31,13 +27,15 @@ function PA:WeaponDestroyed()
 	if not self.weapon then
 		return
 	end
-	
-	self:FindAbility("pa_a"):StartCooldown(1.8)
+
+    self:FindAbility("pa_a"):SetActivated(true)
+	self:FindAbility("pa_a"):StartCooldown(3.5)
 	self.weapon = nil
 
-	Timers:CreateTimer(1.8, function()
-		self:WeaponRetrieved(true)
-	end)
+    TimedEntity(3.5, function()
+		self:WeaponRetrieved()
+        self:FindModifier("modifier_pa_a"):SetStackCount(3)
+	end):Activate()
 end
 
 function PA:GetWeapon()

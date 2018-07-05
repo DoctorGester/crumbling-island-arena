@@ -16,7 +16,6 @@ require('ecs/expiration_system')
 
 require('dynamic_entity')
 require('unit_entity')
-require('obstacle')
 require('timed_entity')
 require('hero')
 require('player')
@@ -28,6 +27,7 @@ require('teambuilder')
 require('hero_selection')
 require('round')
 require('rune')
+require('bomb')
 require('deathmatch')
 require('quests')
 require('heroes/hero_util')
@@ -35,13 +35,14 @@ require('heroes/hero_util')
 require('spells')
 require('wrappers')
 require('projectile')
+require('obstacle')
 require('arc_projectile')
 require('dash')
 require('statistics')
 require('chat')
 require('debug_util')
 
-_G.GAME_VERSION = "2.2"
+_G.GAME_VERSION = "2.5"
 _G.STATE_NONE = 0
 _G.STATE_GAME_SETUP = 1
 _G.STATE_HERO_SELECTION = 2
@@ -84,7 +85,7 @@ function RegisterAnimations()
     Reg("wraith_king")
 end
 
-RegisterAnimations()
+--RegisterAnimations()
 
 function Precache(context)
     print("Precaching code particles")
@@ -109,6 +110,19 @@ function Precache(context)
 
     _G.GameItems = LoadKeyValues("scripts/items/items_game.txt")
     _G.Cosmetics = LoadKeyValues("scripts/npc/cosmetics.txt")
+
+    -- Here goes the awesome stuff
+    -- And the reason to this is as follows: we need an ambient effect on the weapon which is contained inside
+    -- of the asset_modifier. But because Valve are awesome people (Thanks Valve) and they care about modders
+    -- Valve's C++ LoadKeyValues can read 2 table entries with the same key, and Lua version can't because
+    -- it returns a Lua object which can't have 2 equal keys. So we are modifying the item to get the ambient effect
+
+    _G.GameItems.items["9097"].visuals = {
+        asset_modifier = {
+            type = "particle_create",
+            modifier = "particles/econ/items/sniper/sniper_witch_hunter/sniper_witch_hunter_weapon_ambient.vpcf"
+        }
+    }
 
     local heroes = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
     local cosmeticsParticles = {}
@@ -321,6 +335,23 @@ function GameMode:EventStateChanged(args)
     end
 end
 
+function GameMode:GenerateSpawnPoints(amount, circleSize)
+    local circleSize = 1200
+
+    if GetMapName() ~= "ranked_2v2" and GetMapName() ~= "ranked_1v1" then
+        circleSize = 1550
+    end
+
+    local result = {}
+
+    for i = 0, amount - 1 do
+        local a = i * math.pi / amount * 2
+        table.insert(result, Vector(math.cos(a), math.sin(a), 0) * circleSize)
+    end
+
+    return result
+end
+
 function GameMode:OnGameSetup()
     print("Setting players up")
 
@@ -338,26 +369,8 @@ function GameMode:OnGameSetup()
         end
     end
 
-    local circleSize = 1200
-
-    if GetMapName() ~= "ranked_2v2" then
-        circleSize = 1550
-    end
-
-    local roundSpawnPoints = {}
-
-    for i = 0, 3 do
-        local a = i * math.pi / 4 * 2
-        table.insert(roundSpawnPoints, Vector(math.cos(a), math.sin(a), 0) * circleSize)
-    end
-
-    local roundSpawnPointsBig = {}
-
-    for i = 0, 5 do
-        local a = i * math.pi / 6 * 2
-        table.insert(roundSpawnPointsBig, Vector(math.cos(a), math.sin(a), 0) * circleSize)
-    end
-
+    local roundSpawnPoints = self:GenerateSpawnPoints(4)
+    local roundSpawnPointsBig = self:GenerateSpawnPoints(6)
     local teamSpawnPoints = {}
 
     for _, start in ipairs(Entities:FindAllByName("3v3_start")) do
@@ -478,8 +491,13 @@ function GameMode:FilterExecuteOrder(filterTable)
             if filterTable.entindex_ability > 0 then
                 local ability = EntIndexToHScript(filterTable.entindex_ability)
                 local im = DOTA_ABILITY_BEHAVIOR_IMMEDIATE
+                local location
 
-                if bit.band(ability:GetBehavior(), im) == im and IsFullyCastable(ability) then
+                if orderType == DOTA_UNIT_ORDER_CAST_POSITION then
+                    location = Vector(filterTable.position_x, filterTable.position_y, filterTable.position_z)
+                end
+
+                if bit.band(ability:GetBehavior(), im) == im and IsFullyCastable(ability, location) then
                     local all = FindUnitsInRadius(
                         0,
                         Vector(),
@@ -604,6 +622,8 @@ function GameMode:InitModifiers()
     LinkLuaModifier("modifier_custom_healthbar", "abilities/modifier_custom_healthbar", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_player_id", "abilities/modifier_player_id", LUA_MODIFIER_MOTION_NONE)
     LinkLuaModifier("modifier_obstacle", "abilities/modifier_obstacle", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_tree_heal", "abilities/modifier_tree_heal", LUA_MODIFIER_MOTION_NONE)
+    LinkLuaModifier("modifier_rune_blue", "abilities/modifier_rune_blue", LUA_MODIFIER_MOTION_NONE)
 end
 
 function GameMode:SetupMode()
@@ -758,7 +778,7 @@ function GameMode:RecordKill(victim, source, fell)
         })
     end
 
-     CustomGameEventManager:Send_ServerToAllClients("kill_log_entry", {
+    CustomGameEventManager:Send_ServerToAllClients("kill_log_entry", {
         killer = source.owner.hero:GetName(),
         victim = victim:GetName(),
         color = self.TeamColors[source.owner.team],
@@ -767,6 +787,10 @@ function GameMode:RecordKill(victim, source, fell)
 end
 
 function GameMode:OnDamageDealt(hero, source, amount)
+    if not instanceof(hero, Hero) then
+        return
+    end
+
     if hero ~= source and source and source.owner and hero.owner and source.owner.team ~= hero.owner.team then
         if self.round then
             self.round.statistics:IncreaseDamageDealt(source.owner, amount)
@@ -967,7 +991,7 @@ function GameMode:OnRoundEnd(round)
     for player, earned in pairs(self.scoreEarned) do
         player.score = player.score + earned
     end
-    
+
     for _, player in pairs(self.Players) do
         local playerData = {}
         playerData.id = player.id
@@ -1077,7 +1101,9 @@ function GameMode:OnRoundEnd(round)
         else
             self:SetState(STATE_HERO_SELECTION)
             self.heroSelection:Start(function() self:OnHeroSelectionEnd() end)
-            
+
+            SystemMessage("SystemRoundOver", { round = self.roundNumber - 1 })
+
             GameRules:GetGameModeEntity():StopSound("dsadowski_01.music.battle_01")
             GameRules:GetGameModeEntity():EmitSound("dsadowski_01.music.countdown")
         end
@@ -1085,6 +1111,13 @@ function GameMode:OnRoundEnd(round)
 end
 
 function GameMode:OnHeroSelectionEnd()
+    -- Thanks!
+    if self.roundNumber == 2 and ({ unranked = true, ranked_3v3 = true })[GetMapName()] then
+        print("[IMPORTANT] T H A N K S F O R T H A T V A L V E")
+        self.level:ThanksValve()
+        print("[IMPORTANT] Spicy worldlayers!")
+    end
+
     self.level:Reset()
     self.currentScoreAddition = 1
     self.scoreEarned = {}
@@ -1098,8 +1131,9 @@ function GameMode:OnHeroSelectionEnd()
             end
         end
     )
-    self.round:CreateHeroes(self.gameSetup:GetSpawnPoints())
+    self.round:CreateHeroes(self.gameSetup:GetSpawnPoints(), self:GetRankedMode())
     self.round:SpawnObstacles()
+    self.round:RandomlyGenerateDamagedGround()
     self.firstBloodBy = nil
     self:SetState(STATE_ROUND_IN_PROGRESS)
     self:UpdateGameInfo()
@@ -1194,7 +1228,6 @@ function GameMode:UpdateAvailableHeroesTable()
             forNewPlayers = data.forNewPlayers,
             range = data.range,
             dateAdded = data.dateAdded,
-            barOffset = data.barOffset
         }
 
         table.insert(heroes, hero)
@@ -1389,7 +1422,6 @@ function GameMode:LoadCustomHeroes()
 
     local customHeroes = LoadKeyValues("scripts/npc/npc_heroes_custom.txt")
     local customAbilities = LoadKeyValues("scripts/npc/npc_abilities_custom.txt")
-    local defaultHeroes = LoadKeyValues("scripts/npc/npc_heroes.txt")
 
     local enableForDebug = false--IsInToolsMode() and PlayerResource:GetPlayerCount() == 1
     local order = 0
@@ -1414,8 +1446,7 @@ function GameMode:LoadCustomHeroes()
                 hideOnDeathDelay = data.HideOnDeathDelay,
                 forNewPlayers = data.ForNewPlayers,
                 range = data.Range,
-                dateAdded = data.DateAdded,
-                barOffset = defaultHeroes[data.override_hero].HealthBarOffset
+                dateAdded = data.DateAdded
             }
 
             local abilities = {}
@@ -1544,7 +1575,7 @@ function GameMode:Start()
     self.heroSelection = HeroSelection(
         self.Players,
         self.AvailableHeroes,
-        self.TeamColors, 
+        self.TeamColors,
         self.chat,
         true,
         self.rankedMode ~= nil
@@ -1633,7 +1664,7 @@ end
 if IsInToolsMode() then
     _G.Cosmetics = LoadKeyValues("scripts/npc/cosmetics.txt")
 
-    for i = 0, 30 do
+    for i = 0, 50 do
         for hero, cosmetics in pairs(Cosmetics) do
             for _, asset in pairs(cosmetics) do
                 if type(asset) == "table" then

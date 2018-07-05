@@ -48,6 +48,10 @@ function ProjectilePudgeQ:CollideWith(target)
 
     if blocked then
         if not self.goingBack then
+            if instanceof(target, Obstacle) then
+                target:DealOneDamage(self)
+            end
+            
             self:RetractHook()
         end
 
@@ -75,10 +79,6 @@ function ProjectilePudgeQ:CollideWith(target)
             ParticleManager:ReleaseParticleIndex(blood)
 
             target:EmitSound("Arena.Pudge.HitQ.Voice")
-
-            if target:HasModifier("modifier_pudge_a") then
-                PudgeMeat(self.round, self.hero, target:GetPos()):Activate()
-            end
         end
 
         self:Destroy()
@@ -160,6 +160,10 @@ function DashPudgeQ:constructor(hero, target, ability, particle)
 
     self.pudge = hero
     self.particle = particle
+
+    if instanceof(target, Hero) then
+        target:AddKnockbackSource(hero)
+    end
 
     ParticleManager:SetParticleControlEnt(self.particle, 3, target:GetUnit(), PATTACH_POINT_FOLLOW, "attach_hitloc", target:GetPos(), true)
 end

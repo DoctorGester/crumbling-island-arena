@@ -4,17 +4,20 @@ LinkLuaModifier("modifier_earth_spirit_e", "abilities/earth_spirit/modifier_eart
 LinkLuaModifier("modifier_earth_spirit_e_animation", "abilities/earth_spirit/modifier_earth_spirit_e", LUA_MODIFIER_MOTION_NONE)
 
 function earth_spirit_e:GetBehavior()
+    local default = bit.bor(DOTA_ABILITY_BEHAVIOR_POINT, DOTA_ABILITY_BEHAVIOR_IMMEDIATE)
+
     if self:GetCaster():HasModifier("modifier_earth_spirit_stand") then
-        return DOTA_ABILITY_BEHAVIOR_POINT
+        return default
     end
 
-    return bit.bor(DOTA_ABILITY_BEHAVIOR_POINT, DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES)
+    return bit.bor(default, DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES)
 end
 
 function earth_spirit_e:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 600)
+    local hero = self:GetCaster():GetParentEntity()
 
-    local hero = self:GetCaster().hero
+    Wrappers.DirectionalAbility(self, hero:HasModifier("modifier_earth_spirit_stand") and 1200 or 600)
+
     local target = self:GetCursorPosition()
     local targetRemnant = EarthSpirit:FindNonStandRemnantCursor(self, target)
     local hadStand = false
@@ -28,17 +31,16 @@ function earth_spirit_e:OnSpellStart()
         hero:GetRemnantStand():SetStandingHero(nil)
     end
 
-    ESDash(targetRemnant, hero, target, 900, {
+    ESDash(targetRemnant, hero, target, 1400, {
         loopingSound = "Arena.Earth.CastE.Loop",
         modifier = { name = "modifier_earth_spirit_e", ability = self },
         forceFacing = true,
         noFixedDuration = true,
         arrivalFunction = function()
-            if targetRemnant and not targetRemnant.destroyed and not targetRemnant.standingHero then
+            if targetRemnant and not targetRemnant.destroyed and not targetRemnant.standingHero and not targetRemnant.falling then
                 targetRemnant:SetStandingHero(hero)
                 target = targetRemnant:GetPos()
                 hero:SetPos(Vector(target.x, target.y, target.z + 150))
-                self:EndCooldown()
 
                 Timers:CreateTimer(function()
                     hero:AreaEffect({
@@ -85,7 +87,7 @@ end
 function ESDash:Update()
     getbase(ESDash).Update(self)
 
-    if self.targetRemnant and not self.targetRemnant.destroyed then
+    if self.targetRemnant and not self.targetRemnant.destroyed and not self.targetRemnant.falling then
         self.to = self.targetRemnant:GetPos()
     end
 end

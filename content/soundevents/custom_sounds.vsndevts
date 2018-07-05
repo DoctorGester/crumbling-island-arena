@@ -474,7 +474,7 @@
 		event_type = "1.0"
 	}
 
-	Arena.RuneSpawn = {
+	Arena.RuneHealingSpawn = {
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[
@@ -488,11 +488,85 @@
 		event_type = "1.0"
 	}
 
+	Arena.RuneBlueSpawn = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/items/rune_dd.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.RuneBlueHit = {
+	    type = "dota_src1_3d"
+        vsnd_files =
+        [
+            "sounds/weapons/hero/invoker/cold_snap.vsnd"
+        ]
+        volume = "1.0"
+        pitch_rand_min = "-0.05"
+        pitch_rand_max = "0.05"
+        pitch = "1.0"
+        soundlevel = "95.0"
+        event_type = "1.0"
+	}
+
 	Arena.Rune = {
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[
 			"sounds/items/guardian_greaves.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Bomb = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/techies/remote_mine01.vsnd",
+			"sounds/weapons/hero/techies/remote_mine02.vsnd",
+			"sounds/weapons/hero/techies/remote_mine03.vsnd",
+			"sounds/weapons/hero/techies/remote_mine04.vsnd",
+			"sounds/weapons/hero/techies/remote_mine05.vsnd",
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.BombTick = {
+	    type = "dota_update_default"
+	    vsnd_files =
+	    [
+	        "sounds/weapons/hero/techies/remote_mine_activate.vsnd"
+	    ]
+	    volume = "1.0"
+	    pitch_rand_min = "-0.05"
+	    pitch_rand_max = "0.05"
+	    pitch = "1.0"
+	    soundlevel = "95.0"
+	    event_type = "1.0"
+	}
+
+	Arena.TreeHealStart = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/items/tango.vsnd"
 		]
 		volume = "1.0"
 		pitch_rand_min = "-0.05"
@@ -524,6 +598,34 @@
 		volume_falloff_max = "1800.000000"
 		spread_radius = "100.000000"
 	}
+
+    Arena.AbilityBlink = {
+        type = "dota_update_default"
+        vsnd_files =
+        [
+            "sounds/items/iron_talon.vsnd"
+        ]
+        volume = "1.0"
+        pitch_rand_min = "-0.45"
+        pitch_rand_max = "-0.45"
+        pitch = "1.0"
+        soundlevel = "95.0"
+        event_type = "1.0"
+    }
+
+    Arena.AbilityBlink.Save = {
+        type = "dota_update_default"
+        vsnd_files =
+        [
+            "sounds/ui/inventory/set_applied.vsnd"
+        ]
+        volume = "1.0"
+        pitch_rand_min = "-0.05"
+        pitch_rand_max = "0.05"
+        pitch = "1.0"
+        soundlevel = "95.0"
+        event_type = "1.0"
+    }
 
 	Arena.PA.Throw = {
 		type = "dota_src1_3d"
@@ -639,6 +741,37 @@
 		pitch_rand_min = "-0.05"
 		pitch_rand_max = "0.05"
 		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.PA.StepE = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/physics/footsteps/hero/enchantress/footstep01.vsnd",
+			"sounds/physics/footsteps/hero/enchantress/footstep02.vsnd",
+			"sounds/physics/footsteps/hero/enchantress/footstep03.vsnd",
+			"sounds/physics/footsteps/hero/enchantress/footstep04.vsnd",
+			"sounds/physics/footsteps/hero/enchantress/footstep05.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.PA.HitR.Silence = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/items/orchid.vsnd"
+		]
+		volume = "0.15"
+		pitch_rand_min = "-0.35"
+		pitch_rand_max = "-0.35"
 		soundlevel = "95.0"
 		event_type = "1.0"
 	}
@@ -992,6 +1125,36 @@
 		event_type = "1.0"
 	}
 
+	Arena.Earth.HitA = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/earth_spirit/attack01.vsnd",
+			"sounds/weapons/hero/earth_spirit/attack02.vsnd",
+			"sounds/weapons/hero/earth_spirit/attack03.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Earth.ProcA = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/magnataur/shockwave_particle.vsnd"
+		]
+		volume = "2.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.15"
+		soundlevel = "81.0"
+		event_type = "1.0"
+	}
+
 	Arena.Earth.CastQ = {
 		type = "dota_src1_3d"
 		vsnd_files = 
@@ -1010,6 +1173,11 @@
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[
+			"sounds/vo/earth_spirit/earthspi_stonecaller_04.vsnd",
+			"sounds/vo/earth_spirit/earthspi_stonecaller_05.vsnd",
+			"sounds/vo/earth_spirit/earthspi_stonecaller_10.vsnd",
+			"sounds/vo/earth_spirit/earthspi_stonecaller_11.vsnd",
+			"sounds/vo/earth_spirit/earthspi_stonecaller_12.vsnd",
 			"sounds/vo/earth_spirit/earthspi_stonecaller_15.vsnd"
 		]
 		volume = "2.0"
@@ -1027,6 +1195,26 @@
 			"sounds/weapons/hero/earth_spirit/stone_remnant_destroy.vsnd"
 		]
 		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Earth.CastW.Voice = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/vo/earth_spirit/earthspi_geomagnetic_01.vsnd",
+			"sounds/vo/earth_spirit/earthspi_geomagnetic_02.vsnd",
+			"sounds/vo/earth_spirit/earthspi_geomagnetic_04.vsnd",
+			"sounds/vo/earth_spirit/earthspi_geomagnetic_06.vsnd",
+			"sounds/vo/earth_spirit/earthspi_geomagnetic_07.vsnd",
+			"sounds/vo/earth_spirit/earthspi_geomagnetic_09.vsnd",
+			"sounds/vo/earth_spirit/earthspi_geomagnetic_10.vsnd"
+		]
+		volume = "2.0"
 		pitch_rand_min = "-0.05"
 		pitch_rand_max = "0.05"
 		pitch = "1.0"
@@ -1078,6 +1266,20 @@
 		event_type = "1.0"
 	}
 
+	Arena.Earth.HitW.Sub = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/earth_spirit/boulder_smash_target.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "60.0"
+		event_type = "1.0"
+	}
+
 	Arena.Earth.CastE.Loop = {
 		type = "dota_update_default"
 		vsnd_files = 
@@ -1095,10 +1297,10 @@
 	}
 
 	Arena.Earth.CastR = {
-		type = "dota_src1_3d"
+		type = "dota_update_default"
 		vsnd_files = 
 		[
-			"sounds/weapons/hero/earth_spirit/magnetize_cast.vsnd"
+			"sounds/weapons/hero/earth_spirit/rolling_boulder_cast.vsnd"
 		]
 		volume = "1.0"
 		pitch_rand_min = "-0.05"
@@ -1108,11 +1310,11 @@
 		event_type = "1.0"
 	}
 
-	Arena.Earth.EndR.Voice = {
+	Arena.Earth.CastR.Voice = {
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[
-			"sounds/vo/earth_spirit/earthspi_respawn_12.vsnd"
+			"sounds/vo/earth_spirit/earthspi_rollingboulder_03.vsnd"
 		]
 		volume = "2.0"
 		pitch_rand_min = "-0.05"
@@ -1126,7 +1328,21 @@
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[
-			"sounds/weapons/hero/magnataur/shockwave_particle.vsnd"
+			"sounds/weapons/hero/earth_spirit/rolling_boulder_stop.vsnd"
+		]
+		volume = "2.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.15"
+		soundlevel = "81.0"
+		event_type = "1.0"
+	}
+
+	Arena.Earth.HitR = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/earth_spirit/rolling_boulder_target.vsnd"
 		]
 		volume = "2.0"
 		pitch_rand_min = "-0.05"
@@ -2657,7 +2873,7 @@
 		[
 			"sounds/weapons/hero/leshrac/split_earth.vsnd"
 		]
-		volume = "0.65"
+		volume = "0.35"
 		pitch_rand_min = "-0.1"
 		pitch_rand_max = "0.1"
 		pitch = "1.0"
@@ -4519,7 +4735,7 @@
 	}
 
 	Arena.Pudge.LoopR = {
-		type = "dota_src1_3d"
+		type = "dota_update_default"
 		vsnd_files = 
 		[
 			"sounds/weapons/hero/pudge/rot.vsnd"
@@ -4527,6 +4743,8 @@
 		volume = "1.0"
 		pitch_rand_min = "-0.05"
 		pitch_rand_max = "0.05"
+        volume_fade_in = "0.1"
+        volume_fade_out = "0.7"
 		pitch = "1.0"
 		soundlevel = "95.0"
 		event_type = "1.0"
@@ -7010,4 +7228,207 @@
 		event_type = "1.0"
 	}
 
+	Arena.Nevermore.CastA = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/nevermore/attack01.vsnd",
+			"sounds/weapons/hero/nevermore/attack02.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Nevermore.HitA = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/witch_doctor/projectile_impact.vsnd"
+		]
+		volume = "0.5"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Nevermore.ProcA.First = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/vo/nevermore/nev_level_01.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Nevermore.ProcA.Second = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/vo/nevermore/nev_level_06.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Nevermore.ProcA.FX = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/clinkz/death_pact.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Nevermore.CastQ = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/nevermore/shadowraze.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Nevermore.CastQ.Voice = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/vo/nevermore/nev_ability_shadow_07.vsnd",
+			"sounds/vo/nevermore/nev_ability_shadow_08.vsnd",
+			"sounds/vo/nevermore/nev_ability_shadow_18.vsnd",
+			"sounds/vo/nevermore/nev_ability_shadow_19.vsnd",
+			"sounds/vo/nevermore/nev_ability_shadow_20.vsnd",
+			"sounds/vo/nevermore/nev_ability_shadow_21.vsnd",
+			"sounds/vo/nevermore/nev_ability_shadow_22.vsnd",
+			"sounds/vo/nevermore/nev_ability_shadow_23.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	"Arena.Nevermore.CastE" = {
+	    type = "dota_update_default"
+	    vsnd_files =
+	    [
+	        "sounds/weapons/hero/death_prophet/spirit_siphon_cast.vsnd"
+	    ]
+	    volume = "1.0"
+	    pitch_rand_min = "-0.05"
+	    pitch_rand_max = "0.05"
+	    volume_fade_in = "0.1"
+	    volume_fade_out = "2.0"
+	    pitch = "1.0"
+	    soundlevel = "95.0"
+	    event_type = "1.0"
+	}
+
+	"Arena.Nevermore.HitE" = {
+	    type = "dota_update_default"
+	    vsnd_files =
+	    [
+	        "sounds/weapons/hero/death_prophet/exorcism_impact01.vsnd",
+	        "sounds/weapons/hero/death_prophet/exorcism_impact02.vsnd",
+	        "sounds/weapons/hero/death_prophet/exorcism_impact03.vsnd",
+	        "sounds/weapons/hero/death_prophet/exorcism_impact04.vsnd",
+	        "sounds/weapons/hero/death_prophet/exorcism_impact05.vsnd",
+	        "sounds/weapons/hero/death_prophet/exorcism_impact06.vsnd",
+	        "sounds/weapons/hero/death_prophet/exorcism_impact07.vsnd",
+	        "sounds/weapons/hero/death_prophet/exorcism_impact08.vsnd",
+	        "sounds/weapons/hero/death_prophet/exorcism_impact09.vsnd"
+	    ]
+	    volume = "1.0"
+	    pitch_rand_min = "-0.05"
+	    pitch_rand_max = "0.05"
+	    pitch = "1.0"
+	    soundlevel = "95.0"
+	    event_type = "1.0"
+	}
+
+	Arena.Nevermore.HitE.Voice = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/vo/nevermore/nev_ability_presence_01.vsnd",
+			"sounds/vo/nevermore/nev_ability_presence_02.vsnd",
+			"sounds/vo/nevermore/nev_ability_presence_03.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Nevermore.CastR = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/nevermore/requiem_cast.vsnd"
+		]
+		volume = "1.0"
+        volume_fade_out = "0.2"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Nevermore.CastR.Voice = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/vo/nevermore/nev_ability_requiem_11.vsnd"
+		]
+		volume = "1.0"
+        volume_fade_out = "0.4"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Nevermore.FinishR = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/nevermore/requiem_of_souls.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
 }

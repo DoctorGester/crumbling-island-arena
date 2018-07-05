@@ -290,9 +290,12 @@ function CenterCamera(on){
 function AddDebugButton(text, eventName){
     var panel = $("#DebugPanel");
     var button = $.CreatePanel("Button", panel, "");
-    button.SetPanelEvent("onactivate", function(){
-        GameEvents.SendCustomGameEventToServer(eventName, {});
-    });
+
+    if (eventName) {
+        button.SetPanelEvent("onactivate", function(){
+            GameEvents.SendCustomGameEventToServer(eventName, {});
+        });
+    }
 
     $.CreatePanel("Label", button, "").text = text;
 
@@ -305,12 +308,17 @@ function FillDebugPanel(){
     heroText.textmode = "normal";
     heroText.text = "sven";
 
-    AddDebugButton("Add Test Hero", null).SetPanelEvent("onactivate", function(){
-        GameEvents.SendCustomGameEventToServer("debug_create_test_hero", {
-            name: "npc_dota_hero_" + heroText.text.trim()
-        });
-    });
+    var heroCallback = function(enemy) {
+        return function() {
+            GameEvents.SendCustomGameEventToServer("debug_create_test_hero", {
+                name: "npc_dota_hero_" + heroText.text.trim(),
+                enemy: enemy
+            });
+        }
+    };
 
+    AddDebugButton("Add Enemy Hero").SetPanelEvent("onactivate", heroCallback(true));
+    AddDebugButton("Add Ally Hero").SetPanelEvent("onactivate", heroCallback(false));
     AddDebugButton("Take 1 damage", "debug_take_damage");
     AddDebugButton("Heal 1 health", "debug_heal_health");
     AddDebugButton("Heal debug hero", "debug_heal_debug_hero");
@@ -318,9 +326,10 @@ function FillDebugPanel(){
     AddDebugButton("Switch end check", "debug_switch_end_check");
     AddDebugButton("Switch debug display", "debug_switch_debug_display");
     AddDebugButton("Reset level", "debug_reset_level");
-    AddDebugButton("Toggle attack", null).SetPanelEvent("onactivate", function(){
+    AddDebugButton("Toggle attack").SetPanelEvent("onactivate", function(){
         attackOff = !attackOff;
     });
+    AddDebugButton("Toggle WTF", "debug_toggle_wtf");
     AddDebugButton("ALL HEROES", "debug_test_everything");
 }
 
@@ -392,10 +401,12 @@ var DeathMatch = new (function() {
                 _(hero.abilities)
                     .chain()
                     .filter(function(a) {
-                        return EndsWith(a.name, ability.toLowerCase());
+                        return EndsWith(a, ability.toLowerCase());
                     })
                     .first()
                     .value();
+
+            found = (CustomNetTables.GetTableValue("static", "abilities") || {})[found];
 
             var row = $("#AbilityRow" + ability);
 
@@ -502,7 +513,11 @@ var DeathMatch = new (function() {
     }
 
     this.HideHeroes = function() {
-        $("#DeathMatchHeroes").SetHasClass("Hidden", true);
+        var panel = $("#DeathMatchHeroes");
+
+        panel.SetHasClass("DeathMatchHeroesAnimated", false);
+        panel.SetHasClass("DeathMatchPanelHidden", true);
+        panel.SetHasClass("DeathMatchHeroesAnimated", true);
     }
 
     this.OnRespawn = function(args) {

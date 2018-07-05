@@ -14,7 +14,7 @@ function self:OnSpellStart()
         heightFunction = function(dash, current)
             local d = (dash.from - dash.to):Length2D()
             local x = (dash.from - current):Length2D()
-            return ParabolaZ(math.min(length / 1200, 1) * 460, d, x)
+            return ParabolaZ(math.min(length / 1200, 1) * 560, d, x)
         end,
         loopingSound = "Arena.Gyro.LoopE",
         modifier = { name = "modifier_gyro_e", ability = self },

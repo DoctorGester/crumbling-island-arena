@@ -164,22 +164,22 @@
     transition-timing-function: ease-in-out;
 }
 
-.PlayerVoteffa {
+.PlayerVoteFFA {
     hue-rotation: 240deg;
     opacity: 1.0;
 }
 
-.PlayerVotedm {
+.PlayerVoteDM {
     hue-rotation: 280deg;
     opacity: 1.0;
 }
 
-.PlayerVote2v2 {
+.PlayerVote2V2 {
     hue-rotation: 20deg;
     opacity: 1.0;
 }
 
-.PlayerVote3v3 {
+.PlayerVote3V3 {
     hue-rotation: 255deg;
     opacity: 1.0;
 }
@@ -356,26 +356,26 @@
     border-bottom: 0;
 }
 
-#2v2Button
+#2V2Button
 {
     background-color: #27ae60;
     border: 0;
     border-bottom: 4px solid #219d55;
 }
 
-#2v2Button:active
+#2V2Button:active
 {
     border-bottom: 0;
 }
 
-#3v3Button
+#3V3Button
 {
     background-color: #FF6A00;
     border: 0;
     border-bottom: 4px solid #E25A00;
 }
 
-#3v3Button:active
+#3V3Button:active
 {
     border-bottom: 0;
 }

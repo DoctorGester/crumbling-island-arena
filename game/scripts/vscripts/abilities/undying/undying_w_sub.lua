@@ -1,8 +1,8 @@
-undying_q_sub = class({})
+undying_w_sub = class({})
 
-LinkLuaModifier("modifier_undying_q_sub", "abilities/undying/modifier_undying_q_sub", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_undying_w_sub", "abilities/undying/modifier_undying_w_sub", LUA_MODIFIER_MOTION_NONE)
 
-function undying_q_sub:OnSpellStart()
+function undying_w_sub:OnSpellStart()
     local hero = self:GetCaster():GetParentEntity()
     local stacks = self:GetCaster():GetModifierStackCount("modifier_undying_q_health", hero:GetUnit())
 
@@ -28,7 +28,7 @@ function undying_q_sub:OnSpellStart()
 
             ScreenShake(hero:GetPos(), 5, 150, 0.45, 3000, 0, true)
         end,
-        modifier = { name = "modifier_undying_q_sub", ability = self },
+        modifier = { name = "modifier_undying_w_sub", ability = self },
     })
 
     hero:EmitSound("Arena.Undying.CastW.Sub")
@@ -38,4 +38,4 @@ if IsClient() then
     require("wrappers")
 end
 
-Wrappers.NormalAbility(undying_q_sub)
+Wrappers.NormalAbility(undying_w_sub)

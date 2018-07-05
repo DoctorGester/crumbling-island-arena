@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"nevermore_a" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/nevermore/nevermore_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "nevermore_necromastery"
+		"AbilityCooldown" "0.6"
+		"AbilityCastPoint" "0.15"
+		"Damage" "1"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_FROM_LINE_WITH_START_OFFSET"
+			"MaxLength" "750"
+			"MinLength" "750"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "750"
+		}
+	}
+}

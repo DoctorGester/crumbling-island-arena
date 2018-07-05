@@ -10,6 +10,7 @@ Stats.maps = {
 
 Stats.roundInfo = {}
 Stats.roundNumber = 0
+Stats.keyVersion = "v1"
 
 if IsInToolsMode() then
     Stats.host = "http://127.0.0.1:5141/"
@@ -98,6 +99,7 @@ end
 
 function Stats.RequestData(url, callback, rep)
     local req = CreateHTTPRequestScriptVM("GET", Stats.host..url)
+    req:SetHTTPRequestHeaderValue("Dedicated-Server-Key", GetDedicatedServerKey(Stats.keyVersion))
     req:Send(function(res)
         if res.StatusCode ~= 200 then
             print("Server connection failure")
@@ -123,7 +125,7 @@ function Stats.SendData(url, data, callback, rep)
     local req = CreateHTTPRequestScriptVM("POST", Stats.host..url)
     local encoded = json.encode(data)
     print("[STATS] URL", url, "payload:", encoded)
-
+    req:SetHTTPRequestHeaderValue("Dedicated-Server-Key", GetDedicatedServerKey(Stats.keyVersion))
     req:SetHTTPRequestGetOrPostParameter('data', encoded)
     req:Send(function(res)
         if res.StatusCode ~= 200 then

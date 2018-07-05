@@ -1,0 +1,21 @@
+"DOTAAbilities" {
+	"earth_spirit_a" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/earth_spirit/earth_spirit_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "earth_spirit_magnetize"
+		"AbilityCooldown" "0.6"
+		"AbilityCastPoint" "0.135"
+		"Damage" "1"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "HasModifier(unit, 'modifier_earth_spirit_stand') ? 400 : 300"
+		}
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
+			"Radius" "HasModifier(unit, 'modifier_earth_spirit_stand') ? 400 : 300"
+		}
+	}
+}

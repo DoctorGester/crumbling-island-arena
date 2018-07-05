@@ -29,10 +29,11 @@ if IsServer() then
                 owner = hero,
                 from = hero:GetPos() + Vector(0, 0, 128),
                 to = target + Vector(0, 0, 128),
-                speed = 1550,
+                speed = 1950,
                 graphics = "particles/gyro_r/gyro_r.vpcf",
                 distance = 1500,
                 hitSound = "Arena.Gyro.HitR",
+                damagesTrees = true,
                 nonBlockedHitAction = function(projectile, victim)
                     FX("particles/econ/items/gyrocopter/hero_gyrocopter_gyrotechnics/gyro_guided_missile_explosion.vpcf", PATTACH_ABSORIGIN, projectile, {
                         cp0 = projectile:GetPos(),

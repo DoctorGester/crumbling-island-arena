@@ -230,15 +230,67 @@ TinyUtil = {}
 function TinyUtil.ChangeModelLevel(hero, previous, level)
     local model = hero:GetUnit():FirstMoveChild()
 
-    level = tostring(level)
-    previous = tostring(previous)
+    local function GenerateModelNames(suffix)
+        return {
+            string.format("models/heroes/tiny_0%s/tiny_0%s_" .. suffix .. ".vmdl", 1, 1),
+            string.format("models/heroes/tiny_0%s/tiny_0%s_" .. suffix .. ".vmdl", 2, 2),
+            string.format("models/heroes/tiny_0%s/tiny_0%s_" .. suffix .. ".vmdl", 3, 3),
+            string.format("models/heroes/tiny_0%s/tiny_0%s_" .. suffix .. ".vmdl", 4, 4)
+        }
+    end
 
-    while model ~= nil do
-        if model:GetClassname() == "npc_dota_creature" and not model:GetModelName():ends("tree.vmdl") then
-            local newName = string.gsub(model:GetModelName(), previous, level)
-            model:SetModel(newName)
+    local standardModels = {
+        GenerateModelNames("body"),
+        GenerateModelNames("head"),
+        GenerateModelNames("left_arm"),
+        GenerateModelNames("right_arm")
+    }
+
+    local awardPrefix = "models/items/tiny/burning_stone_giant_"
+
+    local awardModels = {
+        {
+            awardPrefix .. "body/burning_stone_giant_body.vmdl",
+            awardPrefix .. "body_level_2/burning_stone_giant_body_level_2.vmdl",
+            awardPrefix .. "body_level_3/burning_stone_giant_body_level_3.vmdl",
+            awardPrefix .. "body_level_4/burning_stone_giant_body_level_4.vmdl",
+        },
+        {
+            awardPrefix .. "head/burning_stone_giant_head.vmdl",
+            awardPrefix .. "head_level_2/burning_stone_giant_head_level_2.vmdl",
+            awardPrefix .. "head_level_3/burning_stone_giant_head_level_3.vmdl",
+            awardPrefix .. "head_level_4/burning_stone_giant_head_level_4.vmdl",
+        },
+        {
+            awardPrefix .. "left_arm/burning_stone_giant_left_arm.vmdl",
+            awardPrefix .. "left_arm_level_2/burning_stone_giant_left_arm_level_2.vmdl",
+            awardPrefix .. "left_arm_level_3/burning_stone_giant_left_arm_level_3.vmdl",
+            awardPrefix .. "left_arm_level_4/burning_stone_giant_left_arm_level_4.vmdl",
+        },
+        {
+            awardPrefix .. "right_arm/burning_stone_giant_right_arm.vmdl",
+            awardPrefix .. "right_arm_level_2/burning_stone_giant_right_arm_level_2.vmdl",
+            awardPrefix .. "right_arm_level_3/burning_stone_giant_right_arm_level_3.vmdl",
+            awardPrefix .. "right_arm_level_4/burning_stone_giant_right_arm_level_4.vmdl",
+        }
+    }
+
+    local function ReplaceModel(whichModel, withWhat)
+        print("replacing", whichModel, "with", withWhat)
+        while model ~= nil do
+            if model:GetClassname() == "npc_dota_creature" and model:GetModelName() == whichModel then
+                model:SetModel(withWhat)
+                break
+            end
+
+            model = model:NextMovePeer()
         end
-        model = model:NextMovePeer()
+    end
+
+    local models = hero:IsAwardEnabled() and awardModels or standardModels
+
+    for _, modelsByLevel in pairs(models) do
+        ReplaceModel(modelsByLevel[previous], modelsByLevel[level])
     end
 end
 

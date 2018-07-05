@@ -5,8 +5,7 @@ if IsServer() then
     function self:OnCreated()
         local hero = self:GetParent():GetParentEntity()
 
-        hero:SwapAbilities("undying_q", "undying_q_sub")
-        hero:FindAbility("undying_w"):SetActivated(false)
+        hero:SwapAbilities("undying_w", "undying_w_sub")
         hero:FindAbility("undying_e"):SetActivated(false)
         hero:FindAbility("undying_r"):SetActivated(false)
         hero:Animate(ACT_DOTA_SPAWN)
@@ -18,8 +17,7 @@ if IsServer() then
     function self:OnDestroy()
         local hero = self:GetParent():GetParentEntity()
 
-        hero:SwapAbilities("undying_q_sub", "undying_q")
-        hero:FindAbility("undying_w"):SetActivated(true)
+        hero:SwapAbilities("undying_w_sub", "undying_w")
         hero:FindAbility("undying_e"):SetActivated(true)
         hero:FindAbility("undying_r"):SetActivated(true)
 
@@ -29,7 +27,7 @@ if IsServer() then
         local shield = hero:FindModifier("modifier_undying_q_health")
 
         if shield then
-            shield:Destroy()
+            shield:SetDuration(5, true)
         end
     end
 end

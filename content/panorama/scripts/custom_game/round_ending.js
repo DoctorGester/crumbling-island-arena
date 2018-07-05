@@ -75,14 +75,22 @@ function StartRoundEndAnimation(data){
     var parent = $("#TeamScores");
     var goal = data.goal;
     var players = data.roundData;
+    var draw = true;
+
+    $.Each(players, function(player) {
+        if (player.winner) {
+            draw = false;
+        }
+    });
 
     for (var key in players) {
         var player = players[key];
 
         if (player.id == Game.GetLocalPlayerID()) {
-            $("#RoundResult").text = $.Localize(player.winner ? "RoundWon" : "RoundLost").toUpperCase();
-            Game.EmitSound(player.winner ? "Announcer.RoundWon" : "Announcer.RoundLost");
-            break;
+            var result = draw ? "RoundDraw" : (player.winner ? "RoundWon" : "RoundLost");
+
+            $("#RoundResult").text = $.Localize(result).toUpperCase();
+            Game.EmitSound("Announcer." + result);
         }
     }
 

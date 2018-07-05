@@ -16,8 +16,8 @@ function ember_w:OnSpellStart()
         hitModifier = { name = "modifier_ember_w", duration = 1.0, ability = self },
         hitSound = "Arena.Ember.HitW",
         hitFunction = function(projectile, target)
-            if EmberUtil.Burn(hero, target, self) then
-                target:Damage(hero, self:GetDamage())
+            if EmberUtil.Burn(projectile:GetTrueHero(), target, self) then
+                target:Damage(projectile, self:GetDamage())
             end
         end,
         destroyFunction = function()

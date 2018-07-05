@@ -19,11 +19,22 @@ function pudge_e:OnSpellStart()
     dash.hitParams = {
         ability = self,
         modifier = { name = "modifier_stunned_lua", ability = self, duration = 0.7 },
-        knockback = { force = 90 },
+        knockback = {
+            force = 90,
+            direction = function(target)
+                local towardsTarget = (target:GetPos() - hero:GetPos()):Normalized()
+
+                return direction * 0.65 + towardsTarget * 0.35
+            end
+        },
+        damage = self:GetDamage(),
         notBlockedAction = function(target)
             ScreenShake(target:GetPos(), 5, 150, 0.45, 3000, 0, true)
             hero:EmitSound("Arena.Pudge.HitE")
             dash:Interrupt()
+        end,
+        filter = function(target)
+            return not instanceof(target, PudgeMeat)
         end
     }
 end

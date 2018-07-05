@@ -47,6 +47,9 @@ function Hero:SetUnit(unit)
     unit.hero = self
 
     Wrappers.WrapAbilitiesFromHeroData(unit, self.data)
+
+    self:GetUnit():RemoveAbility("placeholder_slot_d")
+    self:GetUnit():AddAbility("ability_blink"):SetLevel(1)
 end
 
 function Hero:GetShortName()
@@ -139,12 +142,11 @@ function Hero:BuildWearableStack(adjustState)
 
                 if adjustState then
                     if entry.emote then
-                        self:GetUnit():RemoveAbility("placeholder_emote")
                         self:GetUnit():AddAbility("emote"):SetLevel(1)
                     end
 
                     if entry.taunt then
-                        self:GetUnit():RemoveAbility("placeholder_taunt")
+                        self:GetUnit():RemoveAbility("placeholder_slot_f")
 
                         local ability = entry.taunt.type == "static" and "taunt_static" or "taunt_moving"
                         local taunt = self:GetUnit():AddAbility(ability)
@@ -172,12 +174,6 @@ function Hero:LoadWearables()
     self:LoadItems(unpack(self:BuildWearableStack(true)))
 end
 
-function Hero:EmitSound(sound, location)
-    getbase(Hero).EmitSound(self, sound, location)
-
-    table.insert(self.soundsStarted, sound)
-end
-
 function Hero:SetOwner(owner)
     self.owner = owner
     self.unit:SetControllableByPlayer(owner.id, true)
@@ -202,8 +198,8 @@ function Hero:GetRad()
     return 64
 end
 
-function Hero:TestFalling()
-    return Spells.TestCircle(self:GetPos(), 100)
+function Hero:TestFalling(pos)
+    return Spells.TestCircle(pos or self:GetPos(), 100)
 end
 
 function Hero:GetHealth()
@@ -242,7 +238,6 @@ end
 
 function Hero:Damage(...)
     getbase(Hero).Damage(self, ...)
-    GameRules.GameMode:OnDamageDealt(self, ...)
 end
 
 function Hero:OnDeath()
@@ -273,12 +268,13 @@ function Hero:Heal(amount)
     if self.unit:IsAlive() then
         self.unit:SetHealth(self.unit:GetHealth() + amount)
 
-        local sign = ParticleManager:CreateParticle("particles/msg_fx/msg_heal.vpcf", PATTACH_CUSTOMORIGIN, mode)
-        ParticleManager:SetParticleControl(sign, 0, self:GetPos())
-        ParticleManager:SetParticleControl(sign, 1, Vector(10, amount, 0))
-        ParticleManager:SetParticleControl(sign, 2, Vector(2, 2, 0))
-        ParticleManager:SetParticleControl(sign, 3, Vector(100, 255, 50))
-        ParticleManager:ReleaseParticleIndex(sign)
+        FX("particles/msg_damage.vpcf", PATTACH_CUSTOMORIGIN, GameRules:GetGameModeEntity(), {
+            cp0 = self:GetPos(),
+            cp1 = Vector(0, amount, 0),
+            cp2 = Vector(math.max(1, amount / 1.5), 1, 0),
+            cp3 = Vector(100, 255, 50),
+            release = true
+        })
 
         self.round.statistics:IncreaseHealingReceived(self.owner, amount)
     end
@@ -427,10 +423,6 @@ function Hero:Remove()
         if modifier.GetName and modifier:GetName() ~= "modifier_falling" then
             modifier:Destroy()
         end
-    end
-
-    for _, sound in pairs(self.soundsStarted) do
-        getbase(Hero).StopSound(self, sound)
     end
 
     getbase(Hero).Remove(self)

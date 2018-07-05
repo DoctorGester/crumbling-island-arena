@@ -1,90 +1,137 @@
 earth_spirit_r = class({})
-LinkLuaModifier("modifier_earth_spirit_remnant", "abilities/earth_spirit/modifier_earth_spirit_remnant", LUA_MODIFIER_MOTION_NONE)
 
-function earth_spirit_r:GetChannelAnimation()
-    return ACT_DOTA_CAST_ABILITY_5
-end
+LinkLuaModifier("modifier_earth_spirit_r", "abilities/earth_spirit/modifier_earth_spirit_r", LUA_MODIFIER_MOTION_NONE)
 
 function earth_spirit_r:GetChannelTime()
-    return 0.5
+	return 5.0
 end
 
-function earth_spirit_r:OnSpellStart()
-    self:GetCaster().hero:EmitSound("Arena.Earth.CastR")
+function earth_spirit_r:GetChannelAnimation()
+	return ACT_DOTA_OVERRIDE_ABILITY_1
 end
 
-function earth_spirit_r:CastFilterResultLocation(location)
-    if not IsServer() then return UF_SUCCESS end
-
-    local hero = self:GetCaster():GetParentEntity()
-    if not hero:FindNonEnemyStandRemnantCursor(self, location) then
-        return UF_FAIL_CUSTOM
-    end
-
-    return UF_SUCCESS
+function earth_spirit_r:GetCastPoint()
+	return 0.10
 end
 
-function earth_spirit_r:GetCustomCastErrorLocation(location)
-    if not IsServer() then return "" end
+if IsServer() then
+	function earth_spirit_r:OnChannelThink(interval)
+		local hero = self:GetCaster():GetParentEntity()
+		local target = self:GetCursorPosition()
 
-    local hero = self:GetCaster():GetParentEntity()
-    if not hero:FindNonEnemyStandRemnantCursor(self, location) then
-        return "#dota_hud_error_earth_spirit_cant_cast_no_remnant"
-    end
+		if interval == 0 then
+			self.modifier = hero:AddNewModifier(hero, self, "modifier_earth_spirit_r", {})
 
-    return ""
+			FX("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp.vpcf", PATTACH_ABSORIGIN, hero, { release = true })
+			FX("particles/units/heroes/hero_earth_spirit/earth_dust_hit.vpcf", PATTACH_ABSORIGIN, hero, { release = true })
+			ScreenShake(hero:GetPos(), 5, 150, 0.25, 2000, 0, true)
+			hero:EmitSound("Arena.Earth.CastQ")
+			hero:EmitSound("Arena.Earth.CastR")
+			hero:EmitSound("Arena.Earth.CastR.Voice")
+
+			if hero:HasRemnantStand() then
+				hero:GetRemnantStand():SetStandingHero(nil)
+			end
+		end
+
+		self.timePassed = (self.timePassed or 0) + interval
+
+		if self.timePassed > 0.15 and not self.started then
+			self.started = true
+			self.timePassed = self.timePassed % 0.15
+			self.roll = EarthSpiritRoll(self, hero, target)
+		end
+
+		if self.roll then
+			self.roll.target = target
+		end
+	end
+
+	function earth_spirit_r:OnChannelFinish(interrupted)
+		self.timePassed = 0
+		self.started = nil
+		self.roll = nil
+
+		local hero = self:GetCaster():GetParentEntity()
+		hero:RemoveModifier("modifier_earth_spirit_r")
+	end
 end
 
-function earth_spirit_r:OnChannelFinish(interrupted)
-    if interrupted then return end
+EarthSpiritRoll = class({}, nil, Dash)
 
-    local hero = self:GetCaster().hero
-    local remnant = hero:FindNonEnemyStandRemnantCursor(self)
+function EarthSpiritRoll:constructor(ability, hero, target)
+	getbase(EarthSpiritRoll).constructor(self, hero, target, 400, {
+		noFixedDuration = true,
+		loopingSound = "Arena.Earth.CastW.Loop",
+		hitParams = {
+			ability = ability,
+			damage = ability:GetDamage(),
+			action = function(target)
+				EarthSpiritKnockback(ability, target, hero, self.direction:Normalized(), self.velocity / 50  * 90, { decrease = 5 })
+			end,
+			notBlockedAction = function(target)
+				target:EmitSound("Arena.Earth.HitR")
 
-    if not remnant then return end
+				if instanceof(target, Hero) then
+					self:Interrupt()
+				end
+			end
+		}
+	})
 
-    hero.round.spells:InterruptDashes(remnant)
+	self.ability = ability
+	self.target = target
+	self.direction = (self.target - hero:GetPos()):Normalized()
 
-    local particlePath = "particles/units/heroes/hero_earth_spirit/espirit_magnet_arclightning.vpcf"
-    local particle = ImmediateEffect(particlePath, PATTACH_CUSTOMORIGIN, self:GetCaster())
-    ParticleManager:SetParticleControl(particle, 0, hero:GetPos())
-    ParticleManager:SetParticleControl(particle, 1, remnant:GetPos())
+	self:SetModifierHandle(ability.modifier)
+end
 
-    local swapVars = { "wearables", "wearableParticles", "mappedParticles", "wearableSlots", "lastStatusFx" }
+function EarthSpiritRoll:HasEnded()
+	return not self.hero:FindAbility("earth_spirit_r"):IsChanneling()
+end
 
-    for _, var in pairs(swapVars) do
-        local temp = hero[var]
-        hero[var] = remnant[var]
-        remnant[var] = temp
-    end
+function EarthSpiritRoll:Update(...)
+	getbase(EarthSpiritRoll).Update(self, ...)
 
-    local remnantUnit = remnant.unit
-    remnantUnit:SetTeam(hero.owner.team)
-    remnant:SetUnit(hero.unit, hero:HasRemnantStand())
-    remnant:SetPos(hero:GetPos())
+	local requiredDirection = (self.target - self.hero:GetPos()):Normalized()
 
-    if hero:HasRemnantStand() then
-        local stand = hero:GetRemnantStand()
-        hero:GetRemnantStand():SetStandingHero(nil)
-        stand:Destroy()
-    end
+	local current = self.direction
+	local angle = current:Dot(requiredDirection)
 
-    hero:EmitSound("Arena.Earth.EndR")
-    hero:EmitSound("Arena.Earth.EndR.Voice")
-    hero:AddNewModifier(hero, self, "modifier_earth_spirit_remnant", {})
-    FreezeAnimation(hero.unit)
+	self.velocity = math.max(25, self.velocity + (angle - 0.75) * 3.5)
+	self.direction = LerpVectors(current, requiredDirection, 0.2)
+	self.hero:GetUnit():SetAngles(0, math.deg(math.atan2(self.direction.y, self.direction.x)), 0)
+end
 
-    remnantUnit:RemoveModifierByName("modifier_earth_spirit_remnant")
-    remnantUnit:FindAbilityByName(self:GetAbilityName()):StartCooldown(self:GetCooldown(1))
-    hero:SetUnit(remnantUnit)
-    hero:SetOwner(hero.owner) -- Just refreshing control
-    hero:Setup()
+function EarthSpiritRoll:End(...)
+	getbase(EarthSpiritRoll).End(self, ...)
 
-    remnantUnit:SetHealth(remnant.health)
+	self.hero:EmitSound("Arena.Earth.EndR")
+	self.hero:EmitSound("Arena.Earth.CastQ")
+
+	FX("particles/units/heroes/hero_elder_titan/elder_titan_echo_stomp.vpcf", PATTACH_ABSORIGIN, self.hero, { release = true })
+	FX("particles/units/heroes/hero_earth_spirit/earth_dust_hit.vpcf", PATTACH_ABSORIGIN, self.hero, { release = true })
+	ScreenShake(self.hero:GetPos(), 5, 150, 0.25, 2000, 0, true)
+
+	if self.hero:Alive() then
+		if not self:HasEnded() then
+			self.hero:GetUnit():Interrupt()
+		end
+
+		SoftKnockback(self.hero, self.hero, self.direction:Normalized(), 50, { decrease = 5 })
+	end
+end
+
+function EarthSpiritRoll:PositionFunction(current)
+	return current + self.direction * self.velocity
+end
+
+if IsServer() then
+	Wrappers.GuidedAbility(earth_spirit_r, false, true)
 end
 
 if IsClient() then
-    require("wrappers")
+	require("wrappers")
 end
 
 Wrappers.NormalAbility(earth_spirit_r)

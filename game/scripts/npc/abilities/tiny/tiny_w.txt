@@ -4,15 +4,16 @@
 		"ScriptFile" "abilities/tiny/tiny_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "rubick_telekinesis_land"
-		"AbilityCooldown" "5.0"
-		"AbilityCastPoint" "0.15"
-		"Damage" "3"
+		"AbilityCooldown" "3.0"
+		"AbilityCastPoint" "0.1"
+		"Damage" "2"
 
 		"TargetingIndicator" {
-			"Type" "TARGETING_INDICATOR_AOE"
+			"Type" "TARGETING_INDICATOR_TINY_W"
 			"Radius" "200"
 			"Arc" "600"
             "ArcWidth" "35"
+            "MinLength" "300"
             "MaxLength" "1500"
 			"DisplayRange" "1"
 		}

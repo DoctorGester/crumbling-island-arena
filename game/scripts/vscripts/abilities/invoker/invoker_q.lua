@@ -27,9 +27,7 @@ function invoker_q:OnSpellStart()
                 ability = self,
                 filter = Filters.Area(target, 200),
                 filterProjectiles = true,
-                action = function(victim)
-                    victim:Damage(hero, self:GetDamage())
-                end
+                damage = self:GetDamage()
             })
 
             ScreenShake(target, 5, 150, 0.25, 2000, 0, true)

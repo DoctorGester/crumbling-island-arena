@@ -10,6 +10,7 @@ function ProjectileAMQ:constructor(round, hero, target, ability, particle, slot,
         to = target * Vector(1, 1, 0) + Vector(0, 0, 100),
         speed = 5000,
         graphics = particle,
+        damagesTrees = true,
         continueOnHit = true,
         disablePrediction = true,
         ability = ability

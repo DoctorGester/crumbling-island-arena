@@ -16,6 +16,10 @@ function taunt_static:OnAbilityPhaseStart()
     return true
 end
 
+function taunt_static:ProcsMagicStick()
+    return false
+end
+
 function taunt_static:OnAbilityPhaseInterrupted()
     RemoveAnimationTranslate(self:GetCaster())
 end

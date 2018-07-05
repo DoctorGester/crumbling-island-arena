@@ -7,7 +7,7 @@ function self:OnDamageReceived(source, hero)
 end
 
 function self:OnDamageReceivedPriority()
-    return -1
+    return PRIORITY_POST_SHIELD_ACTION
 end
 
 function self:IsHidden()

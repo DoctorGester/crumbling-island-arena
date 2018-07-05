@@ -22,7 +22,17 @@ var seasonAwards = {
     7: "npc_dota_hero_undying",
     8: "npc_dota_hero_windrunner",
     9: "npc_dota_hero_earthshaker",
-    10: "npc_dota_hero_skeleton_king"
+    10: "npc_dota_hero_skeleton_king",
+    11: "npc_dota_hero_pudge",
+    12: "npc_dota_hero_antimage",
+    13: "npc_dota_hero_templar_assassin",
+    14: "npc_dota_hero_sniper",
+    15: "npc_dota_hero_tiny",
+    16: "npc_dota_hero_earth_spirit",
+    17: "npc_dota_hero_gyrocopter",
+    18: "npc_dota_hero_nevermore",
+    19: "npc_dota_hero_storm_spirit",
+    20: "npc_dota_hero_ursa"
 };
 
 function PreloadPreview(hero, value, insertFirst) {

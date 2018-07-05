@@ -13,8 +13,9 @@ function qop_a:OnSpellStart()
         radius = 48,
         graphics = "particles/qop_a/qop_a.vpcf",
         distance = 1000,
+        damagesTrees = true,
         hitSound = "Arena.QOP.HitA",
-        hitFunction = function(_, victim)
+        hitFunction = function(projectile, victim)
             local damage = self:GetDamage()
             if instanceof(victim, UnitEntity) then
                 if victim:GetUnit():GetIdealSpeed() < victim:GetUnit():GetBaseMoveSpeed() then
@@ -22,7 +23,7 @@ function qop_a:OnSpellStart()
                 end
             end
 
-            victim:Damage(hero, damage, true)
+            victim:Damage(projectile, damage, true)
         end
     }):Activate()
 

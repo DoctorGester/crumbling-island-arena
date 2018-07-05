@@ -19,5 +19,5 @@ function modifier_phoenix_egg_tooltip:OnDamageReceived()
 end
 
 function modifier_phoenix_egg_tooltip:OnDamageReceivedPriority()
-    return -1
+    return PRIORITY_POST_SHIELD_ACTION
 end

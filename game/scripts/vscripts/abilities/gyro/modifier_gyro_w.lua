@@ -7,7 +7,7 @@ if IsServer() then
 
         hero:SwapAbilities("gyro_w", "gyro_w_sub")
         hero:EmitSound("Arena.Gyro.CastW")
-        self:SetStackCount(2)
+        self:SetStackCount(3)
     end
 
     function self:OnDestroy()
@@ -34,7 +34,7 @@ if IsServer() then
     end
 
     function self:OnDamageReceivedPriority()
-        return 0
+        return PRIORITY_SHIELD
     end
 end
 

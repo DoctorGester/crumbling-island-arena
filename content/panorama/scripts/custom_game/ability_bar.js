@@ -26,6 +26,7 @@ function EntityAbilityDataProvider(entityId) {
     this.FilterAbilities = function() {
         var abilities = [];
         var count = Entities.GetAbilityCount(this.entityId);
+        var custom;
 
         for (var i = 0; i < count; i++) {
             var ability = Entities.GetAbility(this.entityId, i);
@@ -33,10 +34,16 @@ function EntityAbilityDataProvider(entityId) {
             if (this.FilterAbility(ability)) {
                 if (EndsWith(Abilities.GetAbilityName(ability), "_a")) {
                     abilities.unshift(ability);
+                } else if (Abilities.GetAbilityName(ability) == "ability_blink") {
+                    custom = ability;
                 } else {
-                   abilities.push(ability); 
+                    abilities.push(ability);
                 }
             }
+        }
+
+        if (custom) {
+            abilities.push(custom);
         }
 
         return abilities;
@@ -66,6 +73,7 @@ function EntityAbilityDataProvider(entityId) {
         data.range = Abilities.GetCastRange(ability);
         data.cosmetic = (Abilities.GetBehavior(ability) & nl) == nl;
         data.attack = EndsWith(Abilities.GetAbilityName(ability), "_a");
+        data.custom = Abilities.GetAbilityName(ability) == "ability_blink";
         data.rootDisables = (Abilities.GetBehavior(ability) & rootDisables) == rootDisables;
 
         if (data.cooldown == 0 || data.ready){
@@ -90,11 +98,18 @@ function EntityAbilityDataProvider(entityId) {
             }
         }
 
+        if (HasModifier(this.entityId, "modifier_falling") || HasModifier(this.entityId, "modifier_jugger_q")) {
+            return true;
+        }
+
         return false;
     };
 
-    this.IsStunned = function() {
-        return Entities.IsStunned(this.entityId);
+    this.IsStunned = function(ability) {
+        var ignoreStunFlag = DOTA_ABILITY_BEHAVIOR.DOTA_ABILITY_BEHAVIOR_IGNORE_PSEUDO_QUEUE;
+        var ignoresStun = (Abilities.GetBehavior(ability) & ignoreStunFlag) == ignoreStunFlag;
+
+        return Entities.IsStunned(this.entityId) && !ignoresStun;
     };
 
     this.IsDisarmed = function() {
@@ -161,7 +176,7 @@ function AbilityBar(elementId) {
 
         if (this.provider.IsSilenced && this.provider.IsStunned && this.provider.IsRooted) {
             var rooted = this.provider.IsRooted() && data.rootDisables;
-            ability.SetDisabled(this.provider.IsSilenced() && !data.attack, this.provider.IsStunned(), rooted);
+            ability.SetDisabled(this.provider.IsSilenced() && !data.attack && !data.custom, this.provider.IsStunned(data.id), rooted);
         }
 
         if (data.attack) {
@@ -277,6 +292,7 @@ function AbilityButton(parent, hero, ability) {
         this.image.SetHasClass("AbilityBeingCast", data.beingCast);
         this.image.SetHasClass("AbilityButtonToggled", data.toggled);
         this.image.SetHasClass("AbilityAttack", data.attack);
+        this.image.SetHasClass("AbilityCustom", data.custom);
 
         this.data = data;
     };

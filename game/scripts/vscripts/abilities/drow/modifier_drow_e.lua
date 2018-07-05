@@ -31,6 +31,7 @@ if IsServer() then
         DistanceCappedProjectile(hero.round, {
             ability = self:GetAbility(),
             owner = hero,
+            damagesTrees = true,
             from = hero:GetPos() + Vector(0, 0, 64),
             to = hero:GetPos() + direction * 100 + Vector(0, 0, 64),
             speed = 1450,
@@ -38,9 +39,9 @@ if IsServer() then
             graphics = "particles/drow_q/drow_q.vpcf",
             distance = 300,
             hitSound = "Arena.Drow.HitA",
-            hitFunction = function(_, victim)
+            hitFunction = function(projectile, victim)
                 if self.damaged[victim] == nil then
-                    victim:Damage(hero, damage)
+                    victim:Damage(projectile, damage)
                 end
 
                 self.damaged[victim] = true
@@ -52,7 +53,8 @@ end
 function modifier_drow_e:CheckState()
     local state = {
         [MODIFIER_STATE_STUNNED] = true,
-        [MODIFIER_STATE_NO_HEALTH_BAR] = true
+        [MODIFIER_STATE_NO_HEALTH_BAR] = true,
+        [MODIFIER_STATE_NO_UNIT_COLLISION] = true
     }
 
     return state

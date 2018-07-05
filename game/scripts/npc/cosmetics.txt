@@ -8,6 +8,13 @@
             "season" "0"
             "set" "hunter_of_kings"
         }
+
+        "2"
+        {
+            "type" "pass"
+            "level" "27"
+            "emote" "default"
+        }
     }
 
     "juggernaut"
@@ -44,6 +51,12 @@
             "type" "elite"
             "season" "6"
             "set" "stormwrought_arbiter"
+        }
+        "2"
+        {
+            "type" "pass"
+            "level" "26"
+            "item" "8189"
         }
     }
 
@@ -111,6 +124,23 @@
         }
     }
 
+    "earth_spirit"
+    {
+        "1"
+        {
+            "type" "elite"
+            "season" "16"
+            "set" "the_jade_general"
+        }
+
+        "2"
+        {
+            "type" "pass"
+            "level" "33"
+            "emote" "default"
+        }
+    }
+
     "slark"
     {
         "1"
@@ -124,6 +154,13 @@
                 "sound" "Taunt.Slark"
                 "length" "1.2"
             }
+        }
+
+        "2"
+        {
+            "type" "pass"
+            "level" "38"
+            "item" "7465"
         }
     }
 
@@ -202,6 +239,24 @@
     {
         "1"
         {
+            "type" "pass"
+            "level" "7"
+            "emote" "default"
+        }
+
+        "2"
+        {
+			"type" "elite"
+            "set" "murder_of_crows"
+            "season" "11"
+            "particles"
+			{
+				"particles/pudge_q/pudge_q.vpcf" "particles/econ/pudge_q_seasonal/pudge_q.vpcf"
+			}
+        }
+
+        "3"
+        {
             "type" "pass_base"
             "item" "8004"
             "particles"
@@ -210,14 +265,7 @@
             }
         }
 
-        "2"
-        {
-            "type" "pass"
-            "level" "7"
-            "emote" "default"
-        }
-
-        "3"
+        "4"
         {
             "type" "pass"
             "level" "17"
@@ -283,7 +331,14 @@
 
     "templar_assassin"
     {
-        "1"
+    	"1"
+    	{
+			"type" "elite"
+			"set" "province_of_the_psion_inquisitor"
+			"season" "13"
+    	}
+
+        "2"
         {
             "type" "pass"
             "level" "20"
@@ -294,6 +349,13 @@
                 "particles/units/heroes/hero_templar_assassin/templar_assassin_meld_hit.vpcf" "particles/econ/items/templar_assassin/templar_assassin_focal/templar_assassin_meld_focal_attack_hit.vpcf"
             }
         }
+
+        "3"
+        {
+            "type" "pass"
+            "level" "30"
+            "emote" "default"
+        }
     }
 
     "storm_spirit"
@@ -303,6 +365,13 @@
             "type" "pass"
             "level" "23"
             "item" "6431"
+        }
+
+        "2"
+        {
+            "type" "elite"
+            "season" "19"
+            "set" "corridan_maestro"
         }
     }
 
@@ -320,6 +389,13 @@
             "type" "pass"
             "level" "3"
             "item" "7470,7472"
+        }
+
+        "3"
+        {
+            "type" "pass"
+            "level" "39"
+            "emote" "default"
         }
     }
 
@@ -347,6 +423,20 @@
             "particles"
             {
                 "particles/wk_w/wk_w.vpcf" "particles/econ/wk_w/wk_w.vpcf"
+            }
+        }
+
+        "4"
+        {
+            "type" "pass"
+            "level" "40"
+            "taunt"
+            {
+                "type" "static"
+                "activity" "ACT_DOTA_CAST_ABILITY_2"
+                "translate" "frostivus"
+                "sound" "Taunt.WK"
+                "length" "3.0"
             }
         }
     }
@@ -391,7 +481,19 @@
 
     "antimage"
     {
-        "1"
+    	"1"
+    	{
+    		"type" "elite"
+    		"season" "12"
+			"set" "guilt_of_the_survivor"
+			"particles"
+			{
+				"particles/am_q/am_q.vpcf" "particles/econ/am_q_seasonal/am_q.vpcf"
+				"particles/am_q/am_q2.vpcf" "particles/econ/am_q_seasonal/am_q2.vpcf"
+			}
+    	}
+
+        "2"
         {
             "type" "pass"
             "level" "12"
@@ -405,7 +507,7 @@
 			}
         }
 
-        "2"
+        "3"
         {
             "type" "pass"
             "level" "2"
@@ -460,6 +562,13 @@
 
         "3"
         {
+            "type" "elite"
+            "season" "14"
+            "set" "occultist's_pursuit"
+        }
+
+        "4"
+        {
             "type" "pass"
             "level" "11"
             "taunt"
@@ -483,12 +592,143 @@
         }
     }
 
+    "tiny"
+    {
+        "1"
+        {
+            "type" "elite"
+            "season" "15"
+            "set" "tiny_igneous_stone"
+        }
+
+        "2"
+        {
+            "type" "pass"
+            "level" "36"
+            "emote" "default"
+        }
+    }
+
     "queenofpain"
     {
         "1"
         {
             "type" "pass_base"
             "emote" "default"
+        }
+
+        "2"
+        {
+            "type" "pass"
+            "level" "34"
+            "taunt"
+            {
+                "type" "static"
+                "activity" "ACT_DOTA_IDLE_RARE"
+                "translate" "loadout"
+                "sound" "Taunt.QOP"
+                "length" "3.5"
+            }
+        }
+
+        "3"
+        {
+            "type" "pass"
+            "level" "29"
+            "item" "7212"
+        }
+
+    }
+
+    "tinker"
+    {
+        "1"
+        {
+            "type" "pass"
+            "level" "28"
+            "taunt"
+            {
+                "type" "static"
+                "activity" "ACT_DOTA_VICTORY"
+                "translate" "tinker_rollermaw"
+                "sound" "Taunt.Tinker"
+                "length" "4.0"
+            }
+        }
+
+        "2"
+        {
+            "type" "pass"
+            "level" "32"
+            "item" "6224"
+        }
+    }
+
+    "legion_commander"
+    {
+        "1"
+        {
+            "type" "pass"
+            "level" "37"
+            "taunt"
+            {
+                "type" "static"
+                "activity" "ACT_DOTA_TELEPORT"
+                "translate" "dualwield"
+                "sound" "Taunt.LC"
+                "length" "4"
+            }
+        }
+    }
+
+    "gyrocopter"
+    {
+        "1"
+        {
+            "type" "pass"
+            "level" "31"
+            "taunt"
+            {
+                "type" "moving"
+                "activity" "ACT_DOTA_TAUNT"
+                "translate" "taunt_roll_gesture"
+                "sound" "Taunt.Gyrocopter"
+                "length" "2.5"
+            }
+        }
+
+        "2"
+        {
+            "type" "elite"
+            "season" "17"
+            "set" "airborne_assault_craft"
+        }
+    }
+
+    "ursa"
+    {
+        "1"
+        {
+            "type" "pass"
+            "level" "35"
+            "item" "6893"
+        }
+
+        "2"
+        {
+            "type" "elite"
+            "season" "20"
+            "set" "scale_of_the_razorwyrm"
+        }
+    }
+
+    "nevermore"
+    {
+        "1"
+        {
+            "type" "elite"
+            "season" "18"
+            "set" "diabolical_fiend"
         }
     }
 }

@@ -1,9 +1,5 @@
 EarthSpirit = class({}, nil, Hero)
 
-function EarthSpirit:constructor()
-    getbase(self).constructor(self)
-end
-
 function EarthSpirit:FindRemnant(point, area, filter)
     local closest = nil
     local distance = 64000

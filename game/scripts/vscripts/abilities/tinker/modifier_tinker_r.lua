@@ -12,11 +12,9 @@ end
 
 if IsServer() then
     function modifier_tinker_r:OnCreated()
-        local particle = ParticleManager:CreateParticle("particles/aoe_marker.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
+        local particle = ParticleManager:CreateParticle("particles/tinker_r/tinker_r.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent())
 
         ParticleManager:SetParticleControl(particle, 1, Vector(400, 1, 1))
-        ParticleManager:SetParticleControl(particle, 2, Vector(255, 178, 127))
-        ParticleManager:SetParticleControl(particle, 3, Vector(10000, 0, 0))
         self:AddParticle(particle, false, false, 0, true, false)
 
         self:GetParent():EmitSound("Arena.Tinker.LoopR")

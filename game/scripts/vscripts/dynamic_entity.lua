@@ -156,6 +156,18 @@ function DynamicEntity:AllowAbilityEffect(source, ability)
     return true
 end
 
+function DynamicEntity:OnBlockedAbilityDamage(source, ability, damage, isPhysical)
+    if not self:Alive() then
+        return
+    end
+
+    for _, modifier in pairs(self:AllModifiers()) do
+        if modifier.OnBlockedAbilityDamage then
+            modifier:OnBlockedAbilityDamage(source, ability, damage, isPhysical)
+        end
+    end
+end
+
 function DynamicEntity:Activate()
     self.round.spells:AddDynamicEntity(self)
 
@@ -182,6 +194,11 @@ function DynamicEntity:AreaEffect(params)
 
         if allyFilter and passes and heroPasses and params.filter(target) then
             local blocked = params.ability and target:AllowAbilityEffect(self, params.ability) == false
+            local isTree = instanceof(target, Obstacle)
+
+            if isTree and (params.damage ~= nil or params.damagesTrees) then
+                target:DealOneDamage(self)
+            end
 
             if params.modifier and not blocked then
                 local m = params.modifier
@@ -189,21 +206,30 @@ function DynamicEntity:AreaEffect(params)
                 target:AddNewModifier(self, m.ability, m.name, { duration = m.duration })
             end
 
+            if params.damage ~= nil and blocked then
+                target:OnBlockedAbilityDamage(self, params.ability, params.damage, params.isPhysical)
+            end
+
             if params.damage ~= nil and not blocked then
                 target:Damage(self, params.damage, params.isPhysical)
             end
 
-            if params.knockback and not blocked then
+            if params.knockback and (not blocked or not params.ability) and not isTree then
                 local direction = params.knockback.direction and params.knockback.direction(target) or (target:GetPos() - self:GetPos())
 
                 local force = params.knockback.force
+                local decrease = params.knockback.decrease
 
                 if type(force) == "function" then
                     force = force(target)
                 end
 
+                if type(decrease) == "function" then
+                    decrease = decrease(target)
+                end
+
                 SoftKnockback(target, self, direction, force or 20, {
-                    decrease = params.knockback.decrease,
+                    decrease = decrease,
                     knockup = params.knockback.knockup
                 })
             end
@@ -219,10 +245,10 @@ function DynamicEntity:AreaEffect(params)
             if params.sound and not soundPlayed then
                 if type(params.sound) == "table" then
                     for _, sound in pairs(params.sound) do
-                        target:EmitSound(sound)
+                        self:EmitSound(sound, target:GetPos())
                     end
                 else
-                    target:EmitSound(params.sound)
+                    self:EmitSound(params.sound, target:GetPos())
                 end
 
                 soundPlayed = true

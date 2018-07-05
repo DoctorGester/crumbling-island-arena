@@ -8,27 +8,39 @@ function tiny_w:OnAbilityPhaseStart()
 end
 
 function tiny_w:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 1500)
+    Wrappers.DirectionalAbility(self, 1500, 300)
 
     local hero = self:GetCaster().hero
     local target = self:GetCursorPosition()
 
-    local height = 600
-    local bounces = 0
     local mod = hero:FindModifier("modifier_tiny_r")
 
     if mod and not mod.used then
-        bounces = 2
-        height = 900
+        local dist = (target - hero:GetPos()):Length2D()
+        local tilt = 1 - dist / 2400
+
+        for i = -1, 1 do
+            local dir = self:GetDirection()
+            local an = math.atan2(dir.y, dir.x) + (0.9 * i * tilt)
+            local retarget = Vector(math.cos(an), math.sin(an)) * dist + hero:GetPos()
+
+            TimedEntity((i + 1) * 0.1, function()
+                TinyW(hero.round, hero, self, self:GetDamage(), retarget, 2, 600):Activate()
+            end):Activate()
+        end
 
         mod:Use()
+    else
+        TinyW(hero.round, hero, self, self:GetDamage(), target, 2, 600):Activate()
     end
-
-    TinyW(hero.round, hero, self, self:GetDamage(), target, bounces, height):Activate()
 end
 
 function tiny_w:GetCastAnimation()
     return ACT_TINY_TOSS
+end
+
+function tiny_w:GetPlaybackRateOverride()
+    return 2
 end
 
 if IsClient() then

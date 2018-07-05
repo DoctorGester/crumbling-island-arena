@@ -31,11 +31,32 @@ function venge_e:OnSpellStart()
 
             hero:FindClearSpace(heroPos, true)
             target:FindClearSpace(pos, true)
-            
+
             target:EmitSound("Arena.Venge.HitE")
 
             hero.round.spells:InterruptDashes(hero)
             target.round.spells:InterruptDashes(target)
+
+            local tempFalling = hero.falling
+            local tempFallingSpeed = hero.fallingSpeed
+
+            hero.falling = target.falling
+            hero.fallingSpeed = target.fallingSpeed
+
+            target.falling = tempFalling
+            target.fallingSpeed = tempFallingSpeed
+
+            if not hero.falling then
+                hero:RemoveModifier("modifier_falling")
+            else
+                hero:MakeFall()
+            end
+
+            if not target.falling then
+                target:RemoveModifier("modifier_falling")
+            else
+                target:MakeFall()
+            end
 
             -- Otherwise it gets destroyed anyway
             if instanceof(target, Projectile) then

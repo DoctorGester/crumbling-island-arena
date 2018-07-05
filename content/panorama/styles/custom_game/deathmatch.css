@@ -125,10 +125,22 @@
     flow-children: right;
 }
 
+.DeathMatchHeroesAnimated
+{
+    transition-property: opacity, transform;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-out;
+}
+
+.DeathMatchPanelHidden
+{
+    opacity: 0.0;
+    transform: translateY(80px);
+}
+
 #DeathMatchHeroesHero
 {
     width: fill-parent-flow(1.0);
-    height: 100%;
     flow-children: down;
 }
 
@@ -189,6 +201,31 @@
     horizontal-align: center;
 }
 
+#DeathMatchHeroesContent DOTAHeroImage, #DeathMatchHeroName, #DeathMatchHeroMovieContainer
+{
+    transition-property: opacity, transform;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out;
+}
+
+.DeathMatchPanelHidden DOTAHeroImage
+{
+    opacity: 0.0;
+    transform: translateY(80px);
+}
+
+.DeathMatchPanelHidden #DeathMatchHeroName
+{
+    opacity: 0.0;
+    transform: translateY(160px);
+}
+
+.DeathMatchPanelHidden #DeathMatchHeroMovieContainer
+{
+    opacity: 0.0;
+    transform: translateY(-160px);
+}
+
 #DeathMatchHeroesContent DOTAHeroImage
 {
     margin: 3px;
@@ -216,9 +253,18 @@
     margin-bottom: 20px;
 }
 
+.DeathMatchPanelHidden .AbilityRow
+{
+    opacity: 0.0;
+    transform: translateX(-160px);
+}
+
 .AbilityRow
 {
     flow-children: right;
+    transition-property: opacity, transform;
+    transition-duration: 0.15s;
+    transition-timing-function: ease-out;
 }
 
 .AbilityRow Image

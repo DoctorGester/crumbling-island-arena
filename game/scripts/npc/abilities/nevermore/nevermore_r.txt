@@ -1,0 +1,15 @@
+"DOTAAbilities" {
+	"nevermore_r" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/nevermore/nevermore_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "nevermore_requiem"
+		"AbilityCooldown" "18.0"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "1200"
+		}
+	}
+}

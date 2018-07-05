@@ -1,3 +1,8 @@
+PRIORITY_AMPLIFY_DAMAGE = 1
+PRIORITY_ABSOLUTE_SHIELD = 1
+PRIORITY_SHIELD = 0
+PRIORITY_POST_SHIELD_ACTION = -1
+
 function string.starts(str,start)
    return string.sub(str, 1, string.len(start)) == start
 end
@@ -119,6 +124,8 @@ function FX(path, attach, parent, options)
                 if cp.ent and cp.ent.GetUnit then
                     cp.ent = cp.ent:GetUnit()
                 end
+
+                cp.ent = cp.ent or parent
 
                 if not cp.attach then
                     cp.attach = PATTACH_POINT_FOLLOW
@@ -619,21 +626,4 @@ function PrintSchema(gameArray, playerArray)
     print("\n-------- PLAYER DATA --------")
     DeepPrintTable(playerArray)
     print("-------------------------------------")
-end
-
-if not IsClient() then
-    if not CBaseEntity.stopOverriden then
-        local oldStop = CBaseEntity.StopSound
-
-        CBaseEntity.StopSound = function(self, sound)
-            oldStop(self, sound)
-            Timers:CreateTimer(0.01, function()
-                if IsValidEntity(self) then
-                    oldStop(self, sound)
-                end
-            end)
-        end
-
-        CBaseEntity.stopOverriden = true
-    end
 end

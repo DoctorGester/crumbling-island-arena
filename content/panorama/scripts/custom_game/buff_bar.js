@@ -13,7 +13,11 @@ var modifiersWithStacks = [
     "modifier_ursa_fury",
     "modifier_undying_q_health",
     "modifier_pa_q",
-    "modifier_drow_q"
+    "modifier_drow_q",
+    "modifier_nevermore_a",
+    "modifier_tree_heal",
+    "modifier_rune_blue",
+    "modifier_pa_a"
 ];
 
 function ShowBuffTooltip(element, entityId, buffId) {
@@ -28,6 +32,7 @@ function HideBuffTooltip() {
 function Buff(parent) {
     this.element = $.CreatePanel("Image", parent, "");
     this.element.AddClass("Buff");
+    this.element.SetScaling("stretch-to-cover-preserve-aspect");
     this.timeText = $.CreatePanel("Label", this.element, "");
     this.timeText.AddClass("BuffTimeText");
     this.stacksText = $.CreatePanel("Label", this.element, "");

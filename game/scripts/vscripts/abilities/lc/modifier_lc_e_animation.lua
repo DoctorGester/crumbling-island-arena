@@ -16,7 +16,8 @@ end
 
 function modifier_lc_e_animation:CheckState()
     local state = {
-        [MODIFIER_STATE_STUNNED] = true
+        [MODIFIER_STATE_STUNNED] = true,
+        [MODIFIER_STATE_NO_UNIT_COLLISION] = true
     }
 
     return state

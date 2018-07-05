@@ -43,6 +43,8 @@ function Projectile:constructor(round, params)
     self.considersGround = params.considersGround
     self.ability = params.ability
     self.knockback = params.knockback
+    self.damagesTrees = params.damagesTrees
+    self.goesThroughTrees = params.goesThroughTrees
 
     if self.destroyOnDamage == nil then
        self.destroyOnDamage = true 
@@ -89,9 +91,18 @@ end
 function Projectile:Deflect(by, direction)
     direction.z = 0
     self.vel = direction:Normalized()
+    self.heroOverride = by
     self.owner = by.owner
 
     self:SetFacing(self.vel)
+end
+
+function Projectile:GetTrueHero()
+    if self.heroOverride then
+        return self.heroOverride
+    end
+
+    return self.hero
 end
 
 function Projectile:Update()
@@ -154,7 +165,11 @@ function Projectile:CollideWith(target)
     local blocked = self.ability and target:AllowAbilityEffect(self, self.ability) == false
 
     if instanceof(target, Obstacle) then
-        target:Push(self.vel)
+        if self.damage or self.damagesTrees then
+            target:DealOneDamage(self)
+        else
+            target:Push(self.vel)
+        end
     end
 
     if not blocked then
@@ -178,7 +193,7 @@ function Projectile:CollideWith(target)
         end
 
         if self.hitModifier then
-            target:AddNewModifier(self.hero, self.hitModifier.ability, self.hitModifier.name, { duration = self.hitModifier.duration })
+            target:AddNewModifier(self:GetTrueHero(), self.hitModifier.ability, self.hitModifier.name, { duration = self.hitModifier.duration })
         end
     end
 
@@ -187,7 +202,7 @@ function Projectile:CollideWith(target)
     end
 
     if self.hitSound then
-        target:EmitSound(self.hitSound)
+        target:EmitSound(self.hitSound, target:GetPos())
     end
 
     if self.screenShake then
@@ -215,11 +230,6 @@ function Projectile:Damage(source)
     ParticleManager:SetParticleControl(dust, 0, self:GetPos())
     ParticleManager:SetParticleControl(dust, 1, self:GetPos())
     ParticleManager:ReleaseParticleIndex(dust)
-
-    local sign = ParticleManager:CreateParticle("particles/msg_fx/msg_deny.vpcf", PATTACH_CUSTOMORIGIN, mode)
-    ParticleManager:SetParticleControl(sign, 0, self:GetPos())
-    ParticleManager:SetParticleControl(sign, 3, Vector(200, 0, 0))
-    ParticleManager:ReleaseParticleIndex(sign)
 
     self:Destroy()
 end

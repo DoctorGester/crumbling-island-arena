@@ -25,6 +25,9 @@ function drow_r:OnChannelFinish(interrupted)
     local target = self:GetCursorPosition()
     local direction = self:GetDirection()
 
+    ScreenShake(hero:GetPos(), 5, 150, 0.25, 3000, 0, true)
+    SoftKnockback(hero, hero, -direction, 30, { decrease = 4 })
+
     Projectile(hero.round, {
         ability = self,
         owner = hero,
@@ -44,9 +47,11 @@ function drow_r:OnChannelFinish(interrupted)
             ParticleManager:SetParticleControlForward(effect, 1, -direction)
 
             if instanceof(target, Hero) then
-                ScreenShake(pos, 5, 150, 0.25, 3000, 0, true)
                 projectile:Destroy()
             end
+        end,
+        destroyFunction = function(projectile)
+            ScreenShake(projectile:GetPos(), 5, 150, 0.25, 3000, 0, true)
         end,
         destroyOnDamage = false,
         continueOnHit = true

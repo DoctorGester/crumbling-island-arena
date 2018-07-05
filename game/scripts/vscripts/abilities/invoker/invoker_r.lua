@@ -18,6 +18,7 @@ function invoker_r:OnSpellStart()
         arc = 200,
         radius = 96,
         graphics = "particles/invoker_r/invoker_r.vpcf",
+        hitSound = "Arena.Invoker.HitR",
         hitFunction = function(projectile, hit)
             local particle = ParticleManager:CreateParticle("particles/econ/items/clockwerk/clockwerk_paraflare/clockwerk_para_rocket_flare_explosion.vpcf", PATTACH_ABSORIGIN, self:GetCaster())
             ParticleManager:SetParticleControl(particle, 3, target)
@@ -29,8 +30,6 @@ function invoker_r:OnSpellStart()
             Spells:GroundDamage(target, 500, hero)
 
             ScreenShake(target, 5, 150, 0.5, 4000, 0, true)
-
-            projectile:EmitSound("Arena.Invoker.HitR")
         end,
         loopingSound = "Arena.Invoker.LoopR"
     }):Activate()

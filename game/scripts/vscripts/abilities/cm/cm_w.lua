@@ -1,7 +1,7 @@
 cm_w = class({})
 
 function cm_w:GetChannelTime()
-    return 2.0
+    return 1.4
 end
 
 function cm_w:OnChannelFinish(interrupted)
@@ -12,11 +12,12 @@ end
 function cm_w:OnChannelThink(interval)
     local hero = self:GetCaster():GetParentEntity()
     local target = self:GetCursorPosition() * Vector(1, 1, 0)
+    local launchInterval = 0.09
 
     self.previousTarget = self.previousTarget or target
 
-    if (self.previousTarget - target):Length2D() > 30 then
-        target = self.previousTarget + (target - self.previousTarget):Normalized() * 30
+    if (self.previousTarget - target):Length2D() > 36 then
+        target = self.previousTarget + (target - self.previousTarget):Normalized() * 36
     end
 
     hero:SetFacing((target - hero:GetPos()) * Vector(1, 1, 0))
@@ -26,7 +27,7 @@ function cm_w:OnChannelThink(interval)
     self.damaged = self.damaged or {}
     self.timePassed = (self.timePassed or 0) + interval
 
-    if self.timePassed > 0.12 then
+    local function LaunchTheIcicle()
         hero:EmitSound("Arena.CM.PreW", target)
 
         self.projectileCounter = (self.projectileCounter or 0) + 1
@@ -53,6 +54,7 @@ function cm_w:OnChannelThink(interval)
                         
                         self.damaged[victim] = true
                     end,
+                    damagesTrees = true,
                     notBlockedAction = function(target)
                         if instanceof(target, Obstacle) then
                             self.damaged[target] = true
@@ -76,13 +78,17 @@ function cm_w:OnChannelThink(interval)
                 end
             end
         }):Activate()
+    end
 
-        self.timePassed = nil
+    if self.timePassed >= launchInterval or interval == 0 then
+        TimedEntity(launchInterval, LaunchTheIcicle):Activate()
+
+        self.timePassed = self.timePassed - launchInterval
     end
 end
 
 function cm_w:GetPlaybackRateOverride()
-    return 0.4
+    return 0.5
 end
 
 function cm_w:GetCastAnimation()

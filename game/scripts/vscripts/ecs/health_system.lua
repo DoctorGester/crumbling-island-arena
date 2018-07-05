@@ -17,6 +17,8 @@ function HealthSystem:Damage(source, amount, isPhysical)
 
     local all = self:AllModifiers()
 
+    table.insert(all, self) -- To be able to declare OnDamageReceived and OnDamageReceivedPriority on the entity itself
+
     table.sort(all, function(a, b)
         local ap = a.OnDamageReceivedPriority and a:OnDamageReceivedPriority() or 0
         local bp = b.OnDamageReceivedPriority and b:OnDamageReceivedPriority() or 0
@@ -44,6 +46,19 @@ function HealthSystem:Damage(source, amount, isPhysical)
         end
     end
 
+    local hasBlueRune = false
+    local sourceHero = source
+
+    if source then
+        if source.hero then
+            sourceHero = source.hero
+        end
+
+        if sourceHero ~= self then
+            hasBlueRune = sourceHero.HasModifier and sourceHero:HasModifier("modifier_rune_blue")
+        end
+    end
+
     if self.customHealth then
         self.health = math.max(0, self.health - amount)
 
@@ -63,13 +78,21 @@ function HealthSystem:Damage(source, amount, isPhysical)
         ApplyDamage(damageTable)
     end
 
+    GameRules.GameMode:OnDamageDealt(self, source, amount)
+
+    if amount > 0 and hasBlueRune then
+        TriggerBlueRune(sourceHero, self)
+    end
+
     self:GetUnit():AddNewModifier(self:GetUnit(), nil, "modifier_damaged", { duration = 0.2 })
+
+    local color = isPhysical and Vector(250, 70, 70) or Vector(100, 130, 240)
 
     FX("particles/msg_damage.vpcf", PATTACH_CUSTOMORIGIN, GameRules:GetGameModeEntity(), {
         cp0 = self:GetPos(),
         cp1 = Vector(0, amount, 0),
         cp2 = Vector(math.max(1, amount / 1.5), 1, 0),
-        cp3 = Vector(255, 255, 255),
+        cp3 = color,
         release = true
     })
 
@@ -87,5 +110,34 @@ function HealthSystem:Damage(source, amount, isPhysical)
 
     if not self:Alive() and self.OnDeath then
         self:OnDeath(source)
+    end
+end
+
+function HealthSystem:Update()
+    local modifier = self:FindModifier("modifier_rune_blue")
+
+    if modifier and modifier.lastDecrementedAt ~= nil and modifier.lastDecrementedAt ~= GameRules:GetGameTime() then
+        modifier.lastDecrementedAt = nil
+        modifier:DecrementStackCount()
+
+        if modifier:GetStackCount() == 0 then
+            modifier:Destroy()
+        end
+    end
+end
+
+function TriggerBlueRune(source, target)
+    local modifier = source:FindModifier("modifier_rune_blue")
+
+    FX("particles/units/heroes/hero_invoker/invoker_cold_snap.vpcf", PATTACH_ABSORIGIN_FOLLOW, self, {
+        cp1 = source:GetPos(),
+        release = true
+    })
+
+    target:EmitSound("Arena.RuneBlueHit")
+    target:AddNewModifier(source, nil, "modifier_stunned_lua", { duration = 0.6 })
+
+    if modifier.lastDecrementedAt ~= GameRules:GetGameTime() then
+        modifier.lastDecrementedAt = GameRules:GetGameTime()
     end
 end

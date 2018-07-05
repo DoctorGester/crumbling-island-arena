@@ -4,9 +4,9 @@
 		"ScriptFile" "abilities/brew/brew_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "dragon_knight_breathe_fire"
-		"AbilityCooldown" "5.0"
+		"AbilityCooldown" "6.0"
 		"AbilityCastPoint" "0.15"
-		"Damage" "3"
+		"Damage" "1"
 
 		"TargetingIndicator" {
 			"Type" "TARGETING_INDICATOR_THICK_LINE"

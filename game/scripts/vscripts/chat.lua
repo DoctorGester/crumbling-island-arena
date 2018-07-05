@@ -19,6 +19,8 @@ function Chat:OnSay(args)
         return
     end
 
+    args.team = args.team == 1
+
     if GameRules.GameMode.gameSetup:GetPlayersInTeam() == 1 then
         args.team = false
     end
@@ -41,18 +43,31 @@ function Chat:OnSay(args)
 end
 
 function Chat:PlayerRandomed(id, hero, teamLocal)
-    local args = {
+    local shared = {
         color = self.teamColors[self.players[id].team],
         player = id,
-        hero = hero,
         wasTopPlayer = self.players[id].wasTopPlayer,
-        team = teamLocal
     }
 
+    local localArgs = vlua.clone(shared)
+    localArgs.hero = hero
+    localArgs.team = teamLocal
+
     if teamLocal then
-        CustomGameEventManager:Send_ServerToTeam(self.players[id].team, "custom_randomed_message", args)
+        local otherTeams = {}
+        for _, player in pairs(self.players) do
+            if player.team ~= self.players[id].team then
+                otherTeams[player.team] = true
+            end
+        end
+
+        for team, _ in pairs(otherTeams) do
+            CustomGameEventManager:Send_ServerToTeam(team, "custom_randomed_message", shared)
+        end
+
+        CustomGameEventManager:Send_ServerToTeam(self.players[id].team, "custom_randomed_message", localArgs)
     else
-        CustomGameEventManager:Send_ServerToAllClients("custom_randomed_message", args)
+        CustomGameEventManager:Send_ServerToAllClients("custom_randomed_message", localArgs)
     end
 end
 

@@ -36,7 +36,7 @@ function zeus_r:OnChannelThink(interval)
     self.target = target
 
     if not self.marker then
-        self.marker = FX("particles/zeus_r/zeus_r_marker.vpcf", PATTACH_CUSTOMORIGIN, hero, {
+        self.marker = FX("particles/zeus_r/zeus_r_marker.vpcf", PATTACH_WORLDORIGIN, GameRules:GetGameModeEntity(), {
             cp1 = Vector(300, 0, 0)
         })
 
@@ -56,9 +56,10 @@ function zeus_r:OnChannelThink(interval)
 
     if self.timePassed >= 0.2 and not self.hidden then
         hero:SetHidden(true)
+        hero:DestroyAllVisuals()
         hero:AddNewModifier(hero, self, "modifier_zeus_r", { duration = 2.3 })
 
-        FX("particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", PATTACH_CUSTOMORIGIN, hero, {
+        FX("particles/units/heroes/hero_zuus/zuus_lightning_bolt.vpcf", PATTACH_CUSTOMORIGIN, GameRules:GetGameModeEntity(), {
             cp0 = hero:GetPos() + Vector(0, 0, 2000),
             cp1 = hero:GetPos(),
             release = true
@@ -73,6 +74,7 @@ function zeus_r:OnChannelFinish(interrupted)
     local target = self.target
 
     hero:SetHidden(false)
+    hero:RecreateAllVisuals()
     hero:GetUnit():StartGestureWithPlaybackRate(ACT_DOTA_TELEPORT_END, 1.5)
 
     if self.marker then

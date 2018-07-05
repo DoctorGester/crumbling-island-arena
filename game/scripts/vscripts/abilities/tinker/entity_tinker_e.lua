@@ -45,6 +45,7 @@ function EntityTinkerE:LinkTo(target)
     end
 
     self.link = target
+    self.arrived = {}
 end
 
 function EntityTinkerE:CollideWith(target)

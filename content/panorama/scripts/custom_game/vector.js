@@ -57,6 +57,10 @@ Vector.FromArray = function( array ) {
     }
 }
 
+Vector.prototype.copy = function() {
+    return Vector.FromArray(this.toArray());
+}
+
 Vector.prototype.toArray = function(){
     return [ this.x, this.y, this.z ];
 }
@@ -64,6 +68,10 @@ Vector.prototype.toArray = function(){
 //Get the length of the vector
 Vector.prototype.length = function(){
     return Math.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
+}
+
+Vector.prototype.length2d = function(){
+    return Math.sqrt(this.x * this.x + this.y * this.y);
 }
 
 //Get the distance of this vector to another vector

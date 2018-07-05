@@ -1,0 +1,19 @@
+"DOTAAbilities" {
+	"nevermore_e" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/nevermore/nevermore_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "nevermore_dark_lord"
+		"AbilityCooldown" "6.0"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MaxLength" "700"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "700"
+		}
+	}
+}

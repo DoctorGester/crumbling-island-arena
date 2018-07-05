@@ -2,16 +2,22 @@
 	"pa_e" {
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/pa/pa_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IMMEDIATE | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "phantom_assassin_phantom_strike"
 		"AbilityCooldown" "4"
 
-		"HoverIndicator" {
+		"TargetingIndicator" {
 			"Type" "TARGETING_INDICATOR_ARC"
 			"Arc" "180"
             "ArcWidth" "50"
 			"MinLength" "500"
 			"MaxLength" "500"
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "500"
 		}
 	}
 }

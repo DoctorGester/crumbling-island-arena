@@ -46,6 +46,8 @@
 		"HeroName_npc_dota_hero_gyrocopter"				"The Turtle"
 		"HeroName_npc_dota_hero_rubick"					"Envy"
 		"HeroName_npc_dota_hero_windrunner"				"Aura"
+        "HeroName_npc_dota_hero_nevermore"				"Despair"
+		"HeroName_None"									"a Hero!"
 
 		"Available_on_npc_dota_hero_drow_ranger"		"Available on April 23!"
 		"Available_on_npc_dota_hero_skeleton_king"		"Available on April 30!"
@@ -85,9 +87,9 @@
 		"zuus_DescR" "Channeling. Global. Teleport + damage"
 
 		"earth_spirit_DescQ" "Delayed remnant drop. AOE damage"
-		"earth_spirit_DescW" "Drag a remnant. Line damage"
+		"earth_spirit_DescW" "Pull and push targets"
 		"earth_spirit_DescE" "Short jump. Can jump on remnants"
-		"earth_spirit_DescR" "Swap health and position with remnant"
+		"earth_spirit_DescR" "Roll towards cursor, damage + knockback"
 
 		"sven_DescQ" "Stunning projectile"
 		"sven_DescW" "Slow and silence in a cone"
@@ -175,7 +177,7 @@
 		"lone_druid_DescR" "Transform. Available immediately"
 
 		"pudge_DescQ" "Hook an enemy"
-		"pudge_DescW" "Melee attack"
+		"pudge_DescW" "Melee attack + Heal"
 		"pudge_DescE" "Dash + knockback"
 		"pudge_DescR" "AOE slow"
 
@@ -248,6 +250,11 @@
 		"windrunner_DescW" "Projectile. Knockback + stun"
 		"windrunner_DescE" "Knockback enemies around"
 		"windrunner_DescR" "Channeling. Fire 4 projectiles"
+
+		"nevermore_DescQ" "Damage in the area. Recast"
+		"nevermore_DescW" "Melee attack. Knockback + disarm"
+		"nevermore_DescE" "Silencing dash"
+		"nevermore_DescR" "Channeling. AoE fear"
 
 		"HeroBanned" "This hero is banned"
 		"PlayerHeader" "Players"
@@ -398,12 +405,15 @@
 
 		"RoundWon" "Round won!"
 		"RoundLost" "Round lost!"
+		"RoundDraw" "Draw!"
 		"RoundEnding" "<font color='{s:color}'>{s:name}</font> wins!"
 		"RoundEndingWasted" "round wasted!"
 
 		"System" "[<font color='#7FC9FF'>SYSTEM</font>]"
 		"SystemEveryoneLeft" "All enemies have left the game! The game will end in <font color='#FF7F7F'>{s:time}</font> seconds unless they reconnect"
 		"SystemPassLevel" "<font color='{s:color}'><b>{s:player}</b></font> owns CIA Pass level <font color='gold'><b>{s:level}</b></font>!"
+		"SystemRoundStart" "Round <font color='#FF7F7F'>{s:round}</font> is starting!"
+        "SystemRoundOver" "Round <font color='#FF7F7F'>{s:round}</font> is over!"
 
 		"RecentScore"									"+{d:score}"
 
@@ -411,14 +421,18 @@
 		"AbilityCooldown"								"<font color=\"gold\">CD</font>: {s:cooldown}"
 		"AbilityDamage"									"<font color=\"gold\">DAMAGE</font>: {s:damage}"
 
+		"AbilityTooltip_ability_blink"                  "Short range teleportation<br/>Removes knockbacks<br/><br/><b><font color=\"orange\">EMERGENCY MEASURES</font></b><br/>Usable when falling down from the arena, range is doubled"
+
 		"AbilityTooltip_taunt_static"					"Taunt your enemies! Show them your best moves and make them jelly!"
 		"AbilityTooltip_taunt_moving"					"Is that some kind of a dance? Nevermind, gimme gimme!"
 		"AbilityTooltip_emote"							"Say it out loud! Your enemies must know what you think about them!"
 
-		"AbilityTooltip_earth_spirit_q"					"After a short delay, drop a <font color=\"#3A9B00\"><b>Remnant</b></font> at the target location."
-		"AbilityTooltip_earth_spirit_w"					"Target a <font color=\"#3A9B00\"><b>Remnant</b></font>, if you are standing on a <font color=\"#3A9B00\"><b>Remnant</b></font>, drag target to you. Otherwise, move your <font color=\"#3A9B00\"><b>Remnant</b></font> to it."
-		"AbilityTooltip_earth_spirit_e"					"Perform a short jump. When targeting a <font color=\"#3A9B00\"><b>Remnant</b></font>, land on top of it, becoming invulnerable until leaving it."
-		"AbilityTooltip_earth_spirit_r"					"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Target a <font color=\"#3A9B00\"><b>Remnant</b></font>. After a short delay, emerge from it, leaving your old body behind."
+		"AbilityTooltip_earth_spirit_a"					"Applies <font color=\"#3BC600\"><b>MAGNETIZE</b></font><br/><br/><font color=\"#3BC600\"><b>MAGNETIZE</b></font>: A short debuff. Can be consumed by nearby <font color=\"#3A9B00\"><b>Remnants</b></font>, dealing 1 damage"
+		"AbilityTooltip_earth_spirit_q"					"After a short delay, drop a <font color=\"#3A9B00\"><b>Remnant</b></font> at the target location<br/>It can be destroyed to restore 2 health"
+		"AbilityTooltip_earth_spirit_w"					"Apply <font color=\"#3BC600\"><b>MAGNETIZE</b></font> to all enemy heroes in the area and slow them.<br/>Pull all non-hero targets in the area towards you<br/>Colliding with a <font color=\"#3A9B00\"><b>Remnant</b></font> will stun and damage the target<br/>Recast to push targets around you in the chosen direction<br/><br/><font color=\"#3BC600\"><b>MAGNETIZE</b></font>: A short debuff. Can be consumed by nearby <font color=\"#3A9B00\"><b>Remnants</b></font>, dealing 1 damage"
+		"AbilityTooltip_earth_spirit_w_sub"             "Push targets around you in the chosen direction"
+		"AbilityTooltip_earth_spirit_e"					"Perform a short jump<br/>When targeting a <font color=\"#3A9B00\"><b>Remnant</b></font>, land on top of it, becoming invulnerable and gaining additional ability cast range"
+		"AbilityTooltip_earth_spirit_r"					"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Roll towards cursor, stopping on a first enemy hero encountered, dealing damage and knocking him back"
 
 		"AbilityTooltip_cm_a"							"Hitting enemies with spells charges the weapon<br/>At 3 charges next attack <font color=\"skyblue\"><b>Freezes</b></font><br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies are stunned"
 		"AbilityTooltip_cm_q"							"<font color=\"skyblue\"><b>Freeze</b></font> enemies in the area<br><br>Already <font color=\"skyblue\"><b>Frozen</b></font> enemies are stunned"
@@ -451,13 +465,13 @@
 		"AbilityTooltip_lc_e"							"Dash forward, briefly disabling enemies on the way<br><br>Dash distance depends on your current speed"
 		"AbilityTooltip_lc_r"							"Target an area<br>While in that area, you are immortal and your cooldowns are halved"
 
-		"AbilityTooltip_pa_a"							"Can't use W while the glaive is in the air"
+		"AbilityTooltip_pa_a"							"Can't use W while the glaive is in the air<br><br>The weapon has its own health and an increased cooldown when destroyed"
 		"AbilityTooltip_pa_q"							"Throw a slowing projectile<br/>Next 2 damage instances from hero deal additional damage to the victim"
 		"AbilityTooltip_pa_w"							"Strike an area around you"
 		"AbilityTooltip_pa_w_sub"						"Throw a dagger which slows the first enemy hit<br><br>Doesn\\\\'t deal damage"
 		"AbilityTooltip_pa_e"							"Perform a short jump"
 		"AbilityTooltip_pa_e_sub"						"Perform a short jump, leaving your glaive behind"
-		"AbilityTooltip_pa_r"							"Become invisible for 5 seconds gaining bonus speed<br>Your glaive is also sped up<br><br>Casting spells briefly reveals you"
+		"AbilityTooltip_pa_r"							"Become invisible for 5 seconds gaining bonus speed<br>Your basic attack applies silence<br><br>Casting spells briefly reveals you"
 
 		"AbilityTooltip_sk_a"							"Places a debuff on targets hit<br/>Can be activated by other abilities, dealing damage in the area"
 		"AbilityTooltip_sk_q"							"Slow enemies in the area after a 1.2 second delay"
@@ -490,9 +504,9 @@
 
 		"AbilityTooltip_tiny_a"							"Briefly slows enemies hit"
 		"AbilityTooltip_tiny_q"							"Throw a stone<br/>Pick it up to reset cooldown"
-		"AbilityTooltip_tiny_w"							"Throw a stone stunning all enemies in the target area"
+		"AbilityTooltip_tiny_w"							"Throw a bouncing stone stunning all enemies in the target area, deals less damage on additional bounces"
 		"AbilityTooltip_tiny_e"							"After a short delay, create an impassable ring of stones"
-		"AbilityTooltip_tiny_r"							"Empower next your next used ability<br><br><font color=\"gold\"><b>A</b></font> Farther knockback, tripled damage<br><font color=\"gold\"><b>Q</b></font> Applies a stun<br><font color=\"gold\"><b>W</b></font> Bounces 2 times<br><font color=\"gold\"><b>E</b></font> Has no delay on cast"
+		"AbilityTooltip_tiny_r"							"Empower next your next used ability<br><br><font color=\"gold\"><b>A</b></font> Farther knockback, tripled damage<br><font color=\"gold\"><b>Q</b></font> Applies a stun<br><font color=\"gold\"><b>W</b></font> Throws 3 stones<br><font color=\"gold\"><b>E</b></font> Has no delay on cast"
 
 		"AbilityTooltip_pugna_q"						"Take damage<br/>Fire a projectile<br/>If it hits, fire back healing projectile"
 		"AbilityTooltip_pugna_w"						"Place a healing trap which activates in 1.5 seconds"
@@ -549,11 +563,11 @@
 		"AbilityTooltip_ld_w_sub"						"Greatly slow enemies around you"
 		"AbilityTooltip_ld_e_sub"						"Gain a boost of speed<br/><br/>Attacking in this state <font color=\"#3A9B00\"><b>Roots</b></font> enemies"
 
-		"AbilityTooltip_pudge_a"						"Applies a fading slow<br/>Hitting slowed enemies with abilities makes them drop healing meat"
+		"AbilityTooltip_pudge_a"						"Applies a fading slow"
 		"AbilityTooltip_pudge_q"						"Launch a hook, which damages and pulls first enemy hit to you"
-		"AbilityTooltip_pudge_w"						"Attack enemies in front of you"
-		"AbilityTooltip_pudge_e"						"Dash to the target point, stop after encountering an enemy and knock him back"
-		"AbilityTooltip_pudge_r"						"Slow enemies around you for 5 seconds"
+		"AbilityTooltip_pudge_w"						"Attack enemies in front of you and restore 2 health for each enemy hit"
+		"AbilityTooltip_pudge_e"						"Dash to the target point, stop after encountering an enemy, damage and knock him back"
+		"AbilityTooltip_pudge_r"						"Slow enemies around you for 5 seconds<br/>Affected enemies receive additional damage from the hero"
 
 		"AbilityTooltip_ursa_a"							"Dealing and taking damage generates <font color='#FF6A00'><b>Fury</b></font><br/>When maximum is reached gain <font color='#FF2700'><b>Frenzy</b></font><br/>Deals double damage under <font color='#FF2700'><b>Frenzy</b></font>"
 		"AbilityTooltip_ursa_q"							"Slow enemies around you<br/>Resets on entering <font color='#FF2700'><b>Frenzy</b></font>"
@@ -561,10 +575,10 @@
 		"AbilityTooltip_ursa_e"							"Short roll, stuns enemies on the way"
 		"AbilityTooltip_ursa_r"							"Become invulnerable to all damage and magic, immediately enter <font color='#FF2700'><b>Frenzy</b></font> or refresh its duration"
 
-		"AbilityTooltip_brew_a"							"Deals double damage if a hero has 2 or more <font color=\"#AF9200\"><b>Beer</b></font> debuffs"
-		"AbilityTooltip_brew_q"							"Receive a <font color=\"#AF9200\"><b>Beer</b></font> debuff<br/>Throw a beer to the target area, applying stacking <font color=\"#AF9200\"><b>Beer</b></font> debuff to every enemy hit"
-		"AbilityTooltip_brew_w"							"Unleash a damaging wave<br/>Wave range and thickness scale from your current <font color=\"#AF9200\"><b>Beer</b></font> stacks<br/>Enemies hit are stunned up to 3 seconds depending on their <font color=\"#AF9200\"><b>Beer</b></font> stacks"
-		"AbilityTooltip_brew_e"							"Heal and purge debuffs<br/>Not disabled by silence<br/><br/>Every stack of <font color=\"#AF9200\"><b>Beer</b></font> reduces cooldown by 1 second"
+		"AbilityTooltip_brew_a"							"Deals double damage if hero has 3 or more <font color=\"#AF9200\"><b>Beer</b></font> debuffs"
+		"AbilityTooltip_brew_q"							"Receive a <font color=\"#AF9200\"><b>Beer</b></font> debuff<br/>Throw a beer to the target area, applying stacking <font color=\"#AF9200\"><b>Beer</b></font> debuff to every enemy hit<br/><font color=\"#AF9200\"><b>Beer</b></font> stacks slow enemies and speed up your hero"
+		"AbilityTooltip_brew_w"							"Unleash a damaging wave<br/>Consumes up to 3 <font color=\"#AF9200\"><b>Beer</b></font> stacks, increasing range, damage and radius<font color=\"#AF9200\"><b>Beer</b></font> stacks<br/>Enemies hit are stunned up to 4 seconds depending on their <font color=\"#AF9200\"><b>Beer</b></font> stacks"
+		"AbilityTooltip_brew_e"							"Heal for the amount of <font color=\"#AF9200\"><b>Beer</b></font> stacks and purge debuffs<br/>Not disabled by silence"
 		"AbilityTooltip_brew_r"							"Throw a bottle into the target area, knocking back and applying 2 stacks of <font color=\"#AF9200\"><b>Beer</b></font> to everyone hit<br/> Deals damage to enemies"
 
 		"AbilityTooltip_invoker_a"						"Deals magic damage"
@@ -600,11 +614,11 @@
 		"AbilityTooltip_tusk_r"							"<font color=\"gold\"><b>ALL</b></font> knockbacks are 2x stronger<br/>Your <font color=\"gold\"><b>E</b></font> is 2x faster<br/><br/>Lasts for <font color=\"gold\"><b>10</b></font> seconds"
 
 		"AbilityTooltip_undying_a"						"Range and knockback increase with <font color='#279225'><b>Decay</b></font> stacks<br/>Damage increases at 3 and 6 stacks"
-		"AbilityTooltip_undying_q"						"Slow enemies in the target area<br/>Receive a <font color='#279225'><b>Decay</b></font> stack per each enemy hit, shielding from damage"
-		"AbilityTooltip_undying_q_sub"					"Jump to the target area, stunning enemies on landing<br/>Range and stun duration scale from <font color='#279225'><b>Decay</b></font> stacks"
+		"AbilityTooltip_undying_q"						"Slow enemies in the target area<br/>Receive a <font color='#279225'><b>Decay</b></font> stack per each enemy hit, shielding from damage<br/>Effect is doubled while in <font color=\"gold\"><b>R</b></font>"
+		"AbilityTooltip_undying_w_sub"					"Jump to the target area, stunning enemies on landing<br/>Range and stun duration scale from <font color='#279225'><b>Decay</b></font> stacks"
 		"AbilityTooltip_undying_w"						"Launch a rooting and damaging wave"
 		"AbilityTooltip_undying_e"						"Summon a Tombstone, which damages enemies for being in the area for 2.5 seconds"
-		"AbilityTooltip_undying_r"						"Transform, gain a new ability and disable all the other ones<br/><font color='#279225'><b>Decay</b></font> stacks can't be lost for the duration<br/>Lose all stacks after transformation ends"
+		"AbilityTooltip_undying_r"						"Transform, get a new <font color=\"gold\"><b>W</b></font> and lose your <font color=\"gold\"><b>E</b></font><br/><font color='#279225'><b>Decay</b></font> stacks do not expire"
 
 		"AbilityTooltip_dusa_q"							"Launch a barrage of arrows, damaging all enemies in the target area"
 		"AbilityTooltip_dusa_w"							"Launch a projectile slowing every enemy on it's way and restoring mana for each enemy hit"
@@ -640,6 +654,12 @@
 		"AbilityTooltip_wr_e"							"Knock back enemies around<br/>For the next 2.5 seconds stacks of <font color='#36B500'><b>Haste</b></font> can't be spent"
 		"AbilityTooltip_wr_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br/>Fire up to 4 exploding arrows, damaging and knocking back enemies on contact"
 
+		"AbilityTooltip_nevermore_a"					"Hitting enemy heroes generates <font color='#B52600'><b>Soul Shards</b></font><br/>Reaching <b>6</b> and <b>12</b> <font color='#B52600'><b>Soul Shards</b></font> increases attack damage <b>permanently</b>"
+		"AbilityTooltip_nevermore_q"					"Deal damage in an area in front of you<br/>Can be recast twice, each time increasing range<br/>Last recast deals increased damage"
+		"AbilityTooltip_nevermore_w"					"Attack enemies in front of you and knock them back<br/>Disarms affected enemies"
+		"AbilityTooltip_nevermore_e"					"Short flying dash<br/>Enemies on the way are silenced"
+		"AbilityTooltip_nevermore_r"					"<font color=\"#DAFF7F\"><b>Channeling</b></font><br/>Fires 12 projectiles which fear enemies on hit<br/>Projectiles deal damage to trees"
+
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
 		"ModifierTooltip_modifier_silence_lua"					"Silenced"
@@ -665,6 +685,7 @@
 		"ModifierTooltip_modifier_sk_q"							"Slowed down"
 		"ModifierTooltip_modifier_sk_r"							"Invisible in sandstorm"
 
+		"ModifierTooltip_modifier_pa_a"							"Weapon health"
 		"ModifierTooltip_modifier_pa_q"							"Slowed down"
 		"ModifierTooltip_modifier_pa_e"							"Jumping"
 		"ModifierTooltip_modifier_pa_r"							"Invisible"
@@ -682,8 +703,10 @@
 		"ModifierTooltip_modifier_lc_e"							"Slidin"
 		"ModifierTooltip_modifier_lc_r"							"Immortal and has cooldowns halved"
 
+		"ModifierTooltip_modifier_earth_spirit_e"				"Will receive additional damage if comes close to a <font color=\"#3A9B00\"><b>Remnant</b></font>"
 		"ModifierTooltip_modifier_earth_spirit_e"				"Flying Donatello style"
-		"ModifierTooltip_modifier_earth_spirit_stand"			"Invulnerable while on the <font color=\"#3A9B00\"><b>Remnant</b></font>"
+		"ModifierTooltip_modifier_earth_spirit_stand"			"Has invulnerability and extended ability cast range while on the <font color=\"#3A9B00\"><b>Remnant</b></font>"
+		"ModifierTooltip_modifier_earth_spirit_r"				"They hatin"
 
 		"ModifierTooltip_modifier_cm_a"							"Next attack will <font color=\"skyblue\"><b>Freeze</b></font>"
 		"ModifierTooltip_modifier_cm_stun"						"Stunned"
@@ -779,7 +802,7 @@
 
 		"ModifierTooltip_modifier_undying_q"					"Slowed"
 		"ModifierTooltip_modifier_undying_q_health"				"Shielded"
-		"ModifierTooltip_modifier_undying_q_sub"				"Jumping zombies?"
+		"ModifierTooltip_modifier_undying_w_sub"				"Jumping zombies?"
 		"ModifierTooltip_modifier_undying_w"					"Rooted"
 		"ModifierTooltip_modifier_undying_e_target"				"Will take damage if stays near the Tombstone"
 		"ModifierTooltip_modifier_undying_r"					"Transformed"
@@ -811,6 +834,13 @@
 		"ModifierTooltip_modifier_wr_a"							"<font color='#36B500'><b>Haste</b></font><br/>Moving faster and spending stacks while moving"
 		"ModifierTooltip_modifier_wr_e"							"Does not spend <font color='#36B500'><b>Haste</b></font> stacks while moving"
 
+		"ModifierTooltip_modifier_nevermore_a"					"Current amount of <font color='#B52600'><b>Soul Shards</b>"
+        "ModifierTooltip_modifier_nevermore_w"					"Disarmed"
+		"ModifierTooltip_modifier_nevermore_e"					"Spooky Ghost"
+		"ModifierTooltip_modifier_nevermore_r"					"Fleeing"
+
+		"ModifierTooltip_modifier_rune_blue"                    "Dealing damage to enemy heroes will briefly stun them"
+
 		"StatusStunned" "Stunned"
 		"StatusCharmed" "Charmed"
 		"StatusFear" "Fear"
@@ -826,6 +856,7 @@
 		"StatusSpellShield" "Spell shield"
 		"StatusCharged" "Charged"
 		"StatusSpellbreak" "Spellbreak"
+		"StatusMagnetized" "Magnetized"
 		"StatusHaste" "Haste"
 		"StatusUltimate" "Ultimate"
 		"StatusRecast" "Recast"

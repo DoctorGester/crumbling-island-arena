@@ -32,6 +32,7 @@ function brew_r:OnSpellStart()
             filterProjectiles = true,
             hitSelf = true,
             hitAllies = true,
+            damagesTrees = true,
             action = function(victim)
                 local q = hero:FindAbility("brew_q")
 

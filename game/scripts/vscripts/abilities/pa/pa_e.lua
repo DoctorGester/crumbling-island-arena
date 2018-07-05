@@ -3,18 +3,24 @@ pa_e = class({})
 LinkLuaModifier("modifier_pa_e", "abilities/pa/modifier_pa_e", LUA_MODIFIER_MOTION_NONE)
 
 function pa_e:OnSpellStart()
-    local hero = self:GetCaster().hero
-    local modifier = hero:AddNewModifier(hero, self, "modifier_pa_e", { duration = 0.55 })
-    hero:Animate(ACT_DOTA_CAST_ABILITY_2, 1.5)
+    Wrappers.DirectionalAbility(self)
 
-    TimedEntity(0.1,
-        function()
-            self:GetCaster():Interrupt()
-            Dash(hero, hero:GetPos() + hero:GetFacing() * 500, 1250, {
-                heightFunction = DashParabola(80)
-            }):SetModifierHandle(modifier)
+    local hero = self:GetCaster():GetParentEntity()
+    hero:EmitSound("Arena.PA.StepE")
+
+    Dash(hero, hero:GetPos() + self:GetDirection() * 500, 1250, {
+        forceFacing = true,
+        modifier = { name = "modifier_pa_e", ability = self },
+        heightFunction = DashParabola(80),
+        gesture = ACT_DOTA_CAST_ABILITY_2,
+        gestureRate = 1.8,
+        arrivalFunction = function()
+            FX("particles/units/heroes/hero_earthshaker/es_dust_hit.vpcf", PATTACH_ABSORIGIN, hero, { release = true })
+            hero:EmitSound("Arena.PA.StepE")
         end
-    ):Activate()
+    })
+
+    FX("particles/units/heroes/hero_earthshaker/earthshaker_totem_leap_impact_dust.vpcf", PATTACH_ABSORIGIN, hero, { release = true })
 end
 
 if IsClient() then

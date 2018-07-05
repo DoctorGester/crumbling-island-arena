@@ -135,6 +135,14 @@ function Spells:Update()
                             horVel = softKb.direction * softKb.force
                         end
 
+                        local pudgeQDash = self:FindPudgeQDash(entity)
+
+                        if pudgeQDash and not pudgeQDash:HasEnded() then
+                            local direction = (pudgeQDash.pudge:GetPos() - entity:GetPos()):Normalized()
+
+                            horVel = direction * pudgeQDash.velocity
+                        end
+
                         entity:MakeFall(horVel)
                     end
 
@@ -165,6 +173,16 @@ function Spells:FindSoftKnockback(entity)
     return nil
 end
 
+function Spells:FindPudgeQDash(entity)
+    for _, dash in ipairs(self.dashes) do
+        if instanceof(dash, DashPudgeQ) and dash.hero == entity then
+            return dash
+        end
+    end
+
+    return nil
+end
+
 function Spells:InterruptDashes(hero)
     for i = #self.dashes, 1, -1 do
         local dash = self.dashes[i]
@@ -179,7 +197,7 @@ function Spells:InterruptDashes(hero)
     end
 end
 
-function Spells:GroundDamage(point, radius, source, suppress)
+function Spells:GroundDamage(point, radius, source, suppress, damageFactor)
     local hitByHero = {}
 
     -- TODO fix self:GroundDamage
@@ -193,7 +211,7 @@ function Spells:GroundDamage(point, radius, source, suppress)
         end
     end
 
-    local parts = GameRules.GameMode.level:DamageGroundInRadius(point, radius, source, suppress)
+    local parts = GameRules.GameMode.level:DamageGroundInRadius(point, radius, source, suppress, damageFactor)
 
     for hero, hit in pairs(hitByHero) do
         for _, part in pairs(parts) do

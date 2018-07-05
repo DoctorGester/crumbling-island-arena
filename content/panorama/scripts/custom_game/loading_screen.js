@@ -123,11 +123,12 @@ function PassTopChanged(top) {
         avatar.steamid = player.steamId64.toString();
         StyleAvatarDefault(avatar);
 
-        avatarParent.BCreateChildren("<DOTAScenePanel class='EliteEffect' map='maps/scenes/vr_theater/vr_background_particle.vmap'/>");
+        avatarParent.BCreateChildren("<DOTAScenePanel class='EliteEffect' hittest='false' map='maps/scenes/vr_theater/vr_background_particle.vmap'/>");
 
         var level = $.CreatePanel("Label", avatarParent, "");
         level.AddClass("EliteText");
         level.AddClass("RankLabel");
+        level.hittest = false;
         level.text = Math.floor(parseInt(player.experience) / 1000) + 1;
     }
 }

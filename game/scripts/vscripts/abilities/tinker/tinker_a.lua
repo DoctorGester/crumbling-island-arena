@@ -44,6 +44,7 @@ function ProjectileTinkerA:constructor(round, hero, target, pos, damage, ability
 
     self.homingDistance = 5000
     self.target = nil
+    self.deflectedAt = 0
 end
 
 function ProjectileTinkerA:Update()
@@ -51,7 +52,7 @@ function ProjectileTinkerA:Update()
 
     getbase(ProjectileTinkerA).Update(self)
 
-    if self.target == nil then
+    if self.target == nil and GameRules:GetGameTime() - self.deflectedAt > 0.4 then
         local s = self.round.spells
         local closest = s:FindClosest(self:GetPos(), 400, s:FilterEntities(
             function(t) return t.owner.team ~= self.owner.team end,
@@ -62,7 +63,7 @@ function ProjectileTinkerA:Update()
             self.target = closest
             self.distance = self.homingDistance
         end
-    elseif not self.target:Alive() then
+    elseif self.target and not self.target:Alive() then
         self:Destroy()
     end
 
@@ -72,7 +73,10 @@ end
 function ProjectileTinkerA:Deflect(by, direction)
     direction.z = 0
     self.target = nil
-    self.vel = direction:Normalized() * self.vel:Length()
+    self.vel = direction:Normalized() * self.vel:Length2D() * 0.8
+    self.deflectedAt = GameRules:GetGameTime()
+    self.heroOverride = by
+    self.owner = by.owner
 end
 
 function ProjectileTinkerA:GetNextPosition(pos)

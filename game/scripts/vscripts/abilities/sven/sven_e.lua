@@ -11,6 +11,16 @@ function sven_e:GetChannelTime()
     return 0.4
 end
 
+function sven_e:GetBehavior()
+    local default = bit.bor(DOTA_ABILITY_BEHAVIOR_POINT, DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES)
+
+    if self:GetCaster():HasModifier("modifier_sven_r") then
+        return bit.bor(default, DOTA_ABILITY_BEHAVIOR_IMMEDIATE)
+    end
+
+    return default
+end
+
 function sven_e:OnSpellStart()
     self:GetCaster().hero:EmitSound("Arena.Sven.CastE")
 
@@ -60,7 +70,7 @@ function sven_e:Cast(target)
         SvenDash(hero, target, 200, {
             modifier = { name = "modifier_sven_e", ability = self },
             forceFacing = true,
-            gesture = ACT_DOTA_CHANNEL_ABILITY_3,
+            gesture = ACT_DOTA_RUN,
             gestureRate = 1.8,
             hitParams = {
                 ability = self,

@@ -1,0 +1,17 @@
+"DOTAAbilities" {
+	"nevermore_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/nevermore/nevermore_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "nevermore_shadowraze1"
+		"AbilityCooldown" "6.0"
+		"AbilityCastPoint" "0.25"
+		"Damage" "2"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "250"
+			"Offset" "200 + GetStackCount(unit, 'modifier_nevermore_q') * 250"
+		}
+	}
+}

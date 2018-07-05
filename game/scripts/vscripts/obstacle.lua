@@ -40,6 +40,32 @@ function Obstacle:GetPos()
     return self.unit:GetAbsOrigin()
 end
 
+function Obstacle:DealOneDamage(source)
+    self.health = self.health - 1
+
+    local duration
+
+    if self.health > 2 then
+        duration = 2.0
+    else
+        self:RemoveModifier("modifier_custom_healthbar")
+    end
+
+    self:AddNewModifier(self, nil, "modifier_custom_healthbar", { duration = duration })
+
+    if self.health <= 0 then
+        local hero = source
+        if hero.hero then hero = hero.hero end
+
+        TreeHealProjectile(nil, hero, hero, self:GetPos()):Activate()
+        self:Destroy()
+    else
+        self:GetUnit():SetHealth(self.health)
+    end
+
+    self:Push(self:GetPos() - source:GetPos())
+end
+
 function Obstacle:FindPolygon()
     local level = GameRules.GameMode.level
     local pos = self:GetPos()
@@ -71,27 +97,15 @@ function Obstacle:RegenerateNavBlock()
 end
 
 function Obstacle:AllowAbilityEffect(source, ability)
-    if ability.GetDamage then
-        self.health = self.health - 1
-        self:AddNewModifier(self, nil, "modifier_custom_healthbar", { duration = 2.0 })
-
-        if self.health <= 0 then
-            self:Destroy()
-        else
-            self:GetUnit():SetHealth(self.health)
-        end
-
-        self:Push(self:GetPos() - source:GetPos())
-    end
-
     return false
 end
 
 function Obstacle:CollideWith(target)
     if instanceof(target, Projectile) and target.continueOnHit then
-        if instanceof(target, ProjectilePAA) then
+        -- Configure inside of projectile?
+        if instanceof(target, ProjectilePAA) or instanceof(target, TinyQ) then
             target:Deflect(target.hero, -target.vel)
-        else
+        elseif not target.goesThroughTrees then
             target:Destroy()
 
             local mode = GameRules:GetGameModeEntity()
@@ -99,12 +113,6 @@ function Obstacle:CollideWith(target)
             FX("particles/ui/ui_generic_treasure_impact.vpcf", PATTACH_ABSORIGIN, mode, {
                 cp0 = target:GetPos(),
                 cp1 = target:GetPos(),
-                release = true
-            })
-
-            FX("particles/msg_fx/msg_deny.vpcf", PATTACH_CUSTOMORIGIN, mode, {
-                cp0 = target:GetPos(),
-                cp3 = Vector(200, 0, 0),
                 release = true
             })
         end
@@ -179,4 +187,34 @@ function Obstacle:Push(vel)
     self.pushAmplitude = math.min((self.pushAmplitude or 0) + RandomFloat(0.05, 0.1), 0.3)
 
     --DebugDrawLine(self:GetPos(), self:GetPos() + self.pushNormal:Normalized() * 300, 0, 255, 0, true, 2.0)
+end
+
+TreeHealProjectile = TreeHealProjectile or class({}, nil, HomingProjectile)
+
+function TreeHealProjectile:constructor(round, hero, target, pos)
+    getbase(TreeHealProjectile).constructor(self, round, {
+        owner = hero,
+        from = pos + Vector(0, 0, 64),
+        heightOffset = 64,
+        target = target,
+        speed = 900,
+        graphics = "particles/tree_heal_projectile.vpcf",
+        hitFunction = function(projectile, target)
+            projectile:AddOrRefreshTreeHealModifier(target)
+        end
+    })
+end
+
+function TreeHealProjectile:AddOrRefreshTreeHealModifier(target)
+    local modifier = target:FindModifier("modifier_tree_heal")
+
+    if not modifier then
+        modifier = target:AddNewModifier(target, nil, "modifier_tree_heal", {})
+    else
+        modifier:SetStackCount(2)
+    end
+end
+
+function TreeHealProjectile:CollidesWith(target)
+    return target == self.target
 end

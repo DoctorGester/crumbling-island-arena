@@ -6,7 +6,7 @@
 		"AbilityTextureName" "pudge_dismember"
 		"AbilityCooldown" "3.5"
 		"AbilityCastPoint" "0.15"
-		"Damage" "3"
+		"Damage" "2"
 
 		"HoverIndicator" {
 			"Type" "TARGETING_INDICATOR_RANGE"

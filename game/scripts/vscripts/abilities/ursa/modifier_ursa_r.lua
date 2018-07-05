@@ -45,5 +45,5 @@ function modifier_ursa_r:OnDamageReceived()
 end
 
 function modifier_ursa_r:OnDamageReceivedPriority()
-    return 1
+    return PRIORITY_ABSOLUTE_SHIELD
 end

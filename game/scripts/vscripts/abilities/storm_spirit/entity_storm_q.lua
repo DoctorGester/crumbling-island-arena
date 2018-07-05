@@ -63,7 +63,7 @@ function EntityStormQ:CollideWith()
 end
 
 function EntityStormQ:Remove()
-    self:EmitSound("Arena.Storm.EndQ")
+    self:EmitSound("Arena.Storm.EndQ", self:GetPos())
     self.hero:RemoveRemnant(self)
 
     if self.rangeIndicator then

@@ -72,7 +72,8 @@ indicatorTypes["TARGETING_INDICATOR_ARC"] = function(data, unit) {
         var arc = GetNumber(data.Arc, null, unit);
 
         if (arc) {
-            UpdateArc(this, this.particle, position, arc, GetNumber(data.ArcWidth, 50, unit));
+            var from = Vector.FromArray(Entities.GetAbsOrigin(this.unit));
+            UpdateArc(this, this.particle, from, position, arc, GetNumber(data.ArcWidth, 50, unit));
         }
     };
 
@@ -98,7 +99,8 @@ indicatorTypes["TARGETING_INDICATOR_AOE"] = function(data, unit) {
         Particles.SetParticleControl(this.particle, 0, ClampPosition(Vector.FromArray(position), this.unit, this.data));
 
         if (this.arc) {
-            UpdateArc(this, this.arcParticle, position, this.arc, GetNumber(data.ArcWidth, 25, unit));
+            var from = Vector.FromArray(Entities.GetAbsOrigin(this.unit));
+            UpdateArc(this, this.arcParticle, from, position, this.arc, GetNumber(data.ArcWidth, 25, unit));
         }
     };
 
@@ -127,6 +129,8 @@ indicatorTypes["TARGETING_INDICATOR_RANGE"] = function(data, unit) {
 
     this.Update = function(cursor){
         Particles.SetParticleControl(this.particle, 1, [ GetNumber(data.Radius, 0, this.unit), 0, 0 ]);
+
+        this.offset = GetNumber(data.Offset, 0, unit);
 
         if (this.offset) {
             cursor = Vector.FromArray(cursor);
@@ -270,7 +274,7 @@ indicatorTypes["TARGETING_INDICATOR_TINKER_LASER"] = function(data, unit) {
     }
 };
 
-indicatorTypes["TARGETING_INDICATOR_PUDGE_CLEAVER"] = function(data, unit) {
+indicatorTypes["TARGETING_INDICATOR_FROM_LINE_WITH_START_OFFSET"] = function(data, unit) {
     this.data = data;
     this.unit = unit;
     this.particle = Particles.CreateParticle("particles/targeting/line.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN, unit);
@@ -279,13 +283,14 @@ indicatorTypes["TARGETING_INDICATOR_PUDGE_CLEAVER"] = function(data, unit) {
         var abs = Vector.FromArray(Entities.GetAbsOrigin(unit));
         var dir = Vector.FromArray(cursor).minus(abs).normalize();
 
-        var nd = new Vector(-dir.y, dir.x).scale(80);
+        var nd = new Vector(dir.y, -dir.x).scale(80);
         var offset = abs.add(nd);
+        var updatedDirection = Vector.FromArray(cursor).minus(offset).normalize();
 
-        cursor = Vector.FromArray(cursor).add(nd).toArray();
+        cursor = Vector.FromArray(cursor).toArray();
 
         var to = UpdateLineFromPos(this.particle, this.unit, this.data, cursor, offset);
-        var result = dir.scale(150).add(to);
+        var result = updatedDirection.scale(150).add(to);
         Particles.SetParticleControl(this.particle, 0, offset);
         Particles.SetParticleControl(this.particle, 2, result);
     };
@@ -359,6 +364,86 @@ indicatorTypes["TARGETING_INDICATOR_WK_W"] = function(data, unit) {
     this.Delete = function(){
         for (var indicator of this.subIndicators) {
             indicator.Delete();
+        }
+    }
+};
+
+indicatorTypes["TARGETING_INDICATOR_TINY_W"] = function(data, unit) {
+    this.data = data;
+    this.unit = unit;
+    this.particles = [];
+    this.arcParticles = [];
+    this.arc = GetNumber(data.Arc, null, unit);
+
+    this.Update = function(position){
+        position = ClampPosition(Vector.FromArray(position), this.unit, this.data);
+
+        const usingUltimate = HasModifier(unit, "modifier_tiny_r");
+        const heroPosition = Vector.FromArray(Entities.GetAbsOrigin(unit));
+        const dir = position.minus(heroPosition);
+        const dist = dir.length2d();
+        const tilt = 1 - dist / 2400.0;
+        const totalBounces = 2;
+
+        for (var i = -1; i <= 1; i++) {
+            if (!usingUltimate && i !== 0) {
+                for (var bounce = 0; bounce <= totalBounces; bounce++) {
+                    var arrayIndex = ((i + 1) * (totalBounces + 1)) + bounce;
+
+                    if (this.particles[arrayIndex]) {
+                        Particles.DestroyParticleEffect(this.particles[arrayIndex], false);
+                        Particles.ReleaseParticleIndex(this.particles[arrayIndex]);
+                        this.particles[arrayIndex] = null;
+                    }
+
+                    if (this.arcParticles[arrayIndex]) {
+                        Particles.DestroyParticleEffect(this.arcParticles[arrayIndex], false);
+                        Particles.ReleaseParticleIndex(this.arcParticles[arrayIndex]);
+                        this.arcParticles[arrayIndex] = null;
+                    }
+                }
+
+                continue;
+            }
+
+            for (var bounce = 0; bounce <= totalBounces; bounce++) {
+                var divider = Math.pow(2, bounce);
+                var arrayIndex = ((i + 1) * (totalBounces + 1)) + bounce;
+                var an = Math.atan2(dir.y, dir.x) + (0.9 * i * tilt);
+                var rotated = new Vector(Math.cos(an), Math.sin(an));
+                var retarget = heroPosition;
+                var previous;
+
+                for (var j = 0; j <= bounce; j++) {
+                    previous = retarget.copy();
+                    retarget = retarget.add(rotated.scale(dist / Math.pow(2, j)));
+                }
+
+                if (!this.particles[arrayIndex]) {
+                    this.particles[arrayIndex] = Particles.CreateParticle("particles/targeting/aoe.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN, unit);
+                    Particles.SetParticleControl(this.particles[arrayIndex], 1, [ GetNumber(data.Radius, 0, unit), 0, 0 ]);
+
+                    this.arcParticles[arrayIndex] = Particles.CreateParticle("particles/targeting/arc.vpcf", ParticleAttachment_t.PATTACH_ABSORIGIN, unit);
+                }
+
+                Particles.SetParticleControl(this.particles[arrayIndex], 0, retarget);
+
+                UpdateArc(this, this.arcParticles[arrayIndex], previous, retarget, this.arc / divider, GetNumber(data.ArcWidth, 25, unit));
+            }
+        }
+    };
+
+    this.Delete = function(){
+        for (var i = 0; i < this.particles.length; i++) {
+            if (this.particles[i]) {
+                Particles.DestroyParticleEffect(this.particles[i], false);
+                Particles.ReleaseParticleIndex(this.particles[i]);
+            }
+
+            if (this.arcParticles[i]) {
+                Particles.DestroyParticleEffect(this.arcParticles[i], false);
+                Particles.ReleaseParticleIndex(this.arcParticles[i]);
+            }
         }
     }
 };
@@ -516,9 +601,9 @@ indicatorTypes["TARGETING_INDICATOR_ANTIMAGE_Q"] = function(data, unit) {
     }
 };
 
-function UpdateArc(indicator, particle, position, targetHeight, width) {
-    var fr = Vector.FromArray(Entities.GetAbsOrigin(indicator.unit));
-    var to = UpdateLine(particle, indicator.unit, indicator.data, position, fr);
+function UpdateArc(indicator, particle, from, position, targetHeight, width) {
+    var fr = from.copy();
+    var to = UpdateLineFromPos(particle, indicator.unit, indicator.data, position, fr);
     var len = to.minus(fr).length();
 
     // Don't ask why, I don't know
@@ -645,6 +730,13 @@ function SetGuidedAbility(ability) {
 
 function SetCastedAbility(ability) {
     castedAbility = ability;
+}
+
+function GetGyroRocketDistance(unit) {
+    var m = FindModifier(unit, 'modifier_gyro_w');
+    var elapsedTime = m ? Math.min(4.5, Buffs.GetElapsedTime(unit, m)) : 0;
+
+    return 300 + elapsedTime * 250
 }
 
 UpdateTargetIndicator();

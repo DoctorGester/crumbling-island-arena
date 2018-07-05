@@ -61,6 +61,56 @@
                 <Image class="RewardImage" src="file://{images}/custom_game/rewards/10.jpg" scaling="stretch-to-fit-y-preserve-aspect"/>
             </Panel>
         </snippet>
+        <snippet name="reward11">
+            <Panel>
+                <Image class="RewardImage" src="file://{images}/custom_game/rewards/11.jpg" scaling="stretch-to-fit-y-preserve-aspect"/>
+            </Panel>
+        </snippet>
+        <snippet name="reward12">
+            <Panel>
+                <Image class="RewardImage" src="file://{images}/custom_game/rewards/12.jpg" scaling="stretch-to-fit-y-preserve-aspect"/>
+            </Panel>
+        </snippet>
+        <snippet name="reward13">
+            <Panel>
+                <Image class="RewardImage" src="file://{images}/custom_game/rewards/13.jpg" scaling="stretch-to-fit-y-preserve-aspect"/>
+            </Panel>
+        </snippet>
+        <snippet name="reward14">
+            <Panel>
+                <Image class="RewardImage" src="file://{images}/custom_game/rewards/14.jpg" scaling="stretch-to-fit-y-preserve-aspect"/>
+            </Panel>
+        </snippet>
+        <snippet name="reward15">
+            <Panel>
+                <Image class="RewardImage" src="file://{images}/custom_game/rewards/15.jpg" scaling="stretch-to-fit-y-preserve-aspect"/>
+            </Panel>
+        </snippet>
+        <snippet name="reward16">
+            <Panel>
+                <Image class="RewardImage" src="file://{images}/custom_game/rewards/16.jpg" scaling="stretch-to-fit-y-preserve-aspect"/>
+            </Panel>
+        </snippet>
+        <snippet name="reward17">
+            <Panel>
+                <Image class="RewardImage" src="file://{images}/custom_game/rewards/17.jpg" scaling="stretch-to-fit-y-preserve-aspect"/>
+            </Panel>
+        </snippet>
+        <snippet name="reward18">
+            <Panel>
+                <Image class="RewardImage" src="file://{images}/custom_game/rewards/18.jpg" scaling="stretch-to-fit-y-preserve-aspect"/>
+            </Panel>
+        </snippet>
+        <snippet name="reward19">
+            <Panel>
+                <Image class="RewardImage" src="file://{images}/custom_game/rewards/19.jpg" scaling="stretch-to-fit-y-preserve-aspect"/>
+            </Panel>
+        </snippet>
+        <snippet name="reward20">
+            <Panel>
+                <Image class="RewardImage" src="file://{images}/custom_game/rewards/20.jpg" scaling="stretch-to-fit-x-preserve-aspect"/>
+            </Panel>
+        </snippet>
         <snippet name="arcanaTournament">
             <Panel>
                 <Label class="WidgetHeader" text="#NewsArcanaWinner"/>

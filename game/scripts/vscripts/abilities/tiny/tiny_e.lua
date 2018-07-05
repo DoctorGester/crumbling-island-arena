@@ -56,6 +56,14 @@ function tiny_e:OnSpellStart()
     ):Activate()
 end
 
+function tiny_e:GetCastPoint(...)
+    if self:GetCaster():HasModifier("modifier_tiny_r") then
+        return 0
+    end
+
+    self.BaseClass.GetCastPoint(self, ...)
+end
+
 function tiny_e:GetCastAnimation()
     if self:GetCaster():HasModifier("modifier_tiny_r") then
         return ACT_DOTA_CAST_ABILITY_1

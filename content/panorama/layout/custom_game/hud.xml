@@ -24,7 +24,6 @@
         <include src="file://{resources}/scripts/custom_game/kappa.js" />
         <include src="file://{resources}/scripts/custom_game/game_hud.js" />
         <include src="file://{resources}/scripts/custom_game/scoreboard.js" />
-        <include src="file://{resources}/scripts/custom_game/hero_detector.js" />
         <include src="file://{resources}/scripts/custom_game/message_queue.js" />
         <include src="file://{resources}/scripts/custom_game/vector_target.js" />
     </scripts>
@@ -164,11 +163,11 @@
                     <Button id="RandomHeroButton" onactivate="DeathMatch.Random()">
                         <Panel id="RandomHeroButtonImage"/>
                     </Button>
-                    <Button class="DeathMatchButton" id="DeathMatchChangeHeroButton" onactivate="ToggleStyle(DeathMatchHeroes, Hidden); SetInputFocus(DeathMatchHeroes)">
+                    <Button class="DeathMatchButton" id="DeathMatchChangeHeroButton" onactivate="ToggleStyle(DeathMatchHeroes, DeathMatchPanelHidden); SetInputFocus(DeathMatchHeroes)">
                         <Label text="#ChangeHero"/>
                     </Button>
                 </Panel>
-                <Panel id="DeathMatchHeroes" class="Hidden" acceptsinput="true">
+                <Panel id="DeathMatchHeroes" class="DeathMatchPanelHidden DeathMatchHeroesAnimated" acceptsinput="true">
                     <Panel id="DeathMatchHeroesHero">
                         <Label id="DeathMatchHeroName"/>
                         <Panel id="DeathMatchHeroMovieContainer">

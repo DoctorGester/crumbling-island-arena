@@ -16,6 +16,7 @@ if IsServer() then
         ParticleManager:SetParticleControlEnt(index, 1, self:GetParent(), PATTACH_POINT_FOLLOW, "attach_hitloc", self:GetParent():GetAbsOrigin(), true)
 
         self:AddParticle(index, false, false, -1, false, false)
+        self:GetParent():EmitSound("Arena.Slark.LoopE")
 
         self:StartIntervalThink(1 / 30)
     end
@@ -25,16 +26,19 @@ if IsServer() then
 
         if dir:Length2D() > 325 and dir:Normalized():Dot(self:GetParent():GetForwardVector()) > 0 then
             return 0.1
-        end 
+        end
     end
 
     function modifier_slark_e_leash:OnIntervalThink()
         local dir = self:GetParent():GetAbsOrigin() - self.startPos
 
         if dir:Length2D() > 375 then
-            self:GetParent():StopSound("Arena.Slark.LoopE")
             self:Destroy()
         end
+    end
+
+    function modifier_slark_e_leash:OnDestroy()
+        self:GetParent():StopSound("Arena.Slark.LoopE")
     end
 end
 

@@ -16,11 +16,12 @@ function ember_q:OnSpellStart()
         distance = 1100,
         hitSound = "Arena.Ember.HitQ",
         continueOnHit = true,
+        damagesTrees = true,
         hitFunction = function(projectile, target)
-            target:Damage(hero, self:GetDamage())
+            target:Damage(projectile, self:GetDamage())
 
-            if EmberUtil.Burn(hero, target, self) then
-                target:AddNewModifier(hero, self, "modifier_ember_q", { duration = 2.5 })
+            if EmberUtil.Burn(projectile:GetTrueHero(), target, self) then
+                target:AddNewModifier(projectile:GetTrueHero(), self, "modifier_ember_q", { duration = 2.5 })
             end
         end
     }):Activate()

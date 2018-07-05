@@ -17,6 +17,7 @@ function undying_w:OnSpellStart()
         continueOnHit = true,
         ignoreProjectiles = true,
         considersGround = true,
+        goesThroughTrees = true,
         damage = self:GetDamage(),
         hitModifier = { name = "modifier_undying_w", duration = 1.5, ability = self }
     }):Activate()
