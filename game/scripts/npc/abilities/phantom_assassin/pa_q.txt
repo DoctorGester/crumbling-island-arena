@@ -5,7 +5,7 @@
 		"AbilityType" "DOTA_ABILITY_TYPE_BASIC"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "phantom_assassin_stifling_dagger"
-		"AbilityCooldown" "2.5"
+		"AbilityCooldown" "3.0"
 		"AbilityCastPoint" "0.1"
 
 		"TargetingIndicator" {
