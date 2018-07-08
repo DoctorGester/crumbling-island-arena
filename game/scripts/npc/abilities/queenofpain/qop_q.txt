@@ -10,13 +10,13 @@
 
 		"TargetingIndicator" {
 			"Type" "TARGETING_INDICATOR_LINE"
-			"MinLength" "950"
-			"MaxLength" "950"
+			"MinLength" "600"
+			"MaxLength" "600"
 		}
 
 		"HoverIndicator" {
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "950"
+			"Radius" "600"
 		}
 	}
 }
