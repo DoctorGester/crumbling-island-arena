@@ -30,7 +30,7 @@ function self:OnSpellStart()
                 hitParams = {
                     ability = self,
                     filter = Filters.Area(rocketTarget, dropRadius),
-                    damage = self:GetDamage(),
+                    damage = modifier:GetStackCount(),
                     damagesTrees = true,
                     modifier = { name = "modifier_stunned_lua", duration = 1.2, ability = self }
                 },
@@ -82,7 +82,7 @@ function self:OnSpellStart()
                     projectile:SetModel("models/development/invisiblebox.vmdl")
                     projectile:EmitSound("Arena.Gyro.EndW.Sub")
                 end,
-                damage = self:GetDamage()
+                damage = modifier:GetStackCount()
             }):Activate()
 
             SoftKnockback(hero, hero, (hero:GetPos() - target):Normalized(), 30, { decrease = 4 })

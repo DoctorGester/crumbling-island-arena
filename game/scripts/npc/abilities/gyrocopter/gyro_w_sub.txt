@@ -5,7 +5,6 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "gyrocopter_homing_missile"
 		"AbilityCastPoint" "0.15"
-		"Damage" "3"
 
 		"TargetingIndicator" {
 			"Type" "TARGETING_INDICATOR_LINE"

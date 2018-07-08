@@ -643,7 +643,7 @@
 
 		"AbilityTooltip_gyro_a"							"Applies a stacking slow<br/>When 3 stacks are reached deals double damage"
 		"AbilityTooltip_gyro_q"							"Fire 3 knocking back projectiles"
-		"AbilityTooltip_gyro_w"							"Gain a shield<br/>Reactivate to fire a stunning rocket"
+		"AbilityTooltip_gyro_w"							"Gain a shield for 3 damage<br/>Reactivate to fire a stunning rocket<br>The Damage is equal to the strength of the Rocket Shield"
 		"AbilityTooltip_gyro_w_sub"						"Fire a stunning rocket"
 		"AbilityTooltip_gyro_e"							"Global dash<br/>Goes on a 3-second cooldown when damaged"
 		"AbilityTooltip_gyro_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br>Continiously launch knocking back projectiles"
