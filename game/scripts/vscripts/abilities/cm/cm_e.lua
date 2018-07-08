@@ -14,7 +14,7 @@ function cm_e:OnSpellStart()
         to = target,
         speed = 700,
         graphics = "particles/cm/cm_e.vpcf",
-        distance = 1100,
+        distance = 2200,
         continueOnHit = true,
         damagesTrees = true,
         goesThroughTrees = true,
@@ -27,6 +27,7 @@ function cm_e:OnSpellStart()
             hero:StopSound("Arena.CM.LoopE")
             hero:SwapAbilities("cm_e_sub", "cm_e")
             hero:RemoveModifier("modifier_cm_e")
+            hero:FindAbility("cm_e"):StartCooldown(5)
 
             self.icePath = nil
         end
