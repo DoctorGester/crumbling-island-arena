@@ -22,11 +22,10 @@ function ember_a:OnSpellStart()
         sound = "Arena.Ember.HitA",
         action = function(target)
             if EmberUtil.IsBurning(target) then
-                ability = hero:FindAbility("ember_a")
-                ability:EndCooldown()
-                ability:StartCooldown(0.3)
+                target:Damage(hero, damage * 2, true)
+            else
+                target:Damage(hero, damage, true)
             end
-            target:Damage(hero, damage, true)
         end,
         knockback = { force = 20, decrease = 3 },
         isPhysical = true,
