@@ -23,7 +23,7 @@ function wr_w:OnSpellStart()
 
                 projectile:Destroy()
             else
-                target:AddNewModifier(hero, self, "modifier_stunned_lua", { duration = 1.0 })
+                target:AddNewModifier(hero, self, "modifier_stunned_lua", { duration = 0.7 })
                 SoftKnockback(target, hero, projectile.vel, 50, { decrease = 4 })
             end
 
