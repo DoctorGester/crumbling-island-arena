@@ -159,7 +159,7 @@ $.AsyncWebRequest("http://138.68.73.132:3637/pass/top", { type: "GET",
     }
 });
 
-var tips = 6;
+var tips = 13;
 var tip = Math.floor(Math.random() * (tips + 1));
 
 $("#GameTipText").SetDialogVariable("tip", $.Localize("GameTip" + tip));
