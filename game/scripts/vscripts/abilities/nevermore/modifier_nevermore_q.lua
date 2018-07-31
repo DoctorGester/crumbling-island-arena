@@ -16,12 +16,10 @@ if IsServer() then
     end
 
     function modifier_nevermore_q:OnIntervalThink()
-        if self:GetRemainingTime() <= 0 then
-            local ability = self:GetAbility()
-            if not ability:IsInAbilityPhase() then
-                ability:StartCooldown(ability:GetCooldown(1))
-                self:Destroy()
-            end
+        local ability = self:GetAbility()
+        if self:GetRemainingTime() <= 0 and not ability:IsInAbilityPhase()then
+            ability:StartCooldown(ability:GetCooldown(1))
+            self:Destroy()
         end
     end
 end
