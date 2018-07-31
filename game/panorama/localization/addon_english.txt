@@ -730,7 +730,7 @@
 		"ModifierTooltip_modifier_pugna_e"						"Healing and damage is swapped"
 
 		"ModifierTooltip_modifier_venge_w"						"Slowed and revealed"
-		"ModifierTooltip_modifier_venge_r_target"				"Slowed and revealed. Actions are punished by Justice."
+		"ModifierTooltip_modifier_venge_r_target"				"Slowed and revealed"
 
 		"ModifierTooltip_modifier_drow_q"						"Slowed"
 		"ModifierTooltip_modifier_drow_e"						"Shadowsteppin"
