@@ -1,7 +1,6 @@
 nevermore_q = class({})
 
 LinkLuaModifier("modifier_nevermore_q", "abilities/nevermore/modifier_nevermore_q", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_nevermore_q_target", "abilities/nevermore/modifier_nevermore_q_target", LUA_MODIFIER_MOTION_NONE)
 
 function nevermore_q:OnAbilityPhaseStart()
     self:GetCaster().hero:EmitSound("Arena.Nevermore.CastQ.Voice")
@@ -40,16 +39,17 @@ function nevermore_q:OnSpellStart()
         release = true
     })
 
-    print(target)
-
     local damage = self:GetDamage()
+
+    if not isAllowedToBeRecast then
+        damage = damage + 1
+    end
 
     hero:AreaEffect({
         ability = self,
         filter = Filters.Area(target, 250),
         filterProjectiles = true,
-        damage = damage,
-        modifier = { name = "modifier_nevermore_q_target", duration = 3.5, ability = self }
+        damage = damage
     })
 
     ScreenShake(target, 5, 150, 0.15, 3000, 0, true)
