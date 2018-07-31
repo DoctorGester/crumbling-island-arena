@@ -19,6 +19,10 @@ if IsServer() then
         local dist = (event.unit:GetAbsOrigin() - self:GetParent():GetAbsOrigin()):Length2D()
         if event.unit:HasModifier("modifier_venge_r_target") and dist <= self:GetAuraRadius() and event.ability:ProcsMagicStick() then
             local unit = self:GetParent()
+            local effect = ParticleManager:CreateParticle("particles/units/heroes/hero_silencer/silencer_curse_aoe.vpcf", PATTACH_ABSORIGIN_FOLLOW, event.unit)
+            ParticleManager:SetParticleControl(effect, 1, Vector(175, 0, 0) )
+            self:AddParticle(effect, false, false, 0, true, false)
+            event.unit:EmitSound("Arena.Venge.CounterR")
             unit:CastAbilityOnPosition(event.unit:GetAbsOrigin(), unit:FindAbilityByName("venge_q"), -1)
         end
     end
