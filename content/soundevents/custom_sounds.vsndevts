@@ -3214,7 +3214,7 @@
 		event_type = "1.0"
 	}
 
-	Arena.Venge.CounterR = {
+	Arena.Venge.TargetR = {
 		type = "dota_src1_3d"
 		vsnd_files = 
 		[
