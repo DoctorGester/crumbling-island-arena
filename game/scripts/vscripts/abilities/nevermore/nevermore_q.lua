@@ -3,34 +3,9 @@ nevermore_q = class({})
 LinkLuaModifier("modifier_nevermore_q", "abilities/nevermore/modifier_nevermore_q", LUA_MODIFIER_MOTION_NONE)
 
 function nevermore_q:OnAbilityPhaseStart()
-    local hero = self:GetCaster():GetParentEntity()
-    hero:EmitSound("Arena.Nevermore.CastQ.Voice")
-
-    local recastModifier = hero:FindModifier("modifier_nevermore_q")
-    --print("castpoint: ", self:GetCastPoint(), "modifier dur:", recastModifier:GetDuration())
-    if recastModifier then
-        if recastModifier:GetRemainingTime() < self:GetCastPoint() then
-            print("We are too late!!")
-            recastModifier:SetDuration(self:GetCastPoint(), false)
-        end
-    end
+    self:GetCaster().hero:EmitSound("Arena.Nevermore.CastQ.Voice")
     return true
 end
-
--- Needs polishing!
-
-function nevermore_q:OnAbilityPhaseInterrupted()
-    local hero = self:GetCaster():GetParentEntity()
-    local recastModifier = hero:FindModifier("modifier_nevermore_q")
-
-    if recastModifier then
-        if recastModifier:GetRemainingTime() <= self:GetCastPoint() then
-            print("interrupted!!")
-            recastModifier:Destroy()
-        end
-    end
-end
-
 
 function nevermore_q:OnSpellStart()
     local hero = self:GetCaster():GetParentEntity()
@@ -48,8 +23,6 @@ function nevermore_q:OnSpellStart()
             recastModifier:IncrementStackCount()
             recastModifier:SetDuration(3.0, true)
         end
-
-        --if self:IsInAbilityPhase() and recastModifier:GetDuration() < self:GetCastPoint()
     else
         hero:AddNewModifier(hero, self, "modifier_nevermore_q", { duration = 3.0 }):SetStackCount(1)
     end
