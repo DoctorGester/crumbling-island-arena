@@ -10,6 +10,10 @@ function earth_spirit_r:GetChannelAnimation()
 	return ACT_DOTA_OVERRIDE_ABILITY_1
 end
 
+function earth_spirit_r:GetCastAnimation()
+    return ACT_DOTA_CAST_ABILITY_2_ES_ROLL_START
+end
+
 function earth_spirit_r:GetCastPoint()
 	return 0.10
 end
