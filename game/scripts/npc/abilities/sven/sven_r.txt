@@ -5,7 +5,7 @@
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "sven_gods_strength"
-		"AbilityCooldown" "14.0"
+		"AbilityCooldown" "17.0"
 
 		"precache" {
 			"particle" "particles/units/heroes/hero_sven/sven_spell_gods_strength.vpcf"

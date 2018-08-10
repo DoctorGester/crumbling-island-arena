@@ -24,7 +24,13 @@ end
 
 function modifier_invoker_w:OnDamageReceived(source, hero, amount, isPhysical)
     if not isPhysical then
-        return amount * 2
+        local hero = self:GetCaster():GetParentEntity()
+        local proj = instanceof(source, Projectile)
+        if (hero == source or (proj and source.hero == hero)) then
+            return amount * 2
+        else
+            return amount
+        end
     end
 
     return false

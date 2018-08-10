@@ -20,7 +20,8 @@ function ursa_a:OnSpellStart()
     local direction = self:GetDirection()
     local overpower = hero:HasModifier("modifier_ursa_w")
     local damage = self:GetDamage()
-
+    self.hitSomething = false
+    
     if hero:HasModifier("modifier_ursa_frenzy") then
         damage = damage * 2
     end
@@ -32,9 +33,9 @@ function ursa_a:OnSpellStart()
         damage = damage,
         knockback = { force = 20, decrease = 3 },
         action = function(victim)
-            if overpower and instanceof(victim, Hero) then
+            if overpower and instanceof(victim, Hero) and not self.hitSomething then
                 hero:Heal(damage)
-
+                self.hitSomething = true
                 local index = ParticleManager:CreateParticle("particles/generic_gameplay/generic_lifesteal.vpcf", PATTACH_ABSORIGIN_FOLLOW, hero:GetUnit())
                 ParticleManager:ReleaseParticleIndex(index)
             end

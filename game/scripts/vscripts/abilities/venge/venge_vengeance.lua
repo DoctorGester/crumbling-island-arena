@@ -15,6 +15,7 @@ function Vengeance:constructor(round, owner, target, facing, ability)
     end
 
     unit:AddAbility("venge_q"):SetLevel(1)
+    unit:AddAbility("venge_a"):SetLevel(1)
     unit.hero = self
 
     self:AddComponent(HealthComponent())

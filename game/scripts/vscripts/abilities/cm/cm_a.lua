@@ -13,7 +13,7 @@ function cm_a:OnSpellStart()
         graphics = "particles/cm_a/cm_a_empowered.vpcf"
 
         action = function(projectile, target)
-            target:Damage(projectile, self:GetDamage())
+            target:Damage(projectile, 2, true)
 
             if CMUtil.IsFrozen(target) then
                 CMUtil.Stun(projectile:GetTrueHero(), target, self)

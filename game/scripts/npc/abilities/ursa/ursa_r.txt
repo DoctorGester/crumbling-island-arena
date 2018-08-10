@@ -5,6 +5,6 @@
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "ursa_enrage"
-		"AbilityCooldown" "14.0"
+		"AbilityCooldown" "16.0"
 	}
 }

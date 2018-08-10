@@ -12,7 +12,7 @@ function qop_a:OnSpellStart()
         speed = 1450,
         radius = 48,
         graphics = "particles/qop_a/qop_a.vpcf",
-        distance = 1000,
+        distance = 650,
         damagesTrees = true,
         hitSound = "Arena.QOP.HitA",
         hitFunction = function(projectile, victim)

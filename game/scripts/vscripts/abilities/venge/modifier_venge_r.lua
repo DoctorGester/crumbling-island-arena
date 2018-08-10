@@ -19,7 +19,11 @@ if IsServer() then
         local dist = (event.unit:GetAbsOrigin() - self:GetParent():GetAbsOrigin()):Length2D()
         if event.unit:HasModifier("modifier_venge_r_target") and dist <= self:GetAuraRadius() and event.ability:ProcsMagicStick() then
             local unit = self:GetParent()
-            unit:CastAbilityOnPosition(event.unit:GetAbsOrigin(), unit:FindAbilityByName("venge_q"), -1)
+            if  event.ability.canBeSilenced then
+                unit:CastAbilityOnPosition(event.unit:GetAbsOrigin(), unit:FindAbilityByName("venge_q"), -1)
+            else
+                unit:CastAbilityOnPosition(event.unit:GetAbsOrigin(), unit:FindAbilityByName("venge_a"), -1)
+            end
         end
     end
 

@@ -11,6 +11,12 @@ function storm_spirit_a:OnSpellStart()
         charged:Destroy()
     end
 
+    local ignorePrimary = function(projectile)
+        return function(victim) 
+            return not projectile.hitGroup[victim]
+        end
+    end
+
     local data = {
         ability = self,
         owner = hero,
@@ -27,9 +33,12 @@ function storm_spirit_a:OnSpellStart()
     if charged then
         data.damagesTrees = true
 
-        data.hitFunction = function(projectile, _)
+        data.hitFunction = function(projectile, victim)
             projectile.hitSomething = true
-            projectile:Destroy()
+            projectile.hitGroup[victim] = true
+            victim:Damage(projectile, self:GetDamage() * 2, true)
+            victim:AddNewModifier(projectile:GetTrueHero(), self, "modifier_storm_spirit_a_slow", { duration = 1.2 })
+            projectile:Destroy() 
         end
 
         data.destroyFunction = function(projectile)
@@ -39,8 +48,8 @@ function storm_spirit_a:OnSpellStart()
 
             projectile:AreaEffect({
                 ability = self,
-                filter = Filters.Area(projectile:GetPos(), 350),
-                damage = self:GetDamage() * 2,
+                filter = Filters.Area(projectile:GetPos(), 350) + ignorePrimary(projectile),
+                damage = self:GetDamage(),
                 modifier = { name = "modifier_storm_spirit_a_slow", duration = 1.2, ability = self },
                 isPhysical = true
             })
