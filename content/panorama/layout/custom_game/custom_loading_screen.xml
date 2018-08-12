@@ -111,6 +111,31 @@
                 <Image class="RewardImage" src="file://{images}/custom_game/rewards/20.jpg" scaling="stretch-to-fit-x-preserve-aspect"/>
             </Panel>
         </snippet>
+        <snippet name="reward21">
+            <Panel>
+                <Image class="RewardImage" src="file://{images}/custom_game/rewards/21.jpg" scaling="stretch-to-fit-x-preserve-aspect"/>
+            </Panel>
+        </snippet>
+        <snippet name="reward22">
+            <Panel>
+                <Image class="RewardImage" src="file://{images}/custom_game/rewards/22.jpg" scaling="stretch-to-fit-x-preserve-aspect"/>
+            </Panel>
+        </snippet>
+        <snippet name="reward23">
+            <Panel>
+                <Image class="RewardImage" src="file://{images}/custom_game/rewards/23.jpg" scaling="stretch-to-fit-x-preserve-aspect"/>
+            </Panel>
+        </snippet>
+        <snippet name="reward24">
+            <Panel>
+                <Image class="RewardImage" src="file://{images}/custom_game/rewards/24.jpg" scaling="stretch-to-fit-x-preserve-aspect"/>
+            </Panel>
+        </snippet>
+        <snippet name="reward25">
+            <Panel>
+                <Image class="RewardImage" src="file://{images}/custom_game/rewards/25.jpg" scaling="stretch-to-fit-x-preserve-aspect"/>
+            </Panel>
+        </snippet>
         <snippet name="arcanaTournament">
             <Panel>
                 <Label class="WidgetHeader" text="#NewsArcanaWinner"/>
