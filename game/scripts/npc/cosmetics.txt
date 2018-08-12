@@ -216,6 +216,13 @@
                 "length" "3.0"
             }
         }
+	
+	"3"
+        {
+        	"type" "elite"
+        	"season" "25"
+        	"set" "eldwurms_touch"
+        }
     }
 
     "brewmaster"
@@ -296,6 +303,13 @@
             "type" "pass"
             "level" "16"
             "emote" "default"
+        }
+	
+	"2"
+        {
+        	"type" "elite"
+        	"season" "23"
+        	"set" "visions_of_the_lifted_veil"
         }
     }
 
@@ -543,6 +557,13 @@
             "level" "24"
             "emote" "default"
         }
+	
+	"3"
+        {
+            "type" "elite"
+            "season" "22"
+            "set" "charge_of_the_tundra_warden"
+        }
     }
 
     "sniper"
@@ -662,6 +683,13 @@
             "level" "32"
             "item" "6224"
         }
+	
+	"3"
+        {
+        	"type" "elite"
+        	"season" "21"
+        	"set" "submerged_hazard"
+        }
     }
 
     "legion_commander"
@@ -678,6 +706,13 @@
                 "sound" "Taunt.LC"
                 "length" "4"
             }
+        }
+	
+	"2"
+        {
+        	"type" "elite"
+        	"season" "24"
+        	"set" "the_gifts_of_zhuzhou"
         }
     }
 
