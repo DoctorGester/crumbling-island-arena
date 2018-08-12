@@ -6,7 +6,7 @@ function ProjectilePAA:constructor(round, hero, target, damage, ability)
         from = hero:GetPos() * Vector(1, 1, 0) + Vector(0, 0, 100),
         to = target * Vector(1, 1, 0) + Vector(0, 0, 100),
         speed = 5000,
-        graphics = "particles/pa_q/pa_q.vpcf",
+        graphics = hero:IsAwardEnabled() and "particles/pa_q/pa_q_elite.vpcf" or "particles/pa_q/pa_q.vpcf",
         damagesTrees = true,
         continueOnHit = true,
         disablePrediction = true,
