@@ -162,6 +162,13 @@
             "level" "38"
             "item" "7465"
         }
+	
+	"3"
+        {
+            "type" "elite"
+            "season" "25"
+            "set" "dark_reef_escape"
+        }
     }
 
     "undying"
@@ -215,13 +222,6 @@
                 "sound" "Taunt.Drow"
                 "length" "3.0"
             }
-        }
-	
-	"3"
-        {
-        	"type" "elite"
-        	"season" "25"
-        	"set" "eldwurms_touch"
         }
     }
 
