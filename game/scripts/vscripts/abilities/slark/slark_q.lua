@@ -20,7 +20,7 @@ function slark_q:OnSpellStart()
         to = target + Vector(0, 0, 64),
         damage = self:GetDamage(),
         speed = 1650,
-        graphics = "particles/slark_q/slark_q.vpcf",
+        graphics = hero:IsAwardEnabled() and "particles/slark_q/slark_q_elite.vpcf" or "particles/slark_q/slark_q.vpcf",
         distance = 900,
         hitModifier = { name = "modifier_slark_q", duration = 1.0, ability = self },
         hitSound = "Arena.Slark.HitE"
