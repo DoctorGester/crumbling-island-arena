@@ -163,11 +163,11 @@
             "item" "7465"
         }
 	
-	"3"
+        "3"
         {
             "type" "elite"
             "season" "25"
-            "set" "dark_reef_escape"
+            "set" "kindred_of_the_umizar_crawler"
         }
     }
 
@@ -305,7 +305,7 @@
             "emote" "default"
         }
 	
-	"2"
+	    "2"
         {
         	"type" "elite"
         	"season" "23"
@@ -558,7 +558,7 @@
             "emote" "default"
         }
 	
-	"3"
+	    "3"
         {
             "type" "elite"
             "season" "22"
@@ -684,7 +684,7 @@
             "item" "6224"
         }
 	
-	"3"
+	    "3"
         {
         	"type" "elite"
         	"season" "21"
@@ -708,7 +708,7 @@
             }
         }
 	
-	"2"
+	    "2"
         {
         	"type" "elite"
         	"season" "24"
