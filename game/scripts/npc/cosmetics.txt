@@ -96,12 +96,12 @@
 
     "earthshaker"
     {
-    	"1"
-    	{
-    		"type" "elite"
-    		"season" "9"
-    		"set" "crimson_beast"
-    	}
+        "1"
+        {
+            "type" "elite"
+            "season" "9"
+            "set" "crimson_beast"
+        }
 
         "2"
         {
@@ -162,6 +162,13 @@
             "level" "38"
             "item" "7465"
         }
+
+        "3"
+        {
+            "type" "elite"
+            "season" "25"
+            "set" "kindred_of_the_umizar_crawler"
+        }
     }
 
     "undying"
@@ -184,9 +191,9 @@
             "type" "elite"
             "raw"
             {
-            	"1" "armor:models/undying_reward/armor.vmdl"
-            	"2" "arms:models/undying_reward/bracer.vmdl"
-            	"3" "head:models/undying_reward/helmet.vmdl"
+                "1" "armor:models/undying_reward/armor.vmdl"
+                "2" "arms:models/undying_reward/bracer.vmdl"
+                "3" "head:models/undying_reward/helmet.vmdl"
             }
             "season" "7"
         }
@@ -246,13 +253,13 @@
 
         "2"
         {
-			"type" "elite"
+            "type" "elite"
             "set" "murder_of_crows"
             "season" "11"
             "particles"
-			{
-				"particles/pudge_q/pudge_q.vpcf" "particles/econ/pudge_q_seasonal/pudge_q.vpcf"
-			}
+            {
+                "particles/pudge_q/pudge_q.vpcf" "particles/econ/pudge_q_seasonal/pudge_q.vpcf"
+            }
         }
 
         "3"
@@ -297,6 +304,13 @@
             "level" "16"
             "emote" "default"
         }
+
+        "2"
+        {
+            "type" "elite"
+            "season" "23"
+            "set" "visions_of_the_lifted_veil"
+        }
     }
 
     "zuus"
@@ -331,12 +345,12 @@
 
     "templar_assassin"
     {
-    	"1"
-    	{
-			"type" "elite"
-			"set" "province_of_the_psion_inquisitor"
-			"season" "13"
-    	}
+        "1"
+        {
+            "type" "elite"
+            "set" "province_of_the_psion_inquisitor"
+            "season" "13"
+        }
 
         "2"
         {
@@ -345,7 +359,7 @@
             "item" "9318"
             "particles"
             {
-            	"particles/ta_q/ta_q.vpcf" "particles/econ/ta_q/ta_q.vpcf"
+                "particles/ta_q/ta_q.vpcf" "particles/econ/ta_q/ta_q.vpcf"
                 "particles/units/heroes/hero_templar_assassin/templar_assassin_meld_hit.vpcf" "particles/econ/items/templar_assassin/templar_assassin_focal/templar_assassin_meld_focal_attack_hit.vpcf"
             }
         }
@@ -377,12 +391,12 @@
 
     "ember_spirit"
     {
-    	"1"
-    	{
-    		"type" "elite"
-    		"season" "5"
-    		"set" "order_of_the_wandering_flame"
-    	}
+        "1"
+        {
+            "type" "elite"
+            "season" "5"
+            "set" "order_of_the_wandering_flame"
+        }
 
         "2"
         {
@@ -401,12 +415,12 @@
 
     "skeleton_king"
     {
-    	"1"
-    	{
-    		"type" "elite"
-    		"season" "10"
-    		"set" "wraith_king_lord_of_the_hunt"
-    	}
+        "1"
+        {
+            "type" "elite"
+            "season" "10"
+            "set" "wraith_king_lord_of_the_hunt"
+        }
 
         "2"
         {
@@ -481,17 +495,17 @@
 
     "antimage"
     {
-    	"1"
-    	{
-    		"type" "elite"
-    		"season" "12"
-			"set" "guilt_of_the_survivor"
-			"particles"
-			{
-				"particles/am_q/am_q.vpcf" "particles/econ/am_q_seasonal/am_q.vpcf"
-				"particles/am_q/am_q2.vpcf" "particles/econ/am_q_seasonal/am_q2.vpcf"
-			}
-    	}
+        "1"
+        {
+            "type" "elite"
+            "season" "12"
+            "set" "guilt_of_the_survivor"
+            "particles"
+            {
+                "particles/am_q/am_q.vpcf" "particles/econ/am_q_seasonal/am_q.vpcf"
+                "particles/am_q/am_q2.vpcf" "particles/econ/am_q_seasonal/am_q2.vpcf"
+            }
+        }
 
         "2"
         {
@@ -499,12 +513,12 @@
             "level" "12"
             "item" "8271,8324"
             "particles"
-			{
-				"particles/am_a/am_a.vpcf" "particles/econ/am_a/am_a.vpcf"
-				"particles/am_q/am_q.vpcf" "particles/econ/am_q/am_q.vpcf"
-				"particles/am_q/am_q2.vpcf" "particles/econ/am_q/am_q2.vpcf"
-				"particles/am_e/am_e.vpcf" "particles/econ/am_q/am_q_trail.vpcf"
-			}
+            {
+                "particles/am_a/am_a.vpcf" "particles/econ/am_a/am_a.vpcf"
+                "particles/am_q/am_q.vpcf" "particles/econ/am_q/am_q.vpcf"
+                "particles/am_q/am_q2.vpcf" "particles/econ/am_q/am_q2.vpcf"
+                "particles/am_e/am_e.vpcf" "particles/econ/am_q/am_q_trail.vpcf"
+            }
         }
 
         "3"
@@ -542,6 +556,13 @@
             "type" "pass"
             "level" "24"
             "emote" "default"
+        }
+
+        "3"
+        {
+            "type" "elite"
+            "season" "22"
+            "set" "charge_of_the_tundra_warden"
         }
     }
 
@@ -662,6 +683,13 @@
             "level" "32"
             "item" "6224"
         }
+
+        "3"
+        {
+            "type" "elite"
+            "season" "21"
+            "set" "submerged_hazard"
+        }
     }
 
     "legion_commander"
@@ -678,6 +706,13 @@
                 "sound" "Taunt.LC"
                 "length" "4"
             }
+        }
+
+        "2"
+        {
+            "type" "elite"
+            "season" "24"
+            "set" "the_gifts_of_zhuzhou"
         }
     }
 
