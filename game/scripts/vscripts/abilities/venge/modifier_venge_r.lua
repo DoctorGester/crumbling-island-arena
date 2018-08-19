@@ -16,10 +16,28 @@ if IsServer() then
     end
 
     function modifier_venge_r:OnAbilityExecuted(event)
-        local dist = (event.unit:GetAbsOrigin() - self:GetParent():GetAbsOrigin()):Length2D()
-        if event.unit:HasModifier("modifier_venge_r_target") and dist <= self:GetAuraRadius() and event.ability:ProcsMagicStick() then
-            local unit = self:GetParent()
-            unit:CastAbilityOnPosition(event.unit:GetAbsOrigin(), unit:FindAbilityByName("venge_q"), -1)
+        local vengeanceSummon = self:GetParent()
+        local castTarget = event.unit
+        local distanceToTarget = (castTarget:GetAbsOrigin() - vengeanceSummon:GetAbsOrigin()):Length2D()
+        local summonCanCast =
+                vengeanceSummon:GetCurrentActiveAbility() == nil and
+                vengeanceSummon:FindAbilityByName("venge_q"):IsCooldownReady()
+
+        local targetIsEligible =
+                castTarget:HasModifier("modifier_venge_r_target") and
+                distanceToTarget <= self:GetAuraRadius() and
+                not vengeanceSummon.hero.isFalling and
+                event.ability:ProcsMagicStick()
+
+        if targetIsEligible and summonCanCast then
+            local effect = FX("particles/units/heroes/hero_silencer/silencer_curse_aoe.vpcf", PATTACH_ABSORIGIN_FOLLOW, event.unit, {
+                cp1 = Vector(175, 0, 0)
+            })
+
+            self:AddParticle(effect, false, false, 0, true, false)
+
+            castTarget:EmitSound("Arena.Venge.TargetR")
+            vengeanceSummon:CastAbilityOnPosition(castTarget:GetAbsOrigin(), ability, -1)
         end
     end
 
