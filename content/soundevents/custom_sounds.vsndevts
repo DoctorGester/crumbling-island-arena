@@ -3214,6 +3214,20 @@
 		event_type = "1.0"
 	}
 
+	Arena.Venge.TargetR = {
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/weapons/hero/vengeful_spirit/missile_cast_ti8.vsnd"
+		]
+		volume = "0.5"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+	
 	Arena.Venge.EndR = {
 		type = "dota_src1_3d"
 		vsnd_files = 
