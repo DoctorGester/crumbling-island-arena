@@ -19,9 +19,8 @@ if IsServer() then
         local vengeanceSummon = self:GetParent()
         local castTarget = event.unit
         local distanceToTarget = (castTarget:GetAbsOrigin() - vengeanceSummon:GetAbsOrigin()):Length2D()
-        local summonCanCast =
-                vengeanceSummon:GetCurrentActiveAbility() == nil and
-                vengeanceSummon:FindAbilityByName("venge_q"):IsCooldownReady()
+        local summonAbility =  vengeanceSummon:FindAbilityByName("venge_q")
+        local summonCanCast = vengeanceSummon:GetCurrentActiveAbility() == nil and summonAbility:IsCooldownReady()
 
         local targetIsEligible =
                 castTarget:HasModifier("modifier_venge_r_target") and
@@ -37,7 +36,7 @@ if IsServer() then
             self:AddParticle(effect, false, false, 0, true, false)
 
             castTarget:EmitSound("Arena.Venge.TargetR")
-            vengeanceSummon:CastAbilityOnPosition(castTarget:GetAbsOrigin(), ability, -1)
+            vengeanceSummon:CastAbilityOnPosition(castTarget:GetAbsOrigin(), summonAbility, -1)
         end
     end
 
