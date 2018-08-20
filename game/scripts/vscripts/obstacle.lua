@@ -134,7 +134,7 @@ end
 
 function Obstacle:Remove()
     if self.launched or self.health <= 0 then
-        self:EmitSound("Arena.TreeFall")
+        self:EmitSound("Arena.TreeFall", self:GetPos())
 
         FX("particles/world_destruction_fx/tree_destroy.vpcf", PATTACH_WORLDORIGIN, GameRules:GetGameModeEntity(), {
             cp0 = self:GetPos(),
