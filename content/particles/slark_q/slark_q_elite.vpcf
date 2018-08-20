@@ -33,7 +33,7 @@
 			m_ModelList = 
 			[
 				{
-					m_model = resource:"models/items/slark/dark_reef_weapon/dark_reef_weapon.vmdl"
+					m_model = resource:"models/items/slark/deep_sea_dragoon_weapon/deep_sea_dragoon_weapon.vmdl"
 				},
 			]
 			m_bIgnoreNormal = true
@@ -54,6 +54,12 @@
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+			m_flDegreesMin = 90.0
+			m_flDegreesMax = 90.0
+			m_nFieldOutput = "20"
 		},
 	]
 	m_controlPointConfigurations = 
