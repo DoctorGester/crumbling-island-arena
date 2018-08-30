@@ -36,7 +36,8 @@ var recastModifiers = [
     "modifier_jugger_e",
     "modifier_cm_e",
     "modifier_earth_spirit_w_recast",
-    "modifier_nevermore_q"
+    "modifier_nevermore_q",
+    "modifier_void_e_sub"
 ];
 
 var specialLayouts = {
@@ -142,6 +143,10 @@ AddStatusEffect("modifier_wr_a", "#StatusHaste", "#91e246");
 AddStatusEffect("modifier_zeus_w", "#StatusHaste", "#a1e2d1");
 AddStatusEffect("modifier_earth_spirit_a", "#StatusMagnetized", "#3BC600");
 AddStatusEffect("modifier_nevermore_w", "#StatusDisarmed", "#b4dbe7");
+AddStatusEffect("modifier_void_q_root", "#StatusRooted", "#b505b5");
+AddStatusEffect("modifier_void_q", "#StatusCursed", "#d904d2");
+AddStatusEffect("modifier_void_w", "#StatusSpellbreak", "#fab9ff");
+AddStatusEffect("modifier_void_e_disarm", "#StatusDisarmed", "#b4dbe7");
 
 AddStatusEffect("modifier_gyro_w", "#StatusRecast", "#ffffff");
 AddStatusEffect("modifier_drow_q_recast", "#StatusRecast", "#ffffff");
@@ -149,6 +154,7 @@ AddStatusEffect("modifier_jugger_e", "#StatusRecast", "#ffffff");
 AddStatusEffect("modifier_cm_e", "#StatusRecast", "#ffffff");
 AddStatusEffect("modifier_earth_spirit_w_recast", "#StatusRecast", "#ffffff");
 AddStatusEffect("modifier_nevermore_q", "#StatusRecast", "#ffffff");
+AddStatusEffect("modifier_void_e_sub", "#StatusRecast", "#ffffff");
 
 AddStatusEffect("modifier_ursa_r", "#StatusUltimate", "#ff1b00", 1);
 AddStatusEffect("modifier_undying_r", "#StatusUltimate", "#30b529", 1);
@@ -171,3 +177,4 @@ AddUltimateAbility("drow_r",  "#6aace7");
 AddUltimateAbility("lycan_r",  "#ff2b12");
 AddUltimateAbility("earth_spirit_r",  "#2dd422");
 AddUltimateAbility("nevermore_r",  "#b00600");
+AddUltimateAbility("void_r",  "#b502b5");
