@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"void_e" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/void/void_e"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityTextureName" "faceless_void_time_walk"
+		"AbilityCooldown" "8.0"
+		"AbilityCastPoint" "0.15"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_THICK_LINE"
+			"MaxLength" "600"
+			"Width" "100"
+			"DisplayRange" "1"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "600"
+		}
+	}
+}

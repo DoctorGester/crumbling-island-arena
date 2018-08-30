@@ -1,0 +1,17 @@
+"DOTAAbilities" {
+	"void_r" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/void/void_r"
+		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "crystal_maiden_freezing_field"
+		"AbilityCooldown" "18.0"
+		"AbilityCastPoint" "0.15"
+		"Damage" "2"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "250"
+		}
+	}
+}
