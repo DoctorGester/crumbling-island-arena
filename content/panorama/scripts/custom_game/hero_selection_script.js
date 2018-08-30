@@ -37,7 +37,8 @@ var seasonAwards = {
     22: "npc_dota_hero_crystal_maiden",
     23: "npc_dota_hero_phantom_assassin",
     24: "npc_dota_hero_legion_commander",
-    25: "npc_dota_hero_slark"
+    25: "npc_dota_hero_slark",
+    26: "npc_dota_hero_faceless_void"
 };
 
 function PreloadPreview(hero, value, insertFirst) {

@@ -772,8 +772,8 @@
         "1"
         {
             "type" "elite"
-            "season" "27"
-            "item" "7571,8268,7816"
+            "season" "26"
+            "set" "elements_of_the_endless_plane"
         }
     }
 }
