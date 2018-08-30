@@ -445,8 +445,10 @@ local _ANIMATION_TRANSLATE_TO_CODE = {
   sideflip_gesture=371,
   walk_gesture=372,
   juggle_gesture=373,
-  keg_roll_gesture=374
-
+  keg_roll_gesture=374,
+  ti7=376,
+  aeons=377,
+  harpoon=378
 }
 
 function StartAnimation(unit, table)

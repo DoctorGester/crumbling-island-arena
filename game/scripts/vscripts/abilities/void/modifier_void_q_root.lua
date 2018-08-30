@@ -5,18 +5,16 @@ if IsServer() then
         local hero = self:GetParent():GetParentEntity()
         hero:EmitSound("Arena.Void.ProcQ")
 
-        self.p1 = FX(hero:GetMappedParticle("particles/units/heroes/hero_dark_willow/dark_willow_bramble.vpcf"), PATTACH_POINT_FOLLOW, hero, {
-            cp0 = { ent = self:GetParent() },
-            cp3 = { ent = self:GetParent() }
+        self.particle = FX(hero:GetMappedParticle("particles/units/heroes/hero_dark_willow/dark_willow_bramble.vpcf"), PATTACH_POINT_FOLLOW, hero, {
+            cp0 = { ent = hero },
+            cp3 = { ent = hero }
         })
     end
 
     function modifier_void_q_root:OnDestroy()
-        local hero = self:GetParent():GetParentEntity()
-        hero:EmitSound("Arena.Void.EndQ")
-        
-        ParticleManager:DestroyParticle(self.p1, false)
-        ParticleManager:ReleaseParticleIndex(self.p1)
+        self:GetParent():GetParentEntity():EmitSound("Arena.Void.EndQ")
+
+        DFX(self.particle)
     end
 end
 

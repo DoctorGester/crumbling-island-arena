@@ -7551,6 +7551,20 @@
 		event_type = "1.0"
 	}
 
+	Arena.Void.CastQ.Voice = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+		    "sounds/vo/faceless_void/face_ability_timewalk_04.vsnd",
+			"sounds/vo/faceless_void/face_ability_timewalk_05.vsnd"
+		]
+		volume = "2.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
 	Arena.Void.CastW = {
 		type = "dota_update_default"
 		vsnd_files =
@@ -7593,6 +7607,36 @@
 		event_type = "1.0"
 	}
 
+	Arena.Void.HitE = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/faceless_void/chronosphere_immortal.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		volume_fade_out = "0.4"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Void.HitE.Sub = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/dark_willow/ley_cast.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		volume_fade_out = "0.4"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
 	Arena.Void.CastE.Sub = {
 		type = "dota_update_default"
 		vsnd_files =
@@ -7600,6 +7644,20 @@
 			"sounds/weapons/hero/faceless_void/time_walk.vsnd"
 		]
 		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Void.CastR.Voice = {
+		type = "dota_src1_3d"
+		vsnd_files =
+		[
+			"sounds/vo/faceless_void/face_cast_03.vsnd"
+		]
+		volume = "2.0"
 		pitch_rand_min = "-0.05"
 		pitch_rand_max = "0.05"
 		pitch = "1.0"

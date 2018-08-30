@@ -605,7 +605,6 @@
         type = "dota_update_vo_switch"
         vsnd_files =
         [
-            "sounds/vo/faceless_void/face_kill_08.vsnd",
             "sounds/vo/faceless_void/face_kill_12.vsnd"
         ]
     }

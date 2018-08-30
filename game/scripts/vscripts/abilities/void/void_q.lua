@@ -6,7 +6,7 @@ LinkLuaModifier("modifier_void_q_root", "abilities/void/modifier_void_q_root", L
 function void_q:OnSpellStart()
     Wrappers.DirectionalAbility(self, 1200)
 
-    local hero = self:GetCaster().hero
+    local hero = self:GetCaster():GetParentEntity()
     local target = self:GetCursorPosition()
 
     DistanceCappedProjectile(hero.round, {
@@ -28,6 +28,10 @@ function void_q:OnSpellStart()
     }):Activate()
 
     hero:EmitSound("Arena.Void.CastQ")
+
+    if RandomInt(0, 2) == 0 then
+        hero:EmitSound("Arena.Void.CastQ.Voice")
+    end
 end
 
 function void_q:GetCastAnimation()

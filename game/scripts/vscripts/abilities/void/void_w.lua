@@ -4,14 +4,7 @@ LinkLuaModifier("modifier_void", "abilities/void/modifier_void", LUA_MODIFIER_MO
 LinkLuaModifier("modifier_void_w", "abilities/void/modifier_void_w", LUA_MODIFIER_MOTION_NONE)
 
 function void_w:OnSpellStart()
-
-    local hero = self:GetCaster().hero
-
-    --[[FX("particles/units/heroes/hero_faceless_void/faceless_void_timedialate.vpcf", PATTACH_WORLDORIGIN, hero, {
-        cp0 = hero:GetAbsOrigin(),
-        cp1 = Vector(350, 1, 1),
-        release = true
-    })]]--
+    local hero = self:GetCaster():GetParentEntity()
 
     hero:AreaEffect({
         ability = self,
@@ -20,10 +13,10 @@ function void_w:OnSpellStart()
         modifier = { name = "modifier_void_w", ability = self, duration = 1.3 }
     })
 
+    FX("particles/econ/items/abaddon/abaddon_alliance/abaddon_aphotic_shield_alliance_explosion.vpcf", PATTACH_ABSORIGIN, hero, { release = true })
+    FX("particles/units/heroes/hero_faceless_void/faceless_void_timedialate.vpcf", PATTACH_ABSORIGIN, hero, { release = true })
+    FX("particles/econ/items/faceless_void/faceless_void_bracers_of_aeons/fv_bracers_of_aeons_timedialate.vpcf", PATTACH_ABSORIGIN, hero, { release = true })
 
-    ImmediateEffect("particles/econ/items/abaddon/abaddon_alliance/abaddon_aphotic_shield_alliance_explosion.vpcf", PATTACH_ABSORIGIN, hero)
-    ImmediateEffect("particles/units/heroes/hero_faceless_void/faceless_void_timedialate.vpcf", PATTACH_ABSORIGIN, hero)
-    ImmediateEffect("particles/econ/items/faceless_void/faceless_void_bracers_of_aeons/fv_bracers_of_aeons_timedialate.vpcf", PATTACH_ABSORIGIN, hero)
     hero:EmitSound("Arena.Void.CastW")
 end
 

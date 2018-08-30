@@ -5,7 +5,6 @@
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
 		"AbilityTextureName" "faceless_void_time_walk"
 		"AbilityCooldown" "8.0"
-		"AbilityCastPoint" "0.15"
 
 		"TargetingIndicator" {
 			"Type" "TARGETING_INDICATOR_THICK_LINE"
