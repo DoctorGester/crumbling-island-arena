@@ -39,7 +39,7 @@
 		"HeroName_npc_dota_hero_omniknight"				"Enoch"
 		"HeroName_npc_dota_hero_axe"					"?????"
 		"HeroName_npc_dota_hero_shadow_demon"			"The Witch"
-		"HeroName_npc_dota_hero_faceless_void"			"Eyes of Heaven"
+		"HeroName_npc_dota_hero_faceless_void"			"Time"
 		"HeroName_npc_dota_hero_beastmaster"			"?????"
 		"HeroName_npc_dota_hero_antimage"				"Ea"
 		"HeroName_npc_dota_hero_phantom_lancer"			"Gemini"
@@ -255,6 +255,11 @@
 		"nevermore_DescW" "Melee attack. Knockback + disarm"
 		"nevermore_DescE" "Silencing dash"
 		"nevermore_DescR" "Channeling. AoE fear"
+
+		"faceless_void_DescQ" "Damaging projectile. Applies Curse debuff"
+		"faceless_void_DescW" "AoE Spellblock. Damage + silence if triggered"
+		"faceless_void_DescE" "Jump through time, returning HP. Recast"
+		"faceless_void_DescR" "Channeling. Global delayed damage"
 
 		"HeroBanned" "This hero is banned"
 		"PlayerHeader" "Players"
@@ -667,6 +672,13 @@
 		"AbilityTooltip_nevermore_e"					"Short flying dash<br/>Enemies on the way are silenced"
 		"AbilityTooltip_nevermore_r"					"<font color=\"#DAFF7F\"><b>Channeling</b></font><br/>Fires 12 projectiles which fear enemies on hit<br/>Projectiles deal damage to trees"
 
+		"AbilityTooltip_void_a"					"Hitting enemy heroes decreases <b>all</b> your current cooldowns by 1.5 sec<br/>Does not affect your basic attack cooldown"
+		"AbilityTooltip_void_q"					"Fire a magic sphere which deals 3 damage. Applies <font color=\"#d904d2\"><b>Curse</b></font> debuff for 2.5 sec if hit an enemy hero<br/><font color=\"#d904d2\"><b>Cursed</b></font> hero will get rooted for 1 sec for every skill cast"
+		"AbilityTooltip_void_w"					"Applies spellblock on every enemy hero around yourself for 1.3 sec<br/>Enemy takes 2 damage and become silenced for 2 sec if used a spell while under spellblock debuff"
+		"AbilityTooltip_void_e"					"Jump through time at the target point<br/>Enemies hit are disarmed for 2 sec and any damage your hero took in the last 2 seconds gets healed back up<br/>Can be recasted with another effect if hit an enemy"
+		"AbilityTooltip_void_e_sub"				"Jump at the target point<br/>Enemies on the way takes 2 damage and slowed for 2 secs<br/><b>DOES NOT REGENERATE HP!</b>"
+		"AbilityTooltip_void_r"					"<font color=\"#DAFF7F\"><b>Channeling</b></font><br/>Launch up to 4 meteors at your cursor position every 0.6 sec<br/>Meteors deals 2 dmg on impact and <font color=\"gold\"><b>MASSIVE</b></font> damage to the ground"
+
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
 		"ModifierTooltip_modifier_silence_lua"					"Silenced"
@@ -846,6 +858,12 @@
 		"ModifierTooltip_modifier_nevermore_e"					"Spooky Ghost"
 		"ModifierTooltip_modifier_nevermore_r"					"Fleeing"
 
+		"ModifierTooltip_modifier_void_q"					"Will get rooted if casts a spell"
+		"ModifierTooltip_modifier_void_q_root"					"Rooted"
+		"ModifierTooltip_modifier_void_w"					"Will get silenced if casts a spell"
+		"ModifierTooltip_modifier_void_e_slow"					"Slowpoke"
+		"ModifierTooltip_modifier_void_e_disarm"				"Disarmed"
+
 		"ModifierTooltip_modifier_rune_blue"                    "Dealing damage to enemy heroes will briefly stun them"
 
 		"StatusStunned" "Stunned"
@@ -867,6 +885,7 @@
 		"StatusHaste" "Haste"
 		"StatusUltimate" "Ultimate"
 		"StatusRecast" "Recast"
+		"StatusCursed" "Cursed"
 	}
 }
 
