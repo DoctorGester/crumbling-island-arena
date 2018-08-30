@@ -160,6 +160,12 @@
 #base "abilities\nevermore\nevermore_e.txt"
 #base "abilities\nevermore\nevermore_r.txt"
 #base "abilities\nevermore\nevermore_a.txt"
+#base "abilities\faceless_void\void_a.txt"
+#base "abilities\faceless_void\void_q.txt"
+#base "abilities\faceless_void\void_w.txt"
+#base "abilities\faceless_void\void_e.txt"
+#base "abilities\faceless_void\void_e_sub.txt"
+#base "abilities\faceless_void\void_r.txt"
 
 "DOTAAbilities" {
 	"dummy_unit_ability" {
