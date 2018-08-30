@@ -39,7 +39,7 @@
 		"HeroName_npc_dota_hero_omniknight"				"Энох"
 		"HeroName_npc_dota_hero_axe"					"?????"
 		"HeroName_npc_dota_hero_shadow_demon"			"Ведьма"
-		"HeroName_npc_dota_hero_faceless_void"			"Eyes of Heaven"
+		"HeroName_npc_dota_hero_faceless_void"			"Время"
 		"HeroName_npc_dota_hero_beastmaster"			"?????"
 		"HeroName_npc_dota_hero_antimage"				"Эа"
 		"HeroName_npc_dota_hero_phantom_lancer"			"Близнецы"
@@ -256,6 +256,11 @@
 		"nevermore_DescW" "Атака перед собой. Обезоруживает"
 		"nevermore_DescE" "Безмолвие + рывок"
 		"nevermore_DescR" "Прерываемое. Страх в области"
+
+		"faceless_void_DescQ" "Урон + Проклятье"
+		"faceless_void_DescW" "АоЕ Магблок. Урон + безмолвие при активации"
+		"faceless_void_DescE" "Прыжок сквозь время, восстанавливает ХП. Переиспользуемо"
+		"faceless_void_DescR" "Прерываемое + направляемое. Урон по земле после задержки"
 
 		"HeroBanned" "Этот герой забанен"
 		"PlayerHeader" "Игроки"
@@ -663,6 +668,13 @@
 		"AbilityTooltip_nevermore_e"					"Короткий летающий рывок<br/>Враги на пути будут обезмолвлены"
 		"AbilityTooltip_nevermore_r"					"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br/>Запускает 12 снарядов накладывающих страх на врагов<br/>Снаряды наносят урон деревьям"
 
+		"AbilityTooltip_void_a"					"Попадание по вражеским героям уменьшает текущие перезарядки <b>всех</b> своих способностей на 1.5 секунды<br/>Не влияет на перезарядку базовой атаки"
+		"AbilityTooltip_void_q"					"Запускает магический шар, наносящий 3 урона и накладывающий <font color=\"#d904d2\"><b>Проклятье</b></font> на 2.5 сек при попадании по герою<br/><font color=\"#d904d2\"><b>Проклятая</b></font> цель связывается на 1 сек за каждое применение ею способностей"
+		"AbilityTooltip_void_w"					"Накладывает магблок на всех врагов в области вокруг себя на 1.3 сек<br/>Применение способности под магблоком наносит 2 урона и накладывает безмолвие на 2 секунды"
+		"AbilityTooltip_void_e"					"Прыжок во времени в указанную точку<br/>Обезоруживает врагов на 2 сек и возвращает себе то количество здоровья, которое было у героя 2 секунды назад<br/>При попадании по вражескому герою способность может быть переиспользуема еще раз с другим эффектом"
+		"AbilityTooltip_void_e_sub"				"Прыжок в указанную точку<br/>Наносит 2 урона и замедляет врагов на 2 сек<br/><b>НЕ ВОССТАНАВЛИВАЕТ ЗДОРОВЬЕ!</b>"
+		"AbilityTooltip_void_r"					"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br/>Запускает до 4 магических метеоров в область курсора каждые 0.6 секунд<br/>Метеоры наносят 2 урона, а также сильно пробивают поверхность"
+
 		"ModifierTooltip_modifier_charges"						"Заряды способности"
 		"ModifierTooltip_modifier_stunned_lua"					"Оглушен"
 		"ModifierTooltip_modifier_silence_lua"					"Безмолвие"
@@ -838,6 +850,12 @@
         "ModifierTooltip_modifier_nevermore_w"					"Обезоружен"
 		"ModifierTooltip_modifier_nevermore_r"					"В ужасе"
 
+		"ModifierTooltip_modifier_void_q"					"Будет связан если применит заклинание"
+		"ModifierTooltip_modifier_void_q_root"					"Связан"
+		"ModifierTooltip_modifier_void_w"					"Будет обезмолвлен если применит заклинание"
+		"ModifierTooltip_modifier_void_e_slow"					"Слоупок"
+		"ModifierTooltip_modifier_void_e_disarm"				"Обезоружен" 
+
 		"ModifierTooltip_modifier_rune_blue"                    "Нанесение урона по вражеским героям оглушит их на короткое время"
 
 		"StatusStunned" "Оглушен"
@@ -858,6 +876,7 @@
 		"StatusHaste" "Спешка"
 		"StatusUltimate" "Ультимейт"
 		"StatusRecast" "Рекаст"
+		"StatusCursed" "Проклят"
 	}
 }
 
