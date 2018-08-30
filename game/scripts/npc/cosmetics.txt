@@ -766,4 +766,14 @@
             "set" "diabolical_fiend"
         }
     }
+
+    "faceless_void"
+    {
+        "1"
+        {
+            "type" "elite"
+            "season" "27"
+            "item" "7571,8268,7816"
+        }
+    }
 }
