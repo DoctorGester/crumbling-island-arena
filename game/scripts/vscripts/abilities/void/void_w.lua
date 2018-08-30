@@ -10,7 +10,7 @@ function void_w:OnSpellStart()
         ability = self,
         filter = Filters.Area(hero:GetPos(), 350),
         onlyHeroes = true,
-        modifier = { name = "modifier_void_w", ability = self, duration = 1.3 }
+        modifier = { name = "modifier_void_w", ability = self, duration = 0.8 }
     })
 
     FX("particles/econ/items/abaddon/abaddon_alliance/abaddon_aphotic_shield_alliance_explosion.vpcf", PATTACH_ABSORIGIN, hero, { release = true })
