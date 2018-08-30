@@ -422,7 +422,7 @@ function CreateHeroList(heroList, heroes, quests, selectedHeroes, achievements, 
             if (dateAdded) {
                 var date = moment(dateAdded, "DD.MM.YYYY");
 
-                if (date.add(5, "days").isAfter(moment.now())) {
+                if (date.add(30, "days").isAfter(moment.now())) {
                     recentlyAdded = true;
                 }
             }

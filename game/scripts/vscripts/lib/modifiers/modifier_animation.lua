@@ -375,7 +375,11 @@ local _CODE_TO_ANIMATION_TRANSLATE = {
   [371]="sideflip_gesture",
   [372]="walk_gesture",
   [373]="juggle_gesture",
-  [374]="keg_roll_gesture"
+  [374]="keg_roll_gesture",
+  [375]="rage_gesture",
+  [376]="ti7",
+  [377]="aeons",
+  [378]="harpoon"
 }
 
 function modifier_animation:OnCreated(keys)

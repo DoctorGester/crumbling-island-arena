@@ -600,4 +600,12 @@
             "sounds/vo/nevermore/nev_deny_03.vsnd"
         ]
     }
+
+    Round.faceless_void = {
+        type = "dota_update_vo_switch"
+        vsnd_files =
+        [
+            "sounds/vo/faceless_void/face_kill_12.vsnd"
+        ]
+    }
 }

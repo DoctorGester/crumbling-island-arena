@@ -1,0 +1,15 @@
+"DOTAAbilities" {
+	"void_w" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/void/void_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
+		"AbilityTextureName" "faceless_void_time_dilation"
+		"AbilityCooldown" "6.0"
+		"AbilityCastPoint" "0.15"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "350"
+		}
+	}
+}
