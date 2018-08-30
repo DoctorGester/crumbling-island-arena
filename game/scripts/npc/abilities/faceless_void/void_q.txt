@@ -4,7 +4,7 @@
 		"ScriptFile" "abilities/void/void_q"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
 		"AbilityTextureName" "dark_willow_bramble_maze"
-		"AbilityCooldown" "5.0"
+		"AbilityCooldown" "8.0"
 		"AbilityCastPoint" "0.15"
 		"Damage" "3"
 
