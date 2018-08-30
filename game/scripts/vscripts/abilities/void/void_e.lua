@@ -14,9 +14,12 @@ function void_e:OnSpellStart()
     local mod = hero:FindModifier("modifier_void")
     local hp = mod:TimeWalkHP()
     local abilityAlreadySwapped = false
+    local antiMegaHealCheck = hero:GetHealth()
 
-    if hp > hero:GetHealth() then
-        hero:Heal(hp - hero:GetHealth())
+    if hp > antiMegaHealCheck and not antiMegaHealCheck > 4 then
+        hero:Heal(hp - antiMegaHealCheck)
+    else
+        hero:Heal(4)
     end
 
     local function swapToSubAbilityIfNotAlreadySwapped()
