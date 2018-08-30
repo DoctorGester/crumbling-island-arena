@@ -1,0 +1,16 @@
+"DOTAAbilities" {
+	"void_a" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/void/void_a"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
+		"AbilityTextureName" "faceless_void_time_lock"
+		"AbilityCooldown" "0.8"
+		"AbilityCastPoint" "0.1"
+		"Damage" "1"
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "300"
+		}
+	}
+}
