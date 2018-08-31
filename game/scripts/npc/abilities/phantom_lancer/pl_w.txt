@@ -1,0 +1,9 @@
+"DOTAAbilities" {
+	"pl_w" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pl/pl_w"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "phantom_lancer_phantom_edge"
+		"AbilityCooldown" "5.0"
+	}
+}
