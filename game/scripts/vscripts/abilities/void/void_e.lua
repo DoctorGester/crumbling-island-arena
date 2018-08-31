@@ -61,7 +61,7 @@ function void_e:OnSpellStart()
                         hero:StopSound("Arena.Void.HitE")
                     end):Activate()
 
-                    target:AddNewModifier(hero, self, "modifier_void_e_disarm", { duration = 2.0 })
+                    target:AddNewModifier(hero, self, "modifier_void_e_disarm", { duration = 1.5 })
                 end
             end
         }
