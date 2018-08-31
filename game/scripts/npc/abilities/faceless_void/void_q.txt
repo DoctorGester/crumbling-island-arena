@@ -6,7 +6,7 @@
 		"AbilityTextureName" "dark_willow_bramble_maze"
 		"AbilityCooldown" "5.0"
 		"AbilityCastPoint" "0.15"
-		"Damage" "3"
+		"Damage" "2"
 
 		"TargetingIndicator" {
 			"Type" "TARGETING_INDICATOR_LINE"
