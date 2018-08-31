@@ -673,9 +673,9 @@
 		"AbilityTooltip_nevermore_r"					"<font color=\"#DAFF7F\"><b>Channeling</b></font><br/>Fires 12 projectiles which fear enemies on hit<br/>Projectiles deal damage to trees"
 
 		"AbilityTooltip_void_a"							"Hitting enemy heroes decreases <b>all</b> your active cooldowns by 1.5 seconds<br/>Does not affect your basic attack cooldown"
-		"AbilityTooltip_void_q"							"Fire a magic sphere which deals 3 damage. Applies <font color=\"#d904d2\"><b>Curse</b></font> debuff for 2.5 sec when hitting enemies<br/><font color=\"#d904d2\"><b>Cursed</b></font> hero are rooted for 1 sec for every spell cast"
+		"AbilityTooltip_void_q"							"Fire a magic damaging sphere. Applies <font color=\"#d904d2\"><b>Curse</b></font> debuff for 2.0 sec when hitting enemies<br/><font color=\"#d904d2\"><b>Cursed</b></font> hero are rooted for 1.5 sec for every spell cast"
 		"AbilityTooltip_void_w"							"Applies spellblock on enemies around for 1.3 sec<br/>Enemies are silenced and damaged if they use a spell under spellblock"
-		"AbilityTooltip_void_e"							"Jump through time to the target point<br/>Enemies hit are disarmed for 2 sec and any damage your hero took in the last 2 seconds is restored<br/>Can be recast if an enemy is hit"
+		"AbilityTooltip_void_e"							"Jump through time to the target point<br/>Enemies hit are disarmed and any damage your hero took in the last 2 seconds is restored<br/>Maximum health restored is 4<br/>Can be recast if an enemy is hit"
 		"AbilityTooltip_void_e_sub"						"Jump to the target point<br/>Enemies along the way take 2 damage and are slowed for 2 secs<br/>Does not restore health"
 		"AbilityTooltip_void_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br/>Launch up to 4 meteors at your cursor position every 0.6 sec<br/>Meteors deal 2 damage on impact and <font color=\"gold\"><b>MASSIVE</b></font> damage to the ground"
 
