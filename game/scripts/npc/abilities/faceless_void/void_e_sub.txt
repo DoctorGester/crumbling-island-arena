@@ -2,7 +2,7 @@
 	"void_e_sub" {
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/void/void_e_sub"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "faceless_void_time_walk"
 		"AbilityCooldown" "0.5"
 		"Damage" "2"
