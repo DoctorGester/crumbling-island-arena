@@ -14,9 +14,12 @@ function void_e:OnSpellStart()
     local mod = hero:FindModifier("modifier_void")
     local hp = mod:TimeWalkHP()
     local abilityAlreadySwapped = false
+    local antiMegaHealCheck = hero:GetHealth()
 
-    if hp > hero:GetHealth() then
-        hero:Heal(hp - hero:GetHealth())
+    if hp > antiMegaHealCheck and (hp - antiMegaHealCheck) <= 4 then
+        hero:Heal(hp - antiMegaHealCheck)
+    elseif hp > antiMegaHealCheck and (hp - antiMegaHealCheck) > 4 then
+        hero:Heal(4)
     end
 
     local function swapToSubAbilityIfNotAlreadySwapped()
@@ -58,7 +61,7 @@ function void_e:OnSpellStart()
                         hero:StopSound("Arena.Void.HitE")
                     end):Activate()
 
-                    target:AddNewModifier(hero, self, "modifier_void_e_disarm", { duration = 2.0 })
+                    target:AddNewModifier(hero, self, "modifier_void_e_disarm", { duration = 1.5 })
                 end
             end
         }
