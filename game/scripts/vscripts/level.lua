@@ -82,6 +82,7 @@ end
 function Level:constructor()
     self.parts = Entities:FindAllByName("map_part")
     self.distance = self:GetStartingDistance()
+    self.shrinkingSpeed = 0.75
     self.shakingParts = {}
     self.fallingParts = {}
     self.indexedParts = {}
@@ -90,7 +91,6 @@ function Level:constructor()
     self.pulsePosition = 0
     self.pulseDirection = 1
     self.tick = 0
-    self.slowFactor = 1
     self.enableRegeneration = false
     self.finishingDistance = FINISHING_DISTANCE
     self.lastRegenerationAt = nil
@@ -117,8 +117,8 @@ function Level:Show()
     end
 end
 
-function Level:SetSlowFactor(factor)
-    self.slowFactor = factor
+function Level:SetShrinkingSpeed(speed)
+    self.shrinkingSpeed = speed
 end
 
 function Level:EnableRegeneration(timeBase, timeScaling)
@@ -319,7 +319,8 @@ function Level:LaunchPart(part, by, point, radius)
 end
 
 function Level:Update()
-    local currentIndex = self.indexedParts[self.distance]
+    local currentDistance = math.floor(self.distance)
+    local currentIndex = self.indexedParts[currentDistance]
 
     if currentIndex and self.running then
         for _, part in ipairs(currentIndex) do
@@ -329,8 +330,8 @@ function Level:Update()
         end
     end
 
-    if self.distance - 64 > self.finishingDistance then
-        local shakingIndex = self.indexedParts[self.distance - 64]
+    if currentDistance - 64 > self.finishingDistance then
+        local shakingIndex = self.indexedParts[currentDistance - 64]
 
         if shakingIndex then
             for _, part in ipairs(shakingIndex) do
@@ -345,7 +346,7 @@ function Level:Update()
         for i = #self.regeneratingParts, 1, -1 do
             local part = self.regeneratingParts[i]
             local timeDiff = time - part.launchedAt
-            local timeScaled = self.distance / self:GetStartingDistance() * self.regenerationTimeScaling
+            local timeScaled = currentDistance / self:GetStartingDistance() * self.regenerationTimeScaling
 
             if timeDiff > self.regenerationTimeBase + timeScaled then
                 if part.regeneratesAt == nil then
@@ -479,12 +480,10 @@ function Level:Update()
         end
     end
 
-    if self.distance > self.finishingDistance then
-        if not IsInToolsMode() then
-            if self.tick % self.slowFactor == 0 then
-                self.distance = self.distance - 1
-            end
-        end
+    if currentDistance > self.finishingDistance then
+        --if not IsInToolsMode() then
+            self.distance = self.distance - self.shrinkingSpeed
+        --end
     else
         self.running = false
     end

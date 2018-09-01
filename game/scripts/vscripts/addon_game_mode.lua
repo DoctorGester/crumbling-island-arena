@@ -1589,7 +1589,7 @@ function GameMode:Start()
         self.deathmatch = DeathMatch(self.Players, self.AvailableHeroes)
         self.heroSelection.SelectionTimerTime = 40
         self.deathmatch:Activate(GameMode, self)
-        self.level:SetSlowFactor(7)
+        self.level:SetShrinkingSpeed(0.15)
         self.level:EnableRegeneration(10, 20)
         self.level:SetFinishingDistance(1200)
 
