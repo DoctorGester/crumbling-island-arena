@@ -11,24 +11,19 @@ function void_a:OnSpellStart()
 
     local hero = self:GetCaster():GetParentEntity()
     local range = 300
-    local shouldReduceCooldowns
+    local cooldownReduction = 1.5
 
-    hero:AreaEffect({
+    local hitAnyone = hero:AreaEffect({
         ability = self,
         filter = Filters.Cone(hero:GetPos(), range, self:GetDirection(), math.pi),
         sound = "Arena.Void.HitA",
         damagesTrees = true,
         damage = self:GetDamage(),
-        action = function(target)
-            if instanceof(target, Hero) then
-                shouldReduceCooldowns = true
-            end
-        end,
         knockback = { force = 20, decrease = 3 },
         isPhysical = true
     })
 
-    if shouldReduceCooldowns then
+    if hitAnyone then
         local atLeastOneCooldownReduced
 
         for index = 0, self:GetCaster():GetAbilityCount() - 1 do
@@ -39,7 +34,7 @@ function void_a:OnSpellStart()
                     not IsAttackAbility(ability)
 
             if abilityShouldBeReduced then
-                local newCooldown = math.max(ability:GetCooldownTimeRemaining() - 1.5, 0)
+                local newCooldown = math.max(ability:GetCooldownTimeRemaining() - cooldownReduction, 0)
 
                 ability:EndCooldown()
 

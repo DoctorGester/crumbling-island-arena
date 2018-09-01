@@ -672,7 +672,7 @@
 		"AbilityTooltip_nevermore_e"					"Short flying dash<br/>Enemies on the way are silenced"
 		"AbilityTooltip_nevermore_r"					"<font color=\"#DAFF7F\"><b>Channeling</b></font><br/>Fires 12 projectiles which fear enemies on hit<br/>Projectiles deal damage to trees"
 
-		"AbilityTooltip_void_a"							"Hitting enemy heroes decreases <b>all</b> your active cooldowns by 1.5 seconds<br/>Does not affect your basic attack cooldown"
+		"AbilityTooltip_void_a"							"Hitting targets decreases <b>all</b> your active cooldowns by 1.5 seconds<br/>Does not affect your basic attack cooldown"
 		"AbilityTooltip_void_q"							"Fire a magic sphere which deals 3 damage. Applies <font color=\"#d904d2\"><b>Curse</b></font> debuff for 1.5 sec when hitting enemies<br/><font color=\"#d904d2\"><b>Cursed</b></font> hero are rooted for 1 sec for every spell cast"
 		"AbilityTooltip_void_w"							"Applies spellblock on enemies around for 0.8 sec<br/>Enemies are silenced and damaged if they use a spell under spellblock"
 		"AbilityTooltip_void_e"							"Jump through time to the target point<br/>Enemies hit are disarmed for 2 sec and any damage your hero took in the last 2 seconds is restored<br/>Can be recast if an enemy is hit"

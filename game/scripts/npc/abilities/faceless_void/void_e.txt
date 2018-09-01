@@ -4,7 +4,7 @@
 		"ScriptFile" "abilities/void/void_e"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
 		"AbilityTextureName" "faceless_void_time_walk"
-		"AbilityCooldown" "8.0"
+		"AbilityCooldown" "14.0"
 
 		"TargetingIndicator" {
 			"Type" "TARGETING_INDICATOR_THICK_LINE"

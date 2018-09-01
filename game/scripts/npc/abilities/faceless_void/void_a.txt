@@ -4,7 +4,7 @@
 		"ScriptFile" "abilities/void/void_a"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_IGNORE_BACKSWING"
 		"AbilityTextureName" "faceless_void_time_lock"
-		"AbilityCooldown" "0.8"
+		"AbilityCooldown" "0.6"
 		"AbilityCastPoint" "0.1"
 		"Damage" "1"
 

@@ -4,7 +4,7 @@
 		"ScriptFile" "abilities/void/void_w"
 		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET"
 		"AbilityTextureName" "faceless_void_time_dilation"
-		"AbilityCooldown" "6.0"
+		"AbilityCooldown" "10.0"
 		"AbilityCastPoint" "0.15"
 
 		"HoverIndicator" {
