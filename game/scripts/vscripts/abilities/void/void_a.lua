@@ -71,7 +71,7 @@ function void_a:GetCastAnimation()
 end
 
 function void_a:GetPlaybackRateOverride()
-    return 2.5
+    return 3.0
 end
 
 if IsClient() then
