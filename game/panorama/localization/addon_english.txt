@@ -863,6 +863,7 @@
 		"ModifierTooltip_modifier_void_w"						"Silenced if casts a spell"
 		"ModifierTooltip_modifier_void_e_slow"					"Slowpoke"
 		"ModifierTooltip_modifier_void_e_disarm"				"Disarmed"
+		"ModifierTooltip_modifier_void_e_counter"				"Will restore health after using E"
 
 		"ModifierTooltip_modifier_rune_blue"                    "Dealing damage to enemy heroes will briefly stun them"
 

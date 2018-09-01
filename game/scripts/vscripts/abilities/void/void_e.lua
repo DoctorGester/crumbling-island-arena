@@ -1,23 +1,17 @@
 void_e = class({})
 
-LinkLuaModifier("modifier_void", "abilities/void/modifier_void", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_void_e", "abilities/void/modifier_void_e", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_void_e_sub", "abilities/void/modifier_void_e_sub", LUA_MODIFIER_MOTION_NONE)
-LinkLuaModifier("modifier_void_e_disarm", "abilities/void/modifier_void_e_disarm", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_void_e_slow", "abilities/void/modifier_void_e_slow", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_void_e_disarm", "abilities/void/modifier_void_e_disarm", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_void_e_counter", "abilities/void/modifier_void_e_counter", LUA_MODIFIER_MOTION_NONE)
 
 function void_e:OnSpellStart()
     Wrappers.DirectionalAbility(self, 600)
 
     local hero = self:GetCaster():GetParentEntity()
     local target = self:GetCursorPosition()
-    local mod = hero:FindModifier("modifier_void")
-    local hp = mod:TimeWalkHP()
     local abilityAlreadySwapped = false
-
-    if hp > hero:GetHealth() then
-        hero:Heal(hp - hero:GetHealth())
-    end
 
     local function swapToSubAbilityIfNotAlreadySwapped()
         if not abilityAlreadySwapped then
@@ -46,6 +40,13 @@ function void_e:OnSpellStart()
         forceFacing = true,
         gesture = ACT_DOTA_CAST_ABILITY_1,
         gestureRate = 2.5,
+        arrivalFunction = function()
+            local healthTwoSecondsAgo = hero:FindModifier("modifier_void_e_counter"):TimeWalkHP()
+
+            if healthTwoSecondsAgo > hero:GetHealth() then
+                hero:Heal(healthTwoSecondsAgo - hero:GetHealth())
+            end
+        end,
         hitParams = {
             ability = self,
             action = function(target)
@@ -65,6 +66,10 @@ function void_e:OnSpellStart()
     })
 
     hero:EmitSound("Arena.Void.CastE")
+end
+
+function void_e:GetIntrinsicModifierName()
+    return "modifier_void_e_counter"
 end
 
 if IsClient() then

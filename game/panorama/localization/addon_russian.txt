@@ -855,6 +855,7 @@
 		"ModifierTooltip_modifier_void_w"						"Будет обезмолвлен если применит заклинание"
 		"ModifierTooltip_modifier_void_e_slow"					"Слоупок"
 		"ModifierTooltip_modifier_void_e_disarm"				"Обезоружен" 
+		"ModifierTooltip_modifier_void_e_counter"				"Восстановит здоровье при использовании E"
 
 		"ModifierTooltip_modifier_rune_blue"                    "Нанесение урона по вражеским героям оглушит их на короткое время"
 
