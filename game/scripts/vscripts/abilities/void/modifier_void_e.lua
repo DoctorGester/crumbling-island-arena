@@ -22,6 +22,10 @@ if IsServer() then
     end
 end
 
+function self:IsInvulnerable()
+    return true
+end
+
 function self:IsHidden()
     return true
 end

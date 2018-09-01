@@ -481,9 +481,9 @@ function Level:Update()
     end
 
     if currentDistance > self.finishingDistance then
-        --if not IsInToolsMode() then
+        if not IsInToolsMode() then
             self.distance = self.distance - self.shrinkingSpeed
-        --end
+        end
     else
         self.running = false
     end
