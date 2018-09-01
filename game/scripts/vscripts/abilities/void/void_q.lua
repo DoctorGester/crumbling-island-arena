@@ -18,7 +18,7 @@ function void_q:OnSpellStart()
         graphics = "particles/void_q/void_q.vpcf",
         distance = 1200,
         hitSound = "Arena.Void.HitQ",
-        hitModifier = { name = "modifier_void_q", duration = 2.5, ability = self },
+        hitModifier = { name = "modifier_void_q", duration = 1.5, ability = self },
         hitFunction = function(projectile, target)
             target:Damage(projectile, self:GetDamage())
         end,
