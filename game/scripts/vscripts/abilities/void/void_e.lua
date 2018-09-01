@@ -50,9 +50,9 @@ function void_e:OnSpellStart()
         hitParams = {
             ability = self,
             action = function(target)
-                if instanceof(target, Hero) then
-                    swapToSubAbilityIfNotAlreadySwapped()
+                swapToSubAbilityIfNotAlreadySwapped()
 
+                if instanceof(target, Hero) then
                     hero:EmitSound("Arena.Void.HitE")
 
                     TimedEntity(0, function()
