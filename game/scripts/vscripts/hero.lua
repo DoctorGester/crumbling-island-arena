@@ -265,7 +265,27 @@ function Hero:Heal(amount)
         amount = 3
     end
 
-    if self.unit:IsAlive() then
+    local modifierCheck = self.unit:HasModifier("modifier_timber_heal_to_shield")
+    local modifierShield = self.unit:FindModifierByName("modifier_shield")
+
+    if self.unit:IsAlive() and modifierCheck then
+        if not modifierShield then
+            modifierShield = self.unit:AddNewModifier(self.unit, nil, "modifier_shield", {})
+        end
+        if modifierShield then
+            modifierShield:SetStackCount(math.min(modifierShield:GetStackCount() + amount, 20))
+            modifierShield:ForceRefresh()
+        end
+        FX("particles/msg_damage.vpcf", PATTACH_CUSTOMORIGIN, GameRules:GetGameModeEntity(), {
+            cp0 = self:GetPos(),
+            cp1 = Vector(0, amount, 0),
+            cp2 = Vector(math.max(1, amount / 1.5), 1, 0),
+            cp3 = Vector(201, 201, 3),
+            release = true
+        })
+    end
+
+    if self.unit:IsAlive() and not modifierCheck then
         self.unit:SetHealth(self.unit:GetHealth() + amount)
 
         FX("particles/msg_damage.vpcf", PATTACH_CUSTOMORIGIN, GameRules:GetGameModeEntity(), {
