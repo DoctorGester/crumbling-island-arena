@@ -8,20 +8,7 @@ if IsServer() then
         ParticleManager:SetParticleControlEnt(index, 3, p, PATTACH_POINT_FOLLOW, "attach_eyeL", p:GetAbsOrigin(), true)
         ParticleManager:SetParticleControlEnt(index, 4, p, PATTACH_POINT_FOLLOW, "attach_eyeR", p:GetAbsOrigin(), true)
         self:AddParticle(index, false, false, -1, false, false)
-
-        self:StartIntervalThink(0.5)
     end
-
-    function modifier_slark_r:OnIntervalThink()
-        self:GetParent().hero:Heal(1)
-    end
-end
-
-function modifier_slark_r:CheckState()
-    local state = {
-    }
-
-    return state
 end
 
 function modifier_slark_r:DeclareFunctions()
@@ -34,7 +21,16 @@ function modifier_slark_r:DeclareFunctions()
 end
 
 function modifier_slark_r:GetModifierMoveSpeedBonus_Percentage(params)
-    return 50
+    return 0
+end
+
+function modifier_slark_r:OnDamageDealt(target, source, amount)
+    local hero = self:GetParent():GetParentEntity()
+    if source.hero then source = source.hero end
+
+    if source == hero and amount > 0 and instanceof(target, Hero) and target.owner.team ~= hero.owner.team then
+        hero:Heal(amount)
+    end
 end
 
 function modifier_slark_r:GetActivityTranslationModifiers()
