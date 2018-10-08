@@ -1,7 +1,5 @@
 slark_q = class({})
 
-LinkLuaModifier("modifier_slark_q", "abilities/slark/modifier_slark_q", LUA_MODIFIER_MOTION_NONE)
-
 function slark_q:OnAbilityPhaseStart()
     self:GetCaster():RemoveGesture(ACT_DOTA_CAST_ABILITY_1)
     self:GetCaster():EmitSound("Arena.Slark.PreA")
@@ -22,14 +20,14 @@ function slark_q:OnSpellStart()
         speed = 1650,
         graphics = hero:IsAwardEnabled() and "particles/slark_q/slark_q_elite.vpcf" or "particles/slark_q/slark_q.vpcf",
         distance = 900,
-        hitModifier = { name = "modifier_slark_q", duration = 1.0, ability = self },
+        hitModifier = { name = "modifier_silence_lua", duration = 1.0, ability = self },
         hitSound = "Arena.Slark.HitE"
     }):Activate()
 
     hero:GetWearableBySlot("weapon"):AddEffects(EF_NODRAW)
-    hero:FindAbility("slark_a"):StartCooldown(2.0)
+    hero:FindAbility("slark_a"):StartCooldown(2)
 
-    TimedEntity(2.0, function()
+    TimedEntity(2, function()
         hero:FindAbility("slark_a"):SetActivated(true)
         hero:GetWearableBySlot("weapon"):RemoveEffects(EF_NODRAW)
     end):Activate()
