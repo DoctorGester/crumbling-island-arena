@@ -202,10 +202,10 @@
 		"tinker_DescE" "Оранжевый портал"
 		"tinker_DescR" "Защищающее устройство"
 
-		"slark_DescQ" "Замедляющий снаряд"
-		"slark_DescW" "Снять дебаффы + урон себе и врагам вокруг"
+		"slark_DescQ" "Снаряд + безмолвие"
+		"slark_DescW" "Защита от способностей + урон вокруг героя"
 		"slark_DescE" "Прыжок вперед + привязать врага"
-		"slark_DescR" "Снять дебаффы + скорость + регенерация"
+		"slark_DescR" "Снять дебаффы + скорость + востановление здоровья при нанесении урона"
 
 		"queenofpain_DescQ" "Замедляющий снаряд, урон после задержки"
 		"queenofpain_DescW" "Привлечь врагов, смотрящих на героя"
@@ -603,11 +603,11 @@
         "AbilityTooltip_tinker_e_sub"					"Уничтожить оранжевый портал"
 		"AbilityTooltip_tinker_r"						"Создать устройство с защитным барьером, отталкивающим врагов и отражающим снаряды"
 
-		"AbilityTooltip_slark_a"						"Ворует здоровье у героев и накладывает на себя дебафф<br/>Здоровье возвращается по истечении дебаффа"
-        "AbilityTooltip_slark_q"						"Запустить замедляющий снаряд"
-		"AbilityTooltip_slark_w"						"Нанести урон себе и врагам вокруг и снять дебаффы с себя после задержки"
+		"AbilityTooltip_slark_a"						"Ворует скорость у героев и накладывает на себя бафф<br/>Скорость возвращается по истечении баффа"
+        "AbilityTooltip_slark_q"						"Запустить снаряд накладывающий безмолвие"
+		"AbilityTooltip_slark_w"						"Наносит урон вокруг когда блокирует способность<br/>Только одна способность может быть заблокирована"
 		"AbilityTooltip_slark_e"						"Прыгнуть вперед, привязывая первого врага на пути к земле"
-		"AbilityTooltip_slark_r"						"Снять дебаффы, получить бонус скорости, восстанавливать 2 здоровья в секунду<br/><br/>Длится <font color=\"gold\"><b>3</b></font> секунды"
+		"AbilityTooltip_slark_r"						"Снять дебаффы, удвоить бонус к скорости от эффектов от <font color=\"gold\">A</font>, восстанавливает здоровье при нанесении урона вражеским героям<br/><br/>Длится <font color=\"gold\"><b>6</b></font> секунд"
 
 		"AbilityTooltip_qop_a"							"Наносит двойной урон по замедленным врагам"
 		"AbilityTooltip_qop_q"							"Запустить замедляющий снаряд, наносящий урон после того, как замедление закончится<br/><br/>Если применить во время действия R, восстановит здоровье, после нанесения урона"
@@ -794,11 +794,11 @@
 
 		"ModifierTooltip_modifier_tinker_q"						"Обезоружен"
 
-		"ModifierTooltip_modifier_slark_a"						"Вернет украденное здоровье"
-		"ModifierTooltip_modifier_slark_q"						"Замедлен"
+		"ModifierTooltip_modifier_slark_a"						"Скорость украдена"
+		"ModifierTooltip_modifier_slark_w"						"Защита от способностей"		
 		"ModifierTooltip_modifier_slark_e"						"Прыгает"
 		"ModifierTooltip_modifier_slark_e_leash"				"Вы арестованы!"
-		"ModifierTooltip_modifier_slark_r"						"Ускорен и восстанавливает здоровье"
+		"ModifierTooltip_modifier_slark_r"						"Ускорен и восстанавливает здоровье при нанесении урона"
 
 		"ModifierTooltip_modifier_qop_q"						"Замедлен и получит урон"
 		"ModifierTooltip_modifier_qop_w"						"Привлечен красотой"
