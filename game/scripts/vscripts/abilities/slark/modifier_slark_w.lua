@@ -41,4 +41,5 @@ function modifier_slark_w:GoBang()
     ParticleManager:ReleaseParticleIndex(self.particle)
 
     hero:EmitSound("Arena.Slark.CastW")
+    self:Destroy()	
 end
