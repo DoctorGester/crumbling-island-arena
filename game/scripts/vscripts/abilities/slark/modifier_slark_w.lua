@@ -13,7 +13,7 @@ function modifier_slark_w:AllowAbilityEffect(source,ability)
 	local hero = self:GetAbility():GetCaster():GetParentEntity()
 	if not IsAttackAbility(ability) and source.owner.team ~= hero.owner.team then
 		if not instanceof(source, ProjectilePudgeQ) then
-			if instanceof(source, Projectile) and source:Alive() and source.destroyFunction then
+			if instanceof(source, Projectile) and source:Alive() and source.destroyFunction and not source.hitFunction then
 				return false
 			end
 		else
@@ -22,8 +22,8 @@ function modifier_slark_w:AllowAbilityEffect(source,ability)
 			end
 		end
 
-		return false,
 		self:GoBang()
+		return false
 	end
 end
 
@@ -36,6 +36,8 @@ function modifier_slark_w:GoBang()
 
     hero:GetUnit():StartGestureWithPlaybackRate(ACT_DOTA_CAST_ABILITY_1, 1.5)
 
+    self:Destroy()
+	
     hero:AreaEffect({
         ability = self:GetAbility(),
         filter = Filters.Area(hero:GetPos(), 300),
@@ -46,6 +48,5 @@ function modifier_slark_w:GoBang()
     ParticleManager:DestroyParticle(self.particle, true)
     ParticleManager:ReleaseParticleIndex(self.particle)
 
-    hero:EmitSound("Arena.Slark.CastW")
-    self:Destroy()	
+    hero:EmitSound("Arena.Slark.CastW")	
 end
