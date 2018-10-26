@@ -18,7 +18,8 @@ var modifiersWithStacks = [
     "modifier_tree_heal",
     "modifier_rune_blue",
     "modifier_pa_a",
-    "modifier_void_e_counter"
+    "modifier_void_e_counter",
+    "modifier_slark_a"
 ];
 
 function ShowBuffTooltip(element, entityId, buffId) {
