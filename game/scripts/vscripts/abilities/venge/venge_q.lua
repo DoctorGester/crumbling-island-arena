@@ -14,6 +14,7 @@ function venge_q:OnSpellStart()
         speed = 1250,
         graphics = "particles/venge_q/venge_q.vpcf",
         distance = 950,
+        damagesTrees = true,
         hitSound = "Arena.Venge.HitQ",
         hitFunction = function(projectile,target) 
             target:Damage(trueHero, ability:GetDamage())
