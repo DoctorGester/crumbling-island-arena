@@ -3,21 +3,23 @@ LinkLuaModifier("modifier_ember_w", "abilities/ember/modifier_ember_w", LUA_MODI
 
 function ember_w:OnSpellStart()
     local hero = self:GetCaster().hero
+    local trueHero = hero.hero or hero
+    local ability = trueHero:FindAbility("ember_w")
     local target = self:GetCursorPosition()
 
     DistanceCappedProjectile(hero.round, {
-        ability = self,
+        ability = ability,
         owner = hero,
         from = hero:GetPos() + Vector(0, 0, 128),
         to = target + Vector(0, 0, 128),
         speed = 1250,
         graphics = "particles/ember_w/ember_w.vpcf",
         distance = 1050,
-        hitModifier = { name = "modifier_ember_w", duration = 1.0, ability = self },
         hitSound = "Arena.Ember.HitW",
         hitFunction = function(projectile, target)
-            if EmberUtil.Burn(projectile:GetTrueHero(), target, self) then
-                target:Damage(projectile, self:GetDamage())
+            target:AddNewModifier(trueHero, ability, "modifier_ember_w", { duration = 1.0 })
+            if EmberUtil.Burn(trueHero, target, ability) then
+                target:Damage(trueHero, ability:GetDamage())
             end
         end,
         destroyFunction = function()
