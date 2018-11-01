@@ -22,9 +22,10 @@ end
 
 function modifier_slark_w:AllowAbilityEffect(source,ability)
     local hero = self:GetAbility():GetCaster():GetParentEntity()
+    local exceptions = { ["sven_q"] = true, ["wr_r"] = true }
     if not IsAttackAbility(ability) and source.owner.team ~= hero.owner.team then
         if not instanceof(source, ProjectilePudgeQ) then
-            if instanceof(source, Projectile) and source:Alive() and source.destroyFunction and not source.hitFunction then
+            if instanceof(source, Projectile) and source:Alive() and exceptions[ability:GetName()] then
                 return false
             end
         else
