@@ -4,11 +4,13 @@ LinkLuaModifier("modifier_ember_burning", "abilities/ember/modifier_ember_burnin
 
 function ember_q:OnSpellStart()
     local hero = self:GetCaster().hero
+    local trueHero = hero.hero or hero
+    local ability = trueHero:FindAbility("ember_q")
     local target = self:GetCursorPosition()
 
     DistanceCappedProjectile(hero.round, {
-        ability = self,
-        owner = hero,
+        ability = ability,
+        owner = trueHero,
         from = hero:GetPos(),
         to = target,
         speed = 1250,
@@ -18,10 +20,10 @@ function ember_q:OnSpellStart()
         continueOnHit = true,
         damagesTrees = true,
         hitFunction = function(projectile, target)
-            target:Damage(projectile, self:GetDamage())
+            target:Damage(projectile, ability:GetDamage())
 
-            if EmberUtil.Burn(projectile:GetTrueHero(), target, self) then
-                target:AddNewModifier(projectile:GetTrueHero(), self, "modifier_ember_q", { duration = 2.5 })
+            if EmberUtil.Burn(projectile:GetTrueHero(), target, ability) then
+                target:AddNewModifier(projectile:GetTrueHero(), ability, "modifier_ember_q", { duration = 2.5 })
             end
         end
     }):Activate()
