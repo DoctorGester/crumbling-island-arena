@@ -13,14 +13,6 @@ function self:GetModifierMoveSpeedBonus_Percentage(params)
     return -50
 end
 
-function self:GetEffectName()
-    return "particles/am_w/am_w_shield.vpcf"
-end
-
-function self:GetEffectAttachType()
-    return PATTACH_ROOTBONE_FOLLOW
-end
-
 function self:AllowAbilityEffect(source, ability)
     local hero = self:GetParent():GetParentEntity()
 
@@ -39,6 +31,10 @@ function self:AllowAbilityEffect(source, ability)
             hero:AddNewModifier(hero, hero:FindAbility("am_a"), "modifier_am_a", { duration = 3.0 })
         end
 
+        FX("particles/am_w/am_w_proc.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent(), {
+            cp0 = { ent = self:GetParent(), point = "attach_hitloc" }
+        })
+
         return false
     end
 
@@ -47,10 +43,16 @@ end
 
 if IsServer() then
     function self:OnCreated()
+        self.particle = FX("particles/am_w/am_w.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent(), {
+            cp0 = { ent = self:GetParent(), point = "attach_hitloc" },
+            cp1 = Vector(145, 0, 0)
+        })
+
         self:GetAbility():SetActivated(false)
     end
 
     function self:OnDestroy()
+        DFX(self.particle)
         local mul = self.bonusGranted and 0.5 or 1.0
         local ability = self:GetAbility()
         ability:SetActivated(true)

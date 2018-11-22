@@ -6508,12 +6508,12 @@
 		type = "dota_update_default"
 		vsnd_files = 
 		[
-			"sounds/weapons/hero/antimage/spell_shield_block.vsnd"
+			"sounds/weapons/hero/razor/razor_unstable_current.vsnd"
 		]
 		volume = "1.8"
 		pitch_rand_min = "-0.05"
 		pitch_rand_max = "0.05"
-		pitch = "1.0"
+		pitch = "0.6"
 		soundlevel = "60.0"
 		event_type = "1.0"
 	}
