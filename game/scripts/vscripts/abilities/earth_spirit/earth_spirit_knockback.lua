@@ -32,7 +32,7 @@ function EarthSpiritKnockback:constructor(ability, hero, source, direction, forc
 
 	getbase(EarthSpiritKnockback).constructor(self, hero, source, direction, force, params)
 
-	self.particle = FX("particles/units/heroes/hero_earth_spirit/espirit_geomagentic_target_sphere.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.hero, {
+	self.particle = FX("particles/earth_spirit_q/espirit_geomagentic_target_sphere.vpcf", PATTACH_ABSORIGIN_FOLLOW, self.hero, {
 		cp1 = self.hero:GetPos(),
 		cp4 = self.hero:GetPos(),
 		release = false

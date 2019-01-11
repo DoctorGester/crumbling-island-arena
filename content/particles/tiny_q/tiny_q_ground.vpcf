@@ -37,6 +37,7 @@
 		},
 		{
 			_class = "C_OP_MovementPlaceOnGround"
+			m_bDisableOperator = true
 			m_nRefCP1 = 3
 			m_CollisionGroupName = "DEBRIS"
 			m_flMaxTraceLength = 1024.000000

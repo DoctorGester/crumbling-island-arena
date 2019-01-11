@@ -59,7 +59,7 @@
 			m_flOffset = 4.0
 			m_bIncludeWater = true
 			m_bSetNormal = true
-			m_flMaxTraceLength = 256.0
+			m_flMaxTraceLength = 0.0
 			m_CollisionGroupName = "DEBRIS"
 		},
 		{

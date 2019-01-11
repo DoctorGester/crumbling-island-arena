@@ -59,6 +59,7 @@
 		},
 		{
 			_class = "C_OP_MovementPlaceOnGround"
+			m_bDisableOperator = true
 			m_flMaxTraceLength = 1024.0
 		},
 	]

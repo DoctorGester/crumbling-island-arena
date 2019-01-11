@@ -19,7 +19,7 @@ function SniperShrapnel:constructor(round, owner, target, ability)
     self.ticksPassed = 0
     self.nextDamageAt = GameRules:GetGameTime() + 1.2
 
-    self.particle = FX("particles/units/heroes/hero_sniper/sniper_shrapnel.vpcf", PATTACH_WORLDORIGIN, self.hero, {
+    self.particle = FX("particles/sniper_shrapnel/sniper_shrapnel.vpcf", PATTACH_WORLDORIGIN, self.hero, {
         cp0 = target,
         cp1 = Vector(400, 0, 0),
         cp2 = target,

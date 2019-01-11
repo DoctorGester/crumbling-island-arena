@@ -1,0 +1,80 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf16:version{261b3cba-02c7-424f-854b-c432c6f018d1} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_bShouldHitboxesFallbackToRenderBounds = false
+	m_nMaxParticles = 1
+	m_flCullRadius = 100.0
+	m_flConstantRadius = 64.0
+	m_ConstantColor = [ 255, 0, 0, 255 ]
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_c.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_ground.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_ground_core.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_d.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_blur.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_ring.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_body_rays.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/units/heroes/hero_nevermore/nevermore_requiemofsouls_shake.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/nevermore_r/nevermore_r_requiemofsouls_ground_cracks.vpcf"
+		},
+	]
+	m_PreEmissionOperators = 
+	[
+		{
+			_class = "C_OP_SetControlPointPositions"
+			m_nCP1 = 2
+			m_vecCP1Pos = [ 0.0, 0.0, 16.0 ]
+			m_nCP2 = 5
+			m_nCP3 = 5
+			m_nCP4 = 5
+		},
+	]
+	m_nBehaviorVersion = 8
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 3
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+}

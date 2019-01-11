@@ -69,7 +69,7 @@ function nevermore_r:OnChannelFinish(interrupted)
         }):Activate()
     end
 
-    FX("particles/units/heroes/hero_nevermore/nevermore_requiemofsouls.vpcf", PATTACH_ABSORIGIN, hero, {
+    FX("particles/nevermore_r/nevermore_r_requiemofsouls.vpcf", PATTACH_ABSORIGIN, hero, {
         cp1 = Vector(totalProjectiles, 0, 0),
         release = true
     })

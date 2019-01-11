@@ -14,7 +14,7 @@ end
 
 SKWProjectile = SKWProjectile or class({}, nil, DistanceCappedProjectile)
 
-SKWProjectile.EFFECT = "particles/units/heroes/hero_sandking/sandking_burrowstrike_eruption.vpcf"
+SKWProjectile.EFFECT = "particles/sk_w/sk_w_eruption.vpcf"
 
 function SKWProjectile:constructor(round, hero, target, ability)
 	getbase(SKWProjectile).constructor(self, round, {

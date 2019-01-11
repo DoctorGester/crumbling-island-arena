@@ -1,8 +1,8 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf16:version{261b3cba-02c7-424f-854b-c432c6f018d1} -->
 {
 	_class = "CParticleSystemDefinition"
-	m_flConstantRadius = 80.000000
-	m_Operators =
+	m_flConstantRadius = 80.0
+	m_Operators = 
 	[
 		{
 			_class = "C_OP_Decay"
@@ -17,17 +17,18 @@
 		},
 		{
 			_class = "C_OP_MovementPlaceOnGround"
-			m_flOffset = 16.000000
-			m_flMaxTraceLength = 512.000000
+			m_bDisableOperator = true
+			m_flOffset = 16.0
+			m_flMaxTraceLength = 512.0
 		},
 		{
 			_class = "C_OP_RemapCPtoScalar"
 			m_nCPInput = 2
-			m_flInputMax = 1000.000000
-			m_flOutputMax = 1000.000000
+			m_flInputMax = 1000.0
+			m_flOutputMax = 1000.0
 		},
 	]
-	m_Renderers =
+	m_Renderers = 
 	[
 		{
 			_class = "C_OP_RenderSprites"
@@ -35,7 +36,7 @@
 			m_hTexture = resource:"materials/particle/targeting/half_circle.vtex"
 		},
 	]
-	m_Initializers =
+	m_Initializers = 
 	[
 		{
 			_class = "C_INIT_RandomLifeTime"
@@ -43,12 +44,47 @@
 		{
 			_class = "C_INIT_CreateWithinSphere"
 		},
+		{
+			_class = "C_INIT_PositionPlaceOnGround"
+			m_flOffset = 16.0
+			m_flMaxTraceLength = 0.0
+		},
 	]
-	m_Emitters =
+	m_Emitters = 
 	[
 		{
 			_class = "C_OP_InstantaneousEmitter"
 			m_nParticlesToEmit = 1
+		},
+	]
+	m_nBehaviorVersion = 4
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 2
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
 		},
 	]
 }

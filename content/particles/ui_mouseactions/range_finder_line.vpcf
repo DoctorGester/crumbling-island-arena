@@ -69,6 +69,7 @@
 		},
 		{
 			_class = "C_OP_MovementPlaceOnGround"
+			m_bDisableOperator = true
 			m_flTolerance = 4.000000
 			m_nRefCP2 = 1
 			m_nRefCP1 = 0

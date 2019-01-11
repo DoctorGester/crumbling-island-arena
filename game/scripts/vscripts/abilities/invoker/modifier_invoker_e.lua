@@ -114,7 +114,7 @@ function modifier_invoker_e:DeclareFunctions()
 end
 
 function modifier_invoker_e:GetEffectName()
-    return "particles/units/heroes/hero_invoker/invoker_emp.vpcf"
+    return "particles/invoker_e/invoker_emp.vpcf"
 end
 
 function modifier_invoker_e:GetEffectAttachType()

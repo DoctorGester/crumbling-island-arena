@@ -22,6 +22,7 @@
 	[
 		{
 			_class = "C_OP_MovementPlaceOnGround"
+			m_bDisableOperator = true
 			m_flOffset = 12.0
 			m_flMaxTraceLength = 512.0
 			m_flTraceOffset = 256.0
@@ -70,6 +71,7 @@
 		},
 		{
 			_class = "C_INIT_PositionPlaceOnGround"
+			m_flMaxTraceLength = 0.0
 			m_flOffset = 2.0
 			m_CollisionGroupName = "DEBRIS"
 		},

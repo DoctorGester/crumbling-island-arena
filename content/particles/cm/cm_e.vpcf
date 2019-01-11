@@ -1,12 +1,11 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf16:version{261b3cba-02c7-424f-854b-c432c6f018d1} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_bShouldHitboxesFallbackToRenderBounds = false
 	m_nMaxParticles = 16
-	m_flConstantRadius = 1.100000
+	m_flConstantRadius = 1.1
 	m_bShouldSort = false
-	m_flMaxRecreationTime = -1.000000
-	m_Operators =
+	m_Operators = 
 	[
 		{
 			_class = "C_OP_BasicMovement"
@@ -25,57 +24,46 @@
 		},
 		{
 			_class = "C_OP_RampScalarLinear"
-			m_nField = 4
-			m_RateMin = 2.000000
-			m_RateMax = 3.000000
+			m_nField = "4"
+			m_RateMin = 2.0
+			m_RateMax = 3.0
 		},
 		{
 			_class = "C_OP_FadeInSimple"
-			m_flFadeInTime = 1.000000
+			m_flFadeInTime = 1.0
 		},
 		{
 			_class = "C_OP_MovementPlaceOnGround"
+			m_bDisableOperator = true
 			m_nLerpCP = 3
-			m_flTolerance = 96.000000
-			m_flOffset = 70.000000
+			m_flTolerance = 96.0
+			m_flOffset = 70.0
 			m_bIncludeWater = true
-			m_flMaxTraceLength = 1024.000000
-			m_flTraceOffset = 256.000000
+			m_flMaxTraceLength = 1024.0
+			m_flTraceOffset = 256.0
 			m_CollisionGroupName = "DEBRIS"
 			m_nRefCP1 = 3
 		},
 		{
 			_class = "C_OP_RemapVelocityToVector"
 			m_bNormalize = true
-			m_nFieldOutput = 21
+			m_nFieldOutput = "21"
 		},
 	]
-	m_Initializers =
+	m_Initializers = 
 	[
 		{
 			_class = "C_INIT_CreateWithinSphere"
 		},
 		{
 			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMax = 0.200000
-			m_fLifetimeMin = 0.200000
+			m_fLifetimeMax = 0.2
+			m_fLifetimeMin = 0.2
 		},
 		{
 			_class = "C_INIT_RandomColor"
-			m_ColorMax =
-			[
-				213,
-				240,
-				246,
-				255,
-			]
-			m_ColorMin =
-			[
-				213,
-				240,
-				246,
-				255,
-			]
+			m_ColorMax = [ 213, 240, 246, 255 ]
+			m_ColorMin = [ 213, 240, 246, 255 ]
 		},
 		{
 			_class = "C_INIT_NormalAlignToCP"
@@ -84,15 +72,20 @@
 			_class = "C_INIT_VelocityFromCP"
 			m_nControlPoint = 1
 		},
+		{
+			_class = "C_INIT_PositionPlaceOnGround"
+			m_flOffset = 70.0
+			m_flMaxTraceLength = 0.0
+		},
 	]
-	m_Emitters =
+	m_Emitters = 
 	[
 		{
 			_class = "C_OP_InstantaneousEmitter"
 			m_nParticlesToEmit = 1
 		},
 	]
-	m_Children =
+	m_Children = 
 	[
 		{
 			m_ChildRef = resource:"particles/units/heroes/hero_tusk/tusk_ice_shards_projectile_flash.vpcf"
@@ -114,6 +107,30 @@
 		},
 		{
 			m_ChildRef = resource:"particles/units/heroes/hero_tusk/tusk_ice_shards_projectile_model.vpcf"
+		},
+	]
+	m_nBehaviorVersion = 4
+	m_nFirstMultipleOverride_BackwardCompat = 4
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 1.0, 1.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
 		},
 	]
 }

@@ -16,6 +16,7 @@
 		},
 		{
 			_class = "C_OP_MovementPlaceOnGround"
+			m_bDisableOperator = true
 			m_flOffset = 16.0
 			m_CollisionGroupName = "DEBRIS"
 		},
