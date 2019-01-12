@@ -87,6 +87,7 @@
 		},
 		{
 			_class = "C_INIT_PositionPlaceOnGround"
+			m_flMaxTraceLength = 0.0
 			m_flOffset = 120.0
 			m_bIncludeWater = true
 			m_bSetNormal = true

@@ -73,6 +73,7 @@
 		},
 		{
 			_class = "C_OP_MovementPlaceOnGround"
+			m_bDisableOperator = true
 			m_flOffset = 16.000000
 			m_nRefCP1 = 2
 			m_nRefCP2 = 1

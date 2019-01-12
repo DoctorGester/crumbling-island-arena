@@ -11,7 +11,7 @@ function self:OnSpellStart()
     local target = self:GetCursorPosition()
     local transformed = hero:HasModifier("modifier_undying_r")
 
-    FX("particles/units/heroes/hero_undying/undying_decay.vpcf", PATTACH_WORLDORIGIN, hero, {
+    FX("particles/undying_q/undying_decay.vpcf", PATTACH_WORLDORIGIN, hero, {
         cp0 = target,
         cp1 = Vector(300, 0, 0),
         cp2 = hero:GetPos(),

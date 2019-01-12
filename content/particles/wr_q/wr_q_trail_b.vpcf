@@ -96,6 +96,7 @@
 		},
 		{
 			_class = "C_INIT_PositionPlaceOnGround"
+			m_flMaxTraceLength = 0.0
 			m_CollisionGroupName = "DEBRIS"
 			m_bSetNormal = true
 			m_bIncludeWater = true

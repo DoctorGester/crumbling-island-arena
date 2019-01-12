@@ -69,7 +69,7 @@
 		{
 			_class = "C_INIT_PositionPlaceOnGround"
 			m_flOffset = 8.0
-			m_flMaxTraceLength = 1024.0
+			m_flMaxTraceLength = 0.0
 			m_CollisionGroupName = "DEBRIS"
 			m_bIncludeWater = true
 		},

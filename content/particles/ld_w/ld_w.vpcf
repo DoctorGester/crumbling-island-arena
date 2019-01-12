@@ -62,7 +62,7 @@
 		},
 		{
 			_class = "C_INIT_PositionPlaceOnGround"
-			m_flMaxTraceLength = 256.000000
+			m_flMaxTraceLength = 0.000000
 			m_flOffset = 5.000000
 		},
 		{

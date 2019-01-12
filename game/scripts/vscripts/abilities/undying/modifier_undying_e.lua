@@ -12,7 +12,7 @@ function self:CheckState()
 end
 
 function self:GetEffectName()
-    return "particles/units/heroes/hero_undying/undying_tombstone.vpcf"
+    return "particles/undying_e/undying_e_aura.vpcf"
 end
 
 function self:GetEffectAttachType()
@@ -29,7 +29,7 @@ if IsServer() then
 
         self:AddParticle(index, false, false, -1, false, false)
 
-        index = FX("particles/units/heroes/hero_undying/undying_fg_aura.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent(), {
+        index = FX("particles/undying_e/undying_e_aura.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent(), {
             cp1 = Vector(550, 1, 1),
         })
 

@@ -33,7 +33,7 @@ function nevermore_q:OnSpellStart()
 
     local target = hero:GetPos() + (hero:GetFacing() * Vector(1, 1, 0)):Normalized() * (200 + 250 * stacks)
 
-    local effect = hero:GetMappedParticle("particles/units/heroes/hero_nevermore/nevermore_shadowraze.vpcf")
+    local effect = hero:GetMappedParticle("particles/nevermore_q/nevermore_shadowraze.vpcf")
     FX(effect, PATTACH_WORLDORIGIN, GameRules:GetGameModeEntity(), {
         cp0 = target,
         release = true

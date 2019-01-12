@@ -11,7 +11,7 @@ function shaker_e:OnSpellStart()
 
     hero:AddNewModifier(hero, hero:FindAbility("shaker_a"), "modifier_shaker_a", { duration = 5 })
 
-    local effect = ParticleManager:CreateParticle("particles/econ/items/earthshaker/earthshaker_gravelmaw/earthshaker_fissure_head_gravelmaw.vpcf", PATTACH_ABSORIGIN, hero:GetUnit())
+    local effect = ParticleManager:CreateParticle("particles/shaker_e/shaker_e.vpcf", PATTACH_ABSORIGIN, hero:GetUnit())
     ParticleManager:SetParticleControl(effect, 0, target)
     ParticleManager:SetParticleControl(effect, 1, hero:GetPos() - self:GetDirection())
     ParticleManager:SetParticleControl(effect, 2, Vector(0.3, 0, 0))
