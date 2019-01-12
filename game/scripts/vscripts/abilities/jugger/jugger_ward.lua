@@ -48,7 +48,7 @@ end
 function JuggerWard:Update()
     getbase(JuggerWard).Update(self)
 
-    if GameRules:GetGameTime() >= self.nextHealAt then
+    if GameRules:GetGameTime() >= self.nextHealAt and not self.falling then
         self:AreaEffect({
             filter = Filters.Area(self:GetPos(), 400) + Filters.WrapFilter(function(v) return v.owner.team == self.owner.team end),
             filterProjectiles = true,
