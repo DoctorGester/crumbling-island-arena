@@ -24,16 +24,21 @@ if IsServer() then
 
         self:AddParticle(particle, false, false, 0, true, false)
 
-        for _,target in pairs(self:GetParent().hero.round.spells:GetHeroTargets()) do
-            if (target:GetPos() - self:GetParent():GetAbsOrigin()):Length2D() <= 400 then
-                local count = target:GetUnit():GetAbilityCount() - 1
-                for i=0,count do
-                    local ability = target:GetUnit():GetAbilityByIndex(i)
+        local spells = self:GetParent().hero.round.spells
+        local origin = self:GetParent():GetAbsOrigin()
+        local targets = spells:FilterEntities(function(target)
+            return (target:GetPos() - origin):Length2D() <= 400
+        end, spells:GetHeroTargets())
 
-                    if ability and (ability:IsInAbilityPhase() or ability:IsChanneling()) then
-                        self:OnAbilityStart({ unit = target:GetUnit(), ability = ability })
-                        break
-                    end
+        for _, target in ipairs(targets) do
+            local unit = target:GetUnit()
+            local count = unit:GetAbilityCount() - 1
+            for i = 0, count do
+                local ability = unit:GetAbilityByIndex(i)
+
+                if ability and (ability:IsInAbilityPhase() or ability:IsChanneling()) then
+                    self:OnAbilityStart({ unit = unit, ability = ability })
+                    break
                 end
             end
         end
