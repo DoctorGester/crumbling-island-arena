@@ -1,6 +1,19 @@
 modifier_void_w = class({})
 
 if IsServer() then
+    function modifier_void_w:OnCreated()
+        local unit = self:GetParent()
+        local count = unit:GetAbilityCount() - 1
+        for i = 0, count do
+            local ability = unit:GetAbilityByIndex(i)
+
+            if ability and (ability:IsInAbilityPhase() or ability:IsChanneling()) then
+                self:OnAbilityStart({ unit = unit, ability = ability })
+                break
+            end
+        end
+    end
+    
     function modifier_void_w:OnAbilityImmediate(event)
         self:OnAbilityStart(event)
     end

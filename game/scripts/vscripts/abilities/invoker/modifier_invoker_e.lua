@@ -23,6 +23,25 @@ if IsServer() then
         })
 
         self:AddParticle(particle, false, false, 0, true, false)
+
+        local spells = self:GetParent().hero.round.spells
+        local origin = self:GetParent():GetAbsOrigin()
+        local targets = spells:FilterEntities(function(target)
+            return (target:GetPos() - origin):Length2D() <= 400
+        end, spells:GetHeroTargets())
+
+        for _, target in ipairs(targets) do
+            local unit = target:GetUnit()
+            local count = unit:GetAbilityCount() - 1
+            for i = 0, count do
+                local ability = unit:GetAbilityByIndex(i)
+
+                if ability and (ability:IsInAbilityPhase() or ability:IsChanneling()) then
+                    self:OnAbilityStart({ unit = unit, ability = ability })
+                    break
+                end
+            end
+        end
     end
 
     function modifier_invoker_e:OnAbilityImmediate(event)
