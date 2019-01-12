@@ -73,7 +73,7 @@ function RankedInfoChanged(info) {
 
     // $("#RankedRewardImage").BLoadLayoutSnippet("reward" + seasonRewardToShow);
     // $("#RankedRewardText").SetDialogVariableInt("season", seasonRewardToShow + 1);
-    // $("#RankedSeasonEndHeader").SetDialogVariableInt("season", info.currentSeason + 1);
+    $("#RankedSeasonEndHeader").SetDialogVariableInt("season", info.currentSeason + 1);
 
     var parent = $("#RankedSeasonCongratulationsPlayers");
 
