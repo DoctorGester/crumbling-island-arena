@@ -43,16 +43,17 @@ end
 
 if IsServer() then
     function self:OnCreated()
-        self.particle = FX("particles/am_w/am_w_shield.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent(), {
+        local index = FX("particles/am_w/am_w_shield.vpcf", PATTACH_ABSORIGIN_FOLLOW, self:GetParent(), {
             cp0 = { ent = self:GetParent(), point = "attach_hitloc" },
             cp1 = Vector(145, 0, 0)
         })
+
+        self:AddParticle(index, false, false, -1, false, false)
 
         self:GetAbility():SetActivated(false)
     end
 
     function self:OnDestroy()
-        DFX(self.particle)
         local mul = self.bonusGranted and 0.5 or 1.0
         local ability = self:GetAbility()
         ability:SetActivated(true)
