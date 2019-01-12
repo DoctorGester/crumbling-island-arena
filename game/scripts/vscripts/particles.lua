@@ -449,5 +449,10 @@ return {
     "particles/zeus_r/zeus_r.vpcf",
     "particles/zeus_w2/zeus_w2.vpcf",
     "particles/ping_world_custom.vpcf",
-    "particles/ping_danger_custom.vpcf"
+    "particles/ping_danger_custom.vpcf",
+    "particles/lycan_w/lycan_w_ring.vpcf",
+    "particles/tinker_r/tinker_r.vpcf",
+    "particles/econ/items/abaddon/abaddon_alliance/abaddon_aphotic_shield_alliance_explosion.vpcf",
+    "particles/units/heroes/hero_faceless_void/faceless_void_timedialate.vpcf",
+    "particles/econ/items/faceless_void/faceless_void_bracers_of_aeons/fv_bracers_of_aeons_timedialate.vpcf"
 }
