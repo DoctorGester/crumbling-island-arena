@@ -272,7 +272,7 @@ function Level:Reset()
 
     for _, particle in ipairs(self.particles) do
         ParticleManager:DestroyParticle(particle, false)
-        ParticleManager:ReleaseParticleIndex(0)
+        ParticleManager:ReleaseParticleIndex(particle)
     end
 
     GridNav:RegrowAllTrees()
