@@ -274,7 +274,7 @@ function RanksUpdated(ranks) {
     NotificationQueue.AddNotification("RankNotification", RankNotification, { previous: previous, updated: updated });
 
     if (previous.rank > 1 && updated.rank == 1 && typeof ranks.currentSeason !== 'undefined') {
-        NotificationQueue.AddNotification("RewardNotification", RewardNotification, { season: ranks.currentSeason });
+        // NotificationQueue.AddNotification("RewardNotification", RewardNotification, { season: ranks.currentSeason });
     }
 }
 

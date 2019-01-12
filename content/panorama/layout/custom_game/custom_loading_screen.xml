@@ -159,13 +159,13 @@
         <Panel id="InfoWidgets" class="WidgetRow">
             <Panel id="RankedInfo" class="Widget">
                 <Panel id="RankedInfoContainer" class="Hidden WidgetContainer">
-                    <Panel id="RankedReward">
+                    <!--Panel id="RankedReward">
                         <Panel id="RankedRewardImage"/>
                         <Panel id="RankedRewardBottom" onmouseover="DOTAShowTextTooltip(RewardTip)" onmouseout="DOTAHideTextTooltip()">
                             <Panel id="RankedRewardIcon"/>
                             <Label id="RankedRewardText" html="true" text="#InfoRankReward"/>
                         </Panel>
-                    </Panel>
+                    </Panel-->
                     <Panel id="RankedSeasonInfo">
                         <Panel id="RankedSeasonTop">
                             <Label class="WidgetHeader" text="#RankTopPlayers"/>
