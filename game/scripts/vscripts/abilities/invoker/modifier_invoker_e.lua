@@ -57,7 +57,7 @@ if IsServer() then
 
         local close = (hero:GetPos() - self:GetParent():GetAbsOrigin()):Length2D() <= 400
 
-        if hero and hero:FindModifier("modifier_invoker_e_target", self:GetCaster()) and close then
+        if hero and not hero:IsInvulnerable() and hero:FindModifier("modifier_invoker_e_target", self:GetCaster()) and close then
             if not self.destroyed then
                 self:GoBang()
             end
