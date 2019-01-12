@@ -125,7 +125,7 @@
         type = "dota_update_default"
         vsnd_files = 
         [
-            "sounds/vo/lycan/lycan_laugh_03.vsnd"
+            "sounds/vo/lycan/lycan_immort_02.vsnd"
         ]
         volume = "3"
         distance_max = "3500"
