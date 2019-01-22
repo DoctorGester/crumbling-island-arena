@@ -11,5 +11,11 @@
 			"Type" "TARGETING_INDICATOR_RANGE"
 			"Radius" "350"
 		}
+
+		"precache" {
+			"particle" "particles/econ/items/abaddon/abaddon_alliance/abaddon_aphotic_shield_alliance_explosion.vpcf"
+			"particle" "particles/units/heroes/hero_faceless_void/faceless_void_timedialate.vpcf"
+			"particle" "particles/econ/items/faceless_void/faceless_void_bracers_of_aeons/fv_bracers_of_aeons_timedialate.vpcf"
+		}
 	}
 }

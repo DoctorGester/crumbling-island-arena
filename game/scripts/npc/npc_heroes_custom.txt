@@ -30,6 +30,7 @@
 #base "heroes\earth_spirit.txt"
 #base "heroes\nevermore.txt"
 #base "heroes\faceless_void.txt"
+#base "heroes\shredder.txt"
 
 "DOTAHeroes" {
 	"npc_dota_hero_wisp" {

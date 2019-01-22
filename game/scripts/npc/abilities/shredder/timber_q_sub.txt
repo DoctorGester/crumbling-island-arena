@@ -1,0 +1,9 @@
+"DOTAAbilities" {
+	"timber_q_sub" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/timber/timber_q_sub"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_NO_TARGET | DOTA_ABILITY_BEHAVIOR_IGNORE_TURN | DOTA_ABILITY_BEHAVIOR_IMMEDIATE"
+		"AbilityTextureName" "shredder_chakram"
+		"AbilityCooldown" "0.5"
+	}
+}

@@ -57,7 +57,11 @@ function Obstacle:DealOneDamage(source)
         local hero = source
         if hero.hero then hero = hero.hero end
 
-        TreeHealProjectile(nil, hero, hero, self:GetPos()):Activate()
+        if hero:HasModifier("modifier_timber_heal_to_shield") then
+            TreeHealProjectile(nil, hero, hero, self:GetPos(), true):Activate()
+        else
+            TreeHealProjectile(nil, hero, hero, self:GetPos(), false):Activate()
+        end
         self:Destroy()
     else
         self:GetUnit():SetHealth(self.health)
@@ -134,7 +138,7 @@ end
 
 function Obstacle:Remove()
     if self.launched or self.health <= 0 then
-        self:EmitSound("Arena.TreeFall", self:GetPos())
+        self:EmitSound("Arena.TreeFall")
 
         FX("particles/world_destruction_fx/tree_destroy.vpcf", PATTACH_WORLDORIGIN, GameRules:GetGameModeEntity(), {
             cp0 = self:GetPos(),
@@ -191,14 +195,18 @@ end
 
 TreeHealProjectile = TreeHealProjectile or class({}, nil, HomingProjectile)
 
-function TreeHealProjectile:constructor(round, hero, target, pos)
+function TreeHealProjectile:constructor(round, hero, target, pos, graphic)
+    local graphics = "particles/tree_heal_projectile.vpcf"
+    if graphic == true then
+        graphics = "particles/timber_shield_projectile/tree_shield_projectile.vpcf"
+    end
     getbase(TreeHealProjectile).constructor(self, round, {
         owner = hero,
         from = pos + Vector(0, 0, 64),
         heightOffset = 64,
         target = target,
         speed = 900,
-        graphics = "particles/tree_heal_projectile.vpcf",
+        graphics = graphics,
         hitFunction = function(projectile, target)
             projectile:AddOrRefreshTreeHealModifier(target)
         end

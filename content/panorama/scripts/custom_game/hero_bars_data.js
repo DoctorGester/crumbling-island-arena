@@ -11,7 +11,8 @@ var colors = {
 var shieldModifiers = [
     "modifier_gyro_w",
     "modifier_lc_w_shield",
-    "modifier_undying_q_health"
+    "modifier_undying_q_health",
+    "modifier_shield"
 ];
 
 var hideBarModifiers = [
@@ -38,7 +39,8 @@ var recastModifiers = [
     "modifier_cm_e",
     "modifier_earth_spirit_w_recast",
     "modifier_nevermore_q",
-    "modifier_void_e_sub"
+    "modifier_void_e_sub",
+    "modifier_timber_q_recast"
 ];
 
 var specialLayouts = {
@@ -148,6 +150,8 @@ AddStatusEffect("modifier_void_q_root", "#StatusRooted", "#b505b5");
 AddStatusEffect("modifier_void_q", "#StatusCursed", "#d904d2");
 AddStatusEffect("modifier_void_w", "#StatusSpellbreak", "#fab9ff");
 AddStatusEffect("modifier_void_e_disarm", "#StatusDisarmed", "#b4dbe7");
+AddStatusEffect("modifier_timber_w", "#StatusSpikes", "#d47b22");
+AddStatusEffect("modifier_timber_e_root", "#StatusRooted", "#b5ae2f");
 
 AddStatusEffect("modifier_gyro_w", "#StatusRecast", "#ffffff");
 AddStatusEffect("modifier_drow_q_recast", "#StatusRecast", "#ffffff");
@@ -156,6 +160,7 @@ AddStatusEffect("modifier_cm_e", "#StatusRecast", "#ffffff");
 AddStatusEffect("modifier_earth_spirit_w_recast", "#StatusRecast", "#ffffff");
 AddStatusEffect("modifier_nevermore_q", "#StatusRecast", "#ffffff");
 AddStatusEffect("modifier_void_e_sub", "#StatusRecast", "#ffffff");
+AddStatusEffect("modifier_timber_q_recast", "#StatusRecast", "#ffffff");
 
 AddStatusEffect("modifier_ursa_r", "#StatusUltimate", "#ff1b00", 1);
 AddStatusEffect("modifier_undying_r", "#StatusUltimate", "#30b529", 1);

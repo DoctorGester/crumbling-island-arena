@@ -46,7 +46,8 @@
 		"HeroName_npc_dota_hero_gyrocopter"				"Черепаха"
 		"HeroName_npc_dota_hero_rubick"					"Зависть"
 		"HeroName_npc_dota_hero_windrunner"				"Аура"
-        "HeroName_npc_dota_hero_nevermore"				"Отчаяние"
+        	"HeroName_npc_dota_hero_nevermore"				"Отчаяние"
+        	"HeroName_npc_dota_hero_shredder"				"З.Л.О."
 		"HeroName_None"									"???"
 
 		"Available_on_npc_dota_hero_lone_druid"			"Доступно с 4 июня!"
@@ -261,6 +262,11 @@
 		"faceless_void_DescW" "АоЕ Магблок. Урон + безмолвие при активации"
 		"faceless_void_DescE" "Прыжок сквозь время, восстанавливает ХП. Переиспользуемо"
 		"faceless_void_DescR" "Прерываемое + направляемое. Урон по земле после задержки"
+
+		"shredder_DescQ" "Урон в АоЕ, переиспользуемо"
+		"shredder_DescW" "Шипы, отражающие урон"
+		"shredder_DescE" "Притянуться к любому объекту"
+		"shredder_DescR" "Замедляющий механизм. Имеет 2 заряда"
 
 		"HeroBanned" "Этот герой забанен"
 		"PlayerHeader" "Игроки"
@@ -675,11 +681,20 @@
 		"AbilityTooltip_void_e_sub"						"Прыжок в указанную точку<br/>Наносит 2 урона и замедляет врагов на 2 сек<br/><b>НЕ ВОССТАНАВЛИВАЕТ ЗДОРОВЬЕ!</b>"
 		"AbilityTooltip_void_r"							"<font color=\"#DAFF7F\"><b>Прерываемое</b></font><br/>Запускает до 4 магических метеоров в область курсора каждые 0.6 секунд<br/>Метеоры наносят 2 урона, а также сильно пробивают поверхность"
 
+		"AbilityTooltip_timber_a"				"Наносит двойной урон <font color=\"#24d143\"><b>Деревьям</b></font><br/>Любое лечение, полученное героем, трансформируется в щит"
+		"AbilityTooltip_timber_q"				"Запускает большую круговую пилу в указанную область, можно использовать еще раз чтобы вернуть пилу<br/>Пила наносит урон при запуске и возвращении<br/>По достижению указанной точки, пила начнет наносить урон в области каждые 0.75 секунд"
+		"AbilityTooltip_timber_q_sub"				"Возвращает пилу, наносит урон при касании с целями"
+		"AbilityTooltip_timber_w"				"Окружает себя <font color=\"#d47b22\"><b>Шипами</b></font><br/>Любой полученный урон будет полностью отражен обратно во врагов<br/><b>Не защищает героя от получения урона!</b>"
+		"AbilityTooltip_timber_e"				"Притягивается к любому объекту на карте, нанося урон и связывая цель, если это вражеский герой<br/>Длительность связывания зависит от того, насколько далеко был враг в момент попадания по нему цепью<br/>Минимальная длительность - 0.5, максимальная - 3 секунды"
+		"AbilityTooltip_timber_r"				"<font color=\"#4a83ed\"><b>Имеет 2 заряда</b></font><br/>Бросает нестабильный электромеханизм, который замедляет вражеские цели в радиусе его поражения<br/>Чем дольше цель находится под эффектом замедления, тем сильнее становится этот эффект<br/>Герой получает новый заряд каждые 9 секунд"
+		"AbilityTooltip_timber_r_sub"				"<font color=\"#4a83ed\"><b>Имеет 2 заряда</b></font><br/>Бросает нестабильный электромеханизм, который замедляет вражеские цели в радиусе его поражения<br/>Чем дольше цель находится под эффектом замедления, тем сильнее становится этот эффект<br/>Герой получает новый заряд каждые 9 секунд"
+
 		"ModifierTooltip_modifier_charges"						"Заряды способности"
 		"ModifierTooltip_modifier_stunned_lua"					"Оглушен"
 		"ModifierTooltip_modifier_silence_lua"					"Безмолвие"
 		"ModifierTooltip_modifier_knockback_lua"				"Отброшен"
 		"ModifierTooltip_modifier_attack_speed"					"Атака остывает"
+		"ModifierTooltip_modifier_shield"					"Количество щита"
 
 		"ModifierTooltip_modifier_zeus_a"						"Будет оглушен если получит урон от другой способности"
 		"ModifierTooltip_modifier_zeus_w"						"Ускорен"
@@ -857,6 +872,13 @@
 		"ModifierTooltip_modifier_void_e_disarm"				"Обезоружен" 
 		"ModifierTooltip_modifier_void_e_counter"				"Восстановит здоровье при использовании E"
 
+		"ModifierTooltip_modifier_timber_w"					"Ёжик"
+		"ModifierTooltip_modifier_timber_e_root"				"Связан"
+		"ModifierTooltip_modifier_timber_r_slow"				"Замедлен"
+		"ModifierTooltip_modifier_timber_r_target"				"Скоро получит замедление"
+		"ModifierTooltip_modifier_timber_r_charges"				"Количество зарядов <font color=\"#4a83ed\"><b>Ультимейта</b></font>"
+		"ModifierTooltip_modifier_timber_heal_to_shield"			"Трансформирует любое полученное лечение в щит" 
+
 		"ModifierTooltip_modifier_rune_blue"                    "Нанесение урона по вражеским героям оглушит их на короткое время"
 
 		"StatusStunned" "Оглушен"
@@ -878,6 +900,7 @@
 		"StatusUltimate" "Ультимейт"
 		"StatusRecast" "Рекаст"
 		"StatusCursed" "Проклят"
+		"StatusSpikes" "Шипы"
 	}
 }
 

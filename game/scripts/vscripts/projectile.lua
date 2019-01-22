@@ -44,6 +44,7 @@ function Projectile:constructor(round, params)
     self.ability = params.ability
     self.knockback = params.knockback
     self.damagesTrees = params.damagesTrees
+    self.damagesTreesx2 = params.damagesTreesx2
     self.goesThroughTrees = params.goesThroughTrees
 
     if self.destroyOnDamage == nil then
