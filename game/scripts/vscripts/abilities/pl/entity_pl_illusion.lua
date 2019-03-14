@@ -1,4 +1,4 @@
-EntityPLIllusion = EntityPLIllusion or class({}, nil, UnitEntity)
+EntityPLIllusion = EntityPLIllusion or class({}, nil, DynamicEntity)
 local self = EntityPLIllusion
 
 function self:constructor(round, owner, target, facing, ability)
@@ -6,7 +6,7 @@ function self:constructor(round, owner, target, facing, ability)
 
     self.owner = owner.owner
     self.hero = owner
-    self.health = 1
+    self.health = 2
     self.size = 64
     self.collisionType = COLLISION_TYPE_INFLICTOR
 
@@ -32,25 +32,44 @@ function self:constructor(round, owner, target, facing, ability)
     self:GetUnit():StartGestureWithPlaybackRate(ACT_DOTA_SPAWN, 1.5)
 
     self:EmitSound("Arena.PL.Illusion")
+    self:AddComponent(HealthComponent()) --
+    self:SetCustomHealth(2) --
+    self:EnableHealthBar() --
 
     FX("particles/units/heroes/hero_phantom_lancer/phantom_lancer_spawn_illusion.vpcf", PATTACH_ABSORIGIN, self, { cp1 = self:GetPos(), release = true })
 end
+-- No error but illusions still cant fall
+function self:MakeFall()
+    self:Destroy()
+end
+
+function self:CanFall()
+    return true
+end
+
+-- Error
 
 function self:Update()
     getbase(EntityPLIllusion).Update(self)
 
-    if not self.falling then
+    if self.falling then
+        return
+    elseif not self.falling then
         local time = GameRules:GetGameTime()
 
         if self.justSpawned and time - self.refreshTime > 0.6 then
+            self:RemoveModifier("modifier_pl_a_dmg")
             self:GetUnit():StartGesture(ACT_DOTA_IDLE)
             self:GetUnit():FadeGesture(ACT_DOTA_IDLE)
             self.justSpawned = false
             self.refreshTime = time
+            --self:AddComponent(HealthComponent()) 
+            --self:SetCustomHealth(2) 
+            --self:EnableHealthBar() 
 
-            if not self:HasModifier("modifier_pl_q") then
+            if not self:HasModifier("modifier_pl_a") then
                 if self.castTarget then
-                    local ability = self:GetUnit():AddAbility("pl_q")
+                    local ability = self:GetUnit():AddAbility("pl_a")
                     ability:SetLevel(1)
 
                     self:GetUnit():CastAbilityOnPosition(self.castTarget, ability, self.owner.id)
@@ -69,7 +88,8 @@ end
 function self:CollideWith(target)
     if target == self.hero then
         target:EmitSound("Arena.PL.HitE")
-        target:AddNewModifier(target, self.ability, "modifier_pl_e_speed", { duration = 3 })
+        target:AddNewModifier(target, self.ability, "modifier_pl_e_speed", { duration = 2 })
+        target:AddNewModifier(target, self.ability, "modifier_pl_a_dmg", { duration = 2 })
         self:Destroy()
     end
 end
@@ -105,9 +125,9 @@ function self:Remove()
     getbase(EntityPLIllusion).Remove(self)
 end
 
-function self:Damage(source)
-    self:Destroy()
-end
+--function self:Damage(source)
+--    self:Destroy()
+--end
 
 function self:CollidesWith(source)
     return true
@@ -118,10 +138,13 @@ PLIllusionDash = PLIllusionDash or class({}, nil, Dash)
 
 function PLIllusionDash:constructor(illusion, target, ability)
     getbase(PLIllusionDash).constructor(self, illusion, target:GetPos(), 1300, {
+        --ability = self,
         forceFacing = true,
         modifier = { name = "modifier_pl_e_dash" },
         noFixedDuration = true,
+        damagesTrees = true, -- not working :/
         hitParams = {
+            ability = self,
             modifier = { name = "modifier_pl_e_slow", ability = ability, duration = 2.0 },
         }
     })
