@@ -1,3 +1,12 @@
+Error.prototype.toString = function () {
+    this.stack = this.stack.replace(/\.vjs_c/g, '.js');
+
+    // toString is called by panorama with empty call stack
+    if (new Error().stack.match(/\n/g).length !== 1) return this.stack;
+
+    return this.stack;
+};
+
 GAME_STATE_NONE = 0
 GAME_STATE_GAME_SETUP = 1
 GAME_STATE_HERO_SELECTION = 2
