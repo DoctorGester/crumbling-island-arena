@@ -406,11 +406,13 @@ function Hero:Setup()
     for i = 0, count do
         local ability = self.unit:GetAbilityByIndex(i)
 
-        if ability ~= nil and not ability:IsAttributeBonus() and not ability:IsHidden()  then
+        if ability ~= nil and not ability:IsAttributeBonus() then
             local name = ability:GetName()
 
             if string.find(name, "sub") then
                 ability:SetHidden(true)
+            else
+                ability:SetHidden(false)
             end
 
             ability:SetLevel(1)
