@@ -497,7 +497,7 @@ function GameMode:FilterExecuteOrder(filterTable)
                     location = Vector(filterTable.position_x, filterTable.position_y, filterTable.position_z)
                 end
 
-                if bit.band(ability:GetBehavior(), im) == im and IsFullyCastable(ability, location) then
+                if bit.band(ability:GetBehaviorInt(), im) == im and IsFullyCastable(ability, location) then
                     local all = FindUnitsInRadius(
                         0,
                         Vector(),
@@ -520,26 +520,6 @@ function GameMode:FilterExecuteOrder(filterTable)
                             end
                         end
                     end
-                end
-
-                if IsAttackAbility(ability) and
-                        orderType == DOTA_UNIT_ORDER_CAST_POSITION and
-                        self.lastOrders[unit] and
-                        ability:IsCooldownReady() and
-                        not ability:IsInAbilityPhase()
-                then
-                    --if unit:IsMoving() then
-                        Timers:CreateTimer(0.1, function()
-                            if IsValidEntity(unit) then
-                                ExecuteOrderFromTable({
-                                    UnitIndex = unitIndex,
-                                    OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION,
-                                    Position = self.lastOrders[unit],
-                                    Queue = true
-                                })
-                            end
-                        end)
-                    --end
                 end
             end
 
