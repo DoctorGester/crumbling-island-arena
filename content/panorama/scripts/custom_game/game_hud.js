@@ -869,12 +869,4 @@ DelayStateInit(GAME_STATE_ROUND_IN_PROGRESS, function () {
     if (!spectator) {
         GameUI.SetMouseCallback(MouseCallback);
     }
-
-    // HAX
-    var top = $.GetContextPanel().GetParent().GetParent().GetParent();
-    var channel = top.FindChild("ChannelBar");
-
-    channel.FindChildTraverse("BuffIcon").style.visibility = "collapse";
-    channel.FindChildTraverse("IconBorder").style.visibility = "collapse";
-    channel.FindChildTraverse("ChannelBarChannel").style.marginLeft = "0px";
 });
