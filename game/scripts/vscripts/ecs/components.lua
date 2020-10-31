@@ -258,7 +258,12 @@ function WearableComponent()
             local result = {}
 
             for id, item in pairs(GameItems.items) do
-                if item.prefab == "default_item" and item.used_by_heroes and item.used_by_heroes[heroName] == 1 then
+                if
+                    item.prefab == "default_item" and
+                    item.used_by_heroes and
+                    item.used_by_heroes[heroName] == 1 and
+                    (not item.item_slot or not string.find(item.item_slot, "persona"))
+                 then
                     result[item.item_slot or "weapon"] = item
                     item.id = tonumber(id)
                 end
