@@ -55,7 +55,7 @@ function Stats.SubmitMatch(players, mode, version, winner, callback)
         passPlayers = FilterPassPlayers(players)
     }
 
-    Stats.SendData(string.format("match/%s", GameRules:GetMatchID()), data, callback, 30)
+    Stats.SendData(string.format("match/%s", GameRules:Script_GetMatchID()), data, callback, 30)
 end
 
 function Stats.RequestMatchAchievements(players, callback)

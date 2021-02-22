@@ -204,10 +204,20 @@ function WearableComponent()
                     local t = visual.type
 
                     if t == "particle_create" then
+                        local foundSystem = false
+
                         for _, system in pairs(GameItems.attribute_controlled_attached_particles) do
                             if system.system == visual.modifier then
                                 particleCreateQueue[visual] = system
+                                foundSystem = true
                             end
+                        end
+
+                        if not foundSystem and visual.modifier then
+                            particleCreateQueue[visual] = {
+                                attach_entity = "self",
+                                system = visual.modifier
+                            }
                         end
                     elseif t == "additional_wearable" then
                         self:AttachWearable(visual.asset)
