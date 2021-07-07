@@ -201,10 +201,10 @@
 		"tinker_DescE" "Orange portal"
 		"tinker_DescR" "Protecting device"
 
-		"slark_DescQ" "Slowing projectile"
-		"slark_DescW" "Purge debuffs + self damage + damage in AOE"
+		"slark_DescQ" "Projectile + silence"
+		"slark_DescW" "Spell shield + damage in AOE"
 		"slark_DescE" "Jump forward and leash enemy"
-		"slark_DescR" "Purge debuffs + speed + regenerate health"
+		"slark_DescR" "Purge debuffs + speed up + heal when dealing damage"
 
 		"queenofpain_DescQ" "Slowing projectile, delayed damage"
 		"queenofpain_DescW" "Attract enemies facing you"
@@ -607,11 +607,11 @@
 		"AbilityTooltip_tinker_e_sub"					"Destroy orange portal"
 		"AbilityTooltip_tinker_r"						"Create a device which reflects all incoming projectiles and pushes out nearby enemies, damaging them"
 
-		"AbilityTooltip_slark_a"						"Steals health from each hero hit and places a debuff on himself<br/>Health is returned when debuff expires"
-		"AbilityTooltip_slark_q"						"Throw a slowing projectile"
-		"AbilityTooltip_slark_w"						"After a delay, purge debuffs from you, dealing damage to yourself and enemies around"
+		"AbilityTooltip_slark_a"						"Steals movespeed from each hero hit and places a buff on himself<br/>Movespeed is returned when buff expires"
+		"AbilityTooltip_slark_q"						"Throw a projectile which silences enemies"
+		"AbilityTooltip_slark_w"						"Dealing damage around hero when blocks ability<br/>Only one ability can be blocked"
 		"AbilityTooltip_slark_e"						"Jump forward, leashing the first enemy encountered to the ground"
-		"AbilityTooltip_slark_r"						"Purge debuffs, gain speed boost, regenerate 2 health per second<br/><br/>Lasts <font color=\"gold\"><b>3</b></font> seconds"
+		"AbilityTooltip_slark_r"						"Purge debuffs, double move speed bonus from <font color=\"gold\">A</font> effects, heal yourself when dealing damage to enemy heroes<br/><br/>Lasts <font color=\"gold\"><b>6</b></font> seconds"
 
 		"AbilityTooltip_qop_a"							"Deals double damage to slowed enemies"
 		"AbilityTooltip_qop_q"							"Fire a slowing projectile, dealing damage over time<br/><br/>If fired while ult is active, heals after dealing damage"
@@ -802,11 +802,11 @@
 
 		"ModifierTooltip_modifier_tinker_q"						"Disarmed"
 
-		"ModifierTooltip_modifier_slark_a"						"Will return stolen health"
-		"ModifierTooltip_modifier_slark_q"						"Slowed"
+		"ModifierTooltip_modifier_slark_a"						"Move speed was stolen"
+		"ModifierTooltip_modifier_slark_w"						"Spell shield"
 		"ModifierTooltip_modifier_slark_e"						"Nabbing"
 		"ModifierTooltip_modifier_slark_e_leash"				"You are bound!"
-		"ModifierTooltip_modifier_slark_r"						"Sped up and regenerating health"
+		"ModifierTooltip_modifier_slark_r"						"Speed up and heal when dealing damage"
 
 		"ModifierTooltip_modifier_qop_q"						"Slowed and will take damage"
 		"ModifierTooltip_modifier_qop_w"						"Attracted by pure beauty"

@@ -110,13 +110,8 @@ function shaker_q:OnSpellStart()
                 sound = "Arena.Shaker.HitQ2",
                 damage = self:GetDamage(),
                 filterProjectiles = true,
-                action = function(target)
-                    damaged[target] = true
-                end,
                 notBlockedAction = function(target)
-                    if instanceof(target, Obstacle) then
-                        damaged[target] = true
-                    end
+                    damaged[target] = true
                 end,
                 knockback = { force = 55, knockup = 70, decrease = 4 },
                 modifier = { name = "modifier_stunned_lua", ability = self, duration = 0.5 }

@@ -6,7 +6,7 @@
 		"AbilityTextureName" "slark_essence_shift"
 		"AbilityCooldown" "0.6"
 		"AbilityCastPoint" "0.135"
-		"Damage" "2"
+		"Damage" "1"
 
 		"HoverIndicator" {
 			"Type" "TARGETING_INDICATOR_RANGE"

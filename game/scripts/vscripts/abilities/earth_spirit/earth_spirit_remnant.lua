@@ -158,8 +158,6 @@ function EarthSpiritRemnant:Update()
                 if mod then
                     target:Damage(mod:GetCaster():GetParentEntity(), 1)
                 end
-
-                target:RemoveModifier("modifier_earth_spirit_a")
             end,
             notBlockedAction = function(target)
                 FX("particles/units/heroes/hero_earth_spirit/espirit_magnet_arclightning.vpcf", PATTACH_ABSORIGIN, self, {
@@ -167,6 +165,8 @@ function EarthSpiritRemnant:Update()
                     cp1 = { ent = target, point = "attach_hitloc" },
                     release = true
                 })
+
+                target:RemoveModifier("modifier_earth_spirit_a")
             end
         })
 
