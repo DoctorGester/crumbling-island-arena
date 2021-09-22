@@ -48,6 +48,9 @@ function Hero:SetUnit(unit)
 
     Wrappers.WrapAbilitiesFromHeroData(unit, self.data)
 
+    self:GetUnit():RemoveAbility("abyssal_underlord_portal_warp")
+    self:GetUnit():RemoveAbility("ability_capture")
+
     self:GetUnit():RemoveAbility("placeholder_slot_d")
     self:GetUnit():AddAbility("ability_blink"):SetLevel(1)
 end
