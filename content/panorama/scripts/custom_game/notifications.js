@@ -114,8 +114,14 @@ function RewardNotification(data) {
     var season = data.season;
     var area = $("#RewardArea");
 
-    area.BCreateChildren("<DOTAScenePanel id='RewardModel' particleonly='false' map='maps/rewards/" + season + ".vmap' camera='default' light='light'/>");
-    area.MoveChildBefore($("#RewardModel"), $("#RewardTip"));
+    const rewardModel = $.CreatePanelWithProperties("DOTAScenePanel", area, "RewardModel", {
+        particleonly: "false",
+        map: "maps/rewards/" + season + ".vmap",
+        light: "light",
+        camera: "default"
+    });
+
+    area.MoveChildBefore(rewardModel, $("#RewardTip"));
     area.SetHasClass("RewardHidden", true);
 
     Game.EmitSound("UI.PreRewardReceived");

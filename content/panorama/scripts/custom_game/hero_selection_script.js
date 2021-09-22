@@ -56,7 +56,8 @@ function PreloadPreview(hero, value, insertFirst) {
 
     var queueElement = {
         container: preview,
-        children: value,
+        type: value[0],
+        properties: value[1],
         loadingImage: loading
     };
 
@@ -70,7 +71,13 @@ function PreloadPreview(hero, value, insertFirst) {
 }
 
 function PreloadHeroPreview(hero) {
-    heroPreviews[hero] = PreloadPreview(hero, "<DOTAScenePanel antialias='true' particleonly='false' class='HeroPreviewScene' unit='" + hero + "' always-cache-composition-layer='true'/>");
+    heroPreviews[hero] = PreloadPreview(hero, ["DOTAScenePanel", {
+        antialias: "true",
+        particleonly: "false",
+        class: "HeroPreviewScene",
+        unit: hero,
+        ["always-cache-composition-layer"]: "true",
+    }]);
 }
 
 function PreloadHeroPreviews(heroes) {
@@ -84,7 +91,16 @@ function PreloadHeroPreviews(heroes) {
 function PreloadAwardPreview(hero, season) {
     HidePreview(hero);
 
-    heroAwards[hero] = PreloadPreview(hero, "<DOTAScenePanel antialias='true' particleonly='false' class='HeroPreviewScene' light='light' camera='default' map='maps/rewards/" + season + "' always-cache-composition-layer='true'/>", true);
+    heroAwards[hero] = PreloadPreview(hero, ["DOTAScenePanel", {
+        antialias: "true",
+        particleonly: "false",
+        class: "HeroPreviewScene",
+        light: "light",
+        camera: "default",
+        map: "maps/rewards/" + season,
+        ["always-cache-composition-layer"]: "true",
+    }]);
+    
     heroPreviews[hero] = heroAwards[hero];
 }
 
@@ -760,7 +776,7 @@ function CheckPreviews() {
     }
 
     if (!somethingIsLoading && !!notLoadedContainer) {
-        notLoadedContainer.container.BCreateChildren(notLoadedContainer.children);
+        $.CreatePanelWithProperties(notLoadedContainer.type, notLoadedContainer.container, "", notLoadedContainer.properties);
         notLoadedContainer.loadingImage.DeleteAsync(0);
     }
 }

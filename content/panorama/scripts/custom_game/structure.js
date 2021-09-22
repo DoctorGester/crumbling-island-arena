@@ -271,21 +271,7 @@ var Structure = new (function(){
 
         for (var value of structure) {
             if (typeof value === 'object') {
-                var panel = null;
-
-                if (!!value.custom && typeof value.custom === "string") {
-                    parent.BCreateChildren(value.custom);
-
-                    if (!!value.id && typeof value.id === "string") {
-                        panel = parent.FindChild(value.id);
-                    }
-
-                    if (panel === null) {
-                        continue;
-                    }
-                } else {
-                    panel = $.CreatePanel(value.tag || "Panel", parent, value.id || "");
-                }
+                var panel = $.CreatePanelWithProperties(value.tag || "Panel", parent, value.id || "", value.props || {});
 
                 this.structurePanelMap.set(value, panel);
 
