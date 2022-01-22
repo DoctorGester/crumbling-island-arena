@@ -2,7 +2,7 @@ zeus_w = class({})
 LinkLuaModifier("modifier_zeus_w", "abilities/zeus/modifier_zeus_w", LUA_MODIFIER_MOTION_NONE)
 
 function zeus_w:OnSpellStart()
-    Wrappers.DirectionalAbility(self, 300, 300)
+    Wrappers.DirectionalAbility(self, 300, 100)
 
     local hero = self:GetCaster().hero
     local casterPos = hero:GetPos()
