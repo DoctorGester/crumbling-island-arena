@@ -1,0 +1,22 @@
+"DOTAAbilities" {
+	"pl_q" {
+		"BaseClass" "ability_lua"
+		"ScriptFile" "abilities/pl/pl_q"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityTextureName" "phantom_lancer_spirit_lance"
+		"AbilityCooldown" "4.5"
+		"AbilityCastPoint" "0.2"
+		"Damage" "3"
+
+		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_LINE"
+			"MinLength" "900"
+			"MaxLength" "900"
+		}
+
+		"HoverIndicator" {
+			"Type" "TARGETING_INDICATOR_RANGE"
+			"Radius" "900"
+		}
+	}
+}
