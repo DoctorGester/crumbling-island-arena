@@ -87,7 +87,7 @@ function StartRoundEndAnimation(data){
         var player = players[key];
 
         if (player.id == Game.GetLocalPlayerID()) {
-            var result = draw ? "RoundDraw" : (player.winner ? "RoundWon" : "RoundLost");
+            var result = draw ? "#RoundDraw" : (player.winner ? "#RoundWon" : "#RoundLost");
 
             $("#RoundResult").text = $.Localize(result).toUpperCase();
             Game.EmitSound("Announcer." + result);
@@ -152,7 +152,7 @@ function StartRoundEndAnimation(data){
         var name = team.players[0].name;
 
         if (team.players.length > 1) {
-            name = $.Localize(Game.GetTeamDetails(parseInt(team.id)).team_name);
+            name = $.Localize("#" + Game.GetTeamDetails(parseInt(team.id)).team_name);
         }
 
         var teamPanel = $.CreatePanel("Panel", parent, "");
@@ -214,7 +214,7 @@ function StartRoundEndAnimation(data){
 
         fbText.SetDialogVariable("name", Players.GetPlayerName(data.firstBlood.id));
         fbText.SetDialogVariable("color", LuaColor(data.firstBlood.color));
-        fbText.text = $.Localize("FirstBlood", fbText);
+        fbText.text = $.Localize("#FirstBlood", fbText);
 
         var fbHero = $.CreatePanel("DOTAHeroImage", fbPanel, "");
         fbHero.heroname = data.firstBlood.hero;
@@ -238,7 +238,7 @@ function StartRoundEndAnimation(data){
 
         mvpText.SetDialogVariable("name", Players.GetPlayerName(data.mvp.id));
         mvpText.SetDialogVariable("color", LuaColor(data.mvp.color));
-        mvpText.text = $.Localize("MVP", mvpText);
+        mvpText.text = $.Localize("#MVP", mvpText);
 
         var mvpHero = $.CreatePanel("DOTAHeroImage", mvpPanel, "");
         mvpHero.heroname = data.mvp.hero;

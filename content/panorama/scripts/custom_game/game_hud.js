@@ -417,7 +417,7 @@ var DeathMatch = new (function() {
                 var icon = GetTexture(found, hero.customIcons);
                 image.SetImage(icon);
 
-                label.text = $.Localize(hero.name.substring("npc_dota_hero_".length) + "_Desc" + ability);
+                label.text = $.Localize("#" + hero.name.substring("npc_dota_hero_".length) + "_Desc" + ability);
             }
         }
     }
@@ -473,7 +473,7 @@ var DeathMatch = new (function() {
         this.ShowHeroAbilities(this.heroes[hero]);
 
         $("#DeathMatchHeroMovie").heroname = hero;
-        $("#DeathMatchHeroName").text = $.Localize("HeroName_" + hero).toUpperCase();
+        $("#DeathMatchHeroName").text = $.Localize("#HeroName_" + hero).toUpperCase();
     }
 
     this.PlayersUpdated = function(data) {

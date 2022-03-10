@@ -23,7 +23,7 @@ var modifiersWithStacks = [
 
 function ShowBuffTooltip(element, entityId, buffId) {
     var isEnemy = Entities.IsEnemy(entityId);
-    $.DispatchEvent("DOTAShowTextTooltip", element, $.Localize("ModifierTooltip_" + Buffs.GetName(entityId, buffId)))
+    $.DispatchEvent("DOTAShowTextTooltip", element, $.Localize("#ModifierTooltip_" + Buffs.GetName(entityId, buffId)))
 }
 
 function HideBuffTooltip() {

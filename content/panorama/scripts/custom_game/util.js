@@ -26,7 +26,7 @@ Game.OnEnterPressed = function() {
 };
 
 function AbilityTooltip(data, element) {
-    var description = $.Localize("AbilityTooltip_" + data.name);
+    var description = $.Localize("#AbilityTooltip_" + data.name);
     var bottom = "";
 
     if (data.cooldown != null){
@@ -35,7 +35,7 @@ function AbilityTooltip(data, element) {
         }
 
         element.SetDialogVariable("cooldown", data.cooldown.toFixed(1).toString());
-        bottom += "<br/>" + $.Localize("AbilityCooldown", element);
+        bottom += "<br/>" + $.Localize("#AbilityCooldown", element);
     }
 
     var tableData = (CustomNetTables.GetTableValue("static", "abilities") || {})[data.name] || {};
@@ -46,11 +46,11 @@ function AbilityTooltip(data, element) {
         }
 
         element.SetDialogVariable("damage", tableData.damage);
-        bottom += "<br/>" + $.Localize("AbilityDamage", element);
+        bottom += "<br/>" + $.Localize("#AbilityDamage", element);
     }
 
     if (EndsWith(data.name, "_a")) {
-        description = $.Localize("AbilityBasicAttack") + (description.length > 0 ? ("<br/><br/>" + description) : "");
+        description = $.Localize("#AbilityBasicAttack") + (description.length > 0 ? ("<br/><br/>" + description) : "");
     }
 
     $.DispatchEvent("DOTAShowTextTooltip", element, description + bottom)
@@ -161,10 +161,10 @@ function CreateRankPanelSmall(parent, rankData, style) {
     }
 
     container.SetPanelEvent("onmouseover", function() {
-        var text = $.Localize("RankTip");
+        var text = $.Localize("#RankTip");
 
         if (rankData.rank == 1 && rankData.elo) {
-            text = $.Localize("RankEliteTip");
+            text = $.Localize("#RankEliteTip");
         }
 
         $.DispatchEvent("DOTAShowTextTooltip", rank, text);
@@ -237,16 +237,6 @@ function WrapString(str){
 function UnwrapString(table){
     var keys = Object.keys(table);
     return keys[0];
-}
-
-function SimpleTooltip(target, token) {
-    target.onmouseover = function(panel) {
-        $.DispatchEvent("DOTAShowTextTooltip", panel, $.Localize(token))
-    };
-
-    target.onmouseout = function(){
-        $.DispatchEvent("DOTAHideTextTooltip");
-    };
 }
 
 function AggregateNetTables(keys, callback) {

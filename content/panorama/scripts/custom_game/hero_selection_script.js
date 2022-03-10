@@ -280,9 +280,9 @@ function ShowHeroAbilities(heroName) {
             SetAbilityButtonTooltipEvents(image, found.name);
 
             if (ability === "A") {
-                label.text = "HeroRange_" + hero.range;
+                label.text = "#HeroRange_" + hero.range;
             } else {
-                label.text = hero.name.substring("npc_dota_hero_".length) + "_Desc" + ability;
+                label.text = "#" + hero.name.substring("npc_dota_hero_".length) + "_Desc" + ability;
 
                 shortcut.text = Game.GetKeybindForAbility(pair[1] || 0);
             }

@@ -156,7 +156,7 @@ var Pass = new (function(){
 
     this.SetLevelText = function(level) {
         $("#LevelText").SetDialogVariableInt("level", level);
-        var text = $.Localize("PassLevel", $("#LevelText"));
+        var text = $.Localize("#PassLevel", $("#LevelText"));
         $("#LevelText").text = text.toUpperCase();
     }
 
@@ -182,7 +182,7 @@ var Pass = new (function(){
         } else {
             panel.SetImage(null);
             panel.SetPanelEvent("onmouseover", function() {
-                $.DispatchEvent("DOTAShowTextTooltip", panel, $.Localize(!!asset.taunt ? "AbilityTooltip_taunt_static" : "AbilityTooltip_emote"));
+                $.DispatchEvent("DOTAShowTextTooltip", panel, $.Localize(!!asset.taunt ? "#AbilityTooltip_taunt_static" : "#AbilityTooltip_emote"));
             });
         }
 

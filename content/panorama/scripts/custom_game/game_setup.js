@@ -87,7 +87,7 @@ function GameSetupChanged(data){
     var stageMode = data.outputs.stage_mode;
 
     if (stageMode && stageMode.selectedMode) {
-        $("#ModeSelectHeader").text = $.Localize("GameSetupHeader_" + stageMode.selectedMode);
+        $("#ModeSelectHeader").text = $.Localize("#GameSetupHeader_" + stageMode.selectedMode);
     }
 }
 

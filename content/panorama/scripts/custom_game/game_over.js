@@ -73,12 +73,12 @@ function AddPlayerRow(scoreboard, player, stats, winner, runnerUp, mvps, fbs, ra
 
         if (winner) {
             icon.AddClass("WinnerIcon");
-            tooltip = "SbWinner";
+            tooltip = "#SbWinner";
         }
 
         if (runnerUp) {
             icon.AddClass("RunnerUpIcon");
-            tooltip = "SbRunnerUp";
+            tooltip = "#SbRunnerUp";
         }
 
         icon.SetPanelEvent("onmouseover", function() {
@@ -121,7 +121,7 @@ function AddPlayerRow(scoreboard, player, stats, winner, runnerUp, mvps, fbs, ra
             icon.AddClass("MultipleHeroesIcon");
 
             icon.SetPanelEvent("onmouseover", function() {
-                $.DispatchEvent("DOTAShowTextTooltip", icon, $.Localize("SbTooManyHeroes"));
+                $.DispatchEvent("DOTAShowTextTooltip", icon, $.Localize("#SbTooManyHeroes"));
             });
 
             icon.SetPanelEvent("onmouseout", function() {
@@ -166,8 +166,8 @@ function AddPlayerRow(scoreboard, player, stats, winner, runnerUp, mvps, fbs, ra
 function AddHeaders(scoreboard, mvps, fbs, rankedMode) {
     var row = $.CreatePanel("Panel", scoreboard, "");
     row.AddClass("TableRow");
-    AddTableHeaders(row, "TableColumnHeaderWide", "SbName");
-    AddTableHeaders(row, "TableColumnHeader", "SbDamage", fbs ? "SbFirstBloods" : null, "SbKills", mvps ? "SbMvps" : null, "SbProj", "SbAmountPlayed", "SbMostPlayed", rankedMode ? "SbRank" : null);
+    AddTableHeaders(row, "TableColumnHeaderWide", "#SbName");
+    AddTableHeaders(row, "TableColumnHeader", "#SbDamage", fbs ? "#SbFirstBloods" : null, "#SbKills", mvps ? "#SbMvps" : null, "#SbProj", "#SbAmountPlayed", "#SbMostPlayed", rankedMode ? "#SbRank" : null);
 }
 
 function AddFooter(scoreboard) {
@@ -175,7 +175,7 @@ function AddFooter(scoreboard) {
     button.AddClass("TableFooter");
 
     var label = $.CreatePanel("Label", button, "");
-    label.text = $.Localize("SbExit");
+    label.text = $.Localize("#SbExit");
 
     button.SetPanelEvent("onactivate", function() {
         Game.FinishGame();

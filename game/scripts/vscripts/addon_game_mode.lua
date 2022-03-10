@@ -676,11 +676,11 @@ function GameMode:SendKillMessageToTeam(team, victim, fell)
         sound = "Announcer.RoundDrop"
     end
 
-    CustomGameEventManager:Send_ServerToTeam(team, "kill_message", { victim = victim, token = "KMNormal", sound = sound })
+    CustomGameEventManager:Send_ServerToTeam(team, "kill_message", { victim = victim, token = "#KMNormal", sound = sound })
 end
 
 function GameMode:SendFirstBloodMessage(victim)
-    CustomGameEventManager:Send_ServerToAllClients("kill_message", { victim = victim, token = "KMFirstBlood", sound = "Announcer.RoundFirstBlood" })
+    CustomGameEventManager:Send_ServerToAllClients("kill_message", { victim = victim, token = "#KMFirstBlood", sound = "Announcer.RoundFirstBlood" })
 end
 
 function GameMode:OnCustomPing(_, args)
@@ -839,11 +839,11 @@ function GameMode:CheckEveryoneAbandoned()
         self.abandonTimer = (self.abandonTimer or 0) + 1
 
         if self.abandonTimer == 1 then
-            SystemMessage("SystemEveryoneLeft", { time = 40 })
+            SystemMessage("#SystemEveryoneLeft", { time = 40 })
         end
 
         if self.abandonTimer == 30 then
-            SystemMessage("SystemEveryoneLeft", { time = 10 })
+            SystemMessage("#SystemEveryoneLeft", { time = 10 })
         end
 
         if self.abandonTimer > 40 then
@@ -1082,7 +1082,7 @@ function GameMode:OnRoundEnd(round)
             self:SetState(STATE_HERO_SELECTION)
             self.heroSelection:Start(function() self:OnHeroSelectionEnd() end)
 
-            SystemMessage("SystemRoundOver", { round = self.roundNumber - 1 })
+            SystemMessage("#SystemRoundOver", { round = self.roundNumber - 1 })
 
             GameRules:GetGameModeEntity():StopSound("dsadowski_01.music.battle_01")
             GameRules:GetGameModeEntity():EmitSound("dsadowski_01.music.countdown")
@@ -1357,7 +1357,7 @@ function GameMode:OnPassExperienceReceived(experience)
         player.passExperience = experience % 1000
         player.passLevel = math.floor(experience / 1000)
 
-        SystemMessage("SystemPassLevel", { player = playerId, color = self.TeamColors[player.team], level = player.passLevel + 1 })
+        SystemMessage("#SystemPassLevel", { player = playerId, color = self.TeamColors[player.team], level = player.passLevel + 1 })
     end
 
     CustomNetTables:SetTableValue("pass", "experience", self.passExperience)

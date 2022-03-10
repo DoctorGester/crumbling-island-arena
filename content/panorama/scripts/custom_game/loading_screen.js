@@ -50,7 +50,7 @@ function HallOfFameChanged(data) {
             modePanel.AddClass("RankedMode");
 
             var modeName = $.CreatePanel("Label", modePanel, "");
-            modeName.text = $.Localize("RankMode_" + mode).toUpperCase();
+            modeName.text = $.Localize("#RankMode_" + mode).toUpperCase();
             modeName.AddClass("RankedModeName");
 
             CreateRankPanelSmall(playerPanel, player, "HallOfFameRank");
@@ -63,7 +63,7 @@ function UpdateTime(label, seasonEndTime) {
         UpdateTime(label, seasonEndTime);
     });
 
-    label.text = moment.unix(seasonEndTime).locale($.Localize("locale")).fromNow();
+    label.text = moment.unix(seasonEndTime).locale($.Localize("#locale")).fromNow();
 }
 
 function RankedInfoChanged(info) {
@@ -166,8 +166,8 @@ $.AsyncWebRequest("http://138.68.73.132:3637/pass/top", { type: "GET",
 var tips = 13;
 var tip = Math.floor(Math.random() * (tips + 1));
 
-$("#GameTipText").SetDialogVariable("tip", $.Localize("GameTip" + tip));
-$("#GameTipText").text = $.Localize("GameTip", $("#GameTipText"));
+$("#GameTipText").SetDialogVariable("tip", $.Localize("#GameTip" + tip));
+$("#GameTipText").text = $.Localize("#GameTip", $("#GameTipText"));
 
 var hittestBlocker = $.GetContextPanel().GetParent().FindChild("SidebarAndBattleCupLayoutContainer");
 
