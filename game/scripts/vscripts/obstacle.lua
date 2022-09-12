@@ -25,6 +25,9 @@ function Obstacle:constructor(model, target)
     self.prop:SetParent(self:GetUnit(), nil)
     self.prop:SetOrigin(target)
 
+    self.prop:SetSkin(0)
+    self.prop:SetBodygroupByName("default", 1)
+
     self:SetAnglesFromQuaternion(self.rotation)
 end
 
