@@ -40,7 +40,7 @@
             AddChatLine("#ChatRandomed", {
                 name: EscapeHtml(Players.GetPlayerName(args.player)),
                 color: LuaColor(args.color),
-                hero: args.hero ? $.Localize("HeroName_" + args.hero) : $.Localize("HeroName_None")
+                hero: args.hero ? $.Localize("#HeroName_" + args.hero) : $.Localize("#HeroName_None")
             }, args.team, args.wasTopPlayer);
         }
 
