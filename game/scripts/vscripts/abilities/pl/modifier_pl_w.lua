@@ -3,15 +3,23 @@ local self = modifier_pl_w
 
 function self:CheckState()
     local state = {
-        [MODIFIER_STATE_STUNNED] = true
+        -- I have no idea how to disable knockbacks 
+        --[MODIFIER_STATE_NO_UNIT_COLLISION] = true,
+        --[MODIFIER_STATE_FLYING_FOR_PATHING_PURPOSES_ONLY] = true,
+        [MODIFIER_STATE_STUNNED] = true,
+        [MODIFIER_STATE_FROZEN] = true
     }
 
     return state
 end
 
-function self:OnDamageReceived(source, hero)
+function self:OnDamageReceived(source, hero, amount)
     if source.hero then
         source = source.hero
+    end
+
+    if amount == 1 then
+        return amount - 1
     end
 
     hero:AddNewModifier(source, self:GetAbility(), "modifier_pl_w_invul", { duration = 0.25 })

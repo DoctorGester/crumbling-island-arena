@@ -3,7 +3,8 @@ local self = modifier_pl_w_invul
 
 function self:CheckState()
     local state = {
-        [MODIFIER_STATE_STUNNED] = true
+        [MODIFIER_STATE_STUNNED] = true,
+        [MODIFIER_STATE_FROZEN] = true
     }
 
     return state
@@ -53,5 +54,6 @@ if IsServer() then
         hero:FindClearSpace(self.target, true)
         hero:SetFacing(self.facing)
         hero:GetUnit():Interrupt()
+        hero:AddNewModifier(hero, self:GetAbility(), "modifier_pl_a_dmg", { duration = 2.0 })
     end
 end

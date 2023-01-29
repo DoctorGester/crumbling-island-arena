@@ -5,6 +5,7 @@ LinkLuaModifier("modifier_pl_illusion", "abilities/pl/modifier_pl_illusion", LUA
 LinkLuaModifier("modifier_pl_e_dash", "abilities/pl/modifier_pl_e_dash", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_pl_e_slow", "abilities/pl/modifier_pl_e_slow", LUA_MODIFIER_MOTION_NONE)
 LinkLuaModifier("modifier_pl_e_speed", "abilities/pl/modifier_pl_e_speed", LUA_MODIFIER_MOTION_NONE)
+LinkLuaModifier("modifier_pl_a_dmg", "abilities/pl/modifier_pl_a_dmg", LUA_MODIFIER_MOTION_NONE)
 
 require('abilities/pl/entity_pl_illusion')
 
