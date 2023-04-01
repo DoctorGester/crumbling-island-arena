@@ -473,7 +473,7 @@ function CreateHeroList(heroList, heroes, quests, selectedHeroes, achievements, 
                     if (!selectedHeroes.allowSame || selectedTeam == localTeam) {
                         if (sHero == hero) {
                             selected = true;
-                            button.style = { boxShadow: (playerColors[id] || "#ff0000") + " -2px -2px 4px 4px" };
+                            button.style = { boxShadow: "0 0 8px 1px " + (playerColors[id] || "#ff0000") };
 
                             break;
                         }

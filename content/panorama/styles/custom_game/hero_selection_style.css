@@ -408,7 +408,7 @@
     width: 75px;
     height: 75px;
     margin: 6px;
-    box-shadow: #000000ff -2px -2px 4px 4px;
+    box-shadow: 0 0 8px 1px #000000ff;
     border-radius: 50%;
 }
 
@@ -479,7 +479,7 @@
 
 .HeroButtonContainer:hover
 {
-    box-shadow: skyblue -2px -2px 0px 4px;
+    box-shadow: 0 0 8px 1px skyblue;
 }
 
 .HeroButtonContainer:hover .HeroButton
