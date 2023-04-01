@@ -10,6 +10,8 @@
         <include src="file://{resources}/styles/custom_game/util.css" />
     </styles>
     <scripts>
+        <include src="file://{resources}/scripts/custom_game/jsep.js" />
+        <include src="file://{resources}/scripts/custom_game/jsep_eval.js" />
         <include src="file://{resources}/scripts/custom_game/odiff.js" />
         <include src="file://{resources}/scripts/custom_game/structure.js" />
         <include src="file://{resources}/scripts/custom_game/underscore-min.js" />

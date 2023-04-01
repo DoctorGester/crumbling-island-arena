@@ -10,12 +10,12 @@
 
 		"HoverIndicator" {
 			"Type" "TARGETING_INDICATOR_RANGE"
-			"Radius" "(function(){ if (HasModifier(unit, 'modifier_tiny_r')) return 500; return 400; })()"
+			"Radius" "HasModifier(unit, 'modifier_tiny_r') ? 500 : 400"
 		}
 
 		"TargetingIndicator" {
 			"Type" "TARGETING_INDICATOR_HALF_CIRCLE"
-			"Radius" "(function(){ if (HasModifier(unit, 'modifier_tiny_r')) return 500; return 400; })()"
+			"Radius" "HasModifier(unit, 'modifier_tiny_r') ? 500 : 400"
 		}
 	}
 }

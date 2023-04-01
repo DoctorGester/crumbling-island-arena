@@ -243,7 +243,7 @@
 
         "HoverIndicator" {
             "Type" "TARGETING_INDICATOR_RANGE"
-            "Radius" "(function(){ if (HasModifier(unit, 'modifier_falling')) return 500; return 250; })()"
+            "Radius" "HasModifier(unit, 'modifier_falling') ? 500 : 250"
         }
     }
 

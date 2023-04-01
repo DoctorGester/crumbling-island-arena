@@ -11,6 +11,8 @@ var hoverIndicator = null;
 var guidedAbility = -1;
 var castedAbility = -1;
 
+const globalThis = this;
+
 function GetNumber(value, or, unit) {
     if (!value) {
         return or;
@@ -20,7 +22,10 @@ function GetNumber(value, or, unit) {
         return value;
     }
 
-    return eval(value);
+    const context = Object.create(globalThis);
+    context.unit = unit;
+
+    return evaluateExpressionNode(new Jsep(value).parse(), context)
 }
 
 indicatorTypes[null] = function(data, unit) {
