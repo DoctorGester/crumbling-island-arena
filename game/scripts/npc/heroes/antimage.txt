@@ -25,7 +25,7 @@
 		"DisableWearables" "1"
 		"Range" "melee"
 		"DateAdded" "13.02.2017"
-		"Difficulty" "easy"
+		"Difficulty" "hard"
 		"Disabled" "false"
 		"Order" "40"
 		"Ability1" "am_q"

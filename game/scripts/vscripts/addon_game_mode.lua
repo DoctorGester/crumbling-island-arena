@@ -132,9 +132,15 @@ function Precache(context)
     local proxyComponent = WearableComponent()
 
     for _, data in pairs(heroes) do
-        PrecacheUnitByNameSync(data.override_hero, context)
+        local removed = data.Removed == "true"
+        local disabled = data.Disabled == "true"
 
-        if not data.Disabled or data.Disabled == "false" then
+        if not removed then
+            print("Precaching unit", data.override_hero);
+            PrecacheUnitByNameSync(data.override_hero, context)
+        end
+
+        if not removed and not disabled then
             local allItems = {}
             local wearableOwnerProxy = {
                 GetName = function() return data.override_hero end
@@ -1409,14 +1415,14 @@ function GameMode:LoadCustomHeroes()
     self.AllAbilities = {}
 
     for customName, data in pairs(customHeroes) do
-        if data.override_hero ~= DUMMY_HERO then
+        if data.override_hero ~= DUMMY_HERO and data.Removed ~= "true" then
             self.AvailableHeroes[data.override_hero] = {
                 ultimate = data.Ultimate,
                 class = data.Class,
                 customIcons = data.CustomIcons,
                 difficulty = data.Difficulty or "easy",
                 order = data.Order or math.huge,
-                disabled = (data.Disabled and data.Disabled == "true" and not enableForDebug) or false,
+                disabled = (data.Disabled == "true" and not enableForDebug) or false,
                 initialCD = data.UltiCooldown,
                 endActivity = data.RoundEndActivity or "ACT_DOTA_LOADOUT",
                 endTranslation = data.RoundEndTranslation,

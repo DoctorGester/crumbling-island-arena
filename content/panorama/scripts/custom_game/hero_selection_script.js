@@ -614,8 +614,8 @@ function UpdateHeroSelectionButtons(data){
     $("#HeroList").SetHasClass("NewPlayer", newPlayer);
     $("#ShowAllHeroesButton").SetHasClass("NewPlayer", newPlayer);
 
-    CreateHeroList($("#EasyHeroes"), easy, data.quests, data.selectedHeroes, data.achievements, newPlayer, [ 5, 6, 6, 6, 7 ] , 4);
-    CreateHeroList($("#HardHeroes"), hard, data.quests, data.selectedHeroes, data.achievements, newPlayer, [ 6, 5 ]);
+    CreateHeroList($("#EasyHeroes"), easy, data.quests, data.selectedHeroes, data.achievements, newPlayer, [ 4, 5, 5, 4, 7 ] , 4);
+    CreateHeroList($("#HardHeroes"), hard, data.quests, data.selectedHeroes, data.achievements, newPlayer, [ 5, 6 ]);
 }
 
 function PlayersUpdated(data){

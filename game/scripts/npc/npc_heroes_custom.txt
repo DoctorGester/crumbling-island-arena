@@ -52,6 +52,7 @@
 	}
 
 	"npc_dota_hero_pugna" {
+	    "Removed" "true"
 		"override_hero" "npc_dota_hero_pugna"
 		"Class" "heroes/pugna:Pugna"
 		"ArmorPhysical" "0"
@@ -95,6 +96,7 @@
 	}
 
 	"npc_dota_hero_phoenix" {
+        "Removed" "true"
 		"override_hero" "npc_dota_hero_phoenix"
 		"DefaultMixin" "heroes/phoenix:Phoenix"
 		"ArmorPhysical" "0"
@@ -131,6 +133,7 @@
 	}
 
 	"npc_dota_hero_ogre_magi" {
+        "Removed" "true"
 		"override_hero" "npc_dota_hero_ogre_magi"
 		"Class" "heroes/ogre:Ogre"
 		"ArmorPhysical" "0"
@@ -167,6 +170,7 @@
 	}
 
 	"npc_dota_hero_lone_druid" {
+        "Removed" "true"
 		"override_hero" "npc_dota_hero_lone_druid"
 		"ArmorPhysical" "0"
 		"MagicalResistance" "0"
@@ -210,6 +214,7 @@
 	}
 
 	"npc_dota_hero_medusa" {
+        "Removed" "true"
 		"override_hero" "npc_dota_hero_medusa"
 		"ArmorPhysical" "0"
 		"MagicalResistance" "0"
@@ -247,6 +252,7 @@
 	}
 
 	"npc_dota_hero_omniknight" {
+        "Removed" "true"
 		"override_hero" "npc_dota_hero_omniknight"
 		"ArmorPhysical" "0"
 		"MagicalResistance" "0"
@@ -283,6 +289,7 @@
 	}
 
 	"npc_dota_hero_shadow_demon" {
+        "Removed" "true"
 		"override_hero" "npc_dota_hero_shadow_demon"
 		"ArmorPhysical" "0"
 		"MagicalResistance" "0"
@@ -318,6 +325,7 @@
 	}
 
 	"npc_dota_hero_phantom_lancer" {
+        "Removed" "true"
 		"override_hero" "npc_dota_hero_phantom_lancer"
 		"ArmorPhysical" "0"
 		"MagicalResistance" "0"
@@ -360,6 +368,7 @@
 	}
 
 	"npc_dota_hero_rubick" {
+        "Removed" "true"
 		"override_hero" "npc_dota_hero_rubick"
 		"ArmorPhysical" "0"
 		"MagicalResistance" "0"
