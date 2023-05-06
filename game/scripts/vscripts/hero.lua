@@ -48,6 +48,9 @@ function Hero:SetUnit(unit)
 
     Wrappers.WrapAbilitiesFromHeroData(unit, self.data)
 
+    self:GetUnit():RemoveAbility("twin_gate_portal_warp")
+    self:GetUnit():RemoveAbility("ability_lamp_use")
+    self:GetUnit():RemoveAbility("ability_pluck_famango")
     self:GetUnit():RemoveAbility("abyssal_underlord_portal_warp")
     self:GetUnit():RemoveAbility("ability_capture")
 
