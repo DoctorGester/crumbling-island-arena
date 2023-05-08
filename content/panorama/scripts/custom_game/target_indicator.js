@@ -501,12 +501,11 @@ indicatorTypes["TARGETING_INDICATOR_DUSA_SNAKE"] = function(data, unit) {
             to = to.minus(pos).normalize().scale(length).add(pos);
         }
 
-        Particles.SetParticleControl(this.particle, 1, to);
-        Particles.SetParticleControl(this.particle, 2, to.add(dir.scale(150).rotate2d(-0.75)));
-        Particles.SetParticleControl(this.particle, 3, to.minus(pos).normalize().scale(length / 2).add(pos));
+        var center = to.minus(pos).normalize().scale(length / 2).add(pos);
 
-        Particles.SetParticleControlForward(this.particle, 3, [dir.y, -dir.x, 0])
-        Particles.SetParticleControlForward(this.particle, 1, [dir.y, -dir.x, 0])
+        Particles.SetParticleControlTransformForward(this.particle, 1, to, [dir.y, -dir.x, 0])
+        Particles.SetParticleControl(this.particle, 2, to.add(dir.scale(150).rotate2d(-0.75)));
+        Particles.SetParticleControlTransformForward(this.particle, 3, center, [dir.y, -dir.x, 0])
     }
 
     this.Delete = function(){
@@ -592,9 +591,8 @@ indicatorTypes["TARGETING_INDICATOR_ANTIMAGE_Q"] = function(data, unit) {
         var rot = new Vector(side * dir.y, side * -dir.x, 0).rotate2d(r);
 
         Particles.SetParticleControl(particle, 0, pos);
-        Particles.SetParticleControl(particle, 1, to);
+        Particles.SetParticleControlTransformForward(particle, 1, to, [rot.x, rot.y, 0])
         Particles.SetParticleControl(particle, 2, to.add(dir.scale(150).rotate2d(side * 1.2 + r)));
-        Particles.SetParticleControlForward(particle, 1, [rot.x, rot.y, 0])
     };
 
     this.Delete = function(){
@@ -621,12 +619,12 @@ function UpdateArc(indicator, particle, from, position, targetHeight, width) {
     }
 
     var rel = target / len;
-    var val =  Math.max(1, len / 2 - len / 2 * rel);
+    var val =  Math.max(1, len * rel);
 
     Particles.SetParticleControl(particle, 0, fr);
     Particles.SetParticleControl(particle, 1, to);
     Particles.SetParticleControl(particle, 2, [ width, 0, 0 ]);
-    Particles.SetParticleControlForward(particle, 1, [0, 0, val]);
+    Particles.SetParticleControl(particle, 3, [ 0, 0, val ]);
 }
 
 function UpdatePosition() {
