@@ -44,7 +44,8 @@ function self:OnSpellStart()
 end
 
 function self:GetCastAnimation()
-    return ACT_DOTA_ATTACK2
+    -- return ACT_DOTA_ATTACK2
+    return ACT_DOTA_ATTACK
 end
 
 function self:GetPlaybackRateOverride()

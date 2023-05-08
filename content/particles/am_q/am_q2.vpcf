@@ -1,12 +1,65 @@
-<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:generic:version{7412167c-06e9-4698-aff2-e63eb59037e7} -->
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf56:version{f07dae67-740b-4789-a729-6ddffc9f855e} -->
 {
 	_class = "CParticleSystemDefinition"
 	m_flConstantRadius = 1.2
+	m_nBehaviorVersion = 12
+	m_nFirstMultipleOverride_BackwardCompat = 2
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 1.0
+			}
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphereTransform"
+		},
+		{
+			_class = "C_INIT_InitFloat"
+			m_InputValue = 
+			{
+				m_nType = "PF_TYPE_LITERAL"
+				m_flLiteralValue = 0.1
+			}
+			m_nOutputField = 1
+		},
+		{
+			_class = "C_INIT_PositionOffset"
+			m_OffsetMin = [ -100.0, -10.0, -93.0 ]
+			m_OffsetMax = [ -100.0, -10.0, -93.0 ]
+			m_bDisableOperator = true
+		},
+	]
 	m_Operators = 
 	[
 		{
 			_class = "C_OP_Decay"
-			m_nOpEndCapState = 1
+			m_nOpEndCapState = "PARTICLE_ENDCAP_ENDCAP_ON"
 		},
 		{
 			_class = "C_OP_RampScalarLinearSimple"
@@ -35,29 +88,10 @@
 			]
 			m_bOrientZ = true
 			m_bAnimated = true
-		},
-	]
-	m_Initializers = 
-	[
-		{
-			_class = "C_INIT_CreateWithinSphere"
-		},
-		{
-			_class = "C_INIT_RandomLifeTime"
-			m_fLifetimeMin = 0.1
-			m_fLifetimeMax = 0.1
-		},
-		{
-			_class = "C_INIT_PositionOffset"
-			m_OffsetMin = [ -100.0, -10.0, -93.0 ]
-			m_OffsetMax = [ -100.0, -10.0, -93.0 ]
-		},
-	]
-	m_Emitters = 
-	[
-		{
-			_class = "C_OP_InstantaneousEmitter"
-			m_nParticlesToEmit = 1
+			m_bForceLoopingAnimation = true
+			m_modelInput = 
+			{
+			}
 		},
 	]
 	m_Children = 

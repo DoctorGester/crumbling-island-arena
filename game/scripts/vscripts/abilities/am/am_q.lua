@@ -30,7 +30,8 @@ function self:OnSpellStart()
 end
 
 function self:GetCastAnimation()
-    return ACT_DOTA_CAST_ABILITY_1
+    return ACT_DOTA_CAST_ABILITY_4
+    -- return ACT_DOTA_CAST_ABILITY_1
 end
 
 function self:GetPlaybackRateOverride()
