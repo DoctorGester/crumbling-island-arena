@@ -167,7 +167,7 @@ function UnitEntity:Remove()
 
 		if maxTime > 0 then
 			print("[SOUNDS]", "Delayed entity removal, waiting for", maxTime)
-			self:GetUnit():ForceKill(false)
+			self:GetUnit():Kill(nil, nil)
 			self:GetUnit():SetAbsOrigin(self:GetPos())
 
 			Timers:CreateTimer(maxTime, function()
@@ -183,7 +183,7 @@ function UnitEntity:Remove()
 			self:GetUnit():RemoveSelf()
 		end
 	else
-		self:GetUnit():ForceKill(false)
+		self:GetUnit():Kill(nil, nil)
 		self:GetUnit():SetAbsOrigin(self:GetPos())
 	end
 end
