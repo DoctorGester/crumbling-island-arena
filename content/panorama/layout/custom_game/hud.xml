@@ -118,7 +118,7 @@
                 </Panel>
                 <Panel id="HeroNameContainer" hittest="false">
                     <Label id="HeroNameLabel" class="UILabel" hittest="false"/>
-                    <Panel id="HeroCosmeticAbilities"/>
+                    <Panel id="HeroCosmeticAbilities" hittest="false"/>
                 </Panel>
             </Panel>
             <Panel id="HeroPanel" hittest="false">

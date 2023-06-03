@@ -200,7 +200,7 @@ function AbilityBar(elementId) {
 
             for (index in this.abilities) {
                 if (index > slot) {
-                    this.element.MoveChildBefore(this.abilities[slot].image, this.abilities[index].image)
+                    this.element.MoveChildBefore(this.abilities[slot].button, this.abilities[index].button)
                     break;
                 }
             }
@@ -224,7 +224,7 @@ function AbilityBar(elementId) {
                 return function() {
                     var ability = bar.GetAbility(slot);
 
-                    bar.provider.ShowTooltip(ability.image, ability.data);
+                    bar.provider.ShowTooltip(ability.button, ability.data);
                 }
             } (this, key));
 
@@ -237,20 +237,23 @@ function AbilityBar(elementId) {
             var ability = this.abilities[key];
 
             if (clickable) {
-                ability.image.SetPanelEvent("onactivate", executeCapture);
+                ability.button.SetPanelEvent("onactivate", executeCapture);
             }
             
-            ability.image.SetPanelEvent("onmouseover", mouseOverCapture);
-            ability.image.SetPanelEvent("onmouseout", mouseOutCapture);
+            ability.button.SetPanelEvent("onmouseover", mouseOverCapture);
+            ability.button.SetPanelEvent("onmouseout", mouseOutCapture);
         }
     }
 }
 
 function AbilityButton(parent, hero, ability) {
     this.parent = parent;
-    this.image = $.CreatePanel("Image", parent, "");
-    this.image.AddClass("AbilityButton");
+    this.button = $.CreatePanel("Button", parent, "")
+    this.button.AddClass("AbilityButton");
     this.ability = ability;
+
+    this.image = $.CreatePanel("Image", this.button, "");
+    this.image.AddClass("AbilityButtonImage")
 
     this.custom = $.CreatePanel("Panel", this.image, "");
 
@@ -289,10 +292,10 @@ function AbilityButton(parent, hero, ability) {
             this.SetCooldown(data.remaining, data.cooldown, data.ready, data.activated);
         }
 
-        this.image.SetHasClass("AbilityBeingCast", data.beingCast);
-        this.image.SetHasClass("AbilityButtonToggled", data.toggled);
-        this.image.SetHasClass("AbilityAttack", data.attack);
-        this.image.SetHasClass("AbilityCustom", data.custom);
+        this.button.SetHasClass("AbilityBeingCast", data.beingCast);
+        this.button.SetHasClass("AbilityButtonToggled", data.toggled);
+        this.button.SetHasClass("AbilityAttack", data.attack);
+        this.button.SetHasClass("AbilityCustom", data.custom);
 
         this.data = data;
     };
@@ -311,21 +314,21 @@ function AbilityButton(parent, hero, ability) {
         this.inside.SetHasClass("AbilityButtonInsideOnCooldown", !ready);
 
         if (ready && activated) {
-            this.image.SetHasClass("AbilityButtonEnabled", true);
-            this.image.SetHasClass("AbilityButtonDeactivated", false);
-            this.image.SetHasClass("AbilityButtonOnCooldown", false);
+            this.button.SetHasClass("AbilityButtonEnabled", true);
+            this.button.SetHasClass("AbilityButtonDeactivated", false);
+            this.button.SetHasClass("AbilityButtonOnCooldown", false);
         }
 
         if (!ready){
-            this.image.SetHasClass("AbilityButtonEnabled", false);
-            this.image.SetHasClass("AbilityButtonDeactivated", false);
-            this.image.SetHasClass("AbilityButtonOnCooldown", true);
+            this.button.SetHasClass("AbilityButtonEnabled", false);
+            this.button.SetHasClass("AbilityButtonDeactivated", false);
+            this.button.SetHasClass("AbilityButtonOnCooldown", true);
         }
 
         if (!activated) {
-            this.image.SetHasClass("AbilityButtonEnabled", false);
-            this.image.SetHasClass("AbilityButtonDeactivated", true);
-            this.image.SetHasClass("AbilityButtonOnCooldown", false);
+            this.button.SetHasClass("AbilityButtonEnabled", false);
+            this.button.SetHasClass("AbilityButtonDeactivated", true);
+            this.button.SetHasClass("AbilityButtonOnCooldown", false);
         }
 
         var progress = (-360 * (remaining / cd)).toString();
@@ -357,16 +360,16 @@ function AbilityButton(parent, hero, ability) {
     this.SetDisabled = function(silenced, stunned, rooted) {
         this.silence.style.opacity = (silenced && !stunned) ? "1.0" : "0.0";
         this.stun.style.opacity = stunned ? "1.0" : "0.0";
-        this.image.SetHasClass("AbilityDisarmed", rooted);
+        this.button.SetHasClass("AbilityDisarmed", rooted);
     };
 
     this.SetDisarmed = function(disarmed) {
-        this.image.SetHasClass("AbilityDisarmed", disarmed);
+        this.button.SetHasClass("AbilityDisarmed", disarmed);
     };
 
     this.Delete = function() {
-        this.image.visible = false;
-        this.image.DeleteAsync(0);
+        this.button.visible = false;
+        this.button.DeleteAsync(0);
     };
 
     this.SetDisabled(false, false, false);

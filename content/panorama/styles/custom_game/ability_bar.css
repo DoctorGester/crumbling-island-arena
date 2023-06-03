@@ -69,6 +69,11 @@
     transition-duration: 0.1s;
 }
 
+.AbilityButtonImage {
+    width: 100%;
+    height: 100%;
+}
+
 .AbilitySilenced
 {
     background-image: url("file://{images}/custom_game/silence.png");
