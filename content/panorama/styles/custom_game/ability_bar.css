@@ -12,6 +12,7 @@
     margin-left: 3px;
     transition-property: opacity;
     transition-duration: 0.1s;
+    tooltip-position: top;
 }
 
 .PositiveBuff
