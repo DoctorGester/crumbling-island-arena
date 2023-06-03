@@ -24,7 +24,7 @@
 		"Range" "melee"
 		"DisableWearables" "1"
 		"Difficulty" "easy"
-		"Disabled" "false"
+		"Disabled" "true"
 		"Order" "9"
 		"Ability1" "lycan_q"
 		"Ability2" "lycan_w"
