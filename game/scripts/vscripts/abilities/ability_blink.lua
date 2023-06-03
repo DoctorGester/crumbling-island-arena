@@ -39,6 +39,10 @@ function ability_blink:GetBehavior()
     return DOTA_ABILITY_BEHAVIOR_POINT + DOTA_ABILITY_BEHAVIOR_IMMEDIATE
 end
 
+function ability_blink:ProcsMagicStick()
+    return false
+end
+
 function ability_blink:GetCastAnimation()
     return ACT_DOTA_CAST_ABILITY_2
 end
