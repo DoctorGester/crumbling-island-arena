@@ -321,7 +321,7 @@ function AddButtonEvents(button, name, questComplete) {
         GameEvents.SendCustomGameEventToServer("selection_hero_hover", { "hero": name });
 
         if (questComplete == false) {
-             $.DispatchEvent("DOTAShowTextTooltip", panel, $.Localize("QuestAvailable"))
+             $.DispatchEvent("DOTAShowTextTooltip", panel, $.Localize("#QuestAvailable"))
         }
 
         ShowHeroDetails(name);
@@ -340,7 +340,7 @@ function AddButtonEvents(button, name, questComplete) {
 
 function AddDisabledButtonEvents(button, name) {
     button.onmouseover = function(panel) {
-        $.DispatchEvent("DOTAShowTextTooltip", panel, $.Localize("AvailableSoon"))
+        $.DispatchEvent("DOTAShowTextTooltip", panel, $.Localize("#AvailableSoon"))
 
         ShowHeroDetails(name);
     };
