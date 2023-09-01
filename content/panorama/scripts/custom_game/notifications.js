@@ -114,7 +114,7 @@ function RewardNotification(data) {
     var season = data.season;
     var area = $("#RewardArea");
 
-    const rewardModel = $.CreatePanelWithProperties("DOTAScenePanel", area, "RewardModel", {
+    const rewardModel = $.CreatePanel("DOTAScenePanel", area, "RewardModel", {
         particleonly: "false",
         map: "maps/rewards/" + season + ".vmap",
         light: "light",

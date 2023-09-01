@@ -123,7 +123,7 @@ function PassTopChanged(top) {
         avatar.steamid = player.steamId64.toString();
         StyleAvatarDefault(avatar);
 
-        $.CreatePanelWithProperties("DOTAScenePanel", avatarParent, "", {
+        $.CreatePanel("DOTAScenePanel", avatarParent, "", {
             class: "EliteEffect",
             hittest: "false",
             map: "maps/scenes/vr_theater/vr_background_particle.vmap",

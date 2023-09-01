@@ -776,7 +776,7 @@ function CheckPreviews() {
     }
 
     if (!somethingIsLoading && !!notLoadedContainer) {
-        $.CreatePanelWithProperties(notLoadedContainer.type, notLoadedContainer.container, "", notLoadedContainer.properties);
+        $.CreatePanel(notLoadedContainer.type, notLoadedContainer.container, "", notLoadedContainer.properties);
         notLoadedContainer.loadingImage.DeleteAsync(0);
     }
 }

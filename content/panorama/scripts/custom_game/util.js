@@ -143,7 +143,7 @@ function CreateRankPanelSmall(parent, rankData, style) {
     rank.SetImage("file://{images}/profile_badges/level_" + (100 - rankData.rank) + ".png");
 
     if (rankData.rank == 1 && rankData.elo) {
-        $.CreatePanelWithProperties("DOTAScenePanel", rank, "", {
+        $.CreatePanel("DOTAScenePanel", rank, "", {
             class: "EliteEffect",
             map: "maps/scenes/shining_default.vmap",
         });
