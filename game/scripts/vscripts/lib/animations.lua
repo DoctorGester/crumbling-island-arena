@@ -60,11 +60,6 @@ ANIMATIONS_VERSION = "0.84"
 
 ]]
 
-LinkLuaModifier( "modifier_animation", "lib/modifiers/modifier_animation.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_animation_translate", "lib/modifiers/modifier_animation_translate.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_animation_translate_permanent", "lib/modifiers/modifier_animation_translate_permanent.lua", LUA_MODIFIER_MOTION_NONE )
-LinkLuaModifier( "modifier_animation_freeze", "lib/modifiers/modifier_animation_freeze.lua", LUA_MODIFIER_MOTION_NONE )
-
 require('lib/timers')
 
 local _ANIMATION_TRANSLATE_TO_CODE = {

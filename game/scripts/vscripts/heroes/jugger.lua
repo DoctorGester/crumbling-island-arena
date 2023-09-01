@@ -1,7 +1,5 @@
 Jugger = class({}, {}, Hero)
 
-LinkLuaModifier("modifier_jugger_sword", "abilities/jugger/modifier_jugger_sword", LUA_MODIFIER_MOTION_NONE)
-
 Jugger.Swords = {
     [0] = {
         range = 250,
