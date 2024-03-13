@@ -166,6 +166,14 @@
 #base "abilities\faceless_void\void_e.txt"
 #base "abilities\faceless_void\void_e_sub.txt"
 #base "abilities\faceless_void\void_r.txt"
+#base "abilities\shredder\timber_a.txt"
+#base "abilities\shredder\timber_q.txt"
+#base "abilities\shredder\timber_q_sub.txt"
+#base "abilities\shredder\timber_w.txt"
+#base "abilities\shredder\timber_e.txt"
+#base "abilities\shredder\timber_r.txt"
+#base "abilities\shredder\timber_r_sub.txt"
+#base "abilities\shredder\timber_r_sub.txt"
 
 "DOTAAbilities" {
 	"dummy_unit_ability" {

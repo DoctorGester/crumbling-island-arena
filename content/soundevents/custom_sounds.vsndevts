@@ -7664,4 +7664,224 @@
 		soundlevel = "95.0"
 		event_type = "1.0"
 	}
+	
+	Arena.Timber.CastA = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/shredder/pre_attack_01.vsnd",
+			"sounds/weapons/hero/shredder/pre_attack_02.vsnd",
+			"sounds/weapons/hero/shredder/pre_attack_03.vsnd",
+			"sounds/weapons/hero/shredder/pre_attack_04.vsnd"
+		]
+		volume = "0.5"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Timber.HitA = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/shredder/attack_impact_01.vsnd",
+			"sounds/weapons/hero/shredder/attack_impact_02.vsnd",
+			"sounds/weapons/hero/shredder/attack_impact_03.vsnd"
+		]
+		volume = "0.5"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Timber.CastQ = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/shredder/chakra_cast.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Timber.LoopQ = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/shredder/chakra_spin_lp.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Timber.EndQ = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/shredder/chakra_return.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Timber.CastW = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/items/dota_item_blade_mail.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Timber.ProcW = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/items/blade_mail_damage.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Timber.CastE = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/shredder/timberchain.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Timber.EndE = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/shredder/timber_chain_retract.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Timber.HitE = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/shredder/timberchain_impact.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Timber.MissE.Voice = {
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/vo/shredder/timb_anger_04.vsnd",
+			"sounds/vo/shredder/timb_pain_09.vsnd",
+			"sounds/vo/shredder/timb_death_08.vsnd",
+			"sounds/vo/shredder/timb_death_09.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Timber.HitE.Voice = {
+		type = "dota_src1_3d"
+		vsnd_files = 
+		[
+			"sounds/vo/shredder/timb_timberchain_05.vsnd",
+			"sounds/vo/shredder/timb_timberchain_07.vsnd",
+			"sounds/vo/shredder/timb_timberchain_08.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Timber.CastR = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/shadowshaman/shackle_cast.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Timber.HitR = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/razor/static_attack_start.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
+
+	Arena.Timber.ActivatingR = {
+		type = "dota_update_default"
+		vsnd_files =
+		[
+			"sounds/weapons/hero/techies/remote_mine_plant.vsnd"
+		]
+		volume = "1.0"
+		pitch_rand_min = "-0.05"
+		pitch_rand_max = "0.05"
+		pitch = "1.0"
+		soundlevel = "95.0"
+		event_type = "1.0"
+	}
 }

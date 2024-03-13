@@ -196,7 +196,10 @@ function DynamicEntity:AreaEffect(params)
             local blocked = params.ability and target:AllowAbilityEffect(self, params.ability) == false
             local isTree = instanceof(target, Obstacle)
 
-            if isTree and (params.damage ~= nil or params.damagesTrees) then
+            if isTree and (params.damage ~= nil or params.damagesTrees) and not params.damagesTreesx2 then
+                target:DealOneDamage(self)
+            elseif isTree and params.damagesTreesx2 then
+                target:DealOneDamage(self)
                 target:DealOneDamage(self)
             end
 

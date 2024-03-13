@@ -46,7 +46,8 @@
 		"HeroName_npc_dota_hero_gyrocopter"				"The Turtle"
 		"HeroName_npc_dota_hero_rubick"					"Envy"
 		"HeroName_npc_dota_hero_windrunner"				"Aura"
-        "HeroName_npc_dota_hero_nevermore"				"Despair"
+        	"HeroName_npc_dota_hero_nevermore"				"Despair"
+        	"HeroName_npc_dota_hero_shredder"				"H.A.T.E./E.V.I.L."
 		"HeroName_None"									"a Hero!"
 
 		"Available_on_npc_dota_hero_drow_ranger"		"Available on April 23!"
@@ -260,6 +261,11 @@
 		"faceless_void_DescW" "AoE Spellblock. Damage + silence if triggered"
 		"faceless_void_DescE" "Jump through time, returning HP. Recast"
 		"faceless_void_DescR" "Channeling. Global delayed damage"
+
+		"shredder_DescQ" "1"
+		"shredder_DescW" "2"
+		"shredder_DescE" "3"
+		"shredder_DescR" "4"
 
 		"HeroBanned" "This hero is banned"
 		"PlayerHeader" "Players"
@@ -679,11 +685,20 @@
 		"AbilityTooltip_void_e_sub"						"Jump to the target point<br/>Enemies along the way take 2 damage and are slowed for 2 secs<br/>Does not restore health"
 		"AbilityTooltip_void_r"							"<font color=\"#DAFF7F\"><b>Channeling</b></font><br/>Launch up to 4 meteors at your cursor position every 0.6 sec<br/>Meteors deal 2 damage on impact and <font color=\"gold\"><b>MASSIVE</b></font> damage to the ground"
 
+		"AbilityTooltip_timber_a"				"1"
+		"AbilityTooltip_timber_q"				"2"
+		"AbilityTooltip_timber_q_sub"				"3"
+		"AbilityTooltip_timber_w"				"4"
+		"AbilityTooltip_timber_e"				"5"
+		"AbilityTooltip_timber_r"				"6"
+		"AbilityTooltip_timber_r_sub"				"7"
+
 		"ModifierTooltip_modifier_charges"						"Ability charges"
 		"ModifierTooltip_modifier_stunned_lua"					"Stunned"
 		"ModifierTooltip_modifier_silence_lua"					"Silenced"
 		"ModifierTooltip_modifier_knockback_lua"				"Knocked back"
 		"ModifierTooltip_modifier_attack_speed"					"Basic attack cooling down"
+		"ModifierTooltip_modifier_shield"					"Shield amount"
 
 		"ModifierTooltip_modifier_zeus_a"						"Will be stunned if hit by another ability"
 		"ModifierTooltip_modifier_zeus_w"						"Sped up"
@@ -865,6 +880,13 @@
 		"ModifierTooltip_modifier_void_e_disarm"				"Disarmed"
 		"ModifierTooltip_modifier_void_e_counter"				"Will restore health after using E"
 
+		"ModifierTooltip_modifier_timber_w"					"Hedgehog"
+		"ModifierTooltip_modifier_timber_e_root"				"Rooted"
+		"ModifierTooltip_modifier_timber_r_slow"				"Slowed"
+		"ModifierTooltip_modifier_timber_r_target"				"Will get slowed if stays there for too long"
+		"ModifierTooltip_modifier_timber_r_charges"				"Amount of <font color=\"#4a83ed\"><b>Ultimate</b></font> charges"
+		"ModifierTooltip_modifier_timber_heal_to_shield"			"Transforms any received heal into shield" 
+
 		"ModifierTooltip_modifier_rune_blue"                    "Dealing damage to enemy heroes will briefly stun them"
 
 		"StatusStunned" "Stunned"
@@ -887,6 +909,7 @@
 		"StatusUltimate" "Ultimate"
 		"StatusRecast" "Recast"
 		"StatusCursed" "Cursed"
+		"StatusSpikes" "Spikes"
 	}
 }
 

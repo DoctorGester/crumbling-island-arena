@@ -608,4 +608,12 @@
             "sounds/vo/faceless_void/face_kill_12.vsnd"
         ]
     }
+
+    Round.shredder = {
+        type = "dota_update_vo_switch"
+        vsnd_files =
+        [
+            "sounds/vo/shredder/timb_kill_08.vsnd"
+        ]
+    }
 }

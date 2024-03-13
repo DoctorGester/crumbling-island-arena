@@ -1,0 +1,106 @@
+<!-- kv3 encoding:text:version{e21c7f3c-8a33-41c5-9977-a76d3a32aa0d} format:vpcf10:version{b5ef673d-0450-4fb0-a91b-bacae6864827} -->
+{
+	_class = "CParticleSystemDefinition"
+	m_Children = 
+	[
+		{
+			m_ChildRef = resource:"particles/timber_q/timber_q_trail.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/timber_q/timber_q_spin_swirl.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/timber_q/timber_q_spin_edge_glow.vpcf"
+		},
+		{
+			m_ChildRef = resource:"particles/timber_q/timber_q_spin.vpcf"
+		},
+	]
+	m_Operators = 
+	[
+		{
+			_class = "C_OP_Decay"
+			m_nOpEndCapState = 1
+		},
+		{
+			_class = "C_OP_PositionLock"
+		},
+		{
+			_class = "C_OP_SpinYaw"
+			m_nSpinRateDegrees = 270
+		},
+		{
+			_class = "C_OP_MovementPlaceOnGround"
+			m_flOffset = 64.0
+			m_flMaxTraceLength = 1024.0
+			m_flTolerance = 96.0
+			m_flTraceOffset = 256.0
+			m_CollisionGroupName = "DEBRIS"
+			m_nRefCP1 = 0
+		},
+	]
+	m_flConstantRadius = 4.0
+	m_Renderers = 
+	[
+		{
+			_class = "C_OP_RenderModels"
+			m_ModelList = 
+			[
+				{
+					m_model = resource:"models/heroes/shredder/shredder_chakram.vmdl"
+				},
+			]
+			m_bAnimated = true
+			m_bOrientZ = true
+			m_nLOD = 1
+			m_bForceDrawInterlevedWithSiblings = true
+			m_bSuppressTint = true
+		},
+	]
+	m_Emitters = 
+	[
+		{
+			_class = "C_OP_InstantaneousEmitter"
+			m_nParticlesToEmit = 1
+		},
+	]
+	m_Initializers = 
+	[
+		{
+			_class = "C_INIT_CreateWithinSphere"
+		},
+		{
+			_class = "C_INIT_RandomRotation"
+			m_flDegreesMin = 90.0
+			m_flDegreesMax = 90.0
+			m_bDisableOperator = true
+		},
+		{
+			_class = "C_INIT_RandomLifeTime"
+		},
+	]
+	m_controlPointConfigurations = 
+	[
+		{
+			m_name = "preview"
+			m_drivers = 
+			[
+				{
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 0.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+				{
+					m_iControlPoint = 1
+					m_iAttachType = "PATTACH_WORLDORIGIN"
+					m_vecOffset = [ 1.0, 0.0, 0.0 ]
+					m_angOffset = [ null, null, null ]
+					m_entityName = "self"
+				},
+			]
+		},
+	]
+	m_nMaxParticles = 1
+	m_nBehaviorVersion = 4
+}
