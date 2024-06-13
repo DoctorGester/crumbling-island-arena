@@ -11,6 +11,8 @@
 		"AbilityCastRange" "500"
 
 		"TargetingIndicator" {
+			"Type" "TARGETING_INDICATOR_AOE"
+			"Radius" "220"
 			"DisplayRange" "1"
 		}
 
