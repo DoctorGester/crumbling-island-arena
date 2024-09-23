@@ -50,8 +50,8 @@ function LycanWolf:CollideWith(target)
     if not instanceof(target, Projectile) and not instanceof(target, Obstacle) and not unit:IsStunned() and not unit:IsRooted() and not self.attacking and not target:IsAirborne() then
         local direction = (target:GetPos() - self:GetPos())
         local distance = direction:Length2D()
-
-        ExecuteOrderFromTable({ UnitIndex = unit:GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_STOP })
+        
+        unit:Stop()
 
         self:FindModifier("modifier_lycan_q"):SetDuration(0.15, false)
         self:SetFacing(direction:Normalized())
@@ -106,9 +106,9 @@ function LycanWolf:Update()
     local offset = Vector(normal.y, -normal.x) * y * self.offsetModifier
     local result = self.start + projected + offset
 
-    self.i = (self.i or 0) + 1
-
-    if self.i % 5 == 0 then
-        ExecuteOrderFromTable({ UnitIndex = self:GetUnit():GetEntityIndex(), OrderType = DOTA_UNIT_ORDER_MOVE_TO_POSITION, Position = result })
+    if (self.i or 0) % 5 == 0 then
+        self:GetUnit():MoveToPosition(result)
     end
+    
+    self.i = (self.i or 0) + 1
 end

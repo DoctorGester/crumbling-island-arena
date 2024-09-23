@@ -14,7 +14,8 @@ end
 function modifier_lycan_q:DeclareFunctions()
     local funcs = {
         MODIFIER_PROPERTY_MOVESPEED_BASE_OVERRIDE,
-        MODIFIER_PROPERTY_MOVESPEED_MAX
+        MODIFIER_PROPERTY_MOVESPEED_MAX,
+        MODIFIER_PROPERTY_IGNORE_MOVESPEED_LIMIT
     }
 
     return funcs
@@ -22,6 +23,10 @@ end
 
 function modifier_lycan_q:GetModifierMoveSpeed_Max(params)
     return 1100
+end
+
+function modifier_lycan_q:GetModifierIgnoreMovespeedLimit()
+    return 1
 end
 
 function modifier_lycan_q:GetModifierMoveSpeedOverride(params)
