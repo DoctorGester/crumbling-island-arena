@@ -2,7 +2,7 @@
 	"drow_q" {
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/drow/drow_q"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityTextureName" "drow_ranger/dragons_touch_ability_icons/drow_ranger_wave_of_silence"
 		"AbilityCooldown" "8.0"
 		"Damage" "1"

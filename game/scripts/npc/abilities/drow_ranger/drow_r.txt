@@ -2,7 +2,7 @@
 	"drow_r" {
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/drow/drow_r"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName" "drow_ranger_marksmanship"
 		"AbilityCooldown" "12.0"

@@ -2,7 +2,7 @@
 	"wr_r" {
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/wr/wr_r"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
 		"AbilityTextureName" "windrunner/peregrine_flight/windrunner_powershot"
 		"AbilityCooldown" "18.0"

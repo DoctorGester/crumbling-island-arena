@@ -3,7 +3,7 @@
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/void/void_r"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityTextureName" "crystal_maiden_freezing_field"
 		"AbilityCooldown" "24.0"
 		"AbilityCastPoint" "0.15"

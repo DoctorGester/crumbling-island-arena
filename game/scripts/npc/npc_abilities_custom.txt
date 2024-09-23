@@ -308,7 +308,7 @@
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/phoenix/phoenix_r"
 		"AbilityType" "DOTA_ABILITY_TYPE_ULTIMATE"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityTextureName" "phoenix_sun_ray"
 		"AbilityCooldown" "20"
 		"AbilityCastRange" "800"

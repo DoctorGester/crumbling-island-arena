@@ -2,7 +2,7 @@
 	"wr_q" {
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/wr/wr_q"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityTextureName" "windrunner_powershot"
 		"AbilityCooldown" "6.0"
 		"Damage" "3"

@@ -2,7 +2,7 @@
 	"sven_e" {
 		"BaseClass" "ability_lua"
 		"ScriptFile" "abilities/sven/sven_e"
-		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES"
+		"AbilityBehavior" "DOTA_ABILITY_BEHAVIOR_POINT | DOTA_ABILITY_BEHAVIOR_ROOT_DISABLES | DOTA_ABILITY_BEHAVIOR_CHANNELLED"
 		"AbilityTextureName" "sven/cyclopean_marauder_ability_icons/sven_warcry"
 		"AbilityCooldown" "5.0"
 		"Damage" "3"
